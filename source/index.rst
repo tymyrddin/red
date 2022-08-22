@@ -17,5 +17,7 @@ in the forest first.
    :caption: Forest
 
    A foothold in the cloud <https://tymyrddin.github.io/red-iac/>
+   Scouting in the forest <https://tymyrddin.github.io/red-recon/>
+   Head in the clouds <https://tymyrddin.github.io/red-cloud/>
    API mayhem <https://tymyrddin.github.io/red-api/>
 
