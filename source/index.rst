@@ -21,4 +21,5 @@ in the forest first.
    Head in the clouds <https://tymyrddin.github.io/red-cloud/>
    API mayhem <https://tymyrddin.github.io/red-api/>
    Forest fire <https://tymyrddin.github.io/red-hurdles/>
+   Riches in the ground <https://tymyrddin.github.io/red-network/>
 
