@@ -20,4 +20,5 @@ in the forest first.
    Scouting in the forest <https://tymyrddin.github.io/red-recon/>
    Head in the clouds <https://tymyrddin.github.io/red-cloud/>
    API mayhem <https://tymyrddin.github.io/red-api/>
+   Forest fire <https://tymyrddin.github.io/red-hurdles/>
 
