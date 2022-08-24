@@ -1,4 +1,4 @@
-Red Teaming
+Red Team
 =======================================
 
 Red teaming is a full-scope, multi-layered attack simulation, in the forest. It is meant to measure how well people
