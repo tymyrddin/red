@@ -1,22 +1,5 @@
-# Targets for the pentest
+# Additional target considerations
 
-During the planning and scoping phase, you need to define the targets for the
-pentest. The contract agreement should have a section on target selection
-that specifies the targets of the pentest. These include internal and external targets, and first-party and third-party 
-targets.
-
-## Other targets
-
-When performing a penetration test, in addition to identifying the IP addresses of
-the hosts you are going to perform the penetration test on, also identify the following resources:
-* Determine what applications and services are in scope of the
-penetration test. 
-* Determine if testing the physical security controls is in scope of the pentest. 
-* Determine if there are wireless networks that you are authorised to exploit. 
-* Determine what user accounts are in scope for password cracking. Determine if you are allowed to attempt to 
-compromise administrative accounts.
-
-## Target considerations
 Some considerations to keep in mind when performing the pentest on the
 identified targets:
 

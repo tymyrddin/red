@@ -17,5 +17,5 @@ penetration test.
 * [Disclaimers](disclaimers.md)
 * [Scoping](scoping.md)
 * [Rules of engagement](roe.md)
-* [Targets for the pentest](targets.md)
+* [Additional target considerations](targets.md)
 * [Scheduling and scope creep](scheduling.md)

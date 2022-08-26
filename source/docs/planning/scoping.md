@@ -11,8 +11,11 @@ understanding of what their goals are for the penetration test.
 * Does the organisation own the systems using those IP addresses?
 * Are there any systems hosted by third-party companies such as an ISP or a cloud provider?
 * What applications and services need to be tested?
+* Is testing the physical security controls in scope of the pentest?
 * What types of tests are to be included? Are physical security or social engineering to be included? Are DoS attacks 
 allowed?
+* What user accounts are in scope for password cracking? Are we allowed to attempt to 
+compromise administrative accounts?
 
 With an unknown-environment (black box) test, the pentester is typically responsible for discovering target
 services, and in some cases even the target IP addresses. If so, you run the risk of performing the test on an 
