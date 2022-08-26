@@ -18,11 +18,11 @@ allowed?
 compromise administrative accounts?
 
 With an unknown-environment (black box) test, the pentester is typically responsible for discovering target
-services, and in some cases even the target IP addresses. If so, you run the risk of performing the test on an 
+services, and in some cases even the target IP addresses. If so, we run the risk of performing the test on an 
 unauthorised IP address or system owned by someone else.
 
-Even with a black box test you want the customer to give you the target IP addresses and
-domain names so that you can be sure you have proper authorisations. 
+Even with a black box test we want the customer to give us the target IP addresses and
+domain names so that we can be sure we have proper authorisations. 
 
 ## List the in-scope assets
 
@@ -36,10 +36,10 @@ physical access controls to gain access to those locations?
 * Which and what internal targets (on the LAN) and what external targets (on the Internet) are in scope?
 * Assets that exist on-premises (first-party) and assets that are hosted in the cloud (third-party)?
 
-You must get a separate permission from the third party or cloud provider to perform testing on those assets.
+We must get a separate permission from the third party or cloud provider to perform testing on those assets.
 
 ## More questions
 
-Depending on the type of testing being performed, there are more questions you can ask during the scoping of the 
+Depending on the type of testing being performed, there are more questions we can ask during the scoping of the 
 project. The Penetration Testing Execution Standard (PTES) website has an 
-[extensive list of questions](http://www.pentest-standard.org/index.php/Pre-engagement#General_Questions) you can ask.
+[extensive list of questions](http://www.pentest-standard.org/index.php/Pre-engagement#General_Questions) we can ask.

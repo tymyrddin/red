@@ -18,11 +18,11 @@ agreement is also known as a non-disclosure agreement (NDA).
 testing company that specifies the type of work its pentesters are providing,
 the timeline for performing the work, the cost of the work, the payment
 schedule, and any terms and conditions covering the work.
-* A master service agreement (MSA) is a useful contract if you are
+* A master service agreement (MSA) is a useful contract if we are
 performing repeat work for a company. The MSA acts as a standard boilerplate contract for the 
 business relationship between the contractor and
 customer saving time when repeat work is needed from the contractor. With
-the MSA, you can define the terms of the work in the MSA and then refer to
+the MSA, we can define the terms of the work in the MSA and then refer to
 that from the SOW for each reoccurring engagement. Examples of terms in
 the MSA include payment terms, working conditions, remediation processes,
 and ownership of intellectual property.
