@@ -1,8 +1,8 @@
 Red Team
 =======================================
 
-The red team is a group roleplaying the most likely adversaries to attack the organisational assets, by
-pentesting and social engineering attacks to validate whether there is enough protection on the organisational assets.
+Initially, the red team can be a group roleplaying the most likely adversaries to attack an organisational asset or
+assets to validate whether there is enough protection on those organisational asset(s).
 
 If an organisation has cycled through enough pentests and feels confident, red teaming can be a multi-layered attack
 simulation to measure how well people and networks, applications, and physical security controls can withstand an attack
