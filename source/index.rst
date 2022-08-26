@@ -40,7 +40,7 @@ these Windows hacks impossible, unless you are working on very old targets), but
 the grove is useful as an impression of the choreography of a systematic hack, and to wet appetites for more.
 
 .. toctree::
-   :caption: Getting started lab
+   :caption: In the grove
 
    Attack trees <https://tymyrddin.github.io/attack-trees/>
    Cheatsheets <https://tymyrddin.github.io/cheatsheets/>
