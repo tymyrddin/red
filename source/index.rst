@@ -35,9 +35,9 @@ Grove
 ---------------------------------------
 
 To start off in a red team as someone without hacking experience, we recommend following a story of a small grove
-in the forest first. It does contain a few hacks that can only happen in a lab context (new security controls make these
-hacks impossible, unless you are working on very old targets), but most still work fine, and the grove is only intended
-to give an impression of the choreography of a systematic hack, and wet appetites for more.
+in the forest first. It does contain a few hacks that can only happen in a lab context (new AV security controls make
+these Windows hacks impossible, unless you are working on very old targets), but most of these attacks still work, and
+the grove is useful as an impression of the choreography of a systematic hack, and to wet appetites for more.
 
 .. toctree::
    :caption: Getting started lab
