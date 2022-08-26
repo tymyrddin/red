@@ -12,7 +12,7 @@ from a real-life adversary.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Standards and Methodologies
+   :caption: Standards and methodologies
 
    docs/methodologies/README.md
    docs/methodologies/*
