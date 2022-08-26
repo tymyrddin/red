@@ -19,8 +19,8 @@ testing company that specifies the type of work its pentesters are providing,
 the timeline for performing the work, the cost of the work, the payment
 schedule, and any terms and conditions covering the work.
 * A master service agreement (MSA) is a useful contract if you are
-performing repeat work for a company. The MSA acts as a standard boiler
-plate contract for the business relationship between the contractor and
+performing repeat work for a company. The MSA acts as a standard boilerplate contract for the 
+business relationship between the contractor and
 customer saving time when repeat work is needed from the contractor. With
 the MSA, you can define the terms of the work in the MSA and then refer to
 that from the SOW for each reoccurring engagement. Examples of terms in
@@ -33,3 +33,9 @@ confidential and how confidential information should be handled. The NDA is
 created by the customer and given to the contractor to sign. The NDA is
 designed to protect the confidentiality of sensitive information that the
 contractor may come across while doing the penetration test.
+
+## Resources
+
+* [20 Statement of Work Templates & Examples (SOW)](https://www.docformats.com/statement-of-work/)
+* [Master Services Agreement (MSA) template](https://juro.com/contract-templates/msa-master-services-agreement)
+* [Non-Disclosure Agreement samples](https://nondisclosureagreement.com/)
