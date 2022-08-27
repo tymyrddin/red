@@ -12,4 +12,5 @@ Not inventing the wheel twice.
 
 * [MITRE ATT&CK](mitre.md)
 * [OWASP Top 10](owasp.md)
+* [US National Institute of Standards and Technology (NIST)](nist.md)
 * [Penetration Testing Execution Standard (PTES)](ptes.md) 
