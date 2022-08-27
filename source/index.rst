@@ -12,10 +12,10 @@ from a real-life adversary.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Standards and methodologies
+   :caption: Resources
 
-   docs/methodologies/README.md
-   docs/methodologies/*
+   docs/resources/README.md
+   docs/resources/*
 
 .. toctree::
    :glob:
