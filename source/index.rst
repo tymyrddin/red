@@ -11,6 +11,7 @@ by any means necessary. The goal is to find the most effective way into an organ
 .. toctree::
    :caption: Forest
 
+   Preparations <https://tymyrddin.github.io/docs/prologue/introduction/>
    The Grove <https://tymyrddin.github.io/attack-trees/>
    A foothold in the cloud <https://tymyrddin.github.io/red-iac/>
    Scouting in the forest <https://tymyrddin.github.io/red-recon/>
@@ -18,4 +19,5 @@ by any means necessary. The goal is to find the most effective way into an organ
    API mayhem <https://tymyrddin.github.io/red-api/>
    Forest fire <https://tymyrddin.github.io/red-hurdles/>
    Riches in the ground <https://tymyrddin.github.io/red-network/>
+   Alphabet soup <https://tymyrddin.github.io/docs/soup/>
 
