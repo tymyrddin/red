@@ -13,6 +13,7 @@ by any means necessary. The goal is to find the most effective way into an organ
 
    Preparations <https://tymyrddin.github.io/docs/prologue/introduction/>
    The Grove <https://tymyrddin.github.io/attack-trees/>
+   A pocketful of acorns <https://tymyrddin.github.io/red-acorns/>
    A foothold in the cloud <https://tymyrddin.github.io/red-iac/>
    Scouting in the forest <https://tymyrddin.github.io/red-recon/>
    Head in the clouds <https://tymyrddin.github.io/red-cloud/>
