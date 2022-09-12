@@ -20,5 +20,5 @@ by any means necessary. The goal is to find the most effective way into an organ
    API mayhem <https://tymyrddin.github.io/red-api/>
    Forest fire <https://tymyrddin.github.io/red-hurdles/>
    Riches in the ground <https://tymyrddin.github.io/red-network/>
-   Alphabet soup <https://tymyrddin.github.io/docs/soup/>
+   Organisations <https://tymyrddin.github.io/docs/soup/>
 
