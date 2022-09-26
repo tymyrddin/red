@@ -19,6 +19,7 @@ by any means necessary. The goal is to find the most effective way into an organ
    Head in the clouds <https://tymyrddin.github.io/red-cloud/>
    API mayhem <https://tymyrddin.github.io/red-api/>
    Forest fire <https://tymyrddin.github.io/red-hurdles/>
+   Monkeys know which trees to climb<https://tymyrddin.github.io/red-escalation/>
    Riches in the ground <https://tymyrddin.github.io/red-network/>
    Organisations <https://tymyrddin.github.io/docs/soup/>
 
