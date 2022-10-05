@@ -15,9 +15,9 @@ activities and neglect throughout decades.
    Head in the clouds (hacking cloud applications) <https://tymyrddin.github.io/red-cloud/>
    API mayhem (hacking API's) <https://tymyrddin.github.io/red-api/>
    Monkeys know which trees to climb (exploitation and escalation) <https://tymyrddin.github.io/red-escalation/>
-   Mythical blue lake (active directory hacks) <https://tymyrddin.github.io/red-ad/>
    Riches in the ground (network attacks) <https://tymyrddin.github.io/red-network/>
    Beyond the visible (past encryption) <https://tymyrddin.github.io/red-crypt/>
    A foothold in the cloud (attack infrastructure as code) <https://tymyrddin.github.io/red-iac/>
    Forest fire (red teaming) <https://tymyrddin.github.io/red-hurdles/>
+   Mythical blue lake (active directory hacks) <https://tymyrddin.github.io/red-ad/>
 
