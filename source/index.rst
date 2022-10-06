@@ -9,9 +9,9 @@ activities and neglect throughout decades.
 
    Laws of the forest (management and bureacracy) <https://tymyrddin.github.io/>
    The Grove (simple hack story for a taste) <https://tymyrddin.github.io/attack-trees/>
-   Lay of the land (recon, enumeration, scanning, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
+   Falconry (information gathering, scanning) <https://tymyrddin.github.io/red-recon/>
+   Lay of the land (enumeration, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
    A pocketful of acorns (physical attacks) <https://tymyrddin.github.io/red-acorns/>
-   Watching the canopy (information gathering applications) <https://tymyrddin.github.io/red-recon/>
    Head in the clouds (hacking cloud applications) <https://tymyrddin.github.io/red-cloud/>
    API mayhem (hacking API's) <https://tymyrddin.github.io/red-api/>
    Monkeys know which trees to climb (exploitation and escalation) <https://tymyrddin.github.io/red-escalation/>
