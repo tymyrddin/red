@@ -29,3 +29,12 @@ a:hover {
   padding: 6px 12px;
   border-color: #DD0000;
 }
+
+.highlight {
+  background: #333;
+  color: #ddd;
+}
+
+.wy-nav-top {
+  background: #990000;
+}

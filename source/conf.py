@@ -43,7 +43,7 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'display_version': True,
     'prev_next_buttons_location': 'bottom',
-    'style_external_links': True,
+    'style_external_links': False,
     # Toc options
     'collapse_navigation': False,
     'sticky_navigation': False,
@@ -77,24 +77,6 @@ html_show_copyright = False
 
 # Intersphinx
 intersphinx_mapping = {
-    "attack-trees": ("https://tymyrddin.github.io/attack-trees/", None),
-    "cheatsheets": ("https://tymyrddin.github.io/cheatsheets/", None),
     "red-recon": ("https://tymyrddin.github.io/red-recon/", None),
-    "e2ee-threat-model":("https://tymyrddin.github.io/e2ee-threat-model/", None),
-    "da-threat-model":("https://tymyrddin.github.io/da-threat-model/", None),
-    "se-threat-model":("https://tymyrddin.github.io/se-threat-model/", None),
-    "app-threat-model":("https://tymyrddin.github.io/app-threat-model/", None),
-    "cicd-threat-model":("https://tymyrddin.github.io/cicd-threat-model/", None),
-    "linux-pc-mitigations":("https://tymyrddin.github.io/linux-pc-mitigations/", None),
-    "linux-server-mitigations":("https://tymyrddin.github.io/linux-server-mitigations/", None),
-    "data-mitigations":("https://tymyrddin.github.io/data-mitigations/", None),
-    "webserver-mitigations":("https://tymyrddin.github.io/webserver-mitigations/", None),
-    "mailserver-mitigations":("https://tymyrddin.github.io/mailserver-mitigations/", None),
-    "network-mitigations":("https://tymyrddin.github.io/network-mitigations/", None),
-    "app-mitigations": ("https://tymyrddin.github.io/app-mitigations/", None),
-    "android-mitigations": ("https://tymyrddin.github.io/android-mitigations/", None),
-    "windows-pc-mitigations": ("https://tymyrddin.github.io/windows-pc-mitigations/", None),
-    "macos-mitigations": ("https://tymyrddin.github.io/macos-mitigations/", None),
-    "ios-mitigations": ("https://tymyrddin.github.io/ios-mitigations/", None),
 }
 myst_url_schemes = ["http", "https", ]

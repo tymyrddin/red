@@ -8,7 +8,6 @@ activities and neglect throughout decades.
    :caption: Forest
 
    Laws of the forest (management and bureacracy) <https://tymyrddin.github.io/>
-   The Grove (simple hack story for a taste) <https://tymyrddin.github.io/attack-trees/>
    Falconry (information gathering, initial scanning) <https://tymyrddin.github.io/red-recon/>
    Lay of the land (scanning, enumeration, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
    A pocketful of acorns (physical attacks) <https://tymyrddin.github.io/red-acorns/>
