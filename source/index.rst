@@ -1,11 +1,11 @@
 Red Team
 =======================================
 
-The forest is huge and wild, a digital landscape formed by nature's own processes and humanoid
-activities and neglect throughout decades.
+These are writeups made from our adventures in the forest, huge and wild, a digital landscape formed by nature's own
+processes and humanoid activities and neglect throughout decades.
 
 .. toctree::
-   :caption: Forest
+   :caption: Forest writeups
 
    Laws of the forest (management and bureacracy) <https://tymyrddin.github.io/>
    Falconry (information gathering, initial scanning) <https://tymyrddin.github.io/red-recon/>
