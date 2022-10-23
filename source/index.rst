@@ -1,6 +1,9 @@
 Red Team
 =======================================
 
+The red team simulates the TTP's of a most likely adversary and tries to get at the crown jewels
+(usually a flag).
+
 These are writeups made from our adventures in the forest, huge and wild, a digital landscape formed by nature's own
 processes and humanoid activities and neglect throughout decades.
 
@@ -20,3 +23,8 @@ processes and humanoid activities and neglect throughout decades.
    Forest fire (red teaming) <https://tymyrddin.github.io/red-hurdles/>
    Mythical blue lake (active directory hacks) <https://tymyrddin.github.io/red-ad/>
 
+.. toctree::
+   :caption: Links
+
+   Blue Team <https://tymyrddin.github.io/blue/>
+   Green Team <https://tymyrddin.github.io/green/>
