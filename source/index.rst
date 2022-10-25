@@ -11,8 +11,8 @@ processes and humanoid activities and neglect throughout decades.
    :caption: Forest writeups
 
    Laws of the forest (management and bureacracy) <https://tymyrddin.github.io/>
-   Falconry (information gathering, initial scanning) <https://tymyrddin.github.io/red-recon/>
-   Lay of the land (scanning, enumeration, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
+   Falconry (information gathering, initial port scanning) <https://tymyrddin.github.io/red-recon/>
+   Lay of the land (enumeration, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
    A pocketful of acorns (physical attacks) <https://tymyrddin.github.io/red-acorns/>
    A canopy of apple-blossom (web application hacking) <https://tymyrddin.github.io/red-app/>
    API mayhem (hacking API's) <https://tymyrddin.github.io/red-api/>
