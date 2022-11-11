@@ -20,10 +20,10 @@ processes and humanoid activities and neglect throughout decades.
    Head in the clouds (hacking cloud applications) <https://tymyrddin.github.io/red-cloud/>
    Monkeys know which trees to climb (exploitation and escalation) <https://tymyrddin.github.io/red-escalation/>
    Riches in the ground (network attacks) <https://tymyrddin.github.io/red-network/>
-   Beyond the visible (encryption/decryption/workarounds) <https://tymyrddin.github.io/red-crypt/>
    Forest fire (red teaming) <https://tymyrddin.github.io/red-hurdles/>
    Evasion techniques (host, network) <https://tymyrddin.github.io/red-evasion/>
    Mythical blue lake (active directory hacks) <https://tymyrddin.github.io/red-ad/>
+   Beyond the visible (exfiltration) <https://tymyrddin.github.io/red-crypt/>
 
 .. toctree::
    :caption: Links
