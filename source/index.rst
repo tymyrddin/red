@@ -1,6 +1,9 @@
 Red Team
 =======================================
 
+.. image:: _static/images/ukc.png
+  :alt: Unified Kill Chain
+
 The red team simulates the TTP's of a most likely adversary and tries to get at the crown jewels
 (usually a flag).
 
