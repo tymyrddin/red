@@ -25,14 +25,14 @@ processes and humanoid activities and neglect throughout decades.
    A canopy of apple-blossom (web application hacking) <https://tymyrddin.github.io/red-app/>
    API mayhem (hacking API's) <https://tymyrddin.github.io/red-api/>
    Head in the clouds (hacking cloud applications) <https://tymyrddin.github.io/red-cloud/>
+   Riches in the ground (network attacks) <https://tymyrddin.github.io/red-network/>
+   Evasion techniques (host, network) <https://tymyrddin.github.io/red-evasion/>
 
 .. toctree::
    :caption: Through
 
    Monkeys know which trees to climb (exploitation and escalation) <https://tymyrddin.github.io/red-escalation/>
-   Riches in the ground (network attacks) <https://tymyrddin.github.io/red-network/>
    Forest fire (red teaming) <https://tymyrddin.github.io/red-hurdles/>
-   Evasion techniques (host, network) <https://tymyrddin.github.io/red-evasion/>
    Mythical blue lake (AD hacks) <https://tymyrddin.github.io/red-ad/>
 
 .. toctree::
