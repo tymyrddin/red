@@ -7,13 +7,13 @@ The red team simulates the TTP's of a most likely adversary and tries to get at 
 These are writeups made from our adventures in the forest, huge and wild, a digital landscape formed by nature's own
 processes and humanoid activities and neglect throughout decades.
 
+.. image:: _static/images/ukc.png
+  :alt: Unified Kill Chain
+
 ----
 
-.. image:: _static/images/in.png
-  :alt: Unified Kill Chain: In
-
 .. toctree::
-   :caption: In
+   :caption: Gaining access
 
    Falconry (information gathering, initial port scanning) <https://tymyrddin.github.io/red-recon/>
    Lay of the land (enumeration, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
@@ -27,24 +27,12 @@ processes and humanoid activities and neglect throughout decades.
 
 ----
 
-.. image:: _static/images/through.png
-  :alt: Unified Kill Chain: Through
-
 .. toctree::
-   :caption: Through
+   :caption: Running around
 
    Monkeys know which trees to climb (exploitation and escalation) <https://tymyrddin.github.io/red-escalation/>
-   Forest fire (red teaming) <https://tymyrddin.github.io/red-hurdles/>
-   Mythical blue lake (AD hacks) <https://tymyrddin.github.io/red-ad/>
-
-----
-
-.. image:: _static/images/out.png
-  :alt: Unified Kill Chain: Out
-
-.. toctree::
-   :caption: Out
-
+   Forest fire (a red teaming trail) <https://tymyrddin.github.io/red-hurdles/>
+   Mythical blue lake (Active Directory hacks) <https://tymyrddin.github.io/red-ad/>
    Beyond the visible (crypt) <https://tymyrddin.github.io/red-crypt/>
 
 ----
