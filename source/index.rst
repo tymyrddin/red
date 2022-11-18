@@ -30,6 +30,7 @@ processes and humanoid activities and neglect throughout decades.
 .. toctree::
    :caption: Running around
 
+   The grove (for a simplified impression) <https://tymyrddin.github.io/red-basic/>
    Monkeys know which trees to climb (exploitation and escalation) <https://tymyrddin.github.io/red-escalation/>
    Forest fire (a red teaming trail) <https://tymyrddin.github.io/red-hurdles/>
    Mythical blue lake (Active Directory hacks) <https://tymyrddin.github.io/red-ad/>
