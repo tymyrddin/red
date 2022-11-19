@@ -16,7 +16,7 @@ processes and humanoid activities and neglect throughout decades.
    :caption: Gaining access
 
    Falconry (information gathering, initial port scanning) <https://tymyrddin.github.io/red-recon/>
-   Lay of the land (enumeration, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
+   Lay of the land (remote enumeration, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
    A foothold in the cloud (weaponisation, attack infrastructure as code) <https://tymyrddin.github.io/red-iac/>
    A pocketful of acorns (physical attacks) <https://tymyrddin.github.io/red-acorns/>
    A canopy of apple-blossom (web application hacking) <https://tymyrddin.github.io/red-app/>
