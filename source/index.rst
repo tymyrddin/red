@@ -1,3 +1,6 @@
+.. image:: _static/images/ukc.png
+  :alt: Unified Kill Chain
+
 Red Team
 =======================================
 
@@ -6,9 +9,6 @@ The red team simulates the TTP's of a most likely adversary and tries to get at 
 
 These are writeups made from our adventures in the forest, huge and wild, a digital landscape formed by nature's own
 processes and humanoid activities and neglect throughout decades.
-
-.. image:: _static/images/ukc.png
-  :alt: Unified Kill Chain
 
 ----
 
