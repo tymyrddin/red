@@ -13,7 +13,7 @@ processes and humanoid activities and neglect throughout decades.
 ----
 
 .. toctree::
-   :caption: Gaining access
+   :caption: In
 
    Falconry (information gathering, initial port scanning) <https://tymyrddin.github.io/red-recon/>
    Lay of the land (remote enumeration, identifying vulnerabilities) <https://tymyrddin.github.io/red-enum/>
@@ -28,7 +28,7 @@ processes and humanoid activities and neglect throughout decades.
 ----
 
 .. toctree::
-   :caption: Running around
+   :caption: Through
 
    The grove (for a simplified impression) <https://tymyrddin.github.io/red-basic/>
    Monkeys know which trees to climb (exploitation and escalation) <https://tymyrddin.github.io/red-escalation/>
