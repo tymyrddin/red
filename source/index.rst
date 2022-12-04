@@ -39,6 +39,13 @@ processes and humanoid activities and neglect throughout decades.
 ----
 
 .. toctree::
+   :caption: Out
+
+   Data exfiltration <https://tymyrddin.github.io/red-exfil/>
+
+----
+
+.. toctree::
    :caption: Links
 
    Laws of the forest <https://tymyrddin.github.io/>
