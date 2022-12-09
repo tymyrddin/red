@@ -32,7 +32,7 @@ processes and humanoid activities and neglect throughout decades.
 
    The grove (for a simplified impression) <https://red.tymyrddin.dev/projects/basic/>
    Monkeys know which trees to climb (exploitation and escalation) <https://red.tymyrddin.dev/projects/escalation/>
-   Forest fire (a red teaming trail) <https://red.tymyrddin.dev/projects/hurdles/>
+   Forest fire (a red teaming trail) <https://red.tymyrddin.dev/projects/fire/>
    Mythical blue lake (Active Directory hacks) <https://red.tymyrddin.dev/projects/ad/>
 
 ----
@@ -40,7 +40,7 @@ processes and humanoid activities and neglect throughout decades.
 .. toctree::
    :caption: Out
 
-   Beyond the visible (crypt) <https://red.tymyrddin.dev/projects/crypt/>
+   Beyond the visible (crypt) <https://red.tymyrddin.dev/projects/crypto/>
    Data exfiltration <https://red.tymyrddin.dev/projects/exfil/>
 
 ----
