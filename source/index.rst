@@ -51,4 +51,4 @@ processes and humanoid activities and neglect throughout decades.
    Curated collections of sessions on youtube <https://www.youtube.com/@ninabarzh/playlists>
    Laws of the forest <https://purple.tymyrddin.dev/>
    Blue Team <https://blue.tymyrddin.dev//>
-   Green Team <https://red.tymyrddin.dev/>
+   Green Team <https://green.tymyrddin.dev/>
