@@ -32,6 +32,7 @@ processes and humanoid activities and neglect throughout decades.
 
    The grove (for a simplified impression) <https://red.tymyrddin.dev/projects/basic/>
    Monkeys know which trees to climb (exploitation and escalation) <https://red.tymyrddin.dev/projects/escalation/>
+   Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bo/>
    Forest fire (a red teaming trail) <https://red.tymyrddin.dev/projects/fire/>
    Mythical blue lake (Active Directory hacks) <https://red.tymyrddin.dev/projects/ad/>
 
