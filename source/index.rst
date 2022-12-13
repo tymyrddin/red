@@ -23,7 +23,7 @@ processes and humanoid activities and neglect throughout decades.
    API mayhem (hacking API's) <https://red.tymyrddin.dev/projects/api/>
    Head in the clouds (hacking cloud applications) <https://red.tymyrddin.dev/projects/cloud/>
    Riches in the ground (network attacks) <https://red.tymyrddin.dev/projects/network/>
-   Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bo/>
+   Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
    Evasion techniques (host, network) <https://red.tymyrddin.dev/projects/evasion/>
 
 ----
