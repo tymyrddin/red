@@ -23,6 +23,7 @@ processes and humanoid activities and neglect throughout decades.
    API mayhem (hacking API's) <https://red.tymyrddin.dev/projects/api/>
    Head in the clouds (hacking cloud applications) <https://red.tymyrddin.dev/projects/cloud/>
    Riches in the ground (network attacks) <https://red.tymyrddin.dev/projects/network/>
+   Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bo/>
    Evasion techniques (host, network) <https://red.tymyrddin.dev/projects/evasion/>
 
 ----
@@ -32,7 +33,6 @@ processes and humanoid activities and neglect throughout decades.
 
    The grove (for a simplified impression) <https://red.tymyrddin.dev/projects/basic/>
    Monkeys know which trees to climb (exploitation and escalation) <https://red.tymyrddin.dev/projects/escalation/>
-   Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bo/>
    Forest fire (a red teaming trail) <https://red.tymyrddin.dev/projects/fire/>
    Mythical blue lake (Active Directory hacks) <https://red.tymyrddin.dev/projects/ad/>
 
