@@ -25,6 +25,7 @@ processes and humanoid activities and neglect throughout decades.
    Riches in the ground (network attacks) <https://red.tymyrddin.dev/projects/network/>
    Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
    Evasion techniques (host, network) <https://red.tymyrddin.dev/projects/evasion/>
+   Internet of Things <https://red.tymyrddin.dev/projects/evasion/>
 
 ----
 
@@ -43,6 +44,7 @@ processes and humanoid activities and neglect throughout decades.
 
    Beyond the visible (crypt) <https://red.tymyrddin.dev/projects/crypto/>
    Data exfiltration <https://red.tymyrddin.dev/projects/exfil/>
+   Bug bounty hunting <https://red.tymyrddin.dev/projects/bbh/>
 
 ----
 
