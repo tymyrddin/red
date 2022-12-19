@@ -25,7 +25,7 @@ processes and humanoid activities and neglect throughout decades.
    Riches in the ground (network attacks) <https://red.tymyrddin.dev/projects/network/>
    Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
    Evasion techniques (host, network) <https://red.tymyrddin.dev/projects/evasion/>
-   Internet of Things <https://red.tymyrddin.dev/projects/iot/>
+   A vast amphibious wilderness of swamp (Internet of Things) <https://red.tymyrddin.dev/projects/iot/>
 
 ----
 
