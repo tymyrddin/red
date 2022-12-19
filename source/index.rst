@@ -1,6 +1,8 @@
 .. image:: _static/images/ukc.png
   :alt: Unified Kill Chain
 
+----
+
 Red Team
 =======================================
 
@@ -20,7 +22,7 @@ processes and humanoid activities and neglect throughout decades.
    A foothold in the cloud (weaponisation, attack infrastructure as code) <https://red.tymyrddin.dev/projects/iac/>
    A pocketful of acorns (physical attacks) <https://red.tymyrddin.dev/projects/acorns/>
    A canopy of apple-blossom (web application hacking) <https://red.tymyrddin.dev/projects/app/>
-   API mayhem (hacking API's) <https://red.tymyrddin.dev/projects/api/>
+   API mayhem (hacking APIs) <https://red.tymyrddin.dev/projects/api/>
    Head in the clouds (hacking cloud applications) <https://red.tymyrddin.dev/projects/cloud/>
    Riches in the ground (network attacks) <https://red.tymyrddin.dev/projects/network/>
    Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
