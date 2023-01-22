@@ -119,12 +119,12 @@ topnav ul {
     }
 
     .nav__item + .nav__item {
-        margin-left: 1.0rem;
+        margin-left: 1rem;
     }
 }
 
 .wy-nav-content {
-  padding-top: 1.1rem;
+  padding-top: 1rem;
 }
 
 .icon {
