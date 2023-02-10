@@ -47,13 +47,3 @@ processes and humanoid activities and neglect throughout decades.
    Beyond the visible (crypt) <https://red.tymyrddin.dev/projects/crypto/>
    Data exfiltration <https://red.tymyrddin.dev/projects/exfil/>
    Bug bounty hunting <https://red.tymyrddin.dev/projects/bbh/>
-
-----
-
-.. toctree::
-   :caption: Links
-
-   Laws of the forest <https://purple.tymyrddin.dev/>
-   Blue Team <https://blue.tymyrddin.dev//>
-   Green Team <https://green.tymyrddin.dev/>
-   Good Omens <https://www.youtube.com/@ninabarzh/playlists>
