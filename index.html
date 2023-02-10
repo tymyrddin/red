@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Team &mdash; Red teaming</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Red teaming
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">In</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/recon/">Falconry (information gathering, initial port scanning)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/enum/">Lay of the land (remote enumeration, identifying vulnerabilities)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/iac/">A foothold in the cloud (weaponisation, attack infrastructure as code)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/acorns/">A pocketful of acorns (physical attacks)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/app/">A canopy of apple-blossom (web application hacking)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/api/">API mayhem (hacking APIs)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/cloud/">Head in the clouds (hacking cloud applications)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/network/">Riches in the ground (network attacks)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/bof/">Woodpeckers (buffer overflow exploits)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/evasion/">Evasion techniques (host, network)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/iot/">A vast amphibious wilderness of swamp and forest (IoT)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Through</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/basic/">The grove (for a simplified impression)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/escalation/">Monkeys know which trees to climb (exploitation and escalation)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/fire/">Forest fire (a red teaming trail)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/ad/">Mythical blue lake (Active Directory hacks)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Out</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/crypto/">Beyond the visible (crypt)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/exfil/">Data exfiltration</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/bbh/">Bug bounty hunting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://purple.tymyrddin.dev/">Laws of the forest</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://blue.tymyrddin.dev//">Blue Team</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://green.tymyrddin.dev/">Green Team</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/&#64;ninabarzh/playlists">Good Omens</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Red teaming</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div class="container">
+    <topnav>
+            <ul>
+                <li class="nav__item"><a href="https://uu.tymyrddin.dev/" class="nav__link">Unseen University</a></li>
+                <li class="nav__item"><a href="https://uu.tymyrddin.dev/" class="nav__link">Wizardry Unclasses</a></li>
+                <li class="nav__item"><a href="https://uu.tymyrddin.dev/blog/" class="nav__link">Improbability Blog</a></li>
+                <li class="nav__item"><a href="https://uu.tymyrddin.dev/about/" class="nav__link">About the UU</a></li>
+                <li class="nav__item"><a href="https://uu.tymyrddin.dev/registration/" class="nav__link">Register</a></li>
+            </ul>
+    </topnav>
+    <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <img alt="Unified Kill Chain" src="_images/ukc.png" />
+<hr class="docutils" />
+<section id="red-team">
+<h1>Red Team<a class="headerlink" href="#red-team" title="Permalink to this heading"></a></h1>
+<p>The red team simulates the TTP’s of a most likely adversary and tries to get at the crown jewels
+(usually a flag).</p>
+<p>These are writeups made from our adventures in the forest, huge and wild, a digital landscape formed by nature’s own
+processes and humanoid activities and neglect throughout decades.</p>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">In</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/recon/">Falconry (information gathering, initial port scanning)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/enum/">Lay of the land (remote enumeration, identifying vulnerabilities)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/iac/">A foothold in the cloud (weaponisation, attack infrastructure as code)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/acorns/">A pocketful of acorns (physical attacks)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/app/">A canopy of apple-blossom (web application hacking)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/api/">API mayhem (hacking APIs)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/cloud/">Head in the clouds (hacking cloud applications)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/network/">Riches in the ground (network attacks)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/bof/">Woodpeckers (buffer overflow exploits)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/evasion/">Evasion techniques (host, network)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/iot/">A vast amphibious wilderness of swamp and forest (IoT)</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Through</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/basic/">The grove (for a simplified impression)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/escalation/">Monkeys know which trees to climb (exploitation and escalation)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/fire/">Forest fire (a red teaming trail)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/ad/">Mythical blue lake (Active Directory hacks)</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Out</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/crypto/">Beyond the visible (crypt)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/exfil/">Data exfiltration</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://red.tymyrddin.dev/projects/bbh/">Bug bounty hunting</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://purple.tymyrddin.dev/">Laws of the forest</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://blue.tymyrddin.dev//">Blue Team</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://green.tymyrddin.dev/">Green Team</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/&#64;ninabarzh/playlists">Good Omens</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+        <a href="https://uu.tymyrddin.dev">Unseen University</a>, 2023, with a forest garden <a href="https://ut7.fr/">fostered by /ut7</a>.
+
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
