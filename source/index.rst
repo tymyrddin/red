@@ -44,6 +44,6 @@ processes and humanoid activities and neglect throughout decades.
 .. toctree::
    :caption: Out
 
-   Beyond the visible (crypt) <https://red.tymyrddin.dev/projects/crypto/>
+   Beyond the visible (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
    Data exfiltration <https://red.tymyrddin.dev/projects/exfil/>
    Bug bounty hunting <https://red.tymyrddin.dev/projects/bbh/>
