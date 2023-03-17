@@ -45,5 +45,6 @@ processes and humanoid activities and neglect throughout decades.
    :caption: Out
 
    Beyond the visible (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
+   Cracking nuts (reverse engineering) <https://red.tymyrddin.dev/projects/reverse/>
    Data exfiltration <https://red.tymyrddin.dev/projects/exfil/>
    Bug bounty hunting <https://red.tymyrddin.dev/projects/bbh/>
