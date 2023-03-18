@@ -19,7 +19,8 @@ processes and humanoid activities and neglect throughout decades.
 
    Falconry (information gathering, initial port scanning) <https://red.tymyrddin.dev/projects/recon/>
    Lay of the land (remote enumeration, identifying vulnerabilities) <https://red.tymyrddin.dev/projects/enum/>
-   A foothold in the cloud (weaponisation, attack infrastructure as code) <https://red.tymyrddin.dev/projects/iac/>
+   A foothold in the cloud (attack infrastructure as code) <https://red.tymyrddin.dev/projects/iac/>
+   The lodge (environments, testlabs, and tools used) <https://red.tymyrddin.dev/projects/testlab/>
    A pocketful of acorns (physical attacks) <https://red.tymyrddin.dev/projects/acorns/>
    A canopy of apple-blossom (web application hacking) <https://red.tymyrddin.dev/projects/app/>
    API mayhem (hacking APIs) <https://red.tymyrddin.dev/projects/api/>
@@ -45,6 +46,6 @@ processes and humanoid activities and neglect throughout decades.
    :caption: Out
 
    Beyond the visible (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
-   Cracking nuts (reverse engineering) <https://red.tymyrddin.dev/projects/reverse/>
+   Cracking nuts (binary analysis) <https://red.tymyrddin.dev/projects/reverse/>
    Data exfiltration <https://red.tymyrddin.dev/projects/exfil/>
    Bug bounty hunting <https://red.tymyrddin.dev/projects/bbh/>
