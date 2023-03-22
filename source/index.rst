@@ -17,9 +17,10 @@ processes and humanoid activities and neglect throughout decades.
 .. toctree::
    :caption: In
 
+
+   The lodge (environments, testlabs, and tools used) <https://red.tymyrddin.dev/projects/testlab/>
    Falconry (information gathering, initial port scanning) <https://red.tymyrddin.dev/projects/recon/>
    Lay of the land (remote enumeration, identifying vulnerabilities) <https://red.tymyrddin.dev/projects/enum/>
-   The lodge (environments, testlabs, and tools used) <https://red.tymyrddin.dev/projects/testlab/>
    A foothold in the cloud (attack infrastructure as code) <https://red.tymyrddin.dev/projects/iac/>
    A pocketful of acorns (physical attacks) <https://red.tymyrddin.dev/projects/acorns/>
    A canopy of apple-blossom (web application hacking) <https://red.tymyrddin.dev/projects/app/>
@@ -45,7 +46,7 @@ processes and humanoid activities and neglect throughout decades.
 .. toctree::
    :caption: Out
 
-   Beyond the visible (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
+   Beyond the readable (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
    Cracking nuts (binary analysis) <https://red.tymyrddin.dev/projects/reverse/>
    Data exfiltration <https://red.tymyrddin.dev/projects/exfil/>
    Bug bounty hunting <https://red.tymyrddin.dev/projects/bbh/>
