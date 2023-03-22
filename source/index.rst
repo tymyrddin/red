@@ -48,5 +48,5 @@ processes and humanoid activities and neglect throughout decades.
 
    Beyond the readable (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
    Cracking nuts (binary analysis) <https://red.tymyrddin.dev/projects/reverse/>
-   Data exfiltration <https://red.tymyrddin.dev/projects/exfil/>
-   Bug bounty hunting <https://red.tymyrddin.dev/projects/bbh/>
+   Gathering edibles (data exfiltration) <https://red.tymyrddin.dev/projects/exfil/>
+   Hunting bug bounties (bbh) <https://red.tymyrddin.dev/projects/bbh/>
