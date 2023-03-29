@@ -27,8 +27,6 @@ processes and humanoid activities and neglect throughout decades.
    API mayhem (hacking APIs) <https://red.tymyrddin.dev/projects/api/>
    Head in the clouds (hacking cloud applications) <https://red.tymyrddin.dev/projects/cloud/>
    Riches in the ground (network attacks) <https://red.tymyrddin.dev/projects/network/>
-   Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
-   Evasion techniques (host, network) <https://red.tymyrddin.dev/projects/evasion/>
    A vast amphibious wilderness of swamp and forest (IoT) <https://red.tymyrddin.dev/projects/iot/>
 
 ----
@@ -38,6 +36,10 @@ processes and humanoid activities and neglect throughout decades.
 
    The grove (for a simplified impression) <https://red.tymyrddin.dev/projects/basic/>
    Monkeys know which trees to climb (exploitation and escalation) <https://red.tymyrddin.dev/projects/escalation/>
+   Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
+   Nature's cheats (evasion techniques) <https://red.tymyrddin.dev/projects/evasion/>
+   Beyond the readable (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
+   Cracking nuts (binary analysis) <https://red.tymyrddin.dev/projects/reverse/>
    Forest fire (a red teaming trail) <https://red.tymyrddin.dev/projects/fire/>
    Mythical blue lake (Active Directory hacks) <https://red.tymyrddin.dev/projects/ad/>
 
@@ -46,7 +48,5 @@ processes and humanoid activities and neglect throughout decades.
 .. toctree::
    :caption: Out
 
-   Beyond the readable (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
-   Cracking nuts (binary analysis) <https://red.tymyrddin.dev/projects/reverse/>
    Gathering edibles (data exfiltration) <https://red.tymyrddin.dev/projects/exfil/>
    Hunting bug bounties (bbh) <https://red.tymyrddin.dev/projects/bbh/>
