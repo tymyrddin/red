@@ -39,7 +39,7 @@ processes and humanoid activities and neglect throughout decades.
    Woodpeckers (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
    Nature's cheats (evasion techniques) <https://red.tymyrddin.dev/projects/evasion/>
    Beyond the readable (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
-   Cracking nuts (binary analysis) <https://red.tymyrddin.dev/projects/reverse/>
+   Cracking nuts (reverse engineering) <https://red.tymyrddin.dev/projects/reverse/>
    Forest fire (a red teaming trail) <https://red.tymyrddin.dev/projects/fire/>
    Mythical blue lake (Active Directory hacks) <https://red.tymyrddin.dev/projects/ad/>
 
