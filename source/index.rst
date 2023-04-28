@@ -35,7 +35,7 @@ processes and humanoid activities and neglect throughout decades.
    :caption: Through
 
    The grove (for a simplified impression) <https://red.tymyrddin.dev/projects/basic/>
-   Smithing (exploitation and escalation) <https://red.tymyrddin.dev/projects/escalation/>
+   Smithing (shellcoding, exploitation and escalation) <https://red.tymyrddin.dev/projects/escalation/>
    Waterfalls (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
    Nature's cheats (evasion techniques) <https://red.tymyrddin.dev/projects/evasion/>
    Beyond the readable (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
