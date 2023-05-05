@@ -17,7 +17,6 @@ processes and humanoid activities and neglect throughout decades.
 .. toctree::
    :caption: In
 
-
    The lodge (environments, testlabs, and tools used) <https://red.tymyrddin.dev/projects/testlab/>
    Falconry (information gathering, initial port scanning) <https://red.tymyrddin.dev/projects/recon/>
    Lay of the land (enumeration, identifying vulnerabilities) <https://red.tymyrddin.dev/projects/enum/>
@@ -36,10 +35,11 @@ processes and humanoid activities and neglect throughout decades.
 
    The grove (for a simplified impression) <https://red.tymyrddin.dev/projects/basic/>
    Smithing (shellcoding, exploitation and escalation) <https://red.tymyrddin.dev/projects/escalation/>
-   Waterfalls (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
+   Hidden messages (steganography) <https://red.tymyrddin.dev/projects/stegano/>
    Nature's cheats (evasion techniques) <https://red.tymyrddin.dev/projects/evasion/>
    Beyond the readable (cryptanalysis) <https://red.tymyrddin.dev/projects/crypto/>
    Cracking nuts (reverse engineering) <https://red.tymyrddin.dev/projects/reverse/>
+   Waterfalls (buffer overflow exploits) <https://red.tymyrddin.dev/projects/bof/>
    Forest fire (a red teaming trail) <https://red.tymyrddin.dev/projects/fire/>
    Mythical blue lake (Active Directory hacks) <https://red.tymyrddin.dev/projects/ad/>
 
