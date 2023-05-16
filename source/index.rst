@@ -38,6 +38,7 @@ processes and humanoid activities and neglect throughout decades.
    Hidden messages (steganography) <https://steg.tymyrddin.dev/>
    Nature's cheats (evasion techniques) <https://evasion.tymyrddin.dev/>
    Beyond the readable (cryptanalysis) <https://crypto.tymyrddin.dev/>
+   Cracking nuts (reverse engineering) <https://reverse.tymyrddin.dev/>
    Waterfalls (buffer overflow exploits) <https://bof.tymyrddin.dev/projects/>
    Forest fire (a red teaming trail) <https://fire.tymyrddin.dev/projects/>
    Mythical blue lake (Active Directory hacks) <https://ad.tymyrddin.dev/>
