@@ -34,8 +34,8 @@ processes and humanoid activities and neglect throughout decades.
    :caption: Through
 
    The grove (for a simplified impression) <https://grove.tymyrddin.dev/>
-   Smithing (shellcoding, exploitation and escalation) <https://shell.tymyrddin.dev/>
-   Hidden messages (steganography) <https://steg.tymyrddin.dev/>
+   Smithing (shellcoding, exploitation and escalation) <https://exploitation.tymyrddin.dev/>
+   Hidden messages (steganography) <https://steganography.tymyrddin.dev/>
    Nature's cheats (evasion techniques) <https://evasion.tymyrddin.dev/>
    Beyond the readable (cryptanalysis) <https://crypto.tymyrddin.dev/>
    Cracking nuts (reverse engineering) <https://reverse.tymyrddin.dev/>
