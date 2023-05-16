@@ -37,10 +37,10 @@ processes and humanoid activities and neglect throughout decades.
    Smithing (shellcoding, exploitation and escalation) <https://exploitation.tymyrddin.dev/>
    Hidden messages (steganography) <https://steganography.tymyrddin.dev/>
    Nature's cheats (evasion techniques) <https://evasion.tymyrddin.dev/>
-   Beyond the readable (cryptanalysis) <https://crypto.tymyrddin.dev/>
+   Beyond the readable (cryptanalysis) <https://cryptanalysis.tymyrddin.dev/>
    Cracking nuts (reverse engineering) <https://reverse.tymyrddin.dev/>
-   Waterfalls (buffer overflow exploits) <https://bof.tymyrddin.dev/projects/>
-   Forest fire (a red teaming trail) <https://fire.tymyrddin.dev/projects/>
+   Waterfalls (buffer overflow exploits) <https://bof.tymyrddin.dev/>
+   Forest fire (a red teaming trail) <https://fire.tymyrddin.dev/>
    Mythical blue lake (Active Directory hacks) <https://ad.tymyrddin.dev/>
 
 ----
