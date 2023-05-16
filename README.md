@@ -1,9 +1,6 @@
 # Red teaming
 
-Built with [Sphinx](https://www.sphinx-doc.org) using a [theme](https://github.com/readthedocs/sphinx_rtd_theme) provided
-by [Read the Docs](https://readthedocs.org/).
-
-[![Documentation Status](https://readthedocs.org/projects/redteaming/badge/?version=latest)](https://red.tymyrddin.dev/en/latest/?badge=latest)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b086e424-788e-42a9-b2e7-c7a05f317590/deploy-status)](https://app.netlify.com/sites/preeminent-sprinkles-da499a/deploys)
 
 ## Requirements
 
