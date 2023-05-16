@@ -77,7 +77,4 @@ html_show_copyright = False
 
 
 # Intersphinx
-intersphinx_mapping = {
-    "red-recon": ("https://red.tymyrddin.dev/projects/recon/en/latest/", None),
-}
 myst_url_schemes = ["http", "https", ]
