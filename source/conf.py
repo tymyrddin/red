@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Red teaming'
+project = 'Red team'
 copyright = '2022, Ty Myrddin'
 author = 'Ty Myrddin'
 release = '0.1'
@@ -53,7 +53,7 @@ html_theme_options = {
     'titles_only': True
 }
 
-html_title = "Red teaming"
+html_title = "Red team"
 html_logo = "img/logo.png"
 html_favicon = "img/favicon.ico"
 
