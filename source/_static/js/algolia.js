@@ -1,50 +1,40 @@
-// Wrap the entire implementation in a DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function() {
-    (function() {
-        // Configuration - MODIFY THIS SECTION
-        const configElement = document.getElementById('algolia-config');
-        if (!configElement) {
-            console.error('Algolia config element not found - check if script is placed correctly');
-            return;
-        }
-
-        let config;
-        try {
-            config = JSON.parse(configElement.textContent.trim());
-        } catch (e) {
-            console.error('Failed to parse Algolia config:', e, '\nConfig content:', configElement.textContent);
-            return;
-        }
-
-        // Validate minimum required config
-        if (!config.app_id || !config.api_key || !config.indices) {
-            console.error('Invalid Algolia config - missing required fields');
-            return;
-        }
-
-        const isDevMode = config.app_id.includes('dev_') || config.api_key.includes('dev_');
-
-        // Initial debug log
-        console.log("Algolia Search Initialized", {
-            mode: isDevMode ? "DEVELOPMENT" : "PRODUCTION",
-            config: {
-                ...config,
-                api_key: "***REDACTED***"
-            },
-            ready: document.readyState
-        });
-
-    // DOM Elements
-    const searchInput = document.querySelector('.sidebar-search-container input');
-    const searchResults = document.createElement('div');
-    searchResults.className = 'algolia-results-container';
-
-    // Insert results container
-    if (searchInput && searchInput.parentNode) {
-        searchInput.parentNode.appendChild(searchResults);
+    // 1. Safely get configuration
+    const configElement = document.getElementById('algolia-config');
+    if (!configElement) {
+        console.error('Algolia config element not found');
+        return;
     }
 
-    // Debounce function
+    let config;
+    try {
+        config = JSON.parse(configElement.textContent.trim());
+    } catch (e) {
+        console.error('Failed to parse Algolia config:', e);
+        return;
+    }
+
+    // 2. Validate configuration
+    if (!config.app_id || !config.api_key || !config.indices) {
+        console.error('Invalid Algolia configuration');
+        return;
+    }
+
+    const isDevMode = config.app_id.includes('dev_');
+    console.log('Algolia initialized', { mode: isDevMode ? 'DEV' : 'PROD' });
+
+    // 3. DOM Elements
+    const searchInput = document.querySelector('.sidebar-search-container input');
+    if (!searchInput) {
+        console.warn('Search input element not found');
+        return;
+    }
+
+    const searchResults = document.createElement('div');
+    searchResults.className = 'algolia-results-container';
+    searchInput.parentNode.appendChild(searchResults);
+
+    // 4. Debounce function
     function debounce(func, wait) {
         let timeout;
         return function(...args) {
@@ -53,50 +43,31 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Mock search for development
+    // 5. Mock search (dev only)
     function mockSearch(query) {
-        return [
-            {
-                url: 'index.html',
-                title: 'Mock Result for "' + query + '"',
-                content: 'This is a mock search result. In production, you would see real results from Algolia.'
-            },
-            {
-                url: 'other.html',
-                title: 'Another Mock Result',
-                content: 'This demonstrates what search results will look like.'
-            }
-        ];
+        return [{
+            url: 'index.html',
+            title: 'Mock: ' + query,
+            content: 'Sample result for development'
+        }];
     }
 
-    // Display results
+    // 6. Display results
     function displayResults(results, query) {
         if (!results || !results.length) {
-            searchResults.innerHTML = `
-                <div class="algolia-no-results">
-                    No results found for "${query}"
-                </div>
-            `;
-            searchResults.style.display = 'block';
+            searchResults.innerHTML = `<div class="no-results">No results for "${query}"</div>`;
             return;
         }
-
-        let html = '<div class="algolia-results-list">';
-        results.forEach(result => {
-            html += `
-                <a href="${result.url}" class="algolia-result-item">
-                    <div class="algolia-result-title">${result.title}</div>
-                    <div class="algolia-result-content">${result.content}</div>
-                </a>
-            `;
-        });
-        html += '</div>';
-
-        searchResults.innerHTML = html;
-        searchResults.style.display = 'block';
+        
+        searchResults.innerHTML = results.map(result => `
+            <a href="${result.url}" class="result">
+                <h3>${result.title}</h3>
+                <p>${result.content}</p>
+            </a>
+        `).join('');
     }
 
-    // Handle search
+    // 7. Handle search
     function handleSearch(query) {
         if (!query || query.length < 2) {
             searchResults.style.display = 'none';
@@ -104,94 +75,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (isDevMode) {
-            console.log("Dev mode - using mock results");
             displayResults(mockSearch(query), query);
             return;
         }
 
-        // Load Algolia client if not already loaded
         if (!window.algoliasearch) {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/algoliasearch@4.14.3/dist/algoliasearch-lite.umd.js';
-            script.onload = () => {
-                console.log("Algolia client loaded");
-                performAlgoliaSearch(query);
-            };
-            script.onerror = () => {
-                console.error("Failed to load Algolia client");
-                displayResults([{
-                    url: '#',
-                    title: 'Error',
-                    content: 'Failed to load Algolia client'
-                }], query);
-            };
-            document.head.appendChild(script);
+            loadAlgoliaClient(query);
         } else {
-            performAlgoliaSearch(query);
+            performSearch(query);
         }
     }
 
-    // Perform actual Algolia search
-    function performAlgoliaSearch(query) {
-        console.log("Performing search for:", query);
+    // 8. Load Algolia client
+    function loadAlgoliaClient(query) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/algoliasearch@4.14.3/dist/algoliasearch-lite.umd.js';
+        script.onload = () => performSearch(query);
+        script.onerror = () => console.error('Failed to load Algolia client');
+        document.head.appendChild(script);
+    }
+
+    // 9. Perform actual search
+    function performSearch(query) {
         const client = window.algoliasearch(config.app_id, config.api_key);
-
-        console.log("Searching indices:", config.indices.map(i => config.index_prefix + i));
-
-        return Promise.all(config.indices.map(index => {
-            const indexName = `${config.index_prefix}${index}`;
-            return client.initIndex(indexName).search(query, {
-                hitsPerPage: 10,
-                attributesToRetrieve: ['u', 't', 'c'],
-                attributesToSnippet: ['c:40'],
-                restrictSearchableAttributes: ['t', 'c'],
-                responseFields: ['hits', 'query'],
-                advancedSyntax: true
-            });
+        
+        Promise.all(config.indices.map(index => {
+            return client.initIndex(`${config.index_prefix}${index}`)
+                .search(query, {
+                    hitsPerPage: 5,
+                    attributesToRetrieve: ['u', 't', 'c']
+                });
         }))
         .then(responses => {
-            console.log("Search responses received", responses);
-            const hits = responses.flatMap(r =>
-                r.hits.map(hit => ({
-                    url: hit.u || '#',
-                    title: hit.t || 'Untitled',
-                    content: hit._snippetResult?.c?.value || hit.c || ''
-                }))
-            );
-            return hits;
-        })
-        .then(hits => {
-            return hits.sort((a, b) => {
-                if (a._rankingInfo && b._rankingInfo) {
-                    return b._rankingInfo.userScore - a._rankingInfo.userScore;
-                }
-                return 0;
-            });
-        })
-        .then(sortedHits => {
-            displayResults(sortedHits, query);
-            return sortedHits;
+            const hits = responses.flatMap(r => r.hits.map(hit => ({
+                url: hit.u || '#',
+                title: hit.t || 'Untitled',
+                content: hit.c || ''
+            })));
+            displayResults(hits, query);
         })
         .catch(error => {
-            console.error("Algolia search error:", error);
-            displayResults([{
-                url: '#',
-                title: 'Search Error',
-                content: 'An error occurred while searching'
-            }], query);
-            return [];
+            console.error('Search failed:', error);
+            displayResults([], query);
         });
     }
 
-    // Set up event listeners
-    window.addEventListener('load', () => {
-       if (searchInput) {
-            searchInput.addEventListener('input', debounce((e) => {
-                handleSearch(e.target.value.trim());
-            }, 300));
-        } else {
-            console.warn('Algolia search input element not found');
-        }
-
-    })();
+    // 10. Initialize
+    searchInput.addEventListener('input', debounce(e => {
+        handleSearch(e.target.value.trim());
+    }, 300));
 });

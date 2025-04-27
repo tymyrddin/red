@@ -1,18 +1,22 @@
 [build]
   publish = "build/html"
-  command = "make clean && make html"  # Simplified command
+  command = "make clean && make html"
 
+# available in all builds
 [build.environment]
-  NODE_VERSION = "18.17.1"  # or "20" for latest LTS
-
-[functions]
-  node_bundler = "esbuild"  # Recommended bundler
-
-[context.production.environment]
+  NODE_VERSION = "18.17.1"
   ALGOLIA_APP_ID = "0PX8BTWD6K"
+  ALGOLIA_API_KEY =
   ALGOLIA_INDEX_PREFIX = "red_"
   ALGOLIA_INDICES = "in,through,out"
   SPHINX_DISABLE_PICKLE = "1"
 
+# production-only security setting
+[context.production.environment]
+  ALGOLIA_API_KEY = "@algolia_api_key"
+
+[functions]
+  node_bundler = "esbuild"
+
 [secrets]
-  scan_omit_paths = ["build/doctrees", "build/*.pickle"]  # Simplified paths
+  scan_omit_paths = ["build/doctrees", "build/*.pickle"]

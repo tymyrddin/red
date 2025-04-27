@@ -1,11 +1,17 @@
 from sphinx.application import Sphinx
 from sphinx.util import logging
+from dotenv import load_dotenv
 import json
 import os
 
 logger = logging.getLogger(__name__)
 
 def setup(app: Sphinx):
+    # Load .env file in development
+    if os.path.exists('.env'):
+        load_dotenv()
+        logger.info("Loaded .env file")
+
     # Config setup (unchanged)
     app.add_config_value('algolia_app_id', os.getenv('ALGOLIA_APP_ID', 'dev_app_id'), 'html')
     app.add_config_value('algolia_api_key', os.getenv('ALGOLIA_API_KEY', 'dev_api_key'), 'html')
