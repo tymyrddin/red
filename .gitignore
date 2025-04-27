@@ -9,6 +9,9 @@ __pycache__/
 # PyCharm files
 .idea/
 
+# Environment vars
+.env
+
 # Instance Folder - used for run-time files
 instance/*.cfg
 instance/*.db

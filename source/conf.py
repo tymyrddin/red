@@ -1,80 +1,54 @@
 # Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+
+# -- Path setup --------------------------------------------------------------
+import os
+import sys
+sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
 project = 'Red team'
 copyright = '2022, Ty Myrddin'
 author = 'Ty Myrddin'
 release = '0.1'
 
 # -- General configuration ---------------------------------------------------
-
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
 extensions = [
     'myst_parser',
     'sphinx_markdown_tables',
     'sphinx.ext.intersphinx',
+    'extensions.algolia_search',  # This handles all Algolia setup
 ]
 
 source_suffix = ['.rst', '.md']
-
-# Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
-
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+# Disable default search index generation
+html_use_index = False
 
-# -- Options for HTML output -------------------------------------------------
+# -- HTML Output -------------------------------------------------------------
+html_theme = 'furo'
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-#
-html_theme = 'sphinx_rtd_theme'
-
+# Furo theme options
 html_theme_options = {
-    'display_version': True,
-    'prev_next_buttons_location': 'bottom',
-    'style_external_links': False,
-    'logo_only': True,
-    # Toc options
-    'collapse_navigation': False,
-    'sticky_navigation': False,
-    'navigation_depth': 3,
-    'includehidden': True,
-    'titles_only': True
+    "sidebar_hide_name": True,
+    "navigation_with_keys": True,
 }
 
 html_title = "Red team"
 html_logo = "img/logo.png"
 html_favicon = "img/favicon.ico"
-
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-# These paths are either relative to html_static_path
-# or fully qualified paths (eg. https://...)
-html_css_files = [
-    'css/custom.css',
-]
+# These are already added by the algolia_search extension
+# html_js_files = ['js/algolia.js']  # Remove this
+# html_css_files = ['css/algolia.css']  # Remove this
 
-# If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
+# Only include custom.css if you have other custom styles
+html_css_files = ['css/custom.css']
+
 html_show_sphinx = False
-
-# If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 html_show_copyright = False
 
-
-# Intersphinx
-myst_url_schemes = ["http", "https", ]
+# -- Intersphinx ------------------------------------------------------------
+myst_url_schemes = ["http", "https"]

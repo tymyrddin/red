@@ -1,4 +1,4 @@
-.. image:: _static/images/ukc.png
+.. image:: _static/images/ukc2.png
   :alt: Unified Kill Chain
 
 ----
