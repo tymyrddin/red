@@ -52,3 +52,6 @@ html_show_copyright = False
 
 # -- Intersphinx ------------------------------------------------------------
 myst_url_schemes = ["http", "https"]
+
+# Disable environment caching
+pickle = False
