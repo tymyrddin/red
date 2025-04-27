@@ -5,21 +5,15 @@
     
     const config = JSON.parse(configElement.textContent);
     const isDevMode = config.app_id.includes('dev_') || config.api_key.includes('dev_');
-    
-    // Debug information object
-    const debugInfo = {
-        mode: isDevMode ? 'DEVELOPMENT' : 'PRODUCTION',
-        config: config,
-        lastSearch: null,
-        lastResponse: null,
-        lastError: null,
-        environment: {
-            algoliaClientLoaded: false,
-            userAgent: navigator.userAgent,
-            online: navigator.onLine,
-            windowLoaded: false
+
+    // Initial debug log
+    console.log("Algolia Search Initialized", {
+        mode: isDevMode ? "DEVELOPMENT" : "PRODUCTION",
+        config: {
+            ...config,
+            api_key: "***REDACTED***"
         }
-    };
+    });
 
     // DOM Elements
     const searchInput = document.querySelector('.sidebar-search-container input');
@@ -56,49 +50,19 @@
         ];
     }
 
-    // Render debug information
-    function renderDebugInfo() {
-        return `
-            <div class="algolia-debug-info">
-                <h4>Debug Information</h4>
-                <p><strong>Mode:</strong> ${debugInfo.mode}</p>
-                <p><strong>Last Query:</strong> ${debugInfo.lastSearch || 'None'}</p>
-                <p><strong>Config:</strong></p>
-                <pre>${JSON.stringify(debugInfo.config, null, 2)}</pre>
-                ${debugInfo.lastError ? `
-                    <p><strong>Last Error:</strong></p>
-                    <pre class="algolia-error">${JSON.stringify(debugInfo.lastError, null, 2)}</pre>
-                ` : ''}
-                <p><strong>Environment:</strong></p>
-                <pre>${JSON.stringify(debugInfo.environment, null, 2)}</pre>
-            </div>
-        `;
-    }
-
-    // Display results with debug info
+    // Display results
     function displayResults(results, query) {
-        debugInfo.lastSearch = query;
-        debugInfo.lastResponse = results;
-
         if (!results || !results.length) {
             searchResults.innerHTML = `
                 <div class="algolia-no-results">
                     No results found for "${query}"
-                    ${renderDebugInfo()}
                 </div>
             `;
             searchResults.style.display = 'block';
             return;
         }
 
-        let html = `
-            <div class="algolia-results-list">
-                <div class="algolia-debug-header">
-                    Search mode: ${debugInfo.mode}
-                    ${renderDebugInfo()}
-                </div>
-        `;
-
+        let html = '<div class="algolia-results-list">';
         results.forEach(result => {
             html += `
                 <a href="${result.url}" class="algolia-result-item">
@@ -121,6 +85,7 @@
         }
 
         if (isDevMode) {
+            console.log("Dev mode - using mock results");
             displayResults(mockSearch(query), query);
             return;
         }
@@ -130,14 +95,11 @@
             const script = document.createElement('script');
             script.src = 'https://cdn.jsdelivr.net/npm/algoliasearch@4.14.3/dist/algoliasearch-lite.umd.js';
             script.onload = () => {
-                debugInfo.environment.algoliaClientLoaded = true;
+                console.log("Algolia client loaded");
                 performAlgoliaSearch(query);
             };
             script.onerror = () => {
-                debugInfo.lastError = {
-                    message: 'Failed to load Algolia client',
-                    type: 'script-load-error'
-                };
+                console.error("Failed to load Algolia client");
                 displayResults([{
                     url: '#',
                     title: 'Error',
@@ -146,18 +108,16 @@
             };
             document.head.appendChild(script);
         } else {
-            debugInfo.environment.algoliaClientLoaded = true;
             performAlgoliaSearch(query);
         }
     }
 
     // Perform actual Algolia search
     function performAlgoliaSearch(query) {
+        console.log("Performing search for:", query);
         const client = window.algoliasearch(config.app_id, config.api_key);
-        debugInfo.environment.algoliaClientLoaded = true;
 
-        // Debug: Log which indices we're searching
-        console.log('Searching indices:', config.indices.map(i => config.index_prefix + i));
+        console.log("Searching indices:", config.indices.map(i => config.index_prefix + i));
 
         return Promise.all(config.indices.map(index => {
             const indexName = `${config.index_prefix}${index}`;
@@ -171,26 +131,18 @@
             });
         }))
         .then(responses => {
-            // Debug: Show raw response
-            console.log('Raw Algolia response:', responses);
-
+            console.log("Search responses received", responses);
             const hits = responses.flatMap(r =>
                 r.hits.map(hit => ({
                     url: hit.u || '#',
                     title: hit.t || 'Untitled',
-                    content: hit._snippetResult?.c?.value || hit.c || '',
-                    _rankingInfo: hit._rankingInfo // Preserve ranking info for debugging
+                    content: hit._snippetResult?.c?.value || hit.c || ''
                 }))
             );
-
-            // Debug: Show processed hits
-            console.log('Processed hits:', hits);
             return hits;
         })
         .then(hits => {
-            // Sort hits by relevance across all indices
             return hits.sort((a, b) => {
-                // Algolia returns _rankingInfo in production
                 if (a._rankingInfo && b._rankingInfo) {
                     return b._rankingInfo.userScore - a._rankingInfo.userScore;
                 }
@@ -202,27 +154,22 @@
             return sortedHits;
         })
         .catch(error => {
-            console.error('Algolia error:', error);
-            debugInfo.lastError = {
-                message: error.message,
-                stack: error.stack,
-                name: error.name
-            };
-            displayResults([], query);
+            console.error("Algolia search error:", error);
+            displayResults([{
+                url: '#',
+                title: 'Search Error',
+                content: 'An error occurred while searching'
+            }], query);
             return [];
         });
     }
 
     // Set up event listeners
     window.addEventListener('load', () => {
-        debugInfo.environment.windowLoaded = true;
         if (searchInput) {
             searchInput.addEventListener('input', debounce((e) => {
                 handleSearch(e.target.value.trim());
             }, 300));
         }
     });
-
-    // Initial debug log
-    console.log('Algolia search initialized:', debugInfo);
 })();
