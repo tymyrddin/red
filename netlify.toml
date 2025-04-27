@@ -1,11 +1,12 @@
 [build]
   publish = "build/html"
-  command = "make clean && make html"
+  command = "find build/ -name '*.pickle' -delete && make clean && make html"  # Force delete first
 
 [context.production.environment]
-  ALGOLIA_APP_ID = "0PX8BTWD6K"  # This is public-safe
+  ALGOLIA_APP_ID = "0PX8BTWD6K"
   ALGOLIA_INDEX_PREFIX = "red_"
   ALGOLIA_INDICES = "in,through,out"
+  SPHINX_DISABLE_PICKLE = "1"
 
 [secrets]
-  scan_omit_paths = ["build/doctrees/", "build/*.pickle"]
+  scan_omit_paths = ["build/doctrees", "build/*.pickle"]  # Simplified paths

@@ -35,5 +35,6 @@ htmlcov/
 # Not the static site, will be generated on push
 build/
 _build
+.sphinx-disable-pickle
 build/doctrees/
 *.pickle
