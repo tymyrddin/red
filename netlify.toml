@@ -3,7 +3,7 @@
   command = "make clean && make html"  # Simplified command
 
 [build.environment]
-  NODE_VERSION = "18"  # or "20" for latest LTS
+  NODE_VERSION = "18.17.1"  # or "20" for latest LTS
 
 [functions]
   node_bundler = "esbuild"  # Recommended bundler
