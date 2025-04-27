@@ -91,7 +91,7 @@
             performAlgoliaSearch(query);
         }
     }
-    
+
     // Perform actual Algolia search
     function performAlgoliaSearch(query) {
         const client = window.algoliasearch(config.app_id, config.api_key);
@@ -102,12 +102,12 @@
         return Promise.all(config.indices.map(index => {
             const indexName = `${config.index_prefix}${index}`;
             return client.initIndex(indexName).search(query, {
-                hitsPerPage: 10,  // Increased from 5
+                hitsPerPage: 10,
                 attributesToRetrieve: ['u', 't', 'c'],
-                attributesToSnippet: ['c:40'],  // Increased snippet length
-                restrictSearchableAttributes: ['t', 'c'],  // Only search title and content
-                responseFields: ['hits', 'query'],  // Optimize response
-                advancedSyntax: true  // Enable phrase searches
+                attributesToSnippet: ['c:40'],
+                restrictSearchableAttributes: ['t', 'c'],
+                responseFields: ['hits', 'query'],
+                advancedSyntax: true
             });
         }))
         .then(responses => {
@@ -119,11 +119,22 @@
                     url: hit.u || '#',
                     title: hit.t || 'Untitled',
                     content: hit._snippetResult?.c?.value || hit.c || ''
-                }));
+                }))
+            );
 
             // Debug: Show processed hits
             console.log('Processed hits:', hits);
             return hits;
+        })
+        .then(hits => {
+            // Sort hits by relevance across all indices
+            return hits.sort((a, b) => {
+                // Algolia returns _rankingInfo in production
+                if (a._rankingInfo && b._rankingInfo) {
+                    return b._rankingInfo.userScore - a._rankingInfo.userScore;
+                }
+                return 0;
+            });
         })
         .catch(error => {
             console.error('Algolia error:', error);
