@@ -44,6 +44,14 @@ def setup(app: Sphinx):
     app.add_js_file('js/algolia.js', priority=300)  # Loads after config
     app.add_css_file('css/algolia.css')
 
+    # Add build-time debug output (NEW CODE)
+    logger.info(f"Algolia Configuration:")
+    logger.info(f"App ID: {'configured' if app.config.algolia_app_id else 'missing'}")
+    logger.info(f"API Key: {'configured' if app.config.algolia_api_key else 'missing'}")
+    logger.info(f"Indices: {app.config.algolia_indices}")
+    logger.info(f"Prefix: {app.config.algolia_index_prefix}")
+    logger.info(f"Environment ALGOLIA_APP_ID: {os.environ.get('ALGOLIA_APP_ID', 'Not set')}")
+
     return {
         'version': '1.0',
         'parallel_read_safe': True,
