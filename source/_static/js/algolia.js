@@ -1,19 +1,38 @@
-(function() {
-    // Configuration
-    const configElement = document.getElementById('algolia-config');
-    if (!configElement) return;
-    
-    const config = JSON.parse(configElement.textContent);
-    const isDevMode = config.app_id.includes('dev_') || config.api_key.includes('dev_');
-
-    // Initial debug log
-    console.log("Algolia Search Initialized", {
-        mode: isDevMode ? "DEVELOPMENT" : "PRODUCTION",
-        config: {
-            ...config,
-            api_key: "***REDACTED***"
+// Wrap the entire implementation in a DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    (function() {
+        // Configuration - MODIFY THIS SECTION
+        const configElement = document.getElementById('algolia-config');
+        if (!configElement) {
+            console.error('Algolia config element not found - check if script is placed correctly');
+            return;
         }
-    });
+
+        let config;
+        try {
+            config = JSON.parse(configElement.textContent.trim());
+        } catch (e) {
+            console.error('Failed to parse Algolia config:', e, '\nConfig content:', configElement.textContent);
+            return;
+        }
+
+        // Validate minimum required config
+        if (!config.app_id || !config.api_key || !config.indices) {
+            console.error('Invalid Algolia config - missing required fields');
+            return;
+        }
+
+        const isDevMode = config.app_id.includes('dev_') || config.api_key.includes('dev_');
+
+        // Initial debug log
+        console.log("Algolia Search Initialized", {
+            mode: isDevMode ? "DEVELOPMENT" : "PRODUCTION",
+            config: {
+                ...config,
+                api_key: "***REDACTED***"
+            },
+            ready: document.readyState
+        });
 
     // DOM Elements
     const searchInput = document.querySelector('.sidebar-search-container input');
@@ -166,10 +185,13 @@
 
     // Set up event listeners
     window.addEventListener('load', () => {
-        if (searchInput) {
+       if (searchInput) {
             searchInput.addEventListener('input', debounce((e) => {
                 handleSearch(e.target.value.trim());
             }, 300));
+        } else {
+            console.warn('Algolia search input element not found');
         }
-    });
-})();
+
+    })();
+});
