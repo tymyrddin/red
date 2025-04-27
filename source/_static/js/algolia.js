@@ -95,49 +95,38 @@
     // Perform actual Algolia search
     function performAlgoliaSearch(query) {
         const client = window.algoliasearch(config.app_id, config.api_key);
-        
-        Promise.all(config.indices.map(index => {
+
+        // Debug: Log which indices we're searching
+        console.log('Searching indices:', config.indices.map(i => config.index_prefix + i));
+
+        return Promise.all(config.indices.map(index => {
             const indexName = `${config.index_prefix}${index}`;
             return client.initIndex(indexName).search(query, {
-                hitsPerPage: 5,
+                hitsPerPage: 10,  // Increased from 5
                 attributesToRetrieve: ['u', 't', 'c'],
-                attributesToSnippet: ['c:20']
+                attributesToSnippet: ['c:40'],  // Increased snippet length
+                restrictSearchableAttributes: ['t', 'c'],  // Only search title and content
+                responseFields: ['hits', 'query'],  // Optimize response
+                advancedSyntax: true  // Enable phrase searches
             });
         }))
         .then(responses => {
-            const hits = responses.flatMap(r => r.hits.map(hit => ({
-                url: hit.u,
-                title: hit.t,
-                content: hit._snippetResult?.c?.value || hit.c || ''
-            })));
-            displayResults(hits);
+            // Debug: Show raw response
+            console.log('Raw Algolia response:', responses);
+
+            const hits = responses.flatMap(r =>
+                r.hits.map(hit => ({
+                    url: hit.u || '#',
+                    title: hit.t || 'Untitled',
+                    content: hit._snippetResult?.c?.value || hit.c || ''
+                }));
+
+            // Debug: Show processed hits
+            console.log('Processed hits:', hits);
+            return hits;
         })
         .catch(error => {
-            console.error('Algolia search error:', error);
-            displayResults([{
-                url: '#',
-                title: 'Search Error',
-                content: 'An error occurred while searching'
-            }]);
+            console.error('Algolia error:', error);
+            return [];
         });
     }
-    
-    // Event listeners
-    if (searchInput) {
-        searchInput.addEventListener('input', debounce((e) => {
-            handleSearch(e.target.value.trim());
-        }, 300));
-        
-        searchInput.addEventListener('focus', () => {
-            if (searchInput.value.trim().length >= 2) {
-                searchResults.style.display = 'block';
-            }
-        });
-        
-        document.addEventListener('click', (e) => {
-            if (!searchResults.contains(e.target) && e.target !== searchInput) {
-                searchResults.style.display = 'none';
-            }
-        });
-    }
-})();
