@@ -1,6 +1,12 @@
 [build]
   publish = "build/html"
-  command = "find build/ -name '*.pickle' -delete && make clean && make html"  # Force delete first
+  command = "make clean && make html"  # Simplified command
+
+[build.environment]
+  NODE_VERSION = "18"  # or "20" for latest LTS
+
+[functions]
+  node_bundler = "esbuild"  # Recommended bundler
 
 [context.production.environment]
   ALGOLIA_APP_ID = "0PX8BTWD6K"
