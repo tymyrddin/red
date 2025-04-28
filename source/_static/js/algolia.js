@@ -1,6 +1,7 @@
 console.log("Algolia JS loaded successfully");
 
-document.addEventListener('DOMContentLoaded', function() {
+// Main initialization function
+function initializeAlgoliaSearch(searchInput, searchResults) {
     // Check if config exists
     const configElement = document.getElementById('algolia-config');
     if (!configElement) {
@@ -24,20 +25,20 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    console.log('Algolia search initialized');
+    console.log('Algolia search initialized with config:', {
+        appId: config.app_id,
+        apiKey: config.api_key ? '***REDACTED***' : 'MISSING',
+        indices: config.indices,
+        prefix: config.index_prefix
+    });
 
-    // Get DOM elements
-    const searchInput = document.querySelector('.sidebar-search-container input');
-    if (!searchInput) {
-        console.warn('Search input not found');
-        return;
+    // Create results container if not provided
+    if (!searchResults) {
+        searchResults = document.createElement('div');
+        searchResults.className = 'algolia-results-container';
+        searchResults.style.display = 'none';
+        searchInput.parentNode.appendChild(searchResults);
     }
-
-    // Create results container
-    const searchResults = document.createElement('div');
-    searchResults.className = 'algolia-results-container';
-    searchResults.style.display = 'none';
-    searchInput.parentNode.appendChild(searchResults);
 
     // Focus management
     searchInput.addEventListener('focus', () => {
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Search function
     const performSearch = debounce(async (query) => {
         query = query.trim();
+        console.log('Search triggered for:', query);
 
         if (query.length < 2) {
             searchResults.style.display = 'none';
@@ -72,28 +74,49 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // Load Algolia client if not already loaded
             if (!window.algoliasearch) {
-                await new Promise((resolve, reject) => {
-                    const script = document.createElement('script');
-                    script.src = 'https://cdn.jsdelivr.net/npm/algoliasearch@4.14.3/dist/algoliasearch-lite.umd.js';
-                    script.onload = resolve;
-                    script.onerror = reject;
-                    document.head.appendChild(script);
-                });
+                console.log("Attempting to load Algolia client...");
+                try {
+                    await new Promise((resolve, reject) => {
+                        const script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/algoliasearch@4.14.3/dist/algoliasearch-lite.umd.js';
+                        script.onload = () => {
+                            console.log("Algolia client successfully loaded");
+                            resolve();
+                        };
+                        script.onerror = () => {
+                            console.error("Failed to load Algolia client script");
+                            reject(new Error("Algolia client load failed"));
+                        };
+                        document.head.appendChild(script);
+                    });
+                } catch (err) {
+                    console.error("Algolia client loading error:", err);
+                    throw err;
+                }
+            } else {
+                console.log("Algolia client already loaded");
             }
 
             const client = window.algoliasearch(config.app_id, config.api_key);
 
             // Search all indices
             const searches = config.indices.map(index => {
-                return client.initIndex(`${config.index_prefix}${index}`)
-                    .search(query, {
-                        hitsPerPage: 5,
-                        attributesToRetrieve: ['u', 't', 'c'],
-                        attributesToHighlight: ['t', 'c']
-                    });
+                const indexName = `${config.index_prefix}${index}`;
+                console.log(`Searching index: ${indexName}`);
+                return client.initIndex(indexName).search(query, {
+                    hitsPerPage: 5,
+                    attributesToRetrieve: ['u', 't', 'c'],
+                    attributesToHighlight: ['t', 'c']
+                });
             });
 
             const results = await Promise.all(searches);
+            console.debug('Raw results:', results);
+
+            if (results.some(r => !r.hits)) {
+                throw new Error('Malformed response - missing hits array');
+            }
+
             const hits = results.flatMap(r => r.hits.map(hit => ({
                 url: hit.u || '#',
                 title: hit._highlightResult?.t?.value || hit.t || 'Untitled',
@@ -103,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayResults(hits, query);
         } catch (error) {
             console.error('Search error:', error);
-            displayError(query);
+            displayError(query, error.message);
         }
     }, 300);
 
@@ -128,11 +151,13 @@ document.addEventListener('DOMContentLoaded', function() {
         searchResults.style.display = 'block';
     }
 
-    // Display error
-    function displayError(query) {
+    // Display error with details
+    function displayError(query, error = '') {
         searchResults.innerHTML = `
             <div class="error">
-                Search temporarily unavailable. Please try again later.
+                <p>Search error for "${query}":</p>
+                ${error ? `<pre>${sanitizeHTML(error)}</pre>` : ''}
+                <p>Please try again later</p>
             </div>
         `;
         searchResults.style.display = 'block';
@@ -143,10 +168,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
-    // Event listener
+    // Event listeners
     searchInput.addEventListener('input', (e) => {
         performSearch(e.target.value);
     });
+
+    // Handle form submission
+    const searchForm = searchInput.closest('form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            performSearch(searchInput.value);
+        });
+    }
 
     // Handle Enter key
     searchInput.addEventListener('keydown', (e) => {
@@ -157,4 +191,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+}
+
+// Initialize all search boxes on page
+document.addEventListener('DOMContentLoaded', function() {
+    // Navbar search (Furo theme)
+    const navbarSearch = document.querySelector('.sidebar-search-container input');
+    if (navbarSearch) {
+        initializeAlgoliaSearch(navbarSearch);
+    }
+
+    // Search page search
+    const pageSearch = document.querySelector('.search-page-container input, .search-container input');
+    if (pageSearch) {
+        const resultsContainer = document.querySelector('.search-results, #search-results');
+        initializeAlgoliaSearch(pageSearch, resultsContainer);
+    }
 });

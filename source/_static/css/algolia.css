@@ -55,3 +55,17 @@ mark {
     padding: 0.1em;
     border-radius: 0.25em;
 }
+
+/* Add to algolia.css */
+.sidebar-search-container input,
+.search-page-container input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--color-background-border);
+    border-radius: 0.25rem;
+}
+
+.sidebar-search-container input::placeholder {
+    color: var(--color-foreground-secondary);
+    opacity: 1;
+}
