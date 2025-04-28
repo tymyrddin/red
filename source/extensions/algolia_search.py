@@ -1,22 +1,21 @@
 from sphinx.application import Sphinx
 from sphinx.util import logging
 from dotenv import load_dotenv
+from pathlib import Path
 import json
 import os
 
 logger = logging.getLogger(__name__)
 
-
 def setup(app: Sphinx):
-    # Load .env from the source directory (where conf.py is)
-    env_path = os.path.join(app.srcdir, '.env')  # Points to source/.env
+    # Get the absolute path to .env (in source/)
+    env_path = Path(__file__).parent.parent / '.env'  # Goes up to source/
 
-    print(f"[DEBUG] Looking for .env at: {env_path}")  # Debug line
+    print(f"[DEBUG] Looking for .env at: {env_path}")
 
-    if os.path.exists(env_path):
+    if env_path.exists():
         load_dotenv(env_path)
-        print("[DEBUG] .env loaded successfully!")
-        print(f"ALGOLIA_APP_ID={os.getenv('ALGOLIA_APP_ID')}")  # Verify
+        print(f"[DEBUG] .env loaded! ALGOLIA_APP_ID={os.getenv('ALGOLIA_APP_ID')}")
     else:
         print(f"[ERROR] .env not found at: {env_path}")
 
