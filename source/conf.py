@@ -39,6 +39,8 @@ html_logo = "img/logo.png"
 html_favicon = "img/favicon.ico"
 html_static_path = ['_static']
 html_css_files = ['css/custom.css']
+html_js_files = [
+    ('algolia.js', {'async': 'async', 'data-version': '1.0.0'}),]
 html_show_sphinx = False
 html_show_copyright = False
 

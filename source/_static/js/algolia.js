@@ -1,3 +1,5 @@
+console.log("Algolia JS loaded successfully");
+
 document.addEventListener('DOMContentLoaded', function() {
     // 1. Safely get configuration
     const configElement = document.getElementById('algolia-config');
@@ -125,3 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
         handleSearch(e.target.value.trim());
     }, 300));
 });
+
+// Last line of algolia.js
+console.log("Algolia JS fully executed");
