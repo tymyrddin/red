@@ -17,5 +17,6 @@
 [functions]
   node_bundler = "esbuild"
 
+# Explicitly tell Netlify to ignore these paths for secret scanning
 [secrets]
-  scan_omit_paths = ["build/doctrees", "build/*.pickle"]
+  scan_omit_paths = ["build/doctrees", "build/*.pickle", "netlify.toml"]

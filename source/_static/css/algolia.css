@@ -1,88 +1,57 @@
-/* Algolia Search Container */
+/* Algolia search results container */
 .algolia-results-container {
-    display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--color-background-primary);
-    border: 1px solid var(--color-sidebar-background-border);
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    max-height: 60vh;
+    width: 100%;
+    max-height: 70vh;
     overflow-y: auto;
-    margin: 0.5rem;
-    width: calc(100% - 1rem); /* Added from your styles */
+    background: var(--color-background-primary);
+    border: 1px solid var(--color-background-border);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin-top: 0.5rem;
+    display: none;
 }
 
-/* Results List */
-.algolia-results-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-/* Individual Result Item */
-.algolia-result-item {
+/* Individual result link */
+.algolia-results-container .result {
     display: block;
-    padding: 0.75rem 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-background-border);
     color: var(--color-foreground-primary);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-background-border);
-    transition: background 0.2s ease;
 }
 
-.algolia-result-item:hover {
+.algolia-results-container .result:hover {
     background: var(--color-background-secondary);
 }
 
-/* Result Title - combines your .title with new styling */
-.algolia-result-title {
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-    color: var(--color-brand-primary);
-}
-
-/* Result Content - combines your .context with new styling */
-.algolia-result-content {
-    font-size: 0.9em;
-    color: var(--color-foreground-secondary);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* No Results */
-.algolia-no-results {
-    padding: 1rem;
-    text-align: center;
-    color: var(--color-foreground-secondary);
-}
-
-/* Search Container - enhanced from your .sidebar-search-container */
-.sidebar-search-container {
-    position: relative;
-    margin: 1rem; /* Added for better spacing */
-}
-
-/* Search Page Specific Styles */
-.search-page-results {
-    margin-top: 2rem;
-    border-top: 1px solid var(--color-background-border);
-    padding-top: 1rem;
-}
-
-.search-box-container {
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-}
-
-.search-box-container input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--color-background-border);
-    border-radius: 4px;
+/* Result title */
+.algolia-results-container .result h3 {
+    margin: 0 0 0.5rem 0;
     font-size: 1rem;
+    color: var(--color-foreground-primary);
+}
+
+/* Result content snippet */
+.algolia-results-container .result p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-foreground-secondary);
+}
+
+/* No results / error messages */
+.algolia-results-container .no-results,
+.algolia-results-container .error {
+    padding: 1rem;
+    color: var(--color-foreground-secondary);
+    text-align: center;
+}
+
+/* Highlight matching text */
+mark {
+    background: var(--color-background-secondary);
+    color: var(--color-foreground-primary);
+    padding: 0.1em;
+    border-radius: 0.25em;
 }
