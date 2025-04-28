@@ -1,0 +1,15 @@
+{# source/_templates/components/searchbox.html #}
+<div class="algolia-search-component">
+  <form role="search" class="search-form">
+    <input type="search"
+           class="search-input"
+           placeholder="Search documentation..."
+           aria-label="Search documentation">
+    <button type="submit" class="search-button" aria-label="Submit search">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M6.5 1a5.5 5.5 0 0 1 4.383 8.823l3.896 3.9a.75.75 0 0 1-1.061 1.06l-3.895-3.9A5.5 5.5 0 1 1 6.5 1zm0 1.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+      </svg>
+    </button>
+  </form>
+  <div class="algolia-results-container"></div>
+</div>
