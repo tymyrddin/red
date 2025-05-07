@@ -1,83 +1,61 @@
-# Configuration file for the Sphinx documentation builder.
-
-# -- Path setup --------------------------------------------------------------
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('.'))
+# -- Path setup --------------------------------------------------------------
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 
 # -- Project information -----------------------------------------------------
-project = 'Red team'
-copyright = '2022, Ty Myrddin'
-author = 'Ty Myrddin'
+project = 'Red Team'
+copyright = '2025, TyMyrddin'
+author = 'TyMyrddin'
 release = '0.1'
 
 # -- General configuration ---------------------------------------------------
 extensions = [
     'myst_parser',
-    'sphinx_markdown_tables',
-    'sphinx.ext.intersphinx',
-    'extensions.algolia_search',
+    'sphinx_immaterial',
 ]
 
+# MyST parser configuration
+# myst_enable_extensions = ["colon_fence"]
+# myst_all_links_external = False  # Required for TOC resolution
+# myst_suppress_warnings = ["myst.xref_missing"]  # More specific than suppress_warnings
+
+# Path setup
+templates_path = ['_templates']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 source_suffix = {
     '.rst': 'restructuredtext',
-    '.md': 'markdown',
+    '.md': 'markdown'
 }
-templates_path = ['_templates']
-exclude_patterns = []
-html_use_index = False  # Disable default search
 
-# -- HTML Output -------------------------------------------------------------
-html_theme = 'furo'
+# -- HTML output -------------------------------------------------------------
+html_theme = 'sphinx_immaterial'
+
 html_theme_options = {
-    "sidebar_hide_name": True,
-    "navigation_with_keys": True,
+    "palette": {
+        "scheme": "slate",
+        "primary": "red",
+        "accent": "light-red"
+    },
+    "features": [
+        "navigation.top",
+        "content.tabs.link",
+        "navigation.footer.disabled"
+    ],
 }
-html_title = "Red team"
+
+html_title = "Red Team"
 html_logo = "img/logo.png"
 html_favicon = "img/favicon.ico"
 html_static_path = ['_static']
 html_css_files = ['css/custom.css']
-html_js_files = []
-html_show_sphinx = False
-html_show_copyright = False
+html_last_updated_fmt = '%Y-%m-%d %H:%M'  # e.g., "May 05, 2025 at 14:30"
 
-# -- Intersphinx ------------------------------------------------------------
-myst_url_schemes = ["http", "https"]
+# -- Build settings ----------------------------------------------------------
+nitpicky = True  # Warn about broken references
+# suppress_warnings = ["myst.xref_missing"]  # Backward compatibility
 
-# -- Pickle Prevention System -----------------------------------------------
-import atexit
-
-# 1. Disable Sphinx's native pickling
-pickle = False
-
-# 2. Active cleanup function
-def _delete_pickle_files():
-    """Remove any residual pickle files with verification."""
-    pickle_path = os.path.join('build', 'doctrees', 'environment.pickle')
-    try:
-        if os.path.exists(pickle_path):
-            os.remove(pickle_path)
-            print(f"[Security] Removed: {pickle_path}")
-    except Exception as e:
-        print(f"[Warning] Cleanup failed: {str(e)}")
-
-
-# 3. Register cleanup hooks
-atexit.register(_delete_pickle_files)  # Python-level cleanup
-if os.getenv('NETLIFY'):
-    os.environ['ALGOLIA_API_KEY'] = '[REDACTED]'  # Production obfuscation
-
-
-# -- Setup Hook ------------------------------------------------------------
-def setup(app):
-    # Additional safety for modern Sphinx versions
-    if hasattr(app, 'env') and hasattr(app.env, 'set_pickle'):
-        app.env.set_pickle(False)
-
-    return {
-        'version': '1.0',
-        'parallel_read_safe': True,
-        'parallel_write_safe': True,
-    }
+# Disable all automatic anchor generation
+autosectionlabel_prefix_document = False

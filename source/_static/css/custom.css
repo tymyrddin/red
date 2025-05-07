@@ -1,115 +1,294 @@
-/* ========== Core Fixes ========== */
-/* Remove all secondary backgrounds */
-body, .content, .sidebar-drawer, .toc-drawer, .main {
-    background-color: var(--color-background-primary) !important;
-}
-
-/* ========== Dark Theme Only ========== */
+/* ============================================= */
+/*               THEME VARIABLES                 */
+/* ============================================= */
 :root {
-    /* Content Area */
-    --content-bg: white;
-    --content-text: #121212; /* Dark gray text */
+  /* Brand colors - CHANGED TO RED */
+  --md-primary-fg-color: #DD0000;      /* Primary brand color - changed from #0066DD */
+  --md-accent-fg-color: #FF0000;       /* Accent color - changed from #0066FF */
 
-    /* Brand Colors */
-    --link: #DD0000;
-    --link-hover: #FF0000;
-    --brand-primary: #DD0000;
-    --brand-content: #DD0000;
-
-    /* Sidebar */
-    --sidebar-bg: #1a1a1a;
-    --sidebar-text: #f8f8f8;
-    --sidebar-link: #FF4444; /* Brighter red for dark mode */
-
-    /* Code Blocks */
-    --code-bg: #2e2e2e;
-    --code-text: #f8f8f8;
+  /* Dark theme colors (unchanged) */
+  --md-default-bg-color: #222;         /* Default background color */
+  --md-header-bg-color: #111111;       /* Header background */
+  --md-default-fg-color: #e6e6e6;      /* Default text color */
 }
 
-/* ===== Content Area Styling ===== */
-.content {
-    background: var(--content-bg) !important;
-    color: var(--content-text) !important;
+:root > * {
+  /* Link colors - now uses red primary */
+  --md-typeset-a-color: var(--md-primary-fg-color);
 }
 
-/* Force ALL text in content to be dark gray */
-.content,
-.content p,
-.content li,
-.content td,
-.content th,
-.content div,
-.content span,
-.content h1,
-.content h2,
-.content h3,
-.content h4,
-.content h5,
-.content h6 {
+/* ============================================= */
+/*               GLOBAL STYLES                   */
+/* ============================================= */
+body {
+    background-color: #121212 !important;
+    color: var(--md-default-fg-color) !important;
+}
+
+/* ============================================= */
+/*               LAYOUT COMPONENTS               */
+/* ============================================= */
+
+/* Main content area */
+.md-main {
+    background-color: #121212 !important;
+}
+
+.md-content {
+  background-color: white !important;
+  color: #333;
+}
+
+/* Header section */
+.md-header {
+  background-color: var(--md-header-bg-color) !important;
+}
+
+.md-header__title {
+  font-weight: bold !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.md-header__title > .md-ellipsis {
+  font-weight: inherit !important;
+}
+
+/* ============================================= */
+/*               NAVIGATION STYLES               */
+/* ============================================= */
+/* Sidebar container */
+.md-sidebar {
+  color: var(--md-default-fg-color);
+}
+
+/* Navigation container */
+.md-nav {
+    background-color: #121212 !important;
+}
+
+/* Navigation items */
+.md-nav__item {
+    background-color: #121212 !important;
+}
+
+.md-nav__list {
+    background-color: #121212 !important;
+}
+
+/* Navigation links */
+.md-nav__link {
+  color: #e6e6e6;
+}
+
+.md-nav__link--active {
+  color: var(--md-accent-fg-color);
+}
+
+.md-nav__link:hover,
+.md-nav__link--active {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+}
+
+/* Remove decorative elements */
+.md-nav__title,
+.md-nav__link,
+.md-nav__item {
+    background-color: #121212 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Sidebar scrollbar (optional) */
+.md-nav__scrollwrap::-webkit-scrollbar-thumb {
+    background-color: #333 !important;
+}
+
+/* Secondary sidebar */
+.md-sidebar--secondary {
+  border-left: 1px solid #444;
+}
+
+/* ============================================= */
+/*               CONTENT ELEMENTS                */
+/* ============================================= */
+
+/* Headers */
+.md-content h1,
+.md-content h2 {
+  color: var(--md-primary-fg-color);
+  border-bottom: 1px solid #eee;
+}
+
+
+/* ============================================= */
+/*               TABLE ROW FIXES                 */
+/* ============================================= */
+.md-typeset {
+  /* Base table styles */
+  table {
+    background-color: #fff !important;
+    color: #333 !important;
+    border: 1px solid #e1e1e1 !important;
+  }
+
+  /* Table headers */
+  table th {
+    background-color: #f5f5f5 !important;
     color: #121212 !important;
+    border-bottom: 2px solid #ddd !important;
+  }
+
+  /* Default row (odd) */
+  table .row-odd {
+    background-color: #fff !important;
+  }
+
+  /* Alternate row (even) */
+  table .row-even {
+    background-color: #f9f9f9 !important;
+  }
+
+  /* All cells */
+  table td {
+    border-top: 1px solid #eee !important;
+    padding: 0.5em 1em !important;
+  }
 }
 
-/* ===== Link Styling ===== */
-a {
-    color: var(--link) !important;
-}
-a:hover {
-    color: var(--link-hover) !important;
-}
-
-/* ===== Sidebar Styling ===== */
-.sidebar-drawer {
-    background: var(--sidebar-bg) !important;
-    color: var(--sidebar-text) !important;
+/* Code Blocks */
+.md-typeset pre > code {
+  background-color: #f8f8f8;
+  color: #333 !important;
+  border-radius: 4px;
 }
 
-/* Brighter red for sidebar links */
-.sidebar-drawer a {
-    color: var(--sidebar-link) !important;
+.md-content pre {
+  background-color: #f5f5f5;
 }
 
-/* ===== Code Block Styling ===== */
-.highlight {
-    background: var(--code-bg) !important;
-    color: var(--code-text) !important;
+/* Admonitions (notes/warnings) */
+.md-typeset .admonition {
+  background-color: rgba(0, 102, 221, 0.1);
+  border-left: 4px solid var(--md-primary-fg-color);
 }
 
-/* ===== Force Background Image ===== */
-.sidebar-drawer {
-    background-image: url('../images/site/background.png');
-    background-blend-mode: overlay;
-    background-attachment: fixed;
-    background-size: cover;
+.md-typeset .admonition-title {
+  background-color: rgba(0, 102, 221, 0.2);
 }
 
-/* ===== Remove theme toggle ===== */
-
-.theme-toggle-container {
-    display: none !important;
+/* ============================================= */
+/*               SEARCH COMPONENT                */
+/* ============================================= */
+.md-search__input {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 
-/* ===== Footer fixes ===== */
-
-.custom-footer {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    text-align: center;
+/* ============================================= */
+/*             IMPROVED CODE STYLING             */
+/* ============================================= */
+/* Base styling - Inline code */
+code {
+  background-color: #f5f5f7;             /* Light gray background */
+  color: #c92c6d;                        /* Darker pink (4.8:1 contrast) */
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9em;
+  border: 1px solid #e1e1e8;
+  white-space: normal;                  /* Allow natural wrapping */
+  word-wrap: normal;                    /* No forced word breaks */
+  overflow-wrap: anywhere;              /* Break only at word boundaries */
 }
 
-.footer-content {
-    white-space: nowrap;
-    display: inline-block;
+/* Code blocks - Multi-line */
+pre {
+  background-color: #f5f5f7;
+  border-radius: 6px;
+  padding: 1em;
+  overflow-x: auto;                     /* Horizontal scroll if needed */
+  white-space: pre;                     /* Preserve original line breaks */
+  word-wrap: normal;                    /* No word breaking */
+  overflow-wrap: normal;                /* Modern alternative */
+  border-left: 4px solid #6f42c1;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  margin: 1.5em 0;
+
+  code {
+    background-color: transparent;
+    color: #333;                        /* High contrast (12:1) */
+    white-space: inherit;               /* Inherit from pre */
+    display: block;                     /* Better wrapping container */
+    word-break: keep-all;               /* Prevent word breaks */
+    overflow-wrap: break-word;          /* Only break if unavoidable */
+  }
 }
 
-.footer-content a {
-    display: inline;
-    white-space: nowrap;
-    margin: 0 0.2em;
-}
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .footer-content {
-        white-space: normal;
-        display: block;
-    }
+  pre {
+    border-radius: 0;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 0.75rem;
+    white-space: pre-wrap;              /* Allow wrapping on mobile */
+  }
+}
+
+/* Syntax highlighting */
+.highlight {
+  .c, .c1 { color: #6a737d; }          /* Comments */
+  .k { color: #d63384; }               /* Keywords */
+  .n { color: #005cc5; }               /* Names */
+  .s { color: #032f62; }               /* Strings */
+  .mi { color: #e36209; }              /* Numbers */
+  .nv { color: #d35400; }              /* Darker variables/numbers */
+  .p { color: #333; }                  /* Punctuation/operators */
+}
+
+/* Line numbers */
+.linenos {
+  color: #999;
+  padding-right: 1em;
+  user-select: none;
+}
+
+/* ============================================= */
+/*               IMAGE CENTERING                 */
+/* ============================================= */
+.md-content img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* For images with captions (common in markdown) */
+.md-content figure {
+  text-align: center;
+  margin: 1.5em auto;
+}
+
+.md-content figcaption {
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+/* FOOTER */
+/* Reduce footer navigation text size */
+.md-footer-nav__link {
+    font-size: 1.4em !important;
+}
+
+.md-footer__title,
+.md-footer__direction {
+    font-size: 1.4em !important;
+}
+
+/* Remove ONLY the copyright line (keep navigation and Sphinx credits) */
+.md-footer-copyright__highlight {
+    display: none !important;
 }
