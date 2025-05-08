@@ -151,7 +151,7 @@ output "leaky_key_json" {
 }
 ```
 
-###Solution:
+### Solution
 
 1. Activate leaked key:
 

@@ -28,3 +28,11 @@ and the occasional "wait, that actually worked?" moments—all served with a sid
    docs/through/index
    docs/out/index
 
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :includehidden:
+   :caption: More teams:
+
+   Blue team <https://blue.tymyrddin.dev/>
+

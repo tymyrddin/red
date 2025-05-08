@@ -3,7 +3,7 @@
 Running vulnerable cloud environments requires strict isolation and active monitoring to prevent accidental breaches 
 or malicious abuse. 
 
-## Dedicated cloud accounts (Non-Prod)
+## Dedicated cloud accounts (Non-prod)
 
 Prevents accidental damage to real business resources and limits blast radius if credentials leak.
 
@@ -18,7 +18,7 @@ Example (AWS CLI):
 aws organizations create-account --email "ctf-labs@yourdomain.com" --account-name "RootMe-Cloud-CTF"
 ```
 
-## Auto-Destroy Timers (Avoid Cost Leaks)
+## Auto-destroy timers (Avoid cost leaks)
 
 Stops forgotten labs from accumulating costs, and prevents long-term exposure of vulnerable resources.
 * AWS Lambda + CloudWatch: Schedule a termination function.
@@ -56,7 +56,7 @@ Example (AWS CLI GuardDuty Alert):
 aws guardduty create-detector --enable --finding-publishing-frequency FIFTEEN_MINUTES
 ```
 
-## Network Isolation
+## Network isolation
 
 Prevents lab compromises from spreading to other environments.
 
