@@ -1,17 +1,3 @@
 [build]
-  publish = "build/html"
-  command = "make clean && make html"
-
-[build.environment]
-  NODE_VERSION = "18.17.1"  # For build tools
-  AWS_LAMBDA_JS_RUNTIME = "nodejs20.x"  # For serverless functions
-  ALGOLIA_APP_ID = "0PX8BTWD6K"
-  ALGOLIA_INDEX_PREFIX = "red_"
-  ALGOLIA_INDICES = "in,through,out"
-  SPHINX_DISABLE_PICKLE = "1"
-
-[functions]
-  node_bundler = "esbuild"
-
-[secrets]
-  scan_omit_paths = ["build/doctrees", "build/*.pickle"]
+    publish = "build/html"
+    command = "make html"
