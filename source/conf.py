@@ -42,7 +42,6 @@ html_theme_options = {
     "features": [
         "navigation.top",
         "content.tabs.link",
-        "navigation.footer.disabled"
     ],
 }
 
