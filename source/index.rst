@@ -32,7 +32,7 @@ and the occasional "wait, that actually worked?" moments—all served with a sid
    :glob:
    :maxdepth: 2
    :includehidden:
-   :caption: More teams:
+   :caption: Other teams:
 
    Blue team <https://blue.tymyrddin.dev/>
 
