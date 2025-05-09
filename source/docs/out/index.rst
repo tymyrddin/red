@@ -9,6 +9,9 @@ didn’t want us to have it, why was it just lying around?
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: The best ones leave them wondering if we found anything at all:
+
+   notes/index
+   thm/index
