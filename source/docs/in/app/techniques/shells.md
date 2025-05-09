@@ -142,7 +142,7 @@ In the worst case scenario, the file's type isn't validated properly, and the se
 * Rename uploaded files to avoid collisions that may cause existing files to be overwritten.
 * Do not upload files to the server's permanent filesystem until they have been fully validated.
 * If uploaded files are downloadable by users, supply an accurate non-generic `Content-Type` header, the `X-Content-Type-Options: nosniff` header, and also a `Content-Disposition` header that specifies that browsers should handle the file as an attachment.
-* Enforce a size limit on uploaded files (for defense-in-depth, this can be implemented both within application code and in the web server’s configuration).
+* Enforce a size limit on uploaded files (for defence-in-depth, this can be implemented both within application code and in the web server’s configuration).
 * Reject attempts to upload archive formats such as ZIP.
 * As much as possible, use an established framework for preprocessing file uploads rather than attempting to write your own validation mechanisms.
 

@@ -37,7 +37,7 @@ Web spiders methodically browse a website in search of specific information. Inf
 
 Website mirroring or website cloning refers to the process of duplicating a website. Mirroring a website helps in browsing the site offline, searching the website for vulnerabilities, and discovering useful information.
 
-Websites may store documents of different format, which in turn may contain hidden information and metadata that can be analyzed and used in (planning) an attack. This metadata can be extracted with metadata extraction tools. 
+Websites may store documents of different format, which in turn may contain hidden information and metadata that can be analysed and used in (planning) an attack. This metadata can be extracted with metadata extraction tools. 
 
 ## Eyeing repositories
 

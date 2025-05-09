@@ -5,7 +5,7 @@ The wise fox knows every thicket and trail before the hunt begins. With whiskers
 services and ears pricked for the rustle of exposed APIs, we move through the digital undergrowth - silent, patient,
 and lethally precise. SNMP trails glow like foxfire in our vision, LDAP directories sprawl like abandoned warrens ripe
 for claiming, and those forgotten SMB shares? Fat, slow voles just waiting to be snatched. This is where we map the
-territory not with clumsy tools, but with predator's instinct, marking every weak point where the forest's defenses
+territory not with clumsy tools, but with predator's instinct, marking every weak point where the forest's defences
 have gone thin and brittle.
 
 When the fox enumerates, the whole woodland becomes our larder. We nose into every hollow log (ping sweeps), test

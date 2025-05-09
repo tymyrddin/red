@@ -145,7 +145,7 @@ Attack Pattern
 
 Real-World Examples
 
-* 2023: North Korean Kimsuky Espionage: Exfiltrated South Korean defense docs via TXT record lookups.
+* 2023: North Korean Kimsuky Espionage: Exfiltrated South Korean defence docs via TXT record lookups.
 * 2024: Ransomware C2 via Dynamic DNS: Used free DDNS providers (no-ip.com) for malware communications.
 
 Why It Works
@@ -228,7 +228,7 @@ Mitigation
 
 * State Actors Dominate High-Impact Attacks (Russia, Iran, China, North Korea).
 * Rise of "Water Torture" Subdomain Attacks – Harder to filter than volumetric floods.
-* DNSSEC Adoption Still Lagging – Critical for cache poisoning defense.
+* DNSSEC Adoption Still Lagging – Critical for cache poisoning defence.
 * IoT Botnets Fuel DDoS – Mirai variants now specialize in DNS floods.
 
 ## Defence recommendations

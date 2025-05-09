@@ -61,7 +61,7 @@ Still, to minimise attackers using the web cache poisoning vehicle, these are so
 * If the application only uses default ports, strip the port number from the `Host` header before generating the cache key. Poisoning via an unkeyed port value can lead to DoS.
 * Caching only `GET` and `HEAD` requests reduces the risk of poisoning via an unkeyed request method. `POST` and other `HTTP` commands are designed to trigger an operation on the server, and responses to state-changing requests are often unique, hence there is no performance benefit to caching their responses anyway.
 * Reject non-standard `GET` requests with a body (fat `GET` requests). Even better, do not have an application send such requests.
-* As a first step for cache poisoning, attackers try to figure out what kind of caching is used and look at web cache hits and misses. Removing caching-specific headers as part of a defense-in-depth strategy can make such information gathering much more difficult. Note: Disabling these headers might come at a cost for client-side caching in the browser.
+* As a first step for cache poisoning, attackers try to figure out what kind of caching is used and look at web cache hits and misses. Removing caching-specific headers as part of a defence-in-depth strategy can make such information gathering much more difficult. Note: Disabling these headers might come at a cost for client-side caching in the browser.
 
 ## Resources
 

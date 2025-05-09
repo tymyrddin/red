@@ -120,7 +120,7 @@ Payment demand:
 | Tactic	                | Red Team Evasion Method                         |
 |------------------------|-------------------------------------------------|
 | Air-gapped backups	    | Veeam credential theft → Remote backup deletion |
-| EDR behavioral alerts	 | Process hollowing into `svchost.exe`            |
+| EDR behavioural alerts	 | Process hollowing into `svchost.exe`            |
 | Zero Trust policies	   | ADCS relay attacks to forge Kerberos tickets    |
 
 ## Lessons from the field

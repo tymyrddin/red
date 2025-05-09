@@ -66,7 +66,7 @@ Frame busting scripts are busted: It is often easy for an attacker to circumvent
 
 Clickjacking is a browser-side behaviour and its success depends on browser functionality and conformity to prevailing web standards and best practice. Server-side protection against clickjacking can be provided by defining and communicating constraints over the use of components such as iframes. And implementation of protection depends upon browser compliance and enforcement of these constraints. Two mechanisms for server-side clickjacking protection are `X-Frame-Options` and `Content Security Policy`. 
 
-`X-Frame-Options` is not implemented consistently across browsers, but when properly applied in conjunction with `Content Security Policy` as part of a multi-layer defense strategy it can provide effective protection against clickjacking attacks. 
+`X-Frame-Options` is not implemented consistently across browsers, but when properly applied in conjunction with `Content Security Policy` as part of a multi-layer defence strategy it can provide effective protection against clickjacking attacks. 
 
 The recommended clickjacking protection is to incorporate the frame-ancestors directive in the application's `Content Security Policy`. The frame-ancestors `none` directive is similar in behaviour to the `X-Frame-Options` `deny` directive. The frame-ancestors `self` directive is broadly equivalent to the `X-Frame-Options` `sameorigin` directive. 
 
@@ -82,7 +82,7 @@ Framing can also be restricted to named sites:
 Content-Security-Policy: frame-ancestors normal-website.com;
 ```
 
-To be effective against clickjacking and XSS, CSPs need careful development, implementation and testing and should be used as part of a multi-layer defense strategy. 
+To be effective against clickjacking and XSS, CSPs need careful development, implementation and testing and should be used as part of a multi-layer defence strategy. 
 
 ## Resources
 

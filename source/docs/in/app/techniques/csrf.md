@@ -58,7 +58,7 @@ If the protection used is incomplete or faulty, you might still be able to achie
 * Bypass CSRF tokens stored on the server: Just because a site uses CSRF tokens does not mean it is validating them properly. Try deleting the token parameter or sending a blank token parameter.
 * Deleting the token parameter or sending a blank token often works because of a common application logic mistake. Applications sometimes check the validity of the token only if the token exists, or if the token parameter is not blank.
 * Some applications might check only whether the token is valid, without confirming that it belongs to the current user. If this is the case, you can insert your own CSRF token into the malicious request.
-* Bypass double-submit CSRF tokens: In double-submit cookie as a defense against CSRF, the state-changing request contains the same random token as cookie and request parameter, and the server checks whether the two values are equal. If the values match, the request is seen as legitimate. Nomnomnom.
+* Bypass double-submit CSRF tokens: In double-submit cookie as a defence against CSRF, the state-changing request contains the same random token as cookie and request parameter, and the server checks whether the two values are equal. If the values match, the request is seen as legitimate. Nomnomnom.
 * In a double-submit token validation system, it does not matter whether the tokens themselves are valid, and the application is probably not keeping records of the valid tokens server-side. If it did, it wouldn't use this scheme.
 * Bypass CSRF Referer Header check: If the target site is not using CSRF tokens, the server might verify that the referer header sent with the state-changing request is a part of the website’s `allowlisted_domains`. Sometimes, all you need to do to bypass a referer check is to not send a referer at all. To remove the referer header, add a meta tag to the page hosting the request form.
 * What if the application looks for the string "example.com" in the referer URL, and if the referer URL contains that string, the application treats the request as legitimate. Otherwise, it rejects the request? In this case, you can bypass the referer check by placing the victim domain name in the referer URL as a subdomain. You can achieve this by creating a subdomain named after the victim’s domain, and then hosting the malicious HTML on that subdomain. Or try placing the victim domain name in the referer URL as a pathname.
@@ -146,7 +146,7 @@ The user signed up via their social media account, and does not need to provide 
 
 ## Portswigger lab writeups
 
-* [CSRF vulnerability with no defenses](../burp/csrf/1.md)
+* [CSRF vulnerability with no defences](../burp/csrf/1.md)
 * [CSRF where token validation depends on request method](../burp/csrf/2.md)
 * [CSRF where token validation depends on token being present](../burp/csrf/3.md)
 * [CSRF where token is not tied to user session](../burp/csrf/4.md)

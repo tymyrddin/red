@@ -61,7 +61,7 @@
     
     5.2. Adversarial Traffic Generation (AND)
     
-        5.2.1. GAN-based normal traffic modeling
+        5.2.1. GAN-based normal traffic modelling
         
         5.2.2. Stealthy DDoS payload synthesis
 ```
@@ -147,7 +147,7 @@ Example: In 2022, attackers exploited misconfigured middleboxes (firewalls, load
 
 Why It Works: Many network devices ignore RFC standards, allowing spoofed SYN packets to trigger disproportionate responses.
 
-Mitigation: RFC 5358 (TCP Reflection Attacks) recommendations, such as filtering spoofed packets and disabling non-compliant middlebox behaviors.
+Mitigation: RFC 5358 (TCP Reflection Attacks) recommendations, such as filtering spoofed packets and disabling non-compliant middlebox behaviours.
 
 ## RST/FIN Floods (State-Exhaustion attacks)
 

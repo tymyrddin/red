@@ -17,7 +17,7 @@ Most attacks nowadays are aimed at web applications, and web browsers are one of
 
 SSL stripping downgrades an HTTPS connection to HTTP by intercepting the TLS authentication sent from the application to the user. The adversary sends an unencrypted version of the application’s site to the user while maintaining the secured session with the application. 
 
-It does not do any magical stuff to fulfill the job, it just replaces the protocol of all HTTPS links in the sniffed traffic. The attacker must take care that the traffic of the victim flows over his host by launching some kind of on-path attack first.
+It does not do any magical stuff to fulfil the job, it just replaces the protocol of all HTTPS links in the sniffed traffic. The attacker must take care that the traffic of the victim flows over his host by launching some kind of on-path attack first.
 
 Run `sslstrip` and write the results to a file (`-w strip.log`), listening on port 54321 (`-l 54321`):
 

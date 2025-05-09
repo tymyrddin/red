@@ -1,5 +1,5 @@
-Where wild boars plow through endpoints
-========================================
+Where wild boars plough through endpoints
+==========================================
 
 APIs are the forest floor of the digital wild—rich with hidden truffles (data) and ripe for rooting. The wild boar
 doesn’t request access; it digs, charges, and leaves overturned earth (broken auth) and trampled thickets (rate limits)

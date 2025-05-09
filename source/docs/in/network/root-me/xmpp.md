@@ -284,7 +284,7 @@ This challenge mirrors real-world security vulnerabilities in several important 
 * Metadata analysis: Even without breaking crypto, username patterns reveal password hints
 * Targeted brute-forcing: With known salts (leaked via other breaches), attackers can precompute common variants
 
-### Modern defenses bypassed
+### Modern defences bypassed
 
 This attack works even with:
 

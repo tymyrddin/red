@@ -88,4 +88,4 @@ Toolkit:
 
 The 2025 "Great Heist" landscape is defined by adaptability—attackers pivot between ransomware, dark web sales, and 
 psychological extortion. Red teams must mirror these multi-stage monetization strategies to stress-test 
-organizational defenses effectively.
+organizational defences effectively.

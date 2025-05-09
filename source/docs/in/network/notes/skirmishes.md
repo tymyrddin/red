@@ -215,7 +215,7 @@ If it is possible to poison responses but not possible to crack the hash, an opt
 
 ## Example NTLM relay attack
 
-1. Install dependencies and compile some artifacts used by Multirelay:
+1. Install dependencies and compile some artefacts used by Multirelay:
 
 ```text
 # apt install gcc-mingw-w64-x86-64 python-crypto

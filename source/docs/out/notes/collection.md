@@ -118,10 +118,10 @@ crackmapexec smb 192.168.1.0/24 -u Administrator -H <NTLM_HASH>
 
 ## Specific mitigations (2025)
 
-* AI-Driven Anomaly Detection: Tools like SentinelOne use behavioral AI to block Mimikatz in real-time.
+* AI-Driven Anomaly Detection: Tools like SentinelOne use behavioural AI to block Mimikatz in real-time.
 * Zero Trust Architecture: Enforces least-privilege access, reducing credential misuse.
 
 ## 2025
 
 In 2025, attackers are refining data collection with AI-driven scanning, advanced Mimikatz evasion, and cloud 
-exploitation. Defenders must adopt behavioral detection, Zero Trust, and credential hardening to counter these threats.
+exploitation. Defenders must adopt behavioural detection, Zero Trust, and credential hardening to counter these threats.

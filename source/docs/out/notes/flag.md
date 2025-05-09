@@ -100,7 +100,7 @@ Outcome: NGO blames Brazil. Corporate raiders sip coffee and continue the acquis
 
 ### Small business, big problem
 
-Target: HVAC vendor. Real goal? Their defense contractor clients.
+Target: HVAC vendor. Real goal? Their defence contractor clients.
 
 Steps:
 

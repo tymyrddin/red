@@ -15,7 +15,7 @@
 
         AND: Send ICMP Echo with varying TTLs
 
-        AND: Analyze TTL decay patterns
+        AND: analyse TTL decay patterns
 
     1.3 ICMP-based Service Discovery
 

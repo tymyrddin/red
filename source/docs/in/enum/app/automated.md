@@ -13,5 +13,5 @@ Pros and cons of using [Automated vulnerability scanners](https://testlab.tymyrd
 
 * People can often become reliant on these tools.
 * They are extremely "loud" and produce a lot of traffic and logging. This is not good if you are trying to bypass security controls.
-* Open-source solutions are often basic and require expensive licenses to have useful features.
+* Open-source solutions are often basic and require expensive dialogues to have useful features.
 * They often do not find every vulnerability on an application.

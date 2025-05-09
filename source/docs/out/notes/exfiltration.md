@@ -11,7 +11,7 @@ of how attackers exfiltrate sensitive data.
 ## AI-Powered data obfuscation
 
 Attackers use AI-driven tools to mask exfiltrated data as benign traffic (e.g., mimicking cloud sync patterns or normal 
-user behavior). Example: Generative AI models modify file metadata to evade DLP (Data Loss Prevention) systems.
+user behaviour). Example: Generative AI models modify file metadata to evade DLP (Data Loss Prevention) systems.
 
 ## Encrypted DNS tunneling (DoH/DoT)
 
@@ -93,4 +93,4 @@ Zero Trust Architecture:
 ## 2025
 
 Attackers leverage AI, encrypted protocols, and cloud exploits to exfiltrate data undetected. Defenders must adopt 
-behavioral analytics, Zero Trust, and advanced DLP to combat these threats.
+behavioural analytics, Zero Trust, and advanced DLP to combat these threats.

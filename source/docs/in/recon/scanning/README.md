@@ -1,4 +1,4 @@
-# Initial Scanning – Probing the Target’s Defenses
+# Initial Scanning – Probing the Target’s defences
 
 With reconnaissance complete, the falcon tests the wind before the strike. Initial scanning involves live host 
 discovery, port enumeration, and service detection—each probe revealing vulnerabilities while avoiding detection. 

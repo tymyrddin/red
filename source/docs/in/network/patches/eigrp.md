@@ -65,7 +65,7 @@
 
     3.2. Network Topology Discovery
 
-        3.2.1. Analyze EIGRP Topology Tables (If Leaked)
+        3.2.1. analyse EIGRP Topology Tables (If Leaked)
 ```
 
 ## Notes

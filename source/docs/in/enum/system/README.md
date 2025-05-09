@@ -2,7 +2,7 @@
 
 System enumeration is the systematic process of extracting critical information about a target network or system, transforming reconnaissance data (IPs, open ports) into actionable intelligence. By interrogating services, users, and configurations, attackers (or defenders) identify weak credentials, unnecessary services, and misconfigurations that serve as entry points for exploitation.
 
-Why? Because unpatched services, default accounts, and exposed security tokens are the low-hanging fruit of breaches. Enumeration isn’t just scanning—it’s strategic discovery, laying the groundwork for precise attacks or robust defenses.
+Why? Because unpatched services, default accounts, and exposed security tokens are the low-hanging fruit of breaches. Enumeration isn’t just scanning—it’s strategic discovery, laying the groundwork for precise attacks or robust defences.
 
 ## How?
 

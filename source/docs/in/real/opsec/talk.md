@@ -7,7 +7,7 @@
     1.1 Build rapport early in the engagement in order to gain trust and lower the subject's guard
     1.2 Show genuine interest
     1.3 Use mirroring a few words for gathering more information
-    1.4 Use labeling to figure out what is going on without directly asking
+    1.4 Use labelling to figure out what is going on without directly asking
 ```
 
 ## Notes

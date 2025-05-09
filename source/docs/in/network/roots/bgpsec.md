@@ -171,7 +171,7 @@ Mitigation
 * State Actors Test BGPsec Weaknesses – Russia, China, and Iran have probed BGPsec networks.
 * Router Vulnerabilities Are a Major Risk – Vendors are slow to patch BGPsec flaws.
 
-## Defense recommendations
+## defence recommendations
 
 For Networks Deploying BGPsec
 

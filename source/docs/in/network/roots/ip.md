@@ -181,7 +181,7 @@ Why It Works: Many geo-IP databases are outdated.
 Mitigation
 
 * Strict ASN-based filtering (e.g., only allow traffic from known cloud providers).
-* Behavioral analysis (unusual traffic patterns from "legit" IPs).
+* behavioural analysis (unusual traffic patterns from "legit" IPs).
 
 ## Trends & takeaways
 

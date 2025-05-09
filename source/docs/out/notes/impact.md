@@ -1,6 +1,6 @@
 # Nutcracker suite: leaving shells and chaos behind
 
-Attackers may disrupt operations or destroy data to fulfill objectives like sabotage or ransom. This includes deploying 
+Attackers may disrupt operations or destroy data to fulfil objectives like sabotage or ransom. This includes deploying 
 ransomware, wiping systems, or altering critical files.
 
 In 2025, cybercriminals and state-sponsored actors have refined data destruction and operational disruption techniques 

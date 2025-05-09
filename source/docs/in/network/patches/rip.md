@@ -65,7 +65,7 @@
 
     3.2. Infer Network Topology
 
-        3.2.1. Analyze RIP Route Advertisements
+        3.2.1. analyse RIP Route Advertisements
 ```
 
 ## Notes
