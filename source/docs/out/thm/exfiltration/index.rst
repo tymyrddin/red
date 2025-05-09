@@ -4,6 +4,9 @@ Highway nut robbery: Blending in like a squirrel in traffic
 Practice data exfiltration techniques (in the THM Lab environment set up for it) to emulate normal network activities,
 such as DNS, HTTP, SSH, etc.
 
+This content is from `THM’s Data Exfiltration room <https://tryhackme.com/room/dataxexfilt>`_, part of the Red Teaming
+learning path.
+
 .. toctree::
    :glob:
    :maxdepth: 1
