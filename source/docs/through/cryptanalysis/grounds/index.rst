@@ -7,7 +7,7 @@ across a gauntlet of classical and modern cryptographic puzzles.
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: Because sometimes, to understand a lock, you have to break a few.
 

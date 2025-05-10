@@ -133,7 +133,7 @@ Then start the service:
 
     net start upnphost
 
-If both `wmic` and `sc` are not available, use [accesschk](https://download.sysinternals.com/files/AccessChk.zip)
+If both `wmic` and `sc` are not available, use [accesschk](https://download.sysinternals.com/files/AccessChk.zip) (Link to AccessChk.zip !!!)
 
     accesschk.exe -uwcqv "Authenticated Users" * /accepteula
 

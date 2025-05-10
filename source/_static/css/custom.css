@@ -240,13 +240,19 @@ pre {
 
 /* Syntax highlighting */
 .highlight {
-  .c, .c1 { color: #6a737d; }          /* Comments */
+  .c, .c1, .cm { color: #5e6a75; }          /* Comments */
   .k { color: #d63384; }               /* Keywords */
   .n { color: #005cc5; }               /* Names */
   .s { color: #032f62; }               /* Strings */
   .mi { color: #e36209; }              /* Numbers */
   .nv { color: #d35400; }              /* Darker variables/numbers */
   .p { color: #333; }                  /* Punctuation/operators */
+}
+
+/* For shell comments (#!/usr/bin/env) */
+.highlight .ch,
+.highlight .sh {
+  color: #5e6a75 !important;
 }
 
 /* Line numbers */

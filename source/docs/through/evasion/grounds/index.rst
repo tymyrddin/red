@@ -8,7 +8,7 @@ raccoon-proof bin, you can practise the fine art of disappearing into the logs (
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: Even raccoons need rehearsal before outwitting the zookeeper.
 

@@ -8,7 +8,7 @@ force your way in, take control, and rummage through the guts of vulnerable syst
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: Like a raccoon squeezing into a bin that’s clearly too small—sometimes it spills over spectacularly.
 

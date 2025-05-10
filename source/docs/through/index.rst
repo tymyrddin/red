@@ -9,7 +9,7 @@ trash cans, and leave every registry/keyhole/data cache thoroughly pilfered. The
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: The deeper we go, the harder we are to evict:
 

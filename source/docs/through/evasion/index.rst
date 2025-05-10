@@ -8,7 +8,7 @@ constantly watching.
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: In the digital forest, the raccoon doesn't just survive—it thrives by staying unseen.
 

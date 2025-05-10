@@ -8,7 +8,7 @@ and revealing the plaintext beneath the cipher.
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: In the digital forest, even the strongest locks have hidden keys—if you know where to dig.
 

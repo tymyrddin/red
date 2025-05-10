@@ -10,7 +10,7 @@ Reverse engineering training grounds
    root-me/index
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: More practice
 
