@@ -35,4 +35,5 @@ and the occasional "wait, that actually worked?" moments—all served with a sid
    :caption: Other teams
 
    Blue team <https://blue.tymyrddin.dev/>
+   Green team <https://green.tymyrddin.dev>
 
