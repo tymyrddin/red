@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 
 # -- Project information -----------------------------------------------------
-project = 'Red Team'
+project = 'Red team'
 copyright = '2025, TyMyrddin'
 author = 'TyMyrddin'
 release = '0.1'
@@ -45,7 +45,7 @@ html_theme_options = {
     ],
 }
 
-html_title = "Red Team"
+html_title = "Red team"
 html_logo = "img/logo.png"
 html_favicon = "img/favicon.ico"
 html_static_path = ['_static']
