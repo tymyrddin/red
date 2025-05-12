@@ -27,5 +27,4 @@ and the occasional "wait, that actually worked?" moments—all served with a sid
    docs/in/index
    docs/through/index
    docs/out/index
-   docs/laws/index
 
