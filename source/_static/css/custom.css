@@ -188,79 +188,75 @@ body {
 }
 
 /* ============================================= */
-/*             DARK THEME CODE STYLING          */
+/*         UNIVERSAL DARK CODE BLOCK STYLING     */
 /* ============================================= */
-code {
-  background-color: #333 !important;
-  color: #f8f8f2 !important;
+
+/* Target ALL pre-formatted blocks regardless of class */
+pre,
+pre[class*="language-"],
+pre[class*="text"],
+pre.text,
+div.highlight pre {
+  background-color: #2d2d2d !important;
+  color: #f0f0f0 !important;
+  border-radius: 6px;
+  padding: 1.2em;
+  margin: 1.5em 0;
+  overflow-x: auto;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.8em;
+  line-height: 1.5;
+  border-left: 4px solid #6f42c1 !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+
+  /* Critical formatting preservation */
+  white-space: pre !important;
+  tab-size: 4 !important;
+  word-break: normal !important;
+}
+
+/* Target ALL code elements inside pre blocks */
+pre code,
+pre[class*="language-"] code,
+pre[class*="text"] code,
+pre.text code,
+div.highlight pre code {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  white-space: pre !important;
+}
+
+/* Plain text blocks specific styling */
+pre.text,
+pre[class*="text"] {
+  color: #e8e8e8 !important; /* Slightly brighter for plain text */
+  font-family: inherit;
+}
+
+/* Inline code (single backticks) */
+:not(pre) > code {
+  background-color: #3a3a3a !important;
+  color: #f0f0f0 !important;
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  font-size: 0.9em;
+  font-size: 0.8em;
   border: 1px solid #444 !important;
   white-space: normal;
-  word-wrap: normal;
-  overflow-wrap: anywhere;
 }
 
-pre, pre[class*="language-"] {
-  background-color: #333 !important;
-  border-radius: 6px;
-  padding: 1em;
-  overflow-x: auto;
-  white-space: pre;
-  word-wrap: normal;
-  overflow-wrap: normal;
-  border-left: 4px solid #6f42c1 !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;
-  margin: 1.5em 0;
-}
-
-pre code, pre[class*="language-"] code {
-  background-color: transparent !important;
-  color: #f8f8f2 !important;
-  white-space: inherit;
-  display: block;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-}
-
-/* More specific selector for syntax highlighting */
-div.highlight, div[class*="language-"] {
-  background-color: #333 !important;
-  border-radius: 6px !important;
-}
-
+/* Mobile responsiveness */
 @media (max-width: 768px) {
-  pre, pre[class*="language-"] {
+  pre {
     border-radius: 0 !important;
     margin-left: -1rem;
     margin-right: -1rem;
-    padding: 0.75rem;
-    white-space: pre-wrap;
+    padding: 1rem !important;
   }
-}
-
-.highlight {
-  .c, .c1, .cm, .cs, .sd, .ow { color: #75715e !important; }
-  .k, .kd { color: #66d9ef !important; }
-  .n, .nx, .py { color: #a6e22e !important; }
-  .s, .s1, .s2 { color: #e6db74 !important; }
-  .mi, .mf { color: #ae81ff !important; }
-  .nv, .vc, .vg { color: #fd971f !important; }
-  .p, .pun { color: #f8f8f2 !important; }
-}
-
-.highlight .ch,
-.highlight .sh {
-  color: #75715e !important;
-}
-
-.linenos, .linenodiv {
-  color: #999 !important;
-  background-color: #333 !important;
-  padding-right: 1em !important;
-  user-select: none;
 }
 
 /* ============================================= */
