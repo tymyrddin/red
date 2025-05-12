@@ -29,13 +29,3 @@ and the occasional "wait, that actually worked?" moments—all served with a sid
    docs/out/index
    docs/laws/index
 
-.. toctree::
-   :glob:
-   :maxdepth: 2
-   :includehidden:
-   :caption: Other teams
-
-   Blue team <https://blue.tymyrddin.dev/>
-   Green team <https://green.tymyrddin.dev>
-   Purple team <https://purple.tymyrddin.dev>
-
