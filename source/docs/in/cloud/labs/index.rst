@@ -1,5 +1,8 @@
-A Wolverine’s guide to controlled carnage
+A wolverine’s guide to controlled carnage
 ===============================================
+
+.. image:: /_static/images/wolverine.png
+   :alt: Wolverine
 
 Designing cloud hacking challenges for Root-Me requires a balance of real-world relevance, technical feasibility, and
 educational value. A structured approach to building them, along with vulnerability ideas tailored for a CTF

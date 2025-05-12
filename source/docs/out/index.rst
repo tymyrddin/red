@@ -1,6 +1,9 @@
 OUT: Where squirrels swipe the crown jewels
 ============================================
 
+.. image:: /_static/images/squirrel.png
+   :alt: Squirrel
+
 The Out phase is where we, like hyper-entitled squirrels, decide which shiny treasures actually belong to us.
 Data? Taken. Flags? Stashed. Logs? Cleared with the audacity of a rodent who just raided a bird feeder and left the
 empty husks behind. This isn’t exfiltration—it’s a shopping spree, where we waltz out with the loot, scatter decoy
