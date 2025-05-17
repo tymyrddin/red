@@ -51,6 +51,7 @@ html_favicon = "img/favicon.ico"
 html_static_path = ['_static']
 html_css_files = ['css/custom.css']
 html_last_updated_fmt = '%Y-%m-%d %H:%M'  # e.g., "May 05, 2025 at 14:30"
+html_extra_path = ['_static/_headers']
 
 # -- Build settings ----------------------------------------------------------
 nitpicky = True  # Warn about broken references
