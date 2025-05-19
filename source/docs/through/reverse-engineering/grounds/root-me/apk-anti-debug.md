@@ -4,6 +4,6 @@
 
 ----
 
-1. Extract the `apk` using [apktool](https://testlab.tymyrddin.dev/docs/mobile/apktool)
+1. Extract the `apk` using apktool
 2. Open `validate.smali`
 3. [Crack the sha256 hash](https://hashes.com/en/decrypt/hash)

@@ -7,7 +7,9 @@ An attacker can enumerate the following information by querying an NTP server.
 
 ## Tools
 
-* [NTP enumeration tools](https://testlab.tymyrddin.dev/docs/enum/ntp)
+* [ntptrace](https://manpages.org/ntptrace) is a python script that uses the ntpq utility program to follow the chain of NTP servers from a given host back to the primary time source.
+* [ntpdc](https://manpages.org/ntpdc) queries the NTP daemon about its current state and to request changes in the state.
+* [ntpq](https://manpages.org/ntpq) monitors NTP daemon NTPD operations and determines performance.
 
 ## Remediation
 

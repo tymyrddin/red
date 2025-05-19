@@ -17,7 +17,7 @@ Clickjacking vulnerabilities are valuable only when the target page contains sta
 
 ## Check the Response Headers
 
-Go through each of the state-changing functionalities found and revisit the pages that contain them. Turn on a [proxy](https://testlab.tymyrddin.dev/docs/webapp/proxies) and intercept the HTTP response that contains that web page. See if the page is being served with the `X-Frame-Options` or `Content-Security-Policy` header.
+Go through each of the state-changing functionalities found and revisit the pages that contain them. Turn on a proxy and intercept the HTTP response that contains that web page. See if the page is being served with the `X-Frame-Options` or `Content-Security-Policy` header.
 
 If the page is served without any of these headers, it may be vulnerable to clickjacking. And if the state-changing action requires users to be logged in when it is executed, you should also check if the site uses SameSite cookies. If it does, you won’t be able to exploit a clickjacking attack on the site’s features that require authentication.
 

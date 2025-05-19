@@ -6,7 +6,7 @@ WebSockets are used for all kinds of purposes, including performing user actions
 
 ## Steps
 
-The two main tools for testing WebSockets are [Burp Suite](https://testlab.tymyrddin.dev/docs/webapp/burp) and [OWASP ZAP](https://testlab.tymyrddin.dev/docs/webapp/zap). These tools allow for intercepting and modifying WebSockets frames on the fly.
+The two main tools for testing WebSockets are Burp Suite and OWASP ZAP. These tools allow for intercepting and modifying WebSockets frames on the fly.
 
 1. Check if there is indeed an authentication system and how it is implemented (access to functionalities without authentication).
 2. Test access control in detail to try to obtain a privilege escalation.

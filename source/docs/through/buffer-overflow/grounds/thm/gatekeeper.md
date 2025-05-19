@@ -8,7 +8,7 @@ Can you get past the gate and through the fire?
 
 ## Requirements
 
-[A small local lab](https://testlab.tymyrddin.dev/).
+A small local lab.
 
 ## Scanning
 

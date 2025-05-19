@@ -83,7 +83,7 @@ from passlib.hash import sha512_crypt
 sha512_crypt.using(salt="ligE06T/QLQMANm9", rounds=5000).hash("password")
 ```
 
-This will be very, very, time-consuming. You can also use [Hascat](https://testlab.tymyrddin.dev/docs/crypto/hashcat) or [John the Ripper](red-testlab:docs/crypto/john https://testlab.tymyrddin.dev/docs/crypto/john)
+This will be very, very, time-consuming. You can also use Hashcat or John the Ripper.
 
 ## RootMe challenges
 

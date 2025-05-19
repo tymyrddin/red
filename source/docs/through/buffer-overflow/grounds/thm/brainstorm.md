@@ -8,7 +8,7 @@ Reverse engineer a chat program and write a script to exploit a Windows machine.
 
 ## Requirements
 
-[A small local lab](https://testlab.tymyrddin.dev/).
+A small local lab.
 
 ## Scanning
 

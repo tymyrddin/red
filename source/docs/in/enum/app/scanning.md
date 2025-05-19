@@ -1,6 +1,6 @@
 # Dynamic web application scanning
 
-Features of the two main [web application scanners](https://testlab.tymyrddin.dev/docs/enum/app) (community versions):
+Features of the two main web application scanners (community versions):
 
 | Feature                           | Burp Suite<br>Community<br>Edition | OWASP ZAP                                           | Burp Suite Pro                                                 |
 |:----------------------------------|:-----------------------------------|:----------------------------------------------------|:---------------------------------------------------------------|

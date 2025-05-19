@@ -9,7 +9,7 @@ Both types of APIs support HTTP requests and responses and Secure Sockets Layer 
 
 The increase of API-related security threats in recent years has prompted the Open Web Application Security Project (OWASP) to release the API Security Top 10, which helps raise awareness of the most serious API security issues affecting organizations.
 
-Use either the [ZAP-API Scan or Burp API scan](https://testlab.tymyrddin.dev/docs/enum/api).
+Use either the ZAP-API Scan or Burp API scan.
 
 ## Resources
 
