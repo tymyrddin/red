@@ -15,12 +15,3 @@ stare long enough at obfuscated code until the secrets spill out. Think of it as
    malware/index
    grounds/index
 
-
-.. toctree::
-   :maxdepth: 1
-   :includehidden:
-   :caption: More practice
-
-   Malware traffic analysis exercises <https://www.malware-traffic-analysis.net/training-exercises.html>
-   theZoo - A Live Malware Repository <https://github.com/ytisf/theZoo>
-   crackmes.one <https://crackmes.one/>
