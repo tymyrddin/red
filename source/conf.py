@@ -17,6 +17,17 @@ extensions = [
     'sphinx_immaterial',
 ]
 
+myst_enable_extensions = [
+    "amsmath",
+    "dollarmath",
+    "tasklist",
+    "colon_fence",
+    "html_admonition",
+    "html_image",
+    "attrs_block",
+    "attrs_inline",
+]
+
 # MyST parser configuration
 # myst_enable_extensions = ["colon_fence"]
 # myst_all_links_external = False  # Required for TOC resolution
