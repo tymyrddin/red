@@ -112,12 +112,12 @@ Outcome: Victim yells “North Korea!” to CISA. Meanwhile, your red team is al
 
 ## Countermeasures (OpSec testing checklist)
 
-| Tactic	                | Red Team Evasion Strategy                         |
+| Tactic                 | Red Team Evasion Strategy                         |
 |------------------------|---------------------------------------------------|
-| Language Analysis	     | Mix CJK + Cyrillic strings for max confusion      |
-| Code Similarity	       | Blend APT29 with APT41 samples—let analysts guess |
-| Infrastructure	        | Host in Bulgaria, VPN through Iran                |
-| Behavioural Forensics	 | Mimic disgruntled insiders with real stolen creds |
+| Language Analysis      | Mix CJK + Cyrillic strings for max confusion      |
+| Code Similarity        | Blend APT29 with APT41 samples—let analysts guess |
+| Infrastructure         | Host in Bulgaria, VPN through Iran                |
+| Behavioural Forensics  | Mimic disgruntled insiders with real stolen creds |
 
 *"The best false flags are 70% real—just enough to make defenders argue in Slack for two weeks."*
 

@@ -20,6 +20,7 @@ a fortified perimeter, we smell the blood in the wind and the fear-sweat of syst
    :includehidden:
    :caption: The hunter never blames the forest for being full of prey:
 
+   mapping.md
    system/index
    app/index
    vulns/index

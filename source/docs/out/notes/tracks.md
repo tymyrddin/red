@@ -63,12 +63,12 @@ python3 mft_editor.py --target C:\ --timedelta="-7d"  # Shift all timestamps
 
 ## Anti-forensic toolbox (2025 Edition)
 
-| Tool	           | Purpose	                                | OpSec Risk                   |
-|-----------------|-----------------------------------------|------------------------------|
-| Slackercleaner	 | Multi-platform log wiping	Moderate      | (known IOCs)                 |
-| Timestomp-NG	   | Nanosecond-precision timestamp forgery	 | Low                          |
-| SysmonKiller	   | Disables Sysmon via driver unload	      | High (requires admin)        |
-| MemPurge	       | Wipes RAM artefacts pre-reboot	         | Critical (must be last step) |
+| Tool	          | Purpose	                               | OpSec Risk                   |
+|----------------|----------------------------------------|------------------------------|
+| Slackercleaner | Multi-platform log wiping              | Moderate (known IOCs)        |
+| Timestomp-NG	  | Nanosecond-precision timestamp forgery | Low                          |
+| SysmonKiller	  | Disables Sysmon via driver unload      | High (requires admin)        |
+| MemPurge	      | Wipes RAM artefacts pre-reboot         | Critical (must be last step) |
 
 Chain tools with living-off-the-land binaries:
 
@@ -123,7 +123,7 @@ Get-WinEvent -LogName Security | Group-Object -Property Id | Where Count -lt 10
 
 ## 2025
 
-In 2025, forensic teams hunt at the nanosecond level. Your timestomping should be measured in Planck time.
+In 2025, forensic teams hunt at the nanosecond level. Your timestomping best be measured in Planck time.
 
 ## Required tools
 

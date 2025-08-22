@@ -20,11 +20,12 @@ and the occasional "wait, that actually worked?" moments—all served with a sid
 
 .. toctree::
    :glob:
-   :maxdepth: 2
+   :maxdepth: 1
    :includehidden:
    :caption: Fox stealth. Raccoon grit. Squirrel-level entitlement.
 
    docs/in/index
    docs/through/index
    docs/out/index
+   docs/services/index
 

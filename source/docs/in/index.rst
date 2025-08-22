@@ -17,7 +17,6 @@ feast.
    :caption: Turn ‘impossible’ into ‘I’m in’:
 
    recon/index
-   enum/README.md
    enum/index
    app/index
    iac/index
