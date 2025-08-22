@@ -1,5 +1,5 @@
 # Core requirements
-sphinx==8.2.3                 # Last stable v7.x (compatible with immaterial)
+sphinx==7.2.6                 # Last stable v7.x (compatible with immaterial)
 myst-parser==2.0.0            # Stable MyST version
 sphinx-immaterial==0.12.6     # Latest pre-1.0 stable release
 
