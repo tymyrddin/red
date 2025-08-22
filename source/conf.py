@@ -1,7 +1,7 @@
+# conf.py
 import os
 import sys
 
-# -- Path setup --------------------------------------------------------------
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # -- Project information -----------------------------------------------------
@@ -11,6 +11,7 @@ author = 'TyMyrddin'
 release = '0.1'
 
 # -- General configuration ---------------------------------------------------
+
 extensions = [
     'myst_parser',
     'sphinx_immaterial',
