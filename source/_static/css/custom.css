@@ -17,6 +17,15 @@
   --md-typeset-a-color: var(--md-primary-fg-color);
 }
 
+/* Override all theme fonts with local/fallback fonts */
+body, html {
+    font-family: Arial, sans-serif !important;
+}
+
+code, pre {
+    font-family: "Courier New", monospace !important;
+}
+
 /* ============================================= */
 /*               GLOBAL STYLES                   */
 /* ============================================= */
