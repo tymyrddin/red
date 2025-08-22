@@ -14,7 +14,6 @@ release = '0.1'
 extensions = [
     'myst_parser',
     'sphinx_immaterial',
-    '_ext.disable_fonts',  # <- add this
 ]
 
 myst_enable_extensions = [

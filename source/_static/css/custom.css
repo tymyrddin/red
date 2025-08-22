@@ -17,13 +17,40 @@
   --md-typeset-a-color: var(--md-primary-fg-color);
 }
 
-/* Override all theme fonts with local/fallback fonts */
-body, html {
-    font-family: Arial, sans-serif !important;
+@font-face {
+    font-family: 'Roboto';
+    src: url('_static/fonts/roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('_static/fonts/roboto/Roboto-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('_static/fonts/robotomono/RobotoMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('_static/fonts/robotomono/RobotoMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Roboto', sans-serif !important;
 }
 
 code, pre {
-    font-family: "Courier New", monospace !important;
+    font-family: 'Roboto Mono', monospace !important;
 }
 
 /* ============================================= */
