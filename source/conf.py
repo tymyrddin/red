@@ -2,6 +2,8 @@
 import os
 import sys
 
+os.environ['SPHINX_IMMATERIAL_DISABLE_GOOGLE_FONTS'] = "1"
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # -- Project information -----------------------------------------------------
