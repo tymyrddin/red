@@ -45,7 +45,7 @@ source_suffix = {
 html_theme = 'sphinx_immaterial'
 
 html_theme_options = {
-    "google_fonts": {},
+    "google_fonts": False,
     "palette": {
         "scheme": "slate",
         "primary": "red",
