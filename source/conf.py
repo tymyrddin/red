@@ -4,7 +4,6 @@ import sys
 # -- Path setup --------------------------------------------------------------
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-
 # -- Project information -----------------------------------------------------
 project = 'Red team'
 copyright = '2025, TyMyrddin'
@@ -15,6 +14,7 @@ release = '0.1'
 extensions = [
     'myst_parser',
     'sphinx_immaterial',
+    '_ext.disable_fonts',  # <- add this
 ]
 
 myst_enable_extensions = [
