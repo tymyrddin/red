@@ -17,34 +17,6 @@
   --md-typeset-a-color: var(--md-primary-fg-color);
 }
 
-@font-face {
-    font-family: 'Roboto';
-    src: url('_static/fonts/roboto/Roboto-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Roboto';
-    src: url('_static/fonts/roboto/Roboto-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Roboto Mono';
-    src: url('_static/fonts/robotomono/RobotoMono-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Roboto Mono';
-    src: url('_static/fonts/robotomono/RobotoMono-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
 body {
     font-family: 'Roboto', sans-serif !important;
 }
@@ -358,6 +330,11 @@ pre[class*="text"] {
 }
 
 /* FOOTER */
+
+.md-source-file__fact {
+  color: #666 !important;
+}
+
 /* Reduce footer navigation text size */
 .md-footer-nav__link {
     font-size: 1.4em !important;

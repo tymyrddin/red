@@ -1,12 +1,12 @@
-Ty Myrddin services
+Myrddin's Menagerie
 ======================================================
 
-Welcome to Ty Myrddin services in the Red wilds—where cunning, curiosity, and hands-on craft meet the untidy
-reality of digital forests. Here, workshops and facilitated processes let you explore the behaviours, tradecraft,
-and tricks of determined adversaries: spotting, moving, and protecting valuable assets with the instincts of foxes,
-raccoons, and squirrels. From mapping what outsiders can see, to reverse engineering binaries, to building your own
-attacker infrastructure, these sessions are about understanding and disrupting adversary rhythms—without pretending
-the terrain is neat or the rules are followed.
+Welcome to Myrddin's Menagerie. In the Red Wilds of the digital forest, where reality is untidy, we bring together
+cunning, curiosity, and hands-on craft. This is a collection of workshops and facilitated processes designed
+support exploring the behaviours, tradecraft, and tricks of determined adversaries. Spot, move, and protect valuable
+assets with the instincts of foxes, raccoons, and squirrels. From mapping external visibility to reverse engineering
+binaries and building attacker infrastructure, the sessions focus on understanding and disrupting adversary
+rhythms—because the terrain is never neat and the rules are never followed.
 
 .. toctree::
    :glob:

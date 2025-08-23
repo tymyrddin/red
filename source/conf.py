@@ -11,7 +11,11 @@ author = 'TyMyrddin'
 release = '0.1'
 
 # -- Options for sphinx-immaterial -------------------------------------------
-sphinx_immaterial_external_resource_cache_dir = "_static/cache"
+sphinx_immaterial_external_resource_cache_dir = os.path.join(
+    os.path.dirname(__file__),
+    "_static",
+    "immaterial_cache",
+)
 
 # -- General configuration ---------------------------------------------------
 
@@ -57,6 +61,9 @@ html_theme_options = {
         "navigation.top",
         "content.tabs.link",
     ],
+    "plugins": [
+        "material/search",  # enable search
+    ],
 }
 
 html_title = "Red team"
@@ -69,7 +76,7 @@ html_extra_path = ['_static/_headers']
 
 # -- Build settings ----------------------------------------------------------
 nitpicky = True  # Warn about broken references
-# suppress_warnings = ["myst.xref_missing"]  # Backward compatibility
+# suppress_warnings = ["myst.xref_missing"]  # Suppress missing MyST xref warnings
 
 # Disable all automatic anchor generation
 autosectionlabel_prefix_document = False
