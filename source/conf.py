@@ -2,8 +2,6 @@
 import os
 import sys
 
-os.environ['SPHINX_IMMATERIAL_DISABLE_GOOGLE_FONTS'] = "1"
-
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # -- Project information -----------------------------------------------------
@@ -11,6 +9,9 @@ project = 'Red team'
 copyright = '2025, TyMyrddin'
 author = 'TyMyrddin'
 release = '0.1'
+
+# -- Options for sphinx-immaterial -------------------------------------------
+sphinx_immaterial_external_resource_cache_dir = "_static/cache"
 
 # -- General configuration ---------------------------------------------------
 
