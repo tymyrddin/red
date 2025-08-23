@@ -3,5 +3,3 @@
   command = "make html"
   image = "jammy"
 
-[build.environment]
-  SPHINX_IMMATERIAL_DISABLE_GOOGLE_FONTS = "1"
