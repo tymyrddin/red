@@ -8,14 +8,9 @@ Rootways of the World Tree (@Internet)
    :includehidden:
    :caption: Ghosts don’t fear heights—they own the view.
 
-   README.md
-   tcp.md
-   ip.md
-   bgp.md
-   bgpsec.md
-   icmp.md
-   dns.md
-   tls-ssl.md
-   tcp-ao.md
-   md5.md
-   rpki.md
+   tcp/index
+   ip/index
+   bgp/index
+   icmp/index
+   dns/index
+   bgpsec/index
