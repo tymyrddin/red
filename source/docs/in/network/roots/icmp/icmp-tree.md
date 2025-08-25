@@ -1,4 +1,6 @@
-# Attack tree (ICMP)
+# Overview attacks on ICMP
+
+## Attack tree
 
 This attack tree methodically catalogs the exploitation of ICMP and its IPv6 counterpart, ICMPv6, illustrating how these protocols can be weaponised for everything from stealthy reconnaissance and covert data exfiltration to disruptive denial-of-service attacks and sophisticated lateral movement within modern cloud and IoT environments.
 
