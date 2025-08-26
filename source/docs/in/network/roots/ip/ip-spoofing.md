@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-IP spoofing involves forging the source IP address of a packet to conceal the attacker's identity or impersonate another system. When combined with DDoS amplification, attackers use spoofed requests to vulnerable services that generate large responses, directing massive traffic volumes toward a victim. This technique allows relatively small attack streams to generate enormous traffic volumes, overwhelming victim resources .
+IP spoofing involves forging the source IP address of a packet to conceal the attacker's identity or impersonate another system. When combined with DDoS amplification, attackers use spoofed requests to vulnerable services that generate large responses, directing massive traffic volumes toward a victim. This technique allows relatively small attack streams to generate enormous traffic volumes, overwhelming victim resources.
 
 ```text
 1. IP Spoofing & DDoS Amplification [OR]
@@ -129,7 +129,7 @@ IP spoofing involves forging the source IP address of a packet to conceal the at
             1.7.3.3 Gaming infrastructure targeting
             
     1.8 Coordination Mechanisms [OR]
-    
+
         1.8.1 Botnet Coordination
             1.8.1.1 Centralized C2 for amplification campaigns
             1.8.1.2 P2P-based attack coordination
@@ -148,15 +148,15 @@ IP spoofing involves forging the source IP address of a packet to conceal the at
 
 ## Why it works
 
--   Protocol Design Flaws: Many protocols respond with larger packets than requests .
--   Open Services: Misconfigured services respond to requests from any source .
--   Source IP Spoofing: Networks allowing spoofed packets enable amplification .
--   Asymmetric Responses: Small requests can trigger large responses .
--   Global Scale: Millions of vulnerable devices exist worldwide .
+-   Protocol Design Flaws: Many protocols respond with larger packets than requests.
+-   Open Services: Misconfigured services respond to requests from any source.
+-   Source IP Spoofing: Networks allowing spoofed packets enable amplification.
+-   Asymmetric Responses: Small requests can trigger large responses.
+-   Global Scale: Millions of vulnerable devices exist worldwide.
 
 ## Mitigation
 
-1. Network Ingress Filtering (BCP38):
+1. Network Ingress Filtering ([RFC2827 / BCP38](https://datatracker.ietf.org/doc/html/rfc2827) ):
 -   Action: Prevent spoofed packets from leaving your network.
 -   How:
     -   Edge Routers: Implement ACLs blocking outgoing packets with source addresses not from your allocation.
@@ -168,6 +168,31 @@ IP spoofing involves forging the source IP address of a packet to conceal the at
 ! cisco IOS example
 interface GigabitEthernet0/0
  ip verify unicast source reachable-via rx
+```
+
+2. Unicast Reverse Path Forwarding (uRPF) ([RFC3704 / BCP84](https://datatracker.ietf.org/doc/html/rfc3704))
+
+* Action: Drop packets with source IPs that are not reachable via the receiving interface.
+* How:
+
+  * Strict Mode: Check that the source IP of incoming packets matches the best return path in the routing table. Drop if it does not.
+  * Loose Mode: Check that the source IP exists in the routing table, but not necessarily on the incoming interface. Drop if it does not.
+  * Edge Deployment: Apply on edge/border routers where spoofed traffic enters or exits your network.
+* Notes:
+  * Strict mode provides better anti-spoofing protection but requires symmetric routing.
+  * Loose mode is easier to deploy in asymmetric networks but is less secure.
+* Configuration Examples:
+
+```text
+! Cisco IOS example: strict mode
+interface GigabitEthernet0/0
+ ip verify unicast source reachable-via rx strict
+```
+
+```text
+! Cisco IOS example: loose mode
+interface GigabitEthernet0/0
+ ip verify unicast source reachable-via any
 ```
 
 ### Service hardening
@@ -220,9 +245,9 @@ interface GigabitEthernet0/0
 -   Checklist: Maintain contact lists and escalation procedures.
 
 ## Key insights from real-world attacks
--   Memcached Amplification: 1.3 Tbps attacks demonstrated extreme amplification potential .
--   Multi-Vector Attacks: Modern campaigns use multiple protocols simultaneously .
--   Cloud Exploitation: Attackers increasingly abuse cloud services for amplification .
+-   Memcached Amplification: 1.3 Tbps attacks demonstrated extreme amplification potential.
+-   Multi-Vector Attacks: Modern campaigns use multiple protocols simultaneously.
+-   Cloud Exploitation: Attackers increasingly abuse cloud services for amplification.
 
 ## Future trends and recommendations
 -   Protocol Security: New protocols should include anti-amplification features.

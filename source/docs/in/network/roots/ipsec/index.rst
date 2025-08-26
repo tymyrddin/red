@@ -13,13 +13,15 @@ target for exploitation.
    :includehidden:
    :caption: Compromising IPsec's cryptographic foundations to breach VPNs and network-layer security:
 
+   ipsec.md
    ipsec-tree.md
-   ipsec-cryptographic-attacks.md
-   ipsec-key-mgmnt-attacks.md
-   ipsec-implementation-flaws.md
+   cryptographic-attacks.md
+   key-mgmnt-attacks.md
+   implementation-flaws.md
    protocol-downgrade-attacks.md
-   ipsec-sa-manipulation-attacks.md
+   sa-manipulation-attacks.md
    identity-spoofing.md
    memory-corruption-attacks.md
-   ipsec-resource-exhaustion-attacks.md
+   resource-exhaustion-attacks.md
+   configuration-bypass-attacks.md
 

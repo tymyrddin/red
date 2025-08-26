@@ -114,12 +114,13 @@
         
             2.2.2.1 Neighbor Advertisement spoofing
             2.2.2.2 Duplicate Address Detection (DAD) DoS
-            
+                    
         2.2.3 Extension Header Abuse [OR]
-        
+            
             2.2.3.1 Firewall evasion using Hop-by-Hop options
             2.2.3.2 Resource exhaustion via complex header chains
-            
+            2.2.3.3 Covert channel via Traffic Class / Flow Label (exfiltrate information in unused header fields)
+      
         2.2.4 Dual-Stack Attacks [OR]
         
             2.2.4.1 Bypassing IPv4 security via unmonitored IPv6

@@ -8,15 +8,30 @@ deep enough though …
 
 .. toctree::
    :glob:
-   :maxdepth: 2
+   :maxdepth: 1
    :includehidden:
-   :caption: If your security relies on people being rude to strangers, you’re already hacked:
+   :caption: Notes:
 
+   notes/index
    roots/index
    patches/index
-   notes/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :includehidden:
+   :caption: Labs:
+
    thm/index
    root-me/index
+   ripe/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :includehidden:
+   :caption: Code:
+
    Blight-Weaver's Spore-Songs @GitHub <https://github.com/tymyrddin/scripts-network>
 
 ----
