@@ -279,7 +279,7 @@ This attack tree methodically catalogs the exploitation of ICMP and its IPv6 cou
             6.1.1.2 Neural network-based traffic shaping
             6.1.1.3 Generative adversarial network evasion
             
-        6.1.2 Behavioral mimicry [OR]
+        6.1.2 Behavioural mimicry [OR]
             6.1.2.1 Legitimate ICMP traffic generation
             6.1.2.2 Network monitoring system spoofing
             6.1.2.3 Anomaly detection bypass

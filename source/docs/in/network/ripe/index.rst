@@ -12,3 +12,7 @@ take hold — and learn how to keep the tree standing strong against the storms 
 
    switch.md
    labs-installation.md
+   scapy.md
+   termshark.md
+   iid-guessing.md
+   local-scanning.md

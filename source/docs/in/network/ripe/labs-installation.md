@@ -1,4 +1,4 @@
-# Installing the RIPE Labs Environment on Linux
+# Installing the RIPE labs environment on Linux
 
 The labs for this course run inside a virtual machine. You only need to install this environment once. Once installed, you can start and stop the labs through your terminal, and access them via your web browser.
 
