@@ -14,7 +14,7 @@ target for exploitation.
    :caption: Compromising IPsec's cryptographic foundations to breach VPNs and network-layer security:
 
    ipsec.md
-   ipsec-tree.md
+   tree.md
    cryptographic-attacks.md
    key-mgmnt-attacks.md
    implementation-flaws.md
