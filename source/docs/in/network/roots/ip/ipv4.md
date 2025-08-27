@@ -1,4 +1,4 @@
-# Internet Protocol version 4 (IPv4) protocol notes
+# Internet Protocol version 4 (IPv4) notes
 
 ## 1. Advantages of IPv4 (Legacy Strengths)
 - Universality: Supported by every network device and application globally.

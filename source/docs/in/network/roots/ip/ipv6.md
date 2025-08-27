@@ -1,4 +1,4 @@
-# Internet Protocol version 6 (IPv6) protocol notes
+# Internet Protocol version 6 (IPv6) notes
 
 ## 1. Advantages of IPv6 Deployment
 
