@@ -37,7 +37,7 @@ TTL (Time to Live) expiry attacks exploit the ICMP Time Exceeded messages genera
             1.2.2.3 Mapping security perimeters through error messages
             
         1.2.3 Load Balancer Discovery
-            1.2.3.1 Identifying load balancer presence through TTL behavior
+            1.2.3.1 Identifying load balancer presence through TTL behaviour
             1.2.3.2 Mapping load balancing infrastructure
             1.2.3.3 Determining load balancer hop counts
             
@@ -45,7 +45,7 @@ TTL (Time to Live) expiry attacks exploit the ICMP Time Exceeded messages genera
     
         1.3.1 Path MTU Discovery Attacks
             1.3.1.1 Forcing Path MTU Discovery failures
-            1.3.1.2 Disruptping TCP session establishment
+            1.3.1.2 Disrupting TCP session establishment
             1.3.1.3 Causing application timeouts through MTU issues
             
         1.3.2 QoS and Policy Bypass
@@ -114,7 +114,7 @@ TTL (Time to Live) expiry attacks exploit the ICMP Time Exceeded messages genera
         1.7.1 Multi-Vector Coordination
             1.7.1.1 Combining TTL attacks with other DDoS methods
             1.7.1.2 Layered attack strategies
-            1.7.1.3 Time-synchronized multi-point attacks
+            1.7.1.3 Time-synchronised multi-point attacks
             
         1.7.2 Stateful Attack Patterns
             1.7.2.1 Protocol state-aware TTL manipulation
@@ -146,11 +146,11 @@ TTL (Time to Live) expiry attacks exploit the ICMP Time Exceeded messages genera
 
 ## Why it works
 
--   Protocol Requirement: Routers must process TTL expiry and generate ICMP messages .
--   Resource Intensive: ICMP generation consumes router CPU and memory .
--   Amplification Potential: Small packets can generate larger ICMP responses .
--   State Exhaustion: Connection tracking resources can be consumed .
--   Evasion Capabilities: TTL manipulation can bypass some security controls .
+-   Protocol Requirement: Routers must process TTL expiry and generate ICMP messages.
+-   Resource Intensive: ICMP generation consumes router CPU and memory.
+-   Amplification Potential: Small packets can generate larger ICMP responses.
+-   State Exhaustion: Connection tracking resources can be consumed.
+-   Evasion Capabilities: TTL manipulation can bypass some security controls.
 
 ## Mitigation
 
@@ -175,7 +175,7 @@ policy-map COPP-ICMP
 
 -   Action: Implement TTL-based security features where available.
 -   How:
-    -   TTL Hack Prevention: Enable features like "ip ttl-security" 
+    -   TTL Hack Prevention: Enable features like "ip ttl-security"
     -   Protocol Validation: Validate TTL values for routing protocols
     -   Hardware Protection: Use ASIC-based TTL protection
 -   Best Practice: Enable TTL security on all BGP sessions
@@ -204,7 +204,7 @@ policy-map COPP-ICMP
 -   How:
     -   Ingress Filtering: Block packets with TTL=1 from external sources
     -   EGRESS Filtering: Prevent outgoing attack packets
-    -   ACL Optimization: Use efficient ACLs to minimize performance impact
+    -   ACL Optimisation: Use efficient ACLs to minimise performance impact
 -   Example ACL:
     ```text
     ip access-list extended BLOCK-TTL-ATTACKS
@@ -231,16 +231,16 @@ policy-map COPP-ICMP
 
 ## Key insights from real-world attacks
 
--   Router CPU Exhaustion: TTL attacks can consume 100% of router CPU resources 
--   Service Disruption: Major outages caused by TTL-based attacks 
--   Evasion Effectiveness: TTL manipulation bypasses many security controls 
+-   Router CPU Exhaustion: TTL attacks can consume 100% of router CPU resources
+-   Service Disruption: Major outages caused by TTL-based attacks
+-   Evasion Effectiveness: TTL manipulation bypasses many security controls
 
 ## Future trends and recommendations
 
--   Hardware Acceleration: ASIC-based TTL protection in next-gen routers 
--   AI-Powered Defense: Machine learning for TTL attack detection 
--   Protocol Updates: Potential TTL handling improvements in future protocols 
+-   Hardware Acceleration: ASIC-based TTL protection in next-gen routers
+-   AI-Powered Defence: Machine learning for TTL attack detection
+-   Protocol Updates: Potential TTL handling improvements in future protocols
 
 ## Conclusion
 
-TTL expiry attacks represent a significant threat to network infrastructure through resource exhaustion, service disruption, and reconnaissance. Comprehensive mitigation requires rate limiting, monitoring, infrastructure hardening, and provider cooperation. As networks evolve, continued vigilance and adaptive defenses are essential against TTL-based attacks.
+TTL expiry attacks represent a significant threat to network infrastructure through resource exhaustion, service disruption, and reconnaissance. Comprehensive mitigation requires rate limiting, monitoring, infrastructure hardening, and provider cooperation. As networks evolve, continued vigilance and adaptive defences are essential against TTL-based attacks.
