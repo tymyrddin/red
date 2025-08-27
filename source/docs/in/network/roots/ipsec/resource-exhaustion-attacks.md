@@ -1,4 +1,4 @@
-# IPsec resource exhaustion attacks
+# Resource exhaustion attacks
 
 ## Attack pattern
 

@@ -1,4 +1,4 @@
-# IPsec cryptographic attacks
+# Cryptographic attacks
 
 ## Attack pattern
 

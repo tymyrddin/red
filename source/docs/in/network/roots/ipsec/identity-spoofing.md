@@ -1,4 +1,4 @@
-# IPsec identity spoofing attacks
+# Identity spoofing attacks
 
 ## Attack pattern
 

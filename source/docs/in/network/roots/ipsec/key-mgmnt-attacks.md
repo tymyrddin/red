@@ -1,4 +1,4 @@
-# IPsec key management attacks
+# Key management attacks
 
 ## Attack pattern
 

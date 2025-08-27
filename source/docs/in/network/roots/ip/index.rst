@@ -13,8 +13,8 @@ As organisations continue their transition from IPv4 to IPv6 whilst often mainta
 
    ipv4.md
    ipv6.md
-   ip-tree.md
-   ip-fragmentation.md
+   tree.md
+   fragmentation.md
    icmp-abuse.md
    arp-spoofing.md
    nat-abuse.md
@@ -22,7 +22,7 @@ As organisations continue their transition from IPv4 to IPv6 whilst often mainta
    ndp-exploitation.md
    extension-header-abuse.md
    dual-stack-attacks.md
-   ip-spoofing.md
+   spoofing.md
    bgp-hijacking.md
    ttl-expiry-attacks.md
    geolocation-spoofing.md

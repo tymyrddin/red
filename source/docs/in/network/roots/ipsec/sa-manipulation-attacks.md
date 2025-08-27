@@ -1,4 +1,4 @@
-# IPsec Security Association Manipulation Attacks
+# Security Association manipulation attacks
 
 ## Attack Pattern
 

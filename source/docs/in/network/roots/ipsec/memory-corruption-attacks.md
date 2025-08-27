@@ -1,4 +1,4 @@
-# IPsec memory corruption attacks
+# Memory corruption attacks
 
 ## Attack pattern
 

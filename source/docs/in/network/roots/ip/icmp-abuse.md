@@ -2,7 +2,8 @@
 
 ## Attack pattern
 
-The Internet Control Message Protocol (ICMP) is essential for network diagnostics and error reporting. Attackers exploit its trusted nature and common misconfigurations for various malicious purposes.
+The Internet Control Message Protocol (ICMP) is essential for network diagnostics and error reporting. Attackers 
+exploit its trusted nature and common misconfigurations for various malicious purposes.
 
 ```text
 1. ICMP Abuse [OR]

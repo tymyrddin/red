@@ -188,25 +188,26 @@ Geolocation spoofing involves manipulating the perceived geographic origin of ne
     -   AWS WAF: Implement geographic match conditions
     -   Cloudflare: Use Zone Lockdown and geographic rules
     -   Custom ACLs: Create geographic-based firewall rules
--   Configuration Example (AWS WAF):
-    ```json
-    {
-        "Name": "BlockNonAllowedCountries",
-        "Priority": 1,
-        "Action": { "Block": {} },
-        "VisibilityConfig": {
-            "SampledRequestsEnabled": true,
-            "CloudWatchMetricsEnabled": true
-        },
-        "Statement": {
-            "NotStatement": {
-                "GeoMatchStatement": {
-                    "CountryCodes": ["US", "CA", "GB"]
-                }
+-   Configuration Example (AWS WAF, json):
+
+```json
+{
+    "Name": "BlockNonAllowedCountries",
+    "Priority": 1,
+    "Action": { "Block": {} },
+    "VisibilityConfig": {
+        "SampledRequestsEnabled": true,
+        "CloudWatchMetricsEnabled": true
+    },
+    "Statement": {
+        "NotStatement": {
+            "GeoMatchStatement": {
+                "CountryCodes": ["US", "CA", "GB"]
             }
         }
     }
-    ```
+}
+```
 
 ### Real-time monitoring and anomaly detection
 -   Action: Continuously monitor for geographic anomalies.
@@ -252,4 +253,6 @@ Geolocation spoofing involves manipulating the perceived geographic origin of ne
 
 ## Conclusion
 
-Geolocation spoofing enables fraud, piracy, and evasion through technical manipulation. Mitigation requires multi-layered verification, advanced fingerprinting, and continuous monitoring. As spoofing techniques evolve, organizations must implement comprehensive geographic security measures and maintain vigilance against emerging threats.
+Geolocation spoofing enables fraud, piracy, and evasion through technical manipulation. Mitigation requires 
+multi-layered verification, advanced fingerprinting, and continuous monitoring. As spoofing techniques evolve, 
+organizations must implement comprehensive geographic security measures and maintain vigilance against emerging threats.

@@ -1,6 +1,6 @@
 # ARP apoofing/poisoning (IPv4)
 
-## Attack Pattern
+## Attack pattern
 
 The Address Resolution Protocol (ARP) is a stateless protocol used to map IP addresses to MAC addresses on a local network segment (Layer 2). ARP spoofing (or poisoning) is a technique where an attacker sends forged ARP messages onto a LAN to manipulate the ARP caches of other devices. This allows the attacker to intercept, modify, or block network traffic.
 

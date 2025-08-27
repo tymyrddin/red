@@ -1,4 +1,4 @@
-# IPsec protocol downgrade attacks
+# Protocol downgrade attacks
 
 ## Attack Pattern
 

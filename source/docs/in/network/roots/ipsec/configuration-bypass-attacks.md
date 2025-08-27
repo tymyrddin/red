@@ -1,4 +1,4 @@
-# IPsec configuration bypass attacks
+# Configuration bypass attacks
 
 ## Attack pattern
 

@@ -2,10 +2,7 @@
 
 ## Attack pattern
 
-IPv6 Extension Headers (EHs) provide flexibility and new features but introduce significant attack vectors. 
-Attackers exploit EH processing weaknesses to evade security controls, cause resource exhaustion, and bypass 
-filtering mechanisms. The complexity and variability of EH chains create opportunities for evasion and 
-denial-of-service attacks.
+IPv6 Extension Headers (EHs) provide flexibility and new features but introduce significant attack vectors. Attackers exploit EH processing weaknesses to evade security controls, cause resource exhaustion, and bypass filtering mechanisms. The complexity and variability of EH chains create opportunities for evasion and denial-of-service attacks.
 
 ```text
 1. Extension Header Abuse [OR]
@@ -42,8 +39,8 @@ denial-of-service attacks.
             1.3.1.3 Causing traffic loops and network congestion
             
         1.3.2 Destination Options Abuse
-            1.3.2.1 Modifying packet processing behavior maliciously
-            1.3.2.2 Injecting instructions that alter host behavior
+            1.3.2.1 Modifying packet processing behaviour maliciously
+            1.3.2.2 Injecting instructions that alter host behaviour
             1.3.2.3 Using options to carry covert channel data
             
     1.4 Fragmentation Abuse [OR]
@@ -107,8 +104,8 @@ denial-of-service attacks.
     
         1.8.1 Path Discovery
             1.8.1.1 Using Routing headers to map network paths
-            1.8.1.2 Analyzing EH processing to identify middlebox types
-            1.8.1.3 Fingerprinting systems based on EH handling behavior
+            1.8.1.2 Analysing EH processing to identify middlebox types
+            1.8.1.3 Fingerprinting systems based on EH handling behaviour
             
         1.8.2 Service Discovery
             1.8.2.1 Using EHs to probe for specific services
@@ -142,11 +139,11 @@ denial-of-service attacks.
 
 ## Why it works
 
--   Complex Processing: EHs require substantial processing power, creating opportunities for CPU exhaustion.
--   Implementation Inconsistencies: Different devices handle EHs differently, leading to security gaps.
--   Filtering Challenges: Many security devices cannot properly inspect complex EH chains.
--   Protocol Flexibility: The extensible nature of EHs allows attackers to create novel attack vectors.
--   Limited Visibility: Monitoring tools often lack deep EH inspection capabilities.
+-   Complex processing: EHs require substantial processing power, creating opportunities for CPU exhaustion
+-   Implementation inconsistencies: Different devices handle EHs differently, leading to security gaps
+-   Filtering challenges: Many security devices cannot properly inspect complex EH chains
+-   Protocol flexibility: The extensible nature of EHs allows attackers to create novel attack vectors
+-   Limited visibility: Monitoring tools often lack deep EH inspection capabilities
 
 ## Mitigation
 
@@ -157,62 +154,62 @@ denial-of-service attacks.
     -   Palo Alto Networks: Configure security policy rules with custom App-ID for IPv6 extension header inspection
     -   iptables/ip6tables: Use `-m ipv6header` module with `--header` and `--soft` options to match and filter EHs
     -   Traffic Class/Flow Label Inspection: Deploy custom parsers to detect anomalous patterns in TC/FL fields
--   Best Practice: Allow only essential EHs (Fragment, ESP, AH, Destination Options) and block others like RH0; implement deep inspection for permitted EHs.
+-   Best practice: Allow only essential EHs (Fragment, ESP, AH, Destination Options) and block others like RH0; implement deep inspection for permitted EHs
 
 ### Rate limiting and thresholds
 -   Action: Limit EH processing to prevent resource exhaustion and covert channel exploitation
 -   How:
-    -   Router Configuration: Set limits on EH processing rate and complexity using `ipv6 hop-limit` and EH-specific rate limiters
-    -   Firewall Rules: Implement rate limiting for packets with multiple EHs and anomalous Traffic Class/Flow Label patterns
+    -   Router configuration: Set limits on EH processing rate and complexity using `ipv6 hop-limit` and EH-specific rate limiters
+    -   Firewall rules: Implement rate limiting for packets with multiple EHs and anomalous Traffic Class/Flow Label patterns
     -   IDS/IPS: Configure thresholds for EH-based attack detection including TC/FL field manipulation monitoring
-    -   Covert Channel Detection: Deploy traffic analysis tools to identify unusual patterns in header field usage
+    -   Covert channel detection: Deploy traffic analysis tools to identify unusual patterns in header field usage
 
 ### Security device tuning
 -   Action: Ensure security devices can handle EHs properly and detect covert channels
 -   How:
-    -   Enable Deep Inspection: Configure firewalls and IPS to reassemble and inspect EH chains including Traffic Class/Flow Label analysis
-    -   Update Signatures: Keep EH-related signatures current in IDS/IPS systems with specific rules for TC/FL abuse
-    -   Behavioral Analysis: Implement machine learning detection for anomalous header field usage patterns
-    -   Performance Testing: Validate that security devices can process EHs and header inspection at line rate
+    -   Enable deep inspection: Configure firewalls and IPS to reassemble and inspect EH chains including Traffic Class/Flow Label analysis
+    -   Update signatures: Keep EH-related signatures current in IDS/IPS systems with specific rules for TC/FL abuse
+    -   Behavioural analysis: Implement machine learning detection for anomalous header field usage patterns
+    -   Performance testing: Validate that security devices can process EHs and header inspection at line rate
 
 ### Host hardening
 -   Action: Configure hosts to resist EH attacks and covert channel exploitation
 -   How:
     -   Windows: Use `netsh interface ipv6 set global` to configure EH handling policies and disable unnecessary header processing
     -   Linux: Tune `sysctl` parameters for EH processing (`net.ipv6.conf.all.accept_ra_rt_info_max_plen`, `net.ipv6.conf.all.forwarding`)
-    -   Traffic Class Protection: Implement host-based filtering for anomalous DSCP/ECN values
-    -   Endpoint Protection: Ensure EDR solutions can detect EH-based attacks and header manipulation attempts
+    -   Traffic Class protection: Implement host-based filtering for anomalous DSCP/ECN values
+    -   Endpoint protection: Ensure EDR solutions can detect EH-based attacks and header manipulation attempts
 
 ### Monitoring and detection
 -   Action: Actively monitor for EH anomalies and covert channel activity
 -   How:
-    -   Flow Logging: Use NetFlow/IPFIX with EH extension and header field monitoring capabilities
-    -   SIEM Integration: Correlate EH events with Traffic Class/Flow Label anomalies and other security data
-    -   Anomaly Detection: Deploy tools to detect unusual EH patterns and header field manipulation
-    -   Covert Channel Monitoring: Implement statistical analysis of header field values to detect data exfiltration attempts
+    -   Flow logging: Use NetFlow/IPFIX with EH extension and header field monitoring capabilities
+    -   SIEM integration: Correlate EH events with Traffic Class/Flow Label anomalies and other security data
+    -   Anomaly detection: Deploy tools to detect unusual EH patterns and header field manipulation
+    -   Covert channel monitoring: Implement statistical analysis of header field values to detect data exfiltration attempts
 
 ### Regular audits and penetration testing
--   Action: Proactively test EH defenses and covert channel detection capabilities
+-   Action: Proactively test EH defences and covert channel detection capabilities
 -   How:
-    -   Red Team Exercises: Use tools like `scapy6` to craft EH-based attacks including TC/FL covert channel simulations
-    -   Security Audits: Regularly review EH filtering policies and header field inspection configurations
-    -   Covert Channel Testing: Include header-based exfiltration techniques in penetration testing scenarios
-    -   Patch Management: Keep all devices updated against EH vulnerabilities and covert channel exploitation techniques
+    -   Red team exercises: Use tools like `scapy6` to craft EH-based attacks including TC/FL covert channel simulations
+    -   Security audits: Regularly review EH filtering policies and header field inspection configurations
+    -   Covert channel testing: Include header-based exfiltration techniques in penetration testing scenarios
+    -   Patch management: Keep all devices updated against EH vulnerabilities and covert channel exploitation techniques
 
 ### Protocol hardening
 -   Action: Disable unnecessary EH functionality and header field manipulation capabilities
 -   How:
-    -   Network Devices: Disable support for deprecated EHs like RH0 and restrict Traffic Class/Flow Label modification privileges
+    -   Network devices: Disable support for deprecated EHs like RH0 and restrict Traffic Class/Flow Label modification privileges
     -   Hosts: Configure systems to ignore non-essential EHs and validate header field consistency
     -   Applications: Use libraries that properly validate EHs and detect anomalous header field patterns
-    -   Network Segmentation: Implement microsegmentation to limit the impact of successful EH attacks
+    -   Network segmentation: Implement microsegmentation to limit the impact of successful EH attacks
 
 ### Cryptographic protection
 -   Action: Use encryption to prevent header manipulation and covert channel exploitation
 -   How:
-    -   IPsec Deployment: Implement ESP to protect against EH manipulation between trusted endpoints
-    -   Header Integrity: Use AH where appropriate to ensure header field integrity
-    -   Traffic Analysis Prevention: Deploy traffic flow confidentiality measures to thwart timing and pattern analysis
+    -   IPsec deployment: Implement ESP to protect against EH manipulation between trusted endpoints
+    -   Header integrity: Use AH where appropriate to ensure header field integrity
+    -   Traffic analysis prevention: Deploy traffic flow confidentiality measures to thwart timing and pattern analysis
 
 ### Vendor-specific implementation
 -   Action: Leverage vendor-specific features for EH protection
@@ -220,27 +217,27 @@ denial-of-service attacks.
     -   Cisco: Implement Zone-Based Firewalls with EH inspection and Traffic Class monitoring
     -   Juniper: Use `family inet6` filtering with EH match conditions and flow label inspection
     -   Check Point: Enable IPv6 SmartDefense profiles with EH protection capabilities
-    -   Cloud Providers: Utilize native IPv6 security groups with EH filtering options
+    -   Cloud providers: Utilise native IPv6 security groups with EH filtering options
 
 ### Education and awareness
 -   Action: Train staff on EH threats and covert channel risks
 -   How:
-    -   Security Training: Include IPv6 EH attacks in security awareness programs
-    -   Operational Procedures: Develop playbooks for responding to EH-based incidents
-    -   Threat Intelligence: Share information about emerging EH attack techniques and mitigation strategies
+    -   Security training: Include IPv6 EH attacks in security awareness programmes
+    -   Operational procedures: Develop playbooks for responding to EH-based incidents
+    -   Threat intelligence: Share information about emerging EH attack techniques and mitigation strategies
 
-## 💡 Key insights from real-world attacks
+## Key insights from real-wrld attacks
 
--   Evasion Prevalence: EH abuse is common in advanced attacks to bypass security controls.
--   Resource Attacks: Complex EH chains can cripple network设备 and security appliances.
--   Covert Channels: EHs provide numerous options for stealthy data exfiltration.
+-   Evasion prevalence: EH abuse is common in advanced attacks to bypass security controls
+-   Resource attacks: Complex EH chains can cripple network devices and security appliances
+-   Covert channels: EHs provide numerous options for stealthy data exfiltration
 
 ## Future trends and recommendations
 
--   Automated Defense: ML-based tools will be essential for detecting novel EH attacks.
--   Protocol Simplification: IETF may simplify EH processing to reduce attack surface.
--   Hardware Support: New networking hardware will need better EH processing capabilities.
+-   Automated defence: ML-based tools will be essential for detecting novel EH attacks
+-   Protocol simplification: IETF may simplify EH processing to reduce attack surface
+-   Hardware support: New networking hardware will need better EH processing capabilities
 
 ## Conclusion
 
-Extension Header abuse poses serious risks to IPv6 networks, enabling evasion, resource exhaustion, and covert channels. While IPv6's flexibility is valuable, it requires careful security management. Organizations must implement comprehensive EH filtering, monitoring, and hardening to protect against these sophisticated attacks. As IPv6 adoption grows, EH security will become increasingly critical for network defense.
+Extension Header abuse poses serious risks to IPv6 networks, enabling evasion, resource exhaustion, and covert channels. While IPv6's flexibility is valuable, it requires careful security management. Organisations must implement comprehensive EH filtering, monitoring, and hardening to protect against these sophisticated attacks. As IPv6 adoption grows, EH security will become increasingly critical for network defence.
