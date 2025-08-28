@@ -4,7 +4,7 @@ In IPv6, every device on a network has a unique address. Each address has two pa
 
 Sometimes, the IID is easy to guess. If an attacker can predict your IID, they can target your device, scan for vulnerabilities, or try to impersonate it. In this guide, we explain common IID patterns and how to “guess” them—so you understand the risks and how to defend against them.
 
-* **Note: Do not use this knowledge to attack other networks. Practice in lab environments like the RIPE labs.** *
+**Note: Do not use this knowledge to attack other networks. Practice in lab environments like the RIPE labs.**
 
 Knowing how IIDs can be guessed helps:
 

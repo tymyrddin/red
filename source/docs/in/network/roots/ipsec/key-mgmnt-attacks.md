@@ -9,87 +9,83 @@ The Internet Key Exchange (IKE) protocol forms the foundation of IPsec security 
 
   1.1 IKEv1/IKEv2 key negotiation flaws [OR]
 
-    1.1.1 IKEv1 Aggressive Mode exposes PSKs to offline cracking [OR]
-      1.1.1.1 Capture-based dictionary attacks against AM handshakes
-      1.1.1.2 Identity leakage (IDi) helps candidate selection
-      1.1.1.3 Low-entropy PSKs collapse effective security
-      1.1.1.4 Mitigations: avoid IKEv1 AM; migrate to IKEv2; enforce strong PSKs; prefer EAP-TLS or certificates
+    1.1.1 IKEv1 Aggressive Mode weaknesses [OR]
+      1.1.1.1 PSK exposure to offline attacks
+        1.1.1.1.1 Capture of AM handshake for dictionary attack
+        1.1.1.1.2 Identity (IDi) leakage aids selection of candidate PSKs
+        1.1.1.1.3 Low-entropy PSKs enable rapid guessing
+      1.1.1.2 Authentication bypass via legacy IKEv1 modes (rare edge cases)
 
-    1.1.2 IKE state exhaustion and DoS during negotiation [OR]
-      1.1.2.1 Libreswan retransmit amplification (CVE-2016-5361) enables remote DoS
-      1.1.2.2 Half-open IKE_SA_INIT floods; enable/respond with stateless cookies
-      1.1.2.3 Cookie/puzzle mis-implementation can itself be abused (client puzzles / RFC 8019 guidance)
-      1.1.2.4 Operational hardening: rate-limit, prefer TCP/TLS encapsulation where appropriate, drop fragmented unauthenticated UDP
+    1.1.2 IKE state exhaustion / DoS [OR]
+      1.1.2.1 Flood of half-open IKE_SA_INIT exchanges
+      1.1.2.2 Retransmit amplification exploiting UDP-based IKE
+      1.1.2.3 Mis-implemented cookies or puzzles abused for DoS
 
-    1.1.3 Message/replay handling edge cases [OR]
-      1.1.3.1 IKEv2 Message IDs normally prevent replay; HA sync messages using ID 0 are a replay DoS risk if not isolated
-      1.1.3.2 Ensure anti-replay windows and strict ID monotonicity across failover/HA paths
-      1.1.3.3 Prefer modern stacks with tested HA implementations
+    1.1.3 Message/replay handling flaws [OR]
+      1.1.3.1 Replay of IKEv2 Message IDs (including ID 0 in HA setups)
+      1.1.3.2 Out-of-order or duplicate messages triggering SA inconsistencies
 
-    1.1.4 Cryptographic/oracle-style negotiation flaws [OR]
-      1.1.4.1 Bleichenbacher-style oracles feasible in some IKEv1 paths → auth bypass in practice
-      1.1.4.2 Distinct error/notify behaviour can leak validation state and aid offline guessing
-      1.1.4.3 Countermeasures: uniform error paths; constant-time checks; disable legacy RSA modes; favour IKEv2 with modern auth
+    1.1.4 Cryptographic / oracle-style negotiation flaws [OR]
+      1.1.4.1 Bleichenbacher-style oracles in RSA-based IKEv1
+      1.1.4.2 Distinct error/notify messages revealing validation state
 
-    1.1.5 INITIAL_CONTACT and delete notifies are authenticated signals, not a generic spoofing vector [AND]
-      1.1.5.1 Properly implemented, they must be cryptographically protected and bound to identity
-      1.1.5.2 If you rely on them, also run liveness checks and DPD; treat unauthenticated traffic as untrusted
+    1.1.5 INITIAL_CONTACT and delete notifies [AND]
+      1.1.5.1 Spoofing or injection requires bypassing cryptographic binding
+      1.1.5.2 Potential for unauthenticated traffic to trigger SA changes if misused
 
   1.2 Pre-shared key brute-force attacks [OR]
 
     1.2.1 Offline PSK cracking from captured handshakes [OR]
-      1.2.1.1 IKEv1 Aggressive Mode enables straight offline cracking
-      1.2.1.2 Weak PSKs fall quickly to GPU/cluster cracking
-      1.2.1.3 Mitigations: kill AM; enforce high-entropy PSKs; or move to cert/EAP-TLS
+      1.2.1.1 IKEv1 Aggressive Mode handshake capture
+      1.2.1.2 Weak PSKs susceptible to GPU/cluster attacks
 
     1.2.2 Active-attacker oracles against PSK flows [OR]
-      1.2.2.1 IKEv2 misconfig/legacy modes can leak accept/reject signals useful for guesses
-      1.2.2.2 Normalise error paths; throttle attempts; prefer mutual certificate auth
+      1.2.2.1 IKEv2 misconfiguration or legacy modes leak accept/reject
+      1.2.2.2 Timing or response differences reveal PSK guesses
 
-    1.2.3 Poor KDF/derivation assumptions [OR]
-      1.2.3.1 IKE PRFs aren’t a “slow KDF”; security rests on PSK entropy, not iteration cost
-      1.2.3.2 Policy: machine-generated PSKs only; rotate on leakage, not on a calendar
+    1.2.3 Poor key derivation assumptions [OR]
+      1.2.3.1 PRFs are not slow KDFs; entropy matters more than iteration
+      1.2.3.2 Predictable or human-generated PSKs reduce effective strength
 
-    1.2.4 Side-channel and implementation bugs in PSK validation [OR]
-      1.2.4.1 Non-constant-time compares or verbose notifies leak information
-      1.2.4.2 Require constant-time validation and uniform failure responses
+    1.2.4 Side-channel / implementation bugs [OR]
+      1.2.4.1 Non-constant-time comparisons leak information
+      1.2.4.2 Verbose notify messages reveal validation outcomes
 
   1.3 Certificate authority and trust-store compromise [OR]
 
-    1.3.1 Rogue/compromised CA issues certificates [OR]
-      1.3.1.1 Historical precedent (e.g., DigiNotar) shows ecosystem-wide impact
-      1.3.1.2 Pinning/constraints and rapid revocation are essential
+    1.3.1 Rogue or compromised CA [OR]
+      1.3.1.1 Issuance of fraudulent certificates
+      1.3.1.2 Trusted certificate chain compromise
 
     1.3.2 Trust anchor manipulation on endpoints [OR]
-      1.3.2.1 Malicious root insertion grants MITM/signing power
-      1.3.2.2 Enterprise MDM/policy must lock trust stores; monitor for drift
+      1.3.2.1 Malicious root or intermediate insertion
+      1.3.2.2 Enterprise policy bypass / endpoint compromise
 
     1.3.3 Revocation weaknesses [OR]
-      1.3.3.1 OCSP responder spoofing/unavailability → soft-fail acceptance
-      1.3.3.2 CRL distribution tampering/unreachability delays revocation
-      1.3.3.3 Prefer OCSP stapling/must-staple where available; cache and audit revocation state
+      1.3.3.1 OCSP responder spoofing or unavailability
+      1.3.3.2 CRL distribution tampering or unreachability
 
-    1.3.4 Intermediate CA private-key compromise [OR]
-      1.3.4.1 Allows valid-looking cert issuance until detected and revoked
-      1.3.4.2 Require CT monitoring, key protection (HSM), and incident playbooks
+    1.3.4 Intermediate CA key compromise [OR]
+      1.3.4.1 Valid-looking certificates issued until detection
+      1.3.4.2 Ecosystem-wide impact until revocation
 
   1.4 Key lifetimes, rekeying, and time-source attacks [OR]
 
-    1.4.1 IKE/IPsec SA lifetime management errors [OR]
-      1.4.1.1 Lifetimes are local policy (not negotiated) — misconfig leads to long-lived keys and reduced PFS in practice
-      1.4.1.2 Enforce short SA lifetimes (hours), automatic rekey, and deletion on rekey success
+    1.4.1 SA lifetime misconfigurations [OR]
+      1.4.1.1 Excessive lifetime → reduced forward secrecy
+      1.4.1.2 Unsynchronised rekeying across peers
 
-    1.4.2 Forged time and skew affecting validation [OR]
-      1.4.2.1 NTP time-shifting attacks can roll clocks, impacting cert validity checks and logs
-      1.4.2.2 Use authenticated time (NTS/secure NTP), multiple sources, and tight skew windows
+    1.4.2 Forged or skewed time affecting validation [OR]
+      1.4.2.1 NTP time-shifting attacks impacting cert validation
+      1.4.2.2 Log timestamp inconsistencies enabling replay or audit gaps
 
-    1.4.3 Certificate validity windows and policy [OR]
-      1.4.3.1 Adhere to current BR caps (≈398 days) and RFC 5280 validity semantics
-      1.4.3.2 Use controlled “validity offset” only to absorb minor skew; log and alert on out-of-window acceptance
+    1.4.3 Certificate validity window abuse [OR]
+      1.4.3.1 Exploiting acceptance of out-of-window certificates
+      1.4.3.2 Manipulating minor skew to bypass temporal checks
 
-    1.4.4 Operational logging and audit integrity [OR]
-      1.4.4.1 Unsynchronised clocks undermine non-repudiation and incident timelines
-      1.4.4.2 Protect logs with signing/attestation; verify monotonicity against trusted time
+    1.4.4 Audit and logging attacks [OR]
+      1.4.4.1 Unsynchronized clocks undermining non-repudiation
+      1.4.4.2 Tampering or deletion of logs affecting incident reconstruction
 ```
 
 ## Why it works

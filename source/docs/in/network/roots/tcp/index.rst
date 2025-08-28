@@ -15,5 +15,19 @@ attacks and AI-enhanced offensive operations.
    :includehidden:
    :caption: Exploiting TCP's inherent trust to compromise, manipulate, and disrupt global BGP routing.
 
-   tcp-tree.md
+   tree.md
+   tcp-stack-on-bgp-router.md
+   bgp-session-manipulation.md
+   mitm-bgp-sessions.md
+   protocol-level-tcp-attacks.md
+   off-path-side-channel-attacks.md
+   cloud-middlebox-attacks.md
+   ai-ml-enhanced-attacks.md
+   bgp-plus-tcp-stack-exploitation.md
+   session-integrity-attacks.md
+   network-infra-attacks.md
+   advanced-persistence-mechanisms.md
+   multi-vector-bgp-tcp-compromise.md
+   ai-powered-attacks.md
+   supply-chain-compromise.md
 
