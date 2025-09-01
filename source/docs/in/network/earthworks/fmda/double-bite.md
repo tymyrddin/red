@@ -82,4 +82,5 @@ The Attack Chain:
 *   How it Works: The wiper is designed to look like ransomware but its sole purpose is destruction. It overwrites the master boot record (MBR) and critical system files, rendering the machines completely unusable and unrecoverable without a full rebuild from backups.
 *   The Distraction: Incident Response (IR) teams are activated urgently. The narrative becomes "We are under a destructive cyber attack!" The focus is entirely on containing the damage, restoring systems from backups, and investigating the *sabotage*. The silent, months-long theft of intelligence is completely overlooked.
 
-The most sophisticated attacks are a marathon, not a sprint. The real damage is often the silent, long-term theft of secrets, while the visible destruction serves only to hide the theft. Defenders must learn to look beyond the smoke and mirrors.
+The most sophisticated attacks are a marathon, not a sprint. The real damage is often the silent, long-term theft of secrets, while 
+the visible destruction serves only to hide the theft. Defenders must learn to look beyond the smoke and mirrors.
