@@ -25,6 +25,7 @@ deep enough though …
    thm/index
    root-me/index
    ripe/index
+   earthworks/index
 
 .. toctree::
    :glob:
