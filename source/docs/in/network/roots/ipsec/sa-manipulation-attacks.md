@@ -211,7 +211,7 @@ netstat -s | grep -i replay
 -   Resource constraints: Many devices have surprisingly small SA tables that can be exhausted with minimal effort.
 -   Sequence number rollover: High-throughput VPNs can experience sequence number exhaustion, causing connectivity issues.
 -   Interoperability issues: Different vendors handle SA parameters differently, leading to potential security gaps.
--   Monitoring gaps: Few organizations monitor SA state, allowing attacks to go undetected.
+-   Monitoring gaps: Few organisations monitor SA state, allowing attacks to go undetected.
 
 ## Future trends and recommendations
 
@@ -222,4 +222,4 @@ netstat -s | grep -i replay
 
 ## Conclusion
 
-Security Association manipulation attacks represent a sophisticated threat to IPsec implementations, targeting the very foundation of secure communication state management. These attacks can bypass cryptographic protections, exhaust system resources, and degrade security without breaking encryption directly. Defence requires comprehensive SA management hardening, including strong anti-replay mechanisms, parameter validation, resource protection, and continuous monitoring. As network throughput increases and cryptographic requirements evolve, organizations must implement robust SA management practices that can withstand both current and emerging attack techniques. Regular security assessments should include specific testing for SA manipulation vulnerabilities to ensure the integrity of IPsec-protected communications.
+Security Association manipulation attacks represent a sophisticated threat to IPsec implementations, targeting the very foundation of secure communication state management. These attacks can bypass cryptographic protections, exhaust system resources, and degrade security without breaking encryption directly. Defence requires comprehensive SA management hardening, including strong anti-replay mechanisms, parameter validation, resource protection, and continuous monitoring. As network throughput increases and cryptographic requirements evolve, organisations must implement robust SA management practices that can withstand both current and emerging attack techniques. Regular security assessments should include specific testing for SA manipulation vulnerabilities to ensure the integrity of IPsec-protected communications.

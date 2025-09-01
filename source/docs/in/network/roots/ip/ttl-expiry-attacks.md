@@ -226,7 +226,7 @@ policy-map COPP-ICMP
 -   How:
     -   Response Procedures: Document mitigation steps
     -   Communication Plans: Establish provider contacts
-    -   Recovery Testing: Regular incident response drills
+    -   Recovery Testing: Regular incident response exercises
 -   Template: Maintain updated incident response playbooks
 
 ## Key insights from real-world attacks

@@ -203,7 +203,7 @@ operational-security
 incident-response
  preparedness
   playbooks-maintained updated
-  regular-drills scheduled
+  regular-exercises scheduled
  communication
   peer-coordination-channels established
   provider-escalation-paths defined

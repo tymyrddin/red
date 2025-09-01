@@ -148,7 +148,7 @@ iptables -A INPUT -p ah -j LOG --log-prefix "IPsec-Policy: "
 
 ## Key insights from real-world implementations
 
--   **Policy complexity**: Organizations often create overly complex SPD rules that contain bypass opportunities.
+-   **Policy complexity**: organisations often create overly complex SPD rules that contain bypass opportunities.
 -   **Vendor inconsistencies**: Different vendors have different default policies and enforcement behaviors.
 -   **Performance trade-offs**: Policy enforcement optimizations can create security vulnerabilities.
 -   **Documentation gaps**: Default configuration risks are often poorly documented.
@@ -162,4 +162,4 @@ iptables -A INPUT -p ah -j LOG --log-prefix "IPsec-Policy: "
 
 ## Conclusion
 
-Configuration bypass attacks represent a significant threat to IPsec deployments by targeting the policy enforcement mechanisms that determine how traffic is protected. These attacks can allow attackers to evade encryption, bypass access controls, or exploit vulnerabilities in policy processing. Defence requires comprehensive policy management including strict SPD rules, reliable enforcement mechanisms, default configuration hardening, and continuous monitoring. As network environments become more complex and dynamic, organizations must implement robust policy validation and enforcement systems that can adapt to changing threats while maintaining consistent security controls. Regular security assessments should include specific testing for policy bypass vulnerabilities to ensure the integrity of IPsec-protected communications.
+Configuration bypass attacks represent a significant threat to IPsec deployments by targeting the policy enforcement mechanisms that determine how traffic is protected. These attacks can allow attackers to evade encryption, bypass access controls, or exploit vulnerabilities in policy processing. Defence requires comprehensive policy management including strict SPD rules, reliable enforcement mechanisms, default configuration hardening, and continuous monitoring. As network environments become more complex and dynamic, organisations must implement robust policy validation and enforcement systems that can adapt to changing threats while maintaining consistent security controls. Regular security assessments should include specific testing for policy bypass vulnerabilities to ensure the integrity of IPsec-protected communications.

@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-BGP and DNS infrastructure attacks represent a critical threat vector that targets the fundamental systems responsible for internet routing and name resolution. These attacks exploit the interdependence between these two core protocols to disrupt services, intercept traffic, or redirect users to malicious destinations. By manipulating either BGP routing or DNS resolution, attackers can cause widespread internet disruptions, facilitate espionage, or enable financial fraud .
+BGP and DNS infrastructure attacks represent a critical threat vector that targets the fundamental systems responsible for internet routing and name resolution. These attacks exploit the interdependence between these two core protocols to disrupt services, intercept traffic, or redirect users to malicious destinations. By manipulating either BGP routing or DNS resolution, attackers can cause widespread internet disruptions, facilitate espionage, or enable financial fraud.
 
 ```text
 1. BGP and DNS infrastructure attacks [OR]
@@ -175,12 +175,12 @@ BGP and DNS infrastructure attacks represent a critical threat vector that targe
 
 ## Why it works
 
--   Protocol interdependence: BGP and DNS are fundamentally interconnected—DNS provides name-to-IP resolution while BGP determines how to reach those IP addresses, creating multiple points of potential failure when attacked in combination .
--   Trust-based operations: Both protocols historically operate on a trust model where participants are assumed to be legitimate, making authentication and validation optional rather than mandatory .
--   Implementation complexity: The complexity of both protocols leads to implementation inconsistencies and vulnerabilities that attackers can exploit .
--   Partial security deployment: Security extensions like DNSSEC and RPKI are not universally deployed, creating security gaps that attackers can exploit .
--   Monitoring challenges: Detecting sophisticated attacks that span both protocols requires coordinated monitoring that many organizations lack .
--   Economic factors: The economic impact of successful attacks creates financial incentives for attackers while the cost of comprehensive protection deter defenders .
+-   Protocol interdependence: BGP and DNS are fundamentally interconnected—DNS provides name-to-IP resolution while BGP determines how to reach those IP addresses, creating multiple points of potential failure when attacked in combination.
+-   Trust-based operations: Both protocols historically operate on a trust model where participants are assumed to be legitimate, making authentication and validation optional rather than mandatory.
+-   Implementation complexity: The complexity of both protocols leads to implementation inconsistencies and vulnerabilities that attackers can exploit.
+-   Partial security deployment: Security extensions like DNSSEC and RPKI are not universally deployed, creating security gaps that attackers can exploit.
+-   Monitoring challenges: Detecting sophisticated attacks that span both protocols requires coordinated monitoring that many organisations lack.
+-   Economic factors: The economic impact of successful attacks creates financial incentives for attackers while the cost of comprehensive protection deter defenders.
 
 ## Mitigation
 
@@ -221,7 +221,7 @@ router bgp 65001
     -   Implement anycast DNS with diverse transit providers
     -   Use multi-homed BGP configurations with diverse paths
     -   Deploy secondary DNS authorities in geographically dispersed locations
--   Best practice: Regular failover testing and disaster recovery drills
+-   Best practice: Regular failover testing and disaster recovery exercises
 
 ### Access control and authentication
 -   Action: Strengthen access controls for critical infrastructure
@@ -249,15 +249,15 @@ router bgp 65001
 
 ## Key insights from real-world incidents
 
--   YouTube Pakistan incident: Demonstrated how BGP hijacking could be used for censorship but inadvertently caused global outages due to the interdependence of BGP and DNS systems .
--   Cloudflare 1.1.1.1 outage: Showed how internal configuration errors could cause global DNS outages and how BGP hijackers quickly exploit such situations .
--   Cryptocurrency exchange attacks: Highlighted how attackers combine BGP hijacking with DNS manipulation to steal funds from users .
+-   YouTube Pakistan incident: Demonstrated how BGP hijacking could be used for censorship but inadvertently caused global outages due to the interdependence of BGP and DNS systems.
+-   Cloudflare 1.1.1.1 outage: Showed how internal configuration errors could cause global DNS outages and how BGP hijackers quickly exploit such situations.
+-   Cryptocurrency exchange attacks: Highlighted how attackers combine BGP hijacking with DNS manipulation to steal funds from users.
 
 ## Future trends and recommendations
 
--   Automated defense systems: Development of AI-driven systems that can detect and mitigate combined BGP-DNS attacks in real-time .
+-   Automated defense systems: Development of AI-driven systems that can detect and mitigate combined BGP-DNS attacks in real-time.
 -   Protocol enhancements: Continued development of security extensions for both protocols and pressure for universal adoption.
--   Global cooperation: Enhanced international cooperation on routing security and incident response .
+-   Global cooperation: Enhanced international cooperation on routing security and incident response.
 -   Zero trust architectures: Implementation of zero trust principles for network infrastructure to limit attack propagation.
 
 ## Conclusion

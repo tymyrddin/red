@@ -147,11 +147,11 @@ Geolocation spoofing involves manipulating the perceived geographic origin of ne
 
 ## Why it works
 
--   IP Geolocation Inaccuracy: Databases often contain outdated or incorrect mappings .
--   Mobile IP Dynamics: Cellular IPs frequently change geographic assignment .
--   Cloud Flexibility: Cloud providers offer global IP selection capabilities .
--   Protocol Limitations: HTTP and TLS lack built-in geographic verification .
--   Economic Incentives: Commercial VPN/proxy services enable easy spoofing .
+-   IP Geolocation Inaccuracy: Databases often contain outdated or incorrect mappings.
+-   Mobile IP Dynamics: Cellular IPs frequently change geographic assignment.
+-   Cloud Flexibility: Cloud providers offer global IP selection capabilities.
+-   Protocol Limitations: HTTP and TLS lack built-in geographic verification.
+-   Economic Incentives: Commercial VPN/proxy services enable easy spoofing.
 
 ## Mitigation
 
@@ -255,4 +255,4 @@ Geolocation spoofing involves manipulating the perceived geographic origin of ne
 
 Geolocation spoofing enables fraud, piracy, and evasion through technical manipulation. Mitigation requires 
 multi-layered verification, advanced fingerprinting, and continuous monitoring. As spoofing techniques evolve, 
-organizations must implement comprehensive geographic security measures and maintain vigilance against emerging threats.
+organisations must implement comprehensive geographic security measures and maintain vigilance against emerging threats.

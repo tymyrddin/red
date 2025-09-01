@@ -202,7 +202,7 @@ IP spoofing involves forging the source IP address of a packet to conceal the at
 -   Action: Prepare for amplification attacks
 -   How:
     -   Response plan: Document procedures for attack mitigation
-    -   Team training: Conduct regular DDoS response drills
+    -   Team training: Conduct regular DDoS response exercises
     -   Provider coordination: Establish relationships with upstream providers
 
 ## Key Insights from Real-World Attacks

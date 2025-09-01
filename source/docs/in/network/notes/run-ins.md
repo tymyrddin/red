@@ -14,7 +14,7 @@ The Active Directory structure includes three main tiers: 1) domains, 2) trees, 
 * Domain – The objects of the directory are contained inside the domain. Inside a "forest" more than one domain can 
 exist and each of them will have their own objects collection.
 * Tree – Group of domains with the same root. Example: dom.local, email.dom.local, www.dom.local
-* Forest – The forest is the highest level of the organization hierarchy and is composed by a group of trees. The 
+* Forest – The forest is the highest level of the organisation hierarchy and is composed by a group of trees. The 
 trees are connected by trust relationships.
 
 Active Directory provides different services, which fall under the umbrella of Active Directory Domain Services (AD DS):

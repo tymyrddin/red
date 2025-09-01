@@ -12,7 +12,7 @@ unauthorized paths, enabling interception, surveillance, or denial-of-service at
     1.1 Subprefix Hijacking [OR]
     
         1.1.1 Exact Prefix Announcement
-            1.1.1.1 Announcing another organization's exact IPv4 prefix
+            1.1.1.1 Announcing another organisation's exact IPv4 prefix
             1.1.1.2 Using forged origin AS to claim ownership
             1.1.1.3 Exploiting lack of Route Origin Authorization (ROA)
             
@@ -118,7 +118,7 @@ unauthorized paths, enabling interception, surveillance, or denial-of-service at
         1.8.1 Internet-Wide Impact
             1.8.1.1 Global routing table pollution
             1.8.1.2 Cascading routing instabilities
-            1.8.1.3 Multi-organizational service disruption
+            1.8.1.3 Multi-organisational service disruption
             
         1.8.2 Economic Consequences
             1.8.2.1 Financial service disruption

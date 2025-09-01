@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-DDoS amplification attacks represent a sophisticated form of distributed denial-of-service attack that exploits vulnerable internet protocols to generate massive volumes of attack traffic while concealing the attacker's identity. These attacks leverage the fundamental characteristics of connectionless protocols, particularly UDP, to create devastating volumetric attacks that can overwhelm even robust network infrastructure. The attacker sends small, spoofed requests to vulnerable servers, which then generate disproportionately large responses directed at the victim target .
+DDoS amplification attacks represent a sophisticated form of distributed denial-of-service attack that exploits vulnerable internet protocols to generate massive volumes of attack traffic while concealing the attacker's identity. These attacks leverage the fundamental characteristics of connectionless protocols, particularly UDP, to create devastating volumetric attacks that can overwhelm even robust network infrastructure. The attacker sends small, spoofed requests to vulnerable servers, which then generate disproportionately large responses directed at the victim target.
 
 ```text
 1. DDoS amplification attack vectors [OR]
@@ -180,12 +180,12 @@ DDoS amplification attacks represent a sophisticated form of distributed denial-
 
 ## Why it works
 
--   Protocol design flaws: Many UDP-based protocols lack source address validation and authentication mechanisms, allowing attackers to spoof source IP addresses easily .
--   Amplification factors: Certain protocols generate responses significantly larger than requests, with Memcached offering up to 51,000x amplification, enabling massive attack volumes from limited resources .
--   Protocol abundance: Millions of vulnerable devices and servers with open protocols are available online, providing ample reflection sources for attackers .
--   Attribution difficulty: Reflection techniques hide the true source of attacks, making identification and prosecution of attackers challenging .
--   Economic factors: DDoS-for-hire services and booter websites make powerful attacks accessible and affordable for unskilled attackers .
--   Infrastructure scale: The distributed nature of modern internet infrastructure provides attackers with numerous reflection points and bandwidth resources .
+-   Protocol design flaws: Many UDP-based protocols lack source address validation and authentication mechanisms, allowing attackers to spoof source IP addresses easily.
+-   Amplification factors: Certain protocols generate responses significantly larger than requests, with Memcached offering up to 51,000x amplification, enabling massive attack volumes from limited resources.
+-   Protocol abundance: Millions of vulnerable devices and servers with open protocols are available online, providing ample reflection sources for attackers.
+-   Attribution difficulty: Reflection techniques hide the true source of attacks, making identification and prosecution of attackers challenging.
+-   Economic factors: DDoS-for-hire services and booter websites make powerful attacks accessible and affordable for unskilled attackers.
+-   Infrastructure scale: The distributed nature of modern internet infrastructure provides attackers with numerous reflection points and bandwidth resources.
 
 ## Mitigation
 
@@ -260,8 +260,8 @@ interface GigabitEthernet0/0
 
 ## Key insights from real-world attacks
 
--   Record-breaking scale: Amplification attacks have reached unprecedented volumes, with the largest recorded attack exceeding 3.15 billion packets per second targeting Minecraft servers .
--   Protocol evolution: Attackers continuously discover new amplification vectors, with recent attacks exploiting WS-Discovery and TFTP protocols .
+-   Record-breaking scale: Amplification attacks have reached unprecedented volumes, with the largest recorded attack exceeding 3.15 billion packets per second targeting Minecraft servers.
+-   Protocol evolution: Attackers continuously discover new amplification vectors, with recent attacks exploiting WS-Discovery and TFTP protocols.
 -   IoT involvement: Compromised IoT devices have become major contributors to amplification attacks due to poor security practices .
 -   Global impact: Major attacks have targeted critical infrastructure, financial institutions, and government services worldwide .
 

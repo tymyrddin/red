@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-Cryptographic attacks on routing protocols target the security mechanisms designed to protect the integrity, authenticity, and confidentiality of routing information exchanges. These attacks exploit vulnerabilities in cryptographic algorithms, key management practices, or protocol implementations to compromise routing infrastructure, facilitate traffic interception, or cause network disruption. As routing protocols increasingly incorporate cryptographic protections, attackers have developed sophisticated methods to undermine these security measures .
+Cryptographic attacks on routing protocols target the security mechanisms designed to protect the integrity, authenticity, and confidentiality of routing information exchanges. These attacks exploit vulnerabilities in cryptographic algorithms, key management practices, or protocol implementations to compromise routing infrastructure, facilitate traffic interception, or cause network disruption. As routing protocols increasingly incorporate cryptographic protections, attackers have developed sophisticated methods to undermine these security measures.
 
 ```text
 1. Cryptographic attacks on routing protocols [OR]
@@ -180,12 +180,12 @@ Cryptographic attacks on routing protocols target the security mechanisms design
 
 ## Why it works
 
--   **Algorithm vulnerabilities**: Many routing protocols initially deployed with weakened cryptographic algorithms like MD5 and SHA-1, which have known theoretical vulnerabilities that can be exploited despite protocol-level protections .
--   **Implementation flaws**: Cryptographic implementations often contain bugs, side-channel vulnerabilities, or incorrect usage of cryptographic primitives that attackers can exploit .
--   **Key management challenges**: Manual key distribution and the difficulty of regular key rotation in large networks create opportunities for key compromise and replay attacks .
--   **Protocol complexity**: The interaction between multiple cryptographic protocols (BGPsec, RPKI, TCP-AO) creates attack surfaces at integration points and validation boundaries .
--   **Resource constraints**: Network devices often have limited computational resources, making them vulnerable to resource exhaustion attacks against cryptographic operations .
--   **Deployment inconsistencies**: Partial deployment of cryptographic protections creates edge cases and validation gaps that attackers can exploit .
+-   **Algorithm vulnerabilities**: Many routing protocols initially deployed with weakened cryptographic algorithms like MD5 and SHA-1, which have known theoretical vulnerabilities that can be exploited despite protocol-level protections.
+-   **Implementation flaws**: Cryptographic implementations often contain bugs, side-channel vulnerabilities, or incorrect usage of cryptographic primitives that attackers can exploit.
+-   **Key management challenges**: Manual key distribution and the difficulty of regular key rotation in large networks create opportunities for key compromise and replay attacks.
+-   **Protocol complexity**: The interaction between multiple cryptographic protocols (BGPsec, RPKI, TCP-AO) creates attack surfaces at integration points and validation boundaries.
+-   **Resource constraints**: Network devices often have limited computational resources, making them vulnerable to resource exhaustion attacks against cryptographic operations.
+-   **Deployment inconsistencies**: Partial deployment of cryptographic protections creates edge cases and validation gaps that attackers can exploit.
 
 ## Mitigation
 
@@ -203,7 +203,7 @@ Cryptographic attacks on routing protocols target the security mechanisms design
     -   Use hardware security modules (HSMs) for key generation and storage
     -   Implement automated key rotation policies with appropriate key lifetimes
     -   Establish secure key distribution mechanisms using authenticated channels
--   **Configuration example**: Regular key rotation schedules based on organizational policy and risk assessment
+-   **Configuration example**: Regular key rotation schedules based on organisational policy and risk assessment
 
 ### Implementation security
 -   **Action**: Secure cryptographic implementations against common vulnerabilities
@@ -247,9 +247,9 @@ Cryptographic attacks on routing protocols target the security mechanisms design
 
 ## Key insights from real-world implementations
 
--   **RPKI vulnerabilities**: Research has identified critical vulnerabilities in RPKI relying party software, including path traversal and cache poisoning attacks that could undermine routing security .
--   **Algorithm migration challenges**: Many networks continue to use deprecated cryptographic algorithms due to compatibility requirements and migration complexities .
--   **Implementation inconsistencies**: Different implementations of cryptographic validation (e.g., RPKI validators) produce different results, creating potential security gaps .
+-   **RPKI vulnerabilities**: Research has identified critical vulnerabilities in RPKI relying party software, including path traversal and cache poisoning attacks that could undermine routing security.
+-   **Algorithm migration challenges**: Many networks continue to use deprecated cryptographic algorithms due to compatibility requirements and migration complexities.
+-   **Implementation inconsistencies**: Different implementations of cryptographic validation (e.g., RPKI validators) produce different results, creating potential security gaps.
 
 ## Future trends and recommendations
 

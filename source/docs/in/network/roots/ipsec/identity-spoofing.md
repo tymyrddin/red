@@ -199,7 +199,7 @@ charon {
 
 ## Key insights from real-world implementations
 
--   Certificate management complexity: Many organizations struggle with proper certificate lifecycle management, leading to expired or misissued certificates.
+-   Certificate management complexity: Many organisations struggle with proper certificate lifecycle management, leading to expired or misissued certificates.
 -   PSK proliferation: Pre-shared keys are often shared across multiple devices, amplifying the impact of identity theft.
 -   IPv6 adoption gaps: Limited IPv6 security expertise leads to misconfigured extension header handling.
 -   Identity verification bypass: Some implementations prioritize connectivity over security, allowing weak identity verification.
@@ -213,4 +213,4 @@ charon {
 
 ## Conclusion
 
-Identity spoofing attacks represent a fundamental threat to IPsec security by targeting the trust establishment process itself. These attacks can completely bypass cryptographic protections by convincing peers to establish tunnels with impostors. Defence requires robust identity verification mechanisms, strong certificate management, secure PSK practices, and comprehensive monitoring. As identity attacks become more sophisticated, organizations must implement multi-factor authentication, strict identity binding, and continuous verification to maintain trust in their IPsec infrastructure. Regular security assessments should include specific testing for identity spoofing vulnerabilities, and all identity verification failures should be treated as potential security incidents.
+Identity spoofing attacks represent a fundamental threat to IPsec security by targeting the trust establishment process itself. These attacks can completely bypass cryptographic protections by convincing peers to establish tunnels with impostors. Defence requires robust identity verification mechanisms, strong certificate management, secure PSK practices, and comprehensive monitoring. As identity attacks become more sophisticated, organisations must implement multi-factor authentication, strict identity binding, and continuous verification to maintain trust in their IPsec infrastructure. Regular security assessments should include specific testing for identity spoofing vulnerabilities, and all identity verification failures should be treated as potential security incidents.

@@ -2,7 +2,7 @@
 
 ## Attack Pattern
 
-BGP + CDN/Cloud infrastructure attacks target the critical intersection of border gateway protocol routing and content delivery/cloud computing platforms. These attacks exploit the fundamental reliance of CDNs and cloud providers on BGP for anycast routing, global traffic management, and service availability. By manipulating BGP routes, attackers can hijack traffic intended for CDN edge nodes or cloud regions, enabling man-in-the-middle attacks, service disruption, or data interception. The economic and operational impact of these attacks is particularly severe due to the central role CDNs and cloud platforms play in modern internet services .
+BGP + CDN/Cloud infrastructure attacks target the critical intersection of border gateway protocol routing and content delivery/cloud computing platforms. These attacks exploit the fundamental reliance of CDNs and cloud providers on BGP for anycast routing, global traffic management, and service availability. By manipulating BGP routes, attackers can hijack traffic intended for CDN edge nodes or cloud regions, enabling man-in-the-middle attacks, service disruption, or data interception. The economic and operational impact of these attacks is particularly severe due to the central role CDNs and cloud platforms play in modern internet services.
 
 ```text
 1. BGP + CDN/Cloud infrastructure attacks [OR]
@@ -180,12 +180,12 @@ BGP + CDN/Cloud infrastructure attacks target the critical intersection of borde
 
 ## Why it works
 
--   Anycast vulnerability: CDNs rely on anycast routing which uses BGP to announce the same prefix from multiple locations, making them vulnerable to BGP hijacking attacks that can redirect traffic from legitimate edge nodes to malicious locations .
--   Trust dependencies: Cloud providers and CDNs depend on the global BGP system which operates on trust, allowing malicious actors to announce routes without adequate validation in many cases .
--   Certificate complexity: The complexity of modern certificate management and the multiple authorities involved create opportunities for attackers to obtain or forge certificates that appear legitimate to users .
--   Scale challenges: The massive scale of CDN and cloud operations makes comprehensive monitoring difficult, allowing attacks to go undetected for critical periods .
--   Economic incentives: The central role of CDNs and cloud platforms in internet commerce creates strong economic incentives for attackers to develop sophisticated attack methods .
--   Protocol interactions: Complex interactions between BGP, DNS, and application-layer protocols create multiple potential attack vectors that are difficult to defend against comprehensively .
+-   Anycast vulnerability: CDNs rely on anycast routing which uses BGP to announce the same prefix from multiple locations, making them vulnerable to BGP hijacking attacks that can redirect traffic from legitimate edge nodes to malicious locations.
+-   Trust dependencies: Cloud providers and CDNs depend on the global BGP system which operates on trust, allowing malicious actors to announce routes without adequate validation in many cases.
+-   Certificate complexity: The complexity of modern certificate management and the multiple authorities involved create opportunities for attackers to obtain or forge certificates that appear legitimate to users.
+-   Scale challenges: The massive scale of CDN and cloud operations makes comprehensive monitoring difficult, allowing attacks to go undetected for critical periods.
+-   Economic incentives: The central role of CDNs and cloud platforms in internet commerce creates strong economic incentives for attackers to develop sophisticated attack methods.
+-   Protocol interactions: Complex interactions between BGP, DNS, and application-layer protocols create multiple potential attack vectors that are difficult to defend against comprehensively.
 
 ## Mitigation
 
@@ -250,20 +250,20 @@ router bgp 65001
     -   Use multiple cloud regions and availability zones
     -   Implement multi-CDN strategies
     -   Deploy automated failover mechanisms
--   Best practice: Regular failover testing and disaster recovery drills
+-   Best practice: Regular failover testing and disaster recovery exercises
 
 ## Key insights from real-world incidents
 
--   Amazon Route 53 incident: Demonstrated how BGP hijacking could affect major cloud DNS services, causing widespread service disruptions .
--   Cloudflare anycast issues: Showed the vulnerability of anycast networks to route leaks and hijacking, affecting major internet properties .
--   Certificate authority compromises: Highlighted how CA breaches could enable attackers to obtain legitimate certificates for malicious sites .
+-   Amazon Route 53 incident: Demonstrated how BGP hijacking could affect major cloud DNS services, causing widespread service disruptions.
+-   Cloudflare anycast issues: Showed the vulnerability of anycast networks to route leaks and hijacking, affecting major internet properties.
+-   Certificate authority compromises: Highlighted how CA breaches could enable attackers to obtain legitimate certificates for malicious sites.
 
 ## Future trends and recommendations
 
--   Automated defense systems: Development of AI-driven systems for real-time detection and mitigation of BGP+CDN attacks .
--   Enhanced protocols: Adoption of more secure routing protocols and improved certificate management practices .
--   Global coordination: Improved coordination between network operators, cloud providers, and security organizations .
--   Zero trust architectures: Implementation of zero trust principles for network infrastructure to limit attack impact .
+-   Automated defense systems: Development of AI-driven systems for real-time detection and mitigation of BGP+CDN attacks.
+-   Enhanced protocols: Adoption of more secure routing protocols and improved certificate management practices.
+-   Global coordination: Improved coordination between network operators, cloud providers, and security organisations.
+-   Zero trust architectures: Implementation of zero trust principles for network infrastructure to limit attack impact.
 
 ## Conclusion
 

@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-Multiprotocol Border Gateway Protocol (MP-BGP) extends traditional BGP to support multiple network layer protocols, including IPv6, VPNs, and multicast routing. While MP-BGP enables critical functionality for modern networks, it introduces additional attack vectors that target session establishment, path attributes, and protocol-specific extensions. MP-BGP session attacks exploit vulnerabilities in the implementation and configuration of multiprotocol capabilities to disrupt routing, intercept traffic, or compromise network infrastructure .
+Multiprotocol Border Gateway Protocol (MP-BGP) extends traditional BGP to support multiple network layer protocols, including IPv6, VPNs, and multicast routing. While MP-BGP enables critical functionality for modern networks, it introduces additional attack vectors that target session establishment, path attributes, and protocol-specific extensions. MP-BGP session attacks exploit vulnerabilities in the implementation and configuration of multiprotocol capabilities to disrupt routing, intercept traffic, or compromise network infrastructure.
 
 ```text
 1. MP-BGP session attacks [OR]

@@ -2,7 +2,7 @@
 
 ## Attack Pattern
 
-AI-powered BGP attacks represent an emerging threat category where artificial intelligence and machine learning techniques are weaponised to enhance the scale, sophistication, and evasion capabilities of Border Gateway Protocol attacks. These attacks leverage AI's pattern recognition, optimisation capabilities, and adaptive learning to overcome traditional defence mechanisms, coordinate complex multi-vector attacks, and maintain persistence in target networks. The integration of AI enables attacks that are more targeted, evasive, and difficult to attribute than conventional BGP manipulation techniques .
+AI-powered BGP attacks represent an emerging threat category where artificial intelligence and machine learning techniques are weaponised to enhance the scale, sophistication, and evasion capabilities of Border Gateway Protocol attacks. These attacks leverage AI's pattern recognition, optimisation capabilities, and adaptive learning to overcome traditional defence mechanisms, coordinate complex multi-vector attacks, and maintain persistence in target networks. The integration of AI enables attacks that are more targeted, evasive, and difficult to attribute than conventional BGP manipulation techniques
 
 ```text
 1. AI-Powered BGP Attacks [OR]
@@ -34,7 +34,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
         1.2.2 Swarm Intelligence Hijacking
             1.2.2.1 Particle swarm optimization for route manipulation
             1.2.2.2 Ant colony optimization for path exploration
-            1.2.2.3 Decentralized autonomous organization (DAO) attacks
+            1.2.2.3 Decentralized autonomous organisation (DAO) attacks
             
         1.2.3 Predictive Attack Planning
             1.2.3.1 Time series forecasting for victim traffic patterns
@@ -180,12 +180,12 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
 
 ## Why it works
 
--   Pattern recognition superiority: AI systems can identify subtle patterns in network behaviour and defence systems that humans might miss, enabling more effective attack strategies .
--   Adaptive learning capabilities: Machine learning systems can continuously adapt to defence measures, evolving attack strategies in real-time to bypass security controls .
--   Optimisation efficiency: AI algorithms can optimise attack parameters (timing, scale, duration) to maximise impact while minimising detection probability .
--   Coordination at scale: Autonomous systems can coordinate complex attacks across multiple networks and jurisdictions simultaneously, something difficult for human operators .
--   Speed of execution: AI systems can execute attacks at machine speeds, far exceeding human response times for defence and mitigation .
--   Evasion sophistication: Advanced AI can generate attacks that appear legitimate to both human operators and automated defence systems .
+-   Pattern recognition superiority: AI systems can identify subtle patterns in network behaviour and defence systems that humans might miss, enabling more effective attack strategies.
+-   Adaptive learning capabilities: Machine learning systems can continuously adapt to defence measures, evolving attack strategies in real-time to bypass security controls.
+-   Optimisation efficiency: AI algorithms can optimise attack parameters (timing, scale, duration) to maximise impact while minimising detection probability.
+-   Coordination at scale: Autonomous systems can coordinate complex attacks across multiple networks and jurisdictions simultaneously, something difficult for human operators.
+-   Speed of execution: AI systems can execute attacks at machine speeds, far exceeding human response times for defence and mitigation.
+-   Evasion sophistication: Advanced AI can generate attacks that appear legitimate to both human operators and automated defence systems.
 
 ## Mitigation
 
@@ -257,16 +257,16 @@ Just make sure you have the sets :)
 
 ## Key insights from current research
 
--   GAN-based attacks: Research demonstrates that generative adversarial networks can create convincing BGP attack traffic that evades traditional detection systems .
--   Reinforcement learning hijacking: Studies show reinforcement learning agents can learn optimal hijacking strategies through trial and error, adapting to network conditions .
--   Adversarial evasion: AI systems can generate attacks that specifically evade machine learning-based detection systems through adversarial example generation .
+-   GAN-based attacks: Research demonstrates that generative adversarial networks can create convincing BGP attack traffic that evades traditional detection systems.
+-   Reinforcement learning hijacking: Studies show reinforcement learning agents can learn optimal hijacking strategies through trial and error, adapting to network conditions.
+-   Adversarial evasion: AI systems can generate attacks that specifically evade machine learning-based detection systems through adversarial example generation.
 
 ## Future trends and recommendations
 
--   AI defence arms race: Expect rapid evolution of both AI attack and defence capabilities, requiring continuous investment in defensive AI research .
--   Explainable AI for security: Development of AI systems that can explain their detection rationale to human operators will become crucial .
--   Collaborative defence: Increased need for information sharing and collaborative AI defence systems across organisations and sectors .
--   Regulatory frameworks: Development of regulations and standards for AI security and ethical use in network defence .
+-   AI defence arms race: Expect rapid evolution of both AI attack and defence capabilities, requiring continuous investment in defensive AI research.
+-   Explainable AI for security: Development of AI systems that can explain their detection rationale to human operators will become crucial.
+-   Collaborative defence: Increased need for information sharing and collaborative AI defence systems across organisations and sectors.
+-   Regulatory frameworks: Development of regulations and standards for AI security and ethical use in network defence.
 
 ## Conclusion
 
