@@ -23,7 +23,7 @@ standing watch, the silent, relentless work of BGP remains a testament to both c
 
    bgp.md
    mp-bgp.md
-   bgp-tree.md
+   tree.md
    prefix-hijack.md
    path-manipulation.md
    infrastructure-attacks.md

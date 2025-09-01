@@ -273,8 +273,6 @@ This attack tree explores the methods to undermine BGPsec, targeting its cryptog
 
 ## Nitty gritty risk table
 
-Certainly. Following the same **3rd-level risk assessment framework**, we can evaluate each attack path in your BGPsec attack tree. I will assign **Technical Complexity**, **Resources Required**, and a derived **Risk Level** (Low / Medium / High / Very High), along with short notes.
-
 | Attack Path                                                | Technical Complexity | Resources Required | Risk Level | Notes                                                            |
 |------------------------------------------------------------|----------------------|--------------------|------------|------------------------------------------------------------------|
 | 1.1.1.1 ECDSA with biased nonces (key recovery)            | Very High            | High               | Very High  | Requires advanced crypto knowledge and access to signatures.     |
