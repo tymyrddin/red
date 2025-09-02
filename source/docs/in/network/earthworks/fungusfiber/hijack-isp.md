@@ -111,14 +111,15 @@ A simplified view of how a BGP hijack diverts traffic:
                              |    FAKE ROUTER   |
                              |                  |
                              +------------------+
-
+```
 
 WHAT HAPPENS:
+
 1. The Attacker's Router falsely announces a better path to the Target Website's IP addresses.
 2. The Internet Cloud believes the lie and reroutes traffic meant for the Website through the Attacker.
 3. The Attacker can now: INSPECT all traffic, STEAL passwords, or MODIFY content.
 4. The Attacker then forwards the traffic to the real Website, making the hijack transparent to the user.
-```
+
 Lesson Learned: This is the ultimate goal. It's not about destruction; it's about control and theft. AI can help an attacker navigate this complex process with precision, minimising noise and maximising reward.
 
 ## Act 5: The Chained Attack Success – The Hidden Aftermath
