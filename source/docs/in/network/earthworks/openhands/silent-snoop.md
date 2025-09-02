@@ -81,7 +81,7 @@ Instructions:
 2.  Trigger Data Generation (Optional):
     *   Inform your lab instructor. They may have the "victim" machine browse to an internal HTTP-only login page (e.g., a legacy intranet site) and enter dummy credentials.
 
-3.  Analyze the Capture for Credentials:
+3.  Analyse the Capture for Credentials:
     *   Stop the `tcpdump` capture after a minute. Transfer the file to your home directory and open it in Wireshark.
     *   Command: `wireshark captured_http.pcap`
     *   Finding: In Wireshark, apply the filter `http.request.method == POST`. Follow the TCP stream of this packet. Can you find the submitted username and password in plaintext?

@@ -77,7 +77,7 @@ Objective: Become the rogue DHCP server to hijack traffic.
 Impact: 100% of lab VPN traffic now routes through attacker-controlled node.
 
 ## Phase 4: Traffic Interception (T1040)
-Objective: Decrypt and analyze redirected traffic.
+Objective: Decrypt and analyse redirected traffic.
 
 1.  Enable IP Forwarding (maintain stealth):
     ```bash
@@ -89,7 +89,7 @@ Objective: Decrypt and analyze redirected traffic.
     tcpdump -i eth0 -w intercepted.pcap host 192.168.2.100 and port 80
     ```
 3.  Harvest Credentials:
-    - Analyze HTTP packets in Wireshark for basic auth strings.
+    - Analyse HTTP packets in Wireshark for basic auth strings.
 
 Critical Finding: Simulated credentials `researcher:MycoSec2025!` extracted from HTTP login.
 

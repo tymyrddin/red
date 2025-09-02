@@ -78,7 +78,7 @@ Goal: Abuse your control of the router to redirect traffic for interception.
 
 Instructions:
 
-1.  Analyze the Current Routing Topology:
+1.  Analyse the Current Routing Topology:
     *   On the compromised router, view the routing table and the routing protocol's database.
     *   Commands: `show ip route` and `show ip ospf database` (or equivalent for the protocol you found).
     *   Finding: What is the network prefix of the REMOTE_OFFICE subnet? (e.g., `192.168.5.0/24`).
@@ -128,7 +128,7 @@ Instructions:
 2.  Trigger Data Generation (Optional):
     *   Inform your lab instructor. They may run a script that generates simulated unencrypted HTTP traffic containing "sensitive" dummy data (e.g., volunteer records) from HQ to the remote office.
 
-3.  Analyze the Capture:
+3.  Analyse the Capture:
     *   Transfer the `.pcap` file to your workstation for analysis with Wireshark.
     *   Command (from your workstation): `scp vyos@<TARGET_ROUTER_IP>:captured_traffic.pcap .`
     *   Open the file in Wireshark: `wireshark captured_traffic.pcap`

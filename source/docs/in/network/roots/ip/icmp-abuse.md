@@ -113,7 +113,7 @@ exploit its trusted nature and common misconfigurations for various malicious pu
 
 ### Deep Packet Inspection (DPI)
 
--   Action: Analyze ICMP packet payloads to detect anomalies indicative of tunneling or C2 traffic.
+-   Action: Analyse ICMP packet payloads to detect anomalies indicative of tunneling or C2 traffic.
 -   How:
     -   IPS/IDS Systems: Enable and tune signatures designed to detect ICMP tunneling. These signatures look for:
         -   Payload Size: Ping packets with consistently large or fixed-sized data payloads (unlike normal pings).

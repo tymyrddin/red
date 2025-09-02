@@ -179,7 +179,7 @@ Geolocation spoofing involves manipulating the perceived geographic origin of ne
 -   How:
     -   Network Latency: Measure RTT to estimate distance
     -   Time Zone Analysis: Compare client time with geographic time
-    -   Browser Characteristics: Analyze language settings and plugins
+    -   Browser Characteristics: Analyse language settings and plugins
 -   Tools: Use FingerprintJS, ThreatMetrix, or custom solutions
 
 ### Strict access control policies
