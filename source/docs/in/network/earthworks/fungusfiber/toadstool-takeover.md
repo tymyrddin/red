@@ -136,7 +136,7 @@ Adversary Mindset: Persistence is not just about access; it is about power. Cont
 
 ## The Aftermath: Switching Hats
 
-Your role as the adversary is now complete. Switch your hat from black to white.
+Your role as the adversary is now complete. Switch your hat from red to blue.
 
 *   Review: Where should FungusFiber have detected you? (SNMP authentication logs, failed login alerts, unauthorised config changes, anomalous BGP advertisements).
 *   Mitigate: How could each step have been prevented?
