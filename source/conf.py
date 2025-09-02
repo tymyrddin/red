@@ -60,6 +60,7 @@ html_theme_options = {
     "features": [
         "navigation.top",
         "content.tabs.link",
+        "content.code.copy",
     ],
     "plugins": [
         "material/search",  # enable search
