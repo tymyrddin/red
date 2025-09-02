@@ -217,7 +217,7 @@ This attack tree outlines the methodologies for compromising DNS integrity, from
             
         5.1.3 Adaptive Attacks [OR]
             5.1.3.1 Reinforcement learning for evasion
-            5.1.3.2 Genetic algorithm optimization
+            5.1.3.2 Genetic algorithm optimisation
             5.1.3.3 Transfer learning across networks
 
     5.2 Phishing Automation [AND]
@@ -331,7 +331,7 @@ This attack tree outlines the methodologies for compromising DNS integrity, from
 
 | Attack Path                                                  | Technical Complexity | Resources Required | Risk Level | Notes                                                                                                |
 | ------------------------------------------------------------ | -------------------- | ------------------ | ---------- | ---------------------------------------------------------------------------------------------------- |
-| 1.1.1.1 Birthday attack on 16-bit TXID space                 | Medium               | Low                | Medium     | Feasible with traffic access and many queries; mitigated by DNSSEC and source port randomization.    |
+| 1.1.1.1 Birthday attack on 16-bit TXID space                 | Medium               | Low                | Medium     | Feasible with traffic access and many queries; mitigated by DNSSEC and source port randomisation.    |
 | 1.1.1.2 Timing attacks on resolver response handling         | High                 | Medium             | High       | Requires precise measurements and traffic observation to bias/guess transactions.                    |
 | 1.1.1.3 Fragment-based poisoning attacks                     | High                 | Medium             | High       | Exploits IP fragmentation behaviors; success depends on network middleboxes and resolver settings.   |
 | 1.1.2.1 TLS padding oracle attacks on DoT                    | Very High            | Medium             | High       | Complex cryptographic side-channel; requires tailored interaction with target DoT stack.             |
@@ -343,7 +343,7 @@ This attack tree outlines the methodologies for compromising DNS integrity, from
 | 1.2.1.1 DoQ reflection with large TXT records                | Medium               | Medium             | High       | Leverages path amplification via QUIC; requires open/misconfigured resolvers.                        |
 | 1.2.1.2 DoH POST request amplification                       | Medium               | Medium             | High       | Uses HTTP request semantics for bandwidth multiplication; CDN/proxy behavior matters.                |
 | 1.2.1.3 DoT session resumption attacks                       | High                 | Medium             | Medium     | Abuses TLS resumption tickets to cut cost per query; mitigations include rate and ticket controls.   |
-| 1.2.2.1 NSEC3 response amplification                         | Medium               | Medium             | High       | DNSSEC negative responses can be large; filtering and minimization reduce effect.                    |
+| 1.2.2.1 NSEC3 response amplification                         | Medium               | Medium             | High       | DNSSEC negative responses can be large; filtering and minimisation reduce effect.                    |
 | 1.2.2.2 Large RRSIG reflection attacks                       | Medium               | Medium             | High       | Exploits oversised signed responses; best mitigated by response size limits and egress filtering.    |
 | 1.2.2.3 DNAME chain exploitation                             | Medium               | Medium             | Medium     | Chained indirections inflate responses; effective mainly with weak ACLs.                             |
 | 1.3.1.1 Connection migration hijacking                       | Very High            | High               | High       | Requires QUIC internals knowledge and network control to spoof migration paths.                      |
@@ -363,7 +363,7 @@ This attack tree outlines the methodologies for compromising DNS integrity, from
 | 2.1.2.3 Encrypted traffic classification                     | High                 | Medium             | High       | Generic encrypted flow fingerprinting; scales with telemetry access.                                 |
 | 2.1.3.1 DoH/DoT/DoQ protocol fingerprinting                  | Low                  | Low                | Medium     | Distinguishes protocols via handshake/behavior traits for policy enforcement or blocking.            |
 | 2.1.3.2 Application-level protocol detection                 | Medium               | Low                | Medium     | Infers client apps from traffic patterns/URLs used by DoH endpoints.                                 |
-| 2.1.3.3 Middlebox cooperation for traffic analysis           | Medium               | Medium             | High       | Correlated vantage points (ISP/CDN) increase deanonymization power.                                  |
+| 2.1.3.3 Middlebox cooperation for traffic analysis           | Medium               | Medium             | High       | Correlated vantage points (ISP/CDN) increase deanonymisation power.                                  |
 | 2.2.1.1 TCP RST injection on port 853 (DoT)                  | Medium               | Low                | High       | Active interference to force plaintext fallback; mitigated by hard-fail policies.                    |
 | 2.2.1.2 HTTP/2 GOAWAY frame injection (DoH)                  | High                 | Medium             | High       | Requires HTTP/2 manipulation capabilities; targets client fallback logic.                            |
 | 2.2.1.3 QUIC connection close spoofing (DoQ)                 | High                 | Medium             | High       | Spoofs transport errors to trigger downgrade; path validation can help.                              |

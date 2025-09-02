@@ -2,10 +2,10 @@
 
 In 2025, the "Great Heist" represents the final phase of a cyberattack, where adversaries convert access, stolen data, 
 or system control into financial gain, espionage value, or reputational damage. For red teams, understanding these 
-monetization pathways is critical for simulating realistic threat scenarios. Below follows a break down of the latest 
+monetisation pathways is critical for simulating realistic threat scenarios. Below follows a break down of the latest 
 tactics, dark web markets, and real-world case studies shaping cybercrime in 2025.
 
-## Monetization pathways in 2025
+## Monetisation pathways in 2025
 
 Attackers leverage multiple methods to profit from compromised systems:
 
@@ -63,7 +63,7 @@ Objective: Financial gain via ransomware + data resale.
 3. Data Harvesting:
    * Exfiltrates 500K patient records via DNS tunneling (DNSCat2).
    * Dumps NTLM hashes via Mimikatz (sekurlsa::logonpasswords).
-4. Monetization:
+4. Monetisation:
    * Ransomware: Deploys MedusaLocker ($5M demand in Monero).
    * Dark Web Sale: Patient records auctioned on Russian Market for $200K.
 5. Covering Tracks:
@@ -87,5 +87,5 @@ Toolkit:
 ## 2025
 
 The 2025 "Great Heist" landscape is defined by adaptability—attackers pivot between ransomware, dark web sales, and 
-psychological extortion. Red teams must mirror these multi-stage monetization strategies to stress-test 
-organizational defences effectively.
+psychological extortion. Red teams must mirror these multi-stage monetisation strategies to stress-test 
+organisational defences effectively.

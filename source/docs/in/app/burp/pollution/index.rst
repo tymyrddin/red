@@ -13,7 +13,7 @@ bounty reports and pentests). It is less frequent than XSS or SQLi, but high-imp
 modern JS frameworks (React, Angular, Vue), APIs/cloud functions (Node.js, serverless backends), and libraries/tools
 (e.g., lodash, jQuery, and custom utilities).
 
-It is still relevant due to merging user input into objects without sanitization is still common, the possibility for
+It is still relevant due to merging user input into objects without sanitisation is still common, the possibility for
 silent exploitation (RCE in Node.js if polluted properties reach `child_process` or `eval()`, DOM XSS Escalation
 polluting `Object.prototype`, or Arbitrary Property Injection overwriting sensitive attributes (e.g., `isAdmin: true`)),
 and many SAST tools missing prototype pollution unless explicitly configured.

@@ -8,7 +8,7 @@ Environment configuration:
 PIE 	Position Independent Executable 	 No 
 RelRO 	Read Only relocations 	                 No 
 NX 	Non-Executable Stack 	                 Yes 
-ASLR 	Address Space Layout Randomization 	 No 
+ASLR 	Address Space Layout Randomisation 	 No 
 SF 	Source Fortification 	                 No 
 SSP 	Stack-Smashing Protection 	         No 
 SRC 	Source code access 	                 Yes  

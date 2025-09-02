@@ -6,7 +6,7 @@ It is often not obvious which, if any, inputs might influence command-line execu
 
 * Applications may enable users to run arbitrary commands, and run these commands as is to the underlying host.
 * An application may allow users to upload files with arbitrary file extensions, these files could include malicious commands. On most web servers, placing such files in the webroot will result in command injection.
-* [Insecure serialization](id.md): If deserialization is performed without proper verification, it can result in command injection.
+* [Insecure serialization](id.md): If deserialisation is performed without proper verification, it can result in command injection.
 * [Server-side template injection (SSTI)](ssti.md): If applications use server-side templates to generate dynamic HTML responses, it may be possible to insert malicious server-side templates. 
 * [XML external entity injection (XXE)](xxe.md) occurs in applications that use a poorly-configured XML parser to parse user-controlled XML input. This vulnerability can cause exposure of sensitive data, [server-side request forgery (SSRF)](ssrf.md), or denial of service attacks.
 

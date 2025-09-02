@@ -28,7 +28,7 @@ Content-Type: application/x-php
 |             ASP             | asp, .aspx, .cer, .asa                   |
 |             Jsp             | .jsp, .jspx, .jsw, .jsv, .jspf           |
 |         Coldfusion          | .cfm, .cfml, .cfc, .dbm                  |
-| Using random capitalization | .pHp, .pHP5, .PhAr                       |
+| Using random capitalisation | .pHp, .pHP5, .PhAr                       |
 
 Find more in PayloadAllThings. If successful, exploit further, or try another type of validation or bypass.
 

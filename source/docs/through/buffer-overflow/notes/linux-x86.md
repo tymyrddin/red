@@ -197,7 +197,7 @@ int main() { //main function
 
 ## ASLR
 
-Address space layout randomization (ASLR) works by randomizing the locations of different sections of the program in memory, including the executable base, stack, heap, and libraries, making it difficult for an attacker to reliably jump to a specific memory address. To disable ***ASLR***:
+Address space layout randomisation (ASLR) works by randomizing the locations of different sections of the program in memory, including the executable base, stack, heap, and libraries, making it difficult for an attacker to reliably jump to a specific memory address. To disable ***ASLR***:
 
     $ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 

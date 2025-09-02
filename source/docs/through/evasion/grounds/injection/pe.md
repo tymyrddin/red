@@ -8,10 +8,10 @@ When running in memory most, but not all, portable executables make use of 2 str
 * Import Address Table (IAT), has all calls to `dll` functions point to a jump in the process’s jump table, allowing 
 targets to easily be found and changed by the PE loader. 
 * Base Relocation Table (Reloc), a table of pointers to every absolute address used in the code. During process 
-initialization, if the process is not being loaded at its base address, the PE loader will modify all the absolute 
+initialisation, if the process is not being loaded at its base address, the PE loader will modify all the absolute 
 addresses to work with the new base address.  
 
-The Import Address Table and Reloc Table remain in memory once the process initialization is finished, this makes for a very easy way to inject a process. With the ability to be loaded at any base address and use DLLs at any address, the process can simply get its current base address and image size from the PE header, and copy itself to any region of memory in almost any process. Here is the entire procedure broken down.
+The Import Address Table and Reloc Table remain in memory once the process initialisation is finished, this makes for a very easy way to inject a process. With the ability to be loaded at any base address and use DLLs at any address, the process can simply get its current base address and image size from the PE header, and copy itself to any region of memory in almost any process. Here is the entire procedure broken down.
 
 1. Get the current images base address and size (from the [PE header](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format)).
 2. Allocate enough memory for the image inside the processes own address space ([VirtualAlloc](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc)).

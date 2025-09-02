@@ -7,7 +7,7 @@ There are two main architectural styles used in modern APIs:
 
 Both types of APIs support HTTP requests and responses and Secure Sockets Layer (SSL), but the similarity ends there.
 
-The increase of API-related security threats in recent years has prompted the Open Web Application Security Project (OWASP) to release the API Security Top 10, which helps raise awareness of the most serious API security issues affecting organizations.
+The increase of API-related security threats in recent years has prompted the Open Web Application Security Project (OWASP) to release the API Security Top 10, which helps raise awareness of the most serious API security issues affecting organisations.
 
 Use either the ZAP-API Scan or Burp API scan.
 

@@ -55,7 +55,7 @@ Outdated software contains critical security vulnerabilities that can compromise
 APIs are widely used in cloud services to share information across applications. And insecure APIs can therefor also lead to a large-scale data leak by:
 
 * Improper use of HTTP methods like PUT, POST, DELETE in APIs can allow hackers to upload malware on the server or delete data. 
-* Improper access control and lack of input sanitization are also the main causes of APIs getting compromised.
+* Improper access control and lack of input sanitisation are also the main causes of APIs getting compromised.
 
 ## Resources
 

@@ -11,7 +11,7 @@
 
 The IDS/IPS system might be configured to block certain protocols and allow others. For example, using UDP instead of 
 TCP or relying on HTTP instead of DNS to deliver an attack or exfiltrate data. It depends on the target and the 
-applications necessary for the target organization to design the attack. For example, if web browsing is allowed, it 
+applications necessary for the target organisation to design the attack. For example, if web browsing is allowed, it 
 usually means that protected hosts can connect to ports 80 and 443 unless a local proxy is used. A client relying on 
 Google services for their business, can be attacked using Google web hosting to conceal a malicious site. 
 

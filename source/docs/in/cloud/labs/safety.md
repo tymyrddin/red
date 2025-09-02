@@ -7,7 +7,7 @@ or malicious abuse.
 
 Prevents accidental damage to real business resources and limits blast radius if credentials leak.
 
-* AWS: Create a new account under AWS Organizations (no payment methods attached).
+* AWS: Create a new account under AWS Organisations (no payment methods attached).
 * GCP: Use a separate project with billing alerts ($0.01 threshold).
 * Azure: Set up a "Test" subscription with spending caps.
 

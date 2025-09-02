@@ -9,7 +9,7 @@ PIE 	        Position Independent Executable 	No
 RelRO 	        Read Only relocations 	                No 
 NX 	        Non-Executable Stack 	                No 
 Heap exec 	Non-Executable Heap 	                No 
-ASLR 	        Address Space Layout Randomization 	No 
+ASLR 	        Address Space Layout Randomisation 	No 
 SF 	        Source Fortification 	                No 
 SRC 	        Source code access 	                Yes 
 ```

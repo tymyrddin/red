@@ -62,7 +62,7 @@ Goal: Simulate full cloud compromise (AWS/GCP/Azure).
 
 Example challenge:
 
-"A GCP service account key was leaked. Use it to compromise the entire organization."
+"A GCP service account key was leaked. Use it to compromise the entire organisation."
 
 Skills taught:
 

@@ -74,7 +74,7 @@ Create key using `openssl`:
 * `-newkey rsa:4096` creates a new certificate request and a new private key using RSA, with the key size being 4096 
 bits.
 * `-days` validity in days
-* `-subj` sets data, such as organization and country, via the command-line.
+* `-subj` sets data, such as organisation and country, via the command-line.
 * `-nodes` simplifies the command and does not encrypt the private key
 * `-keyout` PRIVATE_KEY specifies the filename to save the private key to
 * `-out` CERTIFICATE specifies the filename to which to write the certificate request

@@ -386,7 +386,7 @@ The `e_entry` field denotes the entry point of the binary; this is the virtual a
 
 ### e_flags
 
-ARM binaries can set ARM-specific flags in the `e_flags` field to indicate additional details about the interface they expect from the embedded operating system such as file format conventions, stack organization, etc. For `x86` binaries, `e_flags` is typically set to zero and not of interest.
+ARM binaries can set ARM-specific flags in the `e_flags` field to indicate additional details about the interface they expect from the embedded operating system such as file format conventions, stack organisation, etc. For `x86` binaries, `e_flags` is typically set to zero and not of interest.
 
 ### e_ehsize
 
