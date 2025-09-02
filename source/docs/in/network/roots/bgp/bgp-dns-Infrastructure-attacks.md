@@ -12,7 +12,7 @@ BGP and DNS infrastructure attacks represent a critical threat vector that targe
         1.1.1 Route manipulation affecting DNS resolution
             1.1.1.1 BGP hijacking of authoritative DNS server prefixes
             1.1.1.2 Anycast DNS route manipulation
-            1.1.1.3 Localized DNS outage through route poisoning
+            1.1.1.3 Localised DNS outage through route poisoning
             
         1.1.2 DNS manipulation affecting BGP operations
             1.1.2.1 Malicious DNS responses for BGP next-hop addresses

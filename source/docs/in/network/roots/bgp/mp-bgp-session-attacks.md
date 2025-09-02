@@ -167,7 +167,7 @@ Multiprotocol Border Gateway Protocol (MP-BGP) extends traditional BGP to suppor
             1.10.1.2 Critical infrastructure targeting
             1.10.1.3 Long-term route manipulation
             
-        1.10.2 Organized crime targeting
+        1.10.2 Organised crime targeting
             1.10.2.1 Financial institution targeting
             1.10.2.2 Cryptocurrency exchange attacks 
             1.10.2.3 Ransomware infrastructure attacks
@@ -193,7 +193,7 @@ Multiprotocol Border Gateway Protocol (MP-BGP) extends traditional BGP to suppor
 -   **Action**: Implement strong session protection for all MP-BGP sessions
 -   **How**:
     -   Enable TCP-AO (Authentication Option) for all sessions 
-    -   Implement GTSM (Generalized TTL Security Mechanism) to prevent remote session attacks
+    -   Implement GTSM (Generalised TTL Security Mechanism) to prevent remote session attacks
     -   Use unique passwords for each session and rotate regularly
 -   **Configuration example (Cisco)**:
 

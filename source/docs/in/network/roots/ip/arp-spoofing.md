@@ -120,7 +120,7 @@ The Address Resolution Protocol (ARP) is a stateless protocol used to map IP add
     -   Cisco Switches:
         -   Enable DHCP snooping to build a trusted database of IP-MAC bindings.
         -   Configure DAI on VLANs: `ip arp inspection vlan [vlan-id]`
-        -   Set trusted interfaces: `ip arp inspection trust` on uplinks and authorized DHCP servers.
+        -   Set trusted interfaces: `ip arp inspection trust` on uplinks and authorised DHCP servers.
         -   Rate-limit ARP packets on untrusted ports: `ip arp inspection limit rate [pps]`
     -   Other Platforms: Similar features exist on Aruba (ACL), Juniper (ARP guardian), and other enterprise switches.
 

@@ -2,7 +2,7 @@
 
 Objective: Act as an APT actor (`APT-66`, "Shadow6") to exploit a pure IPv6 research network. You will chain together reconnaissance, rogue services, and protocol manipulation to establish a persistent foothold, bypass native IPv6 security controls, and exfiltrate data via a covert channel.
 
-Scenario: The MycoSec "Singularity" lab is a cutting-edge, IPv6-only network segment used for protocol research. It has no IPv4 connectivity. Your goal is to exploit the inherent trust in IPv6 autoconfiguration and services to own the network.
+Scenario: The [MycoSec](entity.md) "Singularity" lab is a cutting-edge, IPv6-only network segment used for protocol research. It has no IPv4 connectivity. Your goal is to exploit the inherent trust in IPv6 autoconfiguration and services to own the network.
 
 ## Phase 1: Reconnaissance - Mapping the IPv6-Only Terrain
 

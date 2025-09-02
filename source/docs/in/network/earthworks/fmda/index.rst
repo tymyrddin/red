@@ -1,7 +1,7 @@
 Fungolia Ministry of Digital Affairs (FMDA)
 ===============================================
 
-Beneath spore-laden government halls, FMDA allocates IPs, manages spectrum, and monitors compliance—all while
+Beneath spore-laden `Fungolian <https://broomstick.tymyrddin.dev/posts/fungolia/>`_ government halls, FMDA allocates IPs, manages spectrum, and monitors compliance—all while
 public portals and legacy networks quietly invite exploration.
 
 Here, the descriptions are preparations, like tools laid out on the workbench. They do not come with guarantees and

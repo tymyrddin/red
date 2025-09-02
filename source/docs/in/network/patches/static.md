@@ -5,7 +5,7 @@
 ```text
 1. Compromise Static Route Configuration (OR)
 
-    1.1. Gain Unauthorized Access to Router (OR)
+    1.1. Gain Unauthorised Access to Router (OR)
 
         1.1.1. Exploit Default/Weak Credentials (SSH/Telnet/Web GUI)
 
@@ -72,7 +72,7 @@
 
 ## Notes
 
-* Static routes lack dynamic verification, making them vulnerable to unauthorized changes.
+* Static routes lack dynamic verification, making them vulnerable to unauthorised changes.
 * No protocol-level authentication exists (unlike dynamic routing protocols).
 * Attacks often require prior access (physical/remote) to the router.
 

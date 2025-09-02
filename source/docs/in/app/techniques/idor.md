@@ -26,7 +26,7 @@ IDORs are not always as simple as switching out a numeric ID. As applications be
 Some applications use encoding schemes that can easily be reversed. Encode your false IDs by using an
 online base64url encoder and executing the IDOR. If you can not tell which encoding scheme the site is using, use the Smart Decode tool in Burp's decoder.
 
-If the application is using a hashed or randomized ID, see if the ID is predictable. Sometimes applications use algorithms that produce insufficient entropy. Try creating a few accounts to analyse how these IDs are created. You might be able to find a pattern that will allow you to predict IDs belonging to other users.
+If the application is using a hashed or randomised ID, see if the ID is predictable. Sometimes applications use algorithms that produce insufficient entropy. Try creating a few accounts to analyse how these IDs are created. You might be able to find a pattern that will allow you to predict IDs belonging to other users.
 
 It might also be possible that the application leaks IDs via another API endpoint or other public pages of the application, like the profile page of a user.
 

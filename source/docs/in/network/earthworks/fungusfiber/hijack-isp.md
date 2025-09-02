@@ -1,10 +1,14 @@
 # Simulating an AI-Powered ISP attack
 
+Objective: Simulate a nation-state adversary leveraging AI-driven reconnaissance, social engineering, and routing manipulation to hijack internet traffic at scale, ultimately intercepting sensitive communications traversing FungusFiber’s backbone.
+
+Scenario: The fictional [FungusFiber Internet ISP](entity.md) serves as a regional LIR for [Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/), routing national traffic through bioluminescent cables and mushroom-mounted routers. Its quirky infrastructure hides real-world weaknesses: exposed support portals, misconfigured test systems, and fragile BGP policies. By combining AI-powered phishing with simulated privilege escalation and silent route hijacking, the adversary seeks to reroute and inspect customer data streams, testing the resilience of Fungolia’s digital mycelium.
+
 Important Disclaimer: This is a fictional role-playing exercise. Every tool and technique described here is simulated using publicly available information and creative writing. You are not using any real hacking software, attacking any systems, or breaking any laws. You are learning by *thinking* like an attacker to better understand how to *defend* against them.
 
-### Your Mission & The Setup
+### Your mission & the setup
 
-You are a threat actor. Your goal is to hypothetically compromise "BritNet ISP," a fictional UK internet provider, and subtly hijack its internet traffic.
+You are a threat actor. Your goal is to hypothetically compromise "FungusFiber Internet ISP," a fictional Fungolian internet provider, and subtly hijack its internet traffic.
 
 Your Tools: Your imagination, this guide, a web browser, and a text document (your "Adversary's Notebook").
 

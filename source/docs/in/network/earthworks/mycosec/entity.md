@@ -1,6 +1,6 @@
 # Entity, assets and adversaries
 
-Hidden in a sprawling mycelium lab under the Fungolia capital, *MycoSec Labs* advertises itself as the region’s premier cybersecurity consultancy—but its own internal networks are a veritable playground for Earthworks exercises. Lab servers host simulated client networks, practice targets, and intentionally misconfigured environments for testing.
+Hidden in a sprawling mycelium lab under the [Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/) capital, *MycoSec Labs* advertises itself as the region’s premier cybersecurity consultancy—but its own internal networks are a veritable playground for Earthworks exercises. Lab servers host simulated client networks, practice targets, and intentionally misconfigured environments for testing.
 
 Their motto: “We poke, prod, and plant spores of doubt—mostly for your own good.” Staff laptops run mixed OSes, containerized lab environments abound, and test VLANs simulate clients’ internal networks, offering rich opportunities for chained network exercises.
 

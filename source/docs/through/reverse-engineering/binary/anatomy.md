@@ -408,7 +408,7 @@ The sections all contain code serving different functions, such as program initi
 
 ## Loading and executing
 
-A representation of a binary in memory does not necessarily correspond one-to-one with its on-disk representation. Large regions of zero-initialized data may be collapsed in the on-disk binary to save disk space, while all those zeros will be expanded in memory. Some parts of the on-disk binary may be ordered differently in memory or not loaded into memory at all. The details depend on the binary format.
+A representation of a binary in memory does not necessarily correspond one-to-one with its on-disk representation. Large regions of zero-initialised data may be collapsed in the on-disk binary to save disk space, while all those zeros will be expanded in memory. Some parts of the on-disk binary may be ordered differently in memory or not loaded into memory at all. The details depend on the binary format.
 
 ### Running a binary
 

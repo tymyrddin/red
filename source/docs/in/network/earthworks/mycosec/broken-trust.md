@@ -2,7 +2,7 @@
 
 Objective: Simulate a sophisticated adversary leveraging trusted internal relationships and application weaknesses to move laterally through a segmented lab network, culminating in the compromise of a secured management server.
 
-Scenario: The MycoSec internal lab network is segmented into trust zones, including a development virtual local area network and a secured management virtual local area network. Development servers possess trusted relationships with management systems for deployment tasks. The goal is to pivot from a low-value development server to a high-value management server.
+Scenario: The [MycoSec](entity.md) internal lab network is segmented into trust zones, including a development virtual local area network and a secured management virtual local area network. Development servers possess trusted relationships with management systems for deployment tasks. The goal is to pivot from a low-value development server to a high-value management server.
 
 ## Phase 1: Initial Compromise Via Weaponised Document
 

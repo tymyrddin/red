@@ -1,6 +1,6 @@
 # Entity, assets and adversaries
 
-Nestled among the bioluminescent fungi and spiraling mushroom towers of Fungolia, *FungusFiber Internet* is the regional ISP that both powers the nation’s connectivity and occasionally trips over its own Ethernet cables. The offices occupy a partially hollowed-out mycelium network, with servers literally embedded in the fungal walls, humming quietly as they route packets across the land.
+Nestled among the bioluminescent fungi and spiraling mushroom towers of [Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/), *FungusFiber Internet* is the regional ISP that both powers the nation’s connectivity and occasionally trips over its own Ethernet cables. The offices occupy a partially hollowed-out mycelium network, with servers literally embedded in the fungal walls, humming quietly as they route packets across the land.
 
 The team prides itself on its “spores in the air, cables in the ground” philosophy: distributing IP blocks, managing local routing, and keeping Fungolia online—mostly. From BGP routers mounted on tree trunks to cloud DNS instances hosted in cavernous server closets, every corner of *FungusFiber* offers a playground for those brave enough to explore Earthworks-style labs.
 

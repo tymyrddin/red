@@ -10,7 +10,7 @@
 
 ## Attack arsenal
 
-### AI-Optimized ransomware (LockBit 5.0 Protocol)
+### AI-Optimised ransomware (LockBit 5.0 Protocol)
 
 Adaptive encryption engine:
 

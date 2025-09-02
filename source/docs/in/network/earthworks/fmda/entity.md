@@ -1,12 +1,24 @@
 # Entity, assets and adversaries
 
-Nestled in a government complex shaped like interlocking mushrooms, the FMDA oversees all things digital in Fungolia—from spectrum allocation to IP block management and compliance monitoring. Its public portals are occasionally more exposed than intended, and internal networks are a patchwork of legacy systems, half-forgotten policies, and experimental routing labs.
+Nestled in a government complex shaped like interlocking mushrooms, the FMDA oversees all things digital in 
+[Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/)—from spectrum allocation to IP block management 
+and compliance monitoring. Its public portals are occasionally more exposed than intended, and internal 
+networks are a patchwork of legacy systems, half-forgotten policies, and experimental routing labs.
 
-The Ministry operates under the philosophy “bureaucracy underground, oversight aboveground”: policies are drafted in secretive fungal chambers while public-facing systems attempt to stay online. Servers hum beneath the spore-laden floors, hosting IP registries, compliance logs, and internal memos—all perfect fodder for Earthworks practice.
+The Ministry operates under the philosophy “bureaucracy underground, oversight aboveground”: policies are drafted in 
+secretive fungal chambers while public-facing systems attempt to stay online. Servers hum beneath the spore-laden floors, 
+hosting IP registries, compliance logs, and internal memos—all perfect fodder for Earthworks practice.
 
-## Mission
+Two ministries are especially vulnerable in this underground bureaucracy: the 
+[Fungolian Department of Energy & Infrastructure (FDEI)](double-bite.md), with its vaults of power-grid schematics and 
+tunnel-maps, and the 
+[Ministry of Foreign Affairs (FMFA)](silent-siphon.md), where delicate diplomatic spores are cultivated. Both store 
+information that adversaries find irresistible, making them perennial targets within Fungolia’s mycelial statecraft.
 
-Regulate and allocate digital resources across Fungolia, manage spectrum, IP assignments, and ensure compliance with national and international digital laws.
+## Mission FMDA
+
+Regulate and allocate digital resources across [Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/), manage 
+spectrum, IP assignments, and ensure compliance with national and international digital laws.
 
 ## Assets
 
@@ -43,7 +55,7 @@ Regulate and allocate digital resources across Fungolia, manage spectrum, IP ass
    * Likelihood: Medium-High – complex internal networks + bureaucratic processes increase human error.
    * Lab Use: Test privilege escalation, route misconfigurations, chained network misuses.
 
-5. Organized Cyber Criminals
+5. Organised Cyber Criminals
 
    * Description: Skilled actors attempting to manipulate IP allocations, exfiltrate compliance records, or intercept administrative traffic.
    * Likelihood: Medium – FMDA may be targeted for operational intelligence or political gain.

@@ -4,7 +4,7 @@
 
 IPv4 prefix hijacking occurs when an Autonomous System (AS) maliciously or erroneously announces ownership of IP 
 address blocks that belong to another entity. This disrupts internet routing by redirecting traffic through 
-unauthorized paths, enabling interception, surveillance, or denial-of-service attacks.
+unauthorised paths, enabling interception, surveillance, or denial-of-service attacks.
 
 ```text
 1. IPv4 Prefix Hijacking [OR]
@@ -75,7 +75,7 @@ unauthorized paths, enabling interception, surveillance, or denial-of-service at
             1.5.1.3 Exploiting temporary ASN allocations
             
         1.5.2 Compromised Router Access
-            1.5.2.1 Unauthorized access to BGP routers
+            1.5.2.1 Unauthorised access to BGP routers
             1.5.2.2 Credential theft for network devices
             1.5.2.3 Vendor backdoor exploitation
             
@@ -152,7 +152,7 @@ router bgp 65001
 ```
 
 ### BGP monitoring and alerting
--   Action: Continuously monitor BGP announcements for unauthorized changes
+-   Action: Continuously monitor BGP announcements for unauthorised changes
 -   How:
     -   Subscribe to BGP monitoring services (BGPMon, Cloudflare Radar)
     -   Implement real-time alerting for prefix announcements

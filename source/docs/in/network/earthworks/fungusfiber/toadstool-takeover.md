@@ -1,6 +1,6 @@
 # Operation Toadstool Takeover
 
-Welcome, aspiring digital miscreant, to the whimsical yet vulnerable world of FungusFiber Internet, Fungolia’s premier (and only) provider of mycelium-net-based broadband. Your mission, should you choose to accept it, is to infiltrate their chaotically charming network. You will chain together a series of exploits, from lowly default passwords to the majestic manipulation of internet routing itself.
+Welcome, aspiring digital miscreant, to the whimsical yet vulnerable world of [FungusFiber Internet](entity.md), [Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/)’s premier (and only) provider of mycelium-net-based broadband. Your mission, should you choose to accept it, is to infiltrate their chaotically charming network. You will chain together a series of exploits, from lowly default passwords to the majestic manipulation of internet routing itself.
 
 Remember: this is a pantomime. The crown jewels are made of plastic, the customers are all actors, and the entire performance is on a closed stage. Your goal is to learn the script of a sophisticated adversary so you can eventually direct the defence.
 

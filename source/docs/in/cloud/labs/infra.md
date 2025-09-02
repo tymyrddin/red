@@ -13,4 +13,4 @@ This I will combine with [AWS Security: Protecting Your Cloud Kingdom from Barba
 [GCP Security: Keeping Google’s Playground from turning into a Hackfest](https://blue.tymyrddin.dev/docs/dev/devsecops/gcp/),
 and [On-Prem “Cloud” Security: Playing Sysadmin on Nightmare Mode](https://blue.tymyrddin.dev/docs/dev/devsecops/on-prem/).
 
-First set up secure pipelines for a small dockerized app, then introduce vulnerabilities.
+First set up secure pipelines for a small dockerised app, then introduce vulnerabilities.

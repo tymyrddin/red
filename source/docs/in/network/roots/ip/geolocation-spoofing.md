@@ -102,7 +102,7 @@ Geolocation spoofing involves manipulating the perceived geographic origin of ne
             
         1.6.2 Blockchain-Based Anonymity
             1.6.2.1 Crypto-based VPN services
-            1.6.2.2 Decentralized proxy networks
+            1.6.2.2 Decentralised proxy networks
             1.6.2.3 Privacy coin payment obfuscation
             
         1.6.3 Zero-Day Geolocation Exploits

@@ -459,7 +459,7 @@ This attack tree methodically catalogs the exploitation of ICMP and its IPv6 cou
 | 5.1.1.2 Cache timing via ICMP response                | Very High            | Medium             | Very High  | Measures response times to infer cache state; complex and slow.                        |
 | 5.1.1.3 Branch prediction influence                   | Very High            | High               | Very High  | Affects CPU branch prediction; theoretical but potentially devastating.                |
 | 5.1.2.1 VM placement inference via ICMP TTL           | High                 | Low                | Medium     | Deduces cloud infrastructure; useful for targeting specific instances.                 |
-| 5.1.2.2 Container orchestration detection             | High                 | Low                | Medium     | Identifies Kubernetes or similar; helps in containerized attacks.                      |
+| 5.1.2.2 Container orchestration detection             | High                 | Low                | Medium     | Identifies Kubernetes or similar; helps in containerised attacks.                      |
 | 5.1.2.3 Cloud provider fingerprinting                 | Medium               | Low                | Low        | Uses TTL or other traits to identify providers; low risk but informative.              |
 | 5.1.3.1 ICMP-based route inference                    | High                 | Low                | Medium     | Maps network paths; valuable for reconnaissance.                                       |
 | 5.1.3.2 Load balancer detection                       | Medium               | Low                | Medium     | Identifies load balancers via TTL or response patterns.                                |
@@ -469,7 +469,7 @@ This attack tree methodically catalogs the exploitation of ICMP and its IPv6 cou
 | 5.2.1.3 Firmware bug triggers (CVE-2020-10148)        | Medium               | Low                | High       | Exploits known vulnerabilities; easily automated for large-scale attacks.              |
 | 5.2.2.1 SCADA system ICMP vulnerabilities             | High                 | Low                | Very High  | Targets industrial systems; can cause physical disruptions.                            |
 | 5.2.2.2 PLC ICMP stack corruption                     | High                 | Low                | Very High  | Programmable Logic Controllers often have weak networks stacks.                        |
-| 5.2.2.3 OT network protocol attacks                   | Very High            | Medium             | Very High  | Operational Technology focus; requires specialized knowledge.                          |
+| 5.2.2.3 OT network protocol attacks                   | Very High            | Medium             | Very High  | Operational Technology focus; requires specialised knowledge.                          |
 | 5.2.3.1 Vendor-specific ICMP implementations          | High                 | Low                | High       | Exploits custom firmware; effective against niche devices.                             |
 | 5.2.3.2 Custom protocol stack exploits                | Very High            | High               | Very High  | Targets proprietary stacks; valuable zero-days.                                        |
 | 5.2.3.3 Legacy system compatibility attacks           | Medium               | Low                | Medium     | Exploits old systems still in use; low hanging fruit.                                  |
@@ -488,7 +488,7 @@ This attack tree methodically catalogs the exploitation of ICMP and its IPv6 cou
 | 6.1.2.1 Legitimate ICMP traffic generation            | High                 | Medium             | High       | AI generates realistic ICMP; bypasses behavioural analysis.                            |
 | 6.1.2.2 Network monitoring system spoofing            | Very High            | High               | Very High  | Tricks monitoring tools; requires deep knowledge of defence systems.                   |
 | 6.1.2.3 Anomaly detection bypass                      | Very High            | High               | Very High  | AI learns and avoids detection thresholds; persistent evasion.                         |
-| 6.1.3.1 AI-generated ICMP payloads                    | Very High            | High               | Very High  | Creates optimized payloads for specific targets or goals.                              |
+| 6.1.3.1 AI-generated ICMP payloads                    | Very High            | High               | Very High  | Creates optimised payloads for specific targets or goals.                              |
 | 6.1.3.2 Adaptive checksum manipulation                | Very High            | High               | Very High  | AI adjusts checksums to evade inspection while maintaining functionality.              |
 | 6.1.3.3 Intelligent fragment distribution             | Very High            | High               | Very High  | AI decides fragment timing and size for maximum stealth.                               |
 | 6.2.1.1 AI-managed ICMP tunneling                     | Very High            | High               | Very High  | Autonomous C2 channels that adapt and evolve.                                          |

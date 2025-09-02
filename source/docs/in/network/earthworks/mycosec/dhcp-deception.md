@@ -1,5 +1,9 @@
 # Operation DHCP Deception
 
+Objective: Simulate a nation-state adversary subverting VPN integrity and DHCP trust to intercept traffic, harvest credentials, and pivot into protected research resources, culminating in the exfiltration of cryptographic project data.
+
+Scenario: The [MycoSec](entity.md) lab network relies on VPN gateways for remote access and DHCP for address assignment. Development workstations and research servers are segmented but reachable through trusted routing paths. By exploiting a VPN vulnerability and deploying a rogue DHCP service, the adversary reroutes internal traffic, intercepts sensitive communications, and leverages stolen credentials to compromise a high-value research server.
+
 ## Adversary profile
 
 - Designation: APT-29 ("Shadow Hydra")
@@ -12,6 +16,7 @@
 - Motivation: Steal simulated research data on MycoSec's cryptographic projects by compromising VPN integrity and pivoting to internal resources.
 
 ## Phase 1: Reconnaissance (T1590/T1595)
+
 Objective: Identify VPN endpoints, DHCP services, and internal network topology.
 
 1.  Scan for VPN Endpoints:

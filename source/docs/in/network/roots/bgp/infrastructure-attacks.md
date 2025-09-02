@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-Internet Protocol version 4 (IPv4) infrastructure attacks target the core network components and services that facilitate IPv4 communication. These attacks exploit vulnerabilities in routers, servers, and supporting systems to disrupt services, intercept traffic, or gain unauthorized access to network resources.
+Internet Protocol version 4 (IPv4) infrastructure attacks target the core network components and services that facilitate IPv4 communication. These attacks exploit vulnerabilities in routers, servers, and supporting systems to disrupt services, intercept traffic, or gain unauthorised access to network resources.
 
 ```text
 1. IPv4 infrastructure attacks [OR]

@@ -127,7 +127,7 @@ Under the assumption that $k > d$, one can efficiently find $m$ given $(n_i, g_i
 
 ### Coppersmith’s short pad attack
 
-Generally, The Franklin-Reiter attack is considered to be an artificial attack because why should Bob send Alice the encryption of related messages? [Coppersmith strengthened the attack](http://en.wikipedia.org/wiki/Coppersmith's_Attack) and proved an important result on padding. Coppersmith showed that if randomized padding suggested by Hastad is used improperly then RSA encryption is not secure.
+Generally, The Franklin-Reiter attack is considered to be an artificial attack because why should Bob send Alice the encryption of related messages? [Coppersmith strengthened the attack](http://en.wikipedia.org/wiki/Coppersmith's_Attack) and proved an important result on padding. Coppersmith showed that if randomised padding suggested by Hastad is used improperly then RSA encryption is not secure.
 
 ### Partial key exposure attack
 

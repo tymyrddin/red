@@ -1,6 +1,6 @@
 # WebAssembly (WASM)
 
-WebAssembly, also called Wasm, is a Web-optimized code format and API (Application Programming Interface) that can improve the performances and capabilities of websites. Version 1.0 of WebAssembly was released in 2017, and became an official W3C standard in 2019.
+WebAssembly, also called Wasm, is a Web-optimised code format and API (Application Programming Interface) that can improve the performances and capabilities of websites. Version 1.0 of WebAssembly was released in 2017, and became an official W3C standard in 2019.
 
 The standard is actively supported by all major browser suppliers. The official list of **inside the browser** use cases mentions video editing, 3D games, virtual and augmented reality, p2p services, and scientific simulations. Besides making browsers much more powerful than JavaScript could, this standard may even extend the lifespan of websites.
 

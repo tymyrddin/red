@@ -82,7 +82,7 @@ A BGP hijack can be used to disable critical portions of the Internet by disrupt
     2.2 Introduce rogue router (Assume IP)
         2.2.1 Steal IP Addr
         2.2.2 More Specific Route Introduction
-        2.2.3 Establish unauthorized BGP session with peer
+        2.2.3 Establish unauthorised BGP session with peer
 3 Send spoofed BGP Update from Non-Router
     3.1 Conduct TCP Sequence Number Attack
     3.2 Conduct Man-in-the-Middle

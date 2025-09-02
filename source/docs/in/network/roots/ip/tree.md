@@ -101,7 +101,7 @@
         2.1.4 NAT Abuse [OR]
         
             2.1.4.1 NAT state table exhaustion attacks
-            2.1.4.2 NAT traversal techniques for unauthorized access
+            2.1.4.2 NAT traversal techniques for unauthorised access
             
     2.2 IPv6-Specific Attacks [OR]
     
@@ -193,7 +193,7 @@
 | 2.1.3.1 Gratuitous ARP (MitM)                           | Medium               | Low                | Medium     | Effective on LANs; physical access often required.                                            |
 | 2.1.3.2 ARP cache poisoning (DoS)                       | Low                  | Low                | Low        | Limited scope; easily detectable.                                                             |
 | 2.1.4.1 NAT table exhaustion                            | Medium               | Medium             | Medium     | Targets network devices; resource-limited.                                                    |
-| 2.1.4.2 NAT traversal for unauthorized access           | Medium               | Medium             | Medium     | Exploits existing NAT behaviour; technical knowledge required.                                |
+| 2.1.4.2 NAT traversal for unauthorised access           | Medium               | Medium             | Medium     | Exploits existing NAT behaviour; technical knowledge required.                                |
 | 2.2.1.1 Rogue RA (MitM)                                 | High                 | Medium             | High       | Requires IPv6 knowledge; can intercept traffic.                                               |
 | 2.2.1.2 RA flooding for DoS                             | Medium               | Medium             | Medium     | Localised impact; network resources needed.                                                   |
 | 2.2.2.1 Neighbor Advertisement spoofing                 | High                 | Medium             | High       | Network-level attack; stealth varies.                                                         |

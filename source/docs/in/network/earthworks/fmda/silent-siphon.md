@@ -1,7 +1,10 @@
 # The Silent Siphon
 
+The [Fungolia Ministry of Digital Affairs (FMDA)](entity.md) investigates this breach and tracks all steps the 
+adversaries have taken for a better understanding and which defensive measures can be taken.
+
 * Designation: APT-41 ("Crimson Weave")
-* Target: Fungolian Government Ministry of Foreign Affairs (MFA)
+* Target: Fungolian Government Ministry of Foreign Affairs (FMFA)
 * TTPs: Credential Stuffing, OAuth App Abuse, Mailbox Rule Manipulation
 * Objective: Establish persistent, silent access to exfiltrate diplomatic correspondence and intelligence.
 
@@ -39,7 +42,7 @@ The Attack Chain:
     *   Function: This grants your external command-and-control (C2) server long-lived API tokens to access the mailbox programmatically. Crucially, these tokens are *independent* of the user's password and will remain valid even if Johannes Doe changes his password tomorrow.
     *   Stealth: The application registration is visible in the Azure AD admin portal, but it easily blends in with dozens of other legitimate third-party integrations and is unlikely to be audited by non-specialist staff.
 
-Why It Works:
+Why it works:
 *   Trust Exploitation: Users and admins are conditioned to trust integrations within their M365 environment.
 *   Visibility Gap: Mailbox forwarding rules and OAuth app consent are not actively monitored by most organisations' SOCs.
 

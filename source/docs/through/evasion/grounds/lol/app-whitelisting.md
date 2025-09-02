@@ -1,6 +1,6 @@
 # Application whitelisting bypasses
 
-Application Whitelisting is a Microsoft endpoint security feature that prevents malicious and unauthorized programs 
+Application Whitelisting is a Microsoft endpoint security feature that prevents malicious and unauthorised programs 
 from executing in real-time. Application whitelisting is rule-based, where it specifies a list of approved applications 
 or executable files that are allowed to be present and executed on an OS. Some LOLBAS examples that are used to bypass 
 the Windows application whitelisting.

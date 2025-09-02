@@ -1,8 +1,8 @@
 FungusFiber Internet – Fungolia Regional LIR
 ===============================================
 
-FungusFiber Internet routes the nation’s packets through bioluminescent cables and mushroom-mounted routers, managing
-IP blocks and lab routing experiments with chaotic charm.
+FungusFiber Internet routes the `Fungolia <https://broomstick.tymyrddin.dev/posts/fungolia/>`_ nation’s packets through
+bioluminescent cables and mushroom-mounted routers, managing IP blocks and lab routing experiments with chaotic charm.
 
 Here, the descriptions are preparations, like tools laid out on the workbench. They do not come with guarantees and
 will rarely work exactly as written—the soil shifts, the roots resist, and each network grows differently. Treat

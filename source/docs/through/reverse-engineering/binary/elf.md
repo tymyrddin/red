@@ -32,7 +32,7 @@ typedef struct
 
 ### e_ident
 
-The executable header (and the ELF file) starts with a 16-byte array called `e_ident`. The `e_ident` array always starts with a 4-byte "magic value" identifying the file as an ELF binary. The magic value consists of the hexadecimal number `0x7f`, followed by the ASCII character codes for the letters E, L, and F. Having these bytes right at the start is convenient because it allows tools such as file, as well as specialized tools such as the binary loader, to quickly discover that they're dealing with an ELF file.
+The executable header (and the ELF file) starts with a 16-byte array called `e_ident`. The `e_ident` array always starts with a 4-byte "magic value" identifying the file as an ELF binary. The magic value consists of the hexadecimal number `0x7f`, followed by the ASCII character codes for the letters E, L, and F. Having these bytes right at the start is convenient because it allows tools such as file, as well as specialised tools such as the binary loader, to quickly discover that they're dealing with an ELF file.
 
 ```text
 /* Fields in the e_ident array.  The EI_* macros are indices into the

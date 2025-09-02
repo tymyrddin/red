@@ -69,7 +69,7 @@ Proving that this attack doesn't break the security confirms that any realistic 
 
 ## Gray-box models
 
-In a gray-box model, the attacker has access to a cipher’s implementation. This makes gray-box models more realistic than black-box models for applications such as smart cards, embedded systems, and virtualized systems, to which attackers often have physical access and can thus tamper with the algorithms' internals. Gray-box models are more difficult to define than black-box ones because they depend on physical, analog properties rather than just on an algorithm's input and outputs, and crypto theory will often fail to abstract the complexity of the real world.
+In a gray-box model, the attacker has access to a cipher’s implementation. This makes gray-box models more realistic than black-box models for applications such as smart cards, embedded systems, and virtualised systems, to which attackers often have physical access and can thus tamper with the algorithms' internals. Gray-box models are more difficult to define than black-box ones because they depend on physical, analog properties rather than just on an algorithm's input and outputs, and crypto theory will often fail to abstract the complexity of the real world.
 
 ### Side-channel (non-invasive)
 

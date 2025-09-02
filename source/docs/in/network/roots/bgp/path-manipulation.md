@@ -2,7 +2,7 @@
 
 ## Attack Pattern
 
-IPv4 path manipulation involves altering the Border Gateway Protocol (BGP) path attributes to maliciously influence routing decisions across the internet. By exploiting BGP's trust-based nature, attackers can redirect traffic through unauthorized paths, create routing loops, or implement denial-of-service conditions.
+IPv4 path manipulation involves altering the Border Gateway Protocol (BGP) path attributes to maliciously influence routing decisions across the internet. By exploiting BGP's trust-based nature, attackers can redirect traffic through unauthorised paths, create routing loops, or implement denial-of-service conditions.
 
 ```text
 1. IPv4 Path Manipulation [OR]

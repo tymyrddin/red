@@ -1,4 +1,4 @@
-# Prioritized vulnerability tables
+# Prioritised vulnerability tables
 
 ## Critical vulnerabilities (Test first)
 

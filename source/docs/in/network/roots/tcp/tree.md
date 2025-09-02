@@ -166,7 +166,7 @@
             
         3.1.2 Coordinated Attacks [OR]
             3.1.2.1 Distributed TCP sequence prediction
-            3.1.2.2 Synchronized BGP session reset attacks
+            3.1.2.2 Synchronised BGP session reset attacks
             3.1.2.3 Cross-platform exploitation campaigns
             
     3.2 AI-Powered TCP/BGP Attacks [OR]

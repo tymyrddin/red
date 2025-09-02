@@ -19,7 +19,7 @@ enemy territory.
 4. Vulnerability Scanning
     * Run aggressive scans (Nessus, OpenVAS) to flag weak SMTP/SNMP configs, unpatched services, and misconfigurations.
     * Stealthier approaches (for red teams):
-        * Slow, randomized scans (nmap -T2 --randomize-hosts).
+        * Slow, randomised scans (nmap -T2 --randomize-hosts).
         * Spoofed/scattered IP sources.
         * Avoid sequential port sweeps.
 5. Compliance & Depth Testing

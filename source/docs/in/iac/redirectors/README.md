@@ -3,7 +3,7 @@
 Strategic redirector deployment creates essential operational buffers between compromised endpoints and core 
 infrastructure. These proxy nodes absorb reputation damage and geofencing attempts while allowing rapid rotation 
 of exposed ingress points. Properly configured redirector chains can maintain reliable callback channels even when 
-individual nodes are discovered and neutralized, with automated provisioning ensuring new proxy instances can be 
+individual nodes are discovered and neutralised, with automated provisioning ensuring new proxy instances can be 
 deployed within minutes of detection events.
 
 * Redirectors proxy requests coming from the target back to our attack infrastructure.

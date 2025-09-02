@@ -1,6 +1,6 @@
 # AI-powered BGP attacks
 
-## Attack Pattern
+## Attack pattern
 
 AI-powered BGP attacks represent an emerging threat category where artificial intelligence and machine learning techniques are weaponised to enhance the scale, sophistication, and evasion capabilities of Border Gateway Protocol attacks. These attacks leverage AI's pattern recognition, optimisation capabilities, and adaptive learning to overcome traditional defence mechanisms, coordinate complex multi-vector attacks, and maintain persistence in target networks. The integration of AI enables attacks that are more targeted, evasive, and difficult to attribute than conventional BGP manipulation techniques
 
@@ -34,7 +34,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
         1.2.2 Swarm Intelligence Hijacking
             1.2.2.1 Particle swarm optimization for route manipulation
             1.2.2.2 Ant colony optimization for path exploration
-            1.2.2.3 Decentralized autonomous organisation (DAO) attacks
+            1.2.2.3 Decentralised autonomous organisation (DAO) attacks
             
         1.2.3 Predictive Attack Planning
             1.2.3.1 Time series forecasting for victim traffic patterns
@@ -189,7 +189,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
 
 ## Mitigation
 
-### AI-Enhanced Defence Systems
+### AI-Enhanced defence systems
 -   Action: Deploy AI-powered defence systems to detect and mitigate AI-driven attacks
 -   How:
     -   Implement machine learning-based anomaly detection for BGP traffic
@@ -207,7 +207,7 @@ anomalies = clf.predict(bgp_live_data)
 
 Just make sure you have the sets :)
 
-### Adversarial Robustness
+### Adversarial robustness
 -   Action: Harden defence systems against adversarial machine learning
 -   How:
     -   Implement adversarial training for defence AI models
@@ -215,7 +215,7 @@ Just make sure you have the sets :)
     -   Deploy multiple detection methods to avoid single points of failure
 -   Best practice: Regular testing with adversarial examples and red team exercises
 
-### Behavioural Analysis
+### Behavioural analysis
 -   Action: Implement comprehensive behavioural analysis of network traffic
 -   How:
     -   Deploy AI systems that learn normal network behaviour patterns
@@ -223,7 +223,7 @@ Just make sure you have the sets :)
     -   Use graph neural networks for relationship analysis
 -   Tools: Network behaviour analysis platforms with machine learning capabilities
 
-### Threat Intelligence Integration
+### Threat intelligence integration
 -   Action: Integrate AI-powered threat intelligence into defence systems
 -   How:
     -   Use natural language processing for threat intelligence analysis
@@ -231,7 +231,7 @@ Just make sure you have the sets :)
     -   Deploy AI systems for predictive threat modelling
 -   Best practice: Real-time threat intelligence feeds with AI analysis
 
-### Cryptographic Protections
+### Cryptographic protections
 -   Action: Enhance cryptographic protections against AI-enhanced attacks
 -   How:
     -   Implement post-quantum cryptography preparations
@@ -239,7 +239,7 @@ Just make sure you have the sets :)
     -   Deploy quantum-safe key management systems
 -   Configuration example: Transition to quantum-resistant algorithms for BGP security
 
-### Human-AI Collaboration
+### Human-AI collaboration
 -   Action: Develop human-AI collaborative defence systems
 -   How:
     -   Implement AI systems that explain their reasoning to human operators
@@ -247,7 +247,7 @@ Just make sure you have the sets :)
     -   Create AI-assisted decision support systems
 -   Best practice: Regular training for network operators on AI-assisted defence
 
-### Zero Trust Architecture
+### Zero Trust architecture
 -   Action: Implement zero trust principles for network infrastructure
 -   How:
     -   Deploy continuous verification of all network elements

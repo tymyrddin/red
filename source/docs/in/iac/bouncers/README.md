@@ -1,7 +1,7 @@
 # Introduction
 
 Properly implemented bounce servers create essential operational air gaps between management infrastructure and 
-target-facing systems. These sanitized environments host provisioning tools and C2 management consoles while 
+target-facing systems. These sanitised environments host provisioning tools and C2 management consoles while 
 maintaining strict network isolation from active operations. Regular rotation of bounce infrastructure - 
 ideally through fully automated deployment pipelines - minimizes forensic links between different operational 
 phases and ensures no single component becomes a pivot point for defenders.

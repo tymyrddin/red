@@ -64,7 +64,7 @@ ECDH can be elegantly broken if you fail to validate input points. The primary r
 
 ## ECDSA with bad randomness
 
-ECDSA signing is randomized, as it involves a secret random number $k$ when setting $s = (h + rd) / k \mod n$. But if the same $k$ is reused to sign a second message, an attacker could combine the resulting two values, $s_1 = (h_1 + rd) / k$ and $s_2 = (h_2 + rd) / k$, to get $s_1 – s_2 = (h_1 – h_2) / k$ and then
+ECDSA signing is randomised, as it involves a secret random number $k$ when setting $s = (h + rd) / k \mod n$. But if the same $k$ is reused to sign a second message, an attacker could combine the resulting two values, $s_1 = (h_1 + rd) / k$ and $s_2 = (h_2 + rd) / k$, to get $s_1 – s_2 = (h_1 – h_2) / k$ and then
 $k = (h_1 – h_2) / (s_1 – s_2)$. When $k$ is known, the private key $d$ is easily recovered by computing $(ks_1 − h_1)/r = ((h_1 + rd ) − h_1)/r = rd/r = d$.
 
 ## RootMe challenges

@@ -27,7 +27,7 @@ The codebook attack works like this with 16-bit blocks:
 
 Computing a block cipher means computing a sequence of rounds. In a block cipher, a round is a basic transformation that is simple to specify and to implement, and which is iterated several times to form the block cipher's algorithm. 
 
-The round functions are usually identical algorithms, but they are parameterized by a value called the round key. Two round functions with two distinct round keys will behave differently, and therefore will produce distinct outputs if fed with the same input. Round keys are keys derived from the main key, $K$, using an algorithm called a key schedule.
+The round functions are usually identical algorithms, but they are parameterised by a value called the round key. Two round functions with two distinct round keys will behave differently, and therefore will produce distinct outputs if fed with the same input. Round keys are keys derived from the main key, $K$, using an algorithm called a key schedule.
 
 ![Slide attack](/_static/images/slide_attack.png)
 

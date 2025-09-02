@@ -2,7 +2,7 @@
 
 Objective: Act as an APT actor (`APT-66`, "Shadow6") to exploit the pervasive but often overlooked IPv6 attack surface. You will use rogue router advertisements to hijack traffic, spoof DNS, and establish a persistent foothold, all while evading traditional IPv4-focused security measures.
 
-Scenario: The OpenHands International network is dual-stack (has IPv4 and IPv6 enabled). However, their network monitoring and security policies are primarily focused on IPv4. Your goal is to exploit IPv6 auto-configuration to redirect and intercept victim traffic.
+Scenario: The [OpenHands International](entity.md) network is dual-stack (has IPv4 and IPv6 enabled). However, their network monitoring and security policies are primarily focused on IPv4. Your goal is to exploit IPv6 auto-configuration to redirect and intercept victim traffic.
 
 ## Phase 1: Reconnaissance - Discovering the Dual-Stack Network
 

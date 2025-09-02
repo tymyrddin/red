@@ -1,7 +1,10 @@
 # The Double Bite
 
+The [Fungolia Ministry of Digital Affairs (FMDA)](entity.md) investigates this breach and tracks all steps the 
+adversaries have taken for a better understanding and which defensive measures can be taken.
+
 * Designation: APT-29 ("Midnight Sun")
-* Target: Fungolian Government Department of Energy & Infrastructure
+* Target: Fungolian Government Department of Energy & Infrastructure (FDEI)
 * Core TTPs: Phishing, VPN Exploitation, Credential Theft, Wiper Diversion
 * Objective: Steal classified nuclear energy policy drafts and strategic communications, then deploy a destructive wiper to sabotage incident response and cover tracks.
 

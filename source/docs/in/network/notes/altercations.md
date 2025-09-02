@@ -91,8 +91,8 @@ In cloud-based environments, a customer can use Network Security Groups (NSG) or
 The most common ways to try to bypass NAC:
 
 * Spoofing the MAC and IP addresses of a device that cannot natively participate in NAC, such as a VoIP phone or printer. These devices will be whitelisted by the administrator, and often there is no mechanism to verify that MAC address truly belongs to the device.
-* Using IPv6 rather than IPv4 on the unauthorized device. Most servers have IPv6 addresses by default, and are running IPv6, but administrators still forget to include IPv6 rules in firewalls and NAC policy.
-* Using a rogue wireless access point to get an authorized device to connect with an attacker machine. The attacker machine compromises the authorized device, then uses it to relay malicious traffic into the protected network.
+* Using IPv6 rather than IPv4 on the unauthorised device. Most servers have IPv6 addresses by default, and are running IPv6, but administrators still forget to include IPv6 rules in firewalls and NAC policy.
+* Using a rogue wireless access point to get an authorised device to connect with an attacker machine. The attacker machine compromises the authorised device, then uses it to relay malicious traffic into the protected network.
 
 ## Compromise router
 
@@ -124,7 +124,7 @@ The most common ways to try to bypass NAC:
 
 In port redirection, an adversary uses a machine with access to the internal network to pass traffic through a port on the firewall or access control list (ACL). The port in question normally denies traffic, but with redirection a hacker can bypass security measures and open a tunnel for communication.
 
-For example, most organisations have a demilitarized zone (DMZ). Servers that communicate from the DMZ and the internal network may have a trust relationship established. The internal devices may be set up to trust information that is received from a DMZ server, and often also vv. When an adversary can compromise a DMZ server she can initiate a connection to the internal network. There are a lot of ways that port redirection can be used to get around obstacles.
+For example, most organisations have a demilitarised zone (DMZ). Servers that communicate from the DMZ and the internal network may have a trust relationship established. The internal devices may be set up to trust information that is received from a DMZ server, and often also vv. When an adversary can compromise a DMZ server she can initiate a connection to the internal network. There are a lot of ways that port redirection can be used to get around obstacles.
 
 * Leverage network access by compromising one system to attack another.
 * Access a service that is being blocked by a firewall.

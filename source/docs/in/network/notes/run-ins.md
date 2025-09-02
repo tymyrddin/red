@@ -19,11 +19,11 @@ trees are connected by trust relationships.
 
 Active Directory provides different services, which fall under the umbrella of Active Directory Domain Services (AD DS):
 
-* Domain Services – stores centralized data and manages communication between users and domains; includes login authentication and search functionality
+* Domain Services – stores centralised data and manages communication between users and domains; includes login authentication and search functionality
 * Certificate Services – creates, distributes, and manages secure certificates
 * Lightweight Directory Services – supports directory-enabled applications using the open (LDAP) protocol
 * Directory Federation Services – provides single-sign-on (SSO) to authenticate a user in multiple web applications in a single session
-* Rights Management – protects copyrighted information by preventing unauthorized use and distribution of digital content
+* Rights Management – protects copyrighted information by preventing unauthorised use and distribution of digital content
 * DNS Service – Used to resolve domain names.
 
 AD DS is included with Windows Server (including Windows Server 10) and is designed to manage client systems. While 

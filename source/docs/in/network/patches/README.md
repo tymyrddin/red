@@ -9,7 +9,7 @@ goes down, ensuring traffic takes the next best route without humans needing to 
 ## The hidden challenges
 
 When deploying routing protocols in an intranet, several hidden security challenges can arise, often overlooked during 
-initial setup. These vulnerabilities can lead to unauthorized access, route manipulation, denial-of-service (DoS) 
+initial setup. These vulnerabilities can lead to unauthorised access, route manipulation, denial-of-service (DoS) 
 attacks, and data interception. And even in intranets, misconfigured BGP can leak internal routes to the internet.
 
 ## Why this matters

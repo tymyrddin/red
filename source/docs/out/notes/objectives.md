@@ -11,7 +11,7 @@ Attackers leverage multiple methods to profit from compromised systems:
 
 ### Dark web data markets
 
-Stolen data is sold on specialized dark web marketplaces, with pricing tiers based on freshness and completeness. 
+Stolen data is sold on specialised dark web marketplaces, with pricing tiers based on freshness and completeness. 
 This is pricing information, with both USD and EUR equivalents (using approximate 2025 exchange rates):
 
 * Credit card dumps cost around $110 dollar (€100) per card with 5,000+ available balance.

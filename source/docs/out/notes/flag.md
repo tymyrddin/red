@@ -38,7 +38,7 @@ Create fake employee accounts just before [exfiltrate](exfiltration.md):
 New-Mailbox -Name "The Joker" -UserPrincipalName j.assange@company.com
 ```
 
-### Code borrowing & weaponized open source
+### Code borrowing & weaponised open source
 
 Nothing says “elite” like Ctrl+C from GitHub.
 

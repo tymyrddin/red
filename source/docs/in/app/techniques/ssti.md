@@ -20,7 +20,7 @@ Template engines are a type of software used to determine the appearance of a we
 
 Look for locations where you can submit user input to the application. These include URL paths, parameters, fragments, HTTP request headers and body, file uploads, and more.
 
-Templates are typically used to dynamically generate web pages from stored data or user input. For example, applications often use template engines to generate customized email or home pages based on the user’s information. So to look for template injections, look for endpoints that accept user input that will eventually be displayed back to the user. Since these endpoints typically coincide with the endpoints for possible XXS attacks, you can use the [XSS strategies](xss.md) to identify candidates for template injection. Document these input locations for further testing.
+Templates are typically used to dynamically generate web pages from stored data or user input. For example, applications often use template engines to generate customised email or home pages based on the user’s information. So to look for template injections, look for endpoints that accept user input that will eventually be displayed back to the user. Since these endpoints typically coincide with the endpoints for possible XXS attacks, you can use the [XSS strategies](xss.md) to identify candidates for template injection. Document these input locations for further testing.
 
 ## Detect template injection by submitting test payloads
 
