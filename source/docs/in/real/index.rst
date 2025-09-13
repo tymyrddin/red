@@ -5,7 +5,7 @@ Why hack a firewall when you can just walk in behind someone carrying coffee? Fr
 cloning badges faster than a bored intern copies spreadsheets, physical breaches thrive on one universal truth: humans
 would rather avoid awkwardness than challenge a stranger with a clipboard. The best part? Half these tricks work better
 if you look like you don’t belong—because nothing screams "legitimate employee" like a person in socks and sandals
-muttering about Wi-Fi signals.Welcome to the Red Team
+muttering about Wi-Fi signals.
 
 .. toctree::
    :glob:
