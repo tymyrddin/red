@@ -13,5 +13,4 @@ Just remember—if you get caught, "I’m from IT" only works until someone chec
    :includehidden:
    :caption: Social engineering
 
-   README.md
    *

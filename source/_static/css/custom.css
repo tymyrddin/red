@@ -29,7 +29,7 @@ code, pre {
 /*               GLOBAL STYLES                   */
 /* ============================================= */
 body {
-    background-color: #121212 !important;
+    background-color: #2A0A0A !important;
     color: var(--md-default-fg-color) !important;
 }
 
@@ -39,7 +39,7 @@ body {
 
 /* Main content area */
 .md-main {
-    background-color: #121212 !important;
+    background-color: #2A0A0A !important;
 }
 
 .md-content {
@@ -78,11 +78,11 @@ body {
 
 /* Navigation items */
 .md-nav__item {
-    background-color: #121212 !important;
+    background-color: #2A0A0A !important;
 }
 
 .md-nav__list {
-    background-color: #121212 !important;
+    background-color: #2A0A0A !important;
 }
 
 /* Navigation links */
@@ -104,7 +104,7 @@ body {
 .md-nav__title,
 .md-nav__link,
 .md-nav__item {
-    background-color: #121212 !important;
+    background-color: #2A0A0A !important;
     box-shadow: none !important;
     border: none !important;
 }
