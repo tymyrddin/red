@@ -8,7 +8,7 @@ So, grab your virtual falconry gloves—we’re going hunting.
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: Stalk your prey
 

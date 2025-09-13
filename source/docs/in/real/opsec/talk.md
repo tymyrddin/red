@@ -12,8 +12,8 @@
 
 ## Notes
 
-When interviewing or interrogating people, a number of physical reactions to questions can be
-used to identify topic areas that should lead to more questioning.
+When interviewing people, a number of physical reactions to questions can be
+used to identify topic areas that could lead to more useful questioning.
 
 ## Resources
 

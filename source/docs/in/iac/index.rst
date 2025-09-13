@@ -24,7 +24,7 @@ understand the underlying technologies.
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: The cloud: Where attackers thrive and budgets die.
 

@@ -9,7 +9,7 @@ muttering about Wi-Fi signals.Welcome to the Red Team
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: If your security relies on people being rude to strangers, you’re already hacked:
 

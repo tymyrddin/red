@@ -16,7 +16,7 @@ a fortified perimeter, we smell the blood in the wind and the fear-sweat of syst
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: The hunter never blames the forest for being full of prey:
 

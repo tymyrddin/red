@@ -13,10 +13,10 @@
 
 ## Notes
 
-* With USB key drop, you can find out the security awareness level of the organisation. If you leave ten USB drives, 
+With USB key drop, you can find out the security awareness level of the organisation. If you leave ten USB drives, 
 and you get eight email messages, it is clear to people they should not connect untrusted devices to their computers.
 
-## Tools
+## Crazy tools
 
 * [USB Rubber Ducky](https://hak5.org/products/usb-rubber-ducky?variant=353378649)
 * [Bash Bunny](https://hak5.org/products/bash-bunny)

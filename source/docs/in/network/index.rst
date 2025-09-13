@@ -8,7 +8,7 @@ deep enough though …
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: Notes:
 
@@ -18,7 +18,7 @@ deep enough though …
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: Labs:
 
