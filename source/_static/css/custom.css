@@ -8,7 +8,7 @@
 
   /* Dark theme colors (unchanged) */
   --md-default-bg-color: #222;         /* Default background color */
-  --md-header-bg-color: #111111;       /* Header background */
+  --md-header-bg-color: #160505;       /* Header background */
   --md-default-fg-color: #e6e6e6;      /* Default text color */
 }
 
@@ -73,7 +73,7 @@ body {
 
 /* Navigation container */
 .md-nav {
-    background-color: #121212 !important;
+    background-color: #160505 !important;
 }
 
 /* Navigation items */
@@ -330,6 +330,14 @@ pre[class*="text"] {
 }
 
 /* FOOTER */
+
+.md-footer-meta {
+  background-color: #160505 !important;
+}
+
+.md-footer {
+  background-color: #160505 !important;
+}
 
 .md-source-file__fact {
   color: #666 !important;
