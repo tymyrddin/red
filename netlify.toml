@@ -1,5 +1,4 @@
 [build]
-  publish = "build/html"
-  command = "make html"
-  image = "jammy"
-
+    publish = "build/html"
+    command = "pip install sphinx && make html"
+    image = "noble"
