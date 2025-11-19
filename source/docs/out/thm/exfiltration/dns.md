@@ -14,7 +14,7 @@ pass data or `TCP/UDP` packets through a firewall using the `DNS` protocol, but 
 
 * An attacker registers a domain name, for example, tunnel.com.
 * The attacker sets up tunnel.com's NS record points to a server that the attacker controls.
-* The malware or the attacker sends sensitive data from a victim machine to a domain name they control—for example, passw0rd.tunnel.com, where passw0rd is the data that needs to be transferred.
+* The malware or the attacker sends sensitive data from a victim machine to a domain name they control. For example, passw0rd.tunnel.com, where passw0rd is the data that needs to be transferred.
 * The `DNS` request is sent through the local `DNS` server and is forwarded through the Internet.
 * The attacker's authoritative `DNS` (malicious server) receives the `DNS` request.
 * Finally, the attacker extracts the password from the domain name.

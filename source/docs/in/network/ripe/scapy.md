@@ -1,6 +1,6 @@
 # Using Scapy in RIPE labs
 
-Scapy is a packet manipulation tool and library. It lets you *build*, *send*, *receive*, and *decode* packets down to the protocol field level. Think of it as `ping` + `tcpdump` + `Wireshark` + a packet foundry — but interactive and scriptable.
+Scapy is a packet manipulation tool and library. It lets you *build*, *send*, *receive*, and *decode* packets down to the protocol field level. Think of it as `ping` + `tcpdump` + `Wireshark` + a packet foundry, but interactive and scriptable.
 
 ## 1. Starting Scapy
 
@@ -35,7 +35,7 @@ At this point, you have an object called `pkt`. It’s not sent yet, just sittin
 send(pkt)
 ```
 
-This just fires it off — no listening for replies. Good for testing or attacks where you don’t care about responses.
+This just fires it off. No listening for replies. Good for testing or attacks where you don’t care about responses.
 
 ## 4. Probing with Echo Requests
 
@@ -179,7 +179,7 @@ packets and define a filtering rule if you do not want to capture all of the pac
   * `show()` for all fields.
   * Index into `ans` for detailed request/reply tuples.
 
-Scapy does not validate whether fields are "legal" — if you want to set insane values (like Flow Label abuse for covert channels), Scapy will happily craft and send it.
+Scapy does not validate whether fields are "legal". If you want to set insane values (like Flow Label abuse for covert channels), Scapy will happily craft and send it.
 
 ## More
 

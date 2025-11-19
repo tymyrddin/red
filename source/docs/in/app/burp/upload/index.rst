@@ -21,7 +21,7 @@ SVG/HTML files), and SSRF (via PDF generators and Office docs).
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Far from a waste of time—file upload vulnerabilities are low-hanging fruit with high impact. Test aggressively, especially in apps handling sensitive data:
+   :caption: Far from a waste of time, file upload vulnerabilities are low-hanging fruit with high impact. Test aggressively, especially in apps handling sensitive data:
 
    1.md
    2.md

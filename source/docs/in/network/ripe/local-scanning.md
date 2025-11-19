@@ -153,6 +153,6 @@ Host 2001:db8:5::2 is up
 
 ---
 
-If you want, I can **add a full practical lab scenario**: capturing NDP packets with Termshark, inferring addresses via EUI-64, and pinging the discovered hosts — complete with expected screenshots and output for beginners.
+If you want, I can **add a full practical lab scenario**: capturing NDP packets with Termshark, inferring addresses via EUI-64, and pinging the discovered hosts, complete with expected screenshots and output for beginners.
 
 Do you want me to create that full hands-on scenario?

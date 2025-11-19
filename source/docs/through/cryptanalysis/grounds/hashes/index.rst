@@ -8,7 +8,7 @@ reverse what was meant to be irreversible.
 .. toctree::
    :maxdepth: 1
    :includehidden:
-   :caption: Not all seals are unbreakable—some just need the right pressure.
+   :caption: Not all seals are unbreakable, some just need the right pressure.
 
    dcc.md
    dcc2.md

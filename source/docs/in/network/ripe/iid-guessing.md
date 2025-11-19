@@ -2,7 +2,7 @@
 
 In IPv6, every device on a network has a unique address. Each address has two parts: the network prefix (like the “street” your device is on) and the Interface Identifier, or IID (like the “house number”). The IID is usually 64 bits long and identifies the specific device on that network.
 
-Sometimes, the IID is easy to guess. If an attacker can predict your IID, they can target your device, scan for vulnerabilities, or try to impersonate it. In this guide, we explain common IID patterns and how to “guess” them—so you understand the risks and how to defend against them.
+Sometimes, the IID is easy to guess. If an attacker can predict your IID, they can target your device, scan for vulnerabilities, or try to impersonate it. In this guide, we explain common IID patterns and how to “guess” them, so you understand the risks and how to defend against them.
 
 **Note: Do not use this knowledge to attack other networks. Practice in lab environments like the RIPE labs.**
 

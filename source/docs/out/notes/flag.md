@@ -9,7 +9,7 @@ Because nothing says "professional" like blaming someone else for your chaos.
 **Objectives:**
 
 - ✔ Blame your mess on rival APTs (e.g., make Russia look like it’s moonlighting as China)
-- ✔ Maintain plausible deniability—especially helpful when you’re a government with a PR team
+- ✔ Maintain plausible deniability, which is especially helpful when you’re a government with a PR team
 - ✔ Spark internal witch hunts ("Who gave Bob root access again?")
 - ✔ Pour gasoline on geopolitical tensions and watch the fireworks
 
@@ -52,7 +52,7 @@ NGO/Small Business context:
 $fakeSig = "조선민주주의인민공화국"  # DPRK in Hangul
 ```
 
-Nation-state grade: Recompile tools with Iranian APT34’s digital signature—because branding matters.
+Nation-state grade: Recompile tools with Iranian APT34’s digital signature, because branding matters.
 
 ### Infrastructure spoofing
 
@@ -112,12 +112,12 @@ Outcome: Victim yells “North Korea!” to CISA. Meanwhile, your red team is al
 
 ## Countermeasures (OpSec testing checklist)
 
-| Tactic                 | Red Team Evasion Strategy                         |
-|------------------------|---------------------------------------------------|
-| Language Analysis      | Mix CJK + Cyrillic strings for max confusion      |
-| Code Similarity        | Blend APT29 with APT41 samples—let analysts guess |
-| Infrastructure         | Host in Bulgaria, VPN through Iran                |
-| Behavioural Forensics  | Mimic disgruntled insiders with real stolen creds |
+| Tactic                 | Red Team Evasion Strategy                          |
+|------------------------|----------------------------------------------------|
+| Language Analysis      | Mix CJK + Cyrillic strings for max confusion       |
+| Code Similarity        | Blend APT29 with APT41 samples: let analysts guess |
+| Infrastructure         | Host in Bulgaria, VPN through Iran                 |
+| Behavioural Forensics  | Mimic disgruntled insiders with real stolen creds  |
 
-*"The best false flags are 70% real—just enough to make defenders argue in Slack for two weeks."*
+*"The best false flags are 70% real, just enough to make defenders argue in Slack for two weeks."*
 

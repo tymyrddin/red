@@ -1,7 +1,7 @@
 # Mapping the lay of the land
 
 Before launching any attack, you need to understand the battlefield. Enumeration is the process of systematically 
-probing a network to identify hosts, services, users, and vulnerabilities—like a digital cartographer sketching out 
+probing a network to identify hosts, services, users, and vulnerabilities, like a digital cartographer sketching out 
 enemy territory.
 
 1. Network Reconnaissance

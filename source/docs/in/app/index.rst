@@ -1,7 +1,7 @@
 A canopy of apple-blossom
 ========================================
 
-Beneath the deceptively tranquil canopy of web applications, a thriving ecosystem buzzes with activity—each bloom
+Beneath the deceptively tranquil canopy of web applications, a thriving ecosystem buzzes with activity: each bloom
 (endpoint) offering nectar (data) to legitimate pollinators (users), while hiding rot (vulnerabilities) in its petals.
 Like aphids draining sap, we probe for XSS holes in the fragrant blossoms, SQLi larvae burrowing into the fruit, and
 CSRF mites weaving invisible threads between branches. The orchard keepers (developers) often mistake beauty for
@@ -13,8 +13,8 @@ where poisoned pollen (malicious inputs) spreads through interconnected flowers 
 hungriest caterpillars (injection attacks) can spin entire webs (shell access) from a single nibbled leaf (parameter).
 
 From PortSwigger’s lab-choked groves to Root-me’s thorny challenge vines, we document which blooms surrender their
-nectar too easily—and which ones hide wasp nests (RCE) beneath their petals. Portswigger Academy is the gardening
-class; Root-me is the wilderness survival trial—both end with you owning the orchard.
+nectar too easily, and which ones hide wasp nests (RCE) beneath their petals. Portswigger Academy is the gardening
+class; Root-me is the wilderness survival trial. Both end with you owning the orchard.
 
 .. toctree::
    :glob:

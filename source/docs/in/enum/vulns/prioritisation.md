@@ -1,9 +1,8 @@
 # Prioritisation of vulnerabilities
 
-* Asset categorisation — how critical is the system that has vulnerabilities?
-* Adjudication — making a decision on whether the vulnerability discovered is a false positive. Review and validate.
-* Prioritisation of vulnerabilities — if a vulnerability exploits confidentiality, integrity, or availability, then
-that vulnerability would typically take priority.
+* Asset categorisation: how critical is the system that has vulnerabilities?
+* Adjudication: making a decision on whether the vulnerability discovered is a false positive. Review and validate.
+* Prioritisation of vulnerabilities: if a vulnerability exploits confidentiality, integrity, or availability, then that vulnerability would typically take priority.
 
 ## Common Vulnerability Scoring System (CVSS)
 

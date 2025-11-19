@@ -11,7 +11,7 @@ enforcement team this time.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Ghosts don’t fear heights—they own the view.
+   :caption: Ghosts don’t fear heights, they own the view.
 
    README.md
    vpn.md

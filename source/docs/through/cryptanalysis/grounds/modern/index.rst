@@ -1,7 +1,7 @@
 The raccoon’s secret recipes for digital mischief
 =======================================================
 
-Modern encryption is not magic—just cleverly disguised algebra. In this section, we code the arcane, one line at a
+Modern encryption is not magic, just cleverly disguised algebra. In this section, we code the arcane, one line at a
 time. Whether it’s spinning up RSA key pairs or poking around LFSRs, this is where we turn black-box mystique into
 paw-friendly logic.
 

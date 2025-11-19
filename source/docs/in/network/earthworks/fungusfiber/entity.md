@@ -2,13 +2,13 @@
 
 Nestled among the bioluminescent fungi and spiraling mushroom towers of [Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/), *FungusFiber Internet* is the regional ISP that both powers the nation’s connectivity and occasionally trips over its own Ethernet cables. The offices occupy a partially hollowed-out mycelium network, with servers literally embedded in the fungal walls, humming quietly as they route packets across the land.
 
-The team prides itself on its “spores in the air, cables in the ground” philosophy: distributing IP blocks, managing local routing, and keeping Fungolia online—mostly. From BGP routers mounted on tree trunks to cloud DNS instances hosted in cavernous server closets, every corner of *FungusFiber* offers a playground for those brave enough to explore Earthworks-style labs.
+The team prides itself on its “spores in the air, cables in the ground” philosophy: distributing IP blocks, managing local routing, and keeping Fungolia online (mostly). From BGP routers mounted on tree trunks to cloud DNS instances hosted in cavernous server closets, every corner of *FungusFiber* offers a playground for those brave enough to explore Earthworks-style labs.
 
-Despite its ambition, the ISP is blissfully chaotic: outdated firmware, mislabelled switches, and patchy MPLS configurations abound—making it perfect for practicing network attacks, route manipulation, and protocol mischief in a controlled lab environment.
+Despite its ambition, the ISP is blissfully chaotic: outdated firmware, mislabelled switches, and patchy MPLS configurations abound, making it perfect for practicing network attacks, route manipulation, and protocol mischief in a controlled lab environment.
 
 ## Mission
 
-Providing IP address allocations, routing coordination, and internet connectivity throughout Fungolia—while making sure no packet gets lost in the bioluminescent undergrowth.
+Providing IP address allocations, routing coordination, and internet connectivity throughout Fungolia, while making sure no packet gets lost in the bioluminescent undergrowth.
 
 ## Assets
 
@@ -17,7 +17,7 @@ Providing IP address allocations, routing coordination, and internet connectivit
 * Internal Systems: Staff email accounts, network configuration files, and ticketing systems.
 * Networks: Core routing lab, regional LANs, MPLS-like simulation, and Wi-Fi access points for “customers” (simulated).
 * Devices: Network switches, routers, firewalls, test laptops, and spore-powered IoT sensors.
-* Sensitive Data: Customer records, IP block allocations, internal config notes—all entirely fake.
+* Sensitive Data: Customer records, IP block allocations, internal config notes, all entirely fake.
 * Security Posture: Mixed firmware versions, open management ports, misconfigured ACLs, and intentionally exposed routing tables.
 
 ## Adversaries

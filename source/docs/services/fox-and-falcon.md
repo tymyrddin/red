@@ -1,19 +1,19 @@
 # Fox and falcon recon lab
 
-A one-day workshop where stealth meets sight—learn what attackers see, and why that matters.
+A one-day workshop where stealth meets sight: learn what attackers see, and why that matters.
 
 ## What is it?
 
 In the Red part of the forest, the fox represents stealth and cunning, while the falcon embodies sharp-eyed 
 strategy. The Fox and falcon recon lab is a hands-on, low-tech day of discovery. Participants play both predator 
-and observer: spotting what outsiders can learn about an organisation—and how easily that information could lead to 
+and observer: spotting what outsiders can learn about an organisation, and how easily that information could lead to 
 compromise.
 
 ## Why it matters
 
 If your team doesn’t know what an attacker can easily spot about your organisation, it’s hard to stop them. 
 Reconnaissance is often the first and easiest step in a security breach. This workshop demystifies how that works 
-while giving you practical insight into reducing your surface of exposure—without needing advanced tech or cloud labs.
+while giving you practical insight into reducing your surface of exposure, without needing advanced tech or cloud labs.
 
 ---
 

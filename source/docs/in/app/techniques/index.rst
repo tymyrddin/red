@@ -2,12 +2,12 @@ Field notes from the fragrant branches of web app exploitation
 ===============================================================
 
 Beneath the delicate canopy of web applications, where blossoms of functionality unfurl in the digital breeze, lurk
-vulnerabilities as pervasive as pests in an orchard. Each petal-perfect endpoint—whether a login form, search bar, or
-API gateway—offers more than just nectar to legitimate users; it extends an invitation to every crawling, burrowing,
+vulnerabilities as pervasive as pests in an orchard. Each petal-perfect endpoint, whether a login form, search bar, or
+API gateway, offers more than just nectar to legitimate users; it extends an invitation to every crawling, burrowing,
 and flying exploit in the ecosystem. Cross-site scripting (XSS) flits like aphids between leaves, injecting malicious
 scripts where pollen should be. SQL injection bores like a worm into the fruit’s core, while CSRF and clickjacking
-weave invisible threads to redirect and trap unsuspecting visitors. Even the sturdiest branches—authentication and
-access control—crumble under the weight of IDOR beetles or SSRF moths tunneling through their bark.
+weave invisible threads to redirect and trap unsuspecting visitors. Even the sturdiest branches, authentication and
+access control, crumble under the weight of IDOR beetles or SSRF moths tunneling through their bark.
 
 To navigate this orchard is to understand its hidden rot. Race conditions split ripe fruit mid-air; XXE injections
 gnaw at the roots of data parsing; prototype pollution taints the genetic code of JavaScript itself. From web cache

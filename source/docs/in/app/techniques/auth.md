@@ -110,7 +110,7 @@ Authentication vulnerabilities have serious impact because they can be used to:
 * Review code to check all verifications are in place.
 * Audit code regularly to discover logic flaws and authentication bypasses and strengthen your security posture.
 * MFA protects applications by using a second source of validation before granting access to users.
-* Standard authentication methods, including MFA, ask users for specific credentials whenever they try to log in or access corporate resources. Adaptive Authentication asks for different credentials, depending upon the situation — tightening security when the risk of breach is higher.
+* Standard authentication methods, including MFA, ask users for specific credentials whenever they try to log in or access corporate resources. Adaptive Authentication asks for different credentials, depending upon the situation, tightening security when the risk of breach is higher.
 
 ## Resources
 

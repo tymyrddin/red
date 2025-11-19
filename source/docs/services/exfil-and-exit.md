@@ -1,10 +1,10 @@
 # Squirrel exfil and exit
 
-A one-day workshop where stealth meets strategy—learn how data leaves the forest, and how defenders spot it.
+A one-day workshop where stealth meets strategy: learn how data leaves the forest, and how defenders spot it.
 
 ## What is it?
 
-In the Red part of the forest, the squirrel is small, quick, and adept at moving valuable things unnoticed. The "OUT" workshop focuses on exfiltration—how data or digital assets can be moved out of a network or system safely, and how defenders detect these movements. Participants explore controlled, low-tech exercises to understand risk without touching live production systems.
+In the Red part of the forest, the squirrel is small, quick, and adept at moving valuable things unnoticed. The "OUT" workshop focuses on exfiltration, on how data or digital assets can be moved out of a network or system safely, and how defenders detect these movements. Participants explore controlled, low-tech exercises to understand risk without touching live production systems.
 
 ## Why it matters
 
@@ -35,5 +35,5 @@ Exfiltration is the endgame of most attacks. If information leaves unnoticed, th
 
 * Duration: Full-day, split into morning, midday, and afternoon sessions with lab exercises and group reflections.
 * Setup: Local lab environment provided; no cloud required. Participants can use laptops or small isolated networks.
-* Why it works: Participants practice realistic methods in a guided, narrative format—learning through hands-on exploration and discussion, without jargon.
+* Why it works: Participants practice realistic methods in a guided, narrative format, learning through hands-on exploration and discussion, without jargon.
 

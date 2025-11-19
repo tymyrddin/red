@@ -20,7 +20,7 @@ Two values characterize a block cipher: the block size and the key size. While b
 The codebook attack works like this with 16-bit blocks:
 
 1. Get the 65536 ($2^{16}$) ciphertexts corresponding to each 16-bit plaintext block.
-2. Build a lookup table—the codebook—mapping each ciphertext block to its corresponding plaintext block.
+2. Build a lookup table, the codebook, mapping each ciphertext block to its corresponding plaintext block.
 3. To decrypt an unknown ciphertext block, look up its corresponding plaintext block in the table.
 
 ## Slide attack and round keys

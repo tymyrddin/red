@@ -5,7 +5,7 @@ Patches of mycelium (@Home and @Org)
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Ghosts don’t fear heights—they own the view.
+   :caption: Ghosts don’t fear heights, they own the view.
 
    README.md
    rip.md

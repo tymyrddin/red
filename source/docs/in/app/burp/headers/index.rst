@@ -27,7 +27,7 @@ tampering with `Host`.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Not a waste of time—test if the app uses `Host` for logic:
+   :caption: Not a waste of time, test if the app uses `Host` for logic:
 
    1.md
    2.md

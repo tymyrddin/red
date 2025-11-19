@@ -8,7 +8,7 @@ roots can be compromised, leading to potential disruptions.
 
 Why is hacking BGP so attractive for nation state hackers?
 
-Because BGP is the rickety Victorian plumbing of the internet — still doing the job, but full of leaky joints, no authentication by default,
+Because BGP is the rickety Victorian plumbing of the internet. It is still doing the job, but full of leaky joints, no authentication by default,
 and everyone pretending it is fine until the pipes burst. It can give:
 
 1. Global control with local action: With one bad advertisement, you can reroute huge swathes of internet traffic. A single ISP fat-fingering (or a state actor deliberately injecting) a prefix hijack can drag banking, comms, or government traffic through your chosen path. Instant man-in-the-middle at internet scale.

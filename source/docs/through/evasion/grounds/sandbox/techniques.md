@@ -16,11 +16,8 @@ minutes before executing shellcode.
 
 This could be done in any number of ways: 
 
-* One common way is to query the current system time and, in a parallel thread, check and see how much time has 
-elapsed. After the five minutes have passed, the program can begin normal execution.
-* Another popular method is to do complex, compute-heavy math, which may take a certain amount of time — for example, 
-calculating the Fibonacci sequence up to a given number. It may take more or less time to do so based on the system's 
-hardware. Masking the application is generally a good idea to avoid Anti-Virus detections in general.
+* One common way is to query the current system time and, in a parallel thread, check and see how much time has elapsed. After the five minutes have passed, the program can begin normal execution.
+* Another popular method is to do complex, compute-heavy math, which may take a certain amount of time. For example, calculating the Fibonacci sequence up to a given number. It may take more or less time to do so based on the system's hardware. Masking the application is generally a good idea to avoid Anti-Virus detections in general.
 
 Beware that some sandboxes may alter built-in sleep functions. Several Anti-Virus vendors have put out blog posts 
 about bypassing built-in sleep functions. So it is highly recommended to develop our own sleep function.

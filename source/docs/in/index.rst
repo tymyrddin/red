@@ -4,10 +4,10 @@ IN: Where the falcons and foxes roam
 .. image:: /_static/images/fox.png
    :alt: Fox
 
-Welcome to the In phase—where attackers don’t knock, they pick the lock, clone the key, or just walk in behind someone
+Welcome to the In phase, where attackers don’t knock, they pick the lock, clone the key, or just walk in behind someone
 carrying coffee. This is the falcon’s dive and the fox’s sneak, where initial access isn’t about brute force, but
 finesse. Phishing emails? Bait on a hook. Tailgating? A predator blending with the herd. And that unpatched server?
-An open burrow just begging to be claimed. The hunt begins here—where the only rule is: Don’t get caught before the
+An open burrow just begging to be claimed. The hunt begins here, where the only rule is: Don’t get caught before the
 feast.
 
 .. toctree::

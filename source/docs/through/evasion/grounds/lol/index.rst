@@ -9,7 +9,7 @@ into tools of survival.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption:  The raccoon uses what is already there—so should you.
+   :caption:  The raccoon uses what is already there, and so should you.
 
    sysinternals.md
    lolbas.md

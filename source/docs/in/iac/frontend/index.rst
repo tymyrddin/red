@@ -11,7 +11,7 @@ than the excuses you'll need when this all goes sideways.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Where every branch wears a golden facade—until the poison slips through.
+   :caption: Where every branch wears a golden facade until the poison slips through.
 
    README.md
    nginx.md

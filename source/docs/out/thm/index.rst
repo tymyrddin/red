@@ -8,6 +8,6 @@ Red Teaming learning path.
    :glob:
    :maxdepth: 2
    :includehidden:
-   :caption: From loot grab to ghost mode—because the best thieves leave them guessing ...
+   :caption: From loot grab to ghost mode, because the best thieves leave them guessing ...
 
    exfiltration/index

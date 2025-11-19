@@ -1,7 +1,7 @@
 Old tricks, new treats: Unmasking classical ciphers
 ======================================================
 
-Delve into the world of classical ciphers—Caesar, Vigenère, and more. These time-tested encryptions may seem outdated,
+Delve into the world of classical ciphers: Caesar, Vigenère, and more. These time-tested encryptions may seem outdated,
 but they still hold lessons for the modern cryptanalyst. Like a raccoon rummaging through an old attic,
 discover the patterns and vulnerabilities that make these ciphers crackable.
 

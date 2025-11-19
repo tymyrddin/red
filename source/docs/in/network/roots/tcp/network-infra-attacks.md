@@ -1,7 +1,3 @@
-Ah, got it — you want everything intact: British English, but **with all mitigation, frameworks, examples, and code blocks** preserved. Here’s a full, faithful rewrite:
-
----
-
 # Network infrastructure attacks
 
 ## Attack pattern

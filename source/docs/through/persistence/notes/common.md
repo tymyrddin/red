@@ -35,7 +35,7 @@ The goal of a CSRF/ XSRF attack is to get an unsuspecting user to submit data to
 
 ### Network-based vulnerabilities
 
-Exploits that are created to leverage network-based vulnerabilities are interesting exploits because the attacks are performed across the network — an adversary does not need local access to the systems.
+Exploits that are created to leverage network-based vulnerabilities are interesting exploits because the attacks are performed across the network. An adversary does not need local access to the systems.
 
 Network-based vulnerabilities can lead to compromise of the target operating system, privilege escalation, or loss or degradation of service performance. Most network-based vulnerabilities can be identified withvulnerability assessment, or by vulnerability research. The Metasploit Framework or SearchSploit can be used to validate public exploits for vulnerabilities identified during a vulnerability assessment.
 

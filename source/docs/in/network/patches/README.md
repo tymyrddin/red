@@ -14,7 +14,7 @@ attacks, and data interception. And even in intranets, misconfigured BGP can lea
 
 ## Why this matters
 
-Routing protocols are the hidden hyphae of your Mycelium Patch—if rot takes hold, spore-thieves can drain your 
+Routing protocols are the hidden hyphae of your Mycelium Patch, if rot takes hold, spore-thieves can drain your 
 nectar, strangle fruiting bodies, or twist the whole web into a strangler’s knot. Here’s why decay spreads unseen:
 
 * [Routing Information Protocol](rip.md)

@@ -1,13 +1,13 @@
 # Entity, assets and adversaries
 
 Nestled in a government complex shaped like interlocking mushrooms, the FMDA oversees all things digital in 
-[Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/)—from spectrum allocation to IP block management 
+[Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/), from spectrum allocation to IP block management 
 and compliance monitoring. Its public portals are occasionally more exposed than intended, and internal 
 networks are a patchwork of legacy systems, half-forgotten policies, and experimental routing labs.
 
 The Ministry operates under the philosophy “bureaucracy underground, oversight aboveground”: policies are drafted in 
 secretive fungal chambers while public-facing systems attempt to stay online. Servers hum beneath the spore-laden floors, 
-hosting IP registries, compliance logs, and internal memos—all perfect fodder for Earthworks practice.
+hosting IP registries, compliance logs, and internal memos, all perfect fodder for Earthworks practice.
 
 Two ministries are especially vulnerable in this underground bureaucracy: the 
 [Fungolian Department of Energy & Infrastructure (FDEI)](double-bite.md), with its vaults of power-grid schematics and 

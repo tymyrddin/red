@@ -10,7 +10,7 @@ kicked out.
    :glob:
    :maxdepth: 2
    :includehidden:
-   :caption: A raccoon doesn’t just raid once—it makes sure the pantry is always within reach.
+   :caption: A raccoon doesn’t just raid once, it makes sure the pantry is always within reach.
 
    thm/index
    root-me/index

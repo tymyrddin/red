@@ -1,11 +1,11 @@
 Field notes from the bin-raider’s handbook
 ==========================================
 
-This is the raccoon’s weathered field journal—full of half-legible scribbles, peanut-stained diagrams, and
+This is the raccoon’s weathered field journal, full of half-legible scribbles, peanut-stained diagrams, and
 surprisingly sharp insight. It’s where techniques are catalogued not just as cold theory, but as lived experience
 in the digital forest. From exploiting misconfigurations to crafting shellcode by torchlight, these notes serve as
 a toolkit and survival guide. They're not polished. They’re practical. Because in the wild, you don't always have
-time to read the manual—you nick the solution and run.
+time to read the manual, you nick the solution and run.
 
 .. toctree::
    :glob:

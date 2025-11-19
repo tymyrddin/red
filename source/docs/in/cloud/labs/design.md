@@ -84,7 +84,7 @@ Exploit chain:
 
 ## Challenge progression flow
 
-"A good cloud CTF doesn’t just teach hacking—it forces players to think like defenders. Every challenge should scream: ‘This is why you should’ve patched this.’"
+"A good cloud CTF doesn’t just teach hacking, it forces players to think like defenders. Every challenge should scream: ‘This is why you should’ve patched this.’"
 
 | Level	        | Attack path	              | Defensive lesson          |
 |---------------|---------------------------|---------------------------|

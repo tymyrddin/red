@@ -24,7 +24,7 @@ is common in SaaS/Cloud Apps (Google, Facebook, Microsoft logins).
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Critical to test—OAuth is a goldmine:
+   :caption: Critical to test, OAuth is a goldmine:
 
    1.md
    2.md

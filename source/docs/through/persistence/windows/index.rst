@@ -2,7 +2,7 @@ Dumpster diving behind the windows store
 =============================================
 
 From services left wide open to the delicious honey of credential harvesting, Windows offers a buffet of privilege
-escalation snacks. It is persistence with a GUI—and a side of regret.
+escalation snacks. It is persistence with a GUI and a side of regret.
 
 .. toctree::
    :maxdepth: 1

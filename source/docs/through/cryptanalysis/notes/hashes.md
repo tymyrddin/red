@@ -99,7 +99,7 @@ This will be very, very, time-consuming. You can also use Hashcat or John the Ri
 
 ## Security
 
-Despite their apparent simplicity, hash functions can cause major security troubles when used at the wrong place or in the wrong way—for example, when weak checksum algorithms like CRCs are used instead of a crypto hash to check file integrity in applications transmitting data over a network. However, this weakness pales in comparison to some others, which can cause total compromise in seemingly secure hash functions.
+Despite their apparent simplicity, hash functions can cause major security troubles when used at the wrong place or in the wrong way, for example, when weak checksum algorithms like CRCs are used instead of a crypto hash to check file integrity in applications transmitting data over a network. However, this weakness pales in comparison to some others, which can cause total compromise in seemingly secure hash functions.
 
 ## Resources
 

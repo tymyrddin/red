@@ -18,7 +18,7 @@ These vulnerabilities exist in about a third of apps because they are often over
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Always test—automated tools miss these:
+   :caption: Always test, automated tools miss these:
 
    1.md
    2.md

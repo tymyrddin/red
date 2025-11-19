@@ -1,4 +1,4 @@
-Tipping the stack—and the garbage can
+Tipping the stack and the garbage can
 =========================================
 
 Welcome to the cryptanalysis burrow, where the raccoon sharpens its claws on the toughest nuts to crack. From
@@ -10,7 +10,7 @@ and revealing the plaintext beneath the cipher.
    :glob:
    :maxdepth: 2
    :includehidden:
-   :caption: In the digital forest, even the strongest locks have hidden keys—if you know where to dig.
+   :caption: In the digital forest, even the strongest locks have hidden keys, if you know where to dig.
 
    notes/index
    grounds/index

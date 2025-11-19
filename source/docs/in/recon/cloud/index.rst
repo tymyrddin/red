@@ -9,7 +9,7 @@ maybe don’t tweet about it.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: The cloud is just someone else’s problem—until you find it:
+   :caption: The cloud is just someone else’s problem, until you find it:
 
    README.md
    map.md

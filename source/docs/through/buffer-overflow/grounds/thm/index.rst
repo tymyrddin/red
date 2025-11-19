@@ -2,7 +2,7 @@ The raccoon dives into virtual bins and finds real exploits
 ==============================================================
 
 These rooms offer a hands-on, tail-first dive into controlled environments built to break. With TryHackMe as
-woodland training camp, explore structured overflow exercises—some tame, others downright feral.
+woodland training camp, explore structured overflow exercises, some tame, others downright feral.
 
 .. toctree::
    :maxdepth: 1

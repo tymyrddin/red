@@ -10,6 +10,6 @@ constantly watching.
    :glob:
    :maxdepth: 2
    :includehidden:
-   :caption: In the digital forest, the raccoon doesn't just survive—it thrives by staying unseen.
+   :caption: In the digital forest, the raccoon doesn't just survive, it thrives by staying unseen.
 
    grounds/index

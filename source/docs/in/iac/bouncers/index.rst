@@ -11,7 +11,7 @@ forensic team finding your Terraform state files next to those "funny" log entri
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Ancient, layered, and forgotten—until you need to vanish.
+   :caption: Ancient, layered, and forgotten until you need to vanish.
 
    README.md
    payments.md

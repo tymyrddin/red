@@ -227,7 +227,7 @@ Recompiling VirtualBox kernel modules ...done.
 Starting VirtualBox kernel modules ...done.
 ```
 
-If there are errors, carefully read the log — often it’s missing headers, `gcc` mismatch, or old kernel leftovers.
+If there are errors, carefully read the log: often it’s missing headers, `gcc` mismatch, or old kernel leftovers.
 
 ---
 
@@ -256,6 +256,6 @@ It should start the VM without kernel/VT-x errors.
 
 ---
 
-Whenever you update your kernel, VirtualBox kernel modules often need to be rebuilt with `sudo /sbin/vboxconfig`. This is why having `dkms` installed is useful — it automatically recompiles the modules for new kernels.
+Whenever you update your kernel, VirtualBox kernel modules often need to be rebuilt with `sudo /sbin/vboxconfig`. This is why having `dkms` installed is useful. It automatically recompiles the modules for new kernels.
 
 

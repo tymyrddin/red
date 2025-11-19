@@ -18,7 +18,7 @@ exist (e.g., password changes, payments), and there are no framework defaults (e
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Not dead yet—test CSRF where cookies meet state changes:
+   :caption: Not dead yet, test CSRF where cookies meet state changes:
 
    1.md
    2.md

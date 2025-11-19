@@ -9,6 +9,6 @@ making sure that the only thing the defenders see is what we want them to.
    :glob:
    :maxdepth: 2
    :includehidden:
-   :caption: In the wild, a raccoon knows that everything could be hiding something—and that includes your data.
+   :caption: In the wild, a raccoon knows that everything could be hiding something, and that includes your data.
 
    root-me/index

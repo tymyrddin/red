@@ -2,7 +2,7 @@ Rooting around in memory with mischievous intent
 ===================================================
 
 RootMe’s challenges drop our raccoon into the wild with minimal handholding and maximum mischief. Expect raw binaries,
-tricky exploits, and that glorious moment when unintended behaviour becomes a feature—of your payload.
+tricky exploits, and that glorious moment when unintended behaviour becomes a feature of your payload.
 
 .. toctree::
    :glob:

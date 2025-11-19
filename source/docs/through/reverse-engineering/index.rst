@@ -8,7 +8,7 @@ stare long enough at obfuscated code until the secrets spill out. Think of it as
    :glob:
    :maxdepth: 2
    :includehidden:
-   :caption: Raccoons are naturally curious—and very good at figuring out how things work by breaking them.
+   :caption: Raccoons are naturally curious, and very good at figuring out how things work by breaking them.
 
    binary/index
    cracking/index

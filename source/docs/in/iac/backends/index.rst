@@ -11,7 +11,7 @@ leave obvious traces all over your target's network.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Choose your C2 like a squirrel picks nuts—crack the shell, claim the core.
+   :caption: Choose your C2 like a squirrel picks nuts: crack the shell, claim the core.
 
    README.md
    c2s.md

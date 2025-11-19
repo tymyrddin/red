@@ -19,7 +19,7 @@ lack of rate-limiting.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Always check OAuth/SSO integrations—they’re a goldmine for flaws:
+   :caption: Always check OAuth/SSO integrations, they are a goldmine for flaws:
 
    1.md
    2.md

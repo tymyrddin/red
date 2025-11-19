@@ -31,7 +31,7 @@ sidejacking (stolen via XSS or MITM), and API abuse. Plus, their abundance. They
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: A must-test vulnerability—JWT flaws are low-hanging fruit:
+   :caption: A must-test vulnerability, JWT flaws are low-hanging fruit:
 
    1.md
    2.md

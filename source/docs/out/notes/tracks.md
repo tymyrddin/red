@@ -1,6 +1,6 @@
 # Paw prints in the wind: Disappearing without a trace
 
-*"The best operations never appear in the SIEM—only in the aftermath."*
+*"The best operations never appear in the SIEM, only in the aftermath."*
 
 ## Log obliteration techniques
 

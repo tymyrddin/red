@@ -17,7 +17,7 @@ complex architectures (microservices, CDNs) introduce edge-case flaws.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Not a waste of time—misconfigs are common and dangerous:
+   :caption: Not a waste of time, misconfigs are common and dangerous:
 
    1.md
    2.md

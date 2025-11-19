@@ -1,4 +1,4 @@
-Where the raccoon overflows the bin—on purpose
+Where the raccoon overflows the bin on purpose
 ==============================================
 
 Why knock politely when you can cannonball into memory? This section covers the fine art of smashing buffers,

@@ -22,7 +22,7 @@ to custom logic flaws (We assumed ...).
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Test every endpoint—IDOR is low-hanging fruit:
+   :caption: Test every endpoint, IDOR is low-hanging fruit:
 
    1.md
    2.md

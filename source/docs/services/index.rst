@@ -6,7 +6,7 @@ cunning, curiosity, and hands-on craft. This is a collection of workshops and fa
 support exploring the behaviours, tradecraft, and tricks of determined adversaries. Spot, move, and protect valuable
 assets with the instincts of foxes, raccoons, and squirrels. From mapping external visibility to reverse engineering
 binaries and building attacker infrastructure, the sessions focus on understanding and disrupting adversary
-rhythms—because the terrain is never neat and the rules are never followed.
+rhythms, because the terrain is never neat and the rules are never followed.
 
 .. toctree::
    :glob:

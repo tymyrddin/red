@@ -5,7 +5,7 @@ The art of squirreling away goodies (2025)
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Because every acorn counts—especially the ones that aren’t yours.
+   :caption: Because every acorn counts, especially the ones that aren’t yours.
 
    collection.md
    exfiltration.md

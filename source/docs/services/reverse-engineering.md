@@ -1,10 +1,10 @@
 # Reverse-engineering starter clinic
 
-A one-day workshop where curiosity meets code—learn to peel back the layers of software to see how it really works.
+A one-day workshop where curiosity meets code: learn to peel back the layers of software to see how it really works.
 
 ## What is it?
 
-In the Red part of the forest, Through is about exploring the inside of binaries—programs and executables—without breaking anything. Reverse-engineering here is about understanding what a program actually does, rather than trusting what the documentation claims. Participants work hands-on with small sample binaries in a safe lab environment, learning to spot patterns, extract information, and see the structure of code.
+In the Red part of the forest, Through is about exploring the inside of binaries, programs and executables, without breaking anything. Reverse-engineering here is about understanding what a program actually does, rather than trusting what the documentation claims. Participants work hands-on with small sample binaries in a safe lab environment, learning to spot patterns, extract information, and see the structure of code.
 
 
 ## Why it matters
@@ -37,5 +37,5 @@ Attackers reverse-engineer software to uncover hidden functionality, weaknesses,
 
 * Duration: Full-day, divided into morning, midday, and afternoon sessions with hands-on labs and group exercises.
 * Setup: Safe local lab environment; no cloud required. Participants can use desktops or laptops with prepared binaries and pre-installed tools.
-* Why it works: Participants practise real exploratory techniques in a narrative, engaging format—no jargon, no pressure, just guided discovery.
+* Why it works: Participants practise real exploratory techniques in a narrative, engaging format. No jargon, no pressure, just guided discovery.
 

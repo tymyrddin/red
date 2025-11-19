@@ -32,7 +32,7 @@ Finding exposed data is often trivial, but consequences can be critical (leaked 
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Never a waste of time—it’s the easiest way to find low-hanging fruit that leads to bigger exploits:
+   :caption: Never a waste of time, it’s the easiest way to find low-hanging fruit that leads to bigger exploits:
 
    1.md
    2.md

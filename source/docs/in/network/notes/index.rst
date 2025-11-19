@@ -3,7 +3,7 @@ The Primordial Grimoire
 
 A grimoire typically contains spells, rituals, incantations, magical recipes, and sometimes instructions for
 summoning or communicating with spirits. It can also include astrological charts, alchemical formulas, and
-protective charms—basically, a manual of magical knowledge.
+protective charms. Basically, a manual of magical knowledge.
 
 .. toctree::
    :glob:

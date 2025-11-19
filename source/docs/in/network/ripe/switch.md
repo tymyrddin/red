@@ -222,6 +222,6 @@ Shows:
 
 * Always check `status` if unsure.
 * The script handles virtual networks (`dnsmasq`) automatically.
-* Safe to run repeatedly — modules and services are only started/stopped as necessary.
+* Safe to run repeatedly. Modules and services are only started/stopped as necessary.
 * No need to touch VirtualBox or virt-manager settings; the script manages the backend cleanly.
 

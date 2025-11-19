@@ -18,7 +18,7 @@ The Attack Chain:
 
 1.  Vector 1: The Spearphish (Social Engineering)
     *   The Lure: A highly targeted email is sent to a mid-level policy analyst in the Department of Energy. It appears to come from a trusted colleague at a nuclear research institute, referencing a real upcoming conference.
-    *   The Payload: The email contains a PDF attachment titled "Draft_Agenda_Energy_Symposium.pdf". When opened, it exploits a known vulnerability in the PDF reader (e.g., CVE-2023-27333) to silently download and execute a Cobalt Strike Beacon—a powerful remote access tool that gives you a command line on the victim's computer.
+    *   The Payload: The email contains a PDF attachment titled "Draft_Agenda_Energy_Symposium.pdf". When opened, it exploits a known vulnerability in the PDF reader (e.g., CVE-2023-27333) to silently download and execute a Cobalt Strike Beacon, a powerful remote access tool that gives you a command line on the victim's computer.
     *   Why It Works: The email is personalised and relevant. The user's curiosity overrides caution.
 
 2.  Vector 2: The VPN Exploit (Technical Intrusion)
@@ -51,7 +51,7 @@ The Attack Chain:
 1.  Credential Dumping (LSASS): From the compromised workstation, you use a tool like Mimikatz to dump passwords from the computer's memory (the LSASS process). This often reveals the logged-in user's password in plaintext.
 2.  Pass-the-Hash: You use these stolen password "hashes" to authenticate to other systems, like internal file shares containing policy documents, without needing to know the actual password.
 3.  Targeting Admins: You use your access to monitor network traffic, identifying IT administrators when they log in. You then target their workstations to dump *their* credentials.
-4.  Domain Dominance: With an admin's credentials, you use Remote Desktop (RDP) to log directly into the Active Directory Domain Controller—the central server that manages all users and permissions for the entire organisation. You now own the network.
+4.  Domain Dominance: With an admin's credentials, you use Remote Desktop (RDP) to log directly into the Active Directory Domain Controller, the central server that manages all users and permissions for the entire organisation. You now own the network.
 
 ## Phase 4: Persistence – Building Secret Passageways
 

@@ -9,7 +9,7 @@ flows remain undetected.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: The raccoon knows every hidden path through the forest—digital or otherwise.
+   :caption: The raccoon knows every hidden path through the forest, digital or otherwise.
 
    systems.md
    protocol.md

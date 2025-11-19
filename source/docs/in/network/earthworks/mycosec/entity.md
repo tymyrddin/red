@@ -1,8 +1,8 @@
 # Entity, assets and adversaries
 
-Hidden in a sprawling mycelium lab under the [Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/) capital, *MycoSec Labs* advertises itself as the region’s premier cybersecurity consultancy—but its own internal networks are a veritable playground for Earthworks exercises. Lab servers host simulated client networks, practice targets, and intentionally misconfigured environments for testing.
+Hidden in a sprawling mycelium lab under the [Fungolia](https://broomstick.tymyrddin.dev/posts/fungolia/) capital, *MycoSec Labs* advertises itself as the region’s premier cybersecurity consultancy, but its own internal networks are a veritable playground for Earthworks exercises. Lab servers host simulated client networks, practice targets, and intentionally misconfigured environments for testing.
 
-Their motto: “We poke, prod, and plant spores of doubt—mostly for your own good.” Staff laptops run mixed OSes, containerized lab environments abound, and test VLANs simulate clients’ internal networks, offering rich opportunities for chained network exercises.
+Their motto: “We poke, prod, and plant spores of doubt, mostly for your own good.” Staff laptops run mixed OSes, containerized lab environments abound, and test VLANs simulate clients’ internal networks, offering rich opportunities for chained network exercises.
 
 ## Mission
 
@@ -14,7 +14,7 @@ Offer security assessments, red-team simulations, and digital safety consultancy
 * Lab Devices: Laptops, routers, firewalls, IoT testbeds.
 * Tools: Vulnerable virtual machines, containerized apps, fake telemetry logs.
 * Data: Dummy client records, attack simulations, lab-generated logs.
-* Security Posture: Deliberately mixed—some systems highly hardened, others purposefully exposed.
+* Security Posture: Deliberately mixed, some systems highly hardened, others purposefully exposed.
 
 ## Adversaries
 
