@@ -4,7 +4,7 @@ Tucked into the rolling hills and mushroom-shaped spires of [Fungolia](https://b
 
 The organisation prides itself on its "roots in the soil, eyes on the sky" approach: deeply connected to local communities, while also monitoring international networks for threats to freedom of expression. Its servers hum quietly in the basement, holding a treasure trove of volunteer data, reports, and communications, all of which are perfectly simulated for laboratory exploration. From cloud collaboration tools to a patchwork of Internet of Things devices scattered across the office, every corner of Openhands is a potential learning ground for those brave enough to explore Earthworks.
 
-Despite its noble mission, the non-governmental organisation is blissfully under-resourced, meaning staff devices are often outdated, passwords are reused across systems, and virtual private network certificates occasionally expire—making it a fertile playground for understanding security, misconfigurations, and chained attacks, safely in a controlled laboratory environment.
+Despite its noble mission, the non-governmental organisation is blissfully under-resourced, meaning staff devices are often outdated, passwords are reused across systems, and virtual private network certificates occasionally expire, making it a fertile playground for understanding security, misconfigurations, and chained attacks, safely in a controlled laboratory environment.
 
 ## Mission
 
@@ -16,7 +16,7 @@ Protecting human rights, advocating for freedom of expression, and providing eme
 * Internal Systems: Simulated staff email accounts, document repositories (Google Drive/Nextcloud style), and collaboration tools.
 * Networks: A small office local area network with virtual private network access for remote staff, Wi-Fi networks, and a simulated cloud environment hosting internal applications.
 * Devices: Staff laptops, mobile devices, and Internet of Things-style office devices (printers, cameras, sensors).
-* Sensitive Data: Dummy volunteer records, donation transactions, human rights reports—all filled with realistic but fake data.
+* Sensitive Data: Dummy volunteer records, donation transactions, human rights reports, all filled with realistic but fake data.
 * Security Posture: Basic firewall rules, outdated software, and typical misconfigurations you would expect in a small non-governmental organisation.
 
 ## Adversaries

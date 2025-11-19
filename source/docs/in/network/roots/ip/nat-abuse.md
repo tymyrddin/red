@@ -127,7 +127,7 @@ Network Address Translation (NAT) is a method used to map private IP addresses t
 -   Protocol Helpers: Application Layer Gateways (ALGs) are designed to assist with protocol-specific transformations but often contain vulnerabilities or can be tricked.
 -   Consumer Device Weaknesses: Many SOHO routers have weak default configurations, enabled UPnP by default, and rarely receive firmware updates.
 -   Asymmetric Paths: NAT behaviour can be unpredictable when packets take asymmetric routes, bypassing the NAT device.
--   Address Conservation: The very purpose of NAT—sharing addresses—makes attribution difficult and enables abuse.
+-   Address Conservation: The very purpose of NAT, sharing addresses, makes attribution difficult and enables abuse.
 
 ## Mitigation
 

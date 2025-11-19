@@ -175,7 +175,7 @@ BGP and DNS infrastructure attacks represent a critical threat vector that targe
 
 ## Why it works
 
--   Protocol interdependence: BGP and DNS are fundamentally interconnected—DNS provides name-to-IP resolution while BGP determines how to reach those IP addresses, creating multiple points of potential failure when attacked in combination.
+-   Protocol interdependence: BGP and DNS are fundamentally interconnected. DNS provides name-to-IP resolution while BGP determines how to reach those IP addresses, creating multiple points of potential failure when attacked in combination.
 -   Trust-based operations: Both protocols historically operate on a trust model where participants are assumed to be legitimate, making authentication and validation optional rather than mandatory.
 -   Implementation complexity: The complexity of both protocols leads to implementation inconsistencies and vulnerabilities that attackers can exploit.
 -   Partial security deployment: Security extensions like DNSSEC and RPKI are not universally deployed, creating security gaps that attackers can exploit.

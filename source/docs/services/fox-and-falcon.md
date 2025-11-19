@@ -21,7 +21,7 @@ while giving you practical insight into reducing your surface of exposure, witho
 
 | Session                 | Activity                                                                                                                               | Real link for background                                                                                                                                                   |
 |-------------------------|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Falcon’s view (Morning) | Explore publicly available data—like websites, staff bios, and documents—to map what outsiders can see.                                | See [Swoop like falcons](https://red.tymyrddin.dev/docs/in/recon/) and [The falcon’s secret stash](https://red.tymyrddin.dev/docs/in/recon/real/)                          |
+| Falcon’s view (Morning) | Explore publicly available data like websites, staff bios, and documents, to map what outsiders can see.                               | See [Swoop like falcons](https://red.tymyrddin.dev/docs/in/recon/) and [The falcon’s secret stash](https://red.tymyrddin.dev/docs/in/recon/real/)                          |
 | Fox’s view (Midday)     | Run light, controlled probes (like ping or port scans) in a safe lab environment. Discover which actions are easy to detect.           | Based on [The falcon’s first dive](https://red.tymyrddin.dev/docs/in/recon/scanning/) and [Fox hunting through the digital wilds](https://red.tymyrddin.dev/docs/in/enum/) |
 | Fusion session          | Blend the two views into an easy-to-read Attack Surface Map (a diagram showing possible entry points). Teams write up a Recon Dossier. | Rooted in [Mapping the lay of the land](https://red.tymyrddin.dev/docs/in/enum/mapping)                                                                                    |
 
@@ -30,15 +30,15 @@ while giving you practical insight into reducing your surface of exposure, witho
 
 * A one-page Recon Dossier: a simple visual summary of what could be discovered about your organisation.
 * A short checklist of “external signals” defenders should know to look for.
-* A deepened understanding—through lived experience—of what recon feels like from both sides of the fence.
+* A deepened understanding through lived experience of what recon feels like from both sides of the fence.
 
 ## Who is this for?
 
-Perfect for mixed groups: managers, non-tech staff, security leads, and curious minds. No advanced tech background needed—facilitators guide every step so that even non-technical participants feel confident following and contributing.
+Perfect for mixed groups: managers, non-tech staff, security leads, and curious minds. No advanced tech background needed. Facilitators guide every step so that even non-technical participants feel confident following and contributing.
 
 ## Delivery at a glance
 
 * Duration: Full-day (spread across falcon, fox, and combined sessions, with mid-day hands-on labs and final wrap-up).
 * Setup: Easy local lab environment provided (no cloud, just small servers or desktops plus a simple defender toolkit).
-* Why it works: Learners practise real attacker behaviours and defender observations in a narrative and engaging format—with no jargon.
+* Why it works: Learners practise real attacker behaviours and defender observations in a narrative and engaging format with no jargon.
 

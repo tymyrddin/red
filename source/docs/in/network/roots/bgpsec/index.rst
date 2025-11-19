@@ -9,6 +9,6 @@ key management requirements, and challenging global deployment create a new fron
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Ghosts don’t fear heights—they own the view.
+   :caption: Ghosts don’t fear heights, they own the view.
 
    tree.md

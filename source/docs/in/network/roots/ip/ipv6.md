@@ -86,6 +86,6 @@
 - /48: Typical assignment for a site.
 - /56: Typical for residential/large subnet allocation.
 - /64: Standard subnet size (one LAN).
-- Link-Local: Essential for NDP and SLAAC—always present on interfaces.
+- Link-Local: Essential for NDP and SLAAC, always present on interfaces.
 
 Use this cheat sheet for exams, planning, and troubleshooting!
