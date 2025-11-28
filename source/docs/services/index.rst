@@ -1,18 +1,19 @@
-Myrddin's Menagerie
+Myrddin's menagerie
 ======================================================
 
-Welcome to Myrddin's Menagerie. In the Red Wilds of the digital forest, where reality is untidy, we bring together
-cunning, curiosity, and hands-on craft. This is a collection of workshops and facilitated processes designed
-support exploring the behaviours, tradecraft, and tricks of determined adversaries. Spot, move, and protect valuable
-assets with the instincts of foxes, raccoons, and squirrels. From mapping external visibility to reverse engineering
-binaries and building attacker infrastructure, the sessions focus on understanding and disrupting adversary
-rhythms, because the terrain is never neat and the rules are never followed.
+.. image:: /_static/images/myrddins-menagerie.png
+  :alt: A wild forest with foxes, raccoons, squirrels, and falcons, interacting with glowing digital artefacts, signal flares, hidden traps, and networked trees.
+
+In the Red Wilds, messages scurry like nervous squirrels and signals flare like foxfire across the
+trees. Here, cunning, curiosity, and craft converge: workshops and hands-on exercises to map,
+probe, and disrupt adversary rhythms. Learn to see through the forest, follow the twitch of a
+tail or the glint of a scanner, and protect your treasures before the danger reaches them.
 
 .. toctree::
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Explore, disrupt, and understand adversaries:
+   :caption: Explore and understand the wild:
 
    fox-and-falcon.md
    reverse-engineering.md
