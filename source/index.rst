@@ -1,10 +1,8 @@
-.. image:: /_static/images/ukc2.png
-  :alt: Unified Kill Chain
-
-----
-
 Red wilds
 =======================================
+
+.. image:: /_static/images/writing.png
+  :alt: Typewriter
 
 The digital forest is wild, unpredictable, and full of surprises. As red teamers, we don’t just walk the beaten path;
 we bushwhack through firewalls, ford rivers of misconfigurations, and occasionally trip over a root (account).
@@ -28,4 +26,8 @@ and the occasional "wait, that actually worked?" moments—all served with a sid
    docs/through/index
    docs/out/index
    docs/services/index
+
+
+.. image:: /_static/images/ukc2.png
+  :alt: Unified Kill Chain
 
