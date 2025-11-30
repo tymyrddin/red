@@ -3,7 +3,7 @@
 
 ----
 
-Red Team
+Red wilds
 =======================================
 
 The digital forest is wild, unpredictable, and full of surprises. As red teamers, we don’t just walk the beaten path;

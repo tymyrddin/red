@@ -267,39 +267,6 @@ pre[class*="text"] {
   }
 }
 
-/* ============================================= */
-/*         CUSTOM INLINE TOP NAV LINKS           */
-/* ============================================= */
-
-/* Make the links inline and remove bullet points */
-.md-header__links .md-nav {
-    display: flex;              /* Use flexbox to align the items horizontally */
-    list-style: none;           /* Remove bullet points from the list */
-    margin: 0;                  /* Remove any default margin */
-    padding: 0;                 /* Remove any default padding */
-}
-
-/* Style for each individual link */
-.md-header__links .md-nav li {
-    margin-right: 20px;         /* Space out the list items */
-}
-
-/* Style for the anchor tags to adjust their appearance */
-.md-header__links .md-nav a {
-    display: inline-block;      /* Ensure the links are inline */
-    text-decoration: none;      /* Remove underline */
-    padding: 8px 15px;          /* Add padding for clickable area */
-    font-size: 16px;            /* Default font size, adjust this value to change the link size */
-    font-weight: 500;           /* Slightly bold text */
-    border-radius: 4px;         /* Optional: Rounded corners */
-    transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
-}
-
-/* Optional: Hover effect for the links */
-.md-header__links .md-nav a:hover {
-    background-color: purple;  /* Hover background color */
-    color: white;               /* Text color on hover */
-}
 
 /* Line numbers */
 .linenos {
