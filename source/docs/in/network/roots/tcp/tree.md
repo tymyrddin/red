@@ -262,7 +262,7 @@
 | 3.1.1.3 Persistent route manipulation                                 | Medium               | Low                | Very High  | Modifies BGP routes for long-term control or traffic diversion.                            |
 | 3.1.1.4 TCP-AO key material extraction                                | Very High            | High               | Very High  | Extracts TCP-AO keys for future authentication bypass or session hijacking.                |
 | 3.1.2.1 Distributed TCP sequence prediction                           | Very High            | High               | Very High  | Coordinates multiple attackers to predict TCP sequences for BGP session hijacking.         |
-| 3.1.2.2 Synchronized BGP session reset attacks                        | High                 | Medium             | High       | Coordinates resets of multiple BGP sessions to cause widespread routing instability.       |
+| 3.1.2.2 Synchronised BGP session reset attacks                        | High                 | Medium             | High       | Coordinates resets of multiple BGP sessions to cause widespread routing instability.       |
 | 3.1.2.3 Cross-platform exploitation campaigns                         | Very High            | High               | Very High  | Targets multiple router platforms and BGP implementations for maximum impact.              |
 | 3.2.1 ML-Generated Attack Traffic                                     | Very High            | High               | Very High  | AI generates attack traffic that evades detection and targets BGP specifically.            |
 | 3.2.2 Autonomous hijack coordination                                  | Very High            | High               | Very High  | AI coordinates route hijacks across multiple networks autonomously.                        |
@@ -271,5 +271,5 @@
 | 3.2.5 AI-enhanced TCP-AO cryptographic attacks                        | Very High            | High               | Very High  | AI enhances cryptographic attacks against TCP-AO for authentication bypass.                |
 | 3.3.1 Backdoored router firmware/images                               | High                 | High               | Very High  | Compromises firmware or images to introduce backdoors into BGP routers.                    |
 | 3.3.2 Malicious BGP optimization tools                                | High                 | Medium             | High       | Distributes tools that contain malware or vulnerabilities to compromise BGP operations.    |
-| 3.3.3 Compromised network management software                         | High                 | Medium             | High       | Compromises software used to manage BGP networks for unauthorized access.                  |
+| 3.3.3 Compromised network management software                         | High                 | Medium             | High       | Compromises software used to manage BGP networks for unauthorised access.                  |
 | 3.3.4 Pre-installed weak TCP-AO keys in vendor equipment              | Medium               | Low                | High       | Uses weak default keys installed by vendors to compromise BGP authentication.              |

@@ -61,7 +61,7 @@ Man-in-the-middle (MitM) attacks against Border Gateway Protocol (BGP) sessions 
     
         1.3.1 Rogue BGP speaker insertion
             1.3.1.1 Impersonate legitimate BGP peers
-            1.3.1.2 Establish unauthorized peering sessions
+            1.3.1.2 Establish unauthorised peering sessions
             1.3.1.3 Inject malicious routing information
             
         1.3.2 TCP session hijacking

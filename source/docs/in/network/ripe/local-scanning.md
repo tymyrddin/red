@@ -149,10 +149,6 @@ Host 2001:db8:5::2 is up
 
 ## Lab Safety
 
-> Only scan networks you are authorized to. In the RIPE lab environment, all these methods are safe to practice.
+*Only scan networks you are authorised to. In the RIPE lab environment, all these methods are safe to practice.*
 
----
 
-If you want, I can **add a full practical lab scenario**: capturing NDP packets with Termshark, inferring addresses via EUI-64, and pinging the discovered hosts, complete with expected screenshots and output for beginners.
-
-Do you want me to create that full hands-on scenario?

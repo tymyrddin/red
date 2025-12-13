@@ -100,7 +100,7 @@ Goal: Use your control of DNS and the router to move laterally to the `TARGET_SE
 Instructions:
 
 1.  DNS Spoofing for Service Exploitation:
-    *   The `TARGET_SERVER` uses a centralized authentication service. Poison the DNS record for `auth.myco6sec-lab.internal` to point to a malicious server you control.
+    *   The `TARGET_SERVER` uses a centralised authentication service. Poison the DNS record for `auth.myco6sec-lab.internal` to point to a malicious server you control.
     *   Command on your attacker VM (running dnschef): `sudo dnschef --ipv6 --fakeipv6=YOUR_IPV6 --interface=::0 --port=53`
 
 2.  Set Up a Credential Harvesting Service:

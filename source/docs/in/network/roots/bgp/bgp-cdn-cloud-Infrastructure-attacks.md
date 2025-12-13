@@ -12,7 +12,7 @@ BGP + CDN/Cloud infrastructure attacks target the critical intersection of borde
         1.1.1 CDN edge node targeting
             1.1.1.1 Anycast prefix announcement hijacking
             1.1.1.2 Edge location traffic interception
-            1.1.1.3 Localized CDN outage creation
+            1.1.1.3 Localised CDN outage creation
             
         1.1.2 SSL/TLS certificate manipulation
             1.1.2.1 Certificate authority bypass techniques
@@ -71,7 +71,7 @@ BGP + CDN/Cloud infrastructure attacks target the critical intersection of borde
             1.4.2.3 Content purging attacks
             
         1.4.3 Cloud API exploitation
-            1.4.3.1 Management API unauthorized access
+            1.4.3.1 Management API unauthorised access
             1.4.3.2 Resource tagging manipulation
             1.4.3.3 Auto-scaling exploitation
             
@@ -155,7 +155,7 @@ BGP + CDN/Cloud infrastructure attacks target the critical intersection of borde
             1.9.2.2 Economic espionage
             1.9.2.3 Geopolitical influence operations
             
-        1.9.3 Organized crime targeting
+        1.9.3 Organised crime targeting
             1.9.3.1 Financial institution targeting
             1.9.3.2 Cryptocurrency platform attacks
             1.9.3.3 Data trafficking operations
@@ -237,7 +237,7 @@ router bgp 65001
 -   Best practice: Regular access reviews and permission audits
 
 ### Incident response planning
--   Action: Develop specialized incident response procedures for BGP+CDN attacks
+-   Action: Develop specialised incident response procedures for BGP+CDN attacks
 -   How:
     -   Create playbooks for route hijacking incidents
     -   Establish communication protocols with providers and ISPs

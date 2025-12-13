@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-Memory corruption attacks against IPsec implementations exploit vulnerabilities in how packets are processed, parsed, and handled within operating system kernels, IKE daemons, and network stacks. These attacks target flaws in buffer management, packet reassembly, and protocol parsing to achieve remote code execution, denial of service, or unauthorized access to sensitive memory contents. Successful exploitation can compromise the entire IPsec infrastructure, bypassing cryptographic protections entirely.
+Memory corruption attacks against IPsec implementations exploit vulnerabilities in how packets are processed, parsed, and handled within operating system kernels, IKE daemons, and network stacks. These attacks target flaws in buffer management, packet reassembly, and protocol parsing to achieve remote code execution, denial of service, or unauthorised access to sensitive memory contents. Successful exploitation can compromise the entire IPsec infrastructure, bypassing cryptographic protections entirely.
 
 ```text
 1. Memory corruption attacks [OR]
@@ -115,7 +115,7 @@ Memory corruption attacks against IPsec implementations exploit vulnerabilities 
 ## Why it works
 
 -   Protocol complexity: IPsec's complex packet structures and multiple header layers create numerous parsing edge cases.
--   Performance pressures: Optimized packet processing often sacrifices security checks for speed.
+-   Performance pressures: Optimised packet processing often sacrifices security checks for speed.
 -   Legacy code bases: Many IPsec implementations contain decades-old code with known vulnerability patterns.
 -   State management complexity: SA state tracking and packet reassembly involve complex memory management.
 -   Kernel integration: Kernel-resident IPsec stacks operate with high privileges, amplifying impact.

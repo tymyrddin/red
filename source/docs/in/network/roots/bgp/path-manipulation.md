@@ -29,7 +29,7 @@ IPv4 path manipulation involves altering the Border Gateway Protocol (BGP) path 
         1.2.1 Community-Based Traffic Engineering
             1.2.1.1 Manipulating traffic flow using community attributes
             1.2.1.2 Exploiting provider-specific community meanings
-            1.2.1.3 Unauthorized use of no-export and other communities
+            1.2.1.3 Unauthorised use of no-export and other communities
             
         1.2.2 Blackhole Community Manipulation
             1.2.2.1 Illegitimately tagging routes with blackhole communities
@@ -61,7 +61,7 @@ IPv4 path manipulation involves altering the Border Gateway Protocol (BGP) path 
             1.4.1.3 Creating routing loops through next-hop manipulation
             
         1.4.2 Third-Party Next-Hop Abuse
-            1.4.2.1 Specifying unauthorized third-party next-hops
+            1.4.2.1 Specifying unauthorised third-party next-hops
             1.4.2.2 Exploiting next-hop-self configurations
             1.4.2.3 Using next-hop to bypass security policies
             
@@ -105,7 +105,7 @@ IPv4 path manipulation involves altering the Border Gateway Protocol (BGP) path 
     
         1.8.1 Route Aggregation Abuse
             1.8.1.1 Creating overly broad aggregate announcements
-            1.8.1.2 Aggregating unauthorized prefixes
+            1.8.1.2 Aggregating unauthorised prefixes
             1.8.1.3 Using aggregation to hide more specific routes
             
         1.8.2 Deaggregation Attacks
@@ -180,7 +180,7 @@ neighbor 192.0.2.1 maximum-prefix 1000
 -   How:
     -   Document and audit all traffic engineering changes
     -   Implement change control procedures
-    -   Monitor for unauthorized engineering activities
+    -   Monitor for unauthorised engineering activities
 -   Best Practice: Maintain traffic engineering documentation
 
 ### Incident response planning

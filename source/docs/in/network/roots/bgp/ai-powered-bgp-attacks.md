@@ -56,7 +56,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
         1.3.3 Transfer Learning for Cross-Network Attacks
             1.3.3.1 Knowledge transfer between victim networks
             1.3.3.2 Few-shot learning for rapid adaptation
-            1.3.3.3 Meta-learning for generalized attack strategies
+            1.3.3.3 Meta-learning for generalised attack strategies
             
     1.4 AI-Enhanced Reconnaissance [OR]
     
@@ -99,10 +99,10 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             1.6.1.2 Self-healing command and control
             1.6.1.3 Adaptive infrastructure scaling
             
-        1.6.2 AI-Optimized Resource Allocation
+        1.6.2 AI-Optimised Resource Allocation
             1.6.2.1 Dynamic resource allocation for attacks
             1.6.2.2 Energy-efficient attack computation
-            1.6.2.3 Cost-optimized infrastructure management
+            1.6.2.3 Cost-optimised infrastructure management
             
         1.6.3 Intelligent Recovery Mechanisms
             1.6.3.1 Automated incident response evasion
@@ -155,7 +155,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             1.9.2.2 Supply chain disruption optimization
             1.9.2.3 Market position manipulation
             
-        1.9.3 AI-Optimized Ransom Operations
+        1.9.3 AI-Optimised Ransom Operations
             1.9.3.1 Dynamic ransom pricing algorithms
             1.9.3.2 Payment route manipulation
             1.9.3.3 Automated negotiation systems

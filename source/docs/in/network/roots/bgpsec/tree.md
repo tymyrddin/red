@@ -284,7 +284,7 @@ This attack tree explores the methods to undermine BGPsec, targeting its cryptog
 | 1.1.3.1 Harvest now, decrypt later (quantum harvesting)    | Very High            | High               | Very High  | Forward-looking threat; access to encrypted traffic over time.   |
 | 1.1.3.2 Weak hybrid transition implementations             | High                 | Medium             | High       | Exploits transitional crypto; moderate resources.                |
 | 1.1.3.3 Shor's algorithm preparation attacks               | Very High            | Very High          | Very High  | Future quantum attack; technically extreme.                      |
-| 1.2.1.1 HSM vulnerabilities                                | Very High            | Medium             | Very High  | Attacks require specialized hardware and insider knowledge.      |
+| 1.2.1.1 HSM vulnerabilities                                | Very High            | Medium             | Very High  | Attacks require specialised hardware and insider knowledge.      |
 | 1.2.1.2 Supply chain backdoors in key generation           | Very High            | High               | Very High  | Sophisticated supply chain compromise; long-term planning.       |
 | 1.2.1.3 Cloud HSM misconfigurations                        | High                 | Medium             | High       | Opportunistic but requires network/cloud access.                 |
 | 1.2.2.1 Delayed key revocation propagation                 | Medium               | Low                | Medium     | Exploit time gaps; moderate impact.                              |

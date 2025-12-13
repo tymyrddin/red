@@ -166,7 +166,7 @@ bypasses and future quantum threats.
             
         4.2.3 SD-WAN & NFV Targeting [OR]
             4.2.3.1 Software-defined perimeter bypass
-            4.2.3.2 Virtualized IPsec function attacks
+            4.2.3.2 Virtualised IPsec function attacks
             4.2.3.3 Zero-trust network manipulation
             4.2.3.4 API-driven configuration abuse
 
@@ -237,7 +237,7 @@ bypasses and future quantum threats.
     6.2 AI-Enhanced IPsec Attacks [OR]
     
         6.2.1 Machine Learning Exploitation [OR]
-            6.2.1.1 AI-optimized crypto attacks
+            6.2.1.1 AI-optimised crypto attacks
             6.2.1.2 Neural network traffic analysis
             6.2.1.3 ML-based side-channel enhancement
             6.2.1.4 Automated vulnerability discovery

@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-IPsec relies heavily on cryptographic algorithms to provide confidentiality, integrity, and authentication for secure network communications. Weaknesses in these algorithms, their implementation, or their configuration can completely undermine the security of VPN tunnels and protected communications. Cryptographic attacks against IPsec target the fundamental trust mechanisms that secure the protocol, allowing attackers to decrypt traffic, impersonate peers, or establish unauthorized connections.
+IPsec relies heavily on cryptographic algorithms to provide confidentiality, integrity, and authentication for secure network communications. Weaknesses in these algorithms, their implementation, or their configuration can completely undermine the security of VPN tunnels and protected communications. Cryptographic attacks against IPsec target the fundamental trust mechanisms that secure the protocol, allowing attackers to decrypt traffic, impersonate peers, or establish unauthorised connections.
 
 ```text
 1. Algorithm vulnerabilities [OR]

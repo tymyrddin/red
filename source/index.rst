@@ -1,20 +1,22 @@
 Red wilds
 =======================================
 
-.. image:: /_static/images/writing.png
-  :alt: Typewriter
+Venturing into the red wilds means stepping into an environment that is part wilderness, part improvised cityscape,
+and entirely unpredictable. The terrain shifts between overgrown systems, creaking infrastructure, and the sort of
+engineered oddities only a committee meeting or a particularly creative guild could produce.
 
-The digital forest is wild, unpredictable, and full of surprises. As red teamers, we don’t just walk the beaten path;
-we bushwhack through firewalls, ford rivers of misconfigurations, and occasionally trip over a root (account).
+Here, methods and metaphors coexist with no intention of forming an orderly queue. One moment you find yourself in
+architecture worthy of a certain notoriously civic-minded city where nothing works as expected and yet, suspiciously,
+everything keeps running; the next you are tracing the clean, structured lines of a legacy kill chain through digital
+undergrowth.
 
-We walk through the untamed cyber-forest—a sprawling, overgrown landscape shaped by decades of humanoid tinkering,
-half-baked patches, and the occasional "it’s fine, nobody would ever try that" mentality. Here, the vines are made of
-spaghetti code, the swamps are logging pits of debug errors, and the crown jewels are always hidden in the last place
-you’d expect.
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :includehidden:
+   :caption: Whatever, you watch your step.
 
-We navigate this ecosystem with the grace of a fox, the persistence of a raccoon in a dumpster, and the sheer audacity
-of a squirrel who’s convinced the bird feeder definitely belongs to them. These are our tales of triumph, failure,
-and the occasional "wait, that actually worked?" moments—all served with a side of snark.
+   docs/power/index
 
 .. toctree::
    :glob:
@@ -27,7 +29,7 @@ and the occasional "wait, that actually worked?" moments—all served with a sid
    docs/out/index
    docs/services/index
 
+----
 
 .. image:: /_static/images/ukc2.png
   :alt: Unified Kill Chain
-

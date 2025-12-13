@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-Identity spoofing attacks target the authentication mechanisms that IPsec uses to establish trust between peers. By forging or manipulating identity information during the IKE negotiation phase, attackers can impersonate legitimate peers, gain unauthorized access to VPN tunnels, or intercept sensitive communications. These attacks exploit weaknesses in how identities are verified, validated, and trusted within the IPsec framework.
+Identity spoofing attacks target the authentication mechanisms that IPsec uses to establish trust between peers. By forging or manipulating identity information during the IKE negotiation phase, attackers can impersonate legitimate peers, gain unauthorised access to VPN tunnels, or intercept sensitive communications. These attacks exploit weaknesses in how identities are verified, validated, and trusted within the IPsec framework.
 
 ``` text
 1. Identity spoofing [OR]
@@ -208,7 +208,7 @@ charon {
 
 -   Automated identity management: Implement automated certificate deployment and PSK rotation systems.
 -   Zero-trust identity verification: Treat all identity assertions as untrusted until multiple factors are verified.
--   Blockchain-based identity: Explore decentralized identity management solutions for peer verification.
+-   Blockchain-based identity: Explore decentralised identity management solutions for peer verification.
 -   Machine learning detection: Use AI-based monitoring to detect anomalous identity patterns.
 
 ## Conclusion

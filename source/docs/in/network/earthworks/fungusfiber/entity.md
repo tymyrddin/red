@@ -53,7 +53,7 @@ Providing IP address allocations, routing coordination, and internet connectivit
    * Likelihood: Medium
    * Lab Use: Endpoint exploitation, lateral movement, lab reconnaissance.
 
-6. Organized Cyber Criminals
+6. Organised Cyber Criminals
 
    * Description: Actors attempting multi-step attacks to manipulate routing tables or intercept lab traffic.
    * Likelihood: Medium

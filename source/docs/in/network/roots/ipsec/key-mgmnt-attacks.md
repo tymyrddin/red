@@ -84,7 +84,7 @@ The Internet Key Exchange (IKE) protocol forms the foundation of IPsec security 
       1.4.3.2 Manipulating minor skew to bypass temporal checks
 
     1.4.4 Audit and logging attacks [OR]
-      1.4.4.1 Unsynchronized clocks undermining non-repudiation
+      1.4.4.1 Unsynchronised clocks undermining non-repudiation
       1.4.4.2 Tampering or deletion of logs affecting incident reconstruction
 ```
 
@@ -143,7 +143,7 @@ crypto ikev2 policy STRONG-POLICY
     -   Implement offline root CAs with online issuing intermediates
     -   Enforce strict certificate validation including CRL/OCSP checking
     -   Use certificate pinning for critical infrastructure
-    -   Monitor certificate transparency logs for unauthorized issuance
+    -   Monitor certificate transparency logs for unauthorised issuance
 -   Configuration example (Strict certificate validation, junos):
 
 ```text

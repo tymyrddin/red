@@ -114,7 +114,7 @@ Data Stolen: 2.5 GB of simulated cryptographic research data.
 ## Defensive Detection & Mitigation
 
 ### Detection points
-1.  DHCP Snooping Alert: Unauthorized DHCP server detected at `192.168.1.254`.
+1.  DHCP Snooping Alert: Unauthorised DHCP server detected at `192.168.1.254`.
 2.  VPN Auth Anomaly: Multiple failed logins followed by success from unusual IP.
 3.  DNS Exfiltration Alert: Unusual DNS query volume to `attacker.com`.
 

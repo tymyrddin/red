@@ -124,5 +124,5 @@ Instructions:
     *   Concept: Instead of sending a normal packet to `2001:db8::1`, you send one to `2001:db8::<encoded_data>`. This is highly stealthy.
 
 Final Report: Document all the `[DISCOVER THIS]` fields. Explain why IPv6 presents a significant blind spot for many organisations. Propose two key mitigations:
-1.  RA Guard: Implement Router Advertisement Guard on network switches to drop malicious RAs from unauthorized ports.
+1.  RA Guard: Implement Router Advertisement Guard on network switches to drop malicious RAs from unauthorised ports.
 2.  DHCPv6 Snooping: Use DHCPv6 Snooping to prevent rogue DHCPv6 servers and enforce legitimate IPv6 configuration.

@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-Security control bypass techniques encompass sophisticated methods that leverage ICMP protocols to circumvent, evade, or undermine various security mechanisms. These approaches target intrusion detection systems, network segmentation, and cloud security controls, exploiting protocol necessities and implementation gaps to achieve unauthorized access while maintaining stealth.
+Security control bypass techniques encompass sophisticated methods that leverage ICMP protocols to circumvent, evade, or undermine various security mechanisms. These approaches target intrusion detection systems, network segmentation, and cloud security controls, exploiting protocol necessities and implementation gaps to achieve unauthorised access while maintaining stealth.
 
 ```text
 1. Security control bypass [OR]
@@ -187,4 +187,4 @@ Security control bypass techniques encompass sophisticated methods that leverage
 
 ## Conclusion
 
-Security control bypass techniques represent a significant and evolving threat landscape that leverages ICMP protocols to circumvent various security mechanisms. These methods exploit protocol necessities, configuration complexities, and implementation gaps to achieve unauthorized access while evading detection. Defence requires a comprehensive approach including robust policy implementation, advanced detection capabilities, network segmentation enhancement, cloud security hardening, and regular security assessment. As attack techniques continue to evolve and security environments become more complex, organisations must maintain vigilance and implement multi-layered security measures. The future of cybersecurity will depend on the ability to adapt security controls to address evolving evasion techniques while maintaining network functionality and performance.
+Security control bypass techniques represent a significant and evolving threat landscape that leverages ICMP protocols to circumvent various security mechanisms. These methods exploit protocol necessities, configuration complexities, and implementation gaps to achieve unauthorised access while evading detection. Defence requires a comprehensive approach including robust policy implementation, advanced detection capabilities, network segmentation enhancement, cloud security hardening, and regular security assessment. As attack techniques continue to evolve and security environments become more complex, organisations must maintain vigilance and implement multi-layered security measures. The future of cybersecurity will depend on the ability to adapt security controls to address evolving evasion techniques while maintaining network functionality and performance.

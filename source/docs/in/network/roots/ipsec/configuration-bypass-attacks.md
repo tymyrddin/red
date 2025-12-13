@@ -2,7 +2,7 @@
 
 ## Attack pattern
 
-Configuration bypass attacks exploit weaknesses in how IPsec policies are defined, enforced, and processed. By manipulating policy enforcement mechanisms or exploiting ambiguities in policy application, attackers can bypass intended security controls, evade traffic protection, or gain unauthorized access to network resources. These attacks target the policy decision points that determine which traffic receives IPsec protection and how that protection is applied.
+Configuration bypass attacks exploit weaknesses in how IPsec policies are defined, enforced, and processed. By manipulating policy enforcement mechanisms or exploiting ambiguities in policy application, attackers can bypass intended security controls, evade traffic protection, or gain unauthorised access to network resources. These attacks target the policy decision points that determine which traffic receives IPsec protection and how that protection is applied.
 
 ```text
 2.1.3 Configuration Bypass [OR]
