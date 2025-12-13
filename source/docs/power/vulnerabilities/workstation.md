@@ -69,7 +69,11 @@ Administrative access to local system (often unnecessary, but granted for conven
 
 ### Analysing access with BloodHound
 
-[BloodHound](https://github.com/BloodHoundAD/BloodHound) analysings Active Directory relationships and identifies attack paths. Running BloodHound at UU P&L revealed the engineering workstation's user account (shared "engineer" account) had local admin rights on the workstation, domain admin equivalent rights in OT domain, and membership in groups with access to corporate resources.
+[BloodHound](https://red.tymyrddin.dev/docs/in/network/notes/run-ins.html#service-accounts-are-members-of-domain-admins)
+analyses Active Directory relationships and identifies 
+attack paths. Running BloodHound at UU P&L revealed the engineering workstation's user account (shared `engineer` 
+account) had local admin rights on the workstation, domain admin equivalent rights in OT domain, and membership 
+in groups with access to corporate resources.
 
 This meant compromising the engineering workstation gave an attacker domain admin access to the entire OT environment. From there, complete compromise of all OT systems was straightforward.
 
