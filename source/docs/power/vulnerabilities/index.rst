@@ -1,7 +1,7 @@
 Vulnerability assessment
 ======================================================
 
-.. image:: /_static/images/ot-vulns.png
+.. image:: /_static/images/ot-controls.png
    :alt: A bustling factory control room with exposed mechanical brains integrated into walls, glowing red circuits thrumming with energy. Panels display 'default login' prompts and blinking warning lights.
 
 A useful assessment focuses on realistic attack paths and operational impact. Can an attacker reach an HMI from the
