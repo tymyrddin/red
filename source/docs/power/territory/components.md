@@ -280,7 +280,11 @@ The historian database used SQL Server with 'sa' account and password "Historian
 
 The recommendations were extensive and expensive, requiring vendor patches, configuration changes, network segmentation, and rebuilding parts of the infrastructure. The university implemented what they could afford immediately and scheduled the rest for "the next budget cycle" (a phrase that strikes fear into any security consultant's heart).
 
-## Engineering workstations, the keys to the kingdom
+## Engineering workstations
+
+![PLCs](/_static/images/ot-engineering-workstation.png)
+
+The keys to the kingdom.
 
 Engineering workstations are the computers used to program PLCs, configure SCADA systems, and maintain industrial control systems. They're typically Windows laptops or desktops with vendor-specific engineering software installed.
 
@@ -365,15 +369,22 @@ The recommendations included:
 
 The university's response was to buy a new laptop, install engineering software, and apply some basic hardening. They kept the old laptop "as backup", which means it's still sitting there, still infected, still containing all those credentials, waiting for an incident.
 
-## Safety instrumented systems, the systems you must not break
+## Safety instrumented systems
 
-Safety Instrumented Systems (SIS) are specialized control systems designed to protect against hazardous events. When the normal control system fails or conditions become dangerous, the SIS automatically takes action to bring the process to a safe state.
+The systems you must not break.
+
+Safety Instrumented Systems (SIS) are specialized control systems designed to protect against hazardous events. When 
+the normal control system fails or conditions become dangerous, the SIS automatically takes action to bring the 
+process to a safe state.
 
 ### SIS vs BPCS
 
-The Basic Process Control System (BPCS) is the normal control system (the PLCs and SCADA we've discussed). It controls the process during normal operations.
+The Basic Process Control System (BPCS) is the normal control system (the PLCs and SCADA). It controls the process 
+during normal operations.
 
-The SIS is separate and independent. It monitors process conditions and, if danger is detected, takes protective action. This might mean:
+The SIS is separate and independent. It monitors process conditions and, if danger is detected, takes protective 
+action. This might mean:
+
 - Shutting down equipment
 - Opening relief valves
 - Activating emergency cooling
@@ -385,6 +396,7 @@ The key principle is independence. The SIS must work even if the BPCS fails, is 
 ### SIS architecture
 
 A SIS typically includes:
+
 - Safety PLCs (different from control PLCs, designed for safety applications)
 - Safety sensors (reliable, often redundant)
 - Final elements (safety valves, emergency shutdown systems)
@@ -392,6 +404,7 @@ A SIS typically includes:
 - Engineering workstation (for configuring safety logic)
 
 Common safety PLC manufacturers:
+
 - Siemens (S7-400FH)
 - Rockwell Allen-Bradley (GuardLogix)
 - Schneider Electric (Modicon Safety PLCs)
@@ -399,12 +412,14 @@ Common safety PLC manufacturers:
 - Yokogawa ProSafe-RS
 
 At UU P&L, the alchemical reactor has a SIS that monitors:
+
 - Reactor temperature (with three independent sensors)
 - Pressure (with redundant sensors)
 - Containment field strength (magical monitoring)
 - Emergency cooling system status
 
 If any parameter exceeds safe limits, the SIS:
+
 - Activates emergency cooling
 - Vents pressure to safe release point
 - Shuts down the reaction
@@ -415,9 +430,11 @@ This happens automatically, without human intervention, and without depending on
 
 ### Security and safety
 
-Testing SIS requires extreme caution. The safety system protects against hazardous events, including events that could injure or kill people. Breaking the safety system during testing could have catastrophic consequences.
+Testing SIS requires extreme caution. The safety system protects against hazardous events, including events that 
+could injure or kill people. Breaking the safety system during testing could have catastrophic consequences.
 
-IEC 61511 (for process industries) and IEC 61508 (generic functional safety) define requirements for safety systems. These standards now include cybersecurity considerations, but implementation varies.
+IEC 61511 (for process industries) and IEC 61508 (generic functional safety) define requirements for safety systems. 
+These standards now include cybersecurity considerations, but implementation varies.
 
 ### Testing SIS
 
@@ -471,6 +488,8 @@ IEDs typically:
 Testing IEDs is similar to testing other OT devices, but you must be even more careful. Protective relays, for example, are responsible for detecting faults and isolating damaged equipment. Breaking a relay during testing could leave equipment unprotected.
 
 ## The forgotten Windows XP box in the corner
+
+![Windows XP workstation](/_static/images/ot-windowsxp-workstation.png)
 
 In almost every OT environment, there's a computer sitting in a corner, covered in dust, with yellowing plastic and a CRT monitor (or at least a very old LCD). Nobody's quite sure what it does. Nobody dares turn it off. It's been running continuously since it was installed in 2004.
 
