@@ -14,7 +14,7 @@ unauthorised paths, enabling interception, surveillance, or denial-of-service at
         1.1.1 Exact Prefix Announcement
             1.1.1.1 Announcing another organisation's exact IPv4 prefix
             1.1.1.2 Using forged origin AS to claim ownership
-            1.1.1.3 Exploiting lack of Route Origin Authorization (ROA)
+            1.1.1.3 Exploiting lack of Route Origin Author (ROA)
             
         1.1.2 More Specific Prefix Announcement
             1.1.2.1 Announcing a longer prefix (e.g., /24 instead of /22)
@@ -129,7 +129,7 @@ unauthorised paths, enabling interception, surveillance, or denial-of-service at
 ## Why it works
 
 -   Trust-Based Protocol: BGP inherently trusts announcements from peers without cryptographic verification
--   Limited Validation: Many networks lack Route Origin Authorization (ROA) and RPKI validation
+-   Limited Validation: Many networks lack Route Origin Author (ROA) and RPKI validation
 -   Slow Convergence: Global BGP convergence can take minutes, allowing attacks to persist
 -   Complexity: Internet-scale routing complexity makes manual verification impractical
 -   Economic Factors: Asymmetric incentives where defenders bear costs of protection
@@ -139,7 +139,7 @@ unauthorised paths, enabling interception, surveillance, or denial-of-service at
 ### Resource Public Key Infrastructure (RPKI)
 -   Action: Implement cryptographic route origin validation
 -   How:
-    -   Create Route Origin Authorizations (ROAs) for your prefixes
+    -   Create Route Origin Authors (ROAs) for your prefixes
     -   Configure routers to validate received routes (ROV)
     -   Maintain current ROAs with correct origin AS numbers
 -   Configuration example (Cisco):

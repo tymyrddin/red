@@ -170,5 +170,5 @@ These privileges allow a process to impersonate other users and act on their beh
 
 ## Resources
 
-* [Privilege Constants (Authorization)](https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants)
+* [Privilege Constants (Author)](https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants)
 * [Priv2Admin](https://github.com/gtworek/Priv2Admin)

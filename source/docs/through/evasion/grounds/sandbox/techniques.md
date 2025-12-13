@@ -32,8 +32,8 @@ residential address space.
 
 IfConfig.me can be used to retrieve your current IP Address, with additional information being optional. Combining 
 this with ARIN's RDAP allows you to determine the ISP returned in an easy to parse format (JSON). That will, ofcourse, 
-will only work if the host has internet access. Some organizations may build a block list of specific domains, so you 
-should be 100% sure that this method will work for the organization you are attempting to leverage this against.
+will only work if the host has internet access. Some organs may build a block list of specific domains, so you 
+should be 100% sure that this method will work for the organ you are attempting to leverage this against.
 
 ## Checking system information.
 
@@ -52,7 +52,7 @@ Some additional examples of things to filter on:
 * BIOS/UEFI Version/Serial Number
 * Windows Product Key/OS Version
 * Network Adapter Information
-* Virtualization Checks
+* Virtual Checks
 * Current Signed in User
 * ...
 

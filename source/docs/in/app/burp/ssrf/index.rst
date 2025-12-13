@@ -10,7 +10,7 @@ the server-side application to make requests to an unintended location.
 
 In a typical SSRF attack, the attacker might cause the server to make a connection to internal-only services within
 the organisation's infrastructure. In other cases, they may be able to force the server to connect to arbitrary
-external systems, potentially leaking sensitive data such as authorization credentials.
+external systems, potentially leaking sensitive data such as author credentials.
 
 SSRF remains a significant and underrated threat, consistently appearing in cloud environments (AWS, Azure, GCP
 metadata APIs), APIs & webhooks (URL fetching, PDF generators, Slack integrations), Internal service abuse (database

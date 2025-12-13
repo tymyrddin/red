@@ -46,7 +46,7 @@ The impact of web cache poisoning is heavily dependent on several key factors: W
 * [Web cache poisoning via an unkeyed query parameter](../burp/cache/6.md)
 * [Parameter cloaking](../burp/cache/7.md)
 * [Web cache poisoning via a fat GET request](../burp/cache/8.md)
-* [URL normalization](../burp/cache/9.md)
+* [URL normal](../burp/cache/9.md)
 * [Web cache poisoning to exploit a DOM vulnerability via a cache with strict cacheability criteria](../burp/cache/10.md)
 * [Combining web cache poisoning vulnerabilities](../burp/cache/11.md)
 * [Cache key injection](../burp/cache/12.md)

@@ -101,7 +101,7 @@ Recommendations: Isolate on separate VLAN, read-only network share, backup data 
 
 Another common discovery is systems that are supposedly decommissioned but still powered on and connected to the network. These are dangerous because they're not monitored, not maintained, and often not secured, but they might still be doing something important that nobody remembers.
 
-At UU P&L, a system labeled "OLD-SCADA" was listed in documentation as "decommissioned 2018". Yet it was responding to pings and had active network connections.
+At UU P&L, a system labeled `OLD-SCADA` was listed in documentation as "decommissioned 2018". Yet it was responding to pings and had active network connections.
 
 Investigation revealed it was the previous SCADA server, replaced in 2018 but never actually shut down. It was still running. It still had connections to some RTUs that hadn't been migrated to the new SCADA system. Operators occasionally used it to check historical data from before the migration.
 

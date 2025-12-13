@@ -70,7 +70,7 @@ In Burp Suite Professional, the extension reports and prototype pollution source
 
 Websites often attempt to prevent or patch prototype pollution vulnerabilities by filtering suspicious keys like `__proto__`. This key sanitisation approach is not a robust long-term solution as there are a number of ways it can potentially be bypassed:
 
-* Obfuscate the prohibited keywords, so they're missed during the sanitization. 
+* Obfuscate the prohibited keywords, so they're missed during the sanit. 
 * Access the prototype via the `constructor` property instead of `__proto__`. 
 
 ## Escalation
@@ -86,7 +86,7 @@ It is also a starting point for further attacks: A prototype pollution attack al
 
 * [DOM XSS via client-side prototype pollution](../burp/pollution/1.md)
 * [DOM XSS via an alternative prototype pollution vector](../burp/pollution/2.md)
-* [Client-side prototype pollution via flawed sanitization](../burp/pollution/3.md)
+* [Client-side prototype pollution via flawed sanit](../burp/pollution/3.md)
 * [Client-side prototype pollution in third-party libraries](../burp/pollution/4.md)
 * [Client-side prototype pollution via browser APIs](../burp/pollution/5.md)
 * [Privilege escalation via server-side prototype pollution](../burp/pollution/6.md)

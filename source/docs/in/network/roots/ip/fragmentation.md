@@ -95,7 +95,7 @@ An attacker deliberately crafts IP packets that are fragmented in an abnormal or
     1.7 Network Protocol Specific [OR]
     
         1.7.1 TCP Specific Attacks
-            1.7.1.1 TCP Segment Overlap Desynchronization
+            1.7.1.1 TCP Segment Overlap Desynchron
             1.7.1.2 SEQ/ACK Number Fragmentation Attack
             
         1.7.2 ICMP Fragmentation
@@ -120,7 +120,7 @@ An attacker deliberately crafts IP packets that are fragmented in an abnormal or
             1.8.3.1 Crossbar Buffer Fragment Flood
             1.8.3.2 Virtual Output Queue (VOQ) Fragmentation Attack
             
-    1.9 Cloud and Virtualization [OR]
+    1.9 Cloud and Virtual [OR]
     
         1.9.1 Hypervisor Attacks
             1.9.1.1 Virtual Switch Fragment Reassembly Bypass
@@ -142,7 +142,7 @@ An attacker deliberately crafts IP packets that are fragmented in an abnormal or
             
         1.10.2 Industrial Control Systems (ICS)
             1.10.2.1 SCADA Protocol Fragmentation Attack
-            1.10.2.2 Modbus TCP Fragment Desynchronization
+            1.10.2.2 Modbus TCP Fragment Desynchron
             
         1.10.3 Automotive Systems
             1.10.3.1 CAN Bus IP Gateway Fragment Attack

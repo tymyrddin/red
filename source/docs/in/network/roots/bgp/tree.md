@@ -21,7 +21,7 @@
         
             1.1.3.1 Backdoored router firmware/images
             1.1.3.2 Compromised IXP route server software
-            1.1.3.3 Malicious BGP optimization tools
+            1.1.3.3 Malicious BGP optim tools
             
     1.2 BGP Protocol Attacks [OR]
     
@@ -156,7 +156,7 @@
 | 1.1.2.3 Default credentials on router admin interfaces    | Low                  | Low                | Medium     | Simple but high impact if not patched.                           |
 | 1.1.3.1 Backdoored router firmware/images                 | Very High            | High               | Very High  | Supply chain compromise; difficult but extremely impactful.      |
 | 1.1.3.2 Compromised IXP route server software             | Very High            | High               | Very High  | Infrastructure-level attack; sophisticated.                      |
-| 1.1.3.3 Malicious BGP optimization tools                  | High                 | Medium             | High       | Requires targeted deployment to operators.                       |
+| 1.1.3.3 Malicious BGP optim tools                  | High                 | Medium             | High       | Requires targeted deployment to operators.                       |
 | 1.2.1.1 TCP RST injection                                 | High                 | High               | High       | Requires on-path access and no authentication.                   |
 | 1.2.1.2 Keepalive timer exhaustion attacks                | Medium               | Medium             | Medium     | Automated attack; moderately difficult.                          |
 | 1.2.1.3 BGP session spoofing with forged source IPs       | High                 | Medium             | High       | Needs control over traffic path; complex.                        |

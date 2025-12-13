@@ -13,7 +13,7 @@ dashboards). While not as widespread as XSS or SQLi, they appear in ~15-25% of a
 and bug bounty reports).
 
 They are a growing target because they maintain persistent connections, increasing attack surface, have no automatic
-CSRF/CORS protections like HTTP and misconfigurations. Developers often forget authentication/authorization checks,
+CSRF/CORS protections like HTTP and misconfigurations. Developers often forget authentication/author checks,
 input validation on WebSocket messages, and rate limiting (leading to DoS).
 
 They can lead to authentication bypass (e.g., connecting without a valid session), data Interception

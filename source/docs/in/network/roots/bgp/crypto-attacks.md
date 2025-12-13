@@ -67,12 +67,12 @@ Cryptographic attacks on routing protocols target the security mechanisms design
             
         1.4.2 Digital signature exploitation
             1.4.2.1 ECDSA nonce reuse attacks
-            1.4.2.2 RSA key factorization attempts
+            1.4.2.2 RSA key factor attempts
             1.4.2.3 Signature malleability exploitation
             
         1.4.3 Encryption algorithm attacks
             1.4.3.1 Block cipher mode weaknesses
-            1.4.3.2 Initialization vector manipulation
+            1.4.3.2 Initial vector manipulation
             1.4.3.3 Padding oracle exploitation
             
     1.5 Key management attacks [OR]
@@ -216,7 +216,7 @@ Cryptographic attacks on routing protocols target the security mechanisms design
 ### Protocol validation and verification
 -   **Action**: Implement comprehensive validation of cryptographic protocols
 -   **How**:
-    -   Deploy RPKI validation for route origin authorization 
+    -   Deploy RPKI validation for route origin author 
     -   Implement BGPsec path validation where supported 
     -   Use TCP-AO with strong cryptographic algorithms for BGP sessions 
 -   **Configuration example**: Enable RPKI-to-router protocol validation with integrity checking

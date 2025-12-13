@@ -62,7 +62,7 @@ BGP + CDN/Cloud infrastructure attacks target the critical intersection of borde
     
         1.4.1 BGP protocol manipulation
             1.4.1.1 Anycast prefix announcement forging
-            1.4.1.2 Route origin authorization bypass
+            1.4.1.2 Route origin author bypass
             1.4.1.3 AS path manipulation for traffic engineering
             
         1.4.2 CDN-specific exploitation

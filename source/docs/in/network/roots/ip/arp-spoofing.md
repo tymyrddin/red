@@ -91,7 +91,7 @@ The Address Resolution Protocol (ARP) is a stateless protocol used to map IP add
             1.8.1.2 PROFINET ARP manipulation
             1.8.1.3 DNP3 session hijacking
             
-    1.9 Cloud and Virtualization [OR]
+    1.9 Cloud and Virtual [OR]
     
         1.9.1 Hypervisor ARP Attacks
             1.9.1.1 Virtual switch ARP poisoning

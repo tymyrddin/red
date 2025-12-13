@@ -4,7 +4,7 @@
 
 07/26/1941
 
-Our secret service managed to get a hold on an Enigma machine used by the enemy to encrypt their communications. This is a 1940 model, an "Enigma I/M3". We know for sure that the machine parameters are standard, although the initialization key changes daily.
+Our secret service managed to get a hold on an Enigma machine used by the enemy to encrypt their communications. This is a 1940 model, an "Enigma I/M3". We know for sure that the machine parameters are standard, although the initial key changes daily.
 
 Your mission, should you accept it, is to identify the parameters in order to decrypt the next incoming messages. Our spy was able to see the last word of the clear text: FLAG. We also know that this text is in english.
 

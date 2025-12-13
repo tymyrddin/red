@@ -49,7 +49,7 @@ interface Vlan1
 router bgp 1
  bgp router-id 1.1.1.1
  bgp log-neighbor-changes
- no synchronization
+ no synchron
  neighbor 11.0.0.2 remote-as 2
  network 10.0.0.0 mask 255.255.255.0
 !

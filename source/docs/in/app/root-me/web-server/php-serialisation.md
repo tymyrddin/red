@@ -1,6 +1,6 @@
 # PHP serialisation
 
-[root-me challenge PHP - Serialization](https://www.root-me.org/en/Challenges/Web-Server/PHP-Serialization): Get administrator access.
+[root-me challenge PHP - Serial](https://www.root-me.org/en/Challenges/Web-Server/PHP-Serialization): Get administrator access.
 
 ----
 

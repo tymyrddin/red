@@ -15,7 +15,7 @@
 | Vulnerability	            | Likelihood	 | Impact	               | Testing Method	                      | Tools                          |
 |---------------------------|-------------|-----------------------|--------------------------------------|--------------------------------|
 | Business Logic Flaws	     | 25-50%	     | Financial loss	       | Race conditions, pricing tampering	  | Manual testing, custom scripts |
-| Insecure Deserialization	 | 5-15%	      | RCE	                  | Java/Python gadget chains	           | ysoserial, Fickling            |
+| Insecure Deserial	 | 5-15%	      | RCE	                  | Java/Python gadget chains	           | ysoserial, Fickling            |
 | CSRF	                     | 10-20%	     | Unauthorized actions	 | Craft malicious forms, token checks	 | Burp CSRF PoC generator        |
 | CORS Misconfig	           | 20-30%	     | Data theft	           | `Origin: evil.com` injection	        | Burp, cors-scanner             |
 | File Upload Vulns	        | 15-25%	     | RCE, malware	         | Upload `.php`, polyglot files	       | Manual testing, Metasploit     |

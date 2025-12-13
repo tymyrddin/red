@@ -8,7 +8,7 @@ In the Red part of the forest, the squirrel is small, quick, and adept at moving
 
 ## Why it matters
 
-Exfiltration is the endgame of most attacks. If information leaves unnoticed, the impact can be severe. By practicing and understanding these methods in a safe lab, teams gain insight into defensive controls, monitoring gaps, and organizational habits that could be exploited.
+Exfiltration is the endgame of most attacks. If information leaves unnoticed, the impact can be severe. By practicing and understanding these methods in a safe lab, teams gain insight into defensive controls, monitoring gaps, and organal habits that could be exploited.
 
 ## Workshop flow (what participants do)
 
@@ -29,7 +29,7 @@ Exfiltration is the endgame of most attacks. If information leaves unnoticed, th
 
 * Security teams and analysts who want hands-on experience with exfil techniques.
 * Technical staff seeking insight into how data leaves systems and how to detect it.
-* Non-technical staff interested in organizational risk and awareness.
+* Non-technical staff interested in organal risk and awareness.
 
 ## Delivery at a glance
 

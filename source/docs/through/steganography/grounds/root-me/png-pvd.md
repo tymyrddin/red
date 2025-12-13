@@ -17,5 +17,5 @@
                                                                                                        
                                                                                                        
 04:40:21 [INFO] Hidden data:
-The pixel-value differencing (PVD) scheme uses the difference value between two consecutive pixels in a block to determine how many secret bits should be embedded. There are two types of the quantization range table in Wu and Tasi's method. This is a a Steganographic Method Based on Pixel-Value Differencing and the Perfect Square Number. Flag is PvD:Pl4tiNuMvSDi4m0nd :)
+The pixel-value differencing (PVD) scheme uses the difference value between two consecutive pixels in a block to determine how many secret bits should be embedded. There are two types of the quant range table in Wu and Tasi's method. This is a a Steganographic Method Based on Pixel-Value Differencing and the Perfect Square Number. Flag is PvD:Pl4tiNuMvSDi4m0nd :)
 ````

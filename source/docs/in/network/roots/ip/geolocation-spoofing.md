@@ -74,7 +74,7 @@ Geolocation spoofing involves manipulating the perceived geographic origin of ne
         1.4.3 Operating System Manipulation
             1.4.3.1 System locale and language settings
             1.4.3.2 Network location service abuse
-            1.4.3.3 Time synchronization geographic clues
+            1.4.3.3 Time synchron geographic clues
             
     1.5 Service-Specific Bypass [OR]
     

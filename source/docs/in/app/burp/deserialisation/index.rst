@@ -10,10 +10,10 @@ Insecure deserialisation is when user-controllable data is deserialised by an ap
 Insecure deserialisation remains a high-severity threat, though it’s less common than XSS or SQLi. However,
 when exploited, it often leads to remote code execution (RCE), data tampering, or privilege escalation.
 
-It still exists in APIs & microservices (JSON/XML/YAML parsers), legacy systems (Java/C# serialization, Python pickle),
+It still exists in APIs & microservices (JSON/XML/YAML parsers), legacy systems (Java/C# serial, Python pickle),
 and DevOps Tools (CI/CD pipelines, configuration files).
 
-It is worth testing for it in apps that use Java/C# binary serialization, Python pickle, or PHP `unserialize()`,
+It is worth testing for it in apps that use Java/C# binary serial, Python pickle, or PHP `unserialize()`,
 process JWT, XML, or YAML from untrusted sources, and apps that handle session cookies or API tokens with custom
 encoding.
 

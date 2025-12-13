@@ -37,7 +37,7 @@ Internet Protocol version 4 (IPv4) infrastructure attacks target the core networ
             1.2.2.3 Option manipulation
             
         1.2.3 NTP server targeting
-            1.2.3.1 Time synchronization attacks
+            1.2.3.1 Time synchron attacks
             1.2.3.2 Monlist command exploitation
             1.2.3.3 Stratum manipulation
             

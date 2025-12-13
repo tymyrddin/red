@@ -4,7 +4,7 @@ Insecure direct object references (IDOR) occur when a developer uses an identifi
 
 * You can automate IDOR hunting by using Burp or your own scripts. 
 * You can use the Burp intruder to iterate through IDs to find valid ones. 
-* The Burp extension [Autorize](https://github.com/Quitten/Autorize/) scans for authorization issues by accessing higher-privileged accounts with lower-privileged accounts.
+* The Burp extension [Autorize](https://github.com/Quitten/Autorize/) scans for author issues by accessing higher-privileged accounts with lower-privileged accounts.
 * The Burp extensions [Auto Repeater](https://github.com/nccgroup/AutoRepeater/) and [AuthMatrix](https://github.com/SecurityInnovation/AuthMatrix/) allow you to automate the process of switching out cookies, headers, and parameters.
 
 For any serious security researcher, seeing an exposed internal identifier is an immediate invitation to test IDOR vulnerabilities, especially as they are a solid source of bug bounty payouts. To identify a potentially insecure object reference, you need to have some idea of how a specific application or website works, how it processes HTTP requests, and what information it should and should not reveal in its HTTP responses. Especially for more advanced vulnerabilities that involve passing data through APIs, detecting IDORs can be tricky.

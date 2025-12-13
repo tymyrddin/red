@@ -112,7 +112,7 @@ Cracking performance lower than expected?
 * Update your backend API runtime / driver the right way:
   https://hashcat.net/faq/wrongdriver
 
-* Create more work items to make use of your parallelization power:
+* Create more work items to make use of your parallel power:
   https://hashcat.net/faq/morework
 
 [s]tatus [p]ause [b]ypass [c]heckpoint [f]inish [q]uit => Started: Sat Mar  4 02:32:31 2023

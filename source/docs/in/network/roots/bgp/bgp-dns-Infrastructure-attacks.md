@@ -158,7 +158,7 @@ BGP and DNS infrastructure attacks represent a critical threat vector that targe
     1.10 Criminal ecosystem operations [OR]
     
         1.10.1 DDoS-for-hire services
-            1.10.1.1 Booter service utilization
+            1.10.1.1 Booter service util
             1.10.1.2 Stresser platform abuse
             1.10.1.3 Criminal service integration
             
