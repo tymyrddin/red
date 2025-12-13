@@ -18,7 +18,7 @@ what happens. The former tells you something useful. The latter tells you who wi
    :caption: Checking:
 
    hmi.md
-   pcl.md
+   plc.md
    scada.md
    workstation.md
 

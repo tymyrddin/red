@@ -8,6 +8,8 @@ Let's tour the key components you'll encounter, using examples from Unseen Unive
 
 ## PLCs, the brains with no sense of self-preservation
 
+![PLCs](/_static/images/ot-plcs.png)
+
 Programmable Logic Controllers (PLCs) are the workhorses of industrial automation. They're ruggedised computers designed to run control programs in harsh environments (temperature extremes, vibration, electrical noise, and at UU P&L, occasional magical interference).
 
 ### What PLCs do
@@ -81,6 +83,8 @@ At UU P&L, testing the turbine PLCs revealed:
 The recommendation wasn't "fix the PLC" (impossible without replacement). It was "segment the network so only engineering workstations can reach PLC programming ports, monitor for unexpected PLC communications, implement authentication at the network layer."
 
 ## HMIs, where humans meet machines
+
+![HMI](/_static/images/ot-hmi.png)
 
 Human-Machine Interfaces (HMIs) are the screens that operators use to monitor and control processes. They display pretty graphics of the plant, show real-time values, and provide buttons for controlling equipment.
 
@@ -201,6 +205,8 @@ At UU P&L, the RTUs communicate with central SCADA via DNP3 over cellular connec
 An attacker with access to the cellular network could potentially send DNP3 commands to operate circuit breakers. The recommendations included implementing DNP3 Secure Authentication, using VPNs for all RTU communications, changing default credentials, and deploying intrusion detection.
 
 ## SCADA servers and historians
+
+![SCADA](/_static/images/ot-scada.png)
 
 SCADA (Supervisory Control and Data Acquisition) servers are the central systems that collect data from PLCs and RTUs, present it to operators via HMIs, log events, and manage the overall industrial process.
 
