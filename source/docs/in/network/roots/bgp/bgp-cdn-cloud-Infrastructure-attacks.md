@@ -126,7 +126,7 @@ BGP + CDN/Cloud infrastructure attacks target the critical intersection of borde
             1.7.3.2 Microservice traffic manipulation
             1.7.3.3 Webhook redirection
             
-    1.8 Defense evasion techniques [OR]
+    1.8 defence evasion techniques [OR]
     
         1.8.1 Monitoring avoidance
             1.8.1.1 Low-volume attack patterns
@@ -260,7 +260,7 @@ router bgp 65001
 
 ## Future trends and recommendations
 
--   Automated defense systems: Development of AI-driven systems for real-time detection and mitigation of BGP+CDN attacks.
+-   Automated defence systems: Development of AI-driven systems for real-time detection and mitigation of BGP+CDN attacks.
 -   Enhanced protocols: Adoption of more secure routing protocols and improved certificate management practices.
 -   Global coordination: Improved coordination between network operators, cloud providers, and security organisations.
 -   Zero trust architectures: Implementation of zero trust principles for network infrastructure to limit attack impact.

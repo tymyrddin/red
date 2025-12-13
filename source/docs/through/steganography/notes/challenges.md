@@ -21,7 +21,7 @@ In response to the perceived threats, legislation appeared in several countries 
 
 Still too many companies and organisations seem to believe that using a single technology, such as Secure Sockets Layer (SSL) for online transactions, or network software with a firewall or VPN, is sufficient. Some may protect data in rest and then forget about protecting it in transit. 
 
-What is needed today to protect from information theft, and to detect encryption and hidden data used on a local network is an all-encompassing security strategy. Which seems to not be happening too much. While businesses and organisations do not share information when they are attacked, attackers share information all the time, learning from each other's ideas and techniques, and developing new tactics. defence in depth and mitigating and minimizing risk is needed, but staff and budget isn't there because management does not seem to see the value (until the cost of breach hits, and even then).
+What is needed today to protect from information theft, and to detect encryption and hidden data used on a local network is an all-encompassing security strategy. Which seems to not be happening too much. While businesses and organisations do not share information when they are attacked, attackers share information all the time, learning from each other's ideas and techniques, and developing new tactics. defence in depth and mitigating and minimising risk is needed, but staff and budget isn't there because management does not seem to see the value (until the cost of breach hits, and even then).
 
 ## Coming up
 

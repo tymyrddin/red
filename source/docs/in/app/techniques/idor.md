@@ -15,7 +15,7 @@ For any serious security researcher, seeing an exposed internal identifier is an
 2. Discover features in the application that might lead to IDORs. Pay attention to features that return sensitive information or modify user data.
 3. Revisit the features you discovered in step 2. With a proxy, intercept your browser traffic while you browse through the sensitive functionalities.
 4. With a proxy, intercept each sensitive request and switch out the IDs that you see in the requests. If switching out IDs grants you access to other users’ information or lets you change their data, you might have found an IDOR.
-5. Don’t despair if the application seems to be immune to IDORs. Use this opportunity to try a protection-bypass technique. If the application uses an encoded, hashed, or randomized ID, you can try decoding or predicting the IDs. You can also try supplying the application with an ID when it does not ask for one. Finally, sometimes changing the request method type or file type makes all the difference.
+5. Don’t despair if the application seems to be immune to IDORs. Use this opportunity to try a protection-bypass technique. If the application uses an encoded, hashed, or randomised ID, you can try decoding or predicting the IDs. You can also try supplying the application with an ID when it does not ask for one. Finally, sometimes changing the request method type or file type makes all the difference.
 6. Monitor for information leaks in export files, email, and text alerts. An IDOR now might lead to an info leak in the future.
 7. Draft the report.
 
@@ -42,7 +42,7 @@ Sometimes endpoints susceptible to IDOR don’t respond with the leaked informat
 
 ## Escalation
 
-The impact of an IDOR depends on the affected function To maximize the severity of the bugs, you should always look for IDORs in critical functionalities first. Both read-based IDORs (which leak information but do not alter the database) and write-based IDORs (which can alter the database in an unauthorised way) can be of high impact.
+The impact of an IDOR depends on the affected function To maximise the severity of the bugs, you should always look for IDORs in critical functionalities first. Both read-based IDORs (which leak information but do not alter the database) and write-based IDORs (which can alter the database in an unauthorised way) can be of high impact.
 
 For state-changing, write-based IDORs, look for IDORs in password reset, password change, and account recovery features, as these often have the highest business impact. Target these over a feature that changes email subscription settings.
 

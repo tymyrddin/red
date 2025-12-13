@@ -17,7 +17,7 @@ A global routing system built on trust, making it vulnerable to hijacking and mi
 - Peering: The BGP session established between two routers in different ASes.
 - iBGP vs. eBGP:
   - eBGP: Runs between different ASes. Typically peers are directly connected.
-  - iBGP: Runs between routers within the same AS. Used to synchronize BGP information internally. Peers do not need to be directly connected (requires an IGP like OSPF).
+  - iBGP: Runs between routers within the same AS. Used to synchronise BGP information internally. Peers do not need to be directly connected (requires an IGP like OSPF).
 
 ## 3. The BGP path slection algorithm (Decision Process)
 
@@ -57,7 +57,7 @@ A router evaluates multiple paths to the same prefix and selects the best one in
   - IP Prefix De-aggregation: Announcing many specific subnets, which can overwhelm router memory.
   - Session Resets: Attackers can spoof TCP RST packets to tear down BGP sessions.
 
-## 7. BGP security mitigations (Defense)
+## 7. BGP security mitigations (defence)
 
 | Mitigation                              | Description                                                                                                        | How it Helps                                                             |
 |:----------------------------------------|:-------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|

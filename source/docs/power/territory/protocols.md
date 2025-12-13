@@ -235,7 +235,7 @@ plc.disconnect()
 The connection succeeds with no authentication required. You can read memory areas, examine data blocks containing process variables and setpoints, and potentially download the entire PLC program.
 
 You document that you could theoretically:
-- Upload the PLC program to analyze the reactor control logic
+- Upload the PLC program to analysing the reactor control logic
 - Modify setpoints in data blocks
 - Start or stop the PLC CPU
 - Download malicious logic

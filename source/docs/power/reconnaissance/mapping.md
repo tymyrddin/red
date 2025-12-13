@@ -158,7 +158,7 @@ Network segmentation is supposed to limit the blast radius of compromises. In th
 
 In practice, segmentation is often more theoretical than real.
 
-### Analyzing actual segmentation
+### Analysing actual segmentation
 
 Don't trust network diagrams. They show how things are supposed to be, not how they actually are. Your reconnaissance revealed the truth. Now document it.
 

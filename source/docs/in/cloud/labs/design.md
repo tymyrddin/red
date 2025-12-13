@@ -15,7 +15,7 @@ Example challenge:
 Skills taught:
 
 * Basic enumeration – Using awscli, gobuster, or manual inspection.
-* Public bucket identification – Recognizing misconfigured storage.
+* Public bucket identification – Recognising misconfigured storage.
 * Cloud provider UI navigation – AWS Console, GCP Storage Explorer.
 
 Real-world parallel:

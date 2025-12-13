@@ -246,7 +246,7 @@ HMI project files contain complete application configurations including screen l
 
 ### Project file analysis
 
-Once extracted, project files can be analyzed for valuable information including database connection strings with credentials, PLC IP addresses and communication settings, alarm configurations and setpoints, user accounts and passwords, scripts containing business logic, and network topology information.
+Once extracted, project files can be analysingd for valuable information including database connection strings with credentials, PLC IP addresses and communication settings, alarm configurations and setpoints, user accounts and passwords, scripts containing business logic, and network topology information.
 
 At UU P&L, the extracted HMI backup contained XML configuration files. Opening them in a text editor revealed:
 

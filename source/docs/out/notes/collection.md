@@ -11,13 +11,13 @@ stealthily.
 
 ### Automated data discovery
 
-* AI-Powered Scanning: Attackers deploy machine learning models to identify high-value files (e.g., financial records, intellectual property) by analyzing file metadata, keywords, and access patterns.
+* AI-Powered Scanning: Attackers deploy machine learning models to identify high-value files (e.g., financial records, intellectual property) by analysing file metadata, keywords, and access patterns.
 * File Crawling Scripts: Custom PowerShell/Python scripts recursively scan directories for sensitive documents (e.g., *.docx, *.xlsx, *.pdf) and compress them for [exfiltrate](exfiltration.md).
 
 ### Network information gathering
 
 Attackers map internal networks to identify lateral movement opportunities. Tools like arp-scan or Nmap list all 
-active hosts in a subnet, and for Active Directory (AD) enumeration, BloodHound visualizes AD attack paths by 
+active hosts in a subnet, and for Active Directory (AD) enumeration, BloodHound visualises AD attack paths by 
 ingesting data via SharpHound.
 
 ```powershell

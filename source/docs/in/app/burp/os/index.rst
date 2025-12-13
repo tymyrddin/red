@@ -24,7 +24,7 @@ reviews).
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Prioritize testing in admin interfaces, DevOps/automation tools, apps calling shell commands:
+   :caption: Prioritise testing in admin interfaces, DevOps/automation tools, apps calling shell commands:
 
    1.md
    2.md

@@ -35,4 +35,4 @@
 * Critical vulns are easy to exploit and cause maximum damage.
 * Business logic flaws require manual testing but are high-impact.
 * Low-risk vulns (like Clickjacking) are quick to verify.
-* [Adapt based on the app’s tech stack](adapted.md) (e.g., prioritize JWT flaws for APIs, SSTI for Jinja2 apps).
+* [Adapt based on the app’s tech stack](adapted.md) (e.g., prioritise JWT flaws for APIs, SSTI for Jinja2 apps).

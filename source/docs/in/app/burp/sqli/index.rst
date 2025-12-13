@@ -22,7 +22,7 @@ via `xp_cmdshell` in MSSQL), and authentication bypasses. Also, new attack vecto
 CouchDB) is rising, but classic SQLi still exists, and the appearance of second-order SQLi (stored payloads triggering
 later).
 
-Prioritize after XSS/SSRF, but before XXE/SSTI.
+Prioritise after XSS/SSRF, but before XXE/SSTI.
 
 .. toctree::
    :glob:

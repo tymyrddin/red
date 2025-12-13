@@ -6,7 +6,7 @@ Vulnerabilities fall into three categories:
 * Latent: Common flaw types (XSS, SQLi) unique to an app’s codebase.
 * Novel: Rare, high-impact vulnerabilities (e.g., zero-days) requiring advanced research.
 
-Why? Because 60% of breaches exploit known, unpatched vulnerabilities (Ponemon Institute). Proactive discovery shrinks attack surfaces before adversaries capitalize on them.
+Why? Because 60% of breaches exploit known, unpatched vulnerabilities (Ponemon Institute). Proactive discovery shrinks attack surfaces before adversaries capitalise on them.
 
 ## How?
 

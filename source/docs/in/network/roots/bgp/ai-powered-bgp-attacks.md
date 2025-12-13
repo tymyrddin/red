@@ -49,9 +49,9 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             1.3.1.3 Multi-armed bandit for strategy selection
             
         1.3.2 Evolutionary Persistence Strategies
-            1.3.2.1 Genetic programming for defense adaptation
+            1.3.2.1 Genetic programming for defence adaptation
             1.3.2.2 Evolutionary strategies for countermeasure evasion
-            1.3.2.3 Coevolution with defense systems
+            1.3.2.3 Coevolution with defence systems
             
         1.3.3 Transfer Learning for Cross-Network Attacks
             1.3.3.1 Knowledge transfer between victim networks
@@ -67,7 +67,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             
         1.4.2 Predictive Vulnerability Assessment
             1.4.2.1 Machine learning for RPKI validation gaps
-            1.4.2.2 Reinforcement learning for defense testing
+            1.4.2.2 Reinforcement learning for defence testing
             1.4.2.3 Anomaly detection system vulnerability mapping
             
         1.4.3 Intelligent Target Selection
@@ -77,15 +77,15 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             
     1.5 Adversarial Machine Learning [OR]
     
-        1.5.1 Offensive AI Against Defenses
+        1.5.1 Offensive AI Against defences
             1.5.1.1 Adversarial examples for BGP monitoring systems
-            1.5.1.2 Model stealing attacks on defense AI
-            1.5.1.3 Training data poisoning for defense degradation
+            1.5.1.2 Model stealing attacks on defence AI
+            1.5.1.3 Training data poisoning for defence degradation
             
         1.5.2 Evasion Algorithm Development
             1.5.2.1 Gradient-based attack optimization
             1.5.2.2 Query-efficient black-box attacks
-            1.5.2.3 Transfer attacks between defense systems
+            1.5.2.3 Transfer attacks between defence systems
             
         1.5.3 Anti-Forensic AI Techniques
             1.5.3.1 Generative models for false flag operations
@@ -160,20 +160,20 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             1.9.3.2 Payment route manipulation
             1.9.3.3 Automated negotiation systems
             
-    1.10 Autonomous Defense Countermeasures [OR]
+    1.10 Autonomous defence Countermeasures [OR]
     
         1.10.1 AI-Against-AI Warfare
             1.10.1.1 Counter-AI attack systems
             1.10.1.2 Adversarial training data manipulation
-            1.10.1.3 Defense AI model exploitation
+            1.10.1.3 defence AI model exploitation
             
-        1.10.2 Automated Defense Evasion
-            1.10.2.1 Real-time defense response prediction
+        1.10.2 Automated defence Evasion
+            1.10.2.1 Real-time defence response prediction
             1.10.2.2 Adaptive attack parameter adjustment
-            1.10.2.3 Multi-agent defense coordination disruption
+            1.10.2.3 Multi-agent defence coordination disruption
             
         1.10.3 Persistent Learning Systems
-            1.10.3.1 Continuous learning from defense responses
+            1.10.3.1 Continuous learning from defence responses
             1.10.3.2 Knowledge retention and transfer
             1.10.3.3 Automated strategy refinement
 ```

@@ -3,7 +3,7 @@
 *A fungal network nourishing a single forest grove: intricate, local, and fiercely protected.*
 
 Inside a single company or ISP, routers use protocols like OSPF or EIGRP to keep track of the best paths, almost like 
-how you might memorize the quickest way to your local grocery store. These protocols update automatically if a link 
+how you might memorise the quickest way to your local grocery store. These protocols update automatically if a link 
 goes down, ensuring traffic takes the next best route without humans needing to intervene.
 
 ## The hidden challenges

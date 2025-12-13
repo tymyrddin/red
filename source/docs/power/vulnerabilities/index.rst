@@ -17,6 +17,9 @@ what happens. The former tells you something useful. The latter tells you who wi
    :includehidden:
    :caption: Checking:
 
-   hmi-security-testing.md
+   hmi.md
+   pcl.md
+   scada.md
+   workstation.md
 
 

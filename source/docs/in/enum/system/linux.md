@@ -19,6 +19,6 @@ Get information from:
 
 ## Remediation
 
-* Minimize the attack surface by removing any unnecessary or unused service.
+* Minimise the attack surface by removing any unnecessary or unused service.
 * Ensure IPTables is configured to restrict the access.
 

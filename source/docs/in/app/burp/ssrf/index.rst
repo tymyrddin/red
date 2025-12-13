@@ -20,7 +20,7 @@ SSRF is critical to test for because it can lead to IAM role hijacking, data lea
 SSRF is common: Many apps fetch URLs without showing responses (check via out-of-band tools like Burp Collaborator),
 and evolving bypasses such as DNS rebinding, HTTP smuggling, and `gopher://` exploits keep it relevant.
 
-Prioritize after XSS/SQLi, but before niche vulns (SSTI, XXE).
+Prioritise after XSS/SQLi, but before niche vulns (SSTI, XXE).
 
 .. toctree::
    :glob:

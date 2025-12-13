@@ -6,7 +6,7 @@ A race condition happens when two sections of code that are designed to be execu
 
 1. Spot the features prone to race conditions in the target application and copy the corresponding requests.
 2. Send multiple of these critical requests to the server simultaneously. You should craft requests that should be allowed once but not allowed multiple times.
-3. Check the results to see if your attack has succeeded. And try to execute the attack multiple times to maximize the chance of success.
+3. Check the results to see if your attack has succeeded. And try to execute the attack multiple times to maximise the chance of success.
 4. Consider the impact of the race condition you just found.
 5. Draft up the report.
 

@@ -98,7 +98,7 @@ Geolocation spoofing involves manipulating the perceived geographic origin of ne
         1.6.1 AI-Powered Spoofing
             1.6.1.1 Machine learning for detection evasion
             1.6.1.2 Behavioral geographic pattern replication
-            1.6.1.3 Adaptive spoofing based on target defenses
+            1.6.1.3 Adaptive spoofing based on target defences
             
         1.6.2 Blockchain-Based Anonymity
             1.6.2.1 Crypto-based VPN services

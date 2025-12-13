@@ -10,7 +10,7 @@ Finding logic bugs and not just security bugs is hard using static analysis or a
 2. Intercept requests while browsing the application and pay attention to sensitive functionalities. Keep track of every request sent during these actions.
 3. Replicate previous vulnerabilities between applications.
 4. Use your creativity to think of ways to interfere with application logic.
-5. Think of ways to combine the vulnerability you’ve found with other vulnerabilities to maximize the potential impact of the flaw.
+5. Think of ways to combine the vulnerability you’ve found with other vulnerabilities to maximise the potential impact of the flaw.
 6. Draft the report.
 
 ## Learn about the target

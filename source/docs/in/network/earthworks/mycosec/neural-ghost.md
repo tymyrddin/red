@@ -2,7 +2,7 @@
 
 Objective: Act as an APT actor (`APT-99`, "Deep Vector") to leverage AI and machine learning for reconnaissance, vulnerability discovery, phishing, and adaptive command-and-control, specifically targeting MycoSec's Linux-based research network.
 
-Scenario: [MycoSec](entity.md)'s "Cortex" lab network uses standard security tools (firewalls, IDS, basic SIEM). Your goal is to use AI to bypass these defenses, find novel attack paths, and maintain stealthy persistence.
+Scenario: [MycoSec](entity.md)'s "Cortex" lab network uses standard security tools (firewalls, IDS, basic SIEM). Your goal is to use AI to bypass these defences, find novel attack paths, and maintain stealthy persistence.
 
 ## Phase 1: AI-Assisted Reconnaissance & OSINT
 

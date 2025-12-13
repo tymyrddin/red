@@ -43,7 +43,7 @@ instance_type = "hvm:ebs-ssd"
 }
 ```
 
-Save `main.tf` and initialize Terraform for it to download the AWS provider:
+Save `main.tf` and initialise Terraform for it to download the AWS provider:
 
     root@Bounce:~/infra# terraform init
 

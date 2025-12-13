@@ -324,13 +324,13 @@ Map the OT environment:
 - Passive network monitoring
 - Active scanning (carefully)
 - Querying PLCs and SCADA systems
-- Analyzing network traffic
+- Analysing network traffic
 - Stealing project files and documentation
 
 Stage 6: Development
 
 Prepare attack tools and payloads:
-- Analyzing control logic from stolen PLC programs
+- Analysing control logic from stolen PLC programs
 - Developing custom malware
 - Testing attacks in lab environment
 - Planning attack timing and triggers

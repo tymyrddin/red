@@ -17,7 +17,7 @@ Like [application (business) logic errors](business.md), broken access control v
 * `/api/user/someone` as another user
 
 3. Use your creativity to think of ways to bypass access control.
-4. Think of ways to combine a vulnerability found with other vulnerabilities to maximize the potential impact of the flaw.
+4. Think of ways to combine a vulnerability found with other vulnerabilities to maximise the potential impact of the flaw.
 5. Draft the report.
 
 ## Bypassing protections

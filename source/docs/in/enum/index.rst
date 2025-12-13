@@ -9,7 +9,7 @@ territory not with clumsy tools, but with predator's instinct, marking every wea
 have gone thin and brittle.
 
 When the fox enumerates, the whole woodland becomes our larder. We nose into every hollow log (ping sweeps), test
-every overhanging branch (port scans), and memorize every game trail (network routes). The old NetBIOS protocols
+every overhanging branch (port scans), and memorise every game trail (network routes). The old NetBIOS protocols
 bleat like aging bucks, their voices carrying too far across the meadow, while misconfigured AWS buckets sit like
 unguarded bird nests full of eggs. No hare is too swift, no burrow too deep - because where the security teams see
 a fortified perimeter, we smell the blood in the wind and the fear-sweat of systems begging to be owned.

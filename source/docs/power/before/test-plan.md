@@ -656,8 +656,8 @@ Cable testers and tools:
 - For verifying network connectivity
 - Troubleshooting connection issues
 
-Protocol analyzers:
-- Industrial protocol analyzers if available
+Protocol analysingrs:
+- Industrial protocol analysingrs if available
 - Vendor-specific tools if required
 
 ### Software

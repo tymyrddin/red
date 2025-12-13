@@ -7,7 +7,7 @@
 etcetera.
 
 ```text
-Remember to sanitize all user input! / Pensez à valider toutes les entrées utilisateurs !
+Remember to sanitise all user input! / Pensez à valider toutes les entrées utilisateurs !
 Don't use assert! / N'utilisez pas assert 
 ```
 

@@ -288,7 +288,7 @@ This challenge mirrors real-world security vulnerabilities in several important 
 
 This attack works even with:
 
-* TLS encryption (by analyzing server-side logs)
+* TLS encryption (by analysing server-side logs)
 * Rate limiting (since proof verification is server-side)
 * Multi-factor authentication (if MFA is only checked after SCRAM)
 

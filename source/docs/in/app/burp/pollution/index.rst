@@ -26,7 +26,7 @@ client-side JS frameworks (e.g., admin dashboards, SPAs).
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Prioritize testing in JavaScript-heavy apps (SPAs, Node.js backends) and apps using `lodash`, `jQuery.extend`, or custom merges:
+   :caption: Prioritise testing in JavaScript-heavy apps (SPAs, Node.js backends) and apps using `lodash`, `jQuery.extend`, or custom merges:
 
 
    1.md

@@ -16,7 +16,7 @@ Default SNMP passwords allow attackers to view or modify the SNMP configuration 
 
 ## Remediation
 
-* Minimize the attack surface by removing the SNMP agents where not needed.
+* Minimise the attack surface by removing the SNMP agents where not needed.
 * Change default public community strings.
 * Upgrade to SNMPv3, which encrypts the community strings and messages.
 * Implement group policy for additional restriction on anonymous connections.

@@ -4,12 +4,12 @@ Attackers may disrupt operations or destroy data to fulfil objectives like sabot
 ransomware, wiping systems, or altering critical files.
 
 In 2025, cybercriminals and state-sponsored actors have refined data destruction and operational disruption techniques 
-to maximize chaos, extortion payouts, or geopolitical sabotage. Below, we break down modern attack methods, including 
+to maximise chaos, extortion payouts, or geopolitical sabotage. Below, we break down modern attack methods, including 
 ransomware, disk-wiping, and critical system manipulation, along with a detailed real-world attack chain.
 
 ## AI-Enhanced ransomware
 
-Adaptive Encryption: Ransomware like LockBit 4.0 uses machine learning to prioritize high-value files (e.g., 
+Adaptive Encryption: Ransomware like LockBit 4.0 uses machine learning to prioritise high-value files (e.g., 
 databases, backups) while skipping non-critical data to speed up attacks.
 
 Triple extortion encrypts files, steals data, and threatens DDoS attacks unless paid.

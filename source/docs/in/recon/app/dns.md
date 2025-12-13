@@ -143,5 +143,5 @@ Check if any of the source code deals with important functions such as authentic
 
 Outdated dependencies and the unchecked use of dangerous functions are also a huge source of bugs. Pay attention to dependencies and imports being used and go through the versions list to see if they’re outdated. Record any outdated dependencies. You can use this information later to look for publicly disclosed vulnerabilities that would work on the target.
 
-Tools like Gitrob and TruffleHog can automate the GitHub recon process. [Gitrob](https://github.com/michenriksen/gitrob/) locates potentially sensitive files pushed to public repositories on GitHub. [TruffleHog](https://github.com/trufflesecurity/truffleHog/) specializes in finding secrets in repositories by conducting regex searches and scanning for high-entropy strings.
+Tools like Gitrob and TruffleHog can automate the GitHub recon process. [Gitrob](https://github.com/michenriksen/gitrob/) locates potentially sensitive files pushed to public repositories on GitHub. [TruffleHog](https://github.com/trufflesecurity/truffleHog/) specialises in finding secrets in repositories by conducting regex searches and scanning for high-entropy strings.
 

@@ -99,7 +99,7 @@ Use what you’ve found by scanning the network, identifying services, and pulli
 * In some cases, it is not necessary to take user input to define the location of a server-side request. It is better to leave it out to be on the safe side and generate the request URLs with static values on the server side.
 * It is common to apply regular expressions and simple blacklists to user input, in order to mitigate SSRF and similar attacks. Blacklists are an ineffective method of security control. Attackers can easily discover ways to get around them. If the hosts that need to be accessed are a finite set, implement an allowlist. When a user sends a request, check that the URL or domain from that request corresponds to one in the allowlist, if it doesn't, drop the request.
 * Response handling: On no account should the raw response body received from the request initiated by the server be transferred to the client.
-* Disable unused URL schemas: Deny attackers the ability to utilize the application to carry out requests via potentially harmful schemas, including `dict://`, `file:///`, and `gopher://`.
+* Disable unused URL schemas: Deny attackers the ability to use the application to carry out requests via potentially harmful schemas, including `dict://`, `file:///`, and `gopher://`.
 * Services like Redis, MongoDB, Elasticsearch, and Memcached do not demand verification by default. Using SSRF vulnerabilities, it may be possible to gain access to certain services without verification. To enforce web application security, allow verification whenever possible, including for local network services.
 
 ## Resources

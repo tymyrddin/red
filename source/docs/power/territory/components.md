@@ -67,7 +67,7 @@ When pentesting, your interaction with PLCs should be extremely cautious:
 
 2. Enumeration: Query the PLC for its configuration, program, and current state. Most PLCs will happily tell you everything about themselves if you ask politely. Use vendor tools or protocol libraries like [Snap7](http://snap7.sourceforge.net/) for Siemens or [pycomm3](https://github.com/ottowayi/pycomm3) for Allen-Bradley.
 
-3. Analysis: Download the PLC program (if possible and authorised). Analyze the logic offline to understand what the system does and identify potential vulnerabilities in the control logic itself. Tools like [PLCinject](https://github.com/SCADACS/PLCinject) can help analyse PLC programs.
+3. Analysis: Download the PLC program (if possible and authorised). Analysing the logic offline to understand what the system does and identify potential vulnerabilities in the control logic itself. Tools like [PLCinject](https://github.com/SCADACS/PLCinject) can help analyse PLC programs.
 
 4. Testing: Any write operations (changing values, uploading programs, forcing outputs) should only be done in controlled test environments, never on production systems during initial pentest.
 
@@ -187,7 +187,7 @@ RTUs present unique security challenges:
 Testing RTU security requires:
 - Understanding the communication protocols
 - Testing for weak authentication
-- Analyzing the security of communication links
+- Analysing the security of communication links
 - Assessing physical security (during site visits)
 - Evaluating the security of remote management interfaces
 
@@ -495,7 +495,7 @@ The recommendations for these systems usually are:
 - Isolate them on separate network segments
 - Implement strict firewall rules (only required connections)
 - Monitor all access
-- Consider virtualizing them if possible
+- Consider virtualising them if possible
 - Document them properly (so they're not forgotten again)
 - Plan for eventual replacement (though this rarely happens)
 

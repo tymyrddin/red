@@ -138,7 +138,7 @@ BGP and DNS infrastructure attacks represent a critical threat vector that targe
             1.8.3.2 Post-quantum migration attacks
             1.8.3.3 Quantum network targeting
             
-    1.9 Defense evasion techniques [OR]
+    1.9 defence evasion techniques [OR]
     
         1.9.1 BGP security bypass
             1.9.1.1 RPKI validation evasion
@@ -255,7 +255,7 @@ router bgp 65001
 
 ## Future trends and recommendations
 
--   Automated defense systems: Development of AI-driven systems that can detect and mitigate combined BGP-DNS attacks in real-time.
+-   Automated defence systems: Development of AI-driven systems that can detect and mitigate combined BGP-DNS attacks in real-time.
 -   Protocol enhancements: Continued development of security extensions for both protocols and pressure for universal adoption.
 -   Global cooperation: Enhanced international cooperation on routing security and incident response.
 -   Zero trust architectures: Implementation of zero trust principles for network infrastructure to limit attack propagation.

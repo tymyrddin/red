@@ -1,6 +1,6 @@
 # An adversary walks into a sandbox
 
-Malware Analysis is the process of analyzing a suspicious file to determine what it does on both a micro level 
+Malware Analysis is the process of analysing a suspicious file to determine what it does on both a micro level 
 (by looking at Assembly), and a macro level (by looking at what it does on the system). This process lets Blue 
 Teamers gain a better understanding of malicious programs, which can aid them in developing detections.
 

@@ -158,13 +158,13 @@ Attackers could use open redirects by themselves to make their phishing attacks 
 
     https://example.com/login?next=https://attacker.com/fake_login.html
 
-Though this URL would first lead users to the legitimate website, it would redirect them to the attacker’s site after login. The attacker could host a fake login page on a malicious site that mirrors the legitimate site’s login page, and prompt the user to log in again. Believing they’ve entered an incorrect password, the user would provide their credentials to the attacker’s site. At this point, the attacker’s site could even redirect the user back to the legitimate site to keep the victim from realizing that their credentials were stolen.
+Though this URL would first lead users to the legitimate website, it would redirect them to the attacker’s site after login. The attacker could host a fake login page on a malicious site that mirrors the legitimate site’s login page, and prompt the user to log in again. Believing they’ve entered an incorrect password, the user would provide their credentials to the attacker’s site. At this point, the attacker’s site could even redirect the user back to the legitimate site to keep the victim from realising that their credentials were stolen.
 
 An open redirect can help you bypass URL blocklists and allowlists:
 
     https://example.com/?next=https://attacker.com/
 
-This URL will pass even well-implemented URL validators, because the URL is technically still on the legitimate website. Open redirects can, therefore, help you maximize the impact of vulnerabilities like server-side request forgery (SSRF).
+This URL will pass even well-implemented URL validators, because the URL is technically still on the legitimate website. Open redirects can, therefore, help you maximise the impact of vulnerabilities like server-side request forgery (SSRF).
 
 Open redirects can also be used to steal credentials and OAuth tokens. When a page redirects to another site, browsers will often include the originating URL as a referer HTTP request header. When the originating URL contains sensitive information (authentication tokens), attackers can induce an open redirect to steal the tokens via the referer header.
 

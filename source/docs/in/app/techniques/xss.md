@@ -77,7 +77,7 @@ Example:
     </textarea></noembed></noscript></title>
     </style></script>-->&lt;svg onload=/*<html/*/onmouseover=alert()//>
 
-Another way of testing for XSS more efficiently is to use generic test strings instead of XSS payloads. Insert a string of special HTML characters often used in XSS payloads, such as the following: >'<"//:=;!--. Take note of which ones the application escapes and which get rendered directly. Then construct test XSS payloads from the characters that you know the application isn’t properly sanitizing.
+Another way of testing for XSS more efficiently is to use generic test strings instead of XSS payloads. Insert a string of special HTML characters often used in XSS payloads, such as the following: >'<"//:=;!--. Take note of which ones the application escapes and which get rendered directly. Then construct test XSS payloads from the characters that you know the application isn’t properly sanitising.
 
 ## Blind XSS
 
@@ -101,7 +101,7 @@ Some XSS payloads will execute in certain contexts, such as when an admin is log
 
 Most applications implement some sort of XSS protection in their input fields. Common is using a blocklist to filter out dangerous expressions that might be indicative of XSS. This type of protection can be bypassed.
 
-Alternative JavaScript syntax: Some applications will sanitize `script` tags in user input. If that is the case, try executing XSS that does not use a `script` tag. Instead of:
+Alternative JavaScript syntax: Some applications will sanitise `script` tags in user input. If that is the case, try executing XSS that does not use a `script` tag. Instead of:
 
     <img src="/><script>alert('Hello World');</script>"/>
 

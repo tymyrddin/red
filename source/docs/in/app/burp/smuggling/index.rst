@@ -25,7 +25,7 @@ APIs, payment flows).
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Prioritize testing in apps behind proxies/CDNs and systems with strict security boundaries (e.g., cloud environments):
+   :caption: Prioritise testing in apps behind proxies/CDNs and systems with strict security boundaries (e.g., cloud environments):
 
    1.md
    2.md
