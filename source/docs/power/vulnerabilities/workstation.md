@@ -156,7 +156,7 @@ Persistent VPN connections where vendor has 24/7 access regardless of whether su
 
 Multiple vendor VPN solutions existed, often deployed without IT/security involvement. The turbine manufacturer had OpenVPN access directly to turbine control network (installed in 1998, never disabled, credentials never rotated). The SCADA vendor had TeamViewer access to SCADA server (unattended access enabled, credentials shared). The historian vendor had dial-up modem access to historian server (installed in 2005, still active, phone number published in old documentation). Generic "contractor access" VPN with accounts for 15 different contractors (some of whom no longer worked in the industry).
 
-Reviewing vendor VPN logs revealed connections from IP addresses in China, Russia, and Brazil (vendors were European companies with no known presence in those countries). Either vendors were using VPNs themselves or vendor credentials had been compromised and were being used by unauthorized parties. Determining which was impossible without contacting vendors, which hadn't been done.
+Reviewing vendor VPN logs revealed connections from IP addresses in China, Russia, and Brazil (vendors were European companies with no known presence in those countries). Either vendors were using VPNs themselves or vendor credentials had been compromised and were being used by unauthorised parties. Determining which was impossible without contacting vendors, which hadn't been done.
 
 ### Vendor access recommendations
 

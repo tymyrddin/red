@@ -114,7 +114,7 @@ Full query: SELECT * FROM historian WHERE tag='TURB01_SPEED'--' AND timestamp BE
 
 This confirmed SQL injection and revealed the database structure. With SQL injection, an attacker can read all data from the database, modify data (historical data manipulation would hide attacks), delete data, or potentially execute operating system commands depending on database permissions.
 
-The application was constructing SQL queries by string concatenation rather than using parameterized queries. Again, this is fundamental web security, but industrial applications often use development practices from decades ago when SQL injection was less well understood.
+The application was constructing SQL queries by string concatenation rather than using parameterised queries. Again, this is fundamental web security, but industrial applications often use development practices from decades ago when SQL injection was less well understood.
 
 ## Authentication bypass
 

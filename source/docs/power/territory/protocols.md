@@ -83,17 +83,20 @@ Wireshark, you can see:
 - Occasional writes to holding registers (adjusting setpoints)
 - Status queries of coils (checking heating/cooling state)
 
-You use pyModbus to query one of the temperature controllers:
+You can use pyModbus (3.11.4) to query one of the temperature controllers:
 
 ```python
 from pymodbus.client import ModbusTcpClient
 
-client = ModbusTcpClient('192.168.10.15')
+client = ModbusTcpClient("192.168.10.15")
 client.connect()
 
-# Read holding register 40001 (common addressing for setpoint)
-result = client.read_holding_registers(0, 1, slave=1)
-print(f"Current setpoint: {result.registers[0] / 10}°C")
+result = client.read_holding_registers(address=0, count=1)
+
+if not result.isError():
+    print(f"Current setpoint: {result.registers[0] / 10}°C")
+else:
+    print(result)
 
 client.close()
 ```
@@ -118,7 +121,8 @@ over various physical layers.
 
 ### DNP3 architecture
 
-DNP3 uses master-station and outstation terminology. The master polls outstations for data. Outstations can also send unsolicited responses when significant events occur.
+DNP3 uses master-station and outstation terminology. The master polls outstations for data. Outstations can also 
+send unsolicited responses when significant events occur.
 
 DNP3 organises data into points:
 - Binary inputs (two-state sensors: on/off, open/closed)
@@ -127,7 +131,8 @@ DNP3 organises data into points:
 - Analog outputs (continuous controls)  
 - Counters (for totalisers, energy meters, etc.)
 
-At UU P&L, DNP3 appears in the city-wide distribution SCADA. The system monitors and controls substations across Ankh-Morpork:
+At UU P&L, DNP3 appears in the city-wide distribution SCADA. The system monitors and controls substations across 
+Ankh-Morpork:
 
 - Circuit breaker status (binary inputs/outputs)
 - Transformer load levels (analog inputs)
@@ -148,40 +153,109 @@ than nothing, but still relies on pre-shared keys and doesn't provide encryption
 Most DNP3 implementations you'll encounter in pentests are running without authentication. The protocol runs over 
 TCP port 20000 or UDP port 20000, and anyone who can reach that port can send commands.
 
-### Testing DNP3 at UU P&L
+### Testing DNP3
 
-The distribution SCADA master communicates with substations using DNP3 over TCP. During network reconnaissance, you identify DNP3 traffic on port 20000.
+The distribution SCADA master communicates with substations using DNP3 over TCP. During network reconnaissance, 
+you identify DNP3 traffic on port 20000.
 
-Using [Wireshark](https://www.wireshark.org/) with DNP3 dissectors enabled, you observe:
-- Regular polling of binary inputs (breaker status)
-- Integrity scans requesting all analog values
-- Control commands to operate breakers
+Most DNP3 security probing is done by:
 
-With [OpenDNP3](https://github.com/automatak/dnp3) or custom scripts, you can query a substation controller:
+- Passive-first: PCAP‑driven probing (most common, safest). DNP3 is stateful. Random active probes stand out immediately. 
+- Replay‑based probing (low risk, very effective). Once we had *known‑good traffic*, we could safely poke. This avoids protocol guesswork entirely.
+- Wireshark‑assisted fuzzing: probing the implementation. This is how many vendor DNP3 bugs have actually been found.
+- More tools and tools, open source and commercial.
 
-```python
-# Example using scapy for DNP3 (simplified)
-from scapy.all import *
-from scapy.contrib.dnp3 import *
+### PCAP‑driven probing
 
-# Read binary inputs from DNP3 outstation
-pkt = DNP3()/DNP3ApplicationRequest(
-    function_code=1,  # Read
-    objects=[DNP3Object(group=1, variation=2)]  # Binary Input
-)
+1. Capture traffic between master ↔ outstation: 
 
-response = sr1(IP(dst="192.168.20.50")/TCP(dport=20000)/pkt)
+```bash
+tcpdump -i eth0 port 20000 -w dnp3.pcap
 ```
 
-The response reveals the status of all circuit breakers in that substation. You document that you could theoretically 
-send control commands to operate breakers, but you don't test this on the live system because plunging parts of 
-Ankh-Morpork into darkness would:
+2. Extract:
+
+* Object groups in use
+* Function codes
+* Timing
+* Confirm behaviour
+* Secure Auth presence
+
+3. Using [Wireshark](https://www.wireshark.org/) with DNP3 dissectors enabled, discover:
+
+* Whether unsolicited responses are enabled
+* Which class polls are used
+* Vendor quirks
+* Whether SAv5 is enforced
+
+### Replay‑based probing
+
+1. Capture a legitimate `DNP3 READ`
+
+2. Replay it
+
+```bash
+tcpreplay --intf1=eth0 dnp3.pcap
+```
+
+Then mutate:
+
+* Sequence numbers
+* Object group numbers
+* Qualifiers
+
+3. Observe response differences
+
+## Wireshark‑assisted fuzzing 
+
+1. Right‑click a DNP3 packet
+   * “Copy → Bytes → Hex Stream”
+   * Modify:
+
+     * Object headers
+     * Function codes
+     * Qualifiers
+   * Reinject with a raw socket
+
+### Use purpose-built OT security tools
+
+Open-source / free:
+
+* Wireshark (mandatory)
+* tcpdump
+* tcpreplay
+* nmap (service detection only)
+* Metasploit (limited DNP3 support)
+
+Commercial:
+
+* Nozomi
+* Claroty
+* Dragos
+* Tenable.ot
+
+They do exactly the above, just faster and prettier.
+
+### What not to do
+
+Never:
+
+* Flood DNP3
+* Send control function codes
+* Write to Group 12 objects
+* Spam sequence numbers
+* Ignore confirms on live systems
+
+DNP3 can and does trigger *physical actions* if mishandled.
+
+You can document that you could theoretically send control commands to operate breakers, but we do not test this on 
+the live system because plunging parts of Ankh-Morpork into darkness would:
 
 1. Violate your rules of engagement
 2. Alert everyone to your presence  
 3. Probably result in the Patrician taking an unwelcome interest in your activities
 
-Instead, you document the lack of authentication and recommend implementing DNP3 SAv5, network segmentation to 
+Instead, we documented the lack of authentication and recommended implementing DNP3 SAv5, network segmentation to 
 prevent unauthorised access to DNP3 ports, and intrusion detection specifically tuned for DNP3 protocol anomalies.
 
 ## Siemens S7comm, speaking German to PLCs
@@ -276,26 +350,36 @@ The Hex Steam Turbine system uses Allen-Bradley ControlLogix PLCs, which speak E
 Using [cpppo](https://github.com/pjkundert/cpppo), an open-source EtherNet/IP library, you can enumerate the device:
 
 ```python
+# The warnings "Parameter 'data' unfilled" and "Parameter 'path' unfilled" are caused by parse_operations()
+# deliberately leaving fields unset until execution, and cpppo’s own type hints/validators complain even though
+# the runtime fills them in later. Ignore.
+
 from cpppo.server.enip import client
 
-# Connect to PLC and read identity
-with client.connector(host='192.168.40.10') as conn:
-    # Read device identity object
-    operations = [client.parse_operations("@0x01/1")]  # Identity object
-    for index, descr, op in operations:
-        request = conn.write(op)
+host = '192.168.40.10'
+
+with client.connector(host=host) as conn:
+    # Get_Attribute_All for Identity Object (Class 0x01, Instance 1)
+    ops = client.parse_operations(
+        "get-attribute-all@1/1"
+    )
+
+    for index, descr, op in ops:
+        conn.write(op)
         reply = conn.read()
-        print(f"Device: {reply}")
+        print("Identity object:", reply)
 ```
 
-The response reveals:
+The response revealed:
+
 - Vendor: Rockwell Automation
 - Product: 1756-L73 ControlLogix
 - Firmware version: 28.012
 - Serial number: \[redacted because that would be telling]
 
-You can read tags (variables), examine configurations, and potentially write values. You document the lack of 
+We could read tags (variables), examine configurations, and potentially write values. We documented the lack of 
 authentication, noting that an attacker with network access could:
+
 - Read process variables and setpoints
 - Modify control logic
 - Stop the PLC
@@ -351,37 +435,43 @@ Using [opcua-asyncio](https://github.com/FreeOpcUa/opcua-asyncio), you attempt t
 import asyncio
 from asyncua import Client
 
+
 async def test_opcua():
     client = Client("opc.tcp://192.168.50.20:4840")
     async with client:
         # Get root node
         root = client.get_root_node()
         print(f"Root: {root}")
-        
+
         # Browse available objects
         objects = await root.get_children()
         for obj in objects:
             print(f"Object: {await obj.read_browse_name()}")
 
+
 asyncio.run(test_opcua())
 ```
 
-The connection succeeds with no authentication (SecurityMode: None, Anonymous access). You can browse the entire information model, read all variables, and subscribe to data changes.
+The connection succeeds with no authentication (`SecurityMode: None, Anonymous access`). We can browse the entire 
+information model, read all variables, and subscribe to data changes.
 
-You discover:
+We can discover:
 - Circuit breaker states for all substations
 - Load levels and voltage readings
 - Alarm states
 - Historical data queries
 
-You document that whilst OPC UA is being used, it's configured insecurely. The recommendations include:
+We documented that whilst OPC UA is being used, it is configured insecurely. The recommendations included:
+
 - Enable SignAndEncrypt security mode
 - Require certificate-based authentication
 - Restrict anonymous access
 - Implement proper certificate management
 - Use security policy Basic256Sha256 or better
 
-The university's response is that implementing proper OPC UA security "requires training and budget", both of which are scheduled for "sometime next year", which in university timescales means "when the heat death of the universe makes it moot".
+The university's response is that implementing proper OPC UA security "requires training and budget", both of which 
+are scheduled for "sometime next year", which in university timescales means "when the heat death of the universe 
+makes it moot".
 
 ## Profinet, BACnet, and the long tail of protocols
 
@@ -407,6 +497,7 @@ setpoints, though you resist the temptation to set the Archchancellor's office t
 ## Why none of them thought about security
 
 These protocols were developed in an era when:
+
 - Industrial networks were physically isolated
 - Only trained engineers had access
 - "Security through obscurity" seemed reasonable  
@@ -414,6 +505,7 @@ These protocols were developed in an era when:
 - The thought of connecting factories to the internet seemed absurd
 
 These assumptions are now all false:
+
 - Networks are connected (deliberately or accidentally)
 - Remote access is common (vendors, contractors, engineers working from home)
 - Protocol specifications are published  
@@ -425,6 +517,7 @@ embedded in millions of devices with 20-year lifespans. You can't retrofit secur
 fields for authentication or encryption.
 
 The solution isn't to fix the protocols (though newer versions try). The solution is to:
+
 - Understand what the protocols can do
 - Monitor for unusual protocol behavior  
 - Segment networks to limit who can reach protocol endpoints

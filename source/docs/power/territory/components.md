@@ -216,7 +216,7 @@ The recommendations included:
 - Network segmentation to limit who can access HMI systems
 - Encrypting credentials in configuration files (required vendor cooperation)
 
-The university's response was to implement the network segmentation (relatively easy) and change the obvious passwords (grudgingly). The rest was categorized as "long-term improvements requiring budget and vendor engagement".
+The university's response was to implement the network segmentation (relatively easy) and change the obvious passwords (grudgingly). The rest was categorised as "long-term improvements requiring budget and vendor engagement".
 
 ## SCADA servers and historians
 
@@ -242,7 +242,7 @@ At UU P&L, the SCADA infrastructure includes:
 
 ### Historians deserve special attention
 
-Historians are databases optimized for storing time-series data from industrial processes. They record every sensor reading, every operator action, every alarm, typically at resolutions from milliseconds to seconds, for years.
+Historians are databases optimised for storing time-series data from industrial processes. They record every sensor reading, every operator action, every alarm, typically at resolutions from milliseconds to seconds, for years.
 
 This data is valuable for:
 - Operational analysis
@@ -393,7 +393,7 @@ The university's response was to buy a new laptop, install engineering software,
 
 The systems you must not break.
 
-Safety Instrumented Systems (SIS) are specialized control systems designed to protect against hazardous events. When 
+Safety Instrumented Systems (SIS) are specialised control systems designed to protect against hazardous events. When 
 the normal control system fails or conditions become dangerous, the SIS automatically takes action to bring the 
 process to a safe state.
 

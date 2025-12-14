@@ -407,7 +407,7 @@ Applied to OT environments at UU P&L:
 - Change detection and monitoring
 - Integrity checking of configurations
 - Separate logging systems attackers can't access
-- Physical key switches preventing unauthorized program changes
+- Physical key switches preventing unauthorised program changes
 
 ### Repudiation (denying responsibility for actions)
 
@@ -539,7 +539,7 @@ This often means:
 Security systems need to:
 - Restrict access to authorised users
 - Verify authenticity of commands
-- Detect and prevent unauthorized modifications
+- Detect and prevent unauthorised modifications
 - Log all actions for audit
 - Isolate systems to prevent compromise spread
 
@@ -557,11 +557,11 @@ The reactor safety system
 
 Safety requirement: Must shut down reactor if any safety parameter is exceeded, regardless of any other factors. Must work even if all other systems fail.
 
-Security requirement: Should verify commands are authentic, should not accept shutdown commands from unauthorized sources.
+Security requirement: Should verify commands are authentic, should not accept shutdown commands from unauthorised sources.
 
 Conflict: Adding authentication to safety shutdown creates a potential failure point. If authentication fails or has a bug, it might prevent legitimate safety shutdowns. Safety requirements say "when in doubt, shut down". Security requirements say "when in doubt, deny access".
 
-Resolution: Safety takes priority. The safety system must work even if security is compromised. Security controls are implemented at network level (preventing unauthorized access to safety system network), not at protocol level (which might interfere with safety function).
+Resolution: Safety takes priority. The safety system must work even if security is compromised. Security controls are implemented at network level (preventing unauthorised access to safety system network), not at protocol level (which might interfere with safety function).
 
 The remote access dilemma
 
