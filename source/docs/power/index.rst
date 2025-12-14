@@ -18,4 +18,5 @@ Ankh-Morpork's main supplier of electricity, hot water, and occasional mysteriou
    before/index
    reconnaissance/index
    vulnerabilities/index
+   exploitation/index
 

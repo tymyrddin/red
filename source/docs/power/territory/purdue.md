@@ -8,8 +8,8 @@ If you then visit an actual industrial facility, you'll discover that the Purdue
 tube map is to actually navigating London. Technically accurate in a theoretical sense, but not particularly useful 
 when you're lost somewhere between Rotterdam and a crying fit.
 
-Still, understanding the model helps. It gives you a framework for understanding what you're looking at when you 
-start mapping the network, and it gives you a vocabulary for explaining to people why their current setup might 
+Still, understanding the model helps. It gives us a framework for understanding what we are looking at when we 
+start mapping the network, and it gives us a vocabulary for explaining to people why their current setup might 
 be considered "suboptimal" (consultant-speak for "a disaster waiting to happen").
 
 ## The Purdue Enterprise Reference Architecture explained
@@ -24,7 +24,7 @@ This is the actual stuff. The turbines spinning, the alchemical reactions happen
 It's not computers, it's physics and chemistry and occasionally magic (at UU P&L, the distinction between sufficiently 
 advanced technology and low-grade magic is somewhat blurry).
 
-At this level, you have:
+At this level, we have:
 - Sensors measuring temperature, pressure, flow, rotation, magical field strength
 - Actuators controlling valves, motors, heaters, thaumic dampers
 - The actual dangerous things that can hurt people if controlled incorrectly
