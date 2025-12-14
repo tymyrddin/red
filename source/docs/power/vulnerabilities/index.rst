@@ -21,5 +21,6 @@ what happens. The former tells you something useful. The latter tells you who wi
    plc.md
    scada.md
    workstation.md
+   network.md
 
 

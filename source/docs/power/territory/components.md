@@ -1,16 +1,22 @@
 # Key components
 
-Walking into a control room for the first time can be overwhelming. There are screens everywhere, cabinets full of equipment with blinking lights, cables running in directions that seem to defy both logic and gravity, and a persistent low hum that suggests everything is either working perfectly or about to explode.
+Walking into a control room for the first time can be overwhelming. There are screens everywhere, cabinets full of 
+equipment with blinking lights, cables running in directions that seem to defy both logic and gravity, and a 
+persistent low hum that suggests everything is either working perfectly or about to explode.
 
-Understanding what you're looking at is essential for effective security testing. You need to know which components do what, how they connect, and which ones you absolutely must not touch without triple-checking your rules of engagement.
+We need to know which components do what, how they connect, and which ones we absolutely must not touch without 
+triple-checking our rules of engagement.
 
-Let's tour the key components you'll encounter, using examples from Unseen University Power & Light Co., where the equipment ranges from "surprisingly modern" to "archaeological artifact that somehow still functions".
+Touring the key components we can encounter, using examples from Unseen University Power & Light Co., where the 
+equipment ranges from "surprisingly modern" to "archaeological artifact that somehow still functions".
 
 ## PLCs, the brains with no sense of self-preservation
 
 ![PLCs](/_static/images/ot-plcs.png)
 
-Programmable Logic Controllers (PLCs) are the workhorses of industrial automation. They're ruggedised computers designed to run control programs in harsh environments (temperature extremes, vibration, electrical noise, and at UU P&L, occasional magical interference).
+Programmable Logic Controllers (PLCs) are the workhorses of industrial automation. They're ruggedised computers 
+designed to run control programs in harsh environments (temperature extremes, vibration, electrical noise, and at 
+UU P&L, occasional magical interference).
 
 ### What PLCs do
 
@@ -45,7 +51,9 @@ Modern PLCs are modular. You can add I/O modules as needed. Older PLCs might be 
 - Omron
 - GE (now Emerson)
 
-At UU P&L, the turbine control system uses Allen-Bradley ControlLogix PLCs from 1998. The alchemical reactor uses Siemens S7-400 PLCs from 2003. The Library environmental system uses a Schneider Modicon from 1987 that predates the concept of network connectivity (someone added a Modbus gateway in 2005).
+At UU P&L, the turbine control system uses Allen-Bradley ControlLogix PLCs from 1998. The alchemical reactor uses 
+Siemens S7-400 PLCs from 2003. The Library environmental system uses a Schneider Modicon from 1987 that predates 
+the concept of network connectivity (someone added a Modbus gateway in 2005).
 
 ### Security characteristics of PLCs
 
@@ -82,6 +90,53 @@ At UU P&L, testing the turbine PLCs revealed:
 
 The recommendation wasn't "fix the PLC" (impossible without replacement). It was "segment the network so only engineering workstations can reach PLC programming ports, monitor for unexpected PLC communications, implement authentication at the network layer."
 
+## RTUs, the distant cousins
+
+![RTU](/_static/images/ot-rtu.png)
+
+Remote Terminal Units (RTUs) are similar to PLCs but designed specifically for remote monitoring and control over 
+large geographic areas. They're common in utilities (power, water, oil/gas pipelines) where you need to monitor and 
+control equipment spread across cities or countries.
+
+### RTU characteristics
+
+RTUs are designed for:
+- Remote locations (unmanned substations, pump stations, pipeline monitoring points)
+- Harsh environments
+- Autonomous operation (they keep working even if communications fail)
+- Low power consumption (some run on solar power and batteries)
+- Communication over various media (serial radio, cellular, satellite)
+
+RTUs collect data from sensors, perform basic control logic, buffer data during communication outages, and communicate with a central SCADA system using protocols like DNP3, Modbus, or IEC 60870-5-104.
+
+At UU P&L, RTUs are deployed at electrical substations throughout Ankh-Morpork. Each RTU monitors circuit breaker 
+status, transformer load, voltage levels, and can remotely operate breakers when commanded by the central SCADA system.
+
+### Security challenges with RTUs
+
+RTUs present unique security challenges:
+- Physical security is often minimal (a locked cabinet in an unmanned building)
+- Communication links might be wireless (radio, cellular, satellite)
+- They're exposed to public networks (cellular networks aren't trusted)
+- They run for years without intervention
+- Firmware updates are difficult (requires site visits or risky remote updates)
+
+Testing RTU security requires:
+- Understanding the communication protocols
+- Testing for weak authentication
+- Analysing the security of communication links
+- Assessing physical security (during site visits)
+- Evaluating the security of remote management interfaces
+
+At UU P&L, the RTUs communicate with central SCADA via DNP3 over cellular connections. Testing revealed:
+- No DNP3 authentication enabled
+- No VPN or encryption on cellular links
+- Default SNMP community strings (allowing remote configuration changes)
+- Web interfaces for local configuration with default passwords
+- No detection of unauthorised access
+
+An attacker with access to the cellular network could potentially send DNP3 commands to operate circuit breakers. The recommendations included implementing DNP3 Secure Authentication, using VPNs for all RTU communications, changing default credentials, and deploying intrusion detection.
+
 ## HMIs, where humans meet machines
 
 ![HMI](/_static/images/ot-hmi.png)
@@ -111,7 +166,8 @@ An HMI system typically consists of:
 - Web server (many HMIs provide web-based remote access)
 - User authentication system (in theory)
 
-At UU P&L, the main SCADA HMI runs Wonderware InTouch on Windows 7. There are also several Panel PCs (industrial touchscreen computers) running simpler HMI applications locally at each substation.
+At UU P&L, the main SCADA HMI runs Wonderware InTouch on Windows 7. There are also several Panel PCs (industrial 
+touchscreen computers) running simpler HMI applications locally at each substation.
 
 ### Security characteristics of HMIs
 
@@ -161,48 +217,6 @@ The recommendations included:
 - Encrypting credentials in configuration files (required vendor cooperation)
 
 The university's response was to implement the network segmentation (relatively easy) and change the obvious passwords (grudgingly). The rest was categorized as "long-term improvements requiring budget and vendor engagement".
-
-## RTUs, the distant cousins
-
-Remote Terminal Units (RTUs) are similar to PLCs but designed specifically for remote monitoring and control over large geographic areas. They're common in utilities (power, water, oil/gas pipelines) where you need to monitor and control equipment spread across cities or countries.
-
-### RTU characteristics
-
-RTUs are designed for:
-- Remote locations (unmanned substations, pump stations, pipeline monitoring points)
-- Harsh environments
-- Autonomous operation (they keep working even if communications fail)
-- Low power consumption (some run on solar power and batteries)
-- Communication over various media (serial radio, cellular, satellite)
-
-RTUs collect data from sensors, perform basic control logic, buffer data during communication outages, and communicate with a central SCADA system using protocols like DNP3, Modbus, or IEC 60870-5-104.
-
-At UU P&L, RTUs are deployed at electrical substations throughout Ankh-Morpork. Each RTU monitors circuit breaker status, transformer load, voltage levels, and can remotely operate breakers when commanded by the central SCADA system.
-
-### Security challenges with RTUs
-
-RTUs present unique security challenges:
-- Physical security is often minimal (a locked cabinet in an unmanned building)
-- Communication links might be wireless (radio, cellular, satellite)
-- They're exposed to public networks (cellular networks aren't trusted)
-- They run for years without intervention
-- Firmware updates are difficult (requires site visits or risky remote updates)
-
-Testing RTU security requires:
-- Understanding the communication protocols
-- Testing for weak authentication
-- Analysing the security of communication links
-- Assessing physical security (during site visits)
-- Evaluating the security of remote management interfaces
-
-At UU P&L, the RTUs communicate with central SCADA via DNP3 over cellular connections. Testing revealed:
-- No DNP3 authentication enabled
-- No VPN or encryption on cellular links
-- Default SNMP community strings (allowing remote configuration changes)
-- Web interfaces for local configuration with default passwords
-- No detection of unauthorised access
-
-An attacker with access to the cellular network could potentially send DNP3 commands to operate circuit breakers. The recommendations included implementing DNP3 Secure Authentication, using VPNs for all RTU communications, changing default credentials, and deploying intrusion detection.
 
 ## SCADA servers and historians
 
@@ -330,7 +344,8 @@ At UU P&L, the primary engineering workstation is a Windows 7 laptop that:
 - Is used by four different engineers (shared "engineer" account)
 - Has passwords written on sticky notes attached to the laptop case
 
-This laptop is effectively the master key to the entire UU P&L infrastructure. Compromise it and you control the turbines, reactors, and distribution systems.
+This laptop is effectively the master key to the entire UU P&L infrastructure. Compromise it and you control the 
+turbines, reactors, and distribution systems.
 
 ### Testing engineering workstations
 
@@ -354,9 +369,14 @@ Engineering workstation testing includes:
 
 At UU P&L, examining the engineering workstation (with permission) revealed:
 
-Project files containing plaintext passwords for all PLCs. SCADA configuration backups with database credentials. Browser history showing the engineer frequently visiting questionable websites (not malicious, just inadvisable on a critical system). Saved RDP sessions to production PLCs with stored credentials. Several USB drives used to transfer files between corporate and OT networks.
+- Project files containing plaintext passwords for all PLCs. 
+- SCADA configuration backups with database credentials. 
+- Browser history showing the engineer frequently visiting questionable websites (not malicious, just inadvisable on a critical system). 
+- Saved RDP sessions to production PLCs with stored credentials. 
+- Several USB drives used to transfer files between corporate and OT networks.
 
-The workstation was infected with three different types of malware (adware, not targeted, but still concerning). None of the malware had reached the OT network yet, but it was only a matter of time.
+The workstation was infected with three different types of malware (adware, not targeted, but still concerning). None 
+of the malware had reached the OT network yet, but it was only a matter of time.
 
 The recommendations included:
 - Replace the engineering workstation with a properly secured, patched system
@@ -460,6 +480,8 @@ The recommendations focused on improving architectural independence, not testing
 
 ## IEDs and the menagerie of intelligent devices
 
+![Windows XP workstation](/_static/images/ot-ieds.png)
+
 Intelligent Electronic Devices (IEDs) is a catch-all term for smart devices in power systems. They include:
 - Protective relays (detect faults, trip breakers)
 - Power quality meters
@@ -501,11 +523,16 @@ This computer is often:
 - Accessible with no password or an obvious password
 - Not documented in any asset inventory
 
-At UU P&L, there's a Windows 98 machine in the turbine hall running data collection software from the original turbine vendor. It polls turbine data via serial connection, logs it to local CSV files, and makes the data available via a network share.
+At UU P&L, there's a Windows 98 machine in the turbine hall running data collection software from the original 
+turbine vendor. It polls turbine data via serial connection, logs it to local CSV files, and makes the data available 
+via a network share.
 
-This machine has been running since 1998. It cannot be upgraded because the data collection software won't run on newer Windows. It cannot be retired because maintenance contracts require this specific data format. It cannot be secured because applying security policies breaks the software.
+This machine has been running since 1998. It cannot be upgraded because the data collection software won't run on 
+newer Windows. It cannot be retired because maintenance contracts require this specific data format. It cannot be 
+secured because applying security policies breaks the software.
 
-It sits there, a monument to technical debt, accessible via SMBv1 with no password, containing 25 years of turbine operational data, and serving as a potential pivot point into the turbine control network.
+It sits there, a monument to technical debt, accessible via SMBv1 with no password, containing 25 years of turbine 
+operational data, and serving as a potential pivot point into the turbine control network.
 
 ### Testing forgotten systems
 
@@ -524,4 +551,7 @@ The recommendations for these systems usually are:
 - Document them properly (so they're not forgotten again)
 - Plan for eventual replacement (though this rarely happens)
 
-At UU P&L, the recommendation was to isolate the Windows 98 machine on its own VLAN, implement firewall rules allowing only necessary connections, and monitor all access attempts. The university implemented the firewall rules (relatively easy) and added it to the asset inventory (free). The monitoring was "under consideration" (meaning probably never).
+At UU P&L, the recommendation was to isolate the Windows 98 machine on its own VLAN, implement firewall rules 
+allowing only necessary connections, and monitor all access attempts. The university implemented the firewall rules 
+(relatively easy) and added it to the asset inventory (free). The monitoring was "under consideration" (meaning 
+probably never).
