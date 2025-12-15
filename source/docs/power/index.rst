@@ -9,7 +9,7 @@ Ankh-Morpork's main supplier of electricity, hot water, and occasional mysteriou
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: OT/ICS penetration testing:
 
@@ -19,4 +19,13 @@ Ankh-Morpork's main supplier of electricity, hot water, and occasional mysteriou
    vulnerabilities/index
    exploitation/index
    topics/index
+   remediation/index
+   OT/ICS penetration testing scripts @GitHub <https://github.com/ninabarzh/power-and-light/tree/main>
 
+.. raw:: html
+
+        <div class="page__article">
+            <div class="page-post-card__link">
+                <a href="https://tymyrddin.dev/contact/">Request a controlled outage (talk to me)</a>
+            </div>
+        </div>

@@ -49,7 +49,7 @@ sudo airodump-ng -w site_survey --output-format csv wlan0mon
 
 The [Aircrack-ng suite](https://www.aircrack-ng.org/) is the standard toolkit for wireless security testing. It's been around since 2006, which in security tool terms makes it practically ancient, but it remains effective because the fundamentals of WiFi security haven't changed as much as we'd like to pretend.
 
-Active wireless discovery
+### Active wireless discovery
 
 Passive scanning finds beaconing networks, but some networks are hidden or low-power. Active scanning sends probe requests to find them:
 
@@ -83,7 +83,6 @@ Tools:
 
 At UU P&L, our wireless survey revealed 23 distinct wireless networks within the supposedly isolated control zone:
 
-```
 Authorised networks: 2
 - "UU_Engineering" (WPA2-Enterprise, 802.1X)
 - "UU_SCADA" (WPA2-PSK, supposedly restricted)
@@ -95,7 +94,6 @@ Unauthorised networks: 21
 - "TurbineMonitor" (WEP - yes, WEP in 2024)
 - "MaintenanceAccess" (WPA2, password: "maintenance")
 - 16 others of similar quality
-```
 
 Each unauthorised network represented someone who'd needed network access, couldn't get it through official channels 
 (or couldn't be bothered), and implemented their own solution. The collection of wireless networks resembled nothing so much as the unofficial market stalls that spring up in Ankh-Morpork's alleys, each one technically illegal but all of them serving a genuine need that the official systems didn't address.
@@ -106,7 +104,8 @@ A rogue access point is an unauthorised wireless network that connects to your w
 
 ### Identify rogues by MAC address
 
-Every network interface has a MAC address that identifies the manufacturer. Consumer-grade access points use MAC addresses from consumer vendors:
+Every network interface has a MAC address that identifies the manufacturer. Consumer-grade access points use 
+MAC addresses from consumer vendors:
 
 ```python
 #!/usr/bin/env python3

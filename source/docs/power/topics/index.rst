@@ -1,23 +1,21 @@
 Specialised topics
 ======================================================
 
-.. image:: /_static/images/purdue-model.png
-   :alt: A control room filled with overloaded brass consoles, flickering gauges, tangled tubes, emergency levers, and a giant schematic of the Purdue Model hanging on the wall
+.. image:: /_static/images/ot-special-topics.png
+   :alt: A collage of industrial cybersecurity scenarios at the Unseen University Power & Light Co., Ankh-Morpork: a rugged 4G router hidden inside a junction box, WiFi and Bluetooth signals illustrated as faint magical glows.
 
-Understanding what we're attempting to secure sounds obvious, yet organisations routinely skip this step and proceed
-directly to installing firewalls around systems they do not understand, protecting assets they have not identified,
-and defending against threats not considered. Rather like Vetinari attempting to secure Ankh-Morpork without first
-understanding that the Thieves' Guild considers theft a legitimate profession, or that the Seamstresses' Guild isn't
-actually about sewing.
+In OT environments, the devil is always in the details. Tackling some of the trickier stuff where remote access, safety
+systems, and supply chains collide with security. Wireless and remote testing is about spotting hidden connections
+(rogue 4G routers, misbehaving Bluetooth) without tripping the machines that keep the city lights on.
 
-It is probably more complicated than we think, contains more legacy systems than anyone admits, and is most likely
-held together with configurations someone implemented in 2003 and nobody dared change because "it works."
+The trick? Observe, verify, and prove the risk without ever causing a hiccup. Whether it is checking shutdown logic without touching a
+button, or poking at third-party updates, the aim is to show danger exists, but gently.
 
 .. toctree::
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Start here:
+   :caption: For every lever, wire, and vendor connection:
 
    remote.md
    sis.md

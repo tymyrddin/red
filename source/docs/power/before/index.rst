@@ -1,4 +1,4 @@
-Before you touch anything
+Before touching anything
 ======================================================
 
 .. image:: /_static/images/ot-before.png
