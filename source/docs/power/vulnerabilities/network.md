@@ -209,20 +209,13 @@ This is less effective if the IDS correlates events over longer time periods, bu
 OT protocols often have multiple valid ways to express the same command. An IDS signature that looks for "write to address 0x1000" might miss a command that writes to "40001" (the Modbus notation for the same address):
 
 ```python
-# Multiple encodings of similar commands
-modbus_write_coil = IP(dst="target")/TCP(dport=502)/ModbusADURequest(
-    funcCode=5,
-    registerAddr=0x1000,
-    registerValue=0xFF00
-)
+# PSEUDOCODE – illustrates protocol-level evasion concepts
 
-modbus_write_multiple = IP(dst="target")/TCP(dport=502)/ModbusADURequest(
-    funcCode=15,
-    registerAddr=0x1000,
-    quantityOutput=1,
-    byteCount=1,
-    outputValue=[0xFF]
-)
+# Function code 05: Write Single Coil
+WRITE_SINGLE_COIL(address=0, value=ON)
+
+# Function code 15: Write Multiple Coils
+WRITE_MULTIPLE_COILS(start_address=0, values=[ON])
 ```
 
 Both commands achieve roughly the same result, but IDS signatures often only catch one variant.

@@ -1,5 +1,7 @@
 # SCADA server assessment
 
+![SCADA](/_static/images/ot-scada.png)
+
 The command centre that commands too much trust.
 
 SCADA (Supervisory Control and Data Acquisition) servers are the nerve centres of industrial operations. They collect data from hundreds or thousands of field devices, present it to operators through HMIs, log everything for historical analysis, and send control commands back to the field. They're the systems that operators stare at for 12-hour shifts, that engineers rely on for troubleshooting, and that management uses for operational reporting.
@@ -138,23 +140,7 @@ Certificate-based provides strong authentication using X.509 certificates.
 
 ### Testing OPC UA
 
-Tools like [opcua-asyncio](https://github.com/FreeOpcUa/opcua-asyncio) allow testing OPC UA servers:
-
-```python
-import asyncio
-from asyncua import Client
-
-async def test_opcua():
-    client = Client("opc.tcp://192.168.20.5:4840")
-    async with client:
-        # Try anonymous connection
-        root = client.get_root_node()
-        objects = await root.get_children()
-        for obj in objects:
-            print(await obj.read_browse_name())
-
-asyncio.run(test_opcua())
-```
+Tools like [opcua-asyncio](https://github.com/FreeOpcUa/opcua-asyncio) allow [probing OPC UA servers](https://github.com/ninabarzh/power-and-light/blob/main/vulns/opcua_readonly_probe.py)
 
 At UU P&L, the SCADA server ran an OPC UA server on port 4840. Testing revealed SecurityMode was None (no encryption), authentication was Anonymous (no credentials required), and all tags were readable and writeable by anyone who could connect.
 

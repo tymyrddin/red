@@ -1,5 +1,7 @@
 # PLC security testing
 
+![PLCs](/_static/images/ot-plcs.png)
+
 Testing the brains that have no concept of security.
 
 Programmable Logic Controllers are the workhorses of industrial automation. They read sensors, execute logic, control actuators, and do it all in milliseconds, reliably, for decades. They're marvels of engineering designed for harsh environments, real-time performance, and absolute reliability.

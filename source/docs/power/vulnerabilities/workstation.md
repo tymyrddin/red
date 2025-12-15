@@ -1,5 +1,7 @@
 # Engineering workstation and remote access
 
+![Engineering workstation](/_static/images/ot-engineering-workstation.png)
+
 The royal road into the kingdom.
 
 If you want to compromise an OT environment, don't bother with the fancy PLC exploits or protocol fuzzing. Just 
