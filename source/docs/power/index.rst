@@ -13,7 +13,6 @@ Ankh-Morpork's main supplier of electricity, hot water, and occasional mysteriou
    :includehidden:
    :caption: OT/ICS penetration testing:
 
-   company.md
    territory/index
    before/index
    reconnaissance/index

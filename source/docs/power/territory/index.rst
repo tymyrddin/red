@@ -19,6 +19,7 @@ held together with configurations someone implemented in 2003 and nobody dared c
    :includehidden:
    :caption: Start here:
 
+   company.md
    difference.md
    purdue.md
    protocols.md
