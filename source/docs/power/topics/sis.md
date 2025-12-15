@@ -352,82 +352,15 @@ Questions for maintenance:
 - Are there any "temporary" bypasses?
 - How do you handle sensor failures?
 
-The key is to ask open-ended questions and listen for security implications that the interviewee might not recognize. When an operator mentions "we have to jump the safety interlock when cleaning the vessel", they're describing a security-relevant bypass procedure.
+The key is to ask open-ended questions and listen for security implications that the interviewee might not recognise. 
+When an operator mentions "we have to jump the safety interlock when cleaning the vessel", they're describing a 
+security-relevant bypass procedure.
 
 ### Configuration review (offline)
 
 Request backups of safety PLC programs for offline analysis:
 
-```python
-#!/usr/bin/env python3
-"""
-Safety PLC Configuration Analysis (offline only)
-Reviews exported PLC project for security issues
-"""
-
-def analyse_safety_logic(project_file):
-    """
-    Analyse safety PLC logic for security concerns
-    This is offline analysis of exported configuration
-    NEVER connects to actual PLC
-    """
-    
-    findings = {
-        'weak_passwords': [],
-        'hard_coded_values': [],
-        'undocumented_functions': [],
-        'remote_access': [],
-        'bypass_logic': []
-    }
-    
-    print("[*] Safety System Configuration Analysis")
-    print("[*] Offline review only - no connection to SIS")
-    print("[*] File: " + project_file + "\n")
-    
-    # Parse configuration file
-    # This would be vendor-specific (Rockwell, Siemens, etc.)
-    
-    # Check for weak authentication
-    findings['weak_passwords'].append({
-        'location': 'PLC Protection Settings',
-        'issue': 'Password: "1234" (default, not changed)',
-        'impact': 'Unauthorised logic modification possible'
-    })
-    
-    # Check for hard-coded safety limits
-    findings['hard_coded_values'].append({
-        'location': 'Rung 45: High pressure trip',
-        'value': '150 PSI',
-        'issue': 'Hard-coded value (should be configurable parameter)',
-        'impact': 'Logic change required to adjust safety limit'
-    })
-    
-    # Check for undocumented functions
-    findings['undocumented_functions'].append({
-        'location': 'Rung 347-359',
-        'issue': 'Unlabeled ladder logic section',
-        'impact': 'Purpose unclear, may be test code or backdoor'
-    })
-    
-    # Report findings
-    print("[!] Weak Authentication:")
-    for item in findings['weak_passwords']:
-        print(f"    Location: {item['location']}")
-        print(f"    Issue: {item['issue']}")
-        print(f"    Impact: {item['impact']}\n")
-    
-    print("[!] Configuration Issues:")
-    for item in findings['hard_coded_values']:
-        print(f"    Location: {item['location']}")
-        print(f"    Current Value: {item['value']}")
-        print(f"    Issue: {item['issue']}\n")
-    
-    return findings
-
-if __name__ == '__main__':
-    # Analysis of exported configuration only
-    analyse_safety_logic('turbine_sis_backup.L5K')
-```
+[🐙 Safety PLC Configuration Analysis (offline only)](https://github.com/ninabarzh/power-and-light/blob/main/topics/safety_plc_analysis.py)
 
 ### Physical inspection (visual only)
 

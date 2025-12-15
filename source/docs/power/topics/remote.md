@@ -105,100 +105,9 @@ A rogue access point is an unauthorised wireless network that connects to your w
 ### Identify rogues by MAC address
 
 Every network interface has a MAC address that identifies the manufacturer. Consumer-grade access points use 
-MAC addresses from consumer vendors:
+MAC addresses from consumer vendors: 
 
-```python
-#!/usr/bin/env python3
-"""
-Identify likely rogue access points by MAC OUI analysis
-"""
-
-import re
-from collections import defaultdict
-
-# MAC OUI database (first 6 characters identify manufacturer)
-consumer_vendors = [
-    'NETGEAR', 'TP-LINK', 'Linksys', 'ASUS', 'D-Link',
-    'Belkin', 'Buffalo', 'TRENDnet', 'Huawei'
-]
-
-industrial_vendors = [
-    'Cisco', 'Hirschmann', 'Moxa', 'Phoenix Contact',
-    'Siemens', 'Rockwell', 'Schneider Electric'
-]
-
-def analyse_access_points(survey_csv):
-    """
-    Analyse wireless survey results for suspicious APs
-    """
-    
-    rogues = []
-    suspicious = []
-    authorised = []
-    
-    # Parse airodump-ng CSV output
-    with open(survey_csv, 'r') as f:
-        lines = f.readlines()
-    
-    # Find AP section (before client section)
-    ap_section = []
-    for line in lines:
-        if 'Station MAC' in line:
-            break
-        ap_section.append(line)
-    
-    print("[*] Rogue Access Point Detection")
-    print("[*] Analysis of wireless survey results\n")
-    
-    for line in ap_section[2:]:  # Skip header lines
-        if not line.strip():
-            continue
-            
-        parts = line.split(',')
-        if len(parts) < 14:
-            continue
-            
-        bssid = parts[0].strip()
-        power = parts[8].strip()
-        essid = parts[13].strip()
-        
-        # Check if MAC indicates consumer device
-        # In reality, you'd look up the OUI in a database
-        is_consumer = any(vendor.lower() in bssid.lower() 
-                         for vendor in consumer_vendors)
-        
-        is_industrial = any(vendor.lower() in bssid.lower() 
-                           for vendor in industrial_vendors)
-        
-        if is_consumer:
-            rogues.append({
-                'bssid': bssid,
-                'essid': essid,
-                'power': power,
-                'reason': 'Consumer-grade MAC address'
-            })
-        elif not is_industrial and 'UU_' not in essid:
-            suspicious.append({
-                'bssid': bssid,
-                'essid': essid,
-                'power': power,
-                'reason': 'Unknown vendor, suspicious ESSID'
-            })
-    
-    print(f"[!] Found {len(rogues)} likely rogue access points:")
-    for rogue in rogues:
-        print(f"\n    ESSID: {rogue['essid']}")
-        print(f"    BSSID: {rogue['bssid']}")
-        print(f"    Signal: {rogue['power']} dBm")
-        print(f"    Reason: {rogue['reason']}")
-    
-    print(f"\n[!] Found {len(suspicious)} suspicious access points requiring investigation")
-    
-    return rogues, suspicious
-
-if __name__ == '__main__':
-    analyse_access_points('site_survey-01.csv')
-```
+[🐙 Identify likely rogue access points by MAC OUI analysis](https://github.com/ninabarzh/power-and-light/blob/main/topics/id-rogues-by-mac-address.py)
 
 ### Identify rogues by network connection
 
@@ -379,7 +288,6 @@ Common Bluetooth vulnerabilities in OT:
 
 At UU P&L, we found 47 Bluetooth devices in the turbine control area:
 
-```
 Industrial sensors: 23
 - Temperature sensors (12)
 - Pressure sensors (7)
@@ -393,7 +301,6 @@ Unknown devices: 6
 - Discovered during scan but couldn't identify
 - Two appeared to be fitness trackers
 - Four unidentified (concerning)
-```
 
 The industrial sensors were using Bluetooth to transmit readings to nearby data loggers. They used no encryption and no authentication. Anyone within Bluetooth range (approximately 10 metres) could read the sensor data or potentially inject false readings.
 
@@ -410,73 +317,94 @@ zbstumbler -i <channel>  # Discover Zigbee networks
 zbdump -f dump.pcap      # Capture Zigbee traffic
 ```
 
-## 4G and 5G remote access
+## Unauthorised remote signal access
 
-Mobile broadband provides remote access without IT's knowledge or permission. A 4G router costs €50, requires no infrastructure, and creates an instant backdoor into supposedly isolated networks.
+Remote access does not always arrive through approved cables, blessed firewalls, or paperwork signed in triplicate. 
+Sometimes it simply *appears*. A small, cheap signal box, installed by a contractor “just for testing”, can provide 
+instant remote access into networks that everyone swears are isolated.
 
-### Detecting cellular connections
+No trenching. No approvals. No IT knowledge. Just a blinking light and a very long invisible wire.
+
+In Ankh‑Morpork terms: a private clacks relay nailed to the back of the machinery cupboard and never mentioned again.
+
+### Detecting unauthorised signal links
 
 ```bash
-# Network-based detection (look for unusual traffic patterns)
-# Cellular backhaul has characteristic latency
+# Network-based detection
+# Look for unexplained external traffic paths or odd latency patterns
+# Remote backhaul tends to behave differently from internal wiring
 
-# Physical inspection (walk facility looking for devices)
-# 4G routers have external antennas
-# Often hidden in junction boxes or equipment cabinets
+# Physical inspection
+# Walk the site and actually look
+# Small signal boxes often have antennas, crystals, or suspiciously warm casings
+# Frequently hidden where nobody expects modernity to intrude
 
-# RF detection (scan for cellular signals)
-# Using HackRF or similar software-defined radio
+# Signal detection
+# Scan for strong radio or thaumic emissions where none should exist
 hackrf_sweep -f 700:6000 -w output.csv
-# Look for strong signals in cellular bands (700-2600 MHz)
+# Look for persistent signals in common telecom bands
+# Or anything humming quietly to itself
 ```
 
-### Common hiding places for unauthorised cellular devices
+If it was installed because “it was quicker”, it was also hidden because “IT would never approve it”.
 
-At UU P&L, we found unauthorised 4G routers in:
+### Common hiding places for unauthorised signal devices
 
-1. Junction boxes: Most common location. Contractor installed router, ran Ethernet cable to PLC, closed box and left.
+At UU Power & Light, unauthorised signal gateways were discovered in:
 
-2. Equipment cabinets: Tucked behind PLCs or other equipment where casual inspection wouldn't notice them.
+1. Junction boxes: The classic. A contractor installs a signal device, runs a cable to the control system, closes the box, and leaves whistling innocently.
 
-3. False ceiling: One router was sitting on ceiling tiles above the control room, Ethernet cable dropped down through cable conduit.
+2. Equipment cabinets: Tucked behind PLCs, relays, or anything large enough to block a casual glance. Out of sight, out of audit.
 
-4. Under desks: The least creative hiding spot, but surprisingly effective because nobody looks under desks.
+3. False ceilings: One device was found resting on ceiling tiles above the control room, with a cable politely lowered through an existing conduit. Gravity is very helpful to attackers.
 
-Testing cellular security
+4. Under desks: The least imaginative option, and therefore the most successful. Nobody ever looks under desks unless something is on fire.
 
-Once found, test the security:
+### Testing unauthorised remote access
+
+Once discovered, assume the device is hostile until proven otherwise. Then test it.
 
 ```bash
-# Scan for web interface (most have one)
-nmap -p 80,443,8080 <router_ip>
+# Scan for management interfaces
+nmap -p 80,443,8080 <device_ip>
 
-# Default credentials (often unchanged)
-# Common defaults:
+# Default credentials (remarkably popular)
 # admin/admin
 # admin/password
 # admin/(blank)
 # user/user
 
-# Check if routing provides full network access
+# Check routing reachability
 traceroute <internal_target>
 
-# Check if firewall exists
+# Check for absence of meaningful firewalling
 nmap -p- <internal_target>
 ```
 
-The 4G router we found at UU P&L had:
-- Default credentials (admin/admin)
-- No firewall between cellular and wired networks
-- Full routing to control network
-- VPN server enabled with default configuration
-- Web interface accessible from the internet
-- Uptime: 1,247 days (over three years)
+The signal gateway discovered at UU P&L had:
 
-It was, essentially, a perfect backdoor. An attacker could have connected to the router's VPN from anywhere in the world, authenticated with default credentials, and had complete access to the control network. The router had been there for over three years, and during that entire time, anyone with basic technical knowledge and a search engine could have compromised the facility.
+* Default credentials (`admin/admin`)
+* No separation between external signal access and the control network
+* Full routing into operational systems
+* A remote access service enabled with factory settings
+* A management interface reachable from outside the facility
+* Uptime: *1,247 days* (just over three years)
+
+In short, it was a perfect back door.
+
+Anyone, anywhere, with basic technical knowledge and a passing curiosity could have connected remotely, logged in 
+without resistance, and gained full access to the control network. It had been quietly doing its job for over three 
+years.
+
+Nobody noticed. Nobody logged it. Everyone assumed the isolation was real.
+
+It never is.
 
 ## Satellite links
 
-Some facilities use satellite communications for remote sites or backup connectivity. Satellite links have unique security considerations:
+If it has a shed, a fence, and a sign saying Authorised Personnel Only, satellite has probably been considered. 
+Some facilities use satellite communications for remote sites or backup connectivity. Satellite links have unique 
+security considerations:
 
 ### Physical security
 
@@ -573,26 +501,48 @@ This isn't a critical security issue, but it's useful reconnaissance for an atta
 
 ## The uncomfortable truth about air gaps
 
-The fundamental problem with air gaps in OT environments is that they're incompatible with operational reality. Engineers need remote access for troubleshooting. Maintenance contractors need to upload updates. Vendors need to monitor their equipment. Management wants to see dashboards on their mobile phones. Each of these requirements creates a bridge across the air gap.
+The fundamental problem with air gaps in OT environments is that they do not survive contact with reality.
 
-The result is that most "air-gapped" OT networks aren't. They're connected via wireless networks, cellular routers, satellite links, vendor VPNs, and various other mechanisms that were installed to solve legitimate operational problems but collectively eliminate the isolation that the air gap was supposed to provide.
+Engineers need remote access for troubleshooting. Maintenance contractors need to upload updates. Vendors want to monitor their equipment. Management wants dashboards they can glance at between meetings. Every one of these requirements creates a bridge across what was meant to be empty space.
 
-At UU P&L, the gap between policy and reality was spectacular:
+The result is that most “air‑gapped” OT networks are nothing of the sort. They are connected via ad‑hoc wireless links, unauthorised signal gateways, satellite connections, vendor‑managed remote access, and a variety of other mechanisms installed to solve legitimate operational problems. Taken together, they quietly dismantle the isolation the air gap was supposed to provide.
 
-Official policy: "Control network is air-gapped from all external networks. No wireless devices permitted in OT zones. Remote access via secure jump hosts only."
+At UU Power & Light, the gap between policy and reality was… ambitious.
 
-Actual implementation: 
-- 23 unauthorised wireless networks
-- 4 cellular routers providing direct internet access
-- 1 satellite link with no encryption
-- 6 vendor VPN connections (always-on)
-- 47 Bluetooth devices
-- Multiple radio systems
-- "Air gap" more accurately described as "radio soup"
+### Official policy
 
-This doesn't mean UU P&L's security team was incompetent. It means that operational reality overwhelmed security policy. Every one of those unauthorised connections existed because someone needed it to do their job. The wireless network in the turbine hall existed because engineers needed network access during maintenance. The 4G router existed because a contractor needed to check system status remotely. The Bluetooth sensors existed because they were easier to install than wired alternatives.
+“Control network is air‑gapped from all external networks. No wireless devices permitted in OT zones. Remote access 
+via secure jump hosts only.”
 
-Fixing this requires more than just removing unauthorised devices (though that helps). It requires understanding why people circumvented security controls and providing legitimate alternatives that are both secure and practical. If accessing the engineering workstation requires 20 minutes of authentication and approval processes, engineers will install unauthorised wireless networks. If remote troubleshooting requires driving to the facility at 2 AM, contractors will install 4G routers.
+### Actual implementation
 
-The goal should be to provide secure remote access that's easy enough that people use it instead of rolling their own solutions. This is a much harder problem than technical security, because it requires balancing security with operational practicality, and getting buy-in from people whose primary concern is keeping the turbines running rather than following security policies. But it's the only approach that actually works in the long term.
+* 23 unauthorised wireless networks
+* 4 unauthorised external signal gateways providing direct internet access
+* 1 satellite link with no encryption
+* 6 vendor remote access connections (always on)
+* 47 Bluetooth devices
+* Multiple radio systems
+* “Air gap” more accurately described as *radio soup*
+
+This does not mean the UU P&L security team was incompetent. It means operational reality overwhelmed security policy.
+
+Every unauthorised connection existed for a reason. The wireless network in the turbine hall existed because engineers 
+needed network access during maintenance. The external signal gateway existed because a contractor needed to check 
+system status remotely. The Bluetooth sensors existed because they were easier to install than pulling new cables 
+through forty years of accumulated pipework and optimism.
+
+Fixing this requires more than simply ripping out unauthorised devices (although that is a good start). It requires 
+understanding *why* people bypassed controls and providing alternatives that are secure **and** usable.
+
+If accessing an engineering workstation requires twenty minutes of approvals and ritual authentication, engineers 
+will create their own shortcuts. If remote troubleshooting means a two‑hour drive at two in the morning, someone 
+will install a private remote link and promise to remove it later.
+
+The goal is not perfect isolation. It is **controlled, visible, and intentional connectivity** that is easy enough 
+to use that people stop inventing their own solutions.
+
+That is harder than implementing technical controls. It requires balancing security with operational reality and 
+persuading people whose primary concern is keeping turbines spinning, not satisfying security diagrams.
+
+But it is the only approach that works for longer than a maintenance cycle.
 

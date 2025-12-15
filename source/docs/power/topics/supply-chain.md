@@ -240,90 +240,11 @@ This had two implications:
 1. TurbineTech could push arbitrary code to production PLCs without authorization
 2. If TurbineTech's update server was compromised, malicious updates would be automatically installed
 
-### Test update verification
+### Software update security assessment
 
-```python
-#!/usr/bin/env python3
-"""
-Software Update Security Assessment
-Tests whether vendor updates can be tampered with
-"""
+Demonstrate vulnerabilities in vendor update mechanisms:
 
-import hashlib
-import requests
-
-def test_update_integrity(update_url, published_hash):
-    """
-    Verify that update hasn't been tampered with
-    """
-    
-    print("[*] Software Update Integrity Test")
-    print(f"[*] Update URL: {update_url}")
-    print(f"[*] Published Hash: {published_hash}\n")
-    
-    # Download update
-    print("[*] Downloading update file...")
-    response = requests.get(update_url)
-    
-    if response.status_code != 200:
-        print("[!] Download failed")
-        return False
-    
-    update_data = response.content
-    
-    # Calculate hash
-    print("[*] Calculating hash...")
-    actual_hash = hashlib.md5(update_data).hexdigest()
-    
-    print(f"[*] Calculated Hash: {actual_hash}")
-    print(f"[*] Published Hash:  {published_hash}")
-    
-    if actual_hash == published_hash:
-        print("[✓] Hash verification PASSED")
-        print("[*] But wait... MD5 is cryptographically broken")
-        print("[*] An attacker could create a malicious update with the same MD5")
-        print("[!] RECOMMENDATION: Use SHA-256 or cryptographic signatures")
-        return True
-    else:
-        print("[✗] Hash verification FAILED")
-        print("[!] Update file has been modified or published hash is wrong")
-        print("[!] DO NOT INSTALL THIS UPDATE")
-        return False
-
-def test_update_signature(update_file, signature_file, vendor_public_key):
-    """
-    Verify cryptographic signature on update
-    """
-    
-    print("\n[*] Cryptographic Signature Verification")
-    
-    # This would use actual cryptographic verification
-    # Example with OpenSSL:
-    # openssl dgst -sha256 -verify pubkey.pem -signature signature.sig update.bin
-    
-    print("[*] Checking for signature...")
-    
-    try:
-        with open(signature_file, 'r') as f:
-            print("[✓] Signature file found")
-            print("[*] Verifying signature with vendor public key...")
-            # Actual verification would go here
-            print("[✓] Signature verification PASSED")
-            print("[*] Update authenticity confirmed")
-            return True
-    except FileNotFoundError:
-        print("[✗] No signature file found")
-        print("[!] Cannot verify update authenticity")
-        print("[!] Vendor should provide cryptographic signatures")
-        return False
-
-if __name__ == '__main__':
-    # Test actual update from vendor
-    test_update_integrity(
-        'https://vendor.com/updates/scada_v3.2.1.exe',
-        'f3b25701fe362ec84616a93a45ce9998'
-    )
-```
+[🐙 Software Update Security Assessment](https://github.com/ninabarzh/power-and-light/blob/main/topics/update_security_assessment.py)
 
 ## Counterfeit component detection
 
