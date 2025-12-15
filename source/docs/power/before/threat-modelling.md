@@ -563,7 +563,7 @@ Conflict: Adding authentication to safety shutdown creates a potential failure p
 
 Resolution: Safety takes priority. The safety system must work even if security is compromised. Security controls are implemented at network level (preventing unauthorised access to safety system network), not at protocol level (which might interfere with safety function).
 
-The remote access dilemma
+### The remote access dilemma
 
 Safety requirement: Vendor must be able to access systems quickly during emergency to provide troubleshooting support. Four-hour response time contractually mandated.
 
@@ -573,7 +573,7 @@ Conflict: Strict security controls on remote access slow down vendor response. I
 
 Resolution: Compromise. Vendor has remote access but it's monitored, logged, requires two-factor authentication, and uses VPN with strong encryption. University retains right to disable access if compromise suspected. Not perfect from security perspective (persistent remote access is risky), not perfect from safety perspective (still some authentication overhead), but acceptable balance.
 
-The patching problem
+### The patching problem
 
 Safety requirement: Control systems must be stable and unchanging. Patches might introduce instability or bugs that affect safety-critical functions.
 

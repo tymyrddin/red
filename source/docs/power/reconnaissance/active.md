@@ -240,14 +240,18 @@ Content-Type: text/html
 Date: Tue, 15 Apr 2025 03:45:12 GMT
 ```
 
-This identifies the device type and manufacturer without any risky protocol interactions. It's the equivalent of reading a nameplate on a door rather than picking the lock.
+This identifies the device type and manufacturer without any risky protocol interactions. It is the equivalent of 
+reading a nameplate on a door rather than picking the lock.
 
-You can also use netcat for manual interaction:
+You can also use netcat for manual interaction. The timeout (`-w`) saves from staring at a blinking cursor while the 
+device thinks about life.
+
 ```bash
-echo -e "GET / HTTP/1.0\r\n\r\n" | nc 192.168.10.10 80
+printf "GET / HTTP/1.0\r\n\r\n" | nc -w 3 192.168.10.10 80
 ```
 
-This sends a basic HTTP request and shows the full response including headers. Sometimes servers leak information in custom headers or error messages that automated tools might miss.
+This sends a basic HTTP request and shows the full response including headers. Sometimes servers leak information 
+in custom headers or error messages that automated tools might miss.
 
 ### Web interface exploration
 
@@ -262,6 +266,7 @@ Common paths are worth checking: `/admin`, `/config`, `/system`, `/diagnostics`,
 At UU P&L, exploring the SCADA server web interface at http://192.168.20.5:
 
 The login page source code contained this gem:
+
 ```html
 <!-- Wonderware InTouch 2014 R2 SP1 -->
 <!-- Build 4523, 2015-03-15 -->
@@ -269,16 +274,20 @@ The login page source code contained this gem:
 <!-- TODO: Remove this comment before production -->
 ```
 
-The comment was from 2009. The system went to production with the comment intact. The default credentials still worked. This is not uncommon. Developers leave comments as reminders, the system goes live, and the comments remain for years or decades.
+The comment was from 2009. The system went to production with the comment intact. The default credentials still worked. 
+This is not uncommon. Developers leave comments as reminders, the system goes live, and the comments remain for years 
+or decades.
 
 The HMI web interface revealed even more through its JavaScript:
+
 ```javascript
 var apiEndpoint = "http://192.168.20.5:8080/api/v1/";
 var defaultUser = "operator";
 var encryptionKey = "1234567890ABCDEF"; // XOR encryption key
 ```
 
-This revealed an undocumented API, a default username, and the "encryption" method used for passwords (XOR with a fixed key, which is not encryption, it's obscurity wearing an encryption costume).
+This revealed an undocumented API, a default username, and the "encryption" method used for passwords (`XOR` with a 
+fixed key, which is not encryption, it's obscurity wearing an encryption costume).
 
 ## SNMP enumeration (when it exists)
 
@@ -432,6 +441,7 @@ python s7scan.py 192.168.30.10
 ```
 
 Output shows:
+
 ```
 Module: S7-315-2 PN/DP
 Firmware: V3.2.6
@@ -442,18 +452,31 @@ From Modbus using protocol queries:
 
 ```python
 from pymodbus.client import ModbusTcpClient
+from pymodbus.constants import DeviceInformation
 
-client = ModbusTcpClient('192.168.10.15')
-client.connect()
+client = ModbusTcpClient(host="192.168.10.15", port=502)
 
-# Read device identification (if supported)
-response = client.read_device_information(0x00)
-if not response.isError():
+if not client.connect():
+    raise RuntimeError("Cannot connect")
+
+# Read basic device identification (Function 43 / MEI 14)
+response = client.read_device_information(
+    read_code=DeviceInformation.BASIC
+)
+
+if response.isError():
+    print("Device does not support Read Device Identification")
+else:
+    # Unresolved attribute reference 'information' for class 'ModbusPDU' is a type‑hint / 
+    # static analysis issue, not a protocol or code issue.
     for obj_id, value in response.information.items():
         print(f"{obj_id}: {value}")
+
+client.close()
 ```
 
-Some Modbus devices support function code 43 (Read Device Identification) which returns vendor name, product code, and version information.
+Some Modbus devices support function code 43 (Read Device Identification) which returns vendor name, product code, 
+and version information.
 
 ### Searching for known vulnerabilities
 
@@ -529,6 +552,7 @@ Web browsing activity (if proxy logs are available) shows engineering workstatio
 Passive observation is safest. Watch for devices that connect to PLCs for programming activities (uploads/downloads taking several seconds to minutes). Note their IP and MAC addresses.
 
 Active scanning looks for typical engineering workstation services:
+
 ```bash
 nmap -T1 -p 3389,5900,445,102,502 192.168.40.0/24
 ```
@@ -541,36 +565,52 @@ ARP cache inspection on network devices may show engineering workstations that b
 
 Engineering workstations were identified through multiple indicators:
 
-Hostname "ENG-WS-01" appeared in DHCP logs even though it currently had a static IP (it had briefly used DHCP during initial setup years ago, and the DHCP server still had the record).
+Hostname `ENG-WS-01` appeared in DHCP logs even though it currently had a static IP (it had briefly used DHCP during 
+initial setup years ago, and the DHCP server still had the record).
 
-Network behaviour showed regular connections to all turbine and reactor PLCs, not just monitoring but transferring kilobytes to megabytes of data (program uploads and downloads).
+Network behaviour showed regular connections to all turbine and reactor PLCs, not just monitoring but transferring 
+kilobytes to megabytes of data (program uploads and downloads).
 
-Open services included RDP port 3389 accessible from corporate network, SMB port 445 with anonymous access enabled (security through obscurity, except without the obscurity), HTTP port 80 serving a local copy of vendor documentation.
+Open services included RDP port 3389 accessible from corporate network, SMB port 445 with anonymous access enabled 
+(security through obscurity, except without the obscurity), HTTP port 80 serving a local copy of vendor documentation.
 
-The real treasure was discovered through SMB enumeration:
+The real treasure was discovered through 
+[SMB enumeration](https://red.tymyrddin.dev/docs/through/persistence/grounds/thm/relevant.html#smb-enumeration):
+
 ```bash
 smbclient -L //192.168.40.15 -N
 ```
 
-This listed shared folders including "PLC-Programs", "Backups", "Vendor-Software", and "Documentation". The "PLC-Programs" share was accessible without authentication and contained the complete program libraries for all turbine and reactor PLCs, including current and historical versions.
+This listed shared folders including `PLC-Programs`, `Backups`, `Vendor-Software`, and `Documentation`. The 
+`PLC-Programs` share was accessible without authentication and contained the complete program libraries for all 
+turbine and reactor PLCs, including current and historical versions.
 
-The "Vendor-Software" share contained licensed engineering software installers and, more concerning, a text file named "License-Keys.txt" with software license keys and activation codes.
+The `Vendor-Software` share contained licensed engineering software installers and, more concerning, a text file 
+named `License-Keys.txt` with software license keys and activation codes.
 
-One engineering workstation had a mapped network drive pointing to a vendor's FTP server with cached credentials. The FTP server was accessible without authentication and contained engineering software, configuration backups, and documentation for multiple customers across several industries. This wasn't UU P&L's fault, but it illustrated the extended attack surface when engineering workstations are compromised.
+One engineering workstation had a mapped network drive pointing to a vendor's FTP server with cached credentials. 
+The FTP server was accessible without authentication and contained engineering software, configuration backups, 
+and documentation for multiple customers across several industries. This wasn't UU P&L's fault, but it illustrated 
+the extended attack surface when engineering workstations are compromised.
 
 ## Remote access entry points
 
-Finding how external parties access OT systems reveals critical attack vectors and often exposes the weakest links in security.
+Finding how external parties access OT systems reveals critical attack vectors and often exposes the weakest links in 
+security.
 
 ### Types of remote access
 
-Vendor VPN connections allow vendors to provide support. These can be persistent (always connected) or on-demand (connected only when needed). They're extremely common and often poorly secured.
+Vendor VPN connections allow vendors to provide support. These can be persistent (always connected) or on-demand 
+(connected only when needed). They're extremely common and often poorly secured.
 
-Remote desktop services include RDP, VNC, TeamViewer, AnyDesk, and similar tools. Sometimes officially deployed, sometimes installed by individual engineers for convenience.
+Remote desktop services include RDP, VNC, TeamViewer, AnyDesk, and similar tools. Sometimes officially deployed, 
+sometimes installed by individual engineers for convenience.
 
-Web-based access through web interfaces for remote management, cloud-based SCADA platforms, vendor portals providing remote access to customer systems.
+Web-based access through web interfaces for remote management, cloud-based SCADA platforms, vendor portals providing 
+remote access to customer systems.
 
-Dial-up modems still exist in industrial environments. Often forgotten, unmaintained, and using ancient authentication methods (or none at all).
+Dial-up modems still exist in industrial environments. Often forgotten, unmaintained, and using ancient authentication 
+methods (or none at all).
 
 Cellular routers provide connectivity for remote sites using 4G/5G networks. Convenient, often insecure.
 
@@ -579,6 +619,7 @@ Cloud connections to cloud-based monitoring, analytics platforms, vendor support
 ### Discovery methods
 
 Network scanning looks for VPN concentrators, remote access servers, and modems:
+
 ```bash
 nmap -T1 -p 1723,500,4500,1194 192.168.0.0/16
 ```
@@ -589,18 +630,22 @@ Configuration review of VPN configurations, remote access policies, and vendor c
 
 Firewall rules analysis shows inbound rules allowing remote access, port forwarding rules, and external access paths.
 
-Active connections inspection shows who's currently connected remotely (check VPN logs, terminal server sessions, remote desktop connections).
+Active connections inspection shows who's currently connected remotely (check VPN logs, terminal server sessions, 
+remote desktop connections).
 
 ### External reconnaissance with Shodan
 
-[Shodan](https://www.shodan.io/) is a search engine for internet-connected devices. It continuously scans the entire internet and indexes what it finds, creating a searchable database of every exposed device.
+[Shodan](https://www.shodan.io/) is a search engine for internet-connected devices. It continuously scans the entire 
+internet and indexes what it finds, creating a searchable database of every exposed device.
 
 Search for your organisation's IP ranges:
+
 ```
 net:203.0.113.0/24
 ```
 
 Search for specific industrial systems:
+
 ```
 port:502 country:AM
 port:102 Siemens
@@ -609,20 +654,26 @@ port:47808 BACnet
 ```
 
 Search for specific vulnerabilities:
+
 ```
 "Authentication: disabled" port:102
 "default password" port:80
 ```
 
-[Censys](https://censys.io/) is similar to Shodan, providing another view of internet-exposed systems with slightly different indexing and search capabilities.
+[Censys](https://censys.io/) is similar to Shodan, providing another view of internet-exposed systems with slightly 
+different indexing and search capabilities.
 
 ### At UU P&L remote access discoveries
 
 Remote access discovery revealed a concerning landscape:
 
-OpenVPN server on the OT network (192.168.50.10) accessible from the internet. Configuration review showed five vendor accounts, all sharing the same password ("vendor123"), no certificate-based authentication, no two-factor authentication, and logs showing successful connections from IP addresses in several countries.
+OpenVPN server on the OT network (192.168.50.10) accessible from the internet. Configuration review showed five 
+vendor accounts, all sharing the same password (`vendor123`), no certificate-based authentication, no two-factor 
+authentication, and logs showing successful connections from IP addresses in several countries.
 
-TeamViewer installed on SCADA server with unattended access enabled. The password was written on a sticky note attached to the server (discovered during a site visit). TeamViewer ID was listed in vendor documentation that had been publicly posted to a support forum years ago.
+TeamViewer installed on SCADA server with unattended access enabled. The password was written on a sticky note 
+attached to the server (discovered during a site visit). TeamViewer ID was listed in vendor documentation that 
+had been publicly posted to a support forum years ago.
 
 Two cellular routers at remote substations discovered via Shodan search:
 
@@ -630,19 +681,41 @@ Two cellular routers at remote substations discovered via Shodan search:
 port:80 "Digi" country:AM
 ```
 
-These routers had web interfaces exposed to the internet with default admin credentials still working (admin/admin). Port forwarding rules allowed direct access to substation RTUs from the internet on Modbus TCP port 502. Anyone who found these routers (trivial with Shodan) could send Modbus commands directly to substation equipment.
+These routers had web interfaces exposed to the internet with default admin credentials still working 
+(`admin`/`admin`). Port forwarding rules allowed direct access to substation RTUs from the internet on Modbus 
+TCP port 502. Anyone who found these routers (trivial with Shodan) could send Modbus commands directly to 
+substation equipment.
 
-An old dial-up modem on the reactor control network was discovered in documentation. The phone number was listed in an archived maintenance manual. Calling the number, the modem answered with a Hayes-compatible carrier tone. Connecting with a serial terminal, it presented a login prompt that accepted default credentials from the modem manufacturer's documentation (still available online).
+An old dial-up modem on the reactor control network was discovered in documentation. The phone number was listed in 
+an archived maintenance manual. Calling the number, the modem answered with a Hayes-compatible carrier tone. 
+Connecting with a serial terminal, it presented a login prompt that accepted default credentials from the 
+modem manufacturer's documentation (still available online).
 
-This modem had been installed in 1994 for vendor remote access. The vendor contract had ended in 2003. The modem was never disconnected. It had been sitting there for 23 years, faithfully answering calls, providing unauthenticated access to the reactor control network to anyone with a phone line and a serial terminal emulator.
+This modem had been installed in 1994 for vendor remote access. The vendor contract had ended in 2003. The 
+modem was never disconnected. It had been sitting there for 23 years, faithfully answering calls, providing 
+unauthenticated access to the reactor control network to anyone with a phone line and a serial terminal emulator.
 
-The recommendations following remote access discovery were extensive and sobering. For the vendor VPN, implement certificate-based authentication, disable shared accounts, enable two-factor authentication, implement IP whitelisting to only allow connections from known vendor addresses, and establish regular access reviews. For the cellular routers, change default credentials immediately, disable management interfaces from internet access, implement VPN for all remote connections, and require security approval before deploying any internet-connected devices. For the dial-up modem, disconnect it. Immediately. There's no scenario where a 23-year-old modem with no authentication on a reactor control network is acceptable.
+The recommendations following remote access discovery were extensive and sobering. For the vendor VPN, implement 
+certificate-based authentication, disable shared accounts, enable two-factor authentication, implement IP 
+whitelisting to only allow connections from known vendor addresses, and establish regular access reviews. For the 
+cellular routers, change default credentials immediately, disable management interfaces from internet access, 
+implement VPN for all remote connections, and require security approval before deploying any internet-connected 
+devices. For the dial-up modem, disconnect it. Immediately. There's no scenario where a 23-year-old modem with no 
+authentication on a reactor control network is acceptable.
 
-The cellular routers discovered via Shodan were particularly concerning because they provided direct internet access to operational substation equipment with nothing more than default credentials protecting them. This is the sort of finding that makes security assessors wake up at 3 AM wondering if they should have been more emphatic in their recommendations.
+The cellular routers discovered via Shodan were particularly concerning because they provided direct internet 
+access to operational substation equipment with nothing more than default credentials protecting them. This is 
+the sort of finding that makes security assessors wake up at 3 AM wondering if they should have been more emphatic 
+in their recommendations.
 
-It's also distressingly common. Field technicians deploy equipment for operational convenience without security oversight. The equipment works reliably, fades into background infrastructure, and nobody remembers to audit it until a security assessment years later reveals it to the world via Shodan.
+It's also distressingly common. Field technicians deploy equipment for operational convenience without security 
+oversight. The equipment works reliably, fades into background infrastructure, and nobody remembers to audit it 
+until a security assessment years later reveals it to the world via Shodan.
 
-Active reconnaissance at UU P&L revealed a landscape ranging from concerning to terrifying. But it was done slowly, carefully, and without causing operational disruptions. The turbines kept spinning, the reactor stayed contained, the Librarian remained comfortable, and most importantly, nobody had to explain anything awkward to the Patrician.
+Active reconnaissance at UU P&L revealed a landscape ranging from concerning to terrifying. But it was done slowly, 
+carefully, and without causing operational disruptions. The turbines kept spinning, the reactor stayed contained, 
+the Librarian remained comfortable, and most importantly, nobody had to explain anything awkward to 
+[the Patrician](https://indigo.tymyrddin.dev/docs/vetinari/).
 
 That's success in OT security testing.
 

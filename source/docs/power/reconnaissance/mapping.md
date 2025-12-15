@@ -67,7 +67,7 @@ At UU P&L, the unknown Windows XP machine investigation revealed layers of archa
 
 Consultation with maintenance staff produced this exchange:
 
-"Do you know what TURBINE-DATA-01 is?"
+"Do you know what `TURBINE-DATA-01` is?"
 
 "Oh, that old thing? Yeah, it collects data from the turbines."
 
