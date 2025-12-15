@@ -4,7 +4,7 @@ Before you start testing an OT environment, you need to think like an attacker. 
 
 Threat modelling helps you:
 - Focus testing efforts on realistic attack scenarios
-- Prioritize findings based on actual threat likelihood
+- Prioritise findings based on actual threat likelihood
 - Communicate risks in terms business stakeholders understand
 - Avoid wasting time on theoretical vulnerabilities that no real attacker would exploit
 
@@ -72,7 +72,7 @@ Operational: How long to recover?
 - Loss of control system: Days to weeks
 - Safety system failure: Cannot operate until fixed
 
-This categorisation helps prioritize protection efforts and testing focus. You spend more time on turbine controls (high consequence across all categories) than on building HVAC (low consequence).
+This categorisation helps prioritise protection efforts and testing focus. You spend more time on turbine controls (high consequence across all categories) than on building HVAC (low consequence).
 
 ## Threat actors, who wants to attack a power plant
 
@@ -128,7 +128,7 @@ Attack methods:
 - RDP brute forcing
 - Exploiting known vulnerabilities in perimeter systems
 - Purchasing initial access from access brokers
-- Lateral movement to maximize encryption impact
+- Lateral movement to maximise encryption impact
 
 Likelihood for UU P&L: High. Ransomware is indiscriminate. Any organisation with money is a target. UU P&L, as critical infrastructure, is attractive because they're more likely to pay.
 
@@ -629,6 +629,6 @@ This prioritisation helps allocate security resources effectively. You spend mor
 
 It also helps during incident response. If under attack, you focus first on protecting crown jewels. If forced to choose between protecting the SCADA system and protecting corporate file servers, the choice is obvious.
 
-Threat modelling isn't just an academic exercise. It shapes how you test, what you test, what vulnerabilities matter most, and what recommendations you prioritize. Without understanding threats, you're just finding vulnerabilities without context. With good threat modelling, you're providing actionable security intelligence that helps protect what actually matters.
+Threat modelling isn't just an academic exercise. It shapes how you test, what you test, what vulnerabilities matter most, and what recommendations you prioritise. Without understanding threats, you're just finding vulnerabilities without context. With good threat modelling, you're providing actionable security intelligence that helps protect what actually matters.
 
 And at UU P&L, what actually matters is keeping the power on, the reactor contained, and the Librarian comfortable. Everything else is negotiable.
