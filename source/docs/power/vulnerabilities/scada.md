@@ -140,7 +140,7 @@ Certificate-based provides strong authentication using X.509 certificates.
 
 ### Testing OPC UA
 
-Tools like [opcua-asyncio](https://github.com/FreeOpcUa/opcua-asyncio) allow [probing OPC UA servers](https://github.com/ninabarzh/power-and-light/blob/main/vulns/opcua_readonly_probe.py)
+Tools like [opcua-asyncio](https://github.com/FreeOpcUa/opcua-asyncio) allow 🐙 [probing OPC UA servers](https://github.com/ninabarzh/power-and-light/blob/main/vulns/opcua_readonly_probe.py)
 
 At UU P&L, the SCADA server ran an OPC UA server on port 4840. Testing revealed SecurityMode was None (no encryption), authentication was Anonymous (no credentials required), and all tags were readable and writeable by anyone who could connect.
 

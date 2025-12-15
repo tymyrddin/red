@@ -34,7 +34,9 @@ Generic credentials that appear everywhere include admin/admin, administrator/ad
 
 ### Testing for default credentials
 
-The approach is straightforward and requires no sophisticated tools. Try common defaults first using [lists of industrial default credentials](https://github.com/scadastrangelove/SCADAPASS). Try vendor-specific defaults from product documentation. Try variations (admin/admin123, admin/Admin, admin/password).
+The approach is straightforward and requires no sophisticated tools. Try common defaults first using 
+[lists of industrial default credentials](https://github.com/scadastrangelove/SCADAPASS). Try vendor-specific defaults 
+from product documentation. Try variations (admin/admin123, admin/Admin, admin/password).
 
 At UU P&L, testing default credentials on the main SCADA HMI produced immediate results:
 

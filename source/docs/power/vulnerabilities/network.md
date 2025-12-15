@@ -208,7 +208,7 @@ This is less effective if the IDS correlates events over longer time periods, bu
 
 OT protocols often have multiple valid ways to express the same command. An IDS signature that looks for "write to address 0x1000" might miss a command that writes to "40001" (the Modbus notation for the same address):
 
-```python
+```
 # PSEUDOCODE – illustrates protocol-level evasion concepts
 
 # Function code 05: Write Single Coil
