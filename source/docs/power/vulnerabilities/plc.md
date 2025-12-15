@@ -32,16 +32,16 @@ Testing PLC authentication is straightforward but requires appropriate tools and
 
 At UU P&L, testing the turbine control PLCs (Siemens S7-315) revealed no authentication whatsoever. Using 
 [Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication we can do a 
-🐙 [status dump](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_plc_status_dump.py).
+[🐙 status dump](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_plc_status_dump.py).
 
-This connected successfully with no authentication required. Further testing revealed the ability to 🐙 [read memory 
+This connected successfully with no authentication required. Further testing revealed the ability to [🐙 read memory 
 areas](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_read_memory.py), 
-🐙 [download the PLC program](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_readonly_block_dump.py), and 
+[🐙 download the PLC program](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_readonly_block_dump.py), and 
 theoretically upload modified programs (not tested on production system).
 
 The reactor control PLCs (also Siemens S7-400) had password protection enabled. However, testing revealed the password 
 was a four-digit numeric code. Four digits means 10,000 possible combinations. 
-🐙 [Brute forcing is trivial](https://github.com/ninabarzh/power-and-light/blob/main/vulns/plc_password_bruteforce.py). 
+[🐙 Brute forcing is trivial](https://github.com/ninabarzh/power-and-light/blob/main/vulns/plc_password_bruteforce.py). 
 
 This isn't recommended on production systems (it takes time and generates traffic), but in a test environment it 
 found the password in under 20 minutes. The password was 1234, which is simultaneously predictable and depressing.
@@ -60,9 +60,9 @@ The process varies by manufacturer but the concept is consistent. Connect to the
 Issue a program download command. Receive the program data. Save it for analysis.
 
 Some PLC platforms (notably legacy Siemens S7‑300/400) permit 
-🐙 [program block upload](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_readonly_block_dump.py) via 
+[🐙 program block upload](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_readonly_block_dump.py) via 
 their native protocol. Others (such as Allen‑Bradley Logix) 
-🐙 [expose operational metadata](https://github.com/ninabarzh/power-and-light/blob/main/vulns/ab_logix_tag_inventory.py) 
+[🐙 expose operational metadata](https://github.com/ninabarzh/power-and-light/blob/main/vulns/ab_logix_tag_inventory.py) 
 like tags, but not complete program logic, without proprietary engineering tools.
 
 
@@ -184,7 +184,7 @@ PLCs that support Modbus TCP have specific functions for forcing coils (discrete
 ### Read coils and registers
 
 [pyModbus](https://github.com/pymodbus-dev/pymodbus) can be used for 
-🐙 [reading coils and registers](https://github.com/ninabarzh/power-and-light/blob/main/vulns/modbus_coil_register_snapshot.py)
+[🐙 reading coils and registers](https://github.com/ninabarzh/power-and-light/blob/main/vulns/modbus_coil_register_snapshot.py)
 
 ### Writing coils and registers
 
