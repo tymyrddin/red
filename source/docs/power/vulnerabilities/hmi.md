@@ -1,5 +1,7 @@
 # HMI security testing
 
+![HMI](/_static/images/ot-hmi.png)
+
 When the user interface is the weakest link (it usually is).
 
 Human-Machine Interfaces are where operators interact with industrial processes. They're the screens showing pretty graphics of turbines spinning, tanks filling, and valves opening. They're the buttons that make things happen in the physical world. They're also, almost universally, the weakest security link in OT environments.

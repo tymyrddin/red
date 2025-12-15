@@ -28,41 +28,21 @@ Physical key switches on many PLCs control whether the PLC accepts program chang
 
 Testing PLC authentication is straightforward but requires appropriate tools and extreme caution. The goal is to determine what authentication exists and whether it can be bypassed, not to actually make unauthorised changes to production systems.
 
-At UU P&L, testing the turbine control PLCs (Siemens S7-315) revealed no authentication whatsoever. Using [Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication:
+At UU P&L, testing the turbine control PLCs (Siemens S7-315) revealed no authentication whatsoever. Using 
+[Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication we can do a 
+[status dump](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_plc_status_dump.py).
 
-```python
-import snap7
+This connected successfully with no authentication required. Further testing revealed the ability to [read memory 
+areas](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_read_memory.py), 
+[download the PLC program](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_readonly_block_dump.py), and 
+theoretically upload modified programs (not tested on production system).
 
-plc = snap7.client.Client()
-plc.connect('192.168.10.10', 0, 1)  # IP, rack, slot
+The reactor control PLCs (also Siemens S7-400) had password protection enabled. However, testing revealed the password 
+was a four-digit numeric code. Four digits means 10,000 possible combinations. 
+[Brute forcing is trivial](https://github.com/ninabarzh/power-and-light/blob/main/vulns/plc_password_bruteforce.py). 
 
-# Check connection
-cpu_state = plc.get_cpu_state()
-print(f"CPU State: {cpu_state}")
-
-# Read CPU information
-cpu_info = plc.get_cpu_info()
-print(f"CPU Type: {cpu_info.ModuleTypeName}")
-print(f"Serial Number: {cpu_info.SerialNumber}")
-print(f"Module Name: {cpu_info.ModuleName}")
-```
-
-This connected successfully with no authentication required. Further testing revealed the ability to read all memory areas, download the complete PLC program, and theoretically upload modified programs (not tested on production system).
-
-The reactor control PLCs (also Siemens S7-400) had password protection enabled. However, testing revealed the password was a four-digit numeric code. Four digits means 10,000 possible combinations. Brute forcing is trivial:
-
-```python
-for password in range(0, 10000):
-    try:
-        plc.set_session_password(str(password).zfill(4))
-        if plc.connect('192.168.30.10', 0, 1):
-            print(f"Password found: {password:04d}")
-            break
-    except:
-        continue
-```
-
-This isn't recommended on production systems (it takes time and generates traffic), but in a test environment it found the password in under 20 minutes. The password was 1234, which is simultaneously predictable and depressing.
+This isn't recommended on production systems (it takes time and generates traffic), but in a test environment it 
+found the password in under 20 minutes. The password was 1234, which is simultaneously predictable and depressing.
 
 ## Project file download attacks
 
@@ -74,72 +54,71 @@ The complete control logic showing exactly what the PLC does and how it does it.
 
 ### Downloading PLC programs
 
-The process varies by manufacturer but the concept is consistent. Connect to the PLC using its programming protocol. Issue a program download command. Receive the program data. Save it for analysis.
+The process varies by manufacturer but the concept is consistent. Connect to the PLC using its programming protocol. 
+Issue a program download command. Receive the program data. Save it for analysis.
 
-For Siemens S7 PLCs using Snap7:
+Some PLC platforms (notably legacy Siemens S7‑300/400) permit 
+[program block upload](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_readonly_block_dump.py) via 
+their native protocol. Others (such as Allen‑Bradley Logix) 
+[expose operational metadata](https://github.com/ninabarzh/power-and-light/blob/main/vulns/ab_logix_tag_inventory.py) 
+like tags, but not complete program logic, without proprietary engineering tools.
 
-```python
-# Download program blocks
-blocks = plc.list_blocks()
-for block_type, block_num in blocks:
-    block_data = plc.full_upload(block_type, block_num)
-    with open(f'block_{block_type}_{block_num}.bin', 'wb') as f:
-        f.write(block_data)
-```
 
-For Allen-Bradley PLCs using [pycomm3](https://github.com/ottowayi/pycomm3):
+At UU P&L, downloading the turbine PLC programs revealed detailed control logic including turbine startup sequences, 
+overspeed protection algorithms, temperature and vibration monitoring, emergency shutdown conditions, and integration 
+points with safety systems.
 
-```python
-from pycomm3 import LogixDriver
-
-with LogixDriver('192.168.10.20') as plc:
-    # Read program information
-    tags = plc.get_tag_list()
-    for tag in tags:
-        print(f"{tag['tag_name']}: {tag['data_type']}")
-```
-
-At UU P&L, downloading the turbine PLC programs revealed detailed control logic including turbine startup sequences, overspeed protection algorithms, temperature and vibration monitoring, emergency shutdown conditions, and integration points with safety systems.
-
-The programs also contained comments (in German, because Siemens) explaining the logic. One comment translated to "TODO: Add proper input validation here - currently assumes sensors always return valid values". This explained why sensor failures occasionally caused unexpected PLC behaviour.
+The programs also contained comments (in German, because Siemens) explaining the logic. One comment translated to 
+"TODO: Add proper input validation here - currently assumes sensors always return valid values". This explained why 
+sensor failures occasionally caused unexpected PLC behaviour.
 
 ## Logic upload and download testing
 
-The inverse of downloading programs is uploading them. If you can upload modified logic to a PLC, you can change how it controls physical processes.
+The inverse of downloading programs is uploading them. If you can upload modified logic to a PLC, you can change 
+how it controls physical processes.
 
 ### The danger of logic modification
 
-This is where PLC testing becomes genuinely dangerous. Uploading malicious or incorrect logic can cause equipment damage, safety incidents, or operational disruption. This type of testing should only be done on test systems, simulators, or with extensive safety precautions.
+This is where PLC testing becomes genuinely dangerous. Uploading malicious or incorrect logic can cause equipment 
+damage, safety incidents, or operational disruption. This type of testing should only be done on test systems, 
+simulators, or with extensive safety precautions.
 
 ### Testing approach for logic upload
 
-Do not test on production systems unless you have explicit approval, comprehensive understanding of the process, the ability to immediately revert changes, and operators standing by to intervene if needed.
+Do not test on production systems unless you have explicit approval, comprehensive understanding of the process, the 
+ability to immediately revert changes, and operators standing by to intervene if needed.
 
-The safe approach is to test on a spare PLC in a lab environment, use PLC simulators, or create a test environment that mimics production but controls nothing physical.
+The safe approach is to test on a spare PLC in a lab environment, use PLC simulators, or create a test environment 
+that mimics production but controls nothing physical.
 
-At UU P&L, testing was done on a spare Siemens S7-315 PLC obtained from the old brewery equipment. This PLC was identical to the production turbine PLCs but wasn't connected to anything that could be damaged.
+At UU P&L, testing was done on a spare Siemens S7-315 PLC obtained from the old brewery equipment. This PLC was 
+identical to the production turbine PLCs but wasn't connected to anything that could be damaged.
 
-The test demonstrated that uploading modified logic was possible:
+The test demonstrated that uploading modified logic was possible (Illustrative pseudocode demonstrating unauthenticated PLC logic upload):
 
 ```python
-# Read original program
-original_program = plc.full_upload(BlockType.OB, 1)
+# Conceptual demonstration (pseudocode)
 
-# Modify program (in reality, this would be more sophisticated)
-# This is simplified for illustration
-modified_program = original_program  # Would actually modify the logic here
+# 1. Read compiled logic block from PLC (read-only)
+compiled_block = plc.read_block(block_type="OB", block_number=1)
 
-# Upload modified program
-plc.download(BlockType.OB, 1, modified_program)
+# 2. Replace block with attacker-controlled logic
+# (In practice, this logic was created using Siemens engineering tools)
+attacker_block = compiled_block_with_modified_logic
 
-# Verify upload
-plc.plc_stop()  # Stop PLC
-plc.plc_start()  # Start with new program
+# 3. Write block back to PLC
+plc.write_block(attacker_block)
+
+# 4. Restart PLC to execute new logic
+plc.restart()
 ```
 
-The upload succeeded. The PLC executed the modified logic. If this had been a production system controlling a turbine, the modified logic would have controlled the turbine.
+The upload succeeded. The PLC executed the modified logic. If this had been a production system controlling a turbine, 
+the modified logic would have controlled the turbine.
 
-The demonstration for UU P&L stakeholders used a PLC connected to indicator lights. The original program made the lights blink in sequence. The modified program made them blink randomly. Simple, visual, and completely harmless. But it demonstrated that an attacker with network access could upload arbitrary logic to PLCs.
+The demonstration for UU P&L stakeholders used a PLC connected to indicator lights. The original program made the 
+lights blink in sequence. The modified program made them blink randomly. Simple, visual, and completely harmless. 
+But it demonstrated that an attacker with network access could upload arbitrary logic to PLCs.
 
 ## Memory manipulation
 
@@ -147,50 +126,47 @@ PLCs have various memory areas that can be read and written. Directly manipulati
 
 ### PLC memory areas
 
-Inputs (I) reflect the state of physical input devices. In theory read-only (reflecting real-world state), but some PLCs allow forcing input values for testing.
-
-Outputs (Q) control physical output devices. Writing to outputs causes immediate physical actions.
-
-Flags (M) are internal memory used by the program for calculations and temporary storage.
-
-Data blocks (DB) store structured data, configuration parameters, and persistent values.
-
-Timers (T) and Counters (C) are specialised memory areas for timing and counting operations.
+- Inputs (I) reflect the state of physical input devices. In theory read-only (reflecting real-world state), but some 
+PLCs allow forcing input values for testing.
+- Outputs (Q) control physical output devices. Writing to outputs causes immediate physical actions.
+- Flags (M) are internal memory used by the program for calculations and temporary storage.
+- Data blocks (DB) store structured data, configuration parameters, and persistent values.
+- Timers (T) and Counters (C) are specialised memory areas for timing and counting operations.
 
 ### Reading memory
 
-Reading memory is relatively safe (though rapid polling can impact PLC performance):
+Reading memory is generally safe when performed sparingly; however, aggressive or high‑frequency polling can impact 
+PLC performance. Memory reads allow observation of live process values (sensor readings, actuator states), 
+configuration parameters, setpoints, and alarm information. This provides significant insight into system operation 
+and enables attack planning, while not directly altering the physical process.
 
-```python
-# Read inputs
-inputs = plc.read_area(snap7.types.Areas.PE, 0, 0, 10)
+At UU P&L, reading turbine PLC memory revealed current sensor values (temperatures, pressures, speeds), current output 
+states (valves open/closed, pumps on/off), setpoints and configuration parameters, and alarm states and counters.
 
-# Read outputs  
-outputs = plc.read_area(snap7.types.Areas.PA, 0, 0, 10)
-
-# Read data block
-db_data = plc.db_read(1, 0, 100)  # DB1, start 0, length 100
-```
-
-At UU P&L, reading turbine PLC memory revealed current sensor values (temperatures, pressures, speeds), current output states (valves open/closed, pumps on/off), setpoints and configuration parameters, and alarm states and counters.
-
-This information alone is valuable for understanding operations and planning attacks, but it doesn't change physical state.
+This information alone is valuable for understanding operations and planning attacks, but it doesn't change physical 
+state.
 
 ### Writing memory
 
 Writing memory directly affects physical processes. This is dangerous and should only be done in controlled conditions.
 
 ```python
-# Write to outputs (DANGEROUS - controls physical equipment)
-plc.write_area(snap7.types.Areas.PA, 0, 0, b'\x01')  # Turn on output 0
+# Conceptual example – DO NOT RUN ON PRODUCTION SYSTEMS
 
-# Write to data block (changes configuration)
-plc.db_write(1, 0, b'\x00\x00\x01\x00')  # Modify DB1 values
+# Write to output memory
+plc.write_output(address=0, value=ON)
+
+# Write to configuration data
+plc.write_datablock(db=1, offset=0, values=new_parameters)
 ```
 
-At UU P&L, memory write testing was only demonstrated on the spare PLC. The test showed that writing to output memory immediately changed the physical outputs (the indicator lights responded instantly). Writing to data blocks changed setpoints and parameters.
+At UU P&L, memory write testing was only demonstrated on the spare PLC. The test showed that writing to output memory 
+immediately changed the physical outputs (the indicator lights responded instantly). Writing to data blocks changed 
+setpoints and parameters.
 
-On a production system, writing to outputs could open valves, start motors, or change turbine speeds. Writing to data blocks could modify temperature limits, pressure setpoints, or timing parameters. All of these could have serious operational and safety consequences.
+On a production system, writing to outputs could open valves, start motors, or change turbine speeds. Writing to 
+data blocks could modify temperature limits, pressure setpoints, or timing parameters. All of these could have 
+serious operational and safety consequences.
 
 ## Coil and register forcing (Modbus)
 
@@ -198,49 +174,47 @@ PLCs that support Modbus TCP have specific functions for forcing coils (discrete
 
 ### Modbus function codes for forcing
 
-Function code 05 (Write Single Coil) forces an output to ON or OFF.
-Function code 06 (Write Single Register) writes a value to a holding register.
-Function code 15 (Write Multiple Coils) forces multiple outputs simultaneously.
-Function code 16 (Write Multiple Registers) writes multiple register values.
+- Function code 05 (Write Single Coil) forces an output to ON or OFF.
+- Function code 06 (Write Single Register) writes a value to a holding register.
+- Function code 15 (Write Multiple Coils) forces multiple outputs simultaneously.
+- Function code 16 (Write Multiple Registers) writes multiple register values.
 
-### Testing with Modbus
+### Read coils and registers
 
-Using [pyModbus](https://github.com/pymodbus-dev/pymodbus):
+[pyModbus](https://github.com/pymodbus-dev/pymodbus) can be used for 
+[reading coils and registers](https://github.com/ninabarzh/power-and-light/blob/main/vulns/modbus_coil_register_snapshot.py)
+
+### Writing coils and registers
 
 ```python
-from pymodbus.client import ModbusTcpClient
+Illustrative example (pseudocode – do not run on production systems)
 
-client = ModbusTcpClient('192.168.10.15')
-client.connect()
+# Force a discrete output (Modbus FC05)
+modbus.write_coil(address=0, value=ON)
 
-# Read coil status (safe)
-coils = client.read_coils(0, 10, slave=1)
-print(f"Coil status: {coils.bits}")
-
-# Read holding registers (safe)
-registers = client.read_holding_registers(0, 10, slave=1)
-print(f"Register values: {registers.registers}")
-
-# Write coil (DANGEROUS - for testing only)
-# client.write_coil(0, True, slave=1)
-
-# Write register (DANGEROUS - for testing only)  
-# client.write_register(0, 1234, slave=1)
+# Force an analog value (Modbus FC06)
+modbus.write_register(address=0, value=new_setpoint)
 ```
 
-At UU P&L, several PLCs had Modbus gateways for integration with third-party systems. Reading coils and registers provided real-time process data. The concerning discovery was that writing was also possible without authentication.
+At UU P&L, several PLCs had Modbus gateways for integration with third-party systems. Reading coils and registers 
+provided real-time process data. The concerning discovery was that writing was also possible without authentication.
 
-Testing on a non-critical system (the cafeteria refrigeration, which used a small PLC with Modbus) confirmed that write commands worked. Writing to coil 0 turned the refrigeration compressor on or off. Writing to register 0 changed the temperature setpoint.
+Testing on a non-critical system (the cafeteria refrigeration, which used a small PLC with Modbus) confirmed that 
+write commands worked. Writing to `coil 0` turned the refrigeration compressor on or off. Writing to `register 0` 
+changed the temperature setpoint.
 
-If the same Modbus gateway existed on turbine systems (it did), and if it allowed writes (it did), then anyone with network access could force turbine outputs or change setpoints via simple Modbus commands.
+If the same Modbus gateway existed on turbine systems (it did), and if it allowed writes (it did), then anyone 
+with network access could force turbine outputs or change setpoints via simple Modbus commands.
 
 ## Program execution flow analysis
 
-Understanding how a PLC program executes helps identify vulnerabilities in the control logic itself, not just in the PLC's security mechanisms.
+Understanding how a PLC program executes helps identify vulnerabilities in the control logic itself, not just in the 
+PLC's security mechanisms.
 
 ### PLC scan cycle
 
 PLCs execute programs in a continuous cycle:
+
 1. Read inputs from physical sensors
 2. Execute program logic
 3. Update outputs to physical actuators  
