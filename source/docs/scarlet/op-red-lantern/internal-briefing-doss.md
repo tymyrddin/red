@@ -1,4 +1,4 @@
-# Internal briefing Department of Silent Stability (circulated, unsigned)
+# Intercepted internal briefing Department of Silent Stability (to all, unsigned)
 
 Subject: Irregular routing behaviour in city signalling systems
 
