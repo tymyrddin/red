@@ -15,7 +15,8 @@ The Scarlet Semaphore are interested in:
 * How quickly false paths propagate
 * How long it takes for anyone sensible to notice
 
-They are not trying to *break* the city. They are trying to find out how easily it could be persuaded to misdeliver itself.
+They are not trying to *break* the city. They are trying to find out how easily it could be persuaded to misdeliver 
+itself.
 
 ### Method (Semaphore style)
 
