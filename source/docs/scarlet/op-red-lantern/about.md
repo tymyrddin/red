@@ -18,7 +18,7 @@ The Scarlet Semaphore are interested in:
 They are not trying to *break* the city. They are trying to find out how easily it could be persuaded to misdeliver 
 itself.
 
-### Method (Semaphore style)
+## Method (Semaphore style)
 
 Very informal. Alarmingly clever.
 
@@ -31,7 +31,7 @@ Everything is reversible.
 
 Mostly.
 
-### Relationship with the Department of Silent Stability
+## Relationship with the Department of Silent Stability
 
 Officially: none.
 Practically: everyone involved assumes they are being watched and proceeds anyway.
@@ -45,13 +45,13 @@ There is a standing, unspoken rule:
 * If the Department intervenes, the Operation stops immediately
 * If they do not, the findings are quietly ... shared
 
-### Risk posture
+## Risk posture
 
 High curiosity. Moderate danger. Severe consequences *if someone gets creative without thinking*.
 
 This is why several former Semaphore members now work for the Department. Not as punishment. As continuity.
 
-### Current status
+## Current status
 
 Ongoing, intermittently paused for tea, arguments, and ethical discussions that sound suspiciously like technical debates.
 
