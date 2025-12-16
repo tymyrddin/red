@@ -20,7 +20,7 @@ Ankh-Morpork's main supplier of electricity, hot water, and occasional mysteriou
    exploitation/index
    topics/index
    remediation/index
-   OT/ICS penetration testing scripts @GitHub <https://github.com/ninabarzh/power-and-light/tree/main>
+   OT/ICS penetration testing scripts and files @GitHub <https://github.com/ninabarzh/power-and-light/tree/main>
    UU Power & Light ICS Simulator under construction @GitHub <https://github.com/ninabarzh/ics-simulator>
 
 .. raw:: html
