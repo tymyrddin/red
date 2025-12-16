@@ -1,14 +1,12 @@
-# About the Lanterns
+# About the red lanterns
 
-## Stated aim (as overheard, never written down)
-
-“To see what happens if the city’s routing assumptions are ... questioned.”
-
-This is said with the same tone one might use when wondering whether a supporting wall is load-bearing.
+Stated aim (as overheard, never written down): *“To see what happens if the city’s routing assumptions are ... 
+questioned.”*, said with the same tone one might use when wondering whether a supporting wall is load-bearing.
 
 ## What they are actually poking at
 
-In Ankh-Morpork terms, this is **messenger routing**. In modern terms, yes, it looks suspiciously like **BGP**.
+In Ankh-Morpork terms, this is *messenger routing*. In modern terms, yes, it looks suspiciously like 
+*[BGP](https://red.tymyrddin.dev/docs/in/network/roots/bgp/)*.
 
 The Scarlet Semaphore are interested in:
 

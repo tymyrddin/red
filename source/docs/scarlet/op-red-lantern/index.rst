@@ -1,16 +1,16 @@
 Operation Red Lantern or False Horizon
 ======================================================
 
-.. image:: /_static/images/scarlet-semaphore.png
-   :alt: Inside a shadowy, cluttered steampunk guild hall, male and female members of the Scarlet Semaphore in red-trimmed cloaks huddle over archaic keyboards, telegraphs, and blinking semaphore lamps. Glowing parchments with cryptic symbols float in the air.
+.. image:: /_static/images/red-lanterns.png
+   :alt: Night over steampunk city Ankh-Morpork, viewed from high above; the city sprawls deep below; about 20 glowing red oil lanterns are visible in the city, forming a subtle, intricate irregular network of signals.
 
-No paperwork exists that uses this name.
+No paperwork exists that uses either of these names.
 
 .. toctree::
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Several people use it anyway, which is how one knows it is real.
+   :caption: Several people use them anyway, which is how one knows it is real.
 
    about.md
    patrician-red-line.md

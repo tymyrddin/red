@@ -1,4 +1,4 @@
-# Scarlet Semaphore – internal notice (pinned, then unpinned)
+# Internal notice Scarlet Semaphore (pinned, then unpinned)
 
 About the lanterns
 
