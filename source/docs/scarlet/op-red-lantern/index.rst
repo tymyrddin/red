@@ -1,18 +1,21 @@
-The Scarlet Semaphore
+Operation Red Lantern or False Horizon
 ======================================================
 
 .. image:: /_static/images/scarlet-semaphore.png
    :alt: Inside a shadowy, cluttered steampunk guild hall, male and female members of the Scarlet Semaphore in red-trimmed cloaks huddle over archaic keyboards, telegraphs, and blinking semaphore lamps. Glowing parchments with cryptic symbols float in the air.
 
+No paperwork exists that uses this name.
 
 .. toctree::
    :glob:
-   :maxdepth: 2
+   :maxdepth: 1
    :includehidden:
-   :caption: Signals, coded messages, and a dash of drama:
+   :caption: Several people use it anyway, which is how one knows it is real.
 
-   charter.md
-   op-red-lantern/index
+   about.md
+   patrician-red-line.md
+   internal-notice-tss.md
+   internal-briefing-doss.md
 
 
 .. raw:: html
