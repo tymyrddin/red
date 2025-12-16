@@ -17,6 +17,7 @@ undergrowth.
    :caption: Whatever, you watch your step.
 
    docs/power/index
+   docs/scarlet/index
 
 .. toctree::
    :glob:

@@ -16,7 +16,7 @@ production, and tabletop exercises help everyone understand the consequences bef
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: From “uh-oh” to “mostly under control”:
+   :caption: From “uh-oh” to “somewhat under control”:
 
    pentest-report.md
    prioritising.md
