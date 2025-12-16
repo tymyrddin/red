@@ -42,13 +42,11 @@ No one uses those phrases in front of each other.
 There is a standing, unspoken rule:
 
 * If the Department intervenes, the Operation stops immediately
-* If they do not, the findings are quietly… shared
+* If they do not, the findings are quietly ... shared
 
 ### Risk posture
 
-High curiosity.
-Moderate danger.
-Severe consequences *if someone gets creative without thinking*.
+High curiosity. Moderate danger. Severe consequences *if someone gets creative without thinking*.
 
 This is why several former Semaphore members now work for the Department. Not as punishment. As continuity.
 
