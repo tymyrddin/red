@@ -20,8 +20,24 @@ Ankh-Morpork's main supplier of electricity, hot water, and occasional mysteriou
    exploitation/index
    topics/index
    remediation/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :includehidden:
+   :caption: Repositories:
+
    OT/ICS penetration testing scripts and files @GitHub <https://github.com/ninabarzh/power-and-light/tree/main>
    UU Power & Light ICS Simulator under construction @GitHub <https://github.com/ninabarzh/ics-simulator>
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :includehidden:
+   :caption: Related:
+
+   Underfunded cybersecurity in critical infrastructure <https://indigo.tymyrddin.dev/docs/debt/underfunding>
+   Legacy systems that refuse to die @GitHub <https://indigo.tymyrddin.dev/docs/debt/legacy>
 
 .. raw:: html
 
