@@ -1,4 +1,7 @@
-# The red line (the Patrician’s position, never written down)
+# The red line 
+
+Our best guess at [the Patrician’s position](https://indigo.tymyrddin.dev/docs/vetinari/), because it was/is never 
+written down.
 
 You may observe.
 
