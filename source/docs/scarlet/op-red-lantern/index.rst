@@ -18,6 +18,15 @@ No paperwork exists that uses either of these names.
    internal-briefing-doss.md
 
 
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :includehidden:
+   :caption: Code:
+
+   Red Lantern simulator under construction @GitHub <https://github.com/ninabarzh/red-lantern-sim>
+
+
 .. raw:: html
 
         <div class="page__article">
