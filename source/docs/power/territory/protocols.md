@@ -12,7 +12,7 @@ The good news is that OT protocols are generally simpler than modern IT protocol
 and reliability, not flexibility.
 
 The bad news is that they were designed without security at all. No encryption, minimal authentication, and often no 
-authorization beyond "if you can reach this port, you must be authorised to use it".
+authorisation beyond "if you can reach this port, you must be authorised to use it".
 
 It's the network security equivalent of having a door with a lock, but the lock is purely decorative and the door 
 opens if you push it firmly whilst saying "I'm supposed to be here".

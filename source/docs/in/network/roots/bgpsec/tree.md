@@ -161,7 +161,7 @@ This attack tree explores the methods to undermine BGPsec, targeting its cryptog
             
         3.3.3 Timing and Persistence [OR]
             3.3.3.1 Long-term key compromise persistence
-            3.3.3.2 Attack synchronization across multiple ASes
+            3.3.3.2 Attack synchronisation across multiple ASes
             3.3.3.3 Holiday/weekend attack timing
 
 4. Cross-Protocol Attack Vectors [OR]
@@ -354,7 +354,7 @@ This attack tree explores the methods to undermine BGPsec, targeting its cryptog
 | 3.3.2.2 Standards body influence operations                | High                 | Medium             | High       | Long-term, low-technical but high-impact.                        |
 | 3.3.2.3 Certification authority lobbying                   | High                 | Medium             | High       | Social/political attack vector.                                  |
 | 3.3.3.1 Long-term key compromise persistence               | Very High            | High               | Very High  | Requires patience, access, and operational security.             |
-| 3.3.3.2 Attack synchronization across multiple ASes        | High                 | High               | Very High  | Complex coordination; high technical skill.                      |
+| 3.3.3.2 Attack synchronisation across multiple ASes        | High                 | High               | Very High  | Complex coordination; high technical skill.                      |
 | 3.3.3.3 Holiday/weekend attack timing                      | Medium               | Low                | Medium     | Opportunistic; low-resource.                                     |
 | 4.1.1.1 RPKI-valid but BGPsec-invalid route injection      | High                 | Medium             | High       | Exploits cross-protocol validation gaps.                         |
 | 4.1.1.2 BGPsec-valid but RPKI-invalid path propagation     | High                 | Medium             | High       | Cross-protocol discrepancy; advanced.                            |

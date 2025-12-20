@@ -248,7 +248,7 @@ This data is valuable for:
 - Operational analysis
 - Regulatory compliance
 - Troubleshooting
-- Performance optimization
+- Performance optimisation
 - Business intelligence
 
 It's also valuable for attackers:

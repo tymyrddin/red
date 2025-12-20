@@ -7,7 +7,7 @@ The Scarlet Semaphore
 
 .. toctree::
    :glob:
-   :maxdepth: 2
+   :maxdepth: 1
    :includehidden:
    :caption: Signals, coded messages, and a dash of drama:
 

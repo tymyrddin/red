@@ -4,7 +4,7 @@ To host cloud challenges:
 
 * Cloud Provider Accounts (AWS/GCP/Azure) – Free tiers work for basic labs.
 * Terraform/Ansible – Automate deployment of vulnerable setups.
-* Containerization (Docker/Kubernetes) – For isolated, ephemeral challenge environments.
+* Containerisation (Docker/Kubernetes) – For isolated, ephemeral challenge environments.
 * Monitoring & rate limiting – Prevent abuse (e.g., AWS GuardDuty, custom scripts).
 * Flag Validation System – Auto-check exploit success (e.g., stolen secrets, RCE).
 

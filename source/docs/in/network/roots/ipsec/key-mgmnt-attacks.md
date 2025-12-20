@@ -163,7 +163,7 @@ security {
 -   How:
     -   Set conservative SA lifetimes (max 24 hours for IKE SA, 4 hours for Child SA)
     -   Enforce reauthentication during rekey operations
-    --   Implement time synchronization via secure NTP sources
+    --   Implement time synchronisation via secure NTP sources
     -   Monitor for anomalous SA lifetime extension attempts
 -   Configuration example (Short lifetimes with reauthentication):
 

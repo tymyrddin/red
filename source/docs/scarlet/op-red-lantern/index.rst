@@ -10,10 +10,11 @@ No paperwork exists that uses either of these names. Several people use them any
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Messenger routing
+   :caption: Messenger routing:
 
-   fat-finger-hijack.md
-
+   fat_finger_hijack.md
+   subprefix_intercept.md
+   roa_poisoning.md
 
 .. toctree::
    :glob:
@@ -29,7 +30,7 @@ No paperwork exists that uses either of these names. Several people use them any
    :includehidden:
    :caption: Related:
 
-   Rootways of the World Tree @Internet <https://red.tymyrddin.dev/docs/in/network/roots/>
+   Border Gateway Protocol (BGP and MP-BGP) <https://red.tymyrddin.dev/docs/in/network/roots/bgp/>
 
 .. toctree::
    :glob:
@@ -41,6 +42,8 @@ No paperwork exists that uses either of these names. Several people use them any
    patrician-red-line.md
    internal-notice-tss.md
    internal-briefing-doss.md
+   control-vs-data-plane.md
+   indicators-control-plane-hacks.md
 
 .. raw:: html
 

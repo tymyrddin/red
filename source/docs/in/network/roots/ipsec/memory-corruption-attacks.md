@@ -126,8 +126,8 @@ Memory corruption attacks against IPsec implementations exploit vulnerabilities 
 ### Memory safety hardening
 -   Action: Implement comprehensive memory protection mechanisms
 -   How:
-    -   Enable stack canaries and address space layout randomization (ASLR)
-    -   Use heap hardening techniques (guard pages, allocation randomization)
+    -   Enable stack canaries and address space layout randomisation (ASLR)
+    -   Use heap hardening techniques (guard pages, allocation randomisation)
 -   -   Implement control flow integrity (CFI) protections
     -   Deploy hardware-assisted memory protection (Intel CET, ARM PAC)
 -   Configuration example (Linux kernel hardening):
@@ -152,7 +152,7 @@ kernel.stack_size=2048
 
 ```text
 charon {
-    # Drop privileges after initialization
+    # Drop privileges after initialisation
     user = nobody
     group = nogroup
     # Capabilities to retain

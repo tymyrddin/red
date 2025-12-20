@@ -26,7 +26,7 @@
         1.2.2 Active Session Hijacking [AND]
             1.2.2.1 Predict BGP TCP sequence numbers [OR]
                 |-> Off-path ISN prediction using timestamp leaks
-                |-> In-window guessing due to poor ISN randomization
+                |-> In-window guessing due to poor ISN randomisation
             1.2.2.2 Inject malicious BGP updates [OR]
                 |-> Spoofed route advertisements
                 |-> Crafted AS_PATH manipulation
@@ -174,13 +174,13 @@
         3.2.1 ML-Generated Attack Traffic
         3.2.2 Autonomous hijack coordination
         3.2.3 Adaptive persistence mechanisms
-        3.2.4 Evolutionary path optimization
+        3.2.4 Evolutionary path optimisation
         3.2.5 AI-enhanced TCP-AO cryptographic attacks
         
     3.3 Supply Chain Compromise [OR]
     
         3.3.1 Backdoored router firmware/images
-        3.3.2 Malicious BGP optimization tools
+        3.3.2 Malicious BGP optimisation tools
         3.3.3 Compromised network management software
         3.3.4 Pre-installed weak TCP-AO keys in vendor equipment
 ```
@@ -267,9 +267,9 @@
 | 3.2.1 ML-Generated Attack Traffic                                     | Very High            | High               | Very High  | AI generates attack traffic that evades detection and targets BGP specifically.            |
 | 3.2.2 Autonomous hijack coordination                                  | Very High            | High               | Very High  | AI coordinates route hijacks across multiple networks autonomously.                        |
 | 3.2.3 Adaptive persistence mechanisms                                 | Very High            | High               | Very High  | AI adapts persistence techniques to maintain control despite countermeasures.              |
-| 3.2.4 Evolutionary path optimization                                  | Very High            | High               | Very High  | AI optimizes BGP path manipulations for stealth and impact.                                |
+| 3.2.4 Evolutionary path optimisation                                  | Very High            | High               | Very High  | AI optimizes BGP path manipulations for stealth and impact.                                |
 | 3.2.5 AI-enhanced TCP-AO cryptographic attacks                        | Very High            | High               | Very High  | AI enhances cryptographic attacks against TCP-AO for authentication bypass.                |
 | 3.3.1 Backdoored router firmware/images                               | High                 | High               | Very High  | Compromises firmware or images to introduce backdoors into BGP routers.                    |
-| 3.3.2 Malicious BGP optimization tools                                | High                 | Medium             | High       | Distributes tools that contain malware or vulnerabilities to compromise BGP operations.    |
+| 3.3.2 Malicious BGP optimisation tools                                | High                 | Medium             | High       | Distributes tools that contain malware or vulnerabilities to compromise BGP operations.    |
 | 3.3.3 Compromised network management software                         | High                 | Medium             | High       | Compromises software used to manage BGP networks for unauthorised access.                  |
 | 3.3.4 Pre-installed weak TCP-AO keys in vendor equipment              | Medium               | Low                | High       | Uses weak default keys installed by vendors to compromise BGP authentication.              |

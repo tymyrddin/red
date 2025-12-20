@@ -172,7 +172,7 @@ security {
     -   Implement algorithmic cost awareness in negotiations
     -   Use hardware crypto acceleration for expensive operations
     -   Deploy computational load shedding under stress
-    -   Monitor CPU utilization and throttle expensive operations
+    -   Monitor CPU utilisation and throttle expensive operations
 -   Configuration example (CPU protection, strongswan):
 
 ```text
@@ -208,7 +208,7 @@ TasksMax=1000
 ### Monitoring and alerting
 -   Action: Detect and respond to resource exhaustion attempts
 -   How:
-    -   Monitor SA table utilization and growth rates
+    -   Monitor SA table utilisation and growth rates
     -   Implement alerts for abnormal IKE negotiation rates
     -   Track cryptographic processing load patterns
     -   Monitor memory usage per SA and globally

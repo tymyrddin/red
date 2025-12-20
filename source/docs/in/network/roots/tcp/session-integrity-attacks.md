@@ -82,7 +82,7 @@ Session integrity attacks target the cryptographic and protocol mechanisms that 
         1.3.3 Key rotation exploitation
             1.3.3.1 Key transition period attacks
             1.3.3.2 Old key retention exploitation
-            1.3.3.3 Key synchronization attacks
+            1.3.3.3 Key synchronisation attacks
             1.3.3.4 Key revocation bypass
             
     1.4 Implementation-specific vulnerabilities [OR]

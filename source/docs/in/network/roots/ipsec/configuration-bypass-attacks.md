@@ -35,7 +35,7 @@ Configuration bypass attacks exploit weaknesses in how IPsec policies are define
 ## Why it works
 
 -   **Policy complexity**: SPD rules can be complex and difficult to manage consistently.
--   **Performance optimization**: Policy lookup optimizations may create bypass opportunities.
+-   **Performance optimisation**: Policy lookup optimisations may create bypass opportunities.
 -   **Implementation variance**: Different vendors implement policy enforcement differently.
 -   **Legacy support**: Backward compatibility requirements maintain vulnerable configurations.
 -   **Human error**: Complex policy configurations are prone to misconfiguration.
@@ -150,7 +150,7 @@ iptables -A INPUT -p ah -j LOG --log-prefix "IPsec-Policy: "
 
 -   **Policy complexity**: organisations often create overly complex SPD rules that contain bypass opportunities.
 -   **Vendor inconsistencies**: Different vendors have different default policies and enforcement behaviors.
--   **Performance trade-offs**: Policy enforcement optimizations can create security vulnerabilities.
+-   **Performance trade-offs**: Policy enforcement optimisations can create security vulnerabilities.
 -   **Documentation gaps**: Default configuration risks are often poorly documented.
 
 ## Future trends and recommendations

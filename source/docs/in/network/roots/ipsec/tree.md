@@ -150,7 +150,7 @@ bypasses and future quantum threats.
             4.1.3.3 Packet size modulation
             4.1.3.4 Protocol field abuse
 
-    4.2 Cloud & Virtualization Attacks [OR]
+    4.2 Cloud & Virtualisation Attacks [OR]
     
         4.2.1 Multi-tenancy Exploitation [OR]
             4.2.1.1 Cross-tenant IPsec bypass

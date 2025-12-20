@@ -14,10 +14,10 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             1.1.1.2 Reinforcement learning for optimal path manipulation
             1.1.1.3 Realistic AS path sequence generation
             
-        1.1.2 Evolutionary Algorithm Path Optimization
+        1.1.2 Evolutionary Algorithm Path Optimisation
             1.1.2.1 Genetic algorithm-based path evolution
             1.1.2.2 Fitness function development for stealth hijacking
-            1.1.2.3 Multi-objective path optimization
+            1.1.2.3 Multi-objective path optimisation
             
         1.1.3 Deep Learning Anomaly Evasion
             1.1.3.1 Adversarial machine learning against detection systems
@@ -29,11 +29,11 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
         1.2.1 Multi-Agent Reinforcement Learning
             1.2.1.1 Coordinated multi-AS attack agents
             1.2.1.2 Distributed Q-learning for hijack coordination
-            1.2.1.3 Reward optimization for attack success
+            1.2.1.3 Reward optimisation for attack success
             
         1.2.2 Swarm Intelligence Hijacking
-            1.2.2.1 Particle swarm optimization for route manipulation
-            1.2.2.2 Ant colony optimization for path exploration
+            1.2.2.1 Particle swarm optimisation for route manipulation
+            1.2.2.2 Ant colony optimisation for path exploration
             1.2.2.3 Decentralised autonomous organisation (DAO) attacks
             
         1.2.3 Predictive Attack Planning
@@ -44,7 +44,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
     1.3 Adaptive Persistence Mechanisms [OR]
     
         1.3.1 Deep Reinforcement Learning Persistence
-            1.3.1.1 Proximal policy optimization for sustained access
+            1.3.1.1 Proximal policy optimisation for sustained access
             1.3.1.2 Actor-critic methods for adaptive control
             1.3.1.3 Multi-armed bandit for strategy selection
             
@@ -71,7 +71,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             1.4.2.3 Anomaly detection system vulnerability mapping
             
         1.4.3 Intelligent Target Selection
-            1.4.3.1 Economic value prediction for target prioritization
+            1.4.3.1 Economic value prediction for target prioritisation
             1.4.3.2 Network centrality analysis for maximum impact
             1.4.3.3 Temporal pattern analysis for attack timing
             
@@ -83,7 +83,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             1.5.1.3 Training data poisoning for defence degradation
             
         1.5.2 Evasion Algorithm Development
-            1.5.2.1 Gradient-based attack optimization
+            1.5.2.1 Gradient-based attack optimisation
             1.5.2.2 Query-efficient black-box attacks
             1.5.2.3 Transfer attacks between defence systems
             
@@ -123,15 +123,15 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             
         1.7.3 Behavioral Analysis for Targeting
             1.7.3.1 Network operator behavior prediction
-            1.7.3.2 Response timing optimization
+            1.7.3.2 Response timing optimisation
             1.7.3.3 Psychological profiling for social engineering
             
     1.8 Quantum-Enhanced Attacks [OR]
     
         1.8.1 Quantum Machine Learning
-            1.8.1.1 Quantum neural networks for attack optimization
+            1.8.1.1 Quantum neural networks for attack optimisation
             1.8.1.2 Quantum-enhanced reinforcement learning
-            1.8.1.3 Quantum annealing for strategy optimization
+            1.8.1.3 Quantum annealing for strategy optimisation
             
         1.8.2 Cryptographic Attacks
             1.8.2.1 Quantum computing for BGPsec key compromise
@@ -152,7 +152,7 @@ AI-powered BGP attacks represent an emerging threat category where artificial in
             
         1.9.2 Competitive Intelligence AI
             1.9.2.1 Corporate espionage through traffic analysis
-            1.9.2.2 Supply chain disruption optimization
+            1.9.2.2 Supply chain disruption optimisation
             1.9.2.3 Market position manipulation
             
         1.9.3 AI-Optimised Ransom Operations

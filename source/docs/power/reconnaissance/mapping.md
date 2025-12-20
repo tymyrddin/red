@@ -201,7 +201,7 @@ Trust boundaries are the points where different levels of trust meet. Understand
 
 Internet to DMZ boundary is the perimeter facing the public internet. Should be heavily defended with firewalls, intrusion detection, and strict access controls.
 
-DMZ to corporate IT boundary separates the demilitarised zone from the internal corporate network. Should verify authentication and authorization.
+DMZ to corporate IT boundary separates the demilitarised zone from the internal corporate network. Should verify authentication and authorisation.
 
 Corporate IT to OT boundary is one of the most critical. Corporate networks have different threat profiles than OT networks (more users, more internet access, more malware). This boundary should be strictly controlled.
 
@@ -233,7 +233,7 @@ The engineering workstation with file sharing enabled violated the principle tha
 
 ### Recommendations for trust boundaries
 
-For each violated trust boundary, recommend remediation. At minimum, make the boundary visible with logging and monitoring even if you can't immediately enforce it properly. Better, implement authentication and authorization at the boundary. Best, implement proper segmentation with firewalls and possibly data diodes.
+For each violated trust boundary, recommend remediation. At minimum, make the boundary visible with logging and monitoring even if you can't immediately enforce it properly. Better, implement authentication and authorisation at the boundary. Best, implement proper segmentation with firewalls and possibly data diodes.
 
 ## Data flow mapping
 
@@ -388,7 +388,7 @@ This seems obvious when written down, but these relationships are often undocume
 
 Watch for circular dependencies where A depends on B which depends on A. These create deadlock scenarios where neither system can start without the other.
 
-At UU P&L, a subtle circular dependency existed: the SCADA server time synchronization depended on the network time server, which was on the corporate network. The corporate network firewall rules allowed time sync only from authenticated sources. The SCADA server's authentication to corporate network services depended on correct time (Kerberos). If SCADA server time drifted too far, it couldn't authenticate to get time synchronization, creating a deadlock.
+At UU P&L, a subtle circular dependency existed: the SCADA server time synchronisation depended on the network time server, which was on the corporate network. The corporate network firewall rules allowed time sync only from authenticated sources. The SCADA server's authentication to corporate network services depended on correct time (Kerberos). If SCADA server time drifted too far, it couldn't authenticate to get time synchronization, creating a deadlock.
 
 The solution was adding a local time server on the OT network, breaking the dependency on corporate IT.
 

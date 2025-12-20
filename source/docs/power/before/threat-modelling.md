@@ -432,7 +432,7 @@ Applied to OT environments at UU P&L:
 - Individual user accounts (eliminate shared credentials)
 - Comprehensive logging at network and application level
 - Tamper-proof logging (logs sent to separate system)
-- Time synchronization (accurate timestamps)
+- Time synchronisation (accurate timestamps)
 - Video monitoring of control rooms and critical areas
 
 ### Information Disclosure (exposing information to unauthorised parties)

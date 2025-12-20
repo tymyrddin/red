@@ -62,7 +62,7 @@ Modern HMIs almost universally provide web interfaces for remote access. These w
 ### Common web vulnerabilities in HMIs
 
 - [Directory traversal](../../in/app/techniques/traversal.md) allows accessing files outside the web root. Many HMI web servers don't properly validate file paths, allowing attackers to read arbitrary files on the system.
-- [SQL injection](../../in/app/techniques/sqli.md) appears in search functions, reporting modules, and anywhere user input interacts with databases without proper sanitization.
+- [SQL injection](../../in/app/techniques/sqli.md) appears in search functions, reporting modules, and anywhere user input interacts with databases without proper sanitisation.
 - [Cross-site scripting (XSS)](../../in/app/techniques/xss.md) occurs when HMIs display user-controllable data without encoding, allowing script injection.
 - [Authentication bypass vulnerabilities](../../in/app/techniques/auth.md) appear when developers implement custom authentication rather than using proven frameworks. 
 - Session management flaws include predictable session tokens, no session expiration, and session tokens in URLs rather than cookies.
