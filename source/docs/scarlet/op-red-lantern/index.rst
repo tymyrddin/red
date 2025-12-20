@@ -36,7 +36,7 @@ No paperwork exists that uses either of these names. Several people use them any
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Floating:
+   :caption: Floating communications:
 
    about.md
    patrician-red-line.md
