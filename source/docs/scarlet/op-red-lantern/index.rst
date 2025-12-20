@@ -49,6 +49,6 @@ No paperwork exists that uses either of these names. Several people use them any
 
         <div class="page__article">
             <div class="page-post-card__link">
-                <a href="https://tymyrddin.dev/contact/">Whisper your interest</a>
+                <a href="https://tymyrddin.dev/contact/">Do Not Press</a>
             </div>
         </div>
