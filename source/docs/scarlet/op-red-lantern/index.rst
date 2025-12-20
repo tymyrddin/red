@@ -28,7 +28,7 @@ No paperwork exists that uses either of these names. Several people use them any
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Related:
+   :caption: Attack trees:
 
    Border Gateway Protocol (BGP and MP-BGP) <https://red.tymyrddin.dev/docs/in/network/roots/bgp/>
 
