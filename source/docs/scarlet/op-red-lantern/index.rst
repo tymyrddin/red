@@ -10,7 +10,7 @@ No paperwork exists that uses either of these names. Several people use them any
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Messenger routing:
+   :caption: Messenger routing hacks:
 
    fat_finger_hijack.md
    subprefix_intercept.md
