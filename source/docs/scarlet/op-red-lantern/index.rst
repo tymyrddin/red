@@ -8,42 +8,13 @@ No paperwork exists that uses either of these names. Several people use them any
 
 .. toctree::
    :glob:
-   :maxdepth: 1
+   :maxdepth: 2
    :includehidden:
    :caption: Messenger routing hacks:
 
-   fat_finger_hijack.md
-   subprefix_intercept.md
-   roa_poisoning.md
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :includehidden:
-   :caption: Code:
-
-   Red Lantern simulator under construction @GitHub <https://github.com/ninabarzh/red-lantern-sim>
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :includehidden:
-   :caption: Attack trees:
-
-   Border Gateway Protocol (BGP and MP-BGP) <https://red.tymyrddin.dev/docs/in/network/roots/bgp/>
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :includehidden:
-   :caption: Floating communications:
-
-   about.md
-   patrician-red-line.md
-   internal-notice-tss.md
-   internal-briefing-doss.md
-   control-vs-data-plane.md
-   indicators-control-plane-hacks.md
+   rose/index
+   bench/index
+   wall/index
 
 .. raw:: html
 

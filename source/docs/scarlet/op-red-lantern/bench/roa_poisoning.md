@@ -44,7 +44,7 @@ This is like poisoning the Guild Registry itself. The authentication system cont
 ### Access requirements
 
 Signal Three requires initial access to routing infrastructure management systems. This is significantly harder than 
-for [Fat finger](fat_finger_hijack) and [Subprefix intercept](subprefix_intercept.md), which only required an AS 
+for [Fat finger](fat_finger_hijack.md) and [Subprefix intercept](subprefix_intercept.md), which only required an AS 
 and upstreams.
 
 #### Option A: Compromised credentials
@@ -757,7 +757,7 @@ This signal represents the evolution of BGP attacks from data-plane manipulation
 technically sophisticated, operationally complex, and devastatingly effective.
 
 The irony is that RPKI was deployed specifically to prevent BGP hijacking. And it works, against 
-[Fat Finger](fat_finger_hijack) and [Subprefix intercept](subprefix_intercept.md). But this signal does not attack 
+[Fat Finger](fat_finger_hijack.md) and [Subprefix intercept](subprefix_intercept.md). But this signal does not attack 
 around RPKI. It attacks RPKI itself. The security becomes the vulnerability.
 
 This shouldn't be possible. RPKI CA access should require:
@@ -788,7 +788,7 @@ Related reading:
 - [RPKI Repository Delta Protocol (RFC 8210)](https://tools.ietf.org/html/rfc8210)
 - [BGPsec Protocol Specification (RFC 8205)](https://tools.ietf.org/html/rfc8205)
 - [MANRS Implementation Guide](https://www.manrs.org/netops/guide/)
-- Real incidents: [Classification often prevents public disclosure, but control-plane attacks have occurred](indicators-control-plane-hacks.md)
+- Real incidents: [Classification often prevents public disclosure, but control-plane attacks can happen](../wall/control-plane.md)
 
 Tools mentioned:
 

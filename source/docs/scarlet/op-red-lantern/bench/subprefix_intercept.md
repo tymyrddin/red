@@ -20,7 +20,7 @@ In BGP terms, this is subprefix interception. The victim legitimately announces 
 
 ### Why polite forwarding makes it stealthier
 
-The critical difference between [Signal One (fat-finger)](fat_finger_hijack) and this Signal Two (polite intercept) 
+The critical difference between [Signal One (fat-finger)](fat_finger_hijack.md) and this Signal Two (polite intercept) 
 is service continuity.
 
 - Signal One causes blackholing. Traffic arrives at your AS and stops. Services break. Users complain. Monitoring systems scream. Investigation begins within minutes.
@@ -46,7 +46,7 @@ The trade-off favours sophistication over simplicity. Signal One is blunt force.
 
 ### AS control requirements
 
-Same as in [fat finger hijack](fat_finger_hijack), you need a legitimate autonomous system with upstream peering. 
+Same as in [fat finger hijack](fat_finger_hijack.md), you need a legitimate autonomous system with upstream peering. 
 But this time, you also need actual infrastructure behind that AS.
 
 Fat finger can be executed with a single router and a config file. You're not handling traffic, just announcing 
