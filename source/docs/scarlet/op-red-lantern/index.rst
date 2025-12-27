@@ -14,6 +14,7 @@ No paperwork exists that uses either of these names. Several people use them any
 
    rose/index
    bench/index
+   simulator/index
    wall/index
 
 .. raw:: html

@@ -1,4 +1,4 @@
-## Fat finger hijack
+# Fat finger hijack
 
 This scenario shows what happens when an Autonomous System announces a prefix it does not own, then withdraws it 
 shortly after. It is the classic “fat finger” misorigin, one of the oldest tricks in the book.
