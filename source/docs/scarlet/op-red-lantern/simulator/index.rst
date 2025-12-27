@@ -10,7 +10,7 @@ The Tinker's Bench
    fat_finger_hijack.md
    subprefix_intercept.md
    roa_poisoning.md
-   Rootways of the World Tree (@Internet) <https://red.tymyrddin.dev/docs/in/network/roots/>
+   Simulator @GitHub <https://github.com/ninabarzh/red-lantern-sim>
 
 .. raw:: html
 
