@@ -1,5 +1,7 @@
 # Internal notice Scarlet Semaphore (pinned, then unpinned)
 
+Oct 3rd, 2025
+
 About the lanterns
 
 Yes, people have been testing routing. No, this is not “a project”. If you call it a project, you are buying the drinks.

@@ -1,4 +1,6 @@
-# Indicators that control-plane attacks are possible 
+# Indicators that control-plane attacks are possible
+
+Nov 14th, 2025
 
 Or, The Catalogue of Open Doors.
 

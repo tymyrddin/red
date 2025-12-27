@@ -1,5 +1,7 @@
 # Intercepted internal briefing Department of Silent Stability (to all, unsigned)
 
+Oct 23rd, 2025
+
 Subject: Irregular routing behaviour in city signalling systems
 
 Recent observations indicate increased experimentation with signal path announcements, priority indicators, and 
