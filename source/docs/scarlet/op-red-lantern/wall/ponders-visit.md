@@ -1,6 +1,7 @@
 # SCENE: The Patrician's Oblong Office
 
-The silence was a precise, polished thing. Ponder Stibbons stood in it, trying to think of his body as a mere collection of particles taking up space, which did nothing to stop his knees from feeling like jelly.
+The silence was a precise, polished thing. Ponder Stibbons stood in it, trying to think of his body as a mere 
+collection of particles taking up space, which did nothing to stop his knees from feeling like jelly.
 
 Lord Vetinari did not look up from the memo on his desk.
 

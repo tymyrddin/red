@@ -1,11 +1,11 @@
-The Tinker's Bench
+The Dry Lab
 ======================================================
 
 .. toctree::
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Where theory gets its fingers dirty.
+   :caption: A safe, reflective, and slightly chaotic space for testing mischief without real-world consequences.
 
    fat_finger_hijack.md
    subprefix_intercept.md

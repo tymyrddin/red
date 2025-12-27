@@ -10,6 +10,7 @@ The Whisper Wall
    internal-notice-tss.md
    internal-briefing-doss.md
    control-plane.md
+   ponders-visit.md
 
 .. raw:: html
 

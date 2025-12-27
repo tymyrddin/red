@@ -227,7 +227,7 @@ This would make traffic interception visible in bandwidth graphs, not just laten
 
 - [Original operation: Subprefix intercept](https://red.tymyrddin.dev/docs/scarlet/op-red-lantern/bench/subprefix_intercept)
 - [Playbook 2: ROA scope expansion and validation environment mapping](https://purple.tymyrddin.dev/docs/lantern/red-lanterns/playbooks/2)
-- [Simulator code: easy/subprefix_intercept](https://github.com/ninabarzh/red-lantern-sim/tree/main/simulator/scenarios/easy/subprefix_intercept)
+- [Simulator code: easy/subprefix_intercept](https://github.com/ninabarzh/red-lantern-sim/tree/main/simulator/scenarios/medium/subprefix_intercept)
 
 This scenario demonstrates the hardest detection challenge in BGP security: attacks that don't break things, just make them slightly worse. The Scarlet Semaphore's operational technique (polite forwarding) is deliberately difficult to catch. The simulator preserves that difficulty whilst avoiding the illegality of actually intercepting traffic.
 

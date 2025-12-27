@@ -7,15 +7,16 @@ The Tinker's Bench
    :includehidden:
    :caption: Where theory gets its fingers dirty.
 
+   Rootways of the World Tree (@Internet) <https://red.tymyrddin.dev/docs/in/network/roots/>
    fat_finger_hijack.md
    subprefix_intercept.md
    roa_poisoning.md
-   Rootways of the World Tree (@Internet) <https://red.tymyrddin.dev/docs/in/network/roots/>
+
 
 .. raw:: html
 
         <div class="page__article">
             <div class="page-post-card__link">
-                <a href="https://tymyrddin.dev/contact/">Commence the Unforeseen Consequences</a>
+                <a href="https://tymyrddin.dev/contact/">Release the Kraken</a>
             </div>
         </div>

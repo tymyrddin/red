@@ -13,6 +13,7 @@ This scenario is the result of that collaboration.
 ## What the simulator currently models
 
 The live operation involved:
+
 - Compromised router access (SSH to NOC infrastructure)
 - BGP configuration changes via CLI
 - Actual prefix announcements reaching global routing tables
@@ -20,6 +21,7 @@ The live operation involved:
 - Manual investigation and cleanup
 
 The simulator models:
+
 - BGP announcement telemetry (what monitoring would see)
 - Router syslog entries (what logs would show)
 - Prefix limit violations (detection opportunity)
