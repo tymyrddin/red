@@ -10,6 +10,7 @@ The Compass Rose
    gambit.md
    about.md
    patrician-red-line.md
+   ponders-visit.md
 
 
 .. raw:: html

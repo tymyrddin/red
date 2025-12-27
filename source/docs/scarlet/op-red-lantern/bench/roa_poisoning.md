@@ -3,10 +3,6 @@
 ## OR Control-Plane Poisoning with Operational Cover
 
 Or, Authority Betrayed, or why trust infrastructure is the most dangerous place to put your trust.
- 
-- Difficulty: hard  
-- Plausible deniability: Low (but attribution is still hard)  
-- Detection likelihood: Variable (depends on control-plane visibility)
 
 ## The signal
 
@@ -541,10 +537,6 @@ Suggest the problem originated from:
 Investigation involves external parties (slow, legal complexity, communication delays).
 
 ## Lantern fuel
-
-When running 
-[🐙 this scenario in simulation](https://github.com/ninabarzh/red-lantern-sim/tree/main/simulator/scenarios/advanced/roa_poisoning), 
-generate events that mimic what real infrastructure would produce.
 
 ### RPKI validator state changes
 

@@ -477,10 +477,6 @@ latency, packet loss, throughput. If you can't maintain clean forwarding in test
 
 ## Lantern fuel
 
-When running 
-[🐙 this scenario in simulation](https://github.com/ninabarzh/red-lantern-sim/tree/main/simulator/scenarios/medium/subprefix_intercept), 
-generate events that mimic what real infrastructure would produce.
-
 ### Asymmetric latency logs
 
 The key signal for detection is latency increase. Generating realistic mock data.

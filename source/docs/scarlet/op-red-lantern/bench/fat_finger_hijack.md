@@ -4,10 +4,6 @@
 
 Or how one wrong number brings down the entire postal system.
 
-- Difficulty: easy
-- Plausible deniability: Excellent  
-- Detection likelihood: Low (without proper instrumentation)
-
 ## The Signal
 
 ### What it looks like from the outside
@@ -294,10 +290,6 @@ and keen to move on. Not defensive, not evasive, not suspiciously knowledgeable 
 ## Lantern fuel
 
 ### Log formats to generate
-
-When running 
-[🐙 this scenario in simulation](https://github.com/ninabarzh/red-lantern-sim/tree/main/simulator/scenarios/easy/fat_finger_hijack), 
-generate events that mimic what real infrastructure would produce.
 
 `BGP UPDATE` (announcement):
 
