@@ -14,9 +14,9 @@ Attackers leverage multiple methods to profit from compromised systems:
 Stolen data is sold on specialised dark web marketplaces, with pricing tiers based on freshness and completeness. 
 This is pricing information, with both USD and EUR equivalents (using approximate 2025 exchange rates):
 
-* Credit card dumps cost around $110 dollar (€100) per card with 5,000+ available balance.
-* Corporate access credentials cost between $500−$2,000 (€450-€1,800) per set (VPN/RDP/cloud admin logins)
-* Full identity packages cost $1,500+ (€1,350+) including SSNs, medical records, and biometric data
+* Credit card dumps cost around €110 dollar (€100) per card with 5,000+ available balance.
+* Corporate access credentials cost between €500−€2,000 (€450-€1,800) per set (VPN/RDP/cloud admin logins)
+* Full identity packages cost €1,500+ (€1,350+) including SSNs, medical records, and biometric data
 
 Top 2025 marketplaces:
 
@@ -36,7 +36,7 @@ With 35% fewer victims paying ransoms in 2024, attackers now combine:
   * Delete stolen data.
   * Avoid DDoS attacks on the victim’s public services.
 
-Case Study: The Akira/Fog group extorted $75M from a single victim in 2024 by leaking snippets of proprietary AI code.
+Case Study: The Akira/Fog group extorted €75M from a single victim in 2024 by leaking snippets of proprietary AI code.
 
 Red team playbook:
 
@@ -64,8 +64,8 @@ Objective: Financial gain via ransomware + data resale.
    * Exfiltrates 500K patient records via DNS tunneling (DNSCat2).
    * Dumps NTLM hashes via Mimikatz (sekurlsa::logonpasswords).
 4. Monetisation:
-   * Ransomware: Deploys MedusaLocker ($5M demand in Monero).
-   * Dark Web Sale: Patient records auctioned on Russian Market for $200K.
+   * Ransomware: Deploys MedusaLocker (€5M demand in Monero).
+   * Dark Web Sale: Patient records auctioned on Russian Market for €200K.
 5. Covering Tracks:
    * `wevtutil cl` security (clears logs).
    * Timestomping to evade forensic analysis.

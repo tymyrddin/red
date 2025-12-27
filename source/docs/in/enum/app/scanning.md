@@ -8,7 +8,7 @@ Features of the two main web application scanners (community versions):
 | Intercepting Feature              | Available                          | Available                                           | Available                                                      |
 | Fuzzing Capabilities              | Available                          | Available                                           | Available                                                      |
 | Encoder and Decoder               | Available                          | Not Available                                       | Available                                                      |
-| Cost                              | Free                               | Free                                                | Paid Subscription<br>Advanced Functionality<br>($450 per year) |
+| Cost                              | Free                               | Free                                                | Paid Subscription<br>Advanced Functionality<br>(€450 per year) |
 | Documentation                     | Extensive                          | Little                                              | Extensive                                                      |
 | Spider                            | Available                          | Available                                           | Available                                                      |
 | Updates                           | Available                          | Available                                           | Available                                                      |

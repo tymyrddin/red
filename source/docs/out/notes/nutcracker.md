@@ -113,7 +113,7 @@ Negotiation channels:
 
 Payment demand:
 
-* 500 XMR (~$5M) for decryptor
+* 500 XMR (~€5M) for decryptor
 * +200 XMR to suppress 42GB patient data leak
 
 ## Blue Team counter-tactics (For OpSec testing)

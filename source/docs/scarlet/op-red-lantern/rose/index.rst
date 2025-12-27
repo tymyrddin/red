@@ -7,9 +7,9 @@ The Compass Rose
    :includehidden:
    :caption: The cardinal directions we argue about at 3 at night.
 
+   gambit.md
    about.md
    patrician-red-line.md
-   gambit.md
 
 
 .. raw:: html

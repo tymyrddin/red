@@ -3,18 +3,18 @@
 Our best guess at [the Patrician’s position](https://indigo.tymyrddin.dev/docs/vetinari/), because it was/is never 
 written down.
 
-You may observe.
+We may observe.
 
-You may test.
+We may test.
 
-You may even mislead, briefly, to understand why belief is so fragile.
+We may even mislead, briefly, to understand why belief is so fragile.
 
-You may not:
+He considers us clever. We may not:
 
 - Cause lasting harm
 - Undermine public confidence
 - Create a problem that requires a speech
+- Expose ourselves as "alarmingly clever"
 
-The moment stability becomes a topic, rather than an assumption, choices will be offered.
+Most importantly, the moment stability becomes a topic, rather than an assumption, he will likely offer us choices.
 
-They will be very reasonable choices.

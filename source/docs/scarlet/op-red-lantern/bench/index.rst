@@ -7,10 +7,10 @@ The Tinker's Bench
    :includehidden:
    :caption: Where theory gets its fingers dirty.
 
-   Simulator @GitHub <https://github.com/ninabarzh/red-lantern-sim>
    fat_finger_hijack.md
    subprefix_intercept.md
    roa_poisoning.md
+   Simulator @GitHub <https://github.com/ninabarzh/red-lantern-sim>
    Rootways of the World Tree (@Internet) <https://red.tymyrddin.dev/docs/in/network/roots/>
 
 .. raw:: html

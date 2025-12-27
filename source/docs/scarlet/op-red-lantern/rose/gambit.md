@@ -5,3 +5,5 @@ cartographer. The Control Plane is the guild ledger, the watch schedule, the sig
 of the game. Our craft is to quietly amend a single line in that ledger, to make the Watch look the other way, or 
 to have the clacks tower accept our message as the only truth. Why rob a bank when you can, for a delightful moment, 
 own the concept of money?
+
+Just a discussion, just ...
