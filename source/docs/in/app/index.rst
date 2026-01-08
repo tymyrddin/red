@@ -1,6 +1,9 @@
 A canopy of apple-blossom
 ========================================
 
+.. image:: /_static/images/canopy.png
+   :alt: A vast magical orchard seen from above, flowers glowing like web apps, low-hanging fruit dangling below, cyber-insects crawling across petals: SQLi larvae burrowing, XSS aphids, CSRF threads weaving between branches, poisoned pollen drifting through interconnected flowers.
+
 Beneath the deceptively tranquil canopy of web applications, a thriving ecosystem buzzes with activity: each bloom
 (endpoint) offering nectar (data) to legitimate pollinators (users), while hiding rot (vulnerabilities) in its petals.
 Like aphids draining sap, we probe for XSS holes in the fragrant blossoms, SQLi larvae burrowing into the fruit, and
