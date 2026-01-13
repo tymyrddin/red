@@ -43,6 +43,6 @@ Ankh-Morpork's main supplier of electricity, hot water, and occasional mysteriou
 
         <div class="page__article">
             <div class="page-post-card__link">
-                <a href="https://tymyrddin.dev/contact/">Request a controlled outage (talk to me)</a>
+                <a href="https://tymyrddin.dev/contact/">Secure Critical Systems</a>
             </div>
         </div>
