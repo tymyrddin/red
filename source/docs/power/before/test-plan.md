@@ -75,23 +75,31 @@ External connections:
 
 Some systems require clarification:
 
-Engineering workstations that bridge networks: In scope as workstations, but testers will not use them as pivots to access out-of-scope systems without additional approval.
+Engineering workstations that bridge networks: In scope as workstations, but testers will not use them as pivots to 
+access out-of-scope systems without additional approval.
 
-Jump boxes and remote access systems: In scope for authentication and access control testing, but not for use as platforms to access other systems beyond approved scope.
+Jump boxes and remote access systems: In scope for authentication and access control testing, but not for use as 
+platforms to access other systems beyond approved scope.
 
-Wireless networks: In scope for identification and testing, but not for use as attack vectors to access out-of-scope systems.
+Wireless networks: In scope for identification and testing, but not for use as attack vectors to access out-of-scope 
+systems.
 
-Vendor equipment on-site: In scope if owned/controlled by UU P&L, out of scope if owned by vendors unless vendor provides written authorisation.
+Vendor equipment on-site: In scope if owned/controlled by UU P&L, out of scope if owned by vendors unless vendor 
+provides written authorisation.
 
-At UU P&L, several clarifications were needed:
+At [UU P&L](../territory/index.rst), several clarifications were needed:
 
-The alchemical reactor has experimental subsystems: Main reactor controls are in scope, experimental modifications by wizards are out of scope (too unpredictable, wizards don't document their work, risk assessment impossible).
+The alchemical reactor has experimental subsystems: Main reactor controls are in scope, experimental modifications 
+by wizards are out of scope (too unpredictable, wizards don't document their work, risk assessment impossible).
 
-The Library climate control required special handling: Initially listed as in scope, moved to "pending approval" when Librarian responded to approval request by throwing a book at the messenger. Deferred to future assessment pending diplomatic negotiations.
+The Library climate control required special handling: Initially listed as in scope, moved to "pending approval" 
+when Librarian responded to approval request by throwing a book at the messenger. Deferred to future assessment 
+pending diplomatic negotiations.
 
 ## Asset inventory and dependency mapping
 
-Before testing begins, comprehensive asset inventory and dependency mapping ensures you understand what you're working with.
+Before testing begins, comprehensive asset inventory and dependency mapping ensures you understand what you're working 
+with.
 
 ### Asset inventory requirements
 
@@ -126,7 +134,8 @@ Dependencies:
 
 Understanding dependencies prevents unintended consequences:
 
-If you test System A and it affects System B, was System B supposed to be affected? Is System B in scope? Is affecting System B acceptable?
+If you test System A and it affects System B, was System B supposed to be affected? Is System B in scope? Is affecting 
+System B acceptable?
 
 At UU P&L, dependency mapping revealed:
 
@@ -136,7 +145,9 @@ The primary SCADA server is a single point of failure for multiple critical func
 - Data collection for historian
 - Alarm management and notification
 
-Testing that affects SCADA server availability impacts all these functions simultaneously. This required special planning: backup SCADA server on standby, testing scheduled during low-risk periods, operators briefed on manual procedures if SCADA becomes unavailable.
+Testing that affects SCADA server availability impacts all these functions simultaneously. This required special 
+planning: backup SCADA server on standby, testing scheduled during low-risk periods, operators briefed on manual 
+procedures if SCADA becomes unavailable.
 
 The historian database is queried by both OT systems (for trending and analysis) and IT systems (for business reporting):
 - Testing historian performance could affect both OT and IT
@@ -152,7 +163,9 @@ An engineering workstation has special software licenses:
 
 Dependency maps visualise relationships:
 
-Network topology diagrams showing physical and logical connections. Data flow diagrams showing information flow between systems. Process flow diagrams showing how systems work together to accomplish functions. Failure mode analysis showing cascading effects of system failures.
+Network topology diagrams showing physical and logical connections. Data flow diagrams showing information flow between 
+systems. Process flow diagrams showing how systems work together to accomplish functions. Failure mode analysis showing 
+cascading effects of system failures.
 
 These maps help:
 - Plan testing to minimise unintended impacts
@@ -167,7 +180,8 @@ At UU P&L, dependency mapping revealed that testing the engineering workstation 
 - It contains project files used for documentation and training (loss would be significant)
 - It bridges OT and IT networks (testing might affect network connectivity)
 
-Resolution: Create full backup before testing, have spare laptop configured and ready, schedule testing when vendor support not needed, ensure operators can function without engineering support during testing period.
+Resolution: Create full backup before testing, have spare laptop configured and ready, schedule testing when vendor 
+support not needed, ensure operators can function without engineering support during testing period.
 
 ## Test windows and blackout periods
 
@@ -271,7 +285,9 @@ Knowledge transfer:
 - Internal capabilities improved
 - Procedures validated or improved
 
-At UU P&L, additional success criterion: "The Librarian remains unaware that testing occurred." This is only partially tongue-in-cheek. If Library systems testing doesn't disrupt Library operations enough for the Librarian to notice, it was conducted appropriately.
+At UU P&L, additional success criterion: "The Librarian remains unaware that testing occurred." This is only partially 
+tongue-in-cheek. If Library systems testing doesn't disrupt Library operations enough for the Librarian to notice, it 
+was conducted appropriately.
 
 ### Abort conditions
 
@@ -470,7 +486,8 @@ Immediate rollback for safety/critical issues: Anyone (OT Engineering Manager, O
 
 Planned rollback for non-critical issues: OT Engineering Manager
 
-Decision not to rollback (accept system state): Requires investigation and approval from OT Engineering Manager minimum, possibly escalation to Archchancellor depending on severity.
+Decision not to rollback (accept system state): Requires investigation and approval from OT Engineering Manager 
+minimum, possibly escalation to Archchancellor depending on severity.
 
 ## Required personnel and their roles
 
@@ -749,8 +766,9 @@ If approval is conditional:
 - Verification that conditions are met before testing proceeds
 - Sign-off that conditions satisfied
 
-At UU P&L, the Archchancellor's approval was conditional:
-*"Approved subject to: (1) Successful completion of test run on simulator, (2) Verification that backup systems are operational, (3) Notification to city emergency services completed, (4) The Bursar having been properly medicated."*
+At UU P&L, the Archchancellor's approval was conditional: *"Approved subject to: (1) Successful completion of test 
+run on simulator, (2) Verification that backup systems are operational, (3) Notification to city emergency services 
+completed, (4) The Bursar having been properly medicated."*
 
 Each condition was verified and documented before testing began.
 
@@ -769,7 +787,8 @@ Complete documentation package includes:
 - Communication plan
 - Incident response plan
 
-This package is the legal and technical foundation for testing. Keep complete copies with testing team, client, and in secure storage.
+This package is the legal and technical foundation for testing. Keep complete copies with testing team, client, and in 
+secure storage.
 
 ## UU P&L example test plan highlights
 

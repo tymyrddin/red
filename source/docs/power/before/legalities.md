@@ -82,8 +82,8 @@ These penalties apply not just for security breaches but for:
 
 ### What this means for security testing
 
-NIS2 makes security assessments effectively mandatory. Organisations must 
-*"test the effectiveness of their security measures"*. This means:
+NIS2 makes security assessments effectively mandatory. Organisations must *"test the effectiveness of their security 
+measures"*. This means:
 
 - Regular penetration testing is now a legal requirement, not a nice-to-have. At UU P&L, they can't simply decide security testing is too expensive or risky. The law requires it.
 - Testing must be comprehensive. You can't just test corporate IT and ignore OT. The electricity generation and distribution systems are explicitly in scope.
@@ -184,7 +184,9 @@ For UU P&L:
 
 ## IEC 62443 standards
 
-IEC 62443 is the international standard for industrial automation and control systems security. It's not a legal requirement in most places, but it's increasingly referenced in contracts, regulations, and as best practice.
+[IEC 62443](https://purple.tymyrddin.dev/docs/audits/iec62443/) is the international standard for industrial 
+automation and control systems security. It's not a legal requirement in most places, but it's increasingly referenced 
+in contracts, regulations, and as best practice.
 
 ### The IEC 62443 series
 
@@ -255,13 +257,10 @@ For UU P&L's architecture:
 
 When planning security tests:
 
-The standard defines what security controls should exist. Your testing verifies they're actually implemented. If UU P&L claims SL 2 for turbine controls, your testing should verify they meet SL 2 technical requirements.
-
-The standard provides a framework for discussing security. Instead of arguing about whether specific controls are necessary, you reference the required security level and corresponding requirements.
-
-The standard is recognised by regulators and insurers. "We're implementing IEC 62443 SL 2 controls" carries more weight than "we're doing some security stuff".
-
-The standard includes security testing requirements. IEC 62443-2-4 specifies requirements for security service providers, including penetration testing methodologies.
+- The standard defines what security controls should exist. Your testing verifies they're actually implemented. If UU P&L claims SL 2 for turbine controls, your testing should verify they meet SL 2 technical requirements.
+- The standard provides a framework for discussing security. Instead of arguing about whether specific controls are necessary, you reference the required security level and corresponding requirements.
+- The standard is recognised by regulators and insurers. "We're implementing IEC 62443 SL 2 controls" carries more weight than "we're doing some security stuff".
+- The standard includes security testing requirements. IEC 62443-2-4 specifies requirements for security service providers, including penetration testing methodologies.
 
 ## GDPR considerations in OT environments
 
@@ -398,8 +397,60 @@ Bad authorisation: *"You are authorised to perform security testing of our netwo
 
 This is dangerously vague. What network? What kind of testing? When?
 
-Good authorisation: 
-[something like this one](https://github.com/ninabarzh/power-and-light/blob/main/prep/authorisation-clause.md): 
+Good authorisation reads something like this one: 
+
+```\[Testing Firm] is authorised to conduct security assessment of Unseen University 
+Power & Light Co. industrial control systems as follows:
+
+In scope:
+- IP ranges 192.168.10.0/24 (Turbine Control), 192.168.20.0/24 (Distribution SCADA), 
+  192.168.30.0/24 (Reactor Controls)
+- Engineering workstations ENG-WS-01 through ENG-WS-04
+- SCADA servers SCADA-PRIMARY and SCADA-BACKUP
+- HMI workstations in main control room
+
+Authorised activities:
+- Passive network reconnaissance and traffic analysis
+- Active network scanning at rates not exceeding 100 packets/second
+- Enumeration of PLCs, RTUs, and SCADA components
+- Reading PLC configurations and programs (download only, no upload)
+- Testing authentication on HMIs and engineering workstations using provided test 
+  credentials and common default credentials
+- Web application security testing of SCADA and HMI web interfaces
+- Social engineering testing of specified personnel (list attached)
+
+Specifically prohibited activities:
+- Any write operations to production PLCs
+- Any commands that affect physical equipment state
+- Any interaction with safety systems beyond passive observation
+- Denial of service testing
+- Testing during blackout periods (weekdays 16:00-20:00, weekends, holidays)
+- Testing without prior coordination with on-site OT Engineering Manager
+
+Time period:
+- Testing authorised from 1 March 2026 to 31 March 2026
+- Daily test windows: Weekdays 02:00-06:00 and 10:00-15:00
+- Each test activity requires day-of approval from OT Engineering Manager
+
+Authorised personnel:
+- \[Named testers from Testing Firm]
+- Must present authorisation letter and photo ID upon request
+
+Incident reporting:
+- Immediate notification (within 1 hour) to OT Engineering Manager for any finding 
+  that creates immediate risk
+- Daily brief summary of activities and preliminary findings
+- Final report within 2 weeks of test completion
+
+This authorisation is signed by \[Archchancellor], approved by Board of Governors 
+\[date], with notification provided to \[City Emergency Services, National Cyber 
+Security Centre, Insurance Provider].
+
+Signed: \[Archchancellor]
+Date: \[Date]
+Witness: \[Senior Bursar]
+```
+
 Specific, comprehensive, and clearly defines boundaries. If something goes wrong, we can point to exactly 
 what we were authorised to do.
 

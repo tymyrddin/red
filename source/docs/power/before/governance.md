@@ -1,21 +1,18 @@
 # Business policies and governance
 
-Making sure everyone knows what "don't break the factory" means in practice.
+Legal authorisation provides the permission to test, but clear policies provide the essential "rules of engagement." 
+These policies ensure every team—from engineers to operators—shares the same practical understanding of scope and 
+methods, preventing operational confusion and turning testing into a managed process rather than a disruptive surprise.
 
-Legal authorisation gives you permission to test. Business policies ensure everyone understands how testing will be 
-conducted, what's expected, and what happens if things don't go according to plan.
-
-Without clear policies and governance, you end up with chaos. Engineers panicking when they see unusual network 
-traffic. Operators uncertain whether to call security when they see unfamiliar people with laptops. Management 
-surprised by test activities despite having approved them.
-
-Good policies and governance make security testing a controlled, understood, managed process rather than a 
-terrifying surprise.
+This systematic governance is not just good security practice; it is a core tenet of *business continuity under 
+frameworks like ISO 22301*. It demonstrates that the organisation can manage planned, controlled change without 
+compromising stability, a key requirement for certification. You can explore this principle further in the analysis 
+of [ISO 22301's management system requirements](https://purple.tymyrddin.dev/docs/audits/iso22301/).
 
 ## Developing an OT security testing policy
 
-UU P&L needs a policy that addresses OT security testing specifically. Their general IT security policy does not 
-cover the unique risks and requirements of testing industrial control systems.
+[UU P&L](../territory/index.rst) needs a policy that addresses OT security testing specifically. Their general IT 
+security policy does not cover the unique risks and requirements of testing industrial control systems.
 
 ### Policy scope and applicability
 
@@ -132,19 +129,26 @@ Responsibility and liability:
 
 At UU P&L, the policy includes:
 
-A specific section on the Library climate control: "Testing of Library environmental systems requires direct approval from the Librarian. This approval must be obtained in person, with appropriate offerings of bananas. Remote approval is not acceptable. The Librarian's mood must be assessed before proceeding. Testing will be immediately aborted if the Librarian appears displeased."
+A specific section on the Library climate control: "Testing of Library environmental systems requires direct approval 
+from the Librarian. This approval must be obtained in person, with appropriate offerings of bananas. Remote approval 
+is not acceptable. The Librarian's mood must be assessed before proceeding. Testing will be immediately aborted if 
+the Librarian appears displeased."
 
-This sounds humorous, but it's actually recognition that the Librarian has better situational awareness of Library systems than anyone else, and their cooperation is essential.
+This sounds humorous, but it's actually recognition that the Librarian has better situational awareness of Library 
+systems than anyone else, and their cooperation is essential.
 
 ## Rules of engagement for industrial systems
 
-Rules of engagement (RoE) specify exactly how testing will be conducted. They're more detailed than the policy, specific to each assessment.
+Rules of engagement (RoE) specify exactly how testing will be conducted. They're more detailed than the policy, 
+specific to each assessment.
 
 ### Technical boundaries
 
-IP addresses and networks in scope (with subnet masks and descriptions). Systems in scope by hostname or description. Protocols that may be tested. Ports that may be scanned. Scan rates and timing constraints.
+IP addresses and networks in scope (with subnet masks and descriptions). Systems in scope by hostname or description. 
+Protocols that may be tested. Ports that may be scanned. Scan rates and timing constraints.
 
-Out of scope: Emergency systems unless specifically approved. Safety systems beyond passive observation. Production systems during blackout periods. Any system not explicitly listed as in-scope.
+Out of scope: Emergency systems unless specifically approved. Safety systems beyond passive observation. Production 
+systems during blackout periods. Any system not explicitly listed as in-scope.
 
 ### Testing methods and constraints
 

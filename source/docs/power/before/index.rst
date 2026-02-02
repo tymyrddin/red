@@ -2,7 +2,7 @@ Before touching anything
 ======================================================
 
 .. image:: /_static/images/ot-before.png
-   :alt: Big dimly lit brass-and-copper control room filled with pipes and gauges, an engineer and a witch , both huddled over charts.
+   :alt: Big dimly lit brass-and-copper control room filled with pipes and gauges, an engineer and a witch, both huddled over charts.
 
 In Ankh-Morpork terms, we are about to start pulling threads in a tapestry where some threads hold up the entire
 city and others are connected to the Assassins' Guild alarm system.

@@ -1,14 +1,17 @@
 # Threat modelling for OT
 
-Before you start testing an OT environment, you need to think like an attacker. Not just any attacker, but the specific types of attackers who might target industrial control systems, each with different motivations, capabilities, and methods.
+Before you start testing an OT environment, you need to think like an attacker. Not just any attacker, but the 
+specific types of attackers who might target industrial control systems, each with different motivations, capabilities, 
+and methods.
 
-Threat modelling helps you:
+Threat modelling helps:
 - Focus testing efforts on realistic attack scenarios
 - Prioritise findings based on actual threat likelihood
 - Communicate risks in terms business stakeholders understand
 - Avoid wasting time on theoretical vulnerabilities that no real attacker would exploit
 
-The challenge in OT is that threats are different from IT. Web applications worry about credit card theft. Industrial control systems worry about physical sabotage, safety incidents, and operational disruption.
+The challenge in OT is that threats are different from IT. Web applications worry about credit card theft. Industrial 
+control systems worry about physical sabotage, safety incidents, and operational disruption.
 
 Who might attack Unseen University Power & Light Co., why they'd do it, and how they'd go about it?
 
@@ -19,6 +22,7 @@ important than the coffee machine in the break room (though operators might disp
 include:
 
 ### Primary power generation
+
 - Hex Steam Turbines (three units, 50 MW each)
 - Boiler control systems
 - Turbine control PLCs
@@ -28,6 +32,7 @@ include:
 Loss of these systems means city-wide power outage, significant financial losses, and an extremely unhappy Patrician.
 
 ### Secondary but still critical
+
 - Alchemical reactor (experimental power source)
 - City distribution SCADA (manages power distribution)
 - Substation RTUs (enable remote control of grid)
@@ -35,11 +40,13 @@ Loss of these systems means city-wide power outage, significant financial losses
 Loss means cascading failures, inability to manage the grid, and potential equipment damage.
 
 ### Important but not immediately critical
+
 - Library environmental system (temperature/humidity control)
 - Building automation (HVAC, lighting)
 - Administrative systems (billing, reporting)
 
-Loss causes problems but not immediate danger. Though an overheated Library leading to an angry Librarian could be argued as a safety concern.
+Loss causes problems but not immediate danger. Though an overheated Library leading to an angry Librarian could be 
+argued as a safety concern.
 
 ### Categorising by consequence
 
@@ -72,11 +79,13 @@ Operational: How long to recover?
 - Loss of control system: Days to weeks
 - Safety system failure: Cannot operate until fixed
 
-This categorisation helps prioritise protection efforts and testing focus. You spend more time on turbine controls (high consequence across all categories) than on building HVAC (low consequence).
+This categorisation helps prioritise protection efforts and testing focus. You spend more time on turbine controls 
+(high consequence across all categories) than on building HVAC (low consequence).
 
 ## Threat actors, who wants to attack a power plant
 
-Different attackers have different capabilities and motivations. Understanding who might target you helps determine what attacks to defend against.
+Different attackers have different capabilities and motivations. Understanding who might target you helps determine 
+what attacks to defend against.
 
 ### Nation state actors
 
@@ -103,7 +112,8 @@ Attack methods:
 - Physical infiltration (installing implants)
 - Insider threats (recruitment or coercion)
 
-Likelihood for UU P&L: Low to medium. Ankh-Morpork isn't a major geopolitical player, but it's strategically located. A nation state wanting to destabilise the region might consider UU P&L a viable target.
+Likelihood for UU P&L: Low to medium. Ankh-Morpork isn't a major geopolitical player, but it's strategically located. 
+A nation state wanting to destabilise the region might consider UU P&L a viable target.
 
 ### Ransomware gangs
 
@@ -130,9 +140,13 @@ Attack methods:
 - Purchasing initial access from access brokers
 - Lateral movement to maximise encryption impact
 
-Likelihood for UU P&L: High. Ransomware is indiscriminate. Any organisation with money is a target. UU P&L, as critical infrastructure, is attractive because they're more likely to pay.
+Likelihood for UU P&L: High. Ransomware is indiscriminate. Any organisation with money is a target. UU P&L, as critical 
+infrastructure, is attractive because they're more likely to pay.
 
-The university did experience a ransomware incident in 2019. It hit corporate IT, encrypted file servers and workstations. Thankfully it didn't reach OT networks (the poor network connectivity between IT and OT finally paid off). The university paid 50 bitcoin. They never disclosed this publicly because "it would undermine confidence in university security" (translation: it's embarrassing).
+The university did experience a ransomware incident in 2019. It hit corporate IT, encrypted file servers and 
+workstations. Thankfully it didn't reach OT networks (the poor network connectivity between IT and OT finally paid 
+off). The university paid 50 bitcoin. They never disclosed this publicly because "it would undermine confidence in 
+university security" (translation: it's embarrassing).
 
 ### Hacktivists
 
@@ -160,7 +174,9 @@ Attack methods:
 - Data theft and publication
 - Disruption attacks on visible infrastructure
 
-Likelihood for UU P&L: Medium. Universities attract protest. If UU P&L does something unpopular (like raising electricity prices, or a controversial policy), hacktivists might target them. Most likely outcome is website defacement or DDoS, but more capable groups might attempt more serious disruption.
+Likelihood for [UU P&L](../index.rst): Medium. Universities attract protest. If UU P&L does something unpopular 
+(like raising electricity prices, or a controversial policy), hacktivists might target them. Most likely outcome is 
+website defacement or DDoS, but more capable groups might attempt more serious disruption.
 
 ### Disgruntled insiders
 
@@ -187,7 +203,9 @@ Attack methods:
 - Data exfiltration
 - Physical sabotage
 
-Likelihood for UU P&L: Medium. Employee terminations happen. Disciplinary actions happen. People hold grudges. The university has had incidents of minor sabotage (nothing involving control systems, mostly "accidentally" breaking things or withholding knowledge during handover).
+Likelihood for UU P&L: Medium. Employee terminations happen. Disciplinary actions happen. People hold grudges. 
+The university has had incidents of minor sabotage (nothing involving control systems, mostly "accidentally" breaking 
+things or withholding knowledge during handover).
 
 The risk is particularly high because:
 - Many systems have shared accounts (hard to attribute actions)
@@ -258,7 +276,9 @@ Understanding how attackers might penetrate and move through your environment he
 
 ### The ICS Cyber Kill Chain
 
-The traditional cyber kill chain (reconnaissance, weaponisation, delivery, exploitation, installation, command and control, actions on objectives) applies to OT, but there's an OT-specific variation that better captures the stages of industrial system attacks:
+The traditional cyber kill chain (reconnaissance, weaponisation, delivery, exploitation, installation, command and 
+control, actions on objectives) applies to OT, but there's an OT-specific variation that better captures the stages 
+of industrial system attacks:
 
 Stage 1: Reconnaissance
 
@@ -356,7 +376,8 @@ For UU P&L scenarios:
 
 ## STRIDE for industrial systems
 
-STRIDE is a threat modelling framework originally developed by Microsoft. It categorises threats into six types: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.
+STRIDE is a threat modelling framework originally developed by Microsoft. It categorises threats into six types: 
+Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.
 
 Applied to OT environments at UU P&L:
 
@@ -517,7 +538,8 @@ Applied to OT environments at UU P&L:
 
 ## Safety vs security trade-offs
 
-One of the unique challenges in OT threat modelling is the tension between safety and security. Sometimes these goals conflict.
+One of the unique challenges in OT threat modelling is the tension between safety and security. Sometimes these goals 
+conflict.
 
 ### Safety prioritises availability and predictability
 
@@ -551,43 +573,33 @@ This often means:
 
 ### When they conflict
 
-At UU P&L, examples of safety/security conflicts:
+At UU P&L, examples of safety/security conflicts for the reactor safety system:
 
-The reactor safety system
-
-Safety requirement: Must shut down reactor if any safety parameter is exceeded, regardless of any other factors. Must work even if all other systems fail.
-
-Security requirement: Should verify commands are authentic, should not accept shutdown commands from unauthorised sources.
-
-Conflict: Adding authentication to safety shutdown creates a potential failure point. If authentication fails or has a bug, it might prevent legitimate safety shutdowns. Safety requirements say "when in doubt, shut down". Security requirements say "when in doubt, deny access".
-
-Resolution: Safety takes priority. The safety system must work even if security is compromised. Security controls are implemented at network level (preventing unauthorised access to safety system network), not at protocol level (which might interfere with safety function).
+- Safety requirement: Must shut down reactor if any safety parameter is exceeded, regardless of any other factors. Must work even if all other systems fail.
+- Security requirement: Should verify commands are authentic, should not accept shutdown commands from unauthorised sources.
+- Conflict: Adding authentication to safety shutdown creates a potential failure point. If authentication fails or has a bug, it might prevent legitimate safety shutdowns. Safety requirements say "when in doubt, shut down". Security requirements say "when in doubt, deny access".
+- Resolution: Safety takes priority. The safety system must work even if security is compromised. Security controls are implemented at network level (preventing unauthorised access to safety system network), not at protocol level (which might interfere with safety function).
 
 ### The remote access dilemma
 
-Safety requirement: Vendor must be able to access systems quickly during emergency to provide troubleshooting support. Four-hour response time contractually mandated.
-
-Security requirement: Remote access should be tightly controlled, require approval, use strong authentication, be monitored, and ideally not exist at all.
-
-Conflict: Strict security controls on remote access slow down vendor response. In an emergency where turbines are behaving erratically, waiting for security approval process might delay critical support.
-
-Resolution: Compromise. Vendor has remote access but it's monitored, logged, requires two-factor authentication, and uses VPN with strong encryption. University retains right to disable access if compromise suspected. Not perfect from security perspective (persistent remote access is risky), not perfect from safety perspective (still some authentication overhead), but acceptable balance.
+- Safety requirement: Vendor must be able to access systems quickly during emergency to provide troubleshooting support. Four-hour response time contractually mandated.
+- Security requirement: Remote access should be tightly controlled, require approval, use strong authentication, be monitored, and ideally not exist at all.
+- Conflict: Strict security controls on remote access slow down vendor response. In an emergency where turbines are behaving erratically, waiting for security approval process might delay critical support.
+- Resolution: Compromise. Vendor has remote access but it's monitored, logged, requires two-factor authentication, and uses VPN with strong encryption. University retains right to disable access if compromise suspected. Not perfect from security perspective (persistent remote access is risky), not perfect from safety perspective (still some authentication overhead), but acceptable balance.
 
 ### The patching problem
 
-Safety requirement: Control systems must be stable and unchanging. Patches might introduce instability or bugs that affect safety-critical functions.
-
-Security requirement: Systems must be patched to address vulnerabilities.
-
-Conflict: Patching requires downtime, testing, and risk of introducing problems. Not patching leaves vulnerabilities exploitable.
-
-Resolution: Risk-based approach. Critical security patches tested extensively in non-production environments before deployment. Less critical patches deferred or mitigated via compensating controls. Some systems never patched because risk of patch causing problems exceeds risk of vulnerability.
+- Safety requirement: Control systems must be stable and unchanging. Patches might introduce instability or bugs that affect safety-critical functions.
+- Security requirement: Systems must be patched to address vulnerabilities.
+- Conflict: Patching requires downtime, testing, and risk of introducing problems. Not patching leaves vulnerabilities exploitable.
+- Resolution: Risk-based approach. Critical security patches tested extensively in non-production environments before deployment. Less critical patches deferred or mitigated via compensating controls. Some systems never patched because risk of patch causing problems exceeds risk of vulnerability.
 
 The key principle: Safety cannot be compromised for security. If security controls might interfere with safety functions, safety wins. But this doesn't mean ignoring security; it means finding security controls that don't interfere with safety.
 
 ## Crown jewels and acceptable losses
 
-Not everything needs equal protection. Some systems are so critical that their compromise is unacceptable. Others are important but their loss is survivable.
+Not everything needs equal protection. Some systems are so critical that their compromise is unacceptable. Others are 
+important but their loss is survivable.
 
 ### Crown jewels at UU P&L
 
@@ -625,10 +637,17 @@ Systems whose compromise is annoying but not catastrophic:
 
 These systems get basic security but don't warrant significant investment if resources are limited.
 
-This prioritisation helps allocate security resources effectively. You spend more effort protecting crown jewels than protecting the corporate email system. You accept some risk to ancillary systems to focus resources on critical infrastructure.
+This prioritisation helps allocate security resources effectively. You spend more effort protecting crown jewels than 
+protecting the corporate email system. You accept some risk to ancillary systems to focus resources on critical 
+infrastructure.
 
-It also helps during incident response. If under attack, you focus first on protecting crown jewels. If forced to choose between protecting the SCADA system and protecting corporate file servers, the choice is obvious.
+It also helps during incident response. If under attack, you focus first on protecting crown jewels. If forced to 
+choose between protecting the SCADA system and protecting corporate file servers, the choice is obvious.
 
-Threat modelling isn't just an academic exercise. It shapes how you test, what you test, what vulnerabilities matter most, and what recommendations you prioritise. Without understanding threats, you're just finding vulnerabilities without context. With good threat modelling, you're providing actionable security intelligence that helps protect what actually matters.
+Threat modelling isn't just an academic exercise. It shapes how you test, what you test, what vulnerabilities matter 
+most, and what recommendations you prioritise. Without understanding threats, you're just finding vulnerabilities 
+without context. With good threat modelling, you're providing actionable security intelligence that helps protect 
+what actually matters.
 
-And at UU P&L, what actually matters is keeping the power on, the reactor contained, and the Librarian comfortable. Everything else is negotiable.
+And at UU P&L, what actually matters is keeping the power on, the reactor contained, and the Librarian comfortable. 
+Everything else is negotiable.

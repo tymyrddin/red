@@ -44,7 +44,9 @@ Assessment: Medium likelihood
 
 Overall risk: Unacceptably high
 
-Even medium likelihood of catastrophic impact equals unacceptable risk. This drives security investment decisions. You spend money to reduce likelihood (better security controls) or impact (better safety systems, redundancy, containment).
+Even medium likelihood of catastrophic impact equals unacceptable risk. This drives security investment decisions. 
+You spend money to reduce likelihood (better security controls) or impact (better safety systems, redundancy, 
+containment).
 
 ### Example: Building HVAC compromise
 
@@ -61,7 +63,8 @@ Likelihood:
 
 Overall risk: Low to medium, acceptable with monitoring
 
-The HVAC risk doesn't warrant the same investment as the reactor. You implement basic controls (network segmentation, monitoring) but accept remaining risk.
+The HVAC risk doesn't warrant the same investment as the reactor. You implement basic controls (network segmentation, 
+monitoring) but accept remaining risk.
 
 ### The exception: The Library climate control
 
@@ -74,17 +77,21 @@ Impact if Library temperature rises above 19°C:
 - The Librarian becomes progressively more irritable
 - Above 21°C, the Librarian becomes actively hostile
 
-The financial impact is calculable (rare book collection valued at €240 million+). The safety impact is harder to quantify (what's the monetary value of not being transformed into a bookend by an angry orangutan?).
+The financial impact is calculable (rare book collection valued at €240 million+). The safety impact is harder to 
+quantify (what's the monetary value of not being transformed into a bookend by an angry orangutan?).
 
 Risk assessment: Medium likelihood, catastrophic impact (from certain perspectives), overall high risk
 
-Security investment in Library climate control is therefore disproportionate to its apparent importance as "just HVAC". This is OT security in a nutshell: context matters enormously.
+Security investment in Library climate control is therefore disproportionate to its apparent importance as "just HVAC". 
+This is OT security in a nutshell: context matters enormously.
 
 ## Determining what's testable vs what's demonstrable
 
-In IT security testing, if you find a vulnerability, you exploit it (in controlled manner) to demonstrate impact. You show the SQL injection working, the authentication bypass succeeding, the privilege escalation occurring.
+In IT security testing, if you find a vulnerability, you exploit it (in controlled manner) to demonstrate impact. 
+You show the SQL injection working, the authentication bypass succeeding, the privilege escalation occurring.
 
-In OT security testing, many vulnerabilities cannot be safely exploited in production. You must determine what you can test directly and what you can only demonstrate theoretically.
+In OT security testing, many vulnerabilities cannot be safely exploited in production. You must determine what you 
+can test directly and what you can only demonstrate theoretically.
 
 ### Testable: Things you can do without physical consequences
 
@@ -181,11 +188,13 @@ Absolutely forbidden:
 - Any testing during peak demand periods
 - Any testing without explicit approval for that specific test
 
-This separation ensures you can demonstrate vulnerabilities and their impact without actually causing the disasters you're trying to prevent.
+This separation ensures you can demonstrate vulnerabilities and their impact without actually causing the disasters 
+you're trying to prevent.
 
 ## Risk acceptance by business owners
 
-Finding vulnerabilities is only part of the job. Getting business owners to accept responsibility for addressing them (or consciously accepting the risk of not addressing them) is equally important.
+Finding vulnerabilities is only part of the job. Getting business owners to accept responsibility for addressing 
+them (or consciously accepting the risk of not addressing them) is equally important.
 
 ### The risk acceptance conversation
 
@@ -278,11 +287,14 @@ True risk acceptance requires:
 - Documenting that decision
 - Taking responsibility for consequences
 
-At UU P&L, proper risk acceptance means the Archchancellor signs off on accepting specific risks. If something goes wrong later, there's documentation showing the risk was known and a decision was made. This protects the security team ("we told them") and clarifies leadership accountability.
+At UU P&L, proper risk acceptance means the Archchancellor signs off on accepting specific risks. If something goes 
+wrong later, there's documentation showing the risk was known and a decision was made. This protects the security 
+team ("we told them") and clarifies leadership accountability.
 
 ## Insurance implications
 
-Cyber insurance for industrial facilities has become increasingly important and increasingly complex. Insurers want to know about cyber risks before underwriting policies.
+Cyber insurance for industrial facilities has become increasingly important and increasingly complex. Insurers want 
+to know about cyber risks before underwriting policies.
 
 ### What insurers care about
 
@@ -324,7 +336,8 @@ Insurance-friendly approach at UU P&L
 5. Disclose findings to insurer with remediation plan
 6. Update insurer as remediation progresses
 
-This shows due diligence. You're not hiding vulnerabilities, you're actively addressing them. Insurers generally respond better to "we found problems and are fixing them" than "we have no idea what our security posture is".
+This shows due diligence. You're not hiding vulnerabilities, you're actively addressing them. Insurers generally 
+respond better to "we found problems and are fixing them" than "we have no idea what our security posture is".
 
 ### Policy exclusions to watch for
 
@@ -335,7 +348,8 @@ Many cyber insurance policies exclude:
 - Business interruption beyond certain limits
 - Damage from insider threats (sometimes)
 
-Understanding exclusions is critical. If your reactor controls are vulnerable and you know it, and someone exploits that to cause physical damage, your insurance may not cover it.
+Understanding exclusions is critical. If your reactor controls are vulnerable and you know it, and someone exploits 
+that to cause physical damage, your insurance may not cover it.
 
 At UU P&L, the insurance policy specifically excludes:
 - Acts of war and nation state attacks
@@ -343,17 +357,20 @@ At UU P&L, the insurance policy specifically excludes:
 - Physical damage exceeding €60 million
 - Certain high-risk experiments in the alchemical reactor (this predates cyber concerns)
 
-This shapes risk management. Vulnerabilities must be addressed within 180 days or risk acceptance must explicitly acknowledge potential insurance exclusion.
+This shapes risk management. Vulnerabilities must be addressed within 180 days or risk acceptance must explicitly 
+acknowledge potential insurance exclusion.
 
 ## Regulatory requirements
 
-OT security isn't just good practice, it's increasingly legally mandated. Multiple regulatory frameworks apply to UU P&L and similar organisations.
+OT security isn't just good practice, it's increasingly legally mandated. Multiple regulatory frameworks apply to 
+[UU P&L](../territory/index.rst) and similar organisations.
 
 ### EU NIS2 Directive
 
-The Network and Information Security Directive 2 (NIS2) applies to critical infrastructure across the EU, including energy providers. UU P&L, providing electricity to Ankh-Morpork, falls under these requirements.
+The Network and Information Security Directive 2 (NIS2) applies to critical infrastructure across the EU, including 
+energy providers. UU P&L, providing electricity to Ankh-Morpork, falls under these requirements.
 
-NIS2 requires:
+[NIS2](https://purple.tymyrddin.dev/docs/audits/nis2/) requires:
 - Risk management measures appropriate to the level of risk
 - Business continuity and crisis management
 - Supply chain security
@@ -378,7 +395,8 @@ For UU P&L, this means:
 
 ### IEC 62443
 
-The IEC 62443 series provides standards for industrial automation and control systems security. It's not legally mandated in most jurisdictions but is increasingly referenced in contracts and regulations.
+The IEC 62443 series provides standards for industrial automation and control systems security. It's not legally 
+mandated in most jurisdictions but is increasingly referenced in contracts and regulations.
 
 IEC 62443 defines:
 - Security levels (SL 1-4) based on threat sophistication
@@ -396,7 +414,8 @@ This isn't a quick checkbox exercise. Full IEC 62443 compliance can take years a
 
 ### UK CNI regulations
 
-As critical national infrastructure (electricity provider for a major city), UU P&L falls under UK CNI protection requirements. This includes:
+As critical national infrastructure (electricity provider for a major city), UU P&L falls under UK CNI protection 
+requirements. This includes:
 - Regular security assessments
 - Reporting significant incidents
 - Coordination with national cyber security centre
@@ -404,7 +423,8 @@ As critical national infrastructure (electricity provider for a major city), UU 
 
 ### GDPR considerations
 
-Surprisingly, GDPR applies even in OT environments. Personnel data (employee records, access logs, video surveillance) is personal data requiring protection. If a breach exposes this data, GDPR penalties apply.
+Surprisingly, GDPR applies even in OT environments. Personnel data (employee records, access logs, video surveillance) 
+is personal data requiring protection. If a breach exposes this data, GDPR penalties apply.
 
 At UU P&L:
 - HR system with employee data
@@ -412,7 +432,8 @@ At UU P&L:
 - Video surveillance in control rooms and substations
 - Engineering workstations with personal files and emails
 
-All require GDPR-compliant protection. A ransomware incident encrypting or exfiltrating this data triggers GDPR breach notification requirements within 72 hours.
+All require GDPR-compliant protection. A ransomware incident encrypting or exfiltrating this data triggers GDPR breach 
+notification requirements within 72 hours.
 
 ### The compliance burden
 
@@ -425,13 +446,16 @@ Meeting all these requirements requires:
 - Audit trails and logging
 - Reporting to regulators
 
-For UU P&L, this means security isn't discretionary. The Archchancellor can't simply decide security is too expensive. Regulatory compliance mandates minimum security standards.
+For UU P&L, this means security isn't discretionary. The Archchancellor can't simply decide security is too expensive. 
+Regulatory compliance mandates minimum security standards.
 
-This actually helps security teams. "We need to do this for compliance" is often more compelling than "we need to do this for security". Leadership understands regulatory penalties in ways they sometimes don't understand cyber risk.
+This actually helps security teams. "We need to do this for compliance" is often more compelling than "we need to do 
+this for security". Leadership understands regulatory penalties in ways they sometimes don't understand cyber risk.
 
 ## Building a risk register
 
-A risk register is a structured way to track identified risks, their assessment, mitigation status, and ownership. It's a living document that evolves as you identify new risks and address existing ones.
+A risk register is a structured way to track identified risks, their assessment, mitigation status, and ownership. 
+It's a living document that evolves as you identify new risks and address existing ones.
 
 ### Risk register structure at UU P&L
 
@@ -467,7 +491,7 @@ Review Date: When risk will be reassessed
 
 ### Example entries from UU P&L risk register:
 
-RISK-OT-001
+`RISK-OT-001`
 - System: Turbine Control PLCs
 - Vulnerability: No authentication on S7 protocol
 - Threat: Nation state, Ransomware gang, Contractor
@@ -482,7 +506,7 @@ RISK-OT-001
 - Target Date: Q2 2026
 - Review Date: Quarterly
 
-RISK-OT-015
+`RISK-OT-015`
 - System: Library Climate Control
 - Vulnerability: BACnet protocol with no authentication
 - Threat: Disgruntled staff, External attacker via corporate network
@@ -497,7 +521,7 @@ RISK-OT-015
 - Target Date: Q3 2026
 - Review Date: Quarterly
 
-RISK-OT-027
+`RISK-OT-027`
 - System: Cafeteria HVAC
 - Vulnerability: Web interface with default credentials
 - Threat: Opportunistic attacker, Script kiddie
@@ -520,22 +544,28 @@ The risk register serves multiple purposes:
 - Creates accountability with named owners
 - Documents decisions for future reference
 
-At UU P&L, the risk register is reviewed quarterly by the security steering committee (Archchancellor, Senior Bursar, OT Engineering Manager, IT Director, Security Consultant). New risks are added, addressed risks are closed, and mitigation progress is tracked.
+At UU P&L, the risk register is reviewed quarterly by the security steering committee (Archchancellor, Senior Bursar, 
+OT Engineering Manager, IT Director, Security Consultant). New risks are added, addressed risks are closed, and 
+mitigation progress is tracked.
 
 ## Communication strategies for technical risks to non-technical stakeholders
 
-The hardest part of OT security isn't finding vulnerabilities, it's explaining them to people who don't understand technology but need to make decisions about it.
+The hardest part of OT security isn't finding vulnerabilities, it's explaining them to people who don't understand 
+technology but need to make decisions about it.
 
 ### The challenge of translation
 
 Technical finding:
-"The Siemens S7-400 PLCs controlling the turbine governor systems lack authentication mechanisms in the S7comm protocol implementation, allowing any host on VLAN 10 to issue program upload, download, CPU start, and CPU stop commands without credential verification."
+"The Siemens S7-400 PLCs controlling the turbine governor systems lack authentication mechanisms in the S7comm 
+protocol implementation, allowing any host on VLAN 10 to issue program upload, download, CPU start, and CPU stop 
+commands without credential verification."
 
 What the Archchancellor hears:
 "Blah blah technical jargon blah expense blah."
 
 What you need to communicate:
-"Anyone who gets access to the turbine network can reprogram or shut down the turbines, causing city-wide blackouts or potentially damaging €18 million turbines."
+"Anyone who gets access to the turbine network can reprogram or shut down the turbines, causing city-wide blackouts 
+or potentially damaging €18 million turbines."
 
 ### Effective communication principles
 
@@ -565,39 +595,52 @@ Offer clear recommendations
 
 ### Example: Presenting the engineering workstation risk
 
-Bad presentation:
-"The engineering workstation exhibits multiple critical vulnerabilities including CVE-2017-0144, lack of endpoint protection, elevated privileges, and insufficient network segmentation, creating a lateral movement vector for advanced persistent threats."
+Bad presentation: *"The engineering workstation exhibits multiple critical vulnerabilities including CVE-2017-0144, lack of endpoint protection, elevated privileges, and insufficient network segmentation, creating a lateral movement vector for advanced persistent threats."*
 
-Good presentation:
-"The laptop engineers use to program PLCs has serious security problems. It's running Windows 7 with no security updates since 2016, making it vulnerable to common malware. It has no antivirus, and engineers work with full admin rights. This laptop connects to both the corporate network and the control systems.
+Good presentation: *"The laptop engineers use to program PLCs has serious security problems. It's running Windows 7 with no security updates since 2016, making it vulnerable to common malware. It has no antivirus, and engineers work with full admin rights. This laptop connects to both the corporate network and the control systems.*
 
-If an engineer clicks a malicious email attachment, malware could spread to this laptop, then use it as a bridge to the turbine controls. This has happened at other facilities.
+If an engineer clicks a malicious email attachment, malware could spread to this laptop, then use it as a bridge to 
+the turbine controls. This has happened at other facilities.
 
 The laptop contains all the PLC programs and passwords. If someone steals it, they have the keys to the entire facility.
 
-We need to replace this laptop with a properly secured one, and separate engineering functions from general office work. Cost is €6,000 for the laptop and €12,000 for setup and training. Timeline is two months.
+We need to replace this laptop with a properly secured one, and separate engineering functions from general office 
+work. Cost is €6,000 for the laptop and €12,000 for setup and training. Timeline is two months.
 
 Alternative is accepting that our turbine controls are one phishing email away from compromise."
 
 ### Handling objections
 
 "This seems expensive"
-Response: "Compare it to the cost of an incident. This mitigation costs €180,000. A ransomware incident at a similar facility last year cost them €2.4 million in ransom, downtime, recovery, and regulatory fines. This is insurance."
+
+Response: "Compare it to the cost of an incident. This mitigation costs €180,000. A ransomware incident at a similar 
+facility last year cost them €2.4 million in ransom, downtime, recovery, and regulatory fines. This is insurance."
 
 "Can't we do this later?"
-Response: "The vulnerabilities exist now. Attackers are targeting industrial facilities now. Every day we wait is a day we're exposed. Also, our insurance policy excludes coverage for known vulnerabilities unaddressed for more than 180 days. We've now documented these vulnerabilities, so the clock is ticking."
+
+Response: "The vulnerabilities exist now. Attackers are targeting industrial facilities now. Every day we wait is a 
+day we're exposed. Also, our insurance policy excludes coverage for known vulnerabilities unaddressed for more than 
+180 days. We've now documented these vulnerabilities, so the clock is ticking."
 
 "Why didn't previous assessments find this?"
-Response: "Previous assessments were less thorough, or these vulnerabilities have been introduced since then. The threat landscape evolves. This is why regular assessments are necessary."
+
+Response: "Previous assessments were less thorough, or these vulnerabilities have been introduced since then. 
+The threat landscape evolves. This is why regular assessments are necessary."
 
 "Can't the vendors fix this?"
-Response: "Some of these vulnerabilities are in end-of-life products the vendors no longer support. For others, patches exist but require extensive testing before deployment. We can't rely solely on vendors. We need defence in depth."
+
+Response: "Some of these vulnerabilities are in end-of-life products the vendors no longer support. For others, 
+patches exist but require extensive testing before deployment. We can't rely solely on vendors. We need defence in 
+depth."
 
 ### The elevator pitch
 
 Sometimes you have 30 seconds to explain why security matters. The elevator pitch for UU P&L:
 
-"Our industrial control systems have vulnerabilities that could allow attackers to cause city-wide power outages or physical damage costing millions. These aren't theoretical risks; similar facilities have been hit by ransomware and nation-state attacks. We need to invest in security to protect the university, the city, and to comply with regulations. It's considerably cheaper than dealing with an incident."
+"Our industrial control systems have vulnerabilities that could allow attackers to cause city-wide power outages or 
+physical damage costing millions. These aren't theoretical risks; similar facilities have been hit by ransomware and 
+nation-state attacks. We need to invest in security to protect the university, the city, and to comply with 
+regulations. It's considerably cheaper than dealing with an incident."
 
 ### Visual aids help
 
@@ -608,7 +651,9 @@ Most stakeholders respond better to visuals than text:
 - Timeline showing realistic implementation schedule
 - Heat maps showing risk levels across systems
 
-At UU P&L, showing a network diagram with red arrows depicting an attack path from "contractor laptop" through "wireless access point" through "engineering workstation" to "turbine PLCs" was more effective than pages of technical findings.
+At UU P&L, showing a network diagram with red arrows depicting an attack path from "contractor laptop" through 
+"wireless access point" through "engineering workstation" to "turbine PLCs" was more effective than pages of technical 
+findings.
 
 ### Follow-up documentation
 
@@ -618,7 +663,9 @@ After presentations, provide written documentation:
 - Technical report (full details for engineers)
 - Remediation roadmap (specific actions, timeline, costs)
 
-Different audiences need different levels of detail. The Archchancellor reads the executive summary. The engineering team reads the technical report. The Senior Bursar reads everything because they need to understand before allocating budget.
+Different audiences need different levels of detail. The Archchancellor reads the executive summary. The engineering 
+team reads the technical report. The Senior Bursar reads everything because they need to understand before allocating 
+budget.
 
 ### Measuring success
 
@@ -636,4 +683,6 @@ Communication fails when:
 - Risk acceptance is claimed but not properly documented
 - The same vulnerabilities appear in the next assessment
 
-At UU P&L, effective communication led to €300,000 allocated for immediate security improvements, a multi-year security roadmap approved by leadership, and quarterly security reviews established. Not perfect, but measurable progress driven by clear communication of technical risks in business terms.
+At UU P&L, effective communication led to €300,000 allocated for immediate security improvements, a multi-year 
+security roadmap approved by leadership, and quarterly security reviews established. Not perfect, but measurable 
+progress driven by clear communication of technical risks in business terms.
