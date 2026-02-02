@@ -1,245 +1,133 @@
 # What makes OT different from IT
 
-You're a pentester. You've [broken into web applications](../../in/app/index.rst), 
-[compromised Active Directory forests](../../in/network/notes/run-ins.md), and perhaps even 
-[made a database cry](../../in/app/techniques/sqli.md). You know your Burp Suite from your Metasploit, your 
-privilege escalation from your lateral movement. You are, in the parlance of the trade, rather good at breaking 
-things.
+Extract from the field notes of Ponder Stibbons, Lecturer in Applied Inconveniences
 
-Then someone asks you to test an industrial control system.
+I am a pentester. I have [broken into web applications](../../in/app/index.rst), [compromised Active Directory forests](../../in/network/notes/run-ins.md), and on occasion even [made a database cry](../../in/app/techniques/sqli.md). I know my Burp Suite from my Metasploit, my privilege escalation from my lateral movement. One becomes rather good at breaking things.
 
-"How different can it be?" you think. "It's all just computers and networks, right?"
+Then the Patrician asks *me* to test an industrial control system.
 
-This is the same sort of thinking that leads people to assume that because they can ride a bicycle, they can probably 
-fly a helicopter. Technically both involve going places, but the consequences of getting it wrong are somewhat 
-different.
+"How different can it be?" I thought. "It is all just computers and networks, right?"
+
+This is the same sort of thinking that leads people to assume that because they can ride a bicycle, they can probably fly a helicopter. Technically both involve going places, but the consequences of getting it wrong are somewhat different.
 
 ## Physical consequences of digital actions
 
-In IT security, when you crash a server, someone gets upset. The website goes down, people can't check their email, 
-there might be stern words from management. The worst that happens is someone has to work late to restore from 
-backups.
+Observation: In IT security, when you crash a server, someone gets upset. The website goes down. The worst that happens is someone works late to restore from backups.
 
-In OT security, when you crash a controller, *things happen in the physical world*.
+Observation: In OT security, when you crash a controller, *things happen in the physical world*.
 
-Consider our running example: Unseen University Power & Light Co. (UU P&L), the venerable institution responsible 
-for keeping the lights on across Ankh-Morpork. Their systems include:
+The Unseen University Power & Light Co. (UU P&L) is the institution responsible for keeping the lights on across Ankh-Morpork. I have been asked to assess their systems, which include:
 
-- The Hex Steam Turbine Control System, which generates electricity for half the city
-- The Bursar's Automated Alchemical Reactor Controls, where incorrect temperatures lead to reactions that are "exciting" in the way that avalanches are exciting
-- The Library Environmental Management System, maintaining the precise conditions necessary to prevent L-space from collapsing (and the Librarian from getting upset)
-- The City-Wide Distribution SCADA, managing power to everyone from the Patrician's Palace to Mrs. Cake's boarding house
+*   The Hex Steam Turbine Control System, which generates electricity for half the city.
+*   The Bursar's Automated Alchemical Reactor Controls, where incorrect temperatures lead to reactions described as "exciting".
+*   The Library Environmental Management System, which prevents L-space from collapsing.
+*   The City-Wide Distribution SCADA, managing power from the Palace to Mrs. Cake's boarding house.
 
-When you send the wrong packet to a PLC controlling a steam turbine, you're not just causing downtime. You might be 
-causing the turbine to spin up when it shouldn't, or slam shut a valve whilst hot steam is flowing through it, or 
-disable safety interlocks that prevent the boiler from experiencing what engineers euphemistically call "rapid 
-unscheduled disassembly".
+Note to self: A misplaced packet to the turbine PLC is not downtime. It could cause the turbine to overspeed, slam shut a valve under pressure, or disable a safety interlock. Engineers have a euphemism for the latter: "rapid unscheduled disassembly".
 
-That web server you accidentally knocked offline? It just stopped responding. This PLC you're testing? It controls a 
-robotic arm that's currently welding things, or a valve that's holding back several tons of pressure, or a motor 
-that can quite happily continue spinning even after your fingers are caught in it.
-
-The IT security mindset of "break it and see what happens" becomes "carefully observe and predict what might happen 
-if we theoretically broke it, then don't actually break it."
+That web server I once knocked offline simply stopped. This PLC controls a valve holding back several tons of steam. The IT mindset of "break it and see" must become "predict what would happen if it broke, and do not actually break it".
 
 ## Real-time requirements and timing sensitivity
 
-Your typical web application doesn't care if a response takes 100 milliseconds or 200 milliseconds. Users barely 
-notice. The application certainly doesn't stop working.
+Observation: A web application does not care if a response takes 100 or 200 milliseconds.
 
-A PLC running at a 10ms scan cycle absolutely cares about timing. It's reading sensors, making decisions, and 
-outputting control signals in a continuous loop. If you interrupt that loop, or flood the network with traffic 
-that causes packet loss, or send malformed packets that the PLC needs to waste CPU cycles parsing, you can affect 
-the controlled process.
+Observation: A PLC running a 10ms scan cycle cares deeply. It reads sensors, decides, acts. Interrupt that loop and you affect the physical process.
 
-Imagine you're testing the Library's environmental controls. The system maintains temperature and humidity within 
-very specific ranges. Too hot, and ancient grimoires start to spontaneously combust. Too humid, and you get mould 
-(the magical kind that achieves sentience and starts filing complaints). The controller checks temperatures every 
-second and makes adjustments.
+Consider the Library's environmental controls. The parameters are precise. Too hot, and grimoires combust. Too humid, and one gets sentient mould. The controller checks every second.
 
-Now imagine you run `nmap -A -T5` against that controller.
+Now, imagine running `nmap -A -T5` against it.
 
-The aggressive scan hammers the device with thousands of packets. The PLC's modest CPU, designed in an era when 
-the fastest thing in computing was a Bursar running from their own expense reports, tries to process this unexpected 
-traffic. It falls behind on its scan cycle. It misses a temperature reading. Then another. By the time it catches 
-up, the temperature has drifted outside acceptable ranges.
+The scan hammers the device. The PLC's modest CPU, designed in an era when the Bursar was the fastest computing entity, struggles. It falls behind. It misses a temperature reading. Then another.
 
-The Library's environmental system, detecting this anomaly, fails safe. It shuts down. The temperature starts rising. 
-Books begin to smoulder. The Librarian notices.
+The system fails safe. It shuts down. The temperature rises. Books begin to smoulder. The Librarian notices.
 
-And that's how an innocent port scan leads to you being chased across campus by an angry orangutan who knows 
-exactly where you live.
+Conclusion: An innocent port scan could lead to being chased by an orangutan who knows where I live.
 
 ## Legacy systems and patch impossibility
 
-In the IT world, patching is a normal part of life. Microsoft Patch Tuesday comes around, you test the patches, 
-you deploy them, everyone grumbles but accepts this is how things work.
+Observation: In IT, patching is routine. Patch Tuesday arrives, patches are deployed.
 
-In the OT world, patching is somewhere between "difficult" and "impossible", with occasional excursions into 
-"you must be joking".
+Observation: In OT, patching exists on a spectrum from "difficult" to "you must be joking".
 
-That PLC controlling the Hex Steam Turbines? It was installed in 1978. It has been running, without interruption, 
-for forty-seven years. It controls the university's primary power generation. Its programming language is a form 
-of ladder logic that only three people in the city understand, two of whom are retired, and one of whom is the 
-Librarian (who learned it during a brief period of being transformed into a computer terminal).
+The Hex Turbine PLC was installed in 1978. It has run without interruption for forty-seven years. Its ladder logic is understood by three people. One is the Librarian, who learned it whilst briefly transformed into a computer terminal.
 
-The manufacturer no longer exists. They were bought by a larger company in 1985, which was then bought by an 
-even larger company in 1993, which was then merged with a competitor in 2001, which then divested that division 
-to a private equity firm in 2008, which then sold it to another company in 2015, which then went bankrupt in 2019.
+The manufacturer's corporate lineage is a Russian doll of acquisitions and bankruptcies. There are no patches. There will never be patches.
 
-There are no patches. There will never be patches. The concept of patches is a distant dream, like world peace or 
-a Bursar who understands their own budget.
+But it works. The university's position is clear: one does not interfere with things that work.
 
-But it works. It has always worked. And the university's position is that one does not, under any circumstances, 
-interfere with things that work. This is a lesson learned over centuries, usually through incidents that required 
-rebuilding entire wings of the university.
+Implication: Vulnerability scanning becomes an academic exercise. The device is vulnerable, but you cannot patch it, upgrade it, or restart it without scheduling a city-wide blackout months in advance.
 
-This means that vulnerability scanning, in the traditional sense, becomes rather pointless. Yes, the PLC is 
-vulnerable to seventeen different CVEs. Yes, an attacker with network access could do terrible things. But you 
-cannot patch it. You cannot upgrade it. You cannot even restart it without scheduling a city-wide power outage 
-three months in advance.
-
-Your job as a pentester shifts from "find vulnerabilities and recommend patches" to "find vulnerabilities and 
-recommend compensating controls that don't involve touching the actual system".
+The job shifts. It is no longer "find vulns and recommend patches". It is "find vulns and recommend controls that do not involve touching the actual system".
 
 ## Safety systems and interlocks
 
-OT environments are full of safety systems. These are the mechanisms that prevent accidents, like boilers exploding 
-or reactors melting down or the Librarian's bananas being stored at incorrect temperatures (this last one is 
-technically a comfort system, but the Librarian's comfort and everyone else's safety are closely related concepts).
+Observation: OT environments are filled with safety systems, designed to fail safe. They are excellent for safety, less excellent for security testing.
 
-These safety systems are often separate from the control systems. They're designed to fail safe. If power is lost, 
-they default to the safest state. If they detect an anomaly, they shut everything down.
+The alchemical reactor has interlocks: temperature sensors, pressure valves, containment field monitors, a large red button for the Bursar.
 
-This is excellent for safety. It's less excellent when you're trying to test security.
+They are deliberately simple, often hardwired. But they are not entirely separate. Data flows back to SCADA. In some cases, remote alarm acknowledgement or bypass is "convenient".
 
-Consider the alchemical reactor controls. The reactor has multiple safety interlocks:
+The testing paradox:
+1.  Do not trigger them accidentally. (Annoying.)
+2.  Do not disable them accidentally. (Dangerous.)
+3.  Determine if attackers could trigger them. (Denial of service.)
+4.  Determine if attackers could disable them. (Extremely dangerous.)
 
-- Temperature sensors that trigger emergency cooling if things get too hot
-- Pressure relief valves that open automatically if pressure exceeds safe limits  
-- Containment field monitors that shut down the reaction if the magical shielding weakens
-- A big red button that the Bursar can press if they panic (which is often)
-
-These systems are deliberately simple. They don't communicate over the network much, because network failures 
-shouldn't prevent safety systems from working. They're hardwired where possible. They're redundant.
-
-But they're not entirely separate from the control network. Monitoring data flows back to the SCADA system. The 
-engineering workstation can query their status. And in a few unfortunate cases, someone decided it would be 
-convenient if you could also acknowledge alarms or bypass interlocks remotely "just in case an engineer needs to do 
-maintenance".
-
-The job as a pentester includes:
-
-1. Not triggering safety systems accidentally (annoying, causes downtime)
-2. Not disabling safety systems accidentally (dangerous, possibly criminal)
-3. Testing whether attackers could trigger safety systems maliciously (denying service by making the plant shut itself down)
-4. Testing whether attackers could disable safety systems maliciously (extremely dangerous, definitely criminal if they succeed)
-
-The fourth point is particularly delicate. You need to determine if it's possible to disable safety systems without 
-actually doing it. This requires creativity, documentation, and very careful conversations with the people who own 
-the systems.
-
-"Could I theoretically send commands to disable this interlock?" is a question you need to answer.
-
-"Let me test that by actually disabling the interlock and seeing what happens" is not a question. It's a resignation 
-letter written in packet captures.
+The fourth point requires extreme care. "Could I theoretically disable this?" is the question. "Let me test by disabling it" is a career-ending move.
 
 ## The mythology of air gaps
 
-In OT security, you will frequently hear about "air gaps". The OT network, you'll be told, is completely separate from 
-the corporate IT network. There is no connection. It's physically isolated. Therefore, it is secure.
+Axiom: You will be told the OT network is "air gapped". It is completely separate. Therefore, secure.
 
-This is the sort of comforting fiction that people tell themselves, like "the Patrician doesn't know what you did" or 
-"that's probably just a normal rat, not a Death of Rats".
+Observation: This is a comforting fiction, like believing the Patrician does not know what you did.
 
-The reality at UU P&L, as at most organisations with OT, is rather different:
+The reality at UU P&L:
 
-### The "air gap" that has WiFi
+*   The "air gap" with WiFi: A contractor installed an access point in the turbine hall "for convenience". It bridges the networks. The gap is now a suggestion.
+*   The "isolated" network with a jump box: A Windows Server 2003 machine connects the SCADA and corporate networks. It has no antivirus and a password unchanged since installation.
+*   The "separated" systems sharing a historian: Control and IT data both feed a historian database on the corporate network, because IT policy demanded it.
+*   The "disconnected" network with vendor VPN: A VPN concentrator allows 24/7 vendor access. Ex-employees may still have credentials.
+*   The "air gap" with USB ports: Engineers use USB drives, which also visit corporate and home PCs.
 
-The turbine control network is indeed on separate physical cabling from the corporate network. However, a 
-contractor installed a wireless access point in the turbine hall "for convenience during maintenance". This 
-access point is connected to both networks. The air gap is now more of an air suggestion.
-
-### The "isolated" network with the jump box
-
-The SCADA network has no direct connection to the corporate network. Instead, there's a jump box that connects to 
-both networks, allowing operators to access SCADA systems from their corporate workstations. This jump box runs 
-Windows Server 2003 (because upgrading might break something), has no antivirus (because it might interfere with 
-SCADA), and has the same admin password it's had since installation (because changing it would require updating 
-documentation, and nobody wants to do that).
-
-### The "separated" systems that share a historian
-
-The control systems are separate. The corporate IT systems are separate. But both send data to the same historian 
-database for long-term storage and reporting. And that historian? It's on the corporate network because the IT 
-department said having a database server they couldn't patch or monitor was "against policy".
-
-### The "disconnected" network with vendor remote access
-
-The engineering network has absolutely no connection to the outside world. Except for the VPN concentrator that 
-vendors use for remote support. Which has been configured to allow vendor access 24/7 rather than only during 
-scheduled maintenance windows. And which several ex-employees still have credentials for. And which routes 
-directly to the control network.
-
-### The "air gap" that has USB ports
-
-Even if the network truly is isolated (rare), engineers still need to update programs and transfer files. So they 
-use USB drives. These same USB drives get used on corporate workstations, personal laptops, and occasionally their 
-home computers where their teenage children are downloading questionable software.
-
-Air gaps are a lovely theory. In practice, they're full of holes, like a philosophical argument constructed by 
-the Bursar after too much sherry.
-
-The job as a pentester includes documenting all the ways the "air gap" isn't actually an air gap, ideally before 
-someone less friendly than you discovers them.
+Air gaps are a lovely theory. In practice, they are full of holes, like a philosophical argument constructed by the Bursar after too much sherry.
 
 ## Why OT people distrust IT people (and vice versa)
 
-In any organisation with both OT and IT departments, there exists a certain amount of mutual suspicion.
+Observation: Mutual suspicion is a defining feature.
 
-The IT department thinks OT is living in the past, refusing to adopt basic security practices, running ancient 
-operating systems, and generally being difficult about perfectly reasonable policies like "all systems must be 
-patched within 30 days" and "all systems must run approved antivirus software".
-
-The OT department thinks IT is reckless, doesn't understand the consequences of their actions, wants to patch 
-things during production hours, and keeps trying to "improve" systems that have been working perfectly well since 
-before the IT department existed.
+IT thinks OT lives in the past, refuses security basics, and is difficult.
+OT thinks IT is reckless, ignorant of consequences, and wants to break working systems.
 
 Both are partly right.
 
-At UU P&L, this tension manifests in various ways:
+Local Example: IT once forced a monthly reboot patch onto the turbine system during production. The turbines shut down. Half of Ankh-Morpork went dark. The Patrician was not amused. OT has not forgotten.
 
-The IT department once tried to enforce a policy requiring all systems to restart monthly for patching. They pushed 
-this to the turbine control system during production hours. The turbines shut down. Half of Ankh-Morpork lost power. 
-The Patrician was not amused. The IT director learned the meaning of the phrase "strongly worded letter". The OT 
-department has not forgotten.
+OT runs Windows XP on engineering workstations because the SCADA software requires it. They refuse IT's antivirus and monitoring access. When ransomware spread from corporate to OT via the "air gap", IT was blamed for not protecting a network they were barred from.
 
-The OT department runs Windows XP on the engineering workstations because "the SCADA software only works on XP". They 
-refuse to let IT install antivirus because "it might interfere with the real-time response". They won't allow IT to 
-access the OT network for security monitoring because "you'll break something". When WannaCry ransomware hits the 
-corporate network and spreads to OT via that "air-gapped" connection, IT gets blamed for not protecting OT, despite 
-having been denied access to protect it.
+Requirement: A pentester must navigate this. Build trust with both. Assure OT you will not crash the turbines (probably). Assure IT you understand patch cycles are not applicable. The political challenge often outweighs the technical one.
 
-Understanding this dynamic is crucial for successful OT security testing. A pentester would need to work with both 
-departments, convince them you understand their concerns, and build trust. This is often harder than the technical 
-testing itself.
+This is the core difference. It is not just technical. It is political, organisational, cultural. It is the understanding that these systems were built when security meant a physical lock, and retrofitting modern security is like adding airbags to a horse-drawn carriage.
 
-The IT department needs to understand that you won't recommend patching production systems without extensive testing 
-and planned outage windows.
+But it must be done. The alternative is leaving the city's power, its volatile reactor, and the stability of L-space accessible to anyone with a network cable and a guess.
 
-The OT department needs to understand that you're not going to accidentally shut down the turbines (probably), and 
-that identifying vulnerabilities is better than having someone less friendly find them first.
+And nobody wants to explain to the Librarian why the thermostats now read "Ook".
 
-And both need to understand that security isn't about making their lives difficult, it's about preventing situations 
-that would make everyone's lives significantly more difficult.
+## Field note: The inescapable conclusion
 
-This is what makes OT security testing different from IT security testing. It's not just the technical challenges. 
-It's the political, organisational, and cultural challenges. It's the understanding that these systems were built 
-when security meant "put a lock on the door", and that retrofitting modern security onto 1970s hardware is like 
-trying to install airbags in a horse-drawn carriage.
+My observations are complete. The picture is clear, and it is untenable.
 
-But it needs doing. Because the alternative is leaving the Hex Steam Turbines, the alchemical reactor, and the 
-Library's environmental controls accessible to anyone who can plug into a network jack or guess a password.
+We have, on one side, a mandate from the Palace to secure the city's vital infrastructure. On the other, we have systems where a misplaced packet can cause a blackout, where a port scan is an act of industrial sabotage, and where the concept of a "patch" is as fantastical as a frugal wizard.
 
-And nobody wants to explain to the Librarian why the temperature controls are now being operated by a teenage 
-hacker from Pseudopolis who thought it would be funny to make all the thermostats read "Ook".
+The traditional IT playbook, to scan, probe, exploit and recommend patches, is not merely inadequate here. It is a recipe for catastrophe. One cannot "break it and see what happens" when "it" is the only thing preventing the Library's more volatile contents from redecorating the campus.
+
+This leaves us with a professional paradox. We must prove vulnerabilities exist to justify the cost and disruption of securing them. But we cannot demonstrate those vulnerabilities on the live systems without triggering the very consequences we seek to avoid.
+
+There is only one solution. We must build a court of inquiry that is not subject to the city's physical laws.
+
+We need a simulator.
+
+Not a simple model, but a causally correct, layered twin of the UU P&L infrastructure. A phantom territory where the Hex turbine spins in silicon, where the alchemical reactor's excitements are confined to a logic engine, and where the Library's climate is a set of variables in a state fabric. In this simulator, we can safely orchestrate every disaster, trace every attack path from a rogue packet to a tripped safety relay, and validate every mitigation.
+
+It will be our Proof of Concept engine. It will allow us to walk into the Patrician's office and say, "My Lord, we have not risked a single light bulb in the city. Yet we can show you, conclusively, how an attacker might darken the Isle of Gods, and precisely how to prevent it." We can replace theoretical risk with demonstrated causality.
+
+The work, therefore, divides cleanly. First, we must document this reality, the profound *difference* that dictates all that follows. Then, we must build its perfect, safe reflection. Only then can we begin the real test.

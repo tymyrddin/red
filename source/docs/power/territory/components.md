@@ -28,7 +28,9 @@ A PLC continuously executes a control program in a loop called a scan cycle:
 4. Handle communications
 5. Repeat, typically every 10-100 milliseconds
 
-This program implements the control strategy. If temperature exceeds setpoint, open cooling valve. If pressure drops below threshold, start backup pump. If the Librarian's banana supply drops below three bunches, trigger urgent restocking alarm.
+This program implements the control strategy. If temperature exceeds setpoint, open cooling valve. If pressure drops 
+below threshold, start backup pump. If the Librarian's banana supply drops below three bunches, trigger urgent 
+restocking alarm.
 
 ### PLC architecture
 
@@ -57,7 +59,8 @@ the concept of network connectivity (someone added a Modbus gateway in 2005).
 
 ### Security characteristics of PLCs
 
-PLCs were designed assuming physical security. If you have physical access to program the PLC, you're assumed to be authorised. This assumption extended to network access once PLCs gained Ethernet connectivity.
+PLCs were designed assuming physical security. If you have physical access to program the PLC, you're assumed to be 
+authorised. This assumption extended to network access once PLCs gained Ethernet connectivity.
 
 Most PLCs have minimal security:
 - No authentication, or weak authentication (fixed passwords, no password policy)
@@ -67,7 +70,9 @@ Most PLCs have minimal security:
 - No code signing or verification
 - Physical key switches (which are often left in "Run" or "Program" mode)
 
-Newer PLCs are better. The Siemens S7-1500 series supports password protection, access levels, and encrypted connections. The Rockwell ControlLogix v21 and later supports role-based access control and secure connections. But adoption is slow, and backwards compatibility often means security features are disabled.
+Newer PLCs are better. The Siemens S7-1500 series supports password protection, access levels, and encrypted 
+connections. The Rockwell ControlLogix v21 and later supports role-based access control and secure connections. 
+But adoption is slow, and backwards compatibility often means security features are disabled.
 
 ### Testing PLCs
 
@@ -107,7 +112,8 @@ RTUs are designed for:
 - Low power consumption (some run on solar power and batteries)
 - Communication over various media (serial radio, cellular, satellite)
 
-RTUs collect data from sensors, perform basic control logic, buffer data during communication outages, and communicate with a central SCADA system using protocols like DNP3, Modbus, or IEC 60870-5-104.
+RTUs collect data from sensors, perform basic control logic, buffer data during communication outages, and communicate 
+with a central SCADA system using protocols like DNP3, Modbus, or IEC 60870-5-104.
 
 At UU P&L, RTUs are deployed at electrical substations throughout Ankh-Morpork. Each RTU monitors circuit breaker 
 status, transformer load, voltage levels, and can remotely operate breakers when commanded by the central SCADA system.
@@ -135,13 +141,16 @@ At UU P&L, the RTUs communicate with central SCADA via DNP3 over cellular connec
 - Web interfaces for local configuration with default passwords
 - No detection of unauthorised access
 
-An attacker with access to the cellular network could potentially send DNP3 commands to operate circuit breakers. The recommendations included implementing DNP3 Secure Authentication, using VPNs for all RTU communications, changing default credentials, and deploying intrusion detection.
+An attacker with access to the cellular network could potentially send DNP3 commands to operate circuit breakers. The 
+recommendations included implementing DNP3 Secure Authentication, using VPNs for all RTU communications, changing 
+default credentials, and deploying intrusion detection.
 
 ## HMIs, where humans meet machines
 
 ![HMI](/_static/images/ot-hmi.png)
 
-Human-Machine Interfaces (HMIs) are the screens that operators use to monitor and control processes. They display pretty graphics of the plant, show real-time values, and provide buttons for controlling equipment.
+Human-Machine Interfaces (HMIs) are the screens that operators use to monitor and control processes. They display 
+pretty graphics of the plant, show real-time values, and provide buttons for controlling equipment.
 
 HMIs range from simple touch panels to full SCADA workstations running sophisticated software.
 
@@ -155,7 +164,8 @@ Common HMI platforms include:
 - Schneider Vijeo Citect
 - GE iFIX
 
-These applications run on Windows (almost always Windows). They connect to PLCs and other devices, retrieve data, send commands, log events, and provide the user interface for operations.
+These applications run on Windows (almost always Windows). They connect to PLCs and other devices, retrieve data, 
+send commands, log events, and provide the user interface for operations.
 
 ### HMI architecture
 
@@ -181,7 +191,9 @@ HMIs are often the weakest link in OT security. They're typically:
 - Using hardcoded database passwords
 - Providing remote access with weak authentication
 
-Many HMI applications were developed when security wasn't a concern. They might store passwords in plaintext in XML configuration files, use SQL Server with 'sa' account and blank password, or provide web interfaces with default credentials that can't be changed.
+Many HMI applications were developed when security wasn't a concern. They might store passwords in plaintext in XML 
+configuration files, use SQL Server with 'sa' account and blank password, or provide web interfaces with default 
+credentials that can't be changed.
 
 ### Testing HMIs
 
@@ -189,7 +201,7 @@ HMI security testing is more like traditional IT application testing:
 
 1. Web interface testing: Many HMIs provide web access. Test for common web vulnerabilities (SQL injection, XSS, authentication bypass, directory traversal). Tools like [Burp Suite](https://portswigger.net/burp) and [OWASP ZAP](https://www.zaproxy.org/) work well here.
 
-2. Credential testing: Try default credentials (documented in security advisories and [industrial control systems default passwords](https://github.com/scadastrangelove/SCADAPASS)). Check configuration files for hardcoded credentials. And even though scadapass is from 2016, these credentials remain.
+2. Credential testing: Try default credentials (documented in security advisories and [industrial control systems default passwords](https://github.com/scadastrangelove/SCADAPASS). Check configuration files for hardcoded credentials. And even though scadapass is from 2016, these credentials remain.
 
 3. File system analysis: If you can access the HMI filesystem (via web vulnerabilities or legitimate access), look for configuration files, project files, and backups that might contain sensitive information.
 
@@ -555,3 +567,26 @@ At UU P&L, the recommendation was to isolate the Windows 98 machine on its own V
 allowing only necessary connections, and monitor all access attempts. The university implemented the firewall rules 
 (relatively easy) and added it to the asset inventory (free). The monitoring was "under consideration" (meaning 
 probably never).
+
+## Simulator components
+
+* PLCs (Programmable Logic Controllers)
+* RTUs (Remote Terminal Units)
+* HMIs (Human-Machine Interfaces)
+* SCADA servers and historians
+* Engineering workstations
+* Safety instrumented systems (SIS)
+* IEDs (Intelligent Electronic Devices)
+* Other forgotten systems (e.g., old Windows boxes)
+
+| Device          | Typical Protocol                       |
+|-----------------|----------------------------------------|
+| PLC             | Modbus / S7 / IEC 104                  |
+| RTU             | DNP3 / IEC 104 / Modbus                |
+| HMI Workstation | OPC UA (client) + vendor HMI protocols |
+| SCADA           | OPC UA / vendor APIs                   |
+| Historian       | DB / historian APIs                    |
+| Engineering     | Programming protocols for PLCs         |
+| SIS             | Often proprietary safety fieldbus      |
+| IED             | DNP3, IEC 61850, Modbus, etc.          |
+

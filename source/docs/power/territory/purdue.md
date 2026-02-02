@@ -1,341 +1,71 @@
-# OT architectures and the Purdue Model
+# OT architectures and the Purdue model
 
-If you ask an OT security consultant how an industrial network should be designed, they'll pull up a diagram called 
-the [Purdue Enterprise Reference Architecture](https://www.pera.net/), point to its neat layers, and explain how 
-everything should be properly segmented with firewalls between each level.
+*Extracts from the notebooks of Ponder Stibbons, regarding the architectonic dissonance of industrial control systems*
 
-If you then visit an actual industrial facility, you'll discover that the Purdue Model is to real OT networks what a 
-tube map is to actually navigating London. Technically accurate in a theoretical sense, but not particularly useful 
-when you're lost somewhere between Rotterdam and a crying fit.
+One must begin, as with any enquiry into thaumaturgical infrastructure, with a frame of reference. In the field of 
+industrial control, this frame is commonly known as the 
+[Purdue Enterprise Reference Architecture](https://www.pera.net/). When a consultant speaks of "proper network 
+segmentation", this is the neat, layered diagram they present: a Platonic ideal of order, where firewalls stand 
+like sober watchmen between distinct levels of function.
 
-Still, understanding the model helps. It gives us a framework for understanding what we are looking at when we 
-start mapping the network, and it gives us a vocabulary for explaining to people why their current setup might 
-be considered "suboptimal" (consultant-speak for "a disaster waiting to happen").
+I have observed, however, that the relationship between this model and the operational reality of, for instance, the Unseen University Power & Light Co. is rather akin to the relationship between a formal treatise on civic planning and the actual, organic, pungent sprawl of Ankh-Morpork. The former describes a pleasing theory; the latter is where people live, work, and occasionally have to run from unexpected squid.
 
-## The Purdue Enterprise Reference Architecture explained
+Nevertheless, the model is useful. It provides a common nomenclature, a way to categorise the delightful chaos one 
+encounters. It allows one to point at a rogue wireless access point and say, with academic precision, "This device 
+constitutes a bridging violation between Level 2 and Level 5, subverting the intended segregation," which is a far 
+more persuasive statement than, "This is a very bad idea".
 
-The Purdue Model divides an industrial organisation into levels, from 0 to 5. Think of it as a layer cake, where 
-each layer should only talk to the layers immediately above and below it, and definitely should not let the 
-corporate WiFi talk directly to the turbine emergency shutdown system.
+## The Theoretical Stratigraphy: The Purdue Levels**
 
-### Level 0: Physical processes
+The architecture proposes six strata, from the fundament of physics to the ether of enterprise.
 
-This is the actual stuff. The turbines spinning, the alchemical reactions happening, the heating and cooling occurring. 
-It's not computers, it's physics and chemistry and occasionally magic (at UU P&L, the distinction between sufficiently 
-advanced technology and low-grade magic is somewhat blurry).
+*   **Level 0: The Physical Process.** This is the raw territory: the steam, the spinning metal, the alchemical effervescence. It is measured and manipulated, but it is not, in itself, computable. One cannot send a packet to a valve; one can only instruct a device to move it.
+*   **Level 1: Basic Control.** Here reside the devices that perform the measuring and manipulating: the Programmable Logic Controllers, the Remote Terminal Units. At UU P&L, the ancient Allen-Bradley guardians of the Hex turbines operate here, executing their ladder-logic with the single-minded focus of a clerk adding up columns of figures. Their security paradigm is often one of implicit trust, a belief that anyone on the local network must be friendly—an assumption with a historical casualty rate in this city that should give any device pause.
+*   **Level 2: Supervisory Control.** This is the operator's domain. The SCADA servers, the Human-Machine Interface screens with their reassuring (and occasionally fictional) animations, the historians quietly amassing years of operational data. To compromise this level is to gain legitimate command of the layers below. It is the difference between picking a lock and being handed the master key by a confused but helpful apprentice.
+*   **Level 3: Operations Management.** Scheduling, maintenance logs, quality assurance. Systems that manage the *business* of operation rather than the operation itself. They converse with Level 2 for data and Level 4 for instruction, forming a critical bridge.
+*   **Level 4: Business Logistics.** Finance, procurement, human resources. The realm of spreadsheets, invoices for coal and bananas, and the Bursar's more comprehensible ledgers. Firmly in the domain of corporate information technology.
+*   **Level 5: The Enterprise.** The wider network, the internet, email. The source of most exogenous threats, from targeted phishing to disorganised mischief.
 
-At this level, we have:
-- Sensors measuring temperature, pressure, flow, rotation, magical field strength
-- Actuators controlling valves, motors, heaters, thaumic dampers
-- The actual dangerous things that can hurt people if controlled incorrectly
+## The Ankh-Morporkian actual: A study in pragmatic contradictions
 
-You don't pentest Level 0 directly. You can't port scan thermodynamics. But you need to understand it because 
-everything else exists to monitor and control this level.
+Theory assumes clean separation. Practice, as I have documented in the steam-damp corridors of the P&L basements, demonstrates a fascinating principle of infrastructural entropy: systems will intermingle over time in the service of immediate convenience, regardless of grand design.
 
-### Level 1: Basic control
+*   **The Historian's Dilemma.** The data historian, a Level 2 asset, must be queried by business intelligence tools on Level 4. The solution, implemented a decade ago by a technician who has since retired to a smallholding near Sto Lat, was to place it on a network segment with portholes to both worlds. Thus, a vulnerability in a reporting portal can become a stepping stone to the very controls of the turbine. The path is not a flaw, but a documented feature, buried in Appendix C of a system manual no one has read since its publication.
+*   **The Permanent Guest: Vendor Remote Access.** The turbine manufacturer's support contract stipulates "unimpeded diagnostic access". This has been interpreted as a permanent VPN tunnel from their offices (somewhere in the agatean Empire) directly to an engineering workstation on the Level 2 network. It bypasses every theoretical control layer like a secret passage under the city walls. Its credentials are known to half a dozen former employees and are changed with a frequency that suggests geological timescales.
+*   **The Apparition of Connectivity.** My survey noted a wireless access point in the main turbine hall, broadcasting the SSID `TURBINE_TEMP`. It is not in any network diagram. Neither the IT nor OT departments claim responsibility for its installation. It was, according to workshop legend, installed eight years ago by a contractor needing to check a wiring schematic on his tablet. It has since become critical, if unofficial, infrastructure. Its security configuration is, one might say, optimistic.
+*   **The Illusion of Segmentation.** Official documentation proudly displays a network diagram with distinct VLANs for each Purdue Level. What the diagram does not convey is that the firewall rules to enforce separation between these VLANs were drafted but never implemented, for fear of "breaking something". The segmentation is thus cartographic, not actual. It provides the comfort of a plan without the inconvenience of a barrier.
 
-This is where PLCs, RTUs, and other controllers live. These are the computers that directly read sensors and control 
-actuators. They're running tight control loops, often scanning at 10-100ms intervals, making decisions based on 
-ladder logic or function blocks programmed by engineers who thought "security" meant "don't let operators change 
-the setpoints without a password".
+## Common architectural compromises, logically considered**
 
-At UU P&L's turbine control system, Level 1 includes:
-- The ancient Allen-Bradley PLCs controlling each turbine
-- The safety PLC that shuts everything down if parameters exceed safe ranges
-- The motor controllers for pumps and fans
-- Various remote I/O modules scattered throughout the turbine hall
+From these observations, patterns of systemic risk emerge.
 
-These devices typically speak protocols like Modbus, S7comm, EtherNet/IP, or proprietary protocols that the vendor 
-swears are secure but will not let you audit. They rarely have proper authentication. They assume that being on the 
-control network means you're authorised to send commands.
+1.  **The Hard Shell, Soft Centre.** Considerable resource is expended on the perimeter firewall between the corporate and OT realms. Yet, once inside the OT network—achievable via the spectral access point, a compromised jump box, or simply plugging into a spare socket in the turbine hall—one encounters no further internal resistance. It is a keep with a formidable gate but no doors on the inner rooms.
+2.  **Redundancy as a Singularity.** There are two SCADA servers for resilience. Both share the same administrative credentials, "to simplify failover procedures". Both are accessible from the same, lightly monitored engineering terminal. They provide redundancy for *availability*, but collectively constitute a single point of *security* failure.
+3.  **The Permeable DMZ.** The Demilitarised Zone, intended as a neutral ground for data exchange, has accrued so many "temporary" exceptions for various business applications that it has become the most permissive and complex part of the network. It is less a buffer zone and more a bustling, unregulated bazaar where data from all levels mingles freely.
 
-This is like assuming everyone in Ankh-Morpork is friendly because they're in the same city as you. Technically 
-they're all locals, but that doesn't mean you should let them hold your wallet.
+## On the procurement of elegant, impractical solutions
 
-### Level 2: Supervisory control
+When these frailties are finally acknowledged, management may seek a definitive solution. This often leads to the proposal of a **Data Diode**—a hardware device that permits data to flow in only one direction, physically.
 
-This level hosts the SCADA servers, HMIs, and data historians. It's where operators actually interact with the 
-system, viewing pretty graphics of the process and occasionally pressing buttons that make things happen at Level 1.
+In theory, it is elegant. In practice, at UU P&L, it proved otherwise. A project was approved, and €200,000 of such equipment was procured. The crisis emerged during testing: the production scheduling system (Level 3) required the ability to send new setpoints *down* to the SCADA (Level 2). The pristine, one-way data flow was operationally untenable. The diodes now reside in a storage cupboard near the old alchemy labs, a silent testament to the clash between idealised security and operational necessity.
 
-At UU P&L:
-- The main SCADA server running software that predates the Patrician's current term in office
-- HMI workstations in the control room showing animated diagrams of turbines, reactors, and power distribution
-- The historian database storing years of operational data (and occasionally crashing because nobody thought to limit its size)
-- Engineering workstations with the software needed to reprogram PLCs
+Similarly, the **Jump Host**—a hardened server meant to be the sole, audited gateway between zones—often deteriorates into a shared convenience. It becomes under-patched (its ownership disputed between departments), accessed via a common generic account, and its copious logs are sent to an archive that no one consults. It is intended as a fortified gatehouse but functions as a busy, unguarded side door.
 
-Level 2 is where security starts to look more like IT security. These are often Windows machines running applications 
-with web interfaces, databases, and network services. They have the usual Windows vulnerabilities plus 
-application-specific vulnerabilities plus configuration mistakes.
+## Synthesis and proposed methodology
 
-The catch is that compromising Level 2 gives you control over Level 1. If you can log into the SCADA server, you 
-can send commands to PLCs. You don't need to attack the PLCs directly when you can just use the legitimate control 
-interface.
+This, then, is the core challenge. We have, on one hand, a logical model of how a control system *should* be 
+structured. On the other, we have the historical, pragmatic, and financially constrained reality of how it *has* 
+grown. To test the latter with the techniques suited to the former is to invite calamity.
 
-This is rather like not bothering to pick the lock on the castle door when you can just walk in with the guards 
-during shift change.
+My conclusion, therefore, is that we cannot safely experiment upon the living organism. We must construct a detailed 
+simulacrum.
 
-### Level 3: Operations management
+Our simulator project does not replicate the messy, ad-hoc network of the real UU P&L. Rather, it instantiates the 
+*Purdue Model itself* as a perfect, causal framework. Within this controlled environment, where `/components/physics/` 
+embodies Level 0, `/components/devices/` constitute Level 1, and `/components/network/servers/` provide the Level 2 
+interface, we can safely introduce the compromises we have observed. We can add the phantom wireless bridge, flatten 
+the virtual VLANs, and share the simulated credentials.
 
-This level includes production management systems, batch management, manufacturing execution systems (MES), and 
-other systems that manage operations but don't directly control processes.
-
-At UU P&L, Level 3 includes:
-- The production scheduling system that decides when to run the turbines at full capacity vs partial load
-- The maintenance management system tracking when equipment needs service
-- The quality management system ensuring power output meets specifications
-- Various reporting systems that managers use to make dashboards nobody reads
-
-Level 3 typically runs on standard IT infrastructure. Windows or Linux servers, databases, web applications. It 
-connects to Level 2 to get data and sometimes send production schedules or setpoints.
-
-Security-wise, this level is more IT-like, but compromising it can give attackers useful information about operations
-and potentially pathways down to Level 2.
-
-### Level 4: Business logistics
-
-Enterprise Resource Planning (ERP), supply chain management, business intelligence. This is where the business side 
-of the organisation lives.
-
-At UU P&L:
-- The university's general accounting system
-- The system tracking how much power is sold to different parts of the city
-- HR systems (though at UU P&L, "HR" consists of the Archchancellor's secretary and a filing cabinet)
-- The purchasing system for ordering coal, magic reagents, and bananas
-
-Level 4 is entirely IT. It's on the corporate network. It should have no direct connection to the control systems.
-
-Should.
-
-### Level 5: Enterprise
-
-Wide area networks, connections to other facilities, internet access, email, cloud services. The outside world.
-
-This is where threats come from. Phishing emails, compromised websites, advanced persistent threats, ransomware, 
-and bored teenagers who think they're hackers because they installed Kali Linux.
-
-## Where theory meets reality (badly)
-
-The Purdue Model assumes clean separation between levels. In practice, reality has a different opinion.
-
-At UU P&L, like at most industrial facilities, the actual network architecture has evolved organically over decades. 
-Different systems were added at different times by different vendors with different ideas about networking. The 
-result is less "carefully layered architecture" and more "archaeological dig site revealing sedimentary layers of 
-bad decisions".
-
-### The Level 2/3 confusion
-
-The historian database is technically Level 2 (supervisory control), but it needs to be accessed by Level 3 and 4 
-systems for reporting. So it sits on a network that's sort of between Level 2 and 3. It has firewall rules allowing 
-connections from corporate workstations. Those same workstations can get phishing emails. That same historian 
-can query the SCADA server. The SCADA server can send commands to PLCs.
-
-Congratulations, you've just connected the Patrician's email to the turbine controls through only three intermediary 
-systems. What could possibly go wrong?
-
-### The vendor backdoor problem
-
-The turbine manufacturer requires remote access for support. This VPN tunnel goes straight from the internet 
-(Level 5) to the engineering workstation (Level 2), completely bypassing all the theoretical security layers.
-
-The vendor argues this is necessary because when something breaks, they need immediate access. The OT department 
-agrees because the contract says "four-hour response time" and that's impossible if you have to coordinate through 
-multiple levels of IT security.
-
-So there's a permanent hole through the entire security architecture, documented in a binder that nobody remembers 
-exists, protected by credentials that haven't been rotated since installation.
-
-### The wireless access point that should not exist
-
-There's a wireless access point in the turbine hall. It's not in any network diagram. The IT department didn't 
-install it. The OT department claims they didn't install it. Yet there it is, broadcasting `TurbineHall_Temp`, 
-connected to both the control network and the corporate network, with the default admin password still set to "admin".
-
-Someone, at some point, needed to access something wirelessly during maintenance. They installed this access point 
-as a "temporary solution". That was eight years ago. It's now load-bearing infrastructure that nobody dares remove 
-because nobody's entirely sure what is using it.
-
-### The flat network pretending to be segmented
-
-The original design called for separate VLANs for each level. Level 1 devices on VLAN 10, Level 2 on VLAN 20, Level 3 
-on VLAN 30.
-
-Someone configured these VLANs on the switches. Someone even documented this in a network diagram that's proudly 
-displayed in the control room.
-
-What nobody did was configure any inter-VLAN filtering. All the VLANs route to each other with no firewall rules. The 
-segmentation is purely decorative, like the gargoyles on the university buildings. Impressive to look at, but 
-providing no actual protection.
-
-### The jump boxes that jump too far
-
-There are "secure" jump boxes that operators use to access control systems from corporate workstations. These jump 
-boxes are supposed to be hardened, monitored, and tightly controlled.
-
-In practice, they're Windows 7 machines with RDP enabled, shared passwords written on sticky notes, no antivirus 
-(might interfere with SCADA), no patching (might break something), and full administrative rights on both the 
-corporate and control networks.
-
-They're not so much "jump boxes" as "helpful bridges for attackers". The only thing they successfully jump is to 
-conclusions about their own security.
-
-## Common architectural sins
-
-Having pentested enough OT environments, certain patterns emerge. These are the architectural decisions that make 
-security testers develop a nervous twitch. Be prepared to be surprised.
-
-### The everything-can-talk-to-everything network
-
-No segmentation. No firewall rules. Every device can reach every other device on every port. It is less a 
-"network architecture" and more a "network anarchy".
-
-The justification is usually that segmentation might break something, or that engineers need to be able to 
-troubleshoot from anywhere, or that the switches don't support VLANs (which raises the question of why they 
-bought switches from 1995).
-
-At UU P&L, the turbine control network is completely flat. An operator workstation in the control room can directly 
-connect to the turbine PLCs. The engineering laptop connected to a switch in the turbine hall can directly 
-connect to the SCADA server. The contractor's laptop plugged in for ten minutes to diagnose a sensor can see everything.
-
-This means that if you compromise any device on the network, you've effectively compromised all of them. There's no 
-need for lateral movement when lateral is the only direction available.
-
-### The perimeter security fallacy
-
-Some organisations focus all their security on the perimeter. Strong firewall between corporate and OT networks. 
-VPN with two-factor authentication. Regular penetration testing of external-facing systems.
-
-Meanwhile, once you're inside the OT network, there's nothing. No monitoring, no segmentation, no access controls. 
-It's a hard crunchy shell protecting a soft chewy centre.
-
-This is the security model employed by many medieval castles: strong walls, nothing inside. It works until someone 
-gets inside, at which point everyone's equally accessible to pillaging.
-
-At UU P&L, the firewall between corporate IT and OT networks is relatively robust. It has rules, logging, regular 
-reviews. But once you're on the OT network (via that wireless access point, or the jump box, or social engineering a 
-contractor, or physically walking into the turbine hall), you can reach everything.
-
-### The single point of failure that's also a single point of compromise
-
-Critical systems should be redundant. If the primary SCADA server fails, a backup should take over.
-
-But often, both primary and backup servers sit on the same network, with the same access controls, accessible from 
-the same compromised jump box. Redundancy for availability, but not for security.
-
-At UU P&L, there are two SCADA servers: primary and backup. Both have the same admin password (for "consistency"). 
-Both are accessible from the same engineering workstation. Both trust the same historian database. Compromising one 
-means compromising both, which means you can maintain persistent access even if someone notices unusual activity and 
-restarts the primary server.
-
-### The DMZ that isn't
-
-Many sites have a "DMZ" between corporate and OT networks. In theory, this is a separate network segment hosting 
-services that need access to both networks, with firewalls on both sides controlling traffic.
-
-In practice, the DMZ often has:
-- Full access to corporate network resources
-- Full access to OT network resources
-- Minimal monitoring
-- Systems that haven't been patched in years because nobody's sure which department is responsible
-
-It's less a "demilitarised zone" and more a "we put some servers here and hoped security would emerge spontaneously".
-
-At UU P&L, the DMZ hosts the historian, the business intelligence server, and several other systems that have 
-accumulated over time. The firewall rules allow bidirectional access on nearly all ports because "various applications 
-need various services". The DMZ is actually more permissive than either network it's supposedly separating.
-
-## Data diodes and other expensive solutions
-
-Eventually, someone in management reads an article about the importance of OT security. They demand that IT and 
-OT work together to "properly segment the networks".
-
-Several meetings occur. Consultants are brought in. PowerPoint presentations are delivered. Budgets are allocated.
-
-Then someone mentions data diodes.
-
-### Data diodes in theory
-
-A data diode is a hardware device that allows data to flow in only one direction. Physically, electrically impossible 
-to send data backwards. You can send data from OT to IT for monitoring and reporting, but IT cannot send commands 
-back to OT.
-
-This sounds perfect. OT can send operational data up to business systems without creating a path for malware or 
-attackers to come back down.
-
-### Data diodes in practice
-
-They're expensive. Very expensive. The cost of proper data diodes makes people's eyes water, followed shortly by 
-their finance directors' eyes watering.
-
-They require careful configuration. You need to specify exactly what data flows through them, in what format, 
-at what frequency. This requires understanding what's actually needed, which requires talking to both IT and OT 
-departments, which requires meetings, which requires scheduling, which requires ...
-
-Several months pass.
-
-They break some workflows. People discover they were relying on bidirectional communication for things nobody 
-documented. The historian needs to query the SCADA server sometimes, not just receive data. The business 
-intelligence system needs to send setpoints occasionally. Engineers need to download logs remotely.
-
-Exceptions are made. Bypass mechanisms are created. The data diode remains, protecting a network segment that's 
-now accessible via seventeen different alternative routes.
-
-At UU P&L, there was a proposal to install data diodes between Level 2 and Level 3. The cost was £200,000. The 
-project was approved. The equipment was ordered.
-
-Then someone discovered that the production planning system occasionally needed to send new recipes and setpoints 
-down to the SCADA system. The data diode would prevent this. Several options were considered:
-
-1. Accept that production planning can only send data via scheduled, manual updates (rejected as operationally unworkable)
-2. Install a bidirectional data diode with protocol break and manual approval (defeats the purpose, adds complexity)
-3. Create an exception process where critical updates go through an alternative path (creates the hole we're trying to close)
-4. Actually document and redesign the data flows to separate monitoring from control (the correct solution, but requires time and money)
-
-The project stalled. The data diodes remain in storage. The network remains exactly as permissive as before, but now 
-there's equipment depreciating on the balance sheet.
-
-## Jump hosts and their surprisingly long jumps
-
-The jump host (or jump box, or bastion host) is a common compromise solution. You can't let corporate users directly 
-access OT systems (security risk), but you can't make OT completely inaccessible from corporate (operational nightmare).
-
-Solution: a hardened server that sits between networks. Users RDP or SSH to the jump host from corporate, then connect 
-from the jump host to OT systems. All access goes through this controlled chokepoint, which is monitored, logged, and 
-secured.
-
-In theory.
-
-In practice, jump hosts at many sites are:
-
-### Under-maintained
-
-Nobody's quite sure who's responsible for patching them. IT says they're OT's responsibility. OT says they're IT's 
-responsibility. The compromise is that nobody does it.
-
-At UU P&L, the main jump host runs Windows Server 2008 R2. Support ended in 2020. It hasn't been patched since 
-2018 because "we need to test patches in dev first" and nobody's quite sure where the dev jump host is or if it exists.
-
-### Over-privileged
-
-The jump host needs access to OT systems. The easiest way to grant this is making it a domain admin (on both 
-corporate and OT domains if separate domains exist). Now compromising one Windows server gives you administrative 
-access to everything.
-
-### Shared accounts everywhere
-
-Rather than dealing with individual user authentication, there's often a shared "engineer" or "operator" account 
-that everyone uses to log into the jump host. The password is known to dozens of people, written in multiple places, 
-and never changed because that would require updating all those written copies.
-
-### No monitoring that anyone watches
-
-There's often logging configured on jump hosts. The logs go to a SIEM. The SIEM generates alerts. The alerts go to 
-an email inbox that nobody monitors because there are thousands of alerts per day and everyone's trained themselves 
-to ignore them.
-
-At UU P&L, the jump host logs to the IT department's SIEM. The SIEM categorises OT access as "medium priority". In 
-the four years it's been operating, nobody has ever reviewed these logs except after an incident.
-
-This means you can compromise a corporate workstation, RDP to the jump host with shared credentials, connect to 
-SCADA systems, and nobody will notice unless you do something dramatic like shut down the turbines.
-
-And even then, most likely they'll blame a control system malfunction before they check the access logs.
+We can then demonstrate, without risk to the city's power supply, how a threat propagates through a poorly segmented 
+architecture, and, crucially, how proper controls would contain it. It transforms a theoretical model into a 
+practical, demonstrable truth—the only kind of evidence with persuasive weight in the halls of power.
