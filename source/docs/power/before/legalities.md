@@ -399,7 +399,8 @@ This is dangerously vague. What network? What kind of testing? When?
 
 Good authorisation reads something like this one: 
 
-```\[Testing Firm] is authorised to conduct security assessment of Unseen University 
+```
+\[Testing Firm] is authorised to conduct security assessment of Unseen University 
 Power & Light Co. industrial control systems as follows:
 
 In scope:
