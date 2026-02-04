@@ -18,6 +18,7 @@ undergrowth.
 
    docs/power/index
    docs/scarlet/index
+   docs/services/index
 
 .. toctree::
    :glob:
@@ -28,7 +29,7 @@ undergrowth.
    docs/in/index
    docs/through/index
    docs/out/index
-   docs/services/index
+
 
 ----
 

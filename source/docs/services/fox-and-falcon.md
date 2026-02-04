@@ -15,8 +15,6 @@ If your team doesn’t know what an attacker can easily spot about your organisa
 Reconnaissance is often the first and easiest step in a security breach. This workshop demystifies how that works 
 while giving you practical insight into reducing your surface of exposure, without needing advanced tech or cloud labs.
 
----
-
 ## Workshop flow (what participants do)
 
 | Session                 | Activity                                                                                                                               | Real link for background                                                                                                                                                   |

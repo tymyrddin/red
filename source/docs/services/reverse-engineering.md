@@ -6,7 +6,6 @@ A one-day workshop where curiosity meets code: learn to peel back the layers of 
 
 In the Red part of the forest, Through is about exploring the inside of binaries, programs and executables, without breaking anything. Reverse-engineering here is about understanding what a program actually does, rather than trusting what the documentation claims. Participants work hands-on with small sample binaries in a safe lab environment, learning to spot patterns, extract information, and see the structure of code.
 
-
 ## Why it matters
 
 Attackers reverse-engineer software to uncover hidden functionality, weaknesses, or secrets. Defenders can do the same to assess risk and understand potential threats. This starter clinic makes these skills accessible: you do not need deep assembly knowledge to start discovering what binaries reveal.
@@ -18,7 +17,6 @@ Attackers reverse-engineer software to uncover hidden functionality, weaknesses,
 | Binary forage (Morning)               | Learn basic tools and safe lab setup for binary exploration. Disassemble a small sample program.  | [Foraging for secrets in binaries](https://red.tymyrddin.dev/docs/through/reverse-engineering/)                                                                                               |
 | Patterns and puzzles (Midday)         | Explore control flow, strings, and data structures. Identify what looks suspicious or unexpected. | [Reverse engineering training grounds](https://red.tymyrddin.dev/docs/through/reverse-engineering/grounds/)                                                                                   |
 | Through the looking-glass (Afternoon) | Teams work on a simple unknown binary, document its behaviour, and present findings.              | [Windows binaries](https://red.tymyrddin.dev/docs/through/reverse-engineering/cracking/windows) / [Linux binaries](https://red.tymyrddin.dev/docs/through/reverse-engineering/cracking/linux) |
-
 
 ## What you’ll walk away with
 
