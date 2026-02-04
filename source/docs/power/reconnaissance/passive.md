@@ -55,7 +55,6 @@ provided the map.
 
 ![Wireshark](/_static/images/wireshark-passive-recon.png)
 
-
 The raw output was a list of conversations, the most telling of which are summarised here:
 
 | Client (127.0.0.1) | Server (127.0.0.1) | Packets | Bytes  | Inference                        |

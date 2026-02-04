@@ -20,5 +20,6 @@ properly, reconnaissance is invisible. The target never knows you were looking, 
 
    passive.md
    active.md
+   discovery.md
    mapping.md
 

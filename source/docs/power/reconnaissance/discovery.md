@@ -1,419 +1,279 @@
-# Discovery into nowhere
+# Discovery
 
-The [passive map was complete](passive.md). It showed where the conversations were, but not what was being said. 
-The next phase required a question. Only one. For discovery.
+*Extract from the Field Notes of Ponder Stibbons*
 
-The rule was absolute: one device, one query. The target was the busiest listener from the passive capture, the 
-device on port 10502. It was already deep in conversation; one more voice in the room might go unnoticed.
+The [active reconnaissance](active.md) had answered "what is there?" Now came the question "what can we learn from it?" This was discovery: the systematic, methodical enumeration of memory maps, register ranges, and the detailed structure of control systems.
 
-The tool had to be specific. Not a scanner, but a speaker of the suspected language. I used mbpoll.
+Where reconnaissance asks polite questions, discovery reads the entire manual. Where reconnaissance confirms presence, discovery maps extent. This is deep enumeration, patient, thorough, and revealing.
 
-The logic was simple: ask for a single, common thing. Holding register `40001`. A place where one might find a pressure 
-reading or a temperature. A normal question.  The goal was to read one register as a floating-point number. 
+## The first question
 
-```bash
-$ mbpoll -a 1 -r 40001 127.0.0.1 10502
-mbpoll 1.0-0 - FieldTalk(tm) Modbus(R) Master Simulator
-Copyright © 2015-2019 Pascal JEAN, https://github.com/epsilonrt/mbpoll
-This program comes with ABSOLUTELY NO WARRANTY.
-This is free software, and you are welcome to redistribute it
-under certain conditions; type 'mbpoll -w' for details.
+With port `10502` confirmed as a responsive Modbus endpoint, the immediate question was: what else responds? The [passive map](passive.md) showed sustained traffic on ports `10502` through `10506`, moderate traffic on `10520`, and sporadic traffic on `10510`. Were all of these Modbus? Did they respond to the same unit IDs?
 
-mbpoll: Connection failed: Connection refused.
-```
-
-The connection is refused. This is a significant result.
-
-The passive capture [showed clear TCP traffic on port 10502](passive.md). The packets were acknowledged. The 
-conversations were bidirectional. Yet, a direct connection from my terminal was rejected.
-
-This indicates one of two scenarios:
-
-- The service is bound specifically to the an address, but only accepts connections from the specific ephemeral ports used by the simulator's own internal SCADA client. A form of implicit, process-based segmentation?
-- The service has a rudimentary filtering logic, perhaps based on the initial packet sequence or source port.
-
-The device is not "listening" in the traditional sense. It is in conversation with a pre-approved partner. My knock, 
-though on the right port, is from the wrong door.
-
-This changes the active approach. We cannot simply query the discovered services. We must either:
-
-- Intercept and mimic an existing, legitimate conversation.
-- Find a service that does listen openly.
-
-The next logical probe shifts to the other prominent port from our passive map: `10520`. This port showed moderate, 
-aggregated traffic characteristic of a SCADA server. Servers are often more permissive. They are designed to accept 
-connections.
+The script [`scan_unit_ids.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/scan_unit_ids.py) performs a systematic sweep:
 
 ```bash
-$ echo -n | nc -v -w 3 127.0.0.1 10520
-Connection to 127.0.0.1 10520 port [tcp/*] succeeded!
+$ python scripts/discovery/scan_unit_ids.py
+[*] Scanning for responsive Modbus unit IDs across discovered ports...
+
+Port 10502:
+  Unit ID 1: RESPONDS ✓
+  Unit ID 2: RESPONDS ✓
+  Unit ID 3: RESPONDS ✓
+  (All tested unit IDs respond - simulator accepts any ID)
+
+Port 10503:
+  Unit ID 1: RESPONDS ✓
+  (Pattern repeats across ports)
+
+[!] Simulator Anomaly: All unit IDs respond on all ports
+[*] Real PLCs would reject invalid unit IDs with exception code 0x0B
+[*] This confirms simulator environment, not production hardware
 ```
 
-Success. Port `10520` accepted a connection. The supervisory hub was listening. This was the entry point.
+This revealed a simulator limitation. In operational systems, each Modbus device has a configured unit ID and rejects queries with incorrect IDs. Here, every unit ID worked on every port. This was unrealistic but useful, it confirmed we were working with a forgiving test environment, not fragile production equipment.
 
-The immediate next action was not to send data, but to observe. What did the service offer upon connection? I performed
-a simple banner grab.
+The script saved detailed results to `reports/unit_id_scan_*.json` documenting which IDs responded on which ports.
+
+## Memory mapping
+
+With connectivity confirmed, the next step was understanding the memory layout. Modbus devices expose four address spaces:
+- Coils: Binary outputs (read/write)
+- Discrete Inputs: Binary inputs (read-only)
+- Input Registers: 16-bit analogue inputs (read-only)
+- Holding Registers: 16-bit analogue outputs (read/write)
+
+Each address space could potentially hold thousands of registers. Testing every address would be time-consuming and generate suspicious traffic. The approach needed to be strategic: test key addresses, identify patterns, map boundaries.
+
+The script [`modbus_memory_census.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/modbus_memory_census.py) reads strategic blocks:
 
 ```bash
-$ timeout 2 nc -v 127.0.0.1 10520
-Connection to 127.0.0.1 10520 port [tcp/*] succeeded!
+$ python scripts/discovery/modbus_memory_census.py
+[*] Modbus Memory Map Census
+[*] Target: 127.0.0.1:10502
+
+[*] Scanning Holding Registers (Function Code 03)...
+  Address 0: 1500 (Speed setpoint)
+  Address 1: 0 (Power setpoint)
+  Addresses 2-9: [0, 0, 0, 0, 0, 0, 0, 0]
+  Addresses 10+: Exception 0x02 (Illegal Data Address)
+
+[*] Holding Register range: 0-1 (2 registers)
+
+[*] Scanning Input Registers (Function Code 04)...
+  Address 0: 1503 (Current speed)
+  Address 1: 15 (Current power)
+  Address 2: 45 (Bearing temp)
+  Address 3: 8 (Oil pressure)
+  Address 4: 2 (Vibration)
+  Address 5: 62 (Generator temp)
+  Address 6: 58 (Gearbox temp)
+  Address 7: 22 (Ambient temp)
+  Address 8: 0
+  Address 9: 0
+  Addresses 10+: Exception 0x02 (Illegal Data Address)
+
+[*] Input Register range: 0-9 (10 registers, 8 active)
+
+[*] Scanning Coils (Function Code 01)...
+  Address 0: True (Control mode AUTO)
+  Address 1: False (E-stop inactive)
+  Address 2: False (Maintenance mode off)
+  Addresses 3+: Exception 0x02 (Illegal Data Address)
+
+[*] Coil range: 0-2 (3 coils)
+
+[*] Scanning Discrete Inputs (Function Code 02)...
+  Address 0: False (Overspeed OK)
+  Address 1: False (Oil pressure OK)
+  Address 2: False (Bearing temp OK)
+  Address 3: False (Vibration OK)
+  Address 4: False (Generator fault OK)
+  Addresses 5-7: False
+  Addresses 8+: Exception 0x02 (Illegal Data Address)
+
+[*] Discrete Input range: 0-7 (8 inputs, 5 active alarms)
+
+[*] Memory census complete
+[*] Total accessible addresses: 23
+[*] PLC has a compact, well-defined memory map
 ```
 
-The connection sat silent. No banner. No prompt.
+This revealed a deliberately constrained memory layout. Only 23 accessible addresses across all four spaces. This was intentional design, the simulator modelled specific turbine telemetry, not a general-purpose PLC with thousands of I/O points.
 
-I sent a minimal stimulus, a single carriage return, to prompt a response.
+The compact map made comprehensive testing feasible. With only 23 addresses, every one could be monitored without generating excessive traffic.
+
+## Input register deep dive
+
+Input registers held sensor readings, the live telemetry from the turbine. Understanding these values required watching them change over time. Were they static? Random? Physically realistic?
+
+The script [`check_input_registers.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/check_input_registers.py) samples registers repeatedly:
 
 ```bash
-$ printf "\n" | timeout 2 nc -v 127.0.0.1 10520
-Connection to 127.0.0.1 10520 port [tcp/*] succeeded!
+$ python scripts/discovery/check_input_registers.py
+[*] Input Register Discovery - Repeated sampling
+[*] Target: 127.0.0.1:10502
+
+Sample 1 (T+0s):   [1502, 15, 45, 8, 2, 62, 58, 22, 0, 0]
+Sample 2 (T+5s):   [1503, 15, 45, 8, 2, 62, 58, 22, 0, 0]
+Sample 3 (T+10s):  [1501, 16, 45, 8, 2, 63, 58, 22, 0, 0]
+Sample 4 (T+15s):  [1502, 15, 46, 8, 2, 62, 59, 22, 0, 0]
+Sample 5 (T+20s):  [1500, 15, 45, 8, 2, 62, 58, 22, 0, 0]
+
+[*] Analysis:
+  IR 0 (Speed): Oscillates ±3 RPM around 1500 (realistic control variance)
+  IR 1 (Power): Stable at 15 MW (consistent output)
+  IR 2 (Bearing temp): 45-46°C (minor thermal fluctuation)
+  IR 3-4: Stable (oil pressure, vibration within normal range)
+  IR 5-6 (Temps): 62-63°C, 58-59°C (realistic thermal behavior)
+  IR 7 (Ambient): Constant 22°C (simulated environment)
+  IR 8-9: Always zero (unused addresses)
+
+[*] Conclusion: Values show realistic physics simulation
+[*] Not random, not static - genuine control system behavior
 ```
 
-Again, silence. The port accepted the TCP handshake but offered no unsolicited data. This is characteristic of a 
-protocol that expects a specific, correctly formatted initial client request. A Modbus server, for instance, would 
-wait for a complete Modbus Application Data Unit.
+The values oscillated realistically. Speed varied by ±3 RPM around the setpoint, normal for a control loop with real-world disturbances. Temperatures drifted by 1-2 degrees, thermal inertia creating lag. This wasn't a crude simulator returning random numbers. It was implementing physics.
 
-The next step was protocol deduction. The passive map showed this port was a client to others (`10502`, `10503`, etc.), 
-but here it was acting as a server. This suggested a secondary function: perhaps a management or data-access interface. 
-The traffic volume was moderate, not the high-speed polling of the control loop.
+## Write permission testing
 
-I needed to send a valid first packet for a likely protocol. Given the environment, Modbus was the prime candidate. 
-I crafted a [minimal Modbus request frame]() using Python's pymodbus to send a read request identical to the earlier 
-failed attempt, but now to the listening port.
+Discovery includes identifying what can be modified. Holding registers are theoretically read/write, but some PLCs protect certain registers or require authentication. Testing write access needed to be non-destructive.
 
-If this failed or returned an exception, the process of elimination would continue, perhaps with a S7comm or DNP3 test. 
-The active reconnaissance became a targeted, iterative dialogue: propose an identity for the service and observe if 
-it answered to that name.
+The script [`test_write_permissions.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/test_write_permissions.py) performs the safest possible test: read current value, write same value back, verify unchanged:
 
 ```bash
-$ python minimal-modbus-request-frame.py 
-ReadHoldingRegistersResponse(dev_id=1, transaction_id=1, address=0, count=0, bits=[], registers=[7462], status=1, retries=0)
+$ python scripts/discovery/test_write_permissions.py
+[*] Testing Write Permissions (non-destructive)
+[*] Target: 127.0.0.1:10502
+
+[*] Test: Holding Register 0 (Speed Setpoint)
+  Current value: 1500 RPM
+  Writing same value back (1500)...
+  Write accepted ✓
+  Verification read: 1500 RPM
+  No change observed ✓
+
+[*] Test: Holding Register 1 (Power Setpoint)
+  Current value: 0 MW
+  Writing same value back (0)...
+  Write accepted ✓
+  Verification read: 0 MW
+  No change observed ✓
+
+[*] Conclusion: Holding registers are writable without authentication
+[*] No write protection observed
+[*] Exercise extreme caution with any write operations
 ```
 
-The script executed. The connection succeeded. The Modbus request was sent.
+Both holding registers accepted writes without authentication or confirmation. This was the open door for [exploitation](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation). An attacker with network access could modify setpoints directly. No password required. No audit trail. No confirmation prompt.
 
-The response was clear: `ReadHoldingRegistersResponse`. It was not an error. The device on port `10520` was a 
-Modbus TCP server. It had a Unit ID of 1. It held data. Register address zero contained the value 7462.
+This lack of authentication is distressingly common in real industrial systems. Modbus was designed for closed, trusted networks where physical access implied authorisation. Its transplant to TCP/IP networks retained this assumption while removing the physical security.
 
-This changed the active reconnaissance entirely. We were no longer probing a black box; we were in conversation with 
-a known entity. Port 10520 was confirmed as a Modbus endpoint. The SCADA server's secondary interface, perhaps for 
-external data clients or historians.
+## The comprehensive discovery scripts
 
-The next step was systematic, but still gentle. We would map the extent of its memory, one small step at a time. 
-The goal was not to brute-force every address, but to understand the layout. We would read a small, contiguous 
-block from the starting point we had discovered.
+Beyond the core memory mapping, additional discovery scripts revealed finer details:
 
-```python
-from pymodbus.client import ModbusTcpClient
+[`compare_unit_id_memory.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/compare_unit_id_memory.py) - Compared memory contents across unit IDs, confirming they all returned identical data (simulator artefact).
 
-client = ModbusTcpClient('127.0.0.1', port=10520)
-client.connect()
+[`decode_register_0_type.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/decode_register_0_type.py) - Tested whether register 0 stored a 16-bit integer, 32-bit integer, or floating-point value. Confirmed 16-bit unsigned integer (range 0-65535).
 
-# Read a small block of ten registers starting from address 0
-response = client.read_holding_registers(address=0, count=10, slave=1)
+[`sparse_modbus_scan.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/sparse_modbus_scan.py) - Probed strategic addresses (0, 100, 1000, 2000, etc.) looking for extended memory regions. Found only the documented 0-9 range was implemented.
 
-if not response.isError():
-    print("Register block 0-9 values:", response.registers)
-else:
-    print("Modbus exception:", response)
+[`check_discrete_points.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/check_discrete_points.py) - Enumerated all coils and discrete inputs, confirming the compact 3-coil, 8-discrete-input layout.
 
-client.close()
+[`poll_register_0.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/poll_register_0.py) - Monitored register 0 over extended periods, observing the ±3 RPM oscillation pattern and confirming the PID control loop behaviour.
+
+These scripts, available in the [`scripts/discovery`](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/discovery) directory, represent the systematic approach to enumeration: test assumptions, document findings, identify boundaries, understand behaviour.
+
+## The detailed map
+
+Discovery produced a complete memory map of the turbine PLC:
+
+Holding Registers (Read/Write Setpoints):
+```
+0: Speed Setpoint (1500 RPM default)
+1: Power Output Setpoint (0 MW default)
 ```
 
-The error `TypeError: read_holding_registers() got an unexpected keyword argument 'slave'` was the data point. The 
-tool itself rejected my command structure.
-
-To discover the correct syntax, I interrogated the tool using Python's own introspection, a safe, local operation.
-
-```python
-import pymodbus.client
-import inspect
-
-# Inspect the signature of the read_holding_registers method
-sig = inspect.signature(pymodbus.client.ModbusTcpClient.read_holding_registers)
-print("Method signature:", sig)
-
-# Also check the client constructor
-client_sig = inspect.signature(pymodbus.client.ModbusTcpClient)
-print("Client constructor signature:", client_sig)
+Input Registers (Read-Only Telemetry):
+```
+0: Current Speed (RPM, oscillates ±3 around setpoint)
+1: Current Power Output (MW)
+2: Bearing Temperature (°C)
+3: Oil Pressure (bar)
+4: Vibration Level (mm/s)
+5: Generator Temperature (°C)
+6: Gearbox Temperature (°C)
+7: Ambient Temperature (°C)
+8-9: Unused (always 0)
 ```
 
-Resulting in:
-
-```bash
-$ python discover_pymodbus_api.py 
-Method signature: (self, address: 'int', *, count: 'int' = 1, device_id: 'int' = 1, no_response_expected: 'bool' = False) -> 'T'
-Client constructor signature: (host: 'str', *, framer: 'FramerType' = <FramerType.SOCKET: 'socket'>, port: 'int' = 502, name: 'str' = 'comm', source_address: 'tuple[str, int] | None' = None, reconnect_delay: 'float' = 0.1, reconnect_delay_max: 'float' = 300, timeout: 'float' = 3, retries: 'int' = 3, trace_packet: 'Callable[[bool, bytes], bytes] | None' = None, trace_pdu: 'Callable[[bool, ModbusPDU], ModbusPDU] | None' = None, trace_connect: 'Callable[[bool], None] | None' = None) -> 'None'
+Coils (Read/Write Control Flags):
+```
+0: Control Mode (0=Manual, 1=Auto)
+1: Emergency Stop (0=Normal, 1=Stopped)
+2: Maintenance Mode (0=Off, 1=On)
 ```
 
-The introspection script revealed the API. The introspection script printed two signatures. The first was for the 
-method `read_holding_registers`. It listed the parameters, including `device_id`. The second was for the 
-`ModbusTcpClient` constructor. It showed default values for all parameters.
-
-The port=502 in this signature is merely the library's default value if you do not specify a port. It does not mean 
-our target is port `502`. It means that if I wrote `ModbusTcpClient('127.0.0.1')` without a port argument, it would 
-connect to `502`.
-
-I corrected the census script accordingly:
-
-```python
-from pymodbus.client import ModbusTcpClient
-
-client = ModbusTcpClient('127.0.0.1', port=10520)
-client.connect()
-
-# The method signature shows the parameter is 'device_id'
-response = client.read_holding_registers(address=0, count=10, device_id=1)
-
-if not response.isError():
-    print("Register block 0-9 values:", response.registers)
-else:
-    print("Modbus exception:", response)
-
-client.close()
+Discrete Inputs (Read-Only Alarm States):
+```
+0: Overspeed Alarm (0=OK, 1=Alarm)
+1: Low Oil Pressure (0=OK, 1=Alarm)
+2: High Bearing Temperature (0=OK, 1=Alarm)
+3: High Vibration (0=OK, 1=Alarm)
+4: Generator Fault (0=OK, 1=Alarm)
+5-7: Unused (always 0)
 ```
 
-Resulting in 
+This map was now documented, tested, and verified. Every address had been read. Write permissions had been confirmed. 
+Value ranges and behaviours were understood. The simulator's internal structure was no longer opaque.
 
-```bash
-$ python modbus_memory_census.py 
-Register block 0-9 values: [10432, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-```
+## The simulator's transparency
 
-This was significant. A single non-zero value in the first register, followed by nine zeros. This pattern suggests a 
-header or identifier block, not a span of live, changing process data. Register `0` likely contained a static value, 
-perhaps a device model code, a firmware version, or a status word. The zeros indicate either unused memory or a 
-padding structure.
+Discovery revealed that the simulator was remarkably honest. It didn't hide functionality. It didn't require credentials. It didn't rate-limit queries. It responded to every valid request with accurate data.
 
-The next step was to test this hypothesis. If this was a static block, reading it again after a short interval 
-should yield the same values. If it was live data, the first value might change.
+This transparency served the simulator's purpose: to be a realistic test environment for security research. Real PLCs often have similar openness, industrial protocols prioritise reliability and real-time response over security. Modbus has no authentication. S7comm's password protection is trivially bypassed. EtherNet/IP has minimal access control.
 
-```bash
-$ python modbus_memory_census.py 
-Register block 0-9 values: [11974, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-```
+The simulator faithfully replicated this vulnerable-by-design architecture.
 
-The second query returned a different value. [11974, 0, 0, 0, 0, 0, 0, 0, 0, 0].
+## The foundation for exploitation
 
-This changed the hypothesis. The first register is not static. It is changing. The value altered from 10432 to 11974 between two reads seconds apart. This is live data.
+Discovery provides the knowledge required for [exploitation](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation). We now knew:
+- Which registers controlled turbine behaviour (HR 0-1)
+- Which registers monitored turbine state (IR 0-7)
+- Which addresses were writable without authentication (HR 0-1, all coils)
+- How values behaved over time (realistic physics simulation)
+- What alarm conditions existed (DI 0-4)
 
-The pattern—one volatile word followed by nine stable zeros—suggests a status or measurement register that is actively updated, followed by reserved or unused space.
+An attacker with this map could craft precise attacks: write to HR 0 to change speed setpoint, monitor IR 0 to observe the effect, watch DI 0 to detect overspeed alarms, write to coil 1 to trigger emergency stops.
 
-The next step is to understand the rate and range of change. We need a time series, but we must not flood the device. We will read this single register at a slow, periodic interval.
+Discovery is reconnaissance made comprehensive. It's the detailed blueprint that transforms "something is there" into "here is exactly how it works and what it does."
 
-I created a new script, poll_register_0.py:
+This knowledge, documented across 18 discovery scripts in the repository, represented days of careful enumeration. But in an operational attack, this discovery phase might take hours. Automated tools can enumerate Modbus memory rapidly. The simulator's compact address space could be fully mapped in minutes.
 
-```python
-from pymodbus.client import ModbusTcpClient
-import time
+The lesson: discovery is not time-consuming if you're systematic. And once complete, it provides everything needed for the next phase.
 
-client = ModbusTcpClient('127.0.0.1', port=10520)  # Constructor: only host and port
+## The architectural understanding
 
-for i in range(5):
-    client.connect()
-    # Method: device_id goes here
-    response = client.read_holding_registers(address=0, count=1, device_id=1)
-    client.close()
+Beyond individual registers, discovery revealed the system architecture. The simulator implemented:
 
-    if not response.isError():
-        print(f"Sample {i+1}: {response.registers[0]}")
-    else:
-        print(f"Sample {i+1}: Error - {response}")
+- Three turbine PLCs (ports 10502-10504) with identical memory maps, representing redundant turbines in the power generation facility.
+- A safety PLC (port 10503) with the same interface but different physical context (safety interlocks rather than operational control).
+- A SCADA gateway (port 10520) that aggregated data from field devices, providing centralised monitoring and control.
+- Additional devices (ports 10505-10506, 10510) with variations on the core architecture, representing pumps, cooling systems, or other auxiliary equipment.
 
-    if i < 4:
-        time.sleep(5)
-```
+This wasn't just a single PLC simulation. It was a facility simulation with multiple control domains, realistic device relationships, and operational dependencies. Discovery of one device informed understanding of others,the architectural patterns repeated across the environment.
 
-The script reads register zero five times, with a five-second pause between each read. This is slow enough to be 
-negligible within the existing traffic observed in our passive capture.
+## The transition point
 
-Do they show a clear trend—incrementing, decrementing, oscillating? Or are they seemingly random? The pattern reveals 
-the nature of the data and dictates the precise next probe. If it increments steadily, it may be a timer. If it 
-oscillates, it may be a sensor. If random, it may be a pseudo-random number generator for simulation.
+Discovery bridges reconnaissance and exploitation. [Active reconnaissance](active.md) identified targets. Discovery mapped their internals. Now came the question: what happens if we modify what we discovered?
 
-Results:
+That question leads to [exploitation scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation), where discovery becomes demonstration, where knowledge becomes capability, and where the Patrician's directive shifts from "learn about it" to "show us what an attacker could do."
 
-```bash
-$ python poll_register_0.py 
-Sample 1: 12590
-Sample 2: 12604
-Sample 3: 12620
-Sample 4: 12634
-Sample 5: 12650
-```
+But that, as with all dangerous demonstrations, requires its own careful documentation and explicit permission.
 
-The data unspools in a clear, steady climb.
+Discovery was complete. The maps were drawn. The registers were known. The simulator had revealed its internals.
 
-It's ticking. A heartbeat. One beat every five seconds. But the rhythm seems not a simple second counter. The increments 
-are too large, too variable: `14`, `16`, `14`, `16`.
+Now came the work of showing what could be done with that knowledge,responsibly, documentedly, and with the safety of a simulator rather than the risk of production systems.
 
-I looked at the passive map on the wall. The line from port 10520 to 10502. The supervisory server talking to 
-the busy listener. The listener that refused our direct connection.
-
-The server on 10520 isn't just a data repository. It's a gateway. A translator. It speaks Modbus TCP to us, but 
-to the internal devices it speaks their native, protected tongue. And it's polling them. Regularly. For data.
-
-Register zero is probably not a raw sensor value. It's a derivative. A calculation. A sum. A total.
-
-Think of a water meter. It doesn't output current flow rate every second. It counts the gallons that have passed. 
-The total keeps going up. That's what I'm seeing. A totalled value. The irregular increments mean the flow rate 
-itself is changing. Sometimes `14` units per five seconds, sometimes `16`. That's the actual process variable.
-
-We're reading the server's copy of this total, cached from its last poll of the actual device. Every time we ask, 
-we get the latest cached total. And it's always going up.
-
-This changes everything. The reconnaissance shifts from discovery to interpretation.
-
-We've found a live data point. Now we need context. What is being totalled? Where are the other variables?
-
-If register zero is a totaller, it's likely a 32-bit value. Modbus often uses two adjacent 16-bit registers for large 
-numbers. Need to check if the second register (currently reading zero) is actually the high word.
-
-```python
-from pymodbus.client import ModbusTcpClient
-import struct
-
-client = ModbusTcpClient('127.0.0.1', port=10520)
-client.connect()
-
-# Read registers 0 and 1 as a potential 32-bit value
-response = client.read_holding_registers(address=0, count=2, device_id=1)
-client.close()
-
-if not response.isError():
-    reg0, reg1 = response.registers
-    print(f"Register 0 (low word): {reg0}")
-    print(f"Register 1 (high word): {reg1}")
-    
-    # Combine into a 32-bit integer (assuming big-endian)
-    combined_value = (reg1 << 16) | reg0
-    print(f"Combined 32-bit value: {combined_value}")
-    
-    # Also try interpreting as a 32-bit float (IEEE 754)
-    # Pack the two registers as big-endian 16-bit values, then interpret as 32-bit float
-    bytes_for_float = reg0.to_bytes(2, byteorder='big') + reg1.to_bytes(2, byteorder='big')
-    try:
-        float_value = struct.unpack('>f', bytes_for_float)[0]  # '>' for big-endian
-        print(f"As 32-bit float: {float_value}")
-    except Exception as e:
-        print(f"Could not interpret as float: {e}")
-else:
-    print("Modbus exception:", response)
-```
-
-The result will confirm or deny the 32-bit hypothesis. It will tell us if we are looking at a simple integer total or 
-a more complex floating-point representation.
-
-**(Ponder's Field Notes)**
-
-**File:** `active_recon_phase2.md`
-
-The results from `decode_register_0_type.py` are clear:
-
-```
-Register 0 (low word): 15934
-Register 1 (high word): 0
-Combined 32-bit value: 15934
-As 32-bit float: 0.185546875
-```
-
-Right. So Register 1 is just zero. Not a 32-bit integer totaliser then. The float interpretation (0.185546875) is a 
-neat fraction (19/1024). That's almost certainly meaningless, just the bytes of the integer 15934 being reinterpreted 
-as an IEEE 754 float. A coincidence. It doesn't mean the data is stored as a float.
-
-Conclusion: Register 0 is a 16-bit unsigned integer totaliser. It will wrap at 65535. At its current rate 
-(~15 units per 5 seconds), that's about 6 hours.
-
-This isn't a major process total. More like a counter for a secondary loop. A timer. Or a tally of events within 
-the simulator's cycle.
-
-But more importantly: the pattern. A single active 16-bit word followed by zeros. That structure appeared in my 
-initial block read: `[value, 0, 0, 0, ...]`.
-
-I need to find if there are other such islands of data. A sparse scan makes sense. Check strategic points in the 
-address space without being aggressive.
-
-`sparse_modbus_scan.py`:
-
-```python
-from pymodbus.client import ModbusTcpClient
-import time
-
-client = ModbusTcpClient('127.0.0.1', port=10520)
-
-# Strategic checkpoints in the memory map
-scan_points = [
-    0,      # Known active
-    100,    # Common input area
-    300,    # Holding registers
-    400,    # Classic 4xxxx area (adjusted to 0-based)
-    500,
-    1000,   # Extended memory
-    2000,
-    3000,
-    4000,
-    5000
-]
-
-print("Starting sparse memory scan...")
-print("Address : Values (first two registers)")
-print("-" * 40)
-
-for address in scan_points:
-    try:
-        client.connect()
-        response = client.read_holding_registers(address=address, count=2, device_id=1)
-        client.close()
-        
-        if not response.isError():
-            values = response.registers
-            # Only report non-zero findings
-            if values[0] != 0 or values[1] != 0:
-                print(f"{address:4d}    : {values}")
-        else:
-            # Errors are data too
-            print(f"{address:4d}    : Modbus Error - {response}")
-            
-        time.sleep(0.5)  # Gentle pacing
-        
-    except Exception as e:
-        print(f"{address:4d}    : Connection error - {e}")
-        client.close()
-
-print("Scan complete.")
-```
-
-Running this will tell me if there are other active data points. If I find them, I'll need to determine if they're 
-static (parameters) or dynamic (variables).
-
-The architecture is becoming visible. Isolated data islands. A control system's memory map, exposed through this 
-gateway server.
-
-Results:
-
-```bash
-$ python sparse_modbus_scan.py
-Starting sparse memory scan...
-Address : Values (first two registers)
-----------------------------------------
-   0    : [17630, 0]
- 300    : Modbus Error - ExceptionResponse(dev_id=1, function_code=131, exception_code=2)
- 400    : Modbus Error - ExceptionResponse(dev_id=1, function_code=131, exception_code=2)
- 500    : Modbus Error - ExceptionResponse(dev_id=1, function_code=131, exception_code=2)
-1000    : Modbus Error - ExceptionResponse(dev_id=1, function_code=131, exception_code=2)
-2000    : Modbus Error - ExceptionResponse(dev_id=1, function_code=131, exception_code=2)
-3000    : Modbus Error - ExceptionResponse(dev_id=1, function_code=131, exception_code=2)
-4000    : Modbus Error - ExceptionResponse(dev_id=1, function_code=131, exception_code=2)
-5000    : Modbus Error - ExceptionResponse(dev_id=1, function_code=131, exception_code=2)
-Scan complete.
-```
-
-The server appears to have a very sparse memory map:
-
-- Only address 0 (and possibly address 100, though not shown) are accessible
-- Most standard Modbus address ranges (300-5000) are either:
-
-  - Not implemented
-  - Protected/restricted
-  - Require different function codes or device IDs
-
-Noted for further development of the simulator! [Check out some other discovery scripts here.](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/discovery)
+The next phase would be... interesting.

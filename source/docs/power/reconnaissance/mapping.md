@@ -1,421 +1,341 @@
-# Asset inventory and mapping
+# Mapping
 
-Knowing what's there before you accidentally turn it off.
+*Extract from the Field Notes of Ponder Stibbons*
 
-By now you've done extensive passive and active reconnaissance. You've captured traffic, scanned networks, identified devices, tested services, and documented findings. You have notebooks full of observations, packet captures measured in gigabytes, and screenshots of every web interface you could find.
+[Passive reconnaissance](passive.md) revealed the conversations. [Active reconnaissance](active.md) confirmed the 
+participants. [Discovery](discovery.md) mapped their internals. Now came the work of assembling these fragments into a 
+comprehensive picture: the complete architecture of the UU P&L control infrastructure.
 
-Now comes the unglamorous but absolutely critical work of organising this information into comprehensive asset inventory and maps. This isn't just paperwork for the sake of paperwork. It's what prevents you from accidentally testing the wrong system, helps you understand attack paths, and provides the foundation for risk assessment and remediation planning.
+This was mapping, not of the physical turbine hall or cable trays, but of the logical architecture. The devices, 
+their relationships, their dependencies, and the invisible structure that held it all together.
 
-It's also frequently the most valuable deliverable for the client. Many OT organisations don't have accurate asset inventories. They know roughly what they have ("three turbine PLCs, some network switches, a SCADA server somewhere"), but comprehensive documentation is often outdated, incomplete, or non-existent. Your reconnaissance provides them with current, accurate information about their own environment, which is sometimes worth more than the vulnerability findings.
+## The asset inventory
 
-## Creating comprehensive asset registers
+Every reconnaissance begins with answering "what exists?" but mapping asks "how does it all fit together?" The first 
+step was documenting the discovered assets in structured form.
 
-An asset register is a structured list of every device, system, and component in the environment. It's the foundation of everything else you'll do.
+From reconnaissance and discovery, the inventory emerged:
 
-### Essential fields for each asset
+### Control Layer Devices
 
-Every asset entry should include identification information at minimum. Asset ID is a unique identifier you assign (TURB-PLC-01, SCADA-SRV-01, etc.). Hostname or device name as configured in the device. IP address, noting whether it's static or DHCP. MAC address for definitive identification. Physical location (Turbine Hall Rack 3, Control Room Server Closet, Substation 7). Asset owner or responsible party (OT Engineering Manager, Operations, Facilities).
+Turbine PLC 1 (127.0.0.1:10502)
+- Type: Modbus TCP PLC
+- Function: Primary turbine speed and power control
+- Memory Map: 2 holding registers (setpoints), 10 input registers (telemetry), 3 coils (control modes), 8 discrete inputs (alarms)
+- Criticality: Critical - controls 33% of facility power generation
+- Device Identity: Wonderware SCADA-2024 (simulator artefact)
 
-Classification fields help prioritise and organise. Asset type categorises broadly (PLC, HMI, RTU, server, workstation, network device). Criticality rates importance (critical, high, medium, low). Environment specifies context (production, development, test, decommissioned but still powered on for some reason).
+Turbine PLC 2 (127.0.0.1:10503)
+- Type: Modbus TCP PLC
+- Function: Secondary turbine, identical configuration to PLC 1
+- Memory Map: Identical to Turbine PLC 1
+- Criticality: Critical
+- Notes: Shares same device identity with all devices (pymodbus 3.11.4 limitation)
 
-Technical details provide the information you need for vulnerability assessment. Manufacturer and model number. Serial number if available. Firmware or software version. Operating system if applicable. Protocols supported. Open ports and services discovered during scanning.
+Turbine PLC 3 (127.0.0.1:10504)
+- Type: Modbus TCP PLC
+- Function: Tertiary turbine
+- Criticality: Critical
+- Notes: Third redundant turbine controller
 
-Operational details explain what the asset actually does. Purpose or function in plain language ("controls turbine 1 speed and output"). Operational state (active, standby, offline, in maintenance). Maintenance schedule if documented. Last known maintenance date. Vendor support status (under contract, out of warranty, end-of-life and unsupported).
+Reactor PLC (127.0.0.1:10505)
+- Type: Modbus TCP PLC
+- Function: Reactor temperature and cooling control
+- Memory Map: Similar structure, different sensor types (temperatures, pressures, cooling flow)
+- Criticality: Critical - safety implications if cooling fails
 
-Security details document the current security posture. Known vulnerabilities from your reconnaissance. Patch status (up to date, behind by X patches, unpatchable). Authentication methods in use. Whether it's exposed to internet directly or indirectly. Remote access capabilities and methods.
+Cooling System PLC (127.0.0.1:10506)
+- Type: Modbus TCP PLC
+- Function: Auxiliary cooling and environmental controls
+- Criticality: High - supports reactor and turbine cooling
 
-### Asset register formats
+### Supervisory Layer
 
-The simplest and most common format is a spreadsheet. Excel or Google Sheets work fine. Create columns for all the fields above. Use one sheet per asset type (PLCs, HMIs, servers, etc.) or one comprehensive sheet with filtering. Spreadsheets are easy to create, easy to share, easy to update, and everyone knows how to use them.
+SCADA Server (127.0.0.1:10520)
+- Type: Modbus TCP Gateway/Aggregator
+- Function: Centralized monitoring and control, polls all field devices
+- Polling Interval: ~5 seconds per device (observed in passive capture)
+- Criticality: High - loss of SCADA means loss of centralised visibility
+- Notes: Accepts external connections (reconnaissance entry point)
 
-For larger environments, a proper database provides better functionality. SQLite for simple local database. PostgreSQL or MySQL for multi-user access. Allows complex queries, relationships between assets, and programmatic access. More powerful but requires more setup and maintenance.
+Substation Controller (127.0.0.1:63342)
+- Type: OPC UA Server
+- Function: Electrical distribution monitoring and breaker control
+- Exposed Objects: BreakerStatus, VoltageReadings, CurrentReadings, AlarmConditions
+- Criticality: Critical - manages power distribution to city
+- Protocol: OPC UA (modern hierarchical protocol vs. flat Modbus addressing)
 
-Commercial asset management platforms like [CyberX](https://www.microsoft.com/en-us/security/business/endpoint-security/microsoft-defender-iot) (now Microsoft Defender for IoT), [Claroty](https://claroty.com/), or [Nozomi Networks](https://www.nozominetworks.com/) provide automated asset discovery, continuous monitoring, and integration with other security tools. They're expensive but comprehensive. They can passively monitor networks and automatically build asset inventories. They're particularly valuable for large or complex environments.
+### Auxiliary Systems
 
-At UU P&L, the initial asset register started as a spreadsheet because that's what was immediately available and didn't require procurement approval. It looked something like this:
+Remote Terminal Unit (127.0.0.1:10510)
+- Type: Unknown (minimal traffic, event-driven)
+- Function: Unclear from reconnaissance (only 4 packets captured passively)
+- Criticality: Unknown - requires further investigation
+- Notes: Responds to connections but purpose not yet determined
 
+This inventory represented not just "things on the network" but operational context. Each device had a purpose. 
+Each had criticality. Each had dependencies.
 
-| Asset ID    | Hostname       | IP            | Type        | Manufacturer | Model          | Firmware | Criticality |
-|-------------|----------------|---------------|-------------|--------------|----------------|----------|-------------|
-| TURB-PLC-01 | TURB-PLC-01    | 192.168.10.10 | PLC         | Siemens      | S7-315-2PN/DP  | V3.2.6   | Critical    |
-| TURB-PLC-02 | TURB-PLC-02    | 192.168.10.11 | PLC         | Siemens      | S7-315-2PN/DP  | V3.2.6   | Critical    |
-| TURB-PLC-03 | TURB-PLC-03    | 192.168.10.12 | PLC         | Siemens      | S7-315-2PN/DP  | V3.2.6   | Critical    |
-| SAFE-PLC-01 | SAFE-PLC-01    | 192.168.10.20 | Safety PLC  | Siemens      | S7-400FH       | V6.0.3   | Critical    |
-| SCADA-PRI   | SCADA-PRIMARY  | 192.168.20.5  | Server      | HP           | ProLiant DL380 | N/A      | Critical    |
-| HMI-01      | HMI-CONTROL-01 | 192.168.20.11 | HMI         | Dell         | OptiPlex 7040  | N/A      | High        |
-| ENG-WS-01   | ENG-WS-01      | 192.168.40.15 | Workstation | Dell         | Latitude 7490  | N/A      | High        |
-| UNKNOWN-01  | Unknown        | 192.168.10.99 | Unknown     | Unknown      | Unknown        | Unknown  | Unknown     |
+## The network architecture
 
-
-The "UNKNOWN-01" entry was the Windows XP machine discovered during reconnaissance. It needed investigation before proper categorisation.
-
-### Dealing with unknowns
-
-Every reconnaissance finds unknown assets. Things not in documentation, not in configuration management databases, not known to current staff. The "temporary" solutions from years ago that became permanent. The contractor equipment that was never removed. The test systems that somehow made it to production.
-
-The process for handling unknowns is methodical. First, document what you know. Record IP address, MAC address, any observed behaviour, open ports, any responses from probes. Even partial information is better than nothing.
-
-Second, investigate further with careful probing. Can you safely connect to it? Does it respond to ping? To any protocols? Is there a web interface? Can you identify the operating system?
-
-Third, consult with staff. Someone might remember it. "Oh, that old thing? Yeah, I think John set that up back in 2008 before he retired." This is why institutional knowledge is so valuable and why staff turnover is so problematic in OT environments.
-
-Fourth, review historical records. Old documentation, archived emails, maintenance logs, procurement records, anything that might mention this device or its IP address.
-
-Fifth, if it's still unknown and safe to do so, physical inspection can be revealing. Look at it. What does it physically look like? Are there labels? Model numbers? Cables connected to it? Sometimes the only way to know what a mystery box does is to look at the mystery box.
-
-At UU P&L, the unknown Windows XP machine investigation revealed layers of archaeology. MAC address vendor lookup identified it as a Dell system. Port scan showed Windows XP SP2 signatures. SMB enumeration revealed hostname "TURBINE-DATA-01" and accessible file shares containing CSV files with turbine operational data going back to 1998.
-
-Consultation with maintenance staff produced this exchange:
-
-"Do you know what `TURBINE-DATA-01` is?"
-
-"Oh, that old thing? Yeah, it collects data from the turbines."
-
-"Is it important?"
-
-"I guess? We look at those logs sometimes when troubleshooting."
-
-"Who maintains it?"
-
-"Nobody, really. It just runs."
-
-"What happens if it stops running?"
-
-"I dunno. Nobody's ever turned it off to find out."
-
-This is terrifyingly common in OT. Critical functionality running on forgotten hardware that nobody dares touch because nobody knows what will break if they do.
-
-The system was eventually identified as a legacy data logger installed with the original turbines in 1998. It polls turbine data via serial connections, logs to CSV files, and makes those files available via SMB shares. The turbine manufacturer is long out of business. The software is irreplaceable. Nobody has installation media. Nobody knows the administrator password. It's become load-bearing infrastructure through sheer persistence.
-
-The asset register entry was updated:
+The simulator's network architecture was deliberately simple, all services on localhost, using port offsets to avoid 
+conflicts. This was unrealistic compared to operational OT networks (which span multiple physical networks, VLANs, 
+and security zones), but it faithfully represented the logical relationships:
 
 ```
-Asset ID: DATA-LOG-01 (formerly UNKNOWN-01)
-Purpose: Legacy turbine data logger, polls serial data, stores CSV files
-Criticality: High (no replacement available, used for troubleshooting)
-Risks: Windows XP, unpatched since 2008, no authentication on file shares
-Recommendations: Isolate on separate VLAN, read-only network share, backup data regularly, investigate replacement options
+┌─────────────────────────────────────────────────────────────┐
+│                     Supervisory Layer                       │
+│  ┌───────────────────┐           ┌───────────────────┐      │
+│  │  SCADA Server     │           │ Substation Ctrl   │      │
+│  │  (Port 10520)     │◄─────────►│  (Port 63342)     │      │
+│  │  Modbus Gateway   │           │  OPC UA Server    │      │
+│  └────────┬──────────┘           └───────────────────┘      │
+│           │                                                 │
+│           │ Polls every 5s                                  │
+│           │                                                 │
+└───────────┼─────────────────────────────────────────────────┘
+            │
+            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                       Control Layer                         │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
+│  │ Turbine  │  │ Turbine  │  │ Turbine  │  │ Reactor  │     │
+│  │  PLC 1   │  │  PLC 2   │  │  PLC 3   │  │   PLC    │     │
+│  │  (10502) │  │  (10503) │  │  (10504) │  │  (10505) │     │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘     │
+│       │             │             │             │           │
+│       ▼             ▼             ▼             ▼           │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
+│  │ Physical │  │ Physical │  │ Physical │  │ Reactor  │     │
+│  │ Turbine  │  │ Turbine  │  │ Turbine  │  │ Coolant  │     │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘     │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-### Handling decommissioned but powered-on assets
-
-Another common discovery is systems that are supposedly decommissioned but still powered on and connected to the network. These are dangerous because they're not monitored, not maintained, and often not secured, but they might still be doing something important that nobody remembers.
-
-At UU P&L, a system labeled `OLD-SCADA` was listed in documentation as "decommissioned 2018". Yet it was responding to pings and had active network connections.
-
-Investigation revealed it was the previous SCADA server, replaced in 2018 but never actually shut down. It was still running. It still had connections to some RTUs that hadn't been migrated to the new SCADA system. Operators occasionally used it to check historical data from before the migration.
-
-Shutting it down would have broken those RTU connections and eliminated access to historical data. But keeping it running meant maintaining an obsolete, unpatched Windows Server 2003 system with known vulnerabilities.
-
-The recommendation was gradual migration: identify all RTUs still connected to old SCADA, migrate them to new SCADA one by one, archive historical data to the new historian, then finally decommission the old system properly.
-
-This took six months because each RTU migration required testing and coordination with operations. But at the end, the old SCADA server was finally, actually decommissioned (powered off, network cables removed, physically removed from the rack). Until then, it remained in the asset register with appropriate warnings.
-
-## Firmware and software versions
-
-Tracking firmware and software versions is critical for vulnerability management. This information should be in the asset register, but it also deserves dedicated documentation because versions change over time (or should change, if patching happens).
-
-### Version tracking spreadsheet
-
-Create a separate tracking sheet for versions:
-
-| Asset ID    | Component | Current Version | Latest Version  | Last Updated | Patch Status            |
-|-------------|-----------|-----------------|-----------------|--------------|-------------------------|
-| TURB-PLC-01 | Firmware  | V3.2.6          | V3.3.18         | 2019-03-15   | 24 versions behind      |
-| SCADA-PRI   | OS        | Win Server 2012 | Win Server 2022 | 2015-06-20   | 2 major versions behind |
-| SCADA-PRI   | InTouch   | 2014 R2 SP1     | 2023 R2         | 2015-06-20   | 9 years behind          |
-| HMI-01      | OS        | Windows 7       | Windows 11      | 2016-08-10   | End of life             |
-
-This makes it immediately obvious which systems are current, which are behind, and which are catastrophically out of date.
-
-### Known vulnerabilities by version
-
-Cross-reference versions with vulnerability databases. For each version, document known CVEs, their severity, whether exploits are publicly available, and whether patches are available.
-
-At UU P&L, this revealed that every single PLC had multiple critical vulnerabilities, the SCADA server had 23 known vulnerabilities ranging from medium to critical, and the Windows 7 HMI systems had hundreds of known vulnerabilities (because Windows 7 has been end-of-life since January 2020).
-
-### Why things don't get patched
-
-Understanding why systems remain unpatched is important for realistic recommendations. At UU P&L, the reasons included:
-
-"Patching might break things." This is the most common reason and it's not entirely unfounded. OT systems are often fragile integrations of multiple vendor products. Patches from one vendor can break compatibility with another vendor's products. Testing patches requires downtime and comprehensive validation.
-
-"We can't afford the downtime." Patching often requires rebooting systems. In 24/7 operations, finding downtime is difficult. At UU P&L, turbines run continuously except for scheduled maintenance every six months.
-
-"The vendor says patching voids warranty." Some vendor support contracts specify that only the vendor can apply patches, or that patches must be vendor-approved. Applying patches independently can void support.
-
-"We tested patches and they broke things." Sometimes patches do break things. When UU P&L tested a Siemens firmware update on a spare PLC, it changed the behaviour of certain timing functions in a way that would have affected turbine control logic. The patch was abandoned.
-
-"Nobody knows how to patch this." For older systems, the knowledge of how to apply patches may have left with retired staff.
-
-"The system is end-of-life, no patches exist." Windows XP, Windows 7, older PLC firmware, obsolete SCADA software. No patches are being developed anymore.
-
-These aren't excuses, they're real operational constraints. The security team's job is to understand these constraints and recommend realistic mitigations when patching isn't possible, such as network segmentation to limit exposure, enhanced monitoring to detect exploitation attempts, or compensating controls like application whitelisting.
-
-## Network segmentation analysis
-
-Network segmentation is supposed to limit the blast radius of compromises. In theory, the corporate network is separate from OT, control systems are separate from safety systems, and different operational zones are separated from each other.
-
-In practice, segmentation is often more theoretical than real.
-
-### Analysing actual segmentation
-
-Don't trust network diagrams. They show how things are supposed to be, not how they actually are. Your reconnaissance revealed the truth. Now document it.
-
-Create a segmentation analysis showing what can actually talk to what:
-
-| Zone            | Can Reach      | Should Reach     | Problem?                       |
-|-----------------|----------------|------------------|--------------------------------|
-| Corporate IT    | OT Engineering | No direct access | Jump box bypasses segmentation |
-| Corporate IT    | SCADA Network  | No direct access | Historian bridges networks     |
-| OT Engineering  | All PLCs       | Yes              | OK                             |
-| OT Engineering  | Safety PLCs    | No               | PROBLEM: No isolation          |
-| Control Network | Safety Network | Emergency only   | PROBLEM: Same physical VLAN    |
-
-
-At UU P&L, the segmentation analysis revealed that whilst VLANs existed, the firewall between them had rules that effectively allowed all traffic. The segmentation was cosmetic. Everything could talk to everything.
-
-The jump box that was supposed to be the controlled access point had RDP open from the corporate network with shared credentials, making it effectively transparent rather than a controlled chokepoint.
-
-The historian database sat on the corporate network but had direct connections to SCADA systems on the OT network, creating a bridge.
-
-The wireless access point in the turbine hall was connected to both the corporate VLAN and the turbine control VLAN, completely bypassing intended segmentation.
-
-### Segmentation recommendations
-
-Based on actual observed connectivity, recommend segmentation improvements:
-
-Immediate fixes (low cost, high impact): Remove the wireless access point bridging networks. Fix firewall rules to actually enforce segmentation. Disable unnecessary network connections.
-
-Short term (moderate cost, moderate effort): Implement proper jump host architecture with authentication and monitoring. Isolate safety systems on physically separate network. Deploy data diode or unidirectional gateway for historian data collection.
-
-Long term (high cost, major project): Redesign network architecture following Purdue model. Implement proper DMZs. Deploy industrial firewalls with deep packet inspection for OT protocols.
-
-At UU P&L, the immediate fixes were implemented within weeks (because they cost nothing but configuration changes). The short-term improvements were budgeted for the next fiscal year. The long-term redesign was added to the five-year capital plan, which is consultant-speak for "maybe someday if budget appears and priorities don't change".
-
-## Trust boundary identification
-
-Trust boundaries are the points where different levels of trust meet. Understanding these boundaries is critical for security architecture and attack path analysis.
-
-### Common trust boundaries in OT
-
-Internet to DMZ boundary is the perimeter facing the public internet. Should be heavily defended with firewalls, intrusion detection, and strict access controls.
-
-DMZ to corporate IT boundary separates the demilitarised zone from the internal corporate network. Should verify authentication and authorisation.
-
-Corporate IT to OT boundary is one of the most critical. Corporate networks have different threat profiles than OT networks (more users, more internet access, more malware). This boundary should be strictly controlled.
-
-OT engineering to production control boundary separates engineering/programming networks from operational control systems. Engineering workstations have elevated privileges and should be isolated from routine operations.
-
-Control to safety boundary is critical for safety-critical industries. Safety systems must remain functional even if control systems are compromised.
-
-Production to test/development boundary prevents test systems from affecting production.
-
-### Trust boundary mapping at UU P&L
-
-Mapping trust boundaries revealed several boundaries that should exist but didn't:
-
-Corporate IT to OT Engineering should have been a strict boundary with authentication and monitoring. In reality, it was crossed by multiple systems: the historian, the jump box with shared credentials, the wireless access point, and the mysterious VPN that IT had installed without telling OT.
-
-OT Engineering to Production Control should have limited which systems could program PLCs. In reality, any system on the engineering network could connect to any PLC.
-
-Control to Safety boundary theoretically separated safety PLCs from control PLCs. In reality, they were on the same VLAN with no isolation.
-
-### Trust boundary violations
-
-Document every case where trust boundaries are violated. Each violation is a potential attack path.
-
-At UU P&L, the most serious violation was the safety PLC on the same network as control PLCs. An attacker who compromised a control PLC could potentially communicate with safety PLCs, which should never be possible.
-
-The wireless access point violated multiple boundaries simultaneously. It connected corporate and OT networks, bypassing all intended security controls.
-
-The engineering workstation with file sharing enabled violated the principle that engineering tools should not be accessible from untrusted networks.
-
-### Recommendations for trust boundaries
-
-For each violated trust boundary, recommend remediation. At minimum, make the boundary visible with logging and monitoring even if you can't immediately enforce it properly. Better, implement authentication and authorisation at the boundary. Best, implement proper segmentation with firewalls and possibly data diodes.
-
-## Data flow mapping
-
-Understanding how data flows through the environment reveals dependencies, potential bottlenecks, and attack paths.
-
-### Types of data flows
-
-- Control data flows from SCADA to PLCs, from operators to process equipment. This is the most time-sensitive and critical data.
-- Monitoring data flows from PLCs to SCADA, from sensors to displays. Continuous polling, high volume, but generally one-way.
-- Engineering data flows when programming PLCs, updating configurations, or downloading logs. Sporadic but privileged access.
-- Historical data flows from operational systems to historians and databases. Used for trending, analysis, and reporting.
-- Business data flows from OT systems to corporate IT for reporting, billing, inventory management, and business intelligence.
-- Remote access data flows when vendors or engineers connect remotely. Should be carefully controlled but often isn't.
-
-### Mapping data flows
-
-Create diagrams showing who talks to whom, what protocols they use, what data they exchange, and how frequently:
-
-```
-SCADA Server (192.168.20.5)
-  → Polls PLC 1 (192.168.10.10) via Modbus every 5 seconds
-  → Polls PLC 2 (192.168.10.11) via Modbus every 5 seconds
-  → Polls PLC 3 (192.168.10.12) via Modbus every 5 seconds
-  → Sends commands via Modbus when operator issues control actions
-  
-Historian (192.168.30.5)
-  → Queries SCADA Server via proprietary protocol every 5 minutes
-  → Stores data in SQL Server database
-  → Serves data to Business Intelligence tools via ODBC
-  
-Engineering Workstation (192.168.40.15)
-  → Connects to any PLC via S7comm when programming
-  → Uploads/downloads PLC programs (megabytes transferred)
-  → Occurs during maintenance windows, not continuously
+The SCADA server sat at the supervisory layer, polling field devices. The substation controller operated in parallel, 
+monitoring electrical distribution while SCADA monitored generation. The control layer PLCs interfaced directly with 
+physical processes through simulated physics models.
+
+## Configuration architecture
+
+The simulator's configuration files revealed the architectural decisions that shaped the environment. The configuration 
+lives in [`config/`](https://github.com/ninabarzh/power-and-light-sim/tree/main/config):
+
+[`devices.yml`](https://github.com/ninabarzh/power-and-light-sim/blob/main/config/devices.yml) - Defined each device's 
+type, sensors, actuators, and initial state:
+
+```yaml
+turbine_plc_1:
+  type: turbine_plc
+  sensors:
+    - speed
+    - power_output
+    - bearing_temperature
+    - oil_pressure
+    - vibration
+    - generator_temperature
+    - gearbox_temperature
+    - ambient_temperature
+  actuators:
+    - speed_setpoint
+    - power_setpoint
 ```
 
-Looking something like:
+Each device's configuration explicitly listed its I/O points. This was why [discovery](discovery.md) found exactly 8 
+active input registers, they were defined in configuration, not arbitrary memory ranges.
 
-SCADA ↔ PLC communications (continuous control traffic):
+[`protocols.yml`](https://github.com/ninabarzh/power-and-light-sim/blob/main/config/protocols.yml) - Mapped devices 
+to network services:
 
-![SCADA ↔ PLC communications (continuous control traffic)](/_static/images/ot-scada-plc-communications.png)
-
-Historian ↔ SCADA ↔ Business systems (periodic data flow)
-
-![Historian ↔ SCADA ↔ Business systems (periodic data flow) 1](/_static/images/ot-historian-scada-business1.png)
-
-And:
-
-![Historian ↔ SCADA ↔ Business systems (periodic data flow) 2](/_static/images/ot-historian-scada-business2.png)
-
-Engineering workstation ↔ PLCs (maintenance-only, very noisy)
-
-![Engineering workstation ↔ PLCs (maintenance-only, very noisy)](/_static/images/ot-engineering-plc.png)
-
-At UU P&L, data flow mapping revealed several surprises. The business intelligence system on the corporate network was directly querying the historian every minute, not the expected hourly schedule. This caused occasional performance issues when BI queries coincided with high data collection periods.
-
-The old Windows XP data logger was pushing CSV files to a network share that nobody knew about. The share was on the SCADA server. The SCADA server was running periodic batch jobs to parse these CSV files, a process that consumed significant CPU and occasionally caused SCADA response lag.
-
-An undocumented data flow existed between the corporate network and a PLC. Investigation revealed it was an automated script that queried PLC status for display on the corporate website's "facility status" page. This gave public internet users real-time information about turbine operations, which was interesting from a transparency perspective but concerning from a security perspective.
-
-## Critical path analysis
-
-Critical path analysis identifies which systems and connections are essential for continued operation. If something on the critical path fails, operations stop.
-
-### Identifying critical paths
-
-For each operational function, trace the dependencies from physical process back to the systems that monitor and control it.
-
-Turbine 1 operation depends on Turbine 1 PLC, SCADA server polling PLC, HMI displaying data to operators, network connecting PLC to SCADA, switch in turbine hall, network cable from turbine hall to control room, and power supply to all of the above.
-
-A failure at any point in this chain affects turbine operation. This is the critical path.
-
-At UU P&L, critical path analysis revealed single points of failure:
-
-The core network switch in the control room carried all OT traffic. If it failed, SCADA lost connection to all PLCs across the facility. This switch was 12 years old, out of warranty, and no replacement was on hand. It became a critical liability.
-
-The SCADA server was a single point of failure for operator visibility. The backup SCADA server existed but automatic failover wasn't configured. Manual failover took 10-15 minutes during which operators had no visibility into turbine status.
-
-The historian was a single point of failure for data collection. If it failed, operational data was lost permanently. Backups existed but only of the database itself, not the active collection process.
-
-### Critical path documentation
-
-For each critical system, document what it's critical to, what it depends on, what depends on it, estimated impact of failure (loss of visibility, loss of control, safety impact), and estimated time to recovery.
-
-```
-System: SCADA Server
-Critical to: Operator visibility, remote control, alarm management
-Depends on: Network connectivity, SQL database, historical logs
-Depended on by: All HMIs, alarm systems, engineering workstations
-Failure impact: Loss of operator visibility, no remote control (local control still possible at turbines)
-Time to recovery: 15 minutes (manual failover to backup) or 4 hours (rebuild if backup also fails)
-Backup status: Backup server exists but requires manual failover
+```yaml
+modbus_tcp:
+  turbine_plc_1:
+    host: "127.0.0.1"
+    port: 10502
+  turbine_plc_2:
+    host: "127.0.0.1"
+    port: 10503
+  scada_server:
+    host: "127.0.0.1"
+    port: 10520
 ```
 
-This documentation is invaluable during incident response. When something fails at 3 AM, having pre-documented critical paths and recovery procedures saves precious time.
+This explained the port assignments discovered during [passive reconnaissance](passive.md). The port numbers weren't 
+arbitrary, they were deliberately configured to avoid conflicts with standard ICS ports (502, 102, etc.) while 
+maintaining logical grouping (105xx for field devices, 635xx for supervisory systems).
 
-## Dependency documentation
+[`device_identity.yml`](https://github.com/ninabarzh/power-and-light-sim/blob/main/config/device_identity.yml) defined 
+Modbus device identities for FC 43 responses:
 
-Dependencies are the hidden connections between systems. System A depends on System B, which depends on System C, and nobody documents these relationships until something breaks.
+```yaml
+device_identities:
+  turbine_plc:
+    vendor: "Allen-Bradley"
+    product_code: "1756-L73"
+    model: "ControlLogix 5570"
+    revision: "20.011"
 
-### Types of dependencies
-
-Technical dependencies are the obvious ones. SCADA depends on network connectivity to PLCs. PLCs depend on power supplies. HMIs depend on SCADA server.
-
-Operational dependencies are less obvious. The turbine startup sequence depends on specific order of operations. The maintenance schedule depends on weather forecasts (can't shut down turbines during peak demand caused by heat waves). The alarm system depends on operator response protocols.
-
-Data dependencies are subtle. The business intelligence dashboard depends on data from the historian, which depends on data from SCADA, which depends on PLCs. If any link in this chain breaks, BI reports become stale.
-
-Timing dependencies are critical in real-time systems. The PLC scan cycle depends on completing within 50 milliseconds. Network polling depends on devices responding within timeout periods. Automated sequences depend on actions completing before the next action begins.
-
-### Discovering hidden dependencies
-
-The only reliable way to discover dependencies is to watch what happens when things break. Unfortunately, this usually happens accidentally rather than during controlled testing.
-
-At UU P&L, several hidden dependencies were discovered the hard way:
-
-When a network switch was rebooted for maintenance, the SCADA server lost connection to PLCs as expected. However, it also triggered an automatic email alert to the city emergency services (undocumented feature from years ago) which caused unnecessary panic.
-
-When the historian database filled its disk space, data collection stopped as expected. However, the SCADA server's alarm logging also failed (stored in same database, different schema) which meant critical alarms weren't being recorded. This went unnoticed for three days until an audit questioned why alarm logs were empty.
-
-When the engineering workstation was rebooted, a scheduled task stopped running. This task was polling a legacy serial device and forwarding data to SCADA. The device was the pump controller connected via the Raspberry Pi. Without this task, pump status wasn't updated in SCADA. Operators noticed unusual pump behavior and investigated, discovering the dependency nobody had documented.
-
-### Dependency mapping
-
-Create dependency maps showing what depends on what:
-
-```
-Turbine Operation
-├─ Turbine PLC
-│  ├─ Power Supply
-│  ├─ Network Connection
-│  └─ PLC Program (stored in PLC)
-├─ SCADA Server
-│  ├─ Power Supply  
-│  ├─ Network Connection
-│  ├─ SQL Database
-│  └─ SCADA Software License
-├─ HMI
-│  ├─ Power Supply
-│  ├─ Network Connection
-│  └─ Windows 7 OS
-└─ Network Infrastructure
-   ├─ Control Room Switch
-   ├─ Turbine Hall Switch
-   ├─ Network Cables
-   └─ Power to Switches
+  scada_server:
+    vendor: "Wonderware"
+    product_code: "SCADA-2024"
+    model: "System Platform"
+    revision: "1.0"
 ```
 
-This seems obvious when written down, but these relationships are often undocumented. During incident response, having this map saves time tracing dependencies.
+The configuration included realistic vendor identities for multiple device types. However, the pymodbus 3.11.4 bug 
+caused all devices to report the same identity (the last one initialised). This was a simulator limitation, not an 
+architectural choice, but it didn't affect functionality, only fingerprinting accuracy.
 
-### Circular dependencies
+## Data flow patterns
 
-Watch for circular dependencies where A depends on B which depends on A. These create deadlock scenarios where neither system can start without the other.
+Mapping data flows revealed the system's operational rhythm. From passive capture analysis and SCADA polling patterns:
 
-At UU P&L, a subtle circular dependency existed: the SCADA server time synchronisation depended on the network time server, which was on the corporate network. The corporate network firewall rules allowed time sync only from authenticated sources. The SCADA server's authentication to corporate network services depended on correct time (Kerberos). If SCADA server time drifted too far, it couldn't authenticate to get time synchronization, creating a deadlock.
+Control Loop (Continuous, 5-second cycle):
+```
+SCADA (10520) → READ Input Registers → Turbine PLC (10502)
+               ← Telemetry Data ←
 
-The solution was adding a local time server on the OT network, breaking the dependency on corporate IT.
+Operator → WRITE Holding Register → SCADA (10520) → Turbine PLC (10502)
+                                                   → Setpoint Updated
+```
 
-## The comprehensive picture
+This was the fundamental control loop: SCADA polls, gets telemetry, displays to operator. Operator adjusts setpoint, 
+SCADA writes to PLC, turbine responds. Continuous, predictable, observable in traffic captures.
 
-After completing asset inventory, version tracking, segmentation analysis, trust boundary identification, data flow mapping, critical path analysis, and dependency documentation, you have a comprehensive picture of the environment.
+Physics Simulation (Internal, ~100ms cycle):
+```
+PLC Holding Register (Setpoint)
+    ↓
+Control Algorithm (PID)
+    ↓
+Physical Model (turbine dynamics, thermal models, mechanical constraints)
+    ↓
+PLC Input Registers (Actual values)
+    ↓
+SCADA Telemetry
+```
 
-This documentation serves multiple purposes. It's the foundation for vulnerability analysis and risk assessment. It guides remediation planning and prioritization. It supports incident response and troubleshooting. It helps with change management and impact analysis. Most importantly, it gives the organization accurate knowledge of their own environment.
+The physics simulation ran internally within each PLC model. The ±3 RPM oscillation observed during 
+[discovery](discovery.md) came from this control loop, realistic PID behaviour hunting around the setpoint with 
+real-world disturbances.
 
-At UU P&L, the most valuable outcome wasn't the list of vulnerabilities (though that was important). It was the accurate, current documentation of what actually existed. The network diagrams showed reality, not theory. The asset inventory included the forgotten systems. The dependency maps revealed hidden connections.
+Alarm Propagation (Event-driven):
+```
+Physical Condition (e.g., speed > 1600 RPM)
+    ↓
+PLC Logic evaluates discrete inputs
+    ↓
+Discrete Input 0 (Overspeed Alarm) = TRUE
+    ↓
+SCADA polls discrete inputs
+    ↓
+Operator alarm display
+```
 
-The facilities manager summarised it well during the final presentation: "For the first time in ten years, we actually know what we have and how it all connects. That alone was worth the cost of the assessment."
+Alarms flowed from physical conditions through PLC logic to SCADA display. The discrete inputs discovered during 
+enumeration weren't arbitrary, they represented the alarm infrastructure.
 
-### The discovery that made everyone pause
+## Critical dependencies
 
-The comprehensive mapping revealed one particularly concerning finding that hadn't been obvious during reconnaissance. The turbine emergency shutdown system, which is supposed to be the ultimate safety mechanism, had a dependency chain that made everyone in the room uncomfortable.
+Mapping dependencies revealed what depended on what, the invisible threads that would cascade failures through the system:
 
-The emergency shutdown system depended on the safety PLC, which depended on network connectivity to the SCADA server for status reporting, which depended on the control room network switch, which depended on its configuration stored on a TFTP server, which was the Windows XP machine also hosting the cafeteria menu website.
+Turbine Operation Dependencies:
+- Turbine PLC must be powered and running
+- Network connectivity between PLC and SCADA required for remote monitoring (but not for autonomous operation)
+- SCADA server required for operator visibility and remote setpoint changes
+- Physical model must execute correctly for realistic behaviour
 
-Yes, the cafeteria menu website. Someone years ago had needed a simple web server for posting the weekly menu. The Windows XP machine was available. A web server was installed. The menu site was created. Later, when the network team needed a TFTP server for backing up switch configurations, the XP machine was convenient and already on the network.
+SCADA Visibility Dependencies:
+- Network connectivity to all field devices
+- Modbus TCP service operational on each PLC
+- Correct port configurations (10502-10506, 10520)
+- No network segmentation blocking control traffic
 
-The cafeteria menu website accidentally became a critical dependency for the emergency shutdown system. If the XP machine failed, switch configurations couldn't be restored after power loss, SCADA couldn't reconnect to safety systems, and the emergency shutdown status monitoring would be degraded.
+Attack Surface Dependencies:
+- No authentication on Modbus writes (discovered during [test_write_permissions.py](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/test_write_permissions.py))
+- Direct network access to PLCs (no firewall between SCADA and field devices)
+- All unit IDs respond (no unit ID validation, discovered during [scan_unit_ids.py](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/scan_unit_ids.py))
 
-Nobody had planned this dependency. It had emerged organically through a series of small, reasonable decisions that created an unreasonable outcome. This is how OT environments work: temporary solutions become permanent, convenience trumps architecture, and mission-critical functions end up depending on systems that also serve lunch menus.
+The lack of authentication was architectural. Modbus TCP has no authentication mechanism. This wasn't a configuration error, it was the protocol's design. The simulator faithfully replicated this vulnerability.
 
-The recommendation was unambiguous: isolate the safety system dependencies, deploy a proper configuration management system, and for the love of all that is sacred, separate the cafeteria menu from the emergency shutdown infrastructure.
+## Trust boundaries (or lack thereof)
 
-The cafeteria menu was migrated to a proper corporate web server within a week. The switch configuration management took six months because it required coordination, testing, and procurement of proper infrastructure.
+In operational OT networks, trust boundaries separate control zones, safety systems from control systems, corporate 
+networks from OT networks. The simulator's architecture deliberately omitted these boundaries:
 
-But at least nobody had to explain to the Patrician that a power outage was prolonged because the cafeteria menu website was down.
+No Authentication Boundary:
+- Any network client can connect to any Modbus port
+- No credentials required for read or write operations
+- No session management or access control
+
+No Safety System Isolation:
+- All PLCs on same logical network (same host, different ports)
+- Safety-critical reactor PLC (10505) accessible via same methods as operational turbine PLCs
+- No dedicated safety network or isolation
+
+No Segmentation:
+- All devices share localhost network space
+- SCADA server has direct access to all field devices
+- No VLANs, no firewalls, no network isolation
+
+This flat architecture was realistic for the simulator's purpose. Real OT networks often have similarly flat 
+topologies, especially legacy installations or poorly secured facilities. The UU P&L simulator modelled a vulnerable 
+but operational architecture.
+
+## The simulator's honest architecture
+
+Mapping revealed that the simulator made deliberate architectural choices:
+
+- Simplicity over realism - Localhost deployment with port offsets rather than distributed network architecture. This enabled single-machine testing while preserving logical relationships.
+- Transparency over security - No authentication, no access control, no segmentation. This enabled security research and attack demonstration without requiring exploit development for authentication bypass.
+- Realistic protocols - Actual Modbus TCP, actual OPC UA, actual protocol behaviours. Not "toy" implementations but real industrial protocol stacks (pymodbus, asyncua).
+- Physics simulation - Realistic control loop behaviour, thermal dynamics, mechanical constraints. Values weren't random, they followed physical laws.
+- Deliberate limitations - The pymodbus device identity bug, the unit ID validation issue, the compact memory maps. These were known limitations, documented in [Simulator gaps](https://github.com/ninabarzh/power-and-light-sim/blob/main/SIMULATOR_GAPS.md).
+
+The simulator's architecture was honest. It didn't hide its nature. It didn't pretend to be production infrastructure. 
+It provided a realistic test environment for security research, pentesting techniques, and attack demonstration.
+
+## The complete picture
+
+After passive observation, active probing, systematic discovery, and architectural mapping, the complete picture emerged:
+
+- 7 control devices across 3 turbines, 1 reactor, 1 cooling system, plus SCADA and substation controllers
+- 2 protocols - Modbus TCP and OPC UA
+- 23 I/O points per Modbus device (compact but complete)
+- 5-second polling from SCADA to field devices
+- No authentication on any service
+- Realistic physics simulation running internally
+- Documented limitations that don't affect core functionality
+
+This was the UU P&L Power & Light control infrastructure. Not as complex as actual city power systems, but faithful to 
+their architecture. Vulnerable by design, transparent for research, and realistic enough for meaningful security 
+testing.
+
+The map was complete. The architecture was documented. The dependencies were known.
+
+Now came the question: what happens when you modify a system this transparent? What attacks become possible with 
+this complete map?
+
+That's where [exploitation](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation) enters the story. The turbine overspeed attacks, the emergency stop demonstrations, 
+the gradual manipulation that stays below alarm thresholds.
+
+But those are not reconnaissance or mapping. Those are demonstrations of capability, showing what an adversary could 
+accomplish with the knowledge we've gathered.
+
+And that, as the Patrician would say, is why we map before we act. Knowledge before action. Understanding before 
+intervention.
+
+The reconnaissance was complete. The mapping was done. The simulator had revealed not just its components, but its 
+structure, its rhythms, and its vulnerabilities.
+
+From here, the work transitions from "what is it?" to "what can be done with it?" A different kind of work entirely. 
+Still careful. Still documented. But no longer passive observation.
+
+Active demonstration.
+
+---
+
+*End of Field Notes: Reconnaissance and Mapping Phase*
+*Status: Complete*
+*Next Phase: Exploitation and Impact Analysis*
+*Authorisation: Required before proceeding*
