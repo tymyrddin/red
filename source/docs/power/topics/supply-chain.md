@@ -1,459 +1,379 @@
-# Supply chain and vendor assessment
+# Supply chain and vendor security: Because your security is only as good as your suppliers
 
-Because your security is only as good as your suppliers'.
+*Or: Why Ponder Worried About The Doors You Deliberately Leave Open*
 
-The thing about security perimeters is that they're wonderfully effective against people you haven't intentionally 
-let inside. Firewalls keep out attackers, network segmentation isolates systems, authentication prevents unauthorised 
-access. All of these controls work brilliantly right up until you grant someone vendor access, at which point they can simply walk through all your security controls because they're supposed to be there.
+## The problem with authorised access
 
-This is rather similar to how the Patrician's Palace is protected by extensive security measures, multiple layers of guards, various deadly traps, and a general atmosphere of "nobody unauthorised gets in". However, the palace also employs numerous servants, tradespeople, and contractors who come and go regularly. Each one of them technically has access to bypass most security measures because they need to do their jobs. The security challenge isn't keeping everyone out, it's distinguishing between legitimate authorised access and malicious authorised access, which is considerably harder.
+The thing about security perimeters is that they're wonderfully effective against people you haven't intentionally let inside. Firewalls keep out attackers, network segmentation isolates systems, authentication prevents unauthorised access. All of these controls work brilliantly right up until you grant someone vendor access, at which point they can simply walk through all your security controls because they're supposed to be there.
+
+This is rather similar to how the Patrician's Palace is protected by extensive security measures, multiple layers of guards, various deadly traps, and a general atmosphere of "nobody unauthorised gets in". However, the palace also employs numerous servants, tradespeople, and contractors who come and go regularly. Each one of them technically has access to bypass most security measures because they need to do their jobs. The security challenge isn't keeping everyone out. It's distinguishing between legitimate authorised access and malicious authorised access, which is considerably harder.
 
 In OT environments, vendors are everywhere. The PLC vendor needs access to upload firmware updates. The SCADA vendor needs access to troubleshoot software issues. The turbine vendor needs access to monitor equipment performance. The instrumentation vendor needs access to calibrate sensors. Each one needs some level of access to your systems, and each one represents a potential security risk.
 
-At UU P&L, we counted 17 different vendors with some form of technical access to OT systems:
+At actual facilities (the sort Ponder encountered during consulting work), vendor counts typically ranged from 12 to 25 different organisations with some form of technical access to OT systems. Equipment vendors, service providers, utility companies, each with permanent VPN connections, remote desktop access, or physical access to facilities. Each vendor had been granted access through legitimate business need. And each one represented a potential attack vector that bypassed all network security controls.
 
-Equipment Vendors (7):
-- Turbine manufacturer (permanent VPN access)
-- PLC manufacturer (scheduled access for updates)
-- SCADA software vendor (remote desktop access)
-- Sensor vendor (dial-up modem access, yes really)
-- UPS vendor (separate network for monitoring)
-- Fire suppression vendor (hardwired connection)
-- HVAC controls vendor (cloud-based management)
+## What the simulator doesn't include (yet)
 
-Service Providers (6):
-- Instrument calibration contractor
-- Electrical maintenance contractor
-- Network equipment supplier
-- Backup tape service
-- Security system integrator
-- General IT support
+The UU P&L simulator currently focuses on industrial protocol vulnerabilities. It doesn't simulate:
 
-Utility Providers (4):
-- Internet service provider (router management access)
-- Cellular carrier (for 4G backup)
-- VoIP provider (phone system management)
-- Cloud backup provider
+Not in current simulator:
+- Vendor remote access (VPNs, remote desktop)
+- Third-party support platforms (TeamViewer, AnyDesk)
+- Software update mechanisms
+- Supply chain component verification
+- Vendor credential management
+- Remote support scenarios
 
-Each of these vendors had been granted access through legitimate business need. Each one had presumably been vetted 
-by procurement. And each one represented a potential attack vector that bypassed all of UU P&L's network security 
-controls.
+Current simulator scope:
+- Direct protocol access to PLCs and SCADA
+- Unauthenticated communication channels
+- Protocol-level vulnerabilities
+- Device reconnaissance and exploitation
 
-## Vendor access review
+This simplification allows focus on protocol security, but it misses an entire class of real-world attack vectors.
 
-Start by documenting what vendor access exists:
+## Why supply chain security matters in OT
 
-### Create vendor access inventory
-
-For each vendor, document:
-
-1. Vendor Name and Purpose
-   - Who are they?
-   - What service do they provide?
-   - Why do they need access?
-
-2. Access Method
-   - VPN? (Always-on or scheduled?)
-   - Remote desktop?
-   - Physical access to facility?
-   - Cloud service?
-   - Modem dial-up?
-
-3. Access Scope
-   - What systems can they reach?
-   - What credentials do they have?
-   - What level of access? (Read-only? Admin?)
-   - What networks can they access?
-
-4. Access Controls
-   - How is access authenticated?
-   - Is MFA required?
-   - Is access logged?
-   - Who reviews access logs?
-
-5. Change Management
-   - When was access last reviewed?
-   - Who approved access?
-   - Is there a contract governing access?
-   - When does access expire?
-
-At UU P&L, this inventory revealed several concerning patterns:
-
-Pattern 1: Permanent VPN access: The turbine vendor had a permanent VPN connection that was always up:
-
-```
-Vendor: TurbineTech GmbH
-Access Method: Site-to-site VPN (always on)
-Credentials: Shared PSK (pre-shared key)
-Networks Accessible: Engineering VLAN, PLC network
-Access Level: Full admin rights
-Last Credential Change: 2016 (8 years ago)
-Access Review: Never
-Monitoring: None
-Justification: "Vendor needs to monitor turbine performance"
-```
-
-This meant that TurbineTech had permanent, unmonitored admin access to critical control systems. If TurbineTech's network was compromised (which we had no way of knowing), the attacker would have immediate access to UU P&L's control systems.
-
-Pattern 2: Excessive privileges: The SCADA vendor needed occasional access to troubleshoot software issues. They'd been granted:
-
-```
-Access: Domain Administrator credentials
-Justification: "Sometimes we need to restart services"
-Actual need: Local administrator on SCADA servers only
-Over-privilege: ~95% (domain admin for entire IT and OT infrastructure)
-```
-
-Pattern 3: Undocumented access: A sensor calibration contractor had installed a cellular modem to "check calibration schedules remotely":
-
-```
-Access: 4G modem with VPN client
-Discovery: Found during wireless survey (not documented)
-Credentials: Unknown
-Scope: Unknown (connects to unknown external server)
-Approval: None (contractor installed without asking)
-Duration: 18 months (based on modem purchase date)
-```
-
-## Third-party remote access platforms
-
-Many organizations use third-party remote access platforms for vendor management:
-
-### Common platforms
-
-- TeamViewer: Popular but often misconfigured
-- AnyDesk: Similar to TeamViewer
-- LogMeIn: Enterprise remote access
-- BeyondTrust: Privileged access management
-- CyberArk: Privileged access management
-- Bomgar (now BeyondTrust): Purpose-built for vendor access
-
-At UU P&L, TeamViewer was configured with essentially no security controls:
-
-- No MFA
-- No session recording
-- No access restrictions
-- No logging to SIEM
-- Vendor accounts active 24/7
-- Shared vendor credentials among multiple technicians
-- Last access review: Never
-
-This meant that anyone with the vendor credentials (which were shared among approximately 15 people across three companies) could connect at any time, access any system, and perform any action, with minimal logging and no real-time monitoring.
-
-## Maintenance contract security
-
-Maintenance contracts often include provisions for vendor access, but these are usually written by procurement focusing on service levels, not by security focusing on risk:
-
-### Review maintenance contracts
-
-Security-relevant contract clauses to check:
-
-1. Scope of Access
-   ❌ Bad: "Vendor shall have access as necessary to perform services"
-   ✓ Good: "Vendor access limited to systems X, Y, Z via method A, during hours B"
-
-2. Credential Management
-   ❌ Bad: "Customer shall provide vendor with necessary passwords"
-   ✓ Good: "Vendor credentials shall be unique per technician, rotated quarterly, disabled when not in use"
-
-3. Security Requirements
-   ❌ Bad: No mention of security
-   ✓ Good: "Vendor shall comply with customer security policy, use MFA, maintain patched systems"
-
-4. Liability
-   ❌ Bad: "Customer assumes all risk"
-   ✓ Good: "Vendor liable for security incidents resulting from vendor access or vendor system compromise"
-
-5. Audit Rights
-   ❌ Bad: No mention of auditing
-   ✓ Good: "Customer may audit vendor security practices, vendor shall provide evidence of security controls"
-
-6. Termination
-   ❌ Bad: "Contract auto-renews annually"
-   ✓ Good: "Access privileges expire with contract, vendor must request renewal with justification"
-
-At UU P&L, the turbine maintenance contract (signed in 2016) said:
-
-*"TurbineTech shall be provided with remote access to Customer's turbine control systems as necessary to monitor equipment performance and provide technical support. Customer shall provide appropriate credentials and network access."*
-
-This gave TurbineTech essentially unlimited access with no security requirements, no access restrictions, no liability for security incidents, and no expiration date. The contract had been auto-renewing annually for eight years without any security review.
-
-## Software update mechanisms
-
-How vendors deliver software updates is a critical security concern:
-
-### Assess update delivery methods
-
-Update Delivery Methods (from least to most secure):
-
-1. Vendor downloads update directly to system (via remote access)
-   Risk: Vendor has direct system access
-   Security: Depends entirely on vendor network security
-
-2. Update sent via email
-   Risk: Email compromise, phishing, no integrity verification
-   Security: Very weak
-
-3. Update downloaded from vendor website
-   Risk: Compromised website serves malicious update
-   Security: Weak unless cryptographically signed
-
-4. Update downloaded from vendor website with hash verification
-   Risk: Website compromise that also changes hash
-   Security: Moderate
-
-5. Update downloaded from vendor website with cryptographic signature
-   Risk: Private key compromise (rare)
-   Security: Good
-
-6. Update delivered on physical media after approval
-   Risk: Supply chain interception (very rare for OT)
-   Security: Good (if verification performed)
-
-At UU P&L, update methods varied by vendor:
-
-SCADA vendor: Updates downloaded from vendor website
-- Verification: MD5 hash (weak, can be forged)
-- Signature: None
-- Approval process: IT downloads, engineering installs
-- Testing: In production (no test environment)
-
-PLC vendor: Updates uploaded by vendor via remote session
-- Verification: None (trust vendor technician)
-- Signature: None
-- Approval process: Verbal approval over phone
-- Testing: In production
-
-Turbine vendor: Updates pushed automatically by vendor
-- Verification: Unknown (automatic process)
-- Signature: Unknown
-- Approval process: None (automatic)
-- Testing: In production
-
-The automatic updates from the turbine vendor were particularly concerning. We discovered them during network 
-monitoring when we saw firmware upload traffic that nobody had scheduled. Investigation revealed that TurbineTech 
-had configured automatic update push, where their system would detect outdated firmware and automatically upload new 
-versions, without notifying UU P&L or requesting approval.
-
-This had two implications:
-
-1. TurbineTech could push arbitrary code to production PLCs without authorization
-2. If TurbineTech's update server was compromised, malicious updates would be automatically installed
-
-### Software update security assessment
-
-Demonstrate vulnerabilities in vendor update mechanisms:
-
-[🐙 Software Update Security Assessment](https://github.com/ninabarzh/power-and-light/blob/main/topics/update_security_assessment.py)
-
-## Counterfeit component detection
-
-Supply chain attacks can involve counterfeit hardware components:
-
-### Types of counterfeit components
-
-1. Cloned legitimate parts
-   - Look identical to authentic parts
-   - May function normally
-   - May contain backdoors or reduced quality
-
-2. Remarked parts
-   - Low-grade parts remarked as high-grade
-   - May fail under stress
-   - Common in electronic components
-
-3. Recycled parts
-   - Removed from discarded equipment
-   - Cleaned and sold as new
-   - Reduced lifespan, potential contamination
-
-4. Malicious implants
-   - Legitimate parts with added malicious hardware
-   - Backdoors, data exfiltration, kill switches
-   - Very sophisticated, nation-state level
-
-### Detection methods
-
-Visual Inspection:
-- Check markings (font, alignment, quality)
-- Check packaging (authentic vendors use specific packaging)
-- Check documentation (authentic parts include specific docs)
-- Compare with known-authentic parts
-
-Electrical Testing:
-- Measure physical characteristics (capacitance, resistance)
-- Check performance under load
-- Compare with datasheet specifications
-- Look for abnormal behavior
-
-X-ray Inspection:
-- For integrated circuits
-- Reveals internal structure
-- Can identify added components or modifications
-- Expensive but definitive
-
-Supply Chain Verification:
-- Purchase only from authorised distributors
-- Verify distributor authorization with manufacturer
-- Keep chain of custody documentation
-- Verify serial numbers with manufacturer
-
-At UU P&L, we didn't find counterfeit components (or at least, none that we detected), but we did find concerning procurement practices:
-
-- Spare PLCs purchased from eBay (authenticity unknown)
-- Network switches purchased from grey market supplier (30% cheaper than authorised distributor)
-- Replacement SCADA server components purchased from "liquidation sale"
-
-None of these were necessarily counterfeit, but the lack of supply chain verification meant there was no way to be certain. A sophisticated attacker could have introduced compromised hardware at any of these points.
-
-## Vendor security questionnaires
-
-Before granting vendor access, assess their security practices:
-
-### Vendor security questionnaire
-
-Section 1: General Security
-
-1. Do you have a documented information security policy?
-2. When was it last reviewed?
-3. Who is responsible for security at your organization?
-4. Do you have ISO 27001 certification or equivalent?
-5. Have you had any security incidents in the past year?
-6. Do you have cyber insurance?
-
-Section 2: Access Controls
-
-7. How do you authenticate your technicians' access to customer systems?
-8. Do you require MFA for remote access?
-9. How often are credentials rotated?
-10. Do you use shared credentials or unique credentials per technician?
-11. How do you handle credential management when technicians leave?
-12. Do you log all access to customer systems?
-13. How long are access logs retained?
-
-Section 3: Network Security
-
-14. What is your remote access architecture?
-15. Do you use VPN? If so, what technology?
-16. Are your remote access systems on a separate network segment?
-17. Do you monitor your remote access systems for compromise?
-18. Have your remote access systems been penetration tested?
-19. What network security controls protect your systems?
-
-Section 4: Endpoint Security
-
-20. What operating systems do technicians use for remote access?
-21. Are these systems patched regularly?
-22. Do you use endpoint protection (antivirus, EDR)?
-23. Are technician systems on a corporate domain or standalone?
-24. Do you allow personal devices for customer access?
-25. Do you have a BYOD policy?
-
-Section 5: Change Management
-
-26. How do you approve changes to customer systems?
-27. Do you maintain backups before changes?
-28. How do you test updates before deployment?
-29. What is your rollback procedure if updates fail?
-30. How do you document changes?
-
-Section 6: Incident Response
-
-31. Do you have an incident response plan?
-32. How quickly can you detect a compromise of your systems?
-33. What is your notification process if you discover a breach?
-34. Do you have a security team or SOC?
-35. Have you conducted incident response exercises?
-
-Section 7: Supply Chain
-
-36. How do you verify authenticity of hardware you provide?
-37. Do you purchase only from authorised distributors?
-38. Do you have supply chain security procedures?
-39. How do you verify software authenticity?
-40. Do you use code signing for your software?
-
-At UU P&L, we recommended implementing this questionnaire for all vendors with system access. We also recommended 
-that contracts should require vendors to:
-
-- Re-certify answers annually
-- Notify UU P&L of any security incidents within 24 hours
-- Allow UU P&L to audit vendor security practices
-- Maintain specific security controls as contract requirements
+Supply chain and vendor access represent critical security concerns in operational technology:
 
 ### The Target-HVAC lesson
 
-The infamous Target breach of 2013 is the canonical example of vendor access gone wrong. Target (the US retailer) 
-was breached by attackers who first compromised a HVAC vendor that had remote access to Target's network for energy 
-management purposes. From the HVAC vendor's network access, attackers pivoted to Target's payment systems and 
-stole 40 million credit card numbers.
+The infamous Target breach of 2013 is the canonical example of vendor access exploitation. Target (the US retailer) was breached by attackers who first compromised an HVAC vendor that had remote access to Target's network for energy management purposes. From the HVAC vendor's network access, attackers pivoted to Target's payment systems and stole 40 million credit card numbers.
 
 The lessons for OT environments:
 
 1. Vendors with seemingly innocuous access can be pivot points
-   - HVAC systems seemed low-risk
-   - But network access is network access
-   - Attackers used it to reach payment systems
-
 2. Vendor security is your security
-   - Target's security was excellent
-   - HVAC vendor's security was not
-   - Attackers chose the easier target
+3. Network segmentation must include vendor access
+4. Monitoring vendor activity is essential
 
-3. Network segmentation matters
-   - If HVAC network was truly isolated, breach wouldn't have reached payment systems
-   - Network segmentation was insufficient
+In OT, vendor access is typically more extensive than in IT:
+- Direct PLC programming access
+- SCADA system administrator rights
+- Safety system configuration access
+- Physical access to control rooms
 
-4. Monitoring vendor activity matters
-   - If unusual activity from HVAC vendor had been detected, breach could have been stopped
-   - Vendor activity wasn't adequately monitored
+If a vendor is compromised, attackers inherit all these privileges.
 
-At UU P&L, the parallels were concerning. The turbine vendor had permanent network access, just like Target's HVAC vendor. The segmentation between the turbine vendor's access and critical systems was weak, just like at Target. Monitoring of vendor activity was minimal, just like at Target.
+### NotPetya and software updates
 
-We could describe UU P&L's vendor access architecture as "Target-HVAC-style attack waiting to happen", but that seemed a bit blunt for a professional report. We said instead: "The vendor access architecture presents similar risks to those exploited in well-documented retail sector breaches involving HVAC contractors, and should be redesigned with similar mitigations."
+The NotPetya attack in 2017 compromised Ukrainian accounting software (MEDoc), used the update mechanism to distribute malware to all customers, and caused approximately $10 billion in global damage. Several affected companies had OT systems impacted when the malware spread from IT to OT networks.
 
-They got the message.
+The lessons:
+- Software updates are attack vectors
+- Compromised vendors can push malicious updates
+- Update verification mechanisms often don't exist
+- OT environments may not detect malicious updates until physical impact occurs
 
-### Vendor access recommendations
+### Stuxnet and supply chain insertion
 
-Based on assessment findings, we provided recommendations:
+Stuxnet (2010) demonstrated supply chain compromise at the component level, potentially inserting malicious code during manufacturing or distribution of industrial control system components.
 
-Immediate (implement within 30 days)
+The lessons:
+- Hardware supply chain can be compromised
+- Counterfeit or modified components may contain backdoors
+- Detection of hardware-level compromises is extremely difficult
+- Nation-state attackers use sophisticated supply chain attacks
 
-1. Inventory all vendor access: Document every vendor with system access
-2. Disable unused access: Accounts not used in 90 days should be disabled
-3. Enable MFA: All vendor remote access must use multi-factor authentication
-4. Rotate credentials: Change all vendor credentials, establish 90-day rotation
-5. Enable logging: Forward all vendor access logs to SIEM
+## What could be added to the simulator
 
-Short-term (implement within 90 days)
+Future simulator enhancements could include supply chain and vendor security scenarios:
 
-6. Implement jump hosts: Vendors connect to jump host, not directly to systems
-7. Session recording: Record all vendor sessions for audit
-8. Time-based access: Vendor access only enabled during scheduled maintenance windows
-9. Privileged access management: Deploy PAM solution for vendor credential management
-10. Contract review: Update maintenance contracts with security requirements
+### Vendor remote access simulation
 
-Long-term (implement within 6 months)
+Simulated vendor VPN:
+- Permanent VPN connection representing vendor access
+- Default or weak credentials (admin/admin)
+- Excessive privileges (access to all systems)
+- Scripts to demonstrate lateral movement from vendor network
+- Tools showing privilege escalation via vendor access
 
-11. Network segmentation: Isolate vendor access to dedicated VLAN with strict filtering
-12. Vendor security audits: Annual security assessment of high-risk vendors
-13. Update verification: All vendor updates must be cryptographically signed
-14. Supply chain security: Procurement policy requiring authorised distributors only
-15. Continuous monitoring: Deploy tools to detect anomalous vendor activity
+Educational scenarios:
+- Vendor account compromise leading to facility compromise
+- Excessive vendor privileges enabling wide-scale access
+- Unmonitored vendor activity going undetected
+- Vendor credential theft and misuse
 
-At UU P&L, implementing these recommendations reduced vendor-related risk significantly:
+Why this would be valuable:
+- Demonstrates real-world attack vector
+- Shows why vendor access governance matters
+- Teaches vendor risk assessment
+- Illustrates supply chain security failures
 
-- Vendor accounts reduced from 47 to 12 (35 were orphaned accounts from former vendors)
-- Permanent VPN access eliminated (replaced with scheduled just-in-time access)
-- All vendor access now logged and monitored
-- Automatic firmware updates disabled (replaced with approved change management)
-- Vendor credentials now managed through PAM system (unique per technician, automatically rotated)
+### Third-party remote access platforms
 
-The turbine vendor initially objected to the changes, arguing that the new requirements would slow down emergency response. UU P&L's response was essentially: "Your permanent, unmonitored admin access is a greater risk than slightly slower emergency response, and you can have scheduled access or no access, your choice."
+Simulated TeamViewer/remote desktop:
+- Remote support software with weak configuration
+- Shared vendor credentials
+- Unlogged access sessions
+- Scripts to demonstrate unauthorised access via stolen vendor credentials
 
-The vendor chose scheduled access.
+Educational scenarios:
+- Remote support credential theft
+- Unauthorised access via legitimate remote support tools
+- Session hijacking
+- Persistence via remote access tools
 
-The fundamental insight about supply chain and vendor security is that you cannot outsource risk. When you grant vendors access to your systems, their security becomes your security. Their password management becomes your password management. Their network protection becomes your network protection. A breach of their systems can become a breach of your systems.
+Why this would be valuable:
+- Common in real OT environments
+- Frequently misconfigured
+- Demonstrates practical attack scenarios
+- Teaches remote access security assessment
 
-This doesn't mean you shouldn't use vendors (you must, nobody can do everything in-house), but it does mean that vendor management is security management. Every vendor with system access should be viewed as an extension of your security perimeter, with appropriate controls, monitoring, and accountability. Otherwise, you're spending millions on firewalls and intrusion detection while leaving the back door unlocked with a sign saying "VENDORS ENTER HERE".
+### Software update mechanism simulation
+
+Simulated update server:
+- Vendor update server for PLC firmware
+- Unsigned or weakly signed updates
+- Insecure update delivery (HTTP, no verification)
+- Scripts to demonstrate update manipulation
+- Tools showing malicious update injection
+
+Educational scenarios:
+- Man-in-the-middle update interception
+- Malicious update injection
+- Update server compromise
+- Unsigned update acceptance
+
+Why this would be valuable:
+- Shows critical supply chain vulnerability
+- Demonstrates why update verification matters
+- Teaches secure update assessment
+- Illustrates software supply chain attacks
+
+### Vendor credential management
+
+Simulated privileged access management (PAM):
+- Scenarios with shared vendor credentials
+- Scripts showing credential theft from jump hosts
+- Tools demonstrating credential reuse
+- Comparison with proper PAM implementation
+
+Educational scenarios:
+- Shared vendor password discovery
+- Credential file extraction from engineering workstations
+- Long-lived vendor credentials exploitation
+- Proper credential rotation demonstration
+
+Why this would be valuable:
+- Shows common vendor credential weaknesses
+- Demonstrates proper credential management
+- Teaches vendor access control assessment
+- Illustrates privileged access management benefits
+
+### Supply chain component verification
+
+Simulated counterfeit component scenarios:
+- Scripts to verify component authenticity
+- Tools to demonstrate supply chain verification
+- Educational content on counterfeit detection
+- Guidance on secure procurement practises
+
+Why this would be valuable:
+- Raises awareness of hardware supply chain risks
+- Demonstrates verification techniques
+- Teaches procurement security assessment
+- Illustrates physical supply chain security
+
+## The relationship to protocol vulnerabilities
+
+Vendor and supply chain security connects to protocol security in several ways:
+
+### Vendors provide the initial access
+
+Attack progression:
+
+1. Compromise vendor network or steal vendor credentials
+   - Phishing vendor employees
+   - Exploiting vendor systems
+   - Social engineering vendor support staff
+
+2. Use vendor's legitimate access to reach customer OT network
+   - Connect via vendor VPN
+   - Use vendor remote desktop access
+   - Leverage vendor's privileged credentials
+
+3. Conduct reconnaissance using industrial protocols
+   - Port scanning for PLCs and SCADA
+   - Protocol fingerprinting
+   - This is what simulator currently teaches
+
+4. Exploit protocol-level vulnerabilities
+   - Unauthenticated Modbus access
+   - Anonymous OPC UA browsing
+   - S7 memory reading
+   - This is what simulator currently demonstrates
+
+The simulator currently focuses on steps 3-4. Adding vendor access scenarios would complete the attack chain, showing steps 1-2.
+
+### Vendors deliver the malicious payload
+
+Alternative attack progression:
+
+1. Compromise vendor update infrastructure
+2. Inject malicious code into legitimate update
+3. Vendor pushes update to customer systems
+4. Malicious code executes with system privileges
+5. Attacker gains direct access to OT systems
+
+This bypasses all perimeter security because the malicious code arrives via trusted vendor update mechanism.
+
+## Ponder's perspective
+
+Ponder's testing journal included notes about supply chain security:
+
+"The simulator demonstrates what happens when attackers have network access to industrial protocols. It doesn't demonstrate how they obtain that access in the first place.
+
+"In actual facilities, vendor access is a common initial foothold. Permanent VPN connections with default credentials. Remote desktop access with shared passwords. Update mechanisms with no signature verification. Each one is a door you've deliberately left open, and whilst you trust the vendor, attackers target the vendor precisely because you trust them.
+
+"The Target breach demonstrated this perfectly. Nobody attacked Target's payment network directly. They attacked the HVAC vendor who had network access. The vendor was the easier target, and vendor access was the bridge to the real objective.
+
+"The simulator could be enhanced to include vendor access scenarios. Simulated VPNs with weak credentials. Simulated remote support sessions with insufficient logging. Simulated update mechanisms with no verification.
+
+"This would teach a critical lesson: your security depends on your vendors' security. If vendors are compromised, their access becomes the attacker's access. Protocol-level security doesn't help if attackers arrive via trusted vendor channels.
+
+"Supply chain security isn't about industrial protocols. It's about trust, governance, and the uncomfortable reality that you cannot outsource risk even when you must outsource work."
+
+## What could be taught with enhanced simulation
+
+Adding supply chain scenarios to the simulator would provide educational value:
+
+### For security professionals
+
+Assessment techniques:
+- How to inventory vendor access
+- How to assess vendor security practises
+- How to identify excessive vendor privileges
+- How to test vendor access controls
+
+Attack scenarios:
+- Vendor credential theft leading to customer compromise
+- Vendor network compromise enabling customer access
+- Malicious update injection
+- Supply chain backdoor insertion
+
+### For operators and engineers
+
+Operational security:
+- Why vendor access needs governance
+- How to detect unauthorised vendor activity
+- When to grant and revoke vendor access
+- What secure vendor access looks like
+
+Risk awareness:
+- How vendor compromise affects facility security
+- Why shared credentials are dangerous
+- Why permanent access is risky
+- How to balance operational needs with security
+
+### For management
+
+Strategic understanding:
+- Cost-benefit of vendor access governance
+- Risk of vendor compromise
+- Contract security requirements
+- Supply chain risk management
+
+Decision support:
+- When to trust vendors
+- When to require security audits
+- How to structure vendor access
+- What controls justify the cost
+
+## Future development priorities
+
+If supply chain and vendor scenarios were added to the simulator:
+
+### Priority 1: Vendor VPN access scenario
+- Educational value: Very high (common attack vector)
+- Technical complexity: Moderate
+- Integration: Excellent (provides initial access for protocol attacks)
+- Real-world relevance: Very high
+
+Implementation:
+- Simulated VPN endpoint with weak credentials
+- Scripts to discover and exploit vendor access
+- Tools to demonstrate lateral movement from vendor network
+- Comparison with properly configured vendor access
+
+### Priority 2: Software update manipulation
+- Educational value: High (critical supply chain risk)
+- Technical complexity: Moderate
+- Integration: Good (demonstrates why update security matters)
+- Real-world relevance: High
+
+Implementation:
+- Simulated PLC update server
+- Scripts to intercept and modify updates
+- Tools to demonstrate unsigned update injection
+- Comparison with cryptographically signed updates
+
+### Priority 3: Third-party remote access platforms
+- Educational value: High (extremely common in practice)
+- Technical complexity: Low
+- Integration: Good (provides alternative access path)
+- Real-world relevance: Very high
+
+Implementation:
+- Simulated TeamViewer/remote desktop scenario
+- Scripts to demonstrate credential theft
+- Tools showing session hijacking
+- Best practises for remote access management
+
+### Priority 4: Vendor security assessment framework
+- Educational value: Moderate (process-oriented)
+- Technical complexity: Low (mostly documentation)
+- Integration: Fair (complements technical scenarios)
+- Real-world relevance: High
+
+Implementation:
+- Vendor security questionnaire templates
+- Assessment checklists
+- Contract review guidance
+- Vendor risk scoring methodology
+
+## Current state and future potential
+
+The simulator currently teaches protocol-level security assuming network access exists. This is valuable and focused, but incomplete.
+
+Real-world OT security must address:
+- How attackers obtain network access (often via vendors)
+- How to assess vendor security
+- How to govern vendor access
+- How to verify supply chain integrity
+
+These are largely process and policy concerns rather than technical vulnerabilities, but they have technical components (credential management, VPN configuration, update verification) that could be simulated.
+
+Future enhancements would create a more comprehensive OT security education platform, teaching both technical protocol security and organisational vendor risk management.
+
+## The uncomfortable truth about vendor access
+
+The fundamental problem with vendor access is that you cannot eliminate it. You need vendors. Nobody can do everything in-house. Equipment vendors understand their systems better than you do. Software vendors can troubleshoot problems you can't solve. Service providers perform functions you lack capacity for.
+
+But needing vendors doesn't mean trusting them blindly. It means:
+- Governing vendor access (scheduled, not permanent)
+- Monitoring vendor activity (log everything)
+- Limiting vendor privileges (least privilege principle)
+- Verifying vendor security (questionnaires, audits)
+- Contractual accountability (liability for vendor breaches)
+
+The simulator could teach what this looks like in practice, demonstrating both weak vendor access (permanent VPN with default credentials) and strong vendor access (scheduled just-in-time access with MFA and session recording).
+
+## Conclusion
+
+The UU P&L simulator currently focuses on industrial protocol security, which is its strength. Supply chain and vendor security are outside current scope but represent critical real-world attack vectors.
+
+Future enhancements could include vendor access scenarios, demonstrating how attackers leverage trusted vendor relationships to compromise facilities. This would complete the picture of OT security, showing not just how protocols are vulnerable, but how attackers gain the access needed to exploit those protocols.
+
+Until then, supply chain security should be understood as complementary to protocol security. Both matter. Both require assessment. The simulator teaches one, standard vendor risk management frameworks teach the other, and comprehensive OT security requires both.
+
+Your firewall is only as strong as the vendor VPN that bypasses it.
+
+---
+
+Further reading:
+- [Remote Access Security](remote.md) - Wireless and remote access vulnerabilities
+- [Workstation Security](../vulnerabilities/workstation.md) - Engineering access as vendor pivot point
+- [Network Security](../vulnerabilities/network.md) - Network segmentation and vendor isolation
+
+For vendor risk management frameworks and supply chain security, consult standard IT security resources and IEC 62443 guidance. The simulator focuses on technical protocol security, assuming access exists through vendor or other channels.
