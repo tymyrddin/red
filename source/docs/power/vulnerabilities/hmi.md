@@ -4,13 +4,13 @@
 
 *Or: Why Ponder Focused on Protocols Rather Than Pixels*
 
-## The Operator's View
+## The operator's view
 
 Human-Machine Interfaces are where operators interact with industrial processes. They're the screens showing graphics of turbines spinning, tanks filling, and valves opening. They're the buttons that make things happen in the physical world. At UU Power & Light, operators spent 12-hour shifts staring at Wonderware InTouch displays, monitoring hundreds of data points and occasionally clicking buttons to acknowledge alarms or adjust setpoints.
 
 The simulator included 4 HMI operator workstations in its architecture, all running Wonderware InTouch. Ponder noted their presence in the configuration files but didn't focus his testing there. This wasn't an oversight. This was a deliberate choice about where the unique security challenges in OT actually existed.
 
-## Why HMIs Are Different (But Also Not)
+## Why HMIs are different (and also not)
 
 HMIs are typically Windows-based applications running on general-purpose computers. This meant they inherited all the security problems of Windows, plus application-specific vulnerabilities, plus configuration mistakes made during deployment. Unlike PLCs which have limited attack surfaces, HMIs are full-featured computers with web browsers, file systems, user accounts, and network connectivity.
 
@@ -24,7 +24,7 @@ In other words, HMI security is largely IT security. The vulnerabilities are fam
 
 These are all real vulnerabilities found in real industrial HMIs. They're serious, they're common, and they're well-documented in standard IT security literature. The testing methodology is standard web application security assessment, just applied to industrial interfaces.
 
-## What Makes OT Security Different
+## What makes OT security different
 
 What Ponder focused on in his testing wasn't the HMI applications themselves. It was what came after: the industrial protocols that HMIs use to communicate with PLCs and SCADA systems.
 
@@ -40,7 +40,7 @@ Step 4 is where OT security becomes its own discipline. Once you have access to 
 
 That's what the simulator teaches.
 
-## The Simulator's Deliberate Focus
+## The simulator's deliberate focus
 
 The UU P&L simulator includes HMI workstations in its architecture, but doesn't implement HMI application vulnerability testing. Instead, it assumes the attacker has already compromised an HMI (or gained network access through some other means) and focuses on what comes next:
 
