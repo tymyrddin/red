@@ -15,6 +15,7 @@ tail or the glint of a scanner, and protect your treasures before the danger rea
    :includehidden:
    :caption: Explore and understand the wild:
 
+   uu-pl.md
    fox-and-falcon.md
    reverse-engineering.md
    exfil-and-exit.md
