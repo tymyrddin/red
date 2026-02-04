@@ -355,6 +355,6 @@ The best safety system test is often the one you don't perform, as long as you c
 Further reading:
 - [PLC Security](../vulnerabilities/plc.md) - Testing production control systems
 - [Network Security](../vulnerabilities/network.md) - Architecture assessment
-- [Detection Testing](detection.md) - Monitoring security
+- [Detection Testing](../exploitation/detection.md) - Monitoring security
 
 For safety system standards and functional safety, consult IEC 61508, IEC 61511, and IEC 62443. The simulator focuses on security implications of safety systems, not functional safety design.
