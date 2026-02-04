@@ -1,483 +1,198 @@
-# Network security assessment
+# Network security assessment: Discovering what is listening
 
-Testing the walls that were supposed to keep attackers out.
+*Or: How Ponder Mapped The Attack Surface*
 
-The Patrician once observed that Ankh-Morpork's city walls were primarily psychological barriers, their effectiveness depending more on the shared belief that they meant something than on their actual structural integrity. Network segmentation in OT environments often works on precisely the same principle. Everyone agrees that the SCADA network is "isolated" from the business network because there's a firewall between them, and that firewall has rules that someone wrote down once in 2009. Whether those rules actually prevent anything useful is a question nobody particularly wants to answer.
+## The Network as It Actually Exists
 
-Network security assessment in OT is where the comfortable fictions of network architecture meet the uncomfortable reality of what packets actually do. It's the process of determining whether the network is genuinely divided into security zones or merely into administrative conveniences, whether the firewalls are filtering based on security requirements or based on what seemed annoying to block at the time, and whether your "air-gapped" system is actually air-gapped or just very reluctant to admit it has a Wi-Fi adapter.
+Network diagrams, Ponder had learnt, were aspirational documents. They showed how networks were meant to be configured, with neat segmentation, carefully labelled VLANs, and firewalls drawn as impenetrable walls. Reality was invariably messier.
 
-The stakes here are somewhat higher than in IT. A VLAN hopping attack that gives you access to the business network might let you steal emails. The same attack on an OT network might let you adjust the recipes for the chemical mixing process. The business network's response would be "my inbox is compromised", the OT network's response might be "my facility is evacuated and there's a rainbow-coloured cloud drifting towards the city".
+The UU P&L simulator represented a simplified but realistic industrial network: multiple PLCs on various ports, a SCADA server providing supervisory control, and no meaningful network segmentation whatsoever. Everything was on localhost, port 127.0.0.1, which meant everything could talk to everything else.
 
-## The network as it exists versus the network as documented
+This wasn't a simulator limitation. This was representative of many actual industrial facilities, where "network segmentation" meant different port numbers and the earnest hope that attackers wouldn't notice.
 
-At UU P&L, the official network diagram showed a beautifully segmented architecture. The SCADA network (VLAN 10) was 
-isolated from the historian network (VLAN 20), which was separated from the engineering workstation network (VLAN 30), 
-which was distinct from the business network (VLAN 40). Each VLAN had carefully chosen IP ranges. Someone had even 
-colour-coded them.
+## Reconnaissance: What is actually listening?
 
-What the diagram didn't show was that all four VLANs were configured on every switch in the facility, with every 
-port configured as a trunk port "for flexibility", and that the "firewall" between them was actually just a Linux 
-box running iptables with a default policy of ACCEPT that someone had added three years ago "temporarily" while 
-troubleshooting a connectivity issue.
+The first step in any network assessment is determining what's actually there. Theory and documentation are useful, but port scanning provides truth.
 
-Start by determining what the network actually looks like, not what the diagram claims it looks like:
+### Port scanning the simulator
 
 ```bash
-# Discover actual network topology with LLDP/CDP
-sudo nmap -sU -p 161 --script snmp-interfaces 192.168.10.0/24
+# Basic TCP port scan
+nmap -sT 127.0.0.1 -p 1-65535
 
-# Map VLAN configuration
-sudo nmap --script broadcast-dhcp-discover
-
-# Identify routing between supposedly separate networks
-traceroute -I <target_in_different_segment>
+# Results:
+# 102/tcp   open  S7 (Reactor PLC)
+# 103/tcp   open  S7 (Safety PLC)
+# 4840/tcp  open  OPC UA (Primary SCADA)
+# 4841/tcp  open  OPC UA (Backup SCADA)
+# 10502/tcp open  Modbus TCP (Turbine PLC)
+# 10503/tcp open  Modbus TCP (Safety PLC)
+# 10504/tcp open  Modbus TCP (Reactor PLC)
+# 44818/tcp open  EtherNet/IP (Turbine PLC)
 ```
 
-Document every route between supposedly isolated segments. These are either legitimate documented crossings (maintenance access, data diodes, etc.) or they're unintentional bridges that nobody wants to talk about but everyone relies upon.
+Eight ports, four protocols, multiple PLCs. Each port represented an attack surface. Each protocol had its own characteristics and vulnerabilities.
 
-## Network segmentation validation
+### Protocol fingerprinting
 
-True network segmentation means that if someone compromises a system in Zone A, they cannot easily move to Zone B. False network segmentation means that Zone A and Zone B are different colours on the network diagram.
+Simply knowing ports were open wasn't sufficient. Confirming what protocols were actually running required protocol-specific probing:
 
-The Purdue Model, that lovely hierarchical structure that everyone references in their security policies, assumes that networks are segmented into levels with strict controls between them. Level 0 (field devices) can only talk to Level 1 (controllers), which can only talk to Level 2 (supervisory systems), and so on up to Level 5 (corporate network). In practice, of course, the field device has an embedded web server that the plant manager checks from his laptop on the corporate network, the controller has a direct connection to the engineering workstation for "efficiency", and the supervisory system has a VPN tunnel to the vendor's support centre because that was easier than training local staff.
-
-Test segmentation systematically:
-
-### Verify physical segmentation
-
-If networks are claimed to be on separate physical infrastructure, verify this. At one facility, the "isolated" SCADA network and the business network were on different VLANs but the same physical switches, meaning a single power supply failure would take down both.
-
-### Test VLAN segmentation
-
-VLANs are convenient administrative divisions, not security boundaries. They're like announcing that everyone with surnames A through M must use the north door and everyone with surnames N through Z must use the south door. It's organised, but it's not secure.
-
-Try VLAN hopping attacks with [Yersinia](https://github.com/tomac/yersinia):
-
+S7 Protocol (Ports 102, 103):
 ```bash
-# DTP (Dynamic Trunking Protocol) exploitation
-sudo yersinia -G  # GUI mode
+# Using nmap's s7-info script
+nmap -p 102 --script s7-info 127.0.0.1
 
-# Or command line for switch spoofing
-sudo yersinia -I  # Interactive mode
-# Select DTP protocol and enable trunking
+# Or using testing scripts
+sudo python scripts/vulns/testing-turbine-control-plcs.py
 ```
 
-The double-tagging attack is particularly elegant in its simplicity. You send a packet with two VLAN tags. The first switch strips the outer tag (as switches do) and forwards it. The second switch sees what it thinks is a normal tagged packet and forwards it to the target VLAN. It's like writing an address on an envelope, putting that envelope in another envelope with a different address, and relying on the postal service's habit of only checking the outermost envelope.
+Result: Confirmed S7comm protocol, PLC model S7-400, no authentication required.
 
-### Test inter-VLAN routing
-
-Even if VLANs are properly isolated at Layer 2, they're often connected at Layer 3 through routers or Layer 3 switches. Check whether routing between VLANs is appropriately filtered:
-
+Modbus TCP (Ports 10502-10504):
 ```bash
-# From one VLAN, try to reach hosts in other VLANs
-ping <ip_in_different_vlan>
-nmap -Pn -p- <ip_in_different_vlan>
+# Using nmap's modbus-discover script
+nmap -p 10502 --script modbus-discover 127.0.0.1
 
-# Check for unexpected routing
-ip route show
-netstat -rn
+# Or using testing scripts
+python scripts/vulns/modbus_coil_register_snapshot.py
 ```
 
-At UU P&L, the routing table showed that while the SCADA VLAN couldn't route directly to the business network, it 
-could route to the engineering VLAN, which could route to the DMZ, which could route to the business network. It was 
-a three-hop journey instead of a direct connection, which made everyone feel better even though the security benefit 
-was purely psychological.
+Result: Confirmed Modbus TCP, unit IDs 1, 2, and 10, complete read access.
 
-## Firewall rule analysis
-
-Industrial firewalls often start with good intentions. Someone writes a ruleset based on actual requirements, documents what each rule does, and implements a change control process. Six months later, the ruleset has accumulated exceptions for "temporary" projects, workarounds for systems that "don't work properly" with strict filtering, and rules nobody understands but nobody dares delete because "something might break".
-
-The end result often resembles the Ankh-Morpork legal code, layers upon layers of modifications and exceptions that nobody can fully comprehend but everyone fears changing.
-
-### Document the current ruleset
-
-Before testing firewall effectiveness, understand what rules exist:
-
+OPC UA (Ports 4840, 4841):
 ```bash
-# For accessible network devices
-nmap --script firewall-bypass <firewall_ip>
-
-# Test what's actually blocked
-nmap -sS -p- <target_behind_firewall>
-nmap -sT -p- <target_behind_firewall>  # Different scan type
-hping3 -S <target_behind_firewall> -p 80  # Crafted packets
+# Using testing script
+python scripts/vulns/opcua_readonly_probe.py
 ```
 
-### Test for rule shadowing
+Result: Port 4840 allows anonymous access, port 4841 requires certificates.
 
-Rule shadowing occurs when an earlier rule makes a later rule unreachable. Imagine a ruleset that says "block all traffic from 192.168.1.0/24" on line 10 and "allow traffic from 192.168.1.50 on port 443" on line 20. The second rule is shadow, permanently hidden behind the first rule like a short person standing behind a tall person in a photograph.
-
-### Test for protocol filtering bypass
-
-Many OT firewalls filter based on port numbers rather than deep packet inspection. They'll block port 22, confident they've stopped SSH, not realising you can run SSH on port 443 or port 53 or port 80 or any other port that is allowed through.
-
-Test protocol filtering with [Scapy](https://scapy.net/):
-
-```python
-from scapy.all import *
-
-# Create packets that look like allowed protocols
-# but carry different data
-packet = IP(dst="target_ip")/TCP(dport=80)/Raw(load="SSH-2.0-OpenSSH_7.4")
-send(packet)
-
-# Test fragment handling
-send(fragment(packet))
-
-# Test protocol encapsulation
-packet = IP(dst="target_ip")/GRE()/IP(dst="internal_ip")/TCP(dport=22)
-send(packet)
-```
-
-At UU P&L, the firewall blocked all traffic to the SCADA network except for Modbus TCP (port 502) and HTTP (port 80). 
-This seemed secure until we discovered that the embedded devices accepted SSH connections on port 80 if you sent the 
-right handshake, at which point the web server would politely step aside and let the SSH daemon take over.
-
-## Protocol filtering effectiveness
-
-OT networks carry protocols that were designed when "security" meant "physical security" and "access control" meant "a lock on the computer room door". These protocols often have no authentication, no encryption, and no validation that commands are coming from legitimate sources.
-
-Modern security devices attempt to filter these protocols, checking that Modbus traffic actually looks like Modbus and that DNP3 packets follow the specification. In practice, these filters are often either too strict (blocking legitimate traffic) or too lenient (allowing obvious attacks).
-
-### Test protocol validation
-
-If the firewall claims to do deep packet inspection of OT protocols, test whether it actually validates them:
-
-```python
-# Using Scapy for malformed protocol testing
-from scapy.all import *
-from scapy.contrib.modbus import *
-
-# Send malformed Modbus packet
-malformed = IP(dst="target")/TCP(dport=502)/ModbusADURequest(
-    transId=1234,
-    unitId=1,
-    funcCode=0xFF  # Invalid function code
-)
-send(malformed)
-
-# Test oversized packets
-large = IP(dst="target")/TCP(dport=502)/ModbusADURequest(
-    transId=1234,
-    unitId=1
-)/Raw(load="A"*10000)
-send(large)
-```
-
-Many OT-aware firewalls will happily pass malformed packets that crash the target device, not because they're malicious but because they assume that if it uses port 502 and has bytes that vaguely resemble Modbus, it must be fine.
-
-## Intrusion detection and prevention system bypass
-
-IDS and IPS systems in OT environments face a difficult challenge. They must detect attacks without generating so many false positives that operators disable them, but they must also avoid false negatives that let real attacks through. The signal-to-noise ratio in OT networks is often terrible, with legitimate operational activities that look suspiciously like attacks.
-
-At UU P&L, the IDS generated an average of 3,000 alerts per day, of which approximately 2,995 were false positives 
-caused by normal SCADA operations that the IDS didn't understand. After six months, operators had learned to ignore 
-all IDS alerts, at which point the system was providing no security benefit whatsoever but was still consuming 
-network bandwidth and computing resources.
-
-### Test signature-based detection
-
-Signature-based IDS/IPS systems look for known attack patterns. They're like security guards who've been given photographs of known criminals, they're very good at catching those specific people but utterly useless against anyone new.
-
-Test evasion with fragmentation:
-
-```python
-from scapy.all import *
-
-# Fragment packets to evade signature matching
-attack = IP(dst="target")/TCP(dport=502)/"ATTACK_SIGNATURE"
-frags = fragment(attack, fragsize=8)
-send(frags)
-```
-
-### Test timing-based evasion
-
-Many IDS systems look for rapid sequences of suspicious activity. Slow down your reconnaissance enough, and you'll slip under their temporal threshold:
-
+EtherNet/IP (Port 44818):
 ```bash
-# Very slow scanning
-nmap -T0 -sS <target>
-
-# Add random delays between probes
-nmap --scan-delay 10s <target>
+# Using testing script
+python scripts/vulns/ab_logix_tag_inventory.py
 ```
 
-This is less effective if the IDS correlates events over longer time periods, but many OT IDS systems are configured for short time windows to reduce memory usage and processing requirements.
+Result: Confirmed CIP protocol, tag enumeration available, 18 tags exposed.
 
-### Test protocol-specific evasion
+## Network architecture discoveries
 
-OT protocols often have multiple valid ways to express the same command. An IDS signature that looks for "write to address 0x1000" might miss a command that writes to "40001" (the Modbus notation for the same address):
+Testing the simulator revealed several architectural patterns common in industrial networks:
 
-```
-# PSEUDOCODE – illustrates protocol-level evasion concepts
+### No authentication at the network layer
 
-# Function code 05: Write Single Coil
-WRITE_SINGLE_COIL(address=0, value=ON)
+None of the protocols required network-level authentication. If you could reach the port, you could interact with the protocol. There were no:
+- VPN requirements
+- Certificate-based network access
+- 802.1X port authentication
+- Network admission control
 
-# Function code 15: Write Multiple Coils
-WRITE_MULTIPLE_COILS(start_address=0, values=[ON])
-```
+The security model was "physical access to the network provides logical access to everything".
 
-Both commands achieve roughly the same result, but IDS signatures often only catch one variant.
+### Multiple protocols per device
 
-## Wireless security assessment
+Several devices supported multiple protocols simultaneously:
+- Turbine PLC: Modbus TCP (10502) + EtherNet/IP (44818)
+- Reactor PLC: S7 (102) + Modbus TCP (10504)
 
-Wireless networks in OT environments exist in a perpetual state of denial. The security policy says "no wireless networks in OT zones", the network diagram shows no wireless networks, and the site security checklist confirms "no unauthorised wireless access points". Meanwhile, three engineers have deployed Wi-Fi access points "temporarily" for their tablets, the maintenance contractor installed a wireless bridge to avoid running cables, and half the "wired" sensors are actually using wireless backhaul that nobody documented.
+This wasn't redundancy for security. This was integration necessity. Different systems needed different protocols, so devices supported multiple protocols simultaneously. Each protocol was another attack surface.
 
-At UU P&L, official policy forbade wireless networks in production areas. In reality, there were 17 wireless access 
-points within the SCADA zone, of which four were using WEP encryption (which hasn't been secure since approximately 
-2001), seven were using WPA2 with the password "password123", three were completely open, two were rogue access points 
-from staff personal devices, and one was actually a wireless bridge installed by a contractor who'd left the company 
-five years ago and nobody knew how to log into anymore.
+### Non-standard ports (sometimes)
 
-### Discover wireless networks
+The Modbus implementations used non-standard ports (10502+ instead of the standard 502). This provided two benefits:
+1. Avoided requiring root privileges for port binding
+2. Made the services slightly less obvious to casual port scanning
 
-Before you can assess wireless security, you need to know what wireless networks exist:
+However, "slightly less obvious" was not a security control. Any attacker running a full port scan would discover them immediately.
 
-```bash
-# Scan for wireless networks
-sudo airmon-ng start wlan0
-sudo airodump-ng wlan0mon
+The S7 protocol still used the standard port 102, which required elevated privileges to bind. This was unavoidable for S7 compatibility.
 
-# Look for hidden SSIDs
-sudo airodump-ng -c <channel> --bssid <ap_mac> wlan0mon
+### Everything on localhost
 
-# Identify rogue access points by examining MAC OUI
-# and comparing to authorised vendors
-```
+The simulator ran everything on 127.0.0.1, which meant:
+- No actual network segmentation
+- No firewall rules between services
+- Complete connectivity between all components
 
-Pay particular attention to access points using OT device manufacturers' default SSIDs or located in places that shouldn't have wireless coverage.
+This represented the worst case: an attacker who had gained access to a system on the OT network could reach everything. In a properly segmented network, the turbine PLC network would be separate from the reactor PLC network, which would be separate from the SCADA server network.
 
-### Test encryption strength
+But "properly segmented" networks were rarer than network diagrams suggested.
 
-If you find wireless networks (and you will), assess their encryption:
+## What the network layout reveals
 
-```bash
-# Capture handshake for WPA/WPA2
-sudo airodump-ng -c <channel> --bssid <ap_mac> -w capture wlan0mon
+The reconnaissance scripts (in `scripts/recon/` and `scripts/vulns/`) demonstrated what an attacker could learn:
 
-# Deauth clients to force re-authentication (if authorised)
-sudo aireplay-ng -0 5 -a <ap_mac> wlan0mon
+### Device inventory
+- 3 PLCs (turbine, reactor, safety)
+- 2 SCADA servers (primary, backup)
+- 4 protocols (S7, Modbus, OPC UA, EtherNet/IP)
 
-# Test password strength offline
-aircrack-ng -w /path/to/wordlist capture.cap
-```
+### Protocol capabilities
+- S7: Complete memory access, programme download
+- Modbus: Full register/coil access
+- OPC UA: Anonymous browsing (primary), authenticated (backup)
+- EtherNet/IP: Tag enumeration and access
 
-For WEP (which you shouldn't find, but probably will), the process is even simpler:
+### Attack surface
+Every open port was a potential entry point. Every protocol that lacked authentication was exploitable. The reconnaissance revealed:
+- 6 ports with no authentication (S7, Modbus, OPC UA primary, EtherNet/IP)
+- 2 ports with authentication (OPC UA backup, technically)
+- Complete visibility into all protocols
 
-```bash
-# Capture IVs
-sudo airodump-ng -c <channel> --bssid <ap_mac> -w wep wlan0mon
+## Network reconnaissance scripts
 
-# Generate traffic if network is idle
-sudo aireplay-ng -3 -b <ap_mac> wlan0mon
+The simulator supports several reconnaissance approaches:
 
-# Crack WEP (usually takes minutes)
-aircrack-ng wep.cap
-```
+[Raw TCP probing](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/raw-tcp-probing.py):
+Basic connectivity testing to confirm ports are open and responsive.
 
-Finding WEP in 2024 is like finding someone still using a cylinder lock in a world that's moved on to card access. It's not just outdated, it's actively negligent.
+[Modbus identity probe](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/modbus_identity_probe.py):
+Extracts device identity information via Modbus Function Code 43.
 
-### Test wireless segmentation
+[Turbine reconnaissance](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/turbine_recon.py):
+Comprehensive Modbus reconnaissance of turbine PLCs.
 
-Even if wireless encryption is strong, verify that wireless clients can't access systems they shouldn't:
+[OPC UA connection test](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/connect-remote-substation.py):
+Tests OPC UA connectivity and security configuration.
 
-```bash
-# Once connected to wireless network
-nmap -sn <ot_network_range>
-nmap -p- <critical_system>
-```
+All scripts are read-only reconnaissance, demonstrating what information is available without making any changes.
 
-Wireless networks that bridge directly into critical OT segments without additional authentication or filtering are gift-wrapped attack vectors.
+## The security model (lack thereof)
 
-## Switch security assessment
+The network architecture demonstrated several security anti-patterns:
 
-Network switches, those humble boxes that everyone takes for granted, are often the weakest link in OT network security. They're assumed to be secure because they're infrastructure rather than endpoints, they're rarely patched because "switches don't get hacked", and they're configured with default settings because "changing switch configuration might break something".
+### Trust through obscurity
+"Nobody knows these devices are here, so they're secure." Except port scanning reveals everything in seconds.
 
-### Test port security
+### Protocol diversity as security
+"We use multiple protocols, so it's harder to attack." Except each protocol is well-documented, and tools exist for all of them.
 
-Port security is supposed to limit which MAC addresses can connect to which switch ports. It's like a bouncer checking names against a guest list, except the bouncer is easily confused and the guest list was written in 2008.
+### Network access equals authorisation
+"If you're on the network, you're trusted." This worked when networks were physically isolated. It fails catastrophically when networks are interconnected.
 
-```bash
-# Test MAC address spoofing
-sudo macchanger -m <authorised_mac> eth0
-# Then reconnect and test access
+## The realistic assessment
 
-# Test MAC flooding
-sudo macof -i eth0
-# Watch if switch fails open (becomes a hub)
-```
+Testing the simulator's network provided several uncomfortable insights:
 
-MAC flooding attacks overwhelm the switch's MAC address table, causing it to fail open and broadcast all traffic to all ports. Suddenly your switched network becomes a hub, and everyone can see everyone else's traffic. It's like a security guard getting so confused about who's allowed where that they just open all the doors and hope for the best.
+Industrial networks are flat: Devices can typically reach each other. Segmentation exists in diagrams more than in practice.
 
-### Test VLAN configuration
+Protocols lack authentication: Most industrial protocols were designed assuming network access was controlled through other means. Those means often don't exist.
 
-Switch VLAN configuration is where theory meets implementation, and the results are often disappointing:
+Everything is discoverable: Port scanning, protocol fingerprinting, and service enumeration reveal the complete attack surface in minutes.
 
-```bash
-# Use Yersinia for VLAN hopping tests
-sudo yersinia -G
+Defence in depth doesn't exist: There's usually one layer of defence (network access), and once breached, everything is accessible.
 
-# DTP (Dynamic Trunking Protocol) attacks
-# VTP (VLAN Trunking Protocol) attacks
-# STP (Spanning Tree Protocol) attacks
-```
+The only realistic security measures are:
+- Proper network segmentation (actually enforced, not just diagrammed)
+- Firewall rules restricting protocol access
+- Network monitoring to detect reconnaissance
+- Accepting that protocols themselves provide no security
 
-[Yersinia](https://github.com/tomac/yersinia) is specifically designed for Layer 2 attacks. It's named after the bacteria that causes plague, which gives you some idea of how its authors viewed switch security.
+Ponder's final note in his testing journal: "The network is the security boundary. Unfortunately, the network boundary is porous, poorly defined, and often non-existent. Once you're on the OT network, you're effectively trusted by everything. This is not a technology problem that can be patched. This is an architectural reality that must be defended around."
 
-### Test Spanning Tree Protocol manipulation
+Further Reading:
+- [Reconnaissance Scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/README.md) - Network discovery and enumeration
+- [Vulnerability Scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/README.md) - Protocol-specific testing
+- [Protocol Integration](https://github.com/ninabarzh/power-and-light-sim/tree/main/docs/protocol_integration.md) - How protocols are implemented
 
-STP prevents loops in switched networks. It's also exploitable if switches accept STP messages from unauthorised sources:
-
-```bash
-# Yersinia STP attack
-# Claim to be root bridge with high priority
-# Potentially cause network topology changes or DoS
-```
-
-At UU P&L, we demonstrated that an attacker could send STP messages claiming to be a more authoritative bridge, 
-causing the network to reconfigure its topology. All traffic would then route through the attacker's device for 
-inspection or modification. The network team insisted this wasn't a real vulnerability because "nobody would think to 
-do that". They were less confident after we actually did it.
-
-### Test 802.1X authentication
-
-If the network uses 802.1X for port-based authentication (it probably doesn't, but if it does), test whether it's properly configured:
-
-```bash
-# Test for EAP downgrade attacks
-sudo eaphammer --interface eth0 --creds
-
-# Test certificate validation
-# Connect with self-signed certificate
-```
-
-Many 802.1X implementations don't properly validate certificates, allowing attackers to impersonate the authentication server and capture credentials.
-
-## Routing and access control lists
-
-Access Control Lists (ACLs) on routers are the last line of defence for network segmentation, or the first, depending on your perspective. They're lists of rules saying which traffic is allowed and which isn't, implemented on devices that process millions of packets per second and therefore need to make decisions very quickly.
-
-The problem with ACLs in OT environments is that they accumulate like sedimentary rock. Each layer represents some moment in time when someone needed to add an exception, and nobody dares remove old rules because "something might break". The result is often hundreds of rules, many of which contradict each other or are so broad they're meaningless.
-
-### Document ACL structure
-
-If you have access to router configurations:
-
-```bash
-# Cisco
-show ip access-lists
-show run | include access-list
-
-# Juniper  
-show configuration firewall
-show firewall filter
-```
-
-Look for:
-
-* Overly broad permit rules (permit ip any any)
-* Rules that permit RFC1918 addresses from external interfaces
-* Rules that haven't been hit in years (check hit counts)
-* Rules that conflict with earlier rules
-* Rules with comments like "temporary" or "delete after testing"
-
-### Test ACL effectiveness
-
-From different network segments, test what traffic actually gets through:
-
-```bash
-# TCP connect scan (least evasive)
-nmap -sT -p- <target>
-
-# SYN scan (more stealthy)
-sudo nmap -sS -p- <target>
-
-# Fragmented packets
-sudo nmap -f <target>
-
-# Specific protocol tests
-sudo hping3 -S <target> -p 80
-sudo hping3 -U <target> -p 161  # UDP
-```
-
-### Test for ACL bypass via source routing
-
-Some older routers honour source routing options, allowing attackers to specify the path packets should take:
-
-```python
-from scapy.all import *
-
-# Loose source routing
-packet = IP(dst="target", options=IPOption_LSRR(
-    routers=["intermediate_router", "target"]
-))/ICMP()
-send(packet)
-```
-
-This should be blocked by modern routers, but "should be" and "is" are different things in OT networks.
-
-## Man-in-the-middle testing
-
-If network segmentation, filtering, and access controls are all inadequate, the next question is whether an attacker who's achieved a network position can intercept and modify traffic.
-
-### ARP poisoning
-
-ARP poisoning is the classic man-in-the-middle attack for local networks. You tell the victim that you're the gateway, you tell the gateway that you're the victim, and all traffic flows through you:
-
-```bash
-# Using Ettercap
-sudo ettercap -T -M arp:remote /<victim_ip>// /<gateway_ip>//
-
-# Or for more control
-sudo arpspoof -i eth0 -t <victim_ip> <gateway_ip>
-sudo arpspoof -i eth0 -t <gateway_ip> <victim_ip>
-# Don't forget to enable IP forwarding
-echo 1 > /proc/sys/net/ipv4/ip_forward
-```
-
-[Ettercap](https://www.ettercap-project.org/) is a comprehensive suite for MITM attacks with built-in protocol dissectors for many OT protocols.
-
-### DNS spoofing
-
-If you can intercept DNS traffic, you can redirect victims to malicious servers:
-
-```bash
-# Using Ettercap with DNS spoofing
-# Edit /etc/ettercap/etter.dns
-sudo ettercap -T -M arp -P dns_spoof /<victim>// /<gateway>//
-```
-
-In OT networks, DNS spoofing can redirect HMI connections to a fake SCADA server or redirect engineering workstations to malicious update servers.
-
-### Protocol-specific MITM
-
-For OT protocols, capture and analyse traffic to understand what can be modified:
-
-```bash
-# Capture Modbus traffic
-sudo tcpdump -i eth0 -w modbus.pcap 'tcp port 502'
-
-# Analyse with tshark
-tshark -r modbus.pcap -T fields -e modbus.func_code -e modbus.data
-
-# Or use Wireshark for detailed analysis
-```
-
-At UU P&L, we demonstrated a MITM attack on Modbus traffic between the HMI and PLCs. We intercepted write commands 
-and modified register values, causing the HMI to believe it was setting one value while the PLC received a different 
-value. The operators watched their screens show normal operations while the physical process did something entirely 
-different. It was only noticeable because we'd made the modifications obvious for the demonstration, a sophisticated 
-attacker could have made subtle changes that wouldn't be detected until something failed.
-
-## The reality of network security in OT
-
-Network security in OT environments is rarely as robust as documentation suggests. The network diagram shows clean separation between zones, the security policy describes strict access controls, and the compliance checklist is all green. Meanwhile, the actual network is a tangle of legacy connections, emergency bypasses that became permanent, and "temporary" solutions that nobody quite got around to fixing.
-
-This isn't entirely the fault of the people managing these networks. OT networks evolved organically over decades, with each generation of technology added alongside (not replacing) the previous generation. The result is archaeological, layers of network infrastructure where each layer made sense at the time but the overall structure is comprehensible only to historians and the occasional engineer who was there for most of it.
-
-Your assessment should document the gaps between policy and reality, but it should also acknowledge why those gaps exist. The VLAN configuration that allows engineering workstations to access everything might violate the Purdue Model, but it exists because engineers genuinely need access to everything and nobody had time to implement granular RBAC. The wireless access point with the weak password might be technically non-compliant, but it exists because the alternative was a two-week delay in critical maintenance.
-
-Document the risks, certainly. Prioritise them based on actual exploitability and impact. But remember that you're not assessing someone's security homework, you're assessing the security of an environment where people are trying to keep physical processes running safely while simultaneously meeting production targets, compliance requirements, and budget constraints.
-
-The goal isn't perfect security (which doesn't exist). The goal is security that's good enough that an attacker would have to be quite dedicated to penetrate it, while not being so onerous that operators route around it to get their work done. That's the balance that OT security always seeks and rarely achieves, but understanding the network as it actually exists, not as it's documented, is the first step toward achieving it.
+The reconnaissance scripts demonstrate what an attacker can discover about an industrial network through non-invasive scanning and protocol enumeration.

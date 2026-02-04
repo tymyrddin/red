@@ -1,342 +1,274 @@
-# PLC security testing
+# PLC security testing: Overly trusting controllers
 
 ![PLCs](/_static/images/ot-plcs.png)
 
-Testing the brains that have no concept of security.
+*Or: How Ponder Discovered That Industrial Controllers Were Designed For A Simpler Time*
 
-Programmable Logic Controllers are the workhorses of industrial automation. They read sensors, execute logic, control actuators, and do it all in milliseconds, reliably, for decades. They're marvels of engineering designed for harsh environments, real-time performance, and absolute reliability.
+## The heart of the problem
 
-They're also, almost universally, completely insecure.
+Programmable Logic Controllers, Ponder noted in his testing journal, were marvels of engineering. They read sensors, executed logic, controlled actuators, and did it all in milliseconds, reliably, for decades. The turbine PLC at UU Power & Light had been running continuously since 1998, which was longer than most of the current staff had been employed.
 
-This isn't a criticism of PLC manufacturers. When these devices were designed, security wasn't part of the threat model. PLCs were supposed to be in locked control rooms, on isolated networks, programmed only by trusted engineers with physical access. The assumption was that if you could reach a PLC on the network, you were authorised to be there.
+They were also, he discovered, completely insecure.
 
-That assumption is now catastrophically wrong, but the PLCs remain. Testing PLC security requires understanding both what's possible and what's safe. Unlike HMI testing where you're working with familiar web technologies, PLC testing involves industrial protocols, real-time constraints, and the very real possibility of causing physical damage if you're not careful.
+This wasn't incompetence on the part of PLC manufacturers. When these devices were designed, security simply wasn't part of the specification. PLCs were meant to sit in locked control rooms, on isolated networks, programmed only by trusted engineers with physical access. The security model was straightforward: if you could reach the PLC on the network, you were authorised to be there.
 
-## Authentication mechanisms (or lack thereof)
+That assumption, Ponder reflected whilst staring at the simulator's network traffic, was now catastrophically wrong. But the PLCs remained, and someone had to test whether they could be secured. Or at least understand exactly how insecure they were.
 
-Most PLCs have minimal authentication, if any. The security model is "if you can reach me on the network, you can program me".
+## Testing the reactor PLC: S7 Protocol
 
-### PLC authentication models
+The UU P&L simulator included a Siemens S7-400 PLC controlling the alchemical reactor. Ponder started with the most basic question: would it respond at all?
 
-No authentication at all is common in older PLCs. Siemens S7-300/400, Allen-Bradley PLC-5 and SLC 500, older Modicon PLCs, and many others simply don't ask for credentials. If you can send them the right protocol messages, they'll execute your commands.
+### First contact
 
-Password protection exists in some PLCs but is often weak. The password is typically a short numeric code or simple string. Some PLCs have a single password for all access. Others have separate passwords for reading vs writing, but both are often set to defaults.
+The first test was simply attempting to connect. Using [Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication, Ponder wrote a simple [connection test](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/testing-turbine-control-plcs.py).
 
-Role-based access is found in newer PLCs like Siemens S7-1200/1500, Rockwell ControlLogix v21+, and modern Schneider PLCs. Different users can have different permissions. However, these features are often disabled because they complicate legitimate access.
-
-Physical key switches on many PLCs control whether the PLC accepts program changes. Positions typically include RUN (execute program), STOP (halt execution), and PROGRAM (accept programming). These are physical security controls, not network security controls. If someone has network access, they can often bypass key switch positions through protocol commands.
-
-### Testing authentication
-
-Testing PLC authentication is straightforward but requires appropriate tools and extreme caution. The goal is to determine what authentication exists and whether it can be bypassed, not to actually make unauthorised changes to production systems.
-
-At UU P&L, testing the turbine control PLCs (Siemens S7-315) revealed no authentication whatsoever. Using 
-[Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication we can do a 
-[🐙 status dump](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_plc_status_dump.py).
-
-This connected successfully with no authentication required. Further testing revealed the ability to [🐙 read memory 
-areas](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_read_memory.py), 
-[🐙 download the PLC program](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_readonly_block_dump.py), and 
-theoretically upload modified programs (not tested on production system).
-
-The reactor control PLCs (also Siemens S7-400) had password protection enabled. However, testing revealed the password 
-was a four-digit numeric code. Four digits means 10,000 possible combinations. 
-[🐙 Brute forcing is trivial](https://github.com/ninabarzh/power-and-light/blob/main/vulns/plc_password_bruteforce.py). 
-
-This isn't recommended on production systems (it takes time and generates traffic), but in a test environment it 
-found the password in under 20 minutes. The password was 1234, which is simultaneously predictable and depressing.
-
-## Project file download attacks
-
-Most PLCs allow downloading their programs for backup, analysis, or modification. If authentication is weak or absent, attackers can download programs containing valuable information.
-
-### What project files contain
-
-The complete control logic showing exactly what the PLC does and how it does it. IP addresses and network configurations for connected devices. Setpoints and operational parameters (temperature limits, pressure thresholds, timing values). Comments and documentation that explain the logic. Sometimes passwords or credentials embedded in the code.
-
-### Downloading PLC programs
-
-The process varies by manufacturer but the concept is consistent. Connect to the PLC using its programming protocol. 
-Issue a program download command. Receive the program data. Save it for analysis.
-
-Some PLC platforms (notably legacy Siemens S7‑300/400) permit 
-[🐙 program block upload](https://github.com/ninabarzh/power-and-light/blob/main/vulns/s7_readonly_block_dump.py) via 
-their native protocol. Others (such as Allen‑Bradley Logix) 
-[🐙 expose operational metadata](https://github.com/ninabarzh/power-and-light/blob/main/vulns/ab_logix_tag_inventory.py) 
-like tags, but not complete program logic, without proprietary engineering tools.
-
-
-At UU P&L, downloading the turbine PLC programs revealed detailed control logic including turbine startup sequences, 
-overspeed protection algorithms, temperature and vibration monitoring, emergency shutdown conditions, and integration 
-points with safety systems.
-
-The programs also contained comments (in German, because Siemens) explaining the logic. One comment translated to 
-"TODO: Add proper input validation here - currently assumes sensors always return valid values". This explained why 
-sensor failures occasionally caused unexpected PLC behaviour.
-
-## Logic upload and download testing
-
-The inverse of downloading programs is uploading them. If you can upload modified logic to a PLC, you can change 
-how it controls physical processes.
-
-### The danger of logic modification
-
-This is where PLC testing becomes genuinely dangerous. Uploading malicious or incorrect logic can cause equipment 
-damage, safety incidents, or operational disruption. This type of testing should only be done on test systems, 
-simulators, or with extensive safety precautions.
-
-### Testing approach for logic upload
-
-Do not test on production systems unless you have explicit approval, comprehensive understanding of the process, the 
-ability to immediately revert changes, and operators standing by to intervene if needed.
-
-The safe approach is to test on a spare PLC in a lab environment, use PLC simulators, or create a test environment 
-that mimics production but controls nothing physical.
-
-At UU P&L, testing was done on a spare Siemens S7-315 PLC obtained from the old brewery equipment. This PLC was 
-identical to the production turbine PLCs but wasn't connected to anything that could be damaged.
-
-The test demonstrated that uploading modified logic was possible (Illustrative pseudocode demonstrating unauthenticated PLC logic upload):
-
-```
-# Conceptual demonstration (pseudocode)
-
-# 1. Read compiled logic block from PLC (read-only)
-compiled_block = plc.read_block(block_type="OB", block_number=1)
-
-# 2. Replace block with attacker-controlled logic
-# (In practice, this logic was created using Siemens engineering tools)
-attacker_block = compiled_block_with_modified_logic
-
-# 3. Write block back to PLC
-plc.write_block(attacker_block)
-
-# 4. Restart PLC to execute new logic
-plc.restart()
+```python
+# From testing-turbine-control-plcs.py
+plc = snap7.client.Client()
+plc.connect('127.0.0.1', 0, 2)  # IP, rack, slot
 ```
 
-The upload succeeded. The PLC executed the modified logic. If this had been a production system controlling a turbine, 
-the modified logic would have controlled the turbine.
+The PLC responded immediately. No password prompt. No authentication challenge. No "are you quite sure you should be doing this?" dialogue. It simply accepted the connection and waited for commands.
 
-The demonstration for UU P&L stakeholders used a PLC connected to indicator lights. The original program made the 
-lights blink in sequence. The modified program made them blink randomly. Simple, visual, and completely harmless. 
-But it demonstrated that an attacker with network access could upload arbitrary logic to PLCs.
+"That's... concerning," Ponder muttered, making a note in his journal.
 
-## Memory manipulation
+### Extracting status information
 
-PLCs have various memory areas that can be read and written. Directly manipulating memory allows changing values without modifying the program logic.
+Once connected, Ponder tried requesting status information with a [status dump script](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_plc_status_dump.py). The PLC cheerfully provided:
+- CPU type and firmware version
+- Current operational state (RUN/STOP/MAINT)
+- System diagnostics
+- Memory usage statistics
 
-### PLC memory areas
+All without authentication. The PLC's attitude seemed to be that if you could ask the question, you were entitled to the answer.
 
-- Inputs (I) reflect the state of physical input devices. In theory read-only (reflecting real-world state), but some 
-PLCs allow forcing input values for testing.
-- Outputs (Q) control physical output devices. Writing to outputs causes immediate physical actions.
-- Flags (M) are internal memory used by the program for calculations and temporary storage.
-- Data blocks (DB) store structured data, configuration parameters, and persistent values.
-- Timers (T) and Counters (C) are specialised memory areas for timing and counting operations.
+Security implication: An attacker now knows exactly what PLC model and firmware version is present. This information is invaluable for selecting appropriate exploits or understanding system capabilities.
 
 ### Reading memory
 
-Reading memory is generally safe when performed sparingly; however, aggressive or high‑frequency polling can impact 
-PLC performance. Memory reads allow observation of live process values (sensor readings, actuator states), 
-configuration parameters, setpoints, and alarm information. This provides significant insight into system operation 
-and enables attack planning, while not directly altering the physical process.
+The next test was [reading memory areas](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py). S7 PLCs have several memory regions:
+- Process Image Input (PI/PA): Sensor values
+- Process Image Output (PO/PE): Actuator states
+- Data Blocks (DB): Structured configuration data
+- Flags (M): Internal calculation memory
 
-At UU P&L, reading turbine PLC memory revealed current sensor values (temperatures, pressures, speeds), current output 
-states (valves open/closed, pumps on/off), setpoints and configuration parameters, and alarm states and counters.
+```python
+# From s7_read_memory.py
+# Read process inputs
+data = plc.read_area(snap7.types.S7AreaPA, 0, 0, 100)
 
-This information alone is valuable for understanding operations and planning attacks, but it doesn't change physical 
-state.
+# Read process outputs
+data = plc.read_area(snap7.types.S7AreaPE, 0, 0, 100)
 
-### Writing memory
-
-Writing memory directly affects physical processes. This is dangerous and should only be done in controlled conditions.
-
-```
-# Conceptual example – DO NOT RUN ON PRODUCTION SYSTEMS
-
-# Write to output memory
-plc.write_output(address=0, value=ON)
-
-# Write to configuration data
-plc.write_datablock(db=1, offset=0, values=new_parameters)
+# Read data blocks
+data = plc.read_area(snap7.types.S7AreaDB, 1, 0, 100)
 ```
 
-At UU P&L, memory write testing was only demonstrated on the spare PLC. The test showed that writing to output memory 
-immediately changed the physical outputs (the indicator lights responded instantly). Writing to data blocks changed 
-setpoints and parameters.
+The PLC provided complete access to all memory areas. Ponder could observe real-time reactor temperatures, valve positions, setpoints, and control parameters. It was like having a window directly into the control system's brain, with no curtains.
 
-On a production system, writing to outputs could open valves, start motors, or change turbine speeds. Writing to 
-data blocks could modify temperature limits, pressure setpoints, or timing parameters. All of these could have 
-serious operational and safety consequences.
+Security implication: Complete visibility into operational state. An attacker can observe system behaviour, identify control patterns, and plan precise attacks based on actual operating conditions.
 
-## Coil and register forcing (Modbus)
+### Downloading the programme
 
-PLCs that support Modbus TCP have specific functions for forcing coils (discrete outputs) and registers (analog values). These are intended for testing and maintenance but can be exploited.
+The most significant test was [downloading programme blocks](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_readonly_block_dump.py) from the PLC.
 
-### Modbus function codes for forcing
+S7 programmes are organised into blocks:
+- OB (Organisation Blocks): Main programme logic
+- FC (Functions): Reusable subroutines
+- FB (Function Blocks): Stateful logic modules
+- DB (Data Blocks): Structured data storage
 
-- Function code 05 (Write Single Coil) forces an output to ON or OFF.
-- Function code 06 (Write Single Register) writes a value to a holding register.
-- Function code 15 (Write Multiple Coils) forces multiple outputs simultaneously.
-- Function code 16 (Write Multiple Registers) writes multiple register values.
-
-### Read coils and registers
-
-[pyModbus](https://github.com/pymodbus-dev/pymodbus) can be used for 
-[🐙 reading coils and registers](https://github.com/ninabarzh/power-and-light/blob/main/vulns/modbus_coil_register_snapshot.py)
-
-### Writing coils and registers
-
-```
-Illustrative example (pseudocode – do not run on production systems)
-
-# Force a discrete output (Modbus FC05)
-modbus.write_coil(address=0, value=ON)
-
-# Force an analog value (Modbus FC06)
-modbus.write_register(address=0, value=new_setpoint)
+```python
+# From s7_readonly_block_dump.py
+for block_type in ['OB', 'FC', 'FB', 'DB']:
+    for block_num in range(1, 100):
+        try:
+            block_data = plc.upload(block_num)
+            # Save to reports/s7_blocks/
+        except:
+            continue
 ```
 
-At UU P&L, several PLCs had Modbus gateways for integration with third-party systems. Reading coils and registers 
-provided real-time process data. The concerning discovery was that writing was also possible without authentication.
+The PLC uploaded its entire programme without complaint. Ponder now had complete access to the reactor control logic, including startup sequences, safety interlocks, alarm conditions, and control algorithms.
 
-Testing on a non-critical system (the cafeteria refrigeration, which used a small PLC with Modbus) confirmed that 
-write commands worked. Writing to `coil 0` turned the refrigeration compressor on or off. Writing to `register 0` 
-changed the temperature setpoint.
+One comment in the downloaded code (in German, because Siemens) translated to: "TODO: Add proper input validation here - currently assumes sensors always return valid values." Another simply read "Works on my machine", which was not particularly reassuring in code controlling an alchemical reactor.
 
-If the same Modbus gateway existed on turbine systems (it did), and if it allowed writes (it did), then anyone 
-with network access could force turbine outputs or change setpoints via simple Modbus commands.
+Security implication: Complete intellectual property theft and reverse engineering capability. An attacker with programme blocks can understand exactly how the system works, identify weaknesses in control logic, and craft precision attacks. This also represents theft of proprietary control algorithms.
 
-## Program execution flow analysis
+### Password "protection"
 
-Understanding how a PLC program executes helps identify vulnerabilities in the control logic itself, not just in the 
-PLC's security mechanisms.
+The simulator's reactor safety PLC had password protection enabled. Ponder tested this with a 
+[brute force demonstration](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/plc_password_bruteforce.py).
 
-### PLC scan cycle
+The password was four digits. Four digits means 10,000 possible combinations. The script (in simulated mode, for educational purposes) demonstrated that such passwords could be brute forced in minutes.
 
-PLCs execute programs in a continuous cycle:
+The actual password, when eventually found, was `1234`. Which was simultaneously predictable and depressing.
 
-1. Read inputs from physical sensors
-2. Execute program logic
-3. Update outputs to physical actuators  
-4. Handle communications
-5. Repeat
+Security implication: Weak password protection provides false confidence. Four-digit numeric passwords offer no meaningful security against automated attacks.
 
-This happens very quickly, typically every 10-50 milliseconds. Understanding this timing is important for timing-based attacks.
+Important note: The script runs in simulated mode for educational demonstration. Testing password attacks against production systems is not recommended (it takes time, generates traffic, and may trigger lockouts or alarms).
 
-### Analysing downloaded programs
+## Testing the turbine PLC: Modbus protocol
 
-Once you've downloaded a PLC program, analysing it to understand the control logic, identify critical functions, find potential vulnerabilities in logic, and locate safety-critical code.
+The turbine controller also supported Modbus TCP, a universal industrial protocol. Modbus has the advantage (from an attacker's perspective) of being even simpler than S7.
 
-Siemens programs can be analysingd with TIA Portal or STEP 7 (legally licensed). Allen-Bradley programs require RSLogix or Studio 5000. Many programs can also be reverse-engineered from binary format using various tools.
+### Reading everything
 
-At UU P&L, analysis of turbine PLC programs revealed that overspeed protection relied on a single sensor. If that sensor could be forced to report incorrect values, the PLC would shut down the turbine unnecessarily (denial of service) or fail to shut it down when needed (safety issue).
+Ponder's first Modbus test was a [complete memory snapshot](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/modbus_coil_register_snapshot.py). Modbus organises memory into:
+- Coils: Discrete outputs (ON/OFF controls)
+- Discrete Inputs: Discrete inputs (ON/OFF sensors)
+- Input Registers: Analogue sensor values (read-only)
+- Holding Registers: Analogue setpoints and parameters (read/write)
 
-The startup sequence had specific timing requirements. Steps had to complete within certain windows. If an attacker could introduce delays (by flooding the network, stressing the PLC, or other means), the startup might fail or behave unpredictably.
+```python
+# From modbus_coil_register_snapshot.py
+client = ModbusTcpClient(host="127.0.0.1", port=10502)
+client.connect()
+client.slave_id = 1
 
-## Timing attack possibilities
+# Read everything
+coils = client.read_coils(address=0, count=10)
+discrete_inputs = client.read_discrete_inputs(address=0, count=10)
+input_registers = client.read_input_registers(address=0, count=10)
+holding_registers = client.read_holding_registers(address=0, count=10)
+```
 
-Some PLC operations are timing-sensitive. Disrupting timing can cause failures or bypass safety checks.
+The PLC provided complete access. No authentication. No "read-only mode" restrictions. Every coil, every register, every sensor value, all available to anyone who could reach port 10502.
 
-### Time-of-check to time-of-use (TOCTOU)
+The script saved the complete snapshot to `reports/modbus_snapshot_<timestamp>.json`, creating a perfect record of the turbine's operational state at that moment.
 
-Some PLCs check a condition (is temperature safe?), then perform an action (open valve). If an attacker can change the condition between the check and the action, they can bypass the safety check.
+Security implication: Modbus TCP has no authentication mechanism. The protocol operates on the principle that network access equals authorisation. If you can reach the port, you can read everything.
 
-This is difficult to exploit in PLCs because scan cycles are fast, but it's theoretically possible especially with slower PLCs or very carefully timed attacks.
+### The write problem
 
-### Scan cycle disruption
+Whilst Ponder's testing focused on read-only reconnaissance (safer, and sufficient to demonstrate the vulnerabilities), Modbus also supports write operations:
+- Function Code 05: Write Single Coil (turn output ON/OFF)
+- Function Code 06: Write Single Register (change setpoint)
+- Function Code 15: Write Multiple Coils
+- Function Code 16: Write Multiple Registers
 
-If an attacker can make the PLC miss its scan cycle deadline (by flooding it with network traffic, sending malformed packets that take time to process, or exploiting algorithmic complexity in the program), the PLC might enter a fault state or behave unpredictably.
+These functions allow direct control of the physical process. An attacker with network access could:
+- Force turbine outputs (valves, motors, controls)
+- Change setpoints (speed targets, temperature limits)
+- Modify operational parameters
 
-At UU P&L, testing (on the spare PLC) showed that sending a flood of malformed S7comm packets caused the PLC to slow down its scan cycle. At extreme packet rates, the PLC eventually faulted and stopped. This was the same mechanism by which the infamous aggressive nmap scan had crashed a turbine PLC years earlier.
+No authentication required. Just send the right bytes to the right port.
 
-## Firmware extraction
+Security implication: Modbus write operations allow complete control without authentication. This is not a vulnerability in Modbus (it was never designed for untrusted networks), but it is a significant security concern when Modbus PLCs are accessible.
 
-PLC firmware contains the operating system and runtime environment. Extracting and analysing firmware can reveal vulnerabilities in the PLC itself.
+## Testing Allen-Bradley controllers: EtherNet/IP
 
-### Firmware extraction methods
+The turbine PLC also implemented EtherNet/IP (Common Industrial Protocol), used by Allen-Bradley ControlLogix systems. This protocol uses tag-based addressing rather than numeric registers.
 
-Download via programming interface if the PLC supports firmware download (some do for backup purposes).
+### Tag enumeration
 
-Physical extraction by reading flash memory chips directly (requires physical access and hardware tools).
+Ponder's [tag inventory script](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/ab_logix_tag_inventory.py) connected to the EtherNet/IP server and requested a complete tag list.
 
-Intercept firmware updates by capturing update traffic when firmware is being upgraded.
+```python
+# Simplified mode for simulator
+sock.connect(('127.0.0.1', 44818))
+# Send Register Session request
+# Receive tag list
+```
 
-Obtain from vendor websites or support portals where firmware is distributed.
+The controller provided 18 tags with complete metadata:
 
-### Firmware analysis
+```
+SpeedSetpoint         DINT    [R/W]  ← Writable control point
+PowerSetpoint         DINT    [R/W]  ← Writable control point
+CurrentSpeed          DINT    [R/O]
+CurrentPower          DINT    [R/O]
+BearingTemp           INT     [R/O]
+EmergencyStop         BOOL    [R/W]  ← Critical control
+OverspeedAlarm        BOOL    [R/O]
+...
+```
 
-Once extracted, firmware can be analysingd for hardcoded credentials, cryptographic keys, vulnerability in the firmware code itself, and understanding of PLC internal workings.
+The tag list helpfully identified which tags were writable. From an attacker's perspective, this was exactly the information needed: which control points could be modified, and what their names were.
 
-This level of analysis is beyond typical penetration testing and ventures into vulnerability research. It's mentioned here for completeness but isn't something you'd normally do during an OT security assessment.
+Security implication: Complete mapping of control points and their access permissions. An attacker now knows exactly which tags control the turbine and which are merely monitoring values. The R/W tags are, obviously, the interesting ones.
 
-At UU P&L, firmware analysis wasn't performed during the assessment. However, the firmware versions were documented and checked against known vulnerabilities. Multiple CVEs existed for those versions, and firmware updates were available but hadn't been applied.
+## What the testing revealed
 
-## Physical security considerations
+After several days of testing the simulator's PLCs, Ponder's conclusions were uncomfortable:
 
-PLC security isn't purely digital. Physical access to PLCs provides additional attack vectors.
+### No authentication by default
 
-### Physical access attacks
+None of the protocols (S7, Modbus TCP, EtherNet/IP) required authentication in their default configurations. The security model was "network isolation provides security", which worked when PLCs were genuinely isolated but fails catastrophically when networks are interconnected.
 
-Key switch manipulation can change PLC mode from RUN to PROGRAM, allowing programming without network access.
+### Complete information disclosure
 
-Memory card/SD card access on some PLCs allows copying programs or inserting malicious programs via physical media.
+All three protocols allowed complete enumeration of:
+- Device type and firmware versions
+- Control programme logic (S7)
+- Tag/register mappings
+- Current operational state
+- Configuration parameters
 
-USB ports on newer PLCs can be used for programming, firmware updates, or potentially introducing malware.
+This information enables reconnaissance for targeted attacks.
 
-Serial ports provide another programming interface, often with even less security than network interfaces.
+### Read access enables write attacks
 
-### Physical security at UU P&L
+Even "harmless" read-only access provides the intelligence needed for effective attacks. Understanding how a system operates, what its setpoints are, and how it responds to conditions is the prerequisite for disrupting it effectively.
 
-The turbine hall where PLCs were located had badge access, but the badges were shared among maintenance staff. No logging of who entered when. The PLCs themselves were in unlocked electrical cabinets. Anyone with turbine hall access could physically access PLCs.
+### No intrinsic security mechanisms
 
-The key switches on turbine PLCs were in the RUN position, which prevented local programming. However, the switches were standard DIN rail components that could be removed or defeated with basic tools.
+The protocols themselves have no security features. S7 has optional password protection (weak). Modbus has none. EtherNet/IP has none. Security must be provided by external controls (network segmentation, firewalls, access control), not by the protocols themselves.
 
-One PLC (reactor control) had a USB port exposed on the front panel. Testing with a USB drive showed the PLC would read files from it. This could potentially be exploited for malware introduction, though crafting such malware would require significant expertise.
+## The simulator as a teaching tool
 
-The recommendations included locking electrical cabinets containing PLCs, logging badge access to critical areas, considering tamper-evident seals on PLC access panels, and covering or removing unnecessary physical interfaces.
+Testing the UU P&L simulator provided a safe environment to understand these vulnerabilities without risking actual equipment. Every test was read-only reconnaissance (except the simulated brute force), demonstrating what attackers could observe and learn about industrial systems.
 
-## Testing safely (the most important section)
+The scripts in `scripts/vulns/` provide:
+- Hands-on experience with industrial protocols
+- Understanding of what authentication weaknesses look like
+- Practical knowledge of information disclosure risks
+- Foundation for understanding attack vectors
 
-Everything discussed above is technically possible. Most of it should not be done on production systems.
+Important notes for using these scripts:
 
-### Safe testing principles
+S7 protocols (port 102) require elevated privileges:
+```bash
+sudo .venv/bin/python scripts/vulns/s7_plc_status_dump.py
+sudo .venv/bin/python scripts/vulns/s7_read_memory.py
+sudo .venv/bin/python scripts/vulns/s7_readonly_block_dump.py
+sudo .venv/bin/python scripts/vulns/testing-turbine-control-plcs.py
+```
 
-Test on spare equipment whenever possible. If you have spare PLCs, use them. Set up a test environment that mirrors production but controls nothing physical.
+Modbus and EtherNet/IP run as regular user:
+```bash
+python scripts/vulns/modbus_coil_register_snapshot.py
+python scripts/vulns/ab_logix_tag_inventory.py
+```
 
-Use simulators when spares aren't available. Most PLC manufacturers provide software simulators. These allow testing protocol interactions without physical PLCs.
+All scripts save results to `reports/` directory for analysis.
 
-Read-only testing on production systems includes querying information, downloading programs for offline analysis, and observing communications. These are generally safe (with appropriate rate limiting) and provide valuable information.
+## The uncomfortable reality
 
-Limit write testing to test environments. Only perform write operations (program uploads, memory writes, output forcing) in controlled test environments where physical consequences are impossible or acceptable.
+PLCs were never designed to be secure. They were designed to be reliable, real-time, and deterministic. Security was meant to be provided by physical access control and network isolation.
 
-Get explicit approval for any testing that could affect physical systems. Document exactly what will be tested, when, and what the abort procedures are.
+Those controls have eroded. PLCs are now on networks that connect to corporate IT, to remote access systems, occasionally to the Internet. The assumption that "if you can reach the PLC, you're authorised" is no longer valid.
 
-Have rollback procedures ready. Know how to quickly revert any changes. Have backups of original programs. Have operators standing by to take manual control if needed.
+Yet the PLCs remain, running critical infrastructure, often irreplaceable, and completely insecure by modern standards. At UU P&L, every PLC tested had critical security weaknesses. None could be fixed without replacement, and replacement wasn't an option for equipment costing hundreds of thousands of pounds and requiring months of downtime.
 
-### At UU P&L, the testing approach
+The only realistic security measures are compensating controls:
+- Network segmentation to limit who can reach PLCs
+- Network monitoring to detect unauthorised access attempts
+- Application whitelisting on systems that connect to PLCs
+- Accepting the residual risk that PLCs themselves cannot be made secure
 
-Production systems: Read-only testing (program downloads, memory reads, protocol analysis). All findings documented without making changes.
+This is the reality of OT security that the simulator demonstrates. The devices themselves are insecure and will remain so. Security must be built around them, not in them.
 
-Spare PLC: Write testing (program uploads, memory writes, output forcing) demonstrated safely on equipment controlling nothing but indicator lights.
+The PLCs at real facilities like UU P&L will continue running, insecure, for years or decades more. The security team's job is to ensure that reaching those PLCs is as difficult as possible, and that unauthorised access is detected quickly.
 
-Simulators: Some testing used software PLCs to avoid any risk to production equipment.
+Perfect security isn't possible. Adequate security through defence in depth is achievable, even if imperfect and requiring constant vigilance.
 
-Documentation and video: Rather than actually exploiting vulnerabilities on production systems, capabilities were demonstrated on test equipment and documented with screenshots and video. Stakeholders could see what was possible without risking production.
+Ponder closed his testing journal and made one final note: "The PLCs trust anyone who can speak their language. Unfortunately, learning industrial protocols is not particularly difficult, and the protocols themselves are well-documented. This is not a vulnerability that can be patched. It is the fundamental design."
 
-This approach provided comprehensive assessment of vulnerabilities whilst maintaining safety and operational continuity. Not a single production system was disrupted, not a single turbine was affected, and the Archchancellor remained blissfully unaware that PLC security was being tested.
+Further Reading:
 
-## The uncomfortable truth
+- [Vulnerability Assessment Scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/README.md) - Technical details on all PLC testing scripts
+- [TESTING_CHECKLIST](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/TESTING_CHECKLIST.md) - Complete test coverage
+- [SIMULATOR_GAPS](https://github.com/ninabarzh/power-and-light-sim/tree/main/SIMULATOR_GAPS.md) - Known limitations
 
-PLCs were never designed to be secure. They were designed to be reliable, real-time, and deterministic. Security was someone else's problem, handled by network isolation and physical access controls.
-
-Those controls have failed. PLCs are now on networks that connect to corporate IT, to the internet, to vendor support systems. The assumption that "if you can reach the PLC, you're authorised" is no longer valid.
-
-Yet the PLCs remain, running critical infrastructure, often irreplaceable, and completely insecure by modern standards. At UU P&L, every PLC tested had critical security weaknesses. None could be fixed without replacement, and replacement wasn't an option for equipment that costs hundreds of thousands of euros per unit and would require months of downtime to swap.
-
-The only realistic security measures were compensating controls such as network segmentation to limit who can reach PLCs, network monitoring to detect unauthorised access attempts, application whitelisting on systems that can connect to PLCs, and accepting the residual risk that PLCs themselves cannot be made secure.
-
-This is the reality of OT security. The devices themselves are insecure and will remain so. Security must be built around them, not in them. It's not ideal, it's not what best practices recommend, but it's what's actually achievable with systems that were never designed for security and cannot be made secure without replacement.
-
-The PLCs at UU P&L will continue running, insecure, for years or decades more. The security team's job is to ensure that getting to those PLCs is as difficult as possible, and that if someone does reach them, the intrusion is detected quickly. Perfect security isn't possible. Adequate security through defence in depth is achievable, if imperfect and requiring constant vigilance.
+The scripts demonstrate real-world attack vectors against industrial controllers. All tests are read-only reconnaissance (except simulated authentication testing) but demonstrate the foundation for understanding PLC vulnerabilities.
