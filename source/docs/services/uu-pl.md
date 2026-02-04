@@ -1,4 +1,4 @@
-# OT security workshop: The UU Power & Light training programme
+# The UU Power & Light training programme
 
 *Or: How Ponder's Experience Became A Teaching Curriculum*
 
