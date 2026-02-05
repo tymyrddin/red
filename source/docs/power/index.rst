@@ -29,7 +29,7 @@ Ankh-Morpork's main supplier of electricity, hot water, and occasional mysteriou
    :caption: Related:
 
    Underfunded cybersecurity in critical infrastructure <https://indigo.tymyrddin.dev/docs/debt/underfunding>
-   Legacy systems that refuse to die @GitHub <https://indigo.tymyrddin.dev/docs/debt/legacy>
+   Legacy systems that refuse to die <https://indigo.tymyrddin.dev/docs/debt/legacy>
 
 .. raw:: html
 
