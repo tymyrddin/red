@@ -57,7 +57,7 @@ Communication skills:
 - Understanding different perspectives (security vs operations vs management)
 
 Most importantly:
-You'll understand that OT security is about people, processes, and context as much as it's about technical vulnerabilities.
+you can understand that OT security is about people, processes, and context as much as it's about technical vulnerabilities.
 
 ## The setting
 

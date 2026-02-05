@@ -10,13 +10,13 @@ Expect these to be complex. Expect things to break. Expect to learn why OT secur
 
 ## Challenge 7: Encrypt SCADA communications
 
-**The problem:** SCADA data travels in cleartext. Anyone with network access can intercept operational data, understand system behaviour, and plan attacks.
+The problem: SCADA data travels in cleartext. Anyone with network access can intercept operational data, understand system behaviour, and plan attacks.
 
-**Your goal:** Deploy OPC UA with signing and encryption. Make SCADA communications confidential and tamper-proof.
+Your goal: Deploy OPC UA with signing and encryption. Make SCADA communications confidential and tamper-proof.
 
-### What you'll do
+### What you can do
 
-**Configure OPC UA security policy:**
+Configure OPC UA security policy:
 ```python
 from components.security.encryption import OPCUACrypto, OPCUASecurityPolicy
 
@@ -28,7 +28,7 @@ policy_uri = OPCUACrypto.get_security_policy_uri(security_policy)
 message_security = MessageSecurityMode.SignAndEncrypt
 ```
 
-**Generate and distribute certificates:**
+Generate and distribute certificates:
 ```python
 from components.security.encryption import CertificateManager
 
@@ -44,13 +44,13 @@ for client in ["hmi_1", "hmi_2", "engineering_1"]:
     cert_mgr.save_certificate(cert, key, client)
 ```
 
-**Implement certificate validation:**
+Implement certificate validation:
 - Server validates client certificates
 - Client validates server certificate
 - Reject connections with invalid/expired certificates
 - Handle trust chain
 
-**Measure performance impact:**
+Measure performance impact:
 - Baseline: measure connection time, read latency, write latency without encryption
 - Encrypted: measure same operations with SignAndEncrypt
 - Calculate overhead
@@ -58,7 +58,7 @@ for client in ["hmi_1", "hmi_2", "engineering_1"]:
 
 ### Test it
 
-**Security testing:**
+Security testing:
 ```bash
 # Try to intercept traffic
 tcpdump -i any -w capture.pcap port 4840
@@ -69,7 +69,7 @@ wireshark capture.pcap
 # Should be encrypted, unreadable
 ```
 
-**Connection testing:**
+Connection testing:
 ```bash
 # Connect without certificate - should fail
 python scripts/vulns/opcua_readonly_probe.py --endpoint opc.tcp://127.0.0.1:4840
@@ -80,46 +80,46 @@ python scripts/vulns/opcua_readonly_probe.py --endpoint opc.tcp://127.0.0.1:4840
 # Connect with expired certificate - should fail
 ```
 
-**Performance testing:**
+Performance testing:
 - Measure read/write latency
 - Measure connection establishment time
 - Test under load (many simultaneous connections)
 - Is real-time performance still acceptable?
 
-**Operational testing:**
+Operational testing:
 - What happens when certificate expires?
 - Can you renew without downtime?
 - What's the emergency procedure when PKI fails?
 
-### What you'll learn
+### What you can learn
 
-**Encryption overhead:**
+Encryption overhead:
 - CPU cost of encryption/decryption
 - Memory overhead
 - Latency increase
 - May not be acceptable for hard real-time systems
 
-**Certificate lifecycle management:**
+Certificate lifecycle management:
 - Generation, distribution, installation
 - Renewal before expiry
 - Revocation when compromised
 - Backup and recovery
 - This is a full-time job in large deployments
 
-**PKI infrastructure requirements:**
+PKI infrastructure requirements:
 - Certificate Authority (even if self-signed)
 - Certificate storage and backup
 - Certificate distribution mechanism
 - Monitoring for expiring certificates
 - Revocation checking (CRL or OCSP)
 
-**Operational complexity:**
+Operational complexity:
 - More moving parts
 - More points of failure
 - More things to monitor
 - More maintenance burden
 
-**Trade-offs:**
+Trade-offs:
 - Confidentiality vs performance
 - Security vs complexity
 - Protection vs operational risk
@@ -142,13 +142,13 @@ grep -A 30 "class CertificateManager" components/security/encryption.py
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How do you handle certificate expiry without downtime?
 - What's your CA strategy (commercial, internal, self-signed)?
 - How do you revoke compromised certificates?
 - How do you handle legacy clients that don't support encryption?
 
-**Advanced options:**
+Advanced options:
 - Deploy internal PKI with proper CA
 - Implement automated certificate renewal
 - Deploy certificate monitoring and alerting
@@ -159,13 +159,13 @@ grep -A 30 "class CertificateManager" components/security/encryption.py
 
 ## Challenge 8: Implement jump host architecture
 
-**The problem:** Administrative access comes from anywhere on the corporate network. Compromised workstation = compromised OT. No centralised access control or monitoring.
+The problem: Administrative access comes from anywhere on the corporate network. Compromised workstation = compromised OT. No centralised access control or monitoring.
 
-**Your goal:** Deploy jump host (bastion) architecture. All administrative OT access flows through one controlled point.
+Your goal: Deploy jump host (bastion) architecture. All administrative OT access flows through one controlled point.
 
-### What you'll do
+### What you can do
 
-**Design the architecture:**
+Design the architecture:
 ```
 Before:
 Corporate Network ──→ Turbine PLC
@@ -182,14 +182,14 @@ Corporate Network ──→ Jump Host ──→ Turbine PLC
 Direct access: BLOCKED by firewall
 ```
 
-**Deploy jump host:**
+Deploy jump host:
 - Hardened Linux server or Windows bastion
 - Minimal software installed
 - Strong authentication (certificates or MFA)
 - Session recording enabled
 - Logging all access
 
-**Configure firewall rules:**
+Configure firewall rules:
 ```bash
 # Block direct access from corporate to OT
 iptables -A FORWARD -s 192.168.1.0/24 -d 192.168.100.0/24 -j DROP
@@ -201,14 +201,14 @@ iptables -A FORWARD -s 192.168.1.50 -d 192.168.100.0/24 -j ACCEPT
 iptables -A FORWARD -s 192.168.1.0/24 -d 192.168.1.50 -j ACCEPT
 ```
 
-**Integrate authentication:**
+Integrate authentication:
 ```python
 # Jump host authenticates using AuthenticationManager
 # Records all sessions
-# Enforces authorization before allowing connections
+# Enforces authorisation before allowing connections
 ```
 
-**Create break-glass procedure:**
+Create break-glass procedure:
 - What happens when jump host fails?
 - Emergency bypass procedure
 - Documented, audited, infrequent
@@ -217,7 +217,7 @@ iptables -A FORWARD -s 192.168.1.0/24 -d 192.168.1.50 -j ACCEPT
 
 ### Test it
 
-**Access control testing:**
+Access control testing:
 ```bash
 # Try direct access to PLC - should be blocked
 telnet 192.168.100.10 502
@@ -227,46 +227,46 @@ ssh jump-host
 telnet 192.168.100.10 502
 ```
 
-**Bypass testing:**
+Bypass testing:
 - Can you bypass jump host?
 - Spoof source IP?
 - Use different protocol?
 - Find misconfigured firewall rule?
 
-**Failure scenario testing:**
+Failure scenario testing:
 - Stop jump host service
 - Can you still access OT? (should not, except emergency)
 - Activate break-glass procedure
 - Verify emergency access works
 - Verify automatic revert
 
-**Usability testing:**
+Usability testing:
 - How does this affect operator workflow?
 - How long does it take to connect?
 - Is it practical for frequent access?
 - Do people try to work around it?
 
-### What you'll learn
+### What you can learn
 
-**Single point of failure:**
+Single point of failure:
 - Jump host down = no administrative access
 - Need high availability (redundant jump hosts)
 - Need emergency procedures
 - But emergency procedures can be abused
 
-**Centralised control benefits:**
+Centralised control benefits:
 - All access logged in one place
-- Consistent authentication and authorization
+- Consistent authentication and authorisation
 - Session recording for audit
 - Easier to monitor for abuse
 
-**Usability impact:**
+Usability impact:
 - Extra hop for every connection
 - More complex for users
 - Resistance from operators
 - Training required
 
-**Break-glass procedures:**
+Break-glass procedures:
 - Need emergency access mechanism
 - But emergency access can be abused
 - Need monitoring and audit
@@ -294,13 +294,13 @@ telnet 192.168.100.10 502
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How do you make jump host highly available?
 - What's the monitoring strategy for jump host?
 - How do you handle vendor remote access?
 - What about third-party vendors who need temporary access?
 
-**Advanced options:**
+Advanced options:
 - Deploy redundant jump hosts for HA
 - Implement PAM solution with full session recording
 - Deploy jump host in DMZ for vendor access
@@ -310,13 +310,13 @@ telnet 192.168.100.10 502
 
 ## Challenge 9: Network segmentation (IEC 62443 zones)
 
-**The problem:** Everything is on one flat network. Compromised corporate workstation = access to safety systems. No network-level isolation. One breach compromises everything.
+The problem: Everything is on one flat network. Compromised corporate workstation = access to safety systems. No network-level isolation. One breach compromises everything.
 
-**Your goal:** Design and implement zone-based architecture following IEC 62443. Separate safety from production. Isolate corporate IT from OT.
+Your goal: Design and implement zone-based architecture following IEC 62443. Separate safety from production. Isolate corporate IT from OT.
 
-### What you'll do
+### What you can do
 
-**Design zone architecture:**
+Design zone architecture:
 ```
 IEC 62443 Zones:
 
@@ -332,14 +332,14 @@ Safety Zone (parallel): Safety PLC, Safety I/O
     ↓ (Isolated, minimal conduits)
 ```
 
-**Map systems to zones:**
+Map systems to zones:
 - Level 0: Turbine sensors and actuators, reactor instrumentation
 - Level 1: Turbine PLCs, Reactor PLC
 - Level 2: SCADA servers (primary and backup), HMIs
 - Level 3: Engineering workstations, management systems
 - Safety: Safety PLC (separate zone, minimal connectivity)
 
-**Define conduits (allowed communications):**
+Define conduits (allowed communications):
 ```
 Allowed:
 - Level 2 → Level 1: SCADA reads PLC data, HMI writes setpoints
@@ -354,12 +354,12 @@ Blocked:
 Exception: Safety Zone → Level 1: Safety interlocks
 ```
 
-**Implement segmentation:**
+Implement segmentation:
 - Option 1: VLANs with Layer 3 routing and firewall
 - Option 2: Physical network separation
 - Option 3: Industrial firewalls between zones
 
-**Configure firewall rules:**
+Configure firewall rules:
 ```bash
 # Example rules (simplified)
 # Level 2 to Level 1: Allow Modbus, S7
@@ -377,7 +377,7 @@ iptables -A FORWARD -s 192.168.99.10 -d 192.168.1.0/24 -p tcp --dport 502 -j ACC
 
 ### Test it
 
-**Segmentation testing:**
+Segmentation testing:
 ```bash
 # From corporate (Level 3), try to reach PLC (Level 1) - should fail
 ping 192.168.1.10
@@ -389,53 +389,53 @@ ping 192.168.1.10
 ping 192.168.99.10
 ```
 
-**Pivot testing:**
+Pivot testing:
 - Compromise corporate workstation (Level 3)
 - Can you reach Level 2?
 - Can you reach Level 1?
 - Can you reach safety zone?
 - Where does segmentation stop you?
 
-**Operational testing:**
+Operational testing:
 - Can operators use HMI?
 - Can engineers program PLCs?
 - Can maintenance access systems?
 - What workflows break?
 
-**Legitimate cross-zone requirements:**
+Legitimate cross-zone requirements:
 - Historian needs data from all PLCs
 - Engineering needs to program PLCs
 - Vendor needs remote access
 - How do you handle these?
 
-### What you'll learn
+### What you can learn
 
-**Zone architecture is complex:**
+Zone architecture is complex:
 - Every system needs to be in a zone
 - Every communication needs to be in a conduit
 - Exceptions multiply
 - Change management becomes critical
 
-**Operational impact is huge:**
+Operational impact is huge:
 - Workflows change
 - Some things become harder
 - Need new procedures
 - Training required
 
-**Perfect segmentation is impossible:**
+Perfect segmentation is impossible:
 - Always need some cross-zone communication
 - Historian, engineering access, vendor access
 - Each conduit is a potential attack path
-- Defense in depth, not perfect isolation
+- Defence in depth, not perfect isolation
 
-**Implementation challenges:**
+Implementation challenges:
 - Existing infrastructure wasn't designed for zones
 - Retrofitting is expensive
 - Switch/firewall replacements
 - Cable runs
 - Downtime for cutover
 
-**Trade-offs everywhere:**
+Trade-offs everywhere:
 - Security vs operational flexibility
 - Isolation vs necessary communication
 - Cost vs protection
@@ -470,13 +470,13 @@ ping 192.168.99.10
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How do you handle systems that span zones (historian)?
 - What's the firewall change management process?
 - How do you test firewall rules without breaking production?
 - How do you handle new systems (which zone? which conduits)?
 
-**Advanced options:**
+Advanced options:
 - Deploy industrial firewalls with deep packet inspection
 - Implement unidirectional gateways for critical isolation
 - Deploy DMZ for vendor remote access
@@ -485,13 +485,13 @@ ping 192.168.99.10
 - Implement protocol whitelisting at firewalls
 - Deploy application-layer gateways for protocol inspection
 
-**Phased implementation:**
+Phased implementation:
 Don't try to do everything at once. Implement in phases:
 
-1. **Phase 1:** Separate corporate (Level 3) from OT (Level 1-2)
-2. **Phase 2:** Separate SCADA (Level 2) from PLCs (Level 1)
-3. **Phase 3:** Isolate safety zone
-4. **Phase 4:** Micro-segmentation within zones
+1. Phase 1: Separate corporate (Level 3) from OT (Level 1-2)
+2. Phase 2: Separate SCADA (Level 2) from PLCs (Level 1)
+3. Phase 3: Isolate safety zone
+4. Phase 4: Micro-segmentation within zones
 
 Test each phase thoroughly before proceeding.
 
@@ -499,23 +499,23 @@ Test each phase thoroughly before proceeding.
 
 If you're ambitious, implement all three:
 
-1. **Encryption:** SCADA communications are confidential
-2. **Jump host:** Administrative access is centralised
-3. **Segmentation:** Zones limit lateral movement
+1. Encryption: SCADA communications are confidential
+2. Jump host: Administrative access is centralised
+3. Segmentation: Zones limit lateral movement
 
-**The result:** Defense in depth architecture
+The result: Defence in depth architecture
 - Network segmentation limits attack surface
 - Jump host controls and monitors administrative access
 - Encryption protects data in transit
 - Compromising one layer doesn't compromise all
 
-**Test the combination:**
+Test the combination:
 - Simulate attack from corporate network
 - How far can you get?
-- Which defenses stop you?
+- Which defences stop you?
 - What's the attack path?
 
-**Understand the costs:**
+Understand the costs:
 - Implementation time (months)
 - Hardware costs (firewalls, switches, jump hosts)
 - Operational complexity

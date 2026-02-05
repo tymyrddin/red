@@ -8,7 +8,7 @@ The question: Can you remotely control turbine speed?
 
 Why it matters: Turbines are the heart of power generation. Controlling them means controlling the facility.
 
-What you'll learn: Modbus TCP protocol, reading and writing registers, control system manipulation
+What you can learn: Modbus TCP protocol, reading and writing registers, control system manipulation
 
 Where to start:
 ```bash
@@ -30,7 +30,7 @@ The question: What secrets can you steal from the reactor PLC?
 
 Why it matters: PLC logic is intellectual property. Decades of engineering expertise. Competitors want it. Nation states want it.
 
-What you'll learn: S7comm protocol, PLC memory structure, data exfiltration
+What you can learn: S7comm protocol, PLC memory structure, data exfiltration
 
 Where to start:
 ```bash
@@ -52,7 +52,7 @@ The question: What can you see in the SCADA system?
 
 Why it matters: SCADA is the eyes and ears of the facility. Complete operational visibility.
 
-What you'll learn: OPC UA protocol, tag enumeration, data access
+What you can learn: OPC UA protocol, tag enumeration, data access
 
 Where to start:
 ```bash
@@ -75,7 +75,7 @@ The question: How many different ways can you access the same system?
 
 Why it matters: Defence in depth fails when every protocol is vulnerable.
 
-What you'll learn: EtherNet/IP, protocol comparison, redundant access paths
+What you can learn: EtherNet/IP, protocol comparison, redundant access paths
 
 Where to start:
 ```bash
@@ -99,7 +99,7 @@ The question: Can you map the entire facility?
 
 Why it matters: Attack planning requires understanding the full landscape.
 
-What you'll learn: Network architecture, system relationships, comprehensive reconnaissance
+What you can learn: Network architecture, system relationships, comprehensive reconnaissance
 
 Where to start:
 ```bash
@@ -123,7 +123,7 @@ The question: Can you operate without being detected?
 
 Why it matters: Real attackers try to avoid detection. So do sophisticated pentesters.
 
-What you'll learn: Traffic analysis, rate limiting, evasion techniques
+What you can learn: Traffic analysis, rate limiting, evasion techniques
 
 Where to start:
 ```bash
@@ -146,7 +146,7 @@ The question: What's the most dramatic thing you can demonstrate?
 
 Why it matters: Sometimes you need to prove impact to get resources for fixes.
 
-What you'll learn: Attack chains, combining vulnerabilities, PoC development
+What you can learn: Attack chains, combining vulnerabilities, PoC development
 
 Where to start:
 ```bash
@@ -181,7 +181,7 @@ The question: If you found these vulnerabilities, what would you actually fix?
 
 Why it matters: Understanding remediation helps you think like both attacker and defender.
 
-What you'll explore:
+What you can explore:
 - Which vulnerabilities matter most?
 - What's actually fixable vs what's not?
 - How would you prioritise fixes?

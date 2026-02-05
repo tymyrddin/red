@@ -251,7 +251,7 @@ Demonstration requirements:
 - Discuss how this enables more sophisticated attacks
 - Timeline: how long does exfiltration take?
 
-Stakeholder translation: "We extracted your entire control programme - decades of engineering optimization - in under 5 minutes. A competitor could study this offline. A nation-state could identify exactly how to cause maximum damage while avoiding safety systems."
+Stakeholder translation: "We extracted your entire control programme - decades of engineering optimisation - in under 5 minutes. A competitor could study this offline. A nation-state could identify exactly how to cause maximum damage while avoiding safety systems."
 
 #### Example scenario 3: Multi-stage attack campaign
 
@@ -331,7 +331,7 @@ Director of Operations (Keeps things running)
 
 Chief Engineer (Built the system)
 - Cares about: Technical accuracy, system design justification, professional pride
-- Doesn't understand: Why outsiders are criticizing their engineering
+- Doesn't understand: Why outsiders are criticising their engineering
 - Will ask: "Do you understand how this system works?" "Those systems are air-gapped" "Our vendor says..."
 
 Safety Officer (Prevents accidents)
@@ -357,7 +357,7 @@ Do:
 Don't:
 - Start with methodology
 - Use protocol names without explaining them
-- List findings sequentially without prioritization
+- List findings sequentially without prioritisation
 - Assume technical background
 
 Archchancellor test: If Ridcully doesn't understand your first three sentences, you've lost the room.
@@ -373,7 +373,7 @@ Demonstration tips:
 - Narrate what's happening
 - Connect to business impact
 
-Example narration: "This video shows Turbine 2 running at normal speed - 1500 RPM. At timestamp 0:34, we send unauthenticated Modbus commands from a laptop on your network. Watch the speed increase. By 1:12, we've pushed it to 1800 RPM - well into dangerous overspeed territory. The safety systems should trigger, but we also have access to those. This attack takes under 2 minutes and requires no specialized tools or passwords."
+Example narration: "This video shows Turbine 2 running at normal speed - 1500 RPM. At timestamp 0:34, we send unauthenticated Modbus commands from a laptop on your network. Watch the speed increase. By 1:12, we've pushed it to 1800 RPM - well into dangerous overspeed territory. The safety systems should trigger, but we also have access to those. This attack takes under 2 minutes and requires no specialised tools or passwords."
 
 #### 3. Risk explanation (~5 minutes)
 
@@ -382,7 +382,7 @@ Translate technical findings into stakeholder language for different audiences:
 - Archchancellor: "If this makes the Times, the University looks incompetent. If the Patrician finds out we knew about it and did nothing, that's worse."
 - Bursar: "A successful attack could cost €2 million in equipment damage, plus €10,000 per hour in lost generation revenue. Your cyber insurance has a €500,000 deductible. Remediation costs €300,000. The math is clear."
 - Operations: "An attacker could trigger emergency shutdowns during peak demand. Restart procedures take 4 hours. You'd be explaining to the Patrician why the Palace has no power."
-- Chief Engineer: "Your design is sound for an isolated network. But this network isn't isolated anymore. We found 8 different ways in. The engineering is fine - the security model is obsolete."
+- Chief Engineer: "Your design is sound for an isolated network. But this network isn't isolated any more. We found 8 different ways in. The engineering is fine - the security model is obsolete."
 - Safety Officer: "An attacker could disable safety interlocks while manipulating turbine speeds. Your mechanical safeguards work, but if someone can bypass digital safety systems, response time increases by 40 seconds. That matters."
 - Patrician: "Three foreign intelligence services have demonstrated interest in Ankh-Morpork infrastructure. Your facility supplies power to the UU, Library, City, Palace, the Watch, and the Mint. This is not theoretical."
 
@@ -431,4 +431,4 @@ Be ready.
 
 ---
 
-"Security is rather like insurance. You're paying for something you desperately hope you'll never need." - Lady Sybil Ramkin
+"Security is rather like insurance. You're paying for something you desperately hope you will never need." - Lady Sybil Ramkin

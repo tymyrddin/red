@@ -10,35 +10,35 @@ Start here if you want quick wins or are new to OT security hardening.
 
 ## Challenge 1: Password protect the SCADA
 
-**The problem:** UU Power & Light's SCADA servers accept anonymous connections. Anyone can browse operational data.
+The problem: UU Power & Light's SCADA servers accept anonymous connections. Anyone can browse operational data.
 
-**Your goal:** Enable OPC UA authentication so only authorised clients can connect.
+Your goal: Enable OPC UA authentication so only authorised clients can connect.
 
-### What you'll do
+### What you can do
 
-**Configure security policy:**
+Configure security policy:
 - Change OPC UA from `SecurityPolicy.None` to something requiring authentication
 - Choose appropriate security policy (Basic128Rsa15, Basic256, Basic256Sha256)
 - Consider: Start with `MessageSecurityMode.Sign` before `SignAndEncrypt`
 
-**Generate certificates:**
+Generate certificates:
 - Use `encryption.py` to generate certificates for server and clients
 - Configure certificate trust (which clients are trusted?)
 - Handle certificate storage and distribution
 
-**Update server configuration:**
+Update server configuration:
 - Modify OPC UA server to require authentication
 - Configure certificate validation
 - Handle connection rejection for untrusted clients
 
-**Update client scripts:**
+Update client scripts:
 - Modify HMI and SCADA clients to present certificates
 - Handle authentication failures
 - Implement certificate renewal logic
 
 ### Test it
 
-**Security testing:**
+Security testing:
 ```bash
 # Try anonymous access - should fail
 python scripts/vulns/opcua_readonly_probe.py --endpoint opc.tcp://127.0.0.1:4840
@@ -47,31 +47,31 @@ python scripts/vulns/opcua_readonly_probe.py --endpoint opc.tcp://127.0.0.1:4840
 # Try with valid certificate - should succeed
 ```
 
-**Operational testing:**
+Operational testing:
 - Can legitimate HMI connect?
 - What happens when certificate expires?
 - Can operators still monitor systems during certificate issues?
 
-**Break it on purpose:**
+Break it on purpose:
 - Delete a certificate
 - Use expired certificate
 - Connect from unauthorised client
 - What's the operator experience when authentication fails?
 
-### What you'll learn
+### What you can learn
 
-**Certificate management is complex:**
+Certificate management is complex:
 - Generation, distribution, storage, renewal, revocation
 - PKI infrastructure requirements
 - Who manages certificates in operational environment?
 
-**What breaks:**
+What breaks:
 - Legacy clients that don't support authentication
 - Scripts and automation that assume anonymous access
 - Vendor remote access that needs reconfiguration
 - Emergency access scenarios
 
-**Trade-offs:**
+Trade-offs:
 - Security vs operational complexity
 - Certificate lifecycle management burden
 - Recovery procedures when authentication fails
@@ -94,13 +94,13 @@ find components/ -name "*opcua*.py" | head -5
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How do you handle certificate expiry without downtime?
 - What's the emergency access procedure when certificates fail?
 - How do you manage dozens or hundreds of client certificates?
 - What's the performance impact of certificate validation?
 
-**Advanced options:**
+Advanced options:
 - Implement certificate revocation checking
 - Deploy certificate management automation
 - Configure certificate-based user authentication (not just client authentication)
@@ -108,18 +108,18 @@ find components/ -name "*opcua*.py" | head -5
 
 ## Challenge 2: Implement RBAC
 
-**The problem:** Everyone who can access the network has full control. No distinction between viewers, operators, engineers, and supervisors.
+The problem: Everyone who can access the network has full control. No distinction between viewers, operators, engineers, and supervisors.
 
-**Your goal:** Create role-based access control. Operators can monitor and control. Engineers can configure. Supervisors can do safety-critical operations.
+Your goal: Create role-based access control. Operators can monitor and control. Engineers can configure. Supervisors can do safety-critical operations.
 
-### What you'll do
+### What you can do
 
-**Define roles:**
+Define roles:
 - Use `authentication.py` role system (VIEWER, OPERATOR, ENGINEER, SUPERVISOR, ADMIN)
 - Decide what permissions each role needs
 - Map roles to real operational positions
 
-**Create users:**
+Create users:
 ```python
 # Example user creation
 auth = AuthenticationManager()
@@ -128,19 +128,19 @@ await auth.create_user("engineer1", UserRole.ENGINEER, full_name="Bob Engineer")
 await auth.create_user("supervisor1", UserRole.SUPERVISOR, full_name="Alice Supervisor")
 ```
 
-**Integrate authorization checks:**
+Integrate authorisation checks:
 - Find control operations in device code (turbine speed, reactor controls, safety bypasses)
-- Add authorization checks before executing operations
-- Handle authorization failures gracefully
+- Add authorisation checks before executing operations
+- Handle authorisation failures gracefully
 
-**Assign permissions:**
+Assign permissions:
 - Map operations to permissions (PermissionType.CONTROL_SETPOINT, SAFETY_BYPASS, etc.)
 - Decide who can do what to which systems
 - Consider: Do all turbines have same permissions? Or different?
 
 ### Test it
 
-**Permission testing:**
+Permission testing:
 ```bash
 # Try to change turbine speed as operator - should succeed
 # Try to bypass safety as operator - should fail
@@ -148,35 +148,35 @@ await auth.create_user("supervisor1", UserRole.SUPERVISOR, full_name="Alice Supe
 # Try all above as engineer - which succeed?
 ```
 
-**Bypass testing:**
-- Can you circumvent authorization checks?
+Bypass testing:
+- Can you circumvent authorisation checks?
 - What if you modify the database directly?
 - What if you use protocol-level access instead of API?
 
-**Usability testing:**
+Usability testing:
 - Are permissions too restrictive?
 - Are permissions too permissive?
 - Can operators do their jobs?
 - What happens when permissions are wrong during emergency?
 
-### What you'll learn
+### What you can learn
 
-**Permission granularity is hard:**
+Permission granularity is hard:
 - Too coarse: operators have too much access
 - Too fine: constant authorization failures, unusable
 - Where's the right balance?
 
-**Where to enforce:**
+Where to enforce:
 - Client-side? Can be bypassed
 - Server-side? Every endpoint needs checks
 - Protocol-level? Most secure but most complex
 
-**Role design challenges:**
+Role design challenges:
 - Real operational roles don't map cleanly to RBAC
 - Special cases and exceptions multiply
 - Emergency scenarios need overrides
 
-**The two-person problem:**
+The two-person problem:
 - Some operations need two people
 - How do you implement that?
 - What's the usability impact?
@@ -199,13 +199,13 @@ grep -A 10 "authorize(" components/security/authentication.py
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How do you handle role changes (operator promoted to engineer)?
 - What's the approval process for permission grants?
 - How do you audit who did what?
 - What about temporary elevated privileges?
 
-**Advanced options:**
+Advanced options:
 - Implement attribute-based access control (ABAC) for more flexibility
 - Deploy time-based permissions (different access during maintenance windows)
 - Implement location-based access (only from control room)
@@ -213,33 +213,33 @@ grep -A 10 "authorize(" components/security/authentication.py
 
 ## Challenge 3: Deploy logging and auditing
 
-**The problem:** You can't detect attacks you don't log. Currently, operations happen without audit trails. When things go wrong, there's no forensic evidence.
+The problem: You can't detect attacks you don't log. Currently, operations happen without audit trails. When things go wrong, there's no forensic evidence.
 
-**Your goal:** Integrate structured logging to capture all security-relevant events.
+Your goal: Integrate structured logging to capture all security-relevant events.
 
-### What you'll do
+### What you can do
 
-**Integrate logging system:**
+Integrate logging system:
 ```python
 from components.security.logging_system import get_logger, EventSeverity, EventCategory
 
 logger = get_logger(__name__, device="turbine_plc_1")
 ```
 
-**Log security events:**
+Log security events:
 - Authentication attempts (success and failure)
 - Authorization failures
 - Configuration changes
 - All write operations (Modbus writes, OPC UA writes, S7 writes)
 - Safety system interactions
 
-**Log operational events:**
+Log operational events:
 - Setpoint changes (who, what, when, from what to what)
 - Mode changes (auto to manual, etc.)
 - Alarms and events
 - System starts and stops
 
-**Create audit trails:**
+Create audit trails:
 ```python
 await logger.log_audit(
     "Setpoint changed",
@@ -254,7 +254,7 @@ await logger.log_audit(
 
 ### Test it
 
-**Coverage testing:**
+Coverage testing:
 ```bash
 # Run your Modbus attack - is it logged?
 python scripts/exploitation/turbine_overspeed_attack.py
@@ -266,38 +266,38 @@ grep "turbine\|setpoint\|write" /path/to/logs/*.log
 # Bypass safety - is it logged?
 ```
 
-**Volume testing:**
+Volume testing:
 - How much log data is generated?
 - Is it too much? Too little?
 - Can you find relevant events?
 - How fast do logs fill disk?
 
-**Analysis testing:**
+Analysis testing:
 - Can you detect reconnaissance in logs?
 - Can you detect attack progression?
 - Can you identify attacker techniques?
 
-### What you'll learn
+### What you can learn
 
-**What to log:**
+What to log:
 - Not everything (too much noise)
 - Not too little (miss attacks)
 - Security-relevant events vs operational noise
 - Cost of logging (performance, storage, analysis)
 
-**Log analysis is hard:**
+Log analysis is hard:
 - Finding needles in haystacks
 - Signal vs noise ratio
 - Real-time detection vs forensic analysis
 - Need for SIEM/log aggregation
 
-**Audit trail requirements:**
+Audit trail requirements:
 - Who, what, when, where, why
 - Before/after values
 - Success and failure
 - Tamper protection
 
-**Performance impact:**
+Performance impact:
 - Synchronous logging slows operations
 - Asynchronous logging can lose events
 - Log rotation and retention
@@ -321,13 +321,13 @@ grep -A 10 "logging" simulation.yml
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How long do you retain logs?
 - Who has access to logs?
 - How do you protect logs from tampering?
 - How do you correlate events across systems?
 
-**Advanced options:**
+Advanced options:
 - Deploy SIEM integration
 - Implement real-time log analysis
 - Create detection rules for common attacks
@@ -337,7 +337,7 @@ grep -A 10 "logging" simulation.yml
 
 ## Common patterns across all three
 
-**The authentication spiral:**
+The authentication spiral:
 1. Add authentication
 2. Something breaks
 3. Add exception for broken thing
@@ -345,12 +345,12 @@ grep -A 10 "logging" simulation.yml
 5. Add another exception
 6. Now you have complex authentication with many exceptions
 
-**The usability problem:**
+The usability problem:
 - Secure = unusable
 - Usable = insecure
 - Finding balance requires iteration
 
-**The emergency scenario:**
+The emergency scenario:
 - All your security assumes normal operations
 - Emergencies are not normal
 - Need break-glass procedures

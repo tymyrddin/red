@@ -119,7 +119,7 @@ Provide hints sparingly. Teams should struggle initially. That is realistic. Onl
 - Team is headed down wrong path that wastes time
 - Technical issues prevent progress
 
-### Timing interventions (maybe, depending how things are going)
+### Timing interventions (maybe, depending on how things are going)
 
 At 60 minutes: "30 minutes until stakeholder presentations. Make sure you're documenting findings for non-technical audiences."
 
@@ -158,7 +158,7 @@ Opening position: "Ah yes, security. Very important. But we've run this facility
 Typical questions:
 - "Have we actually been attacked, or is this theoretical?"
 - "How do you know nation-states are interested in a university power plant?"
-- "Can't we just tell people not to connect unauthorized devices?"
+- "Can't we just tell people not to connect unauthorised devices?"
 - "What do our engineers think about this?" (turns to Chief Engineer)
 - "The last consultants said our biggest risk was phishing. Now you say it's industrial controls. Which is it?"
 
@@ -168,7 +168,7 @@ When to be convinced: If you connect to University reputation or show the Patric
 
 #### The Bursar (Finance)
 
-*Character: Controls the budget. Every expense is scrutinized. Security is an overhead, not an investment.*
+*Character: Controls the budget. Every expense is scrutinised. Security is an overhead, not an investment.*
 
 Opening position: "Before we discuss anything, I need to understand the costs."
 
@@ -200,11 +200,11 @@ Typical questions:
 
 Pushback style: Operational objections. Every recommendation creates problems.
 
-When to be convinced: If you acknowledge constraints and propose solutions that minimize disruption, or if you frame security as reliability.
+When to be convinced: If you acknowledge constraints and propose solutions that minimise disruption, or if you frame security as reliability.
 
 #### Chief Engineer (Built the system)
 
-*Character: Technically competent and defensive. You're criticizing their life's work.*
+*Character: Technically competent and defensive. You're criticising their life's work.*
 
 Opening position: "I'm curious about your qualifications. Have you worked with power generation systems before?"
 
@@ -218,25 +218,25 @@ Typical questions:
 
 Pushback style: Technical challenge. Questioning your expertise and understanding.
 
-When to be convinced: If you demonstrate technical competence and respect their constraints, or if you frame recommendations as helping them rather than criticizing them.
+When to be convinced: If you demonstrate technical competence and respect their constraints, or if you frame recommendations as helping them rather than criticising them.
 
 #### Safety Officer (Prevents accidents)
 
-*Character: Focused on physical safety. Cyber security is new territory.*
+*Character: Focused on physical safety. Cybersecurity is new territory.*
 
-Opening position: "I need to understand how cyber attacks affect physical safety."
+Opening position: "I need to understand how cyberattacks affect physical safety."
 
 Typical questions:
 - "Can attackers actually cause equipment damage or just nuisance disruptions?"
 - "What about our mechanical safeguards? Don't those prevent serious incidents?"
 - "Could your proposed firewall rules interfere with safety system communications?"
-- "How quickly could an attack progress from network access to safety impact?"
-- "Are there regulatory requirements for cyber security in industrial control systems?"
+- "How quickly could attack progress from network access to safety impact?"
+- "Are there regulatory requirements for cybersecurity in industrial control systems?"
 - "What's the worst-case scenario if we do nothing?"
 
 Pushback style: Practical concern mixed with uncertainty. Not hostile, but cautious.
 
-When to be convinced: If you clearly connect cyber security to safety outcomes, or show regulatory requirements.
+When to be convinced: If you clearly connect cybersecurity to safety outcomes, or show regulatory requirements.
 
 #### Lord Vetinari (The Patrician)
 
@@ -254,7 +254,7 @@ Facilitation approach:
 
 As Archchancellor: Start with soft questions, show confusion at technical terms. Look to Bursar and Operations Director when numbers are mentioned. Defer to Chief Engineer on technical points. Look to Vetinari before making any commitments.
 
-As Bursar: Interrupt with cost questions. Pull out a calculator. Write down every number mentioned. Ask for itemized breakdowns.
+As Bursar: Interrupt with cost questions. Pull out a calculator. Write down every number mentioned. Ask for itemised breakdowns.
 
 As Operations Director: Cross arms. Sigh when downtime is mentioned. Ask "Have you ever actually run a power plant?" at least once.
 
@@ -266,7 +266,7 @@ As Vetinari: Sit back. Observe. Ask one devastating question at exactly the righ
 
 Managing difficult moments:
 
-If team gets defensive: "We're not attacking you personally. These are questions you'll face from real clients. Practice responding constructively."
+If team gets defensive: "We're not attacking you personally. These are questions you are likely to face from real clients. Practice responding constructively."
 
 If team is struggling badly: Soften the questioning. "Let me rephrase that. What I'm trying to understand is..."
 
@@ -337,7 +337,7 @@ Key lessons to emphasise:
 - Technical skills are necessary but insufficient: Every team found vulnerabilities. Not every team convinced stakeholders. The differentiator is communication.
 - Stakeholders have legitimate concerns: Operations isn't being difficult - downtime really is expensive. CFO isn't being cheap - security competes with other needs. Understanding their perspective makes you more effective.
 - Prioritization is complex: Severity alone doesn't determine priority. Operational impact, cost, feasibility, and business context all matter.
-- Communication is a skill: Translating technical findings to business language takes practice. You'll get better with repetition.
+- Communication is a skill: Translating technical findings to business language takes practice. Repetition works.
 
 *The Patrician is always watching: In real assessments, there's always an ultimate decision-maker. Often analytical, strategic, and not easily impressed. Your recommendations must make sense to them.*
 
@@ -379,7 +379,7 @@ Senior professionals:
 
 Mixed IT/OT audience:
 - Pair IT and OT professionals in teams
-- Emphasize translation between perspectives
+- Emphasise translation between perspectives
 - Focus on collaboration and mutual understanding
 
 Executive audience:

@@ -6,7 +6,7 @@
 
 ### Setup
 
-Have it installed on your machine, or install it at another machine (and then adapt the IP adresses in the hacking scripts)
+[Have it installed on your machine](https://github.com/ninabarzh/power-and-light-sim), or install it at another machine (and then adapt the IP adresses in the hacking scripts)
 
 Start the simulator:
 ```bash

@@ -10,11 +10,11 @@ No hand-holding. No specific instructions. Just the goal and your judgement.
 
 ## Challenge 10: Build a complete security architecture
 
-**The challenge:** You conducted a pentest. You found 10-15 vulnerabilities. Pick your top 3-5 critical findings. Implement comprehensive remediations addressing all of them.
+The challenge: You conducted a pentest. You found 10-15 vulnerabilities. Pick your top 3-5 critical findings. Implement comprehensive remediations addressing all of them.
 
 ### Your approach
 
-**Prioritise findings:**
+Prioritise findings:
 - Which findings matter most?
 - Safety impact?
 - Operational impact?
@@ -26,7 +26,7 @@ Use a prioritisation framework:
 Priority = (Safety × 2) + (Operational × 1.5) + (Likelihood × 1.5) + (Business × 1) / Remediation Feasibility
 ```
 
-**Choose 3-5 critical findings:**
+Choose 3-5 critical findings:
 Don't try to fix everything. Focus on what matters most.
 
 Examples:
@@ -36,14 +36,14 @@ Examples:
 - Missing safety system isolation
 - Lack of audit logging
 
-**Design comprehensive remediations:**
+Design comprehensive remediations:
 For each finding, design complete fix:
 - Technical controls (what to implement)
 - Process controls (procedures, change management)
 - Monitoring and detection (how to know if it's working)
 - Incident response (what to do when it fails)
 
-**Implement defense in depth:**
+Implement defence in depth:
 Don't rely on single control. Layer defenses:
 - Authentication (who are you?)
 - Authorization (what can you do?)
@@ -51,7 +51,7 @@ Don't rely on single control. Layer defenses:
 - Monitoring (detect attacks)
 - Logging (forensics and audit)
 
-**Document trade-offs:**
+Document trade-offs:
 Every remediation has costs. Document:
 - Implementation cost (time, money, effort)
 - Operational impact (what becomes harder?)
@@ -62,60 +62,60 @@ Every remediation has costs. Document:
 
 ### Test comprehensively
 
-**Security testing:**
+Security testing:
 - Run your original attack scripts
 - Do they still work?
 - Can you find new bypasses?
 - Test each layer independently
 
-**Operational testing:**
+Operational testing:
 - Can operators do their jobs?
 - What workflows changed?
 - What's harder now?
 - What's impossible now?
 
-**Failure scenario testing:**
+Failure scenario testing:
 - What happens when controls fail?
 - Authentication server down?
 - Firewall misconfigured?
 - Certificates expired?
 - Can operations continue?
 
-**Red team vs blue team:**
+Red team vs blue team:
 If you have others working on this:
 - Swap simulators
-- Try to break each other's defenses
+- Try to break each other's defences
 - Learn from what works
 - Learn from what fails
 
-### What you'll learn
+### What you can learn
 
-**Prioritisation is hard:**
+Prioritisation is hard:
 - Can't fix everything
 - Resources are limited
 - Some things are unfixable
 - Risk acceptance is reality
 
-**Defense in depth works:**
+Defence in depth works:
 - No single control is sufficient
 - Multiple layers catch what one misses
 - But complexity increases
 - More maintenance burden
 
-**Trade-offs are everywhere:**
+Trade-offs are everywhere:
 - Security vs usability
 - Security vs operational flexibility
 - Security vs performance
 - Security vs cost
 - Every choice is a trade-off
 
-**Documentation matters:**
+Documentation matters:
 - Why did you choose these remediations?
 - What trade-offs did you accept?
 - What residual risks remain?
 - Future you will need this information
 
-**Perfection is impossible:**
+Perfection is impossible:
 - There's always residual risk
 - Accept it, document it, monitor it
 - Focus on what matters most
@@ -147,7 +147,7 @@ If you have others working on this:
 
 ### Example approach
 
-**Finding 1: Unauthenticated Modbus to turbines**
+Finding 1: Unauthenticated Modbus to turbines
 
 Remediations:
 - Technical: IP whitelisting at firewall (only SCADA and engineering)
@@ -155,7 +155,7 @@ Remediations:
 - Technical: Integrate logging for all Modbus writes
 - Process: Change management for firewall rules
 - Monitoring: Alert on Modbus connections from non-whitelisted IPs
-- Incident response: Procedure for investigating unauthorized access attempts
+- Incident response: Procedure for investigating unauthorised access attempts
 
 Trade-offs:
 - Cost: 16 hours implementation, minimal financial cost
@@ -166,17 +166,17 @@ Trade-offs:
 - Residual risk: Insider or compromised HMI still has full access
 
 Test:
-- From unauthorized IP: Access blocked ✓
+- From unauthorised IP: Access blocked ✓
 - From SCADA: Access works ✓
 - From compromised HMI: Still works (residual risk) ✗
 - Anomaly detection catches unusual writes ✓
 
-**Finding 2: Anonymous SCADA access**
+Finding 2: Anonymous SCADA access
 
 Remediations:
 - Technical: Enable OPC UA authentication (see Challenge 1)
 - Technical: Generate and deploy certificates
-- Technical: Integrate authorization checks
+- Technical: Integrate authorisation checks
 - Process: Certificate lifecycle management procedures
 - Monitoring: Log all authentication attempts
 - Incident response: Procedure for handling compromised certificates
@@ -193,27 +193,27 @@ Continue this for each priority finding...
 
 ## Challenge 11: Design and defend a critical operation
 
-**The challenge:** Choose one critical operation. Implement complete security controls for that one operation end-to-end. Make it both secure and usable.
+The challenge: Choose one critical operation. Implement complete security controls for that one operation end-to-end. Make it both secure and usable.
 
 ### Choose your operation
 
 Pick one:
 
-**Option 1: Reactor startup**
+Option 1: Reactor startup
 - Complex multi-step procedure
 - Safety-critical
 - Requires coordination between multiple systems
 - Takes 30-60 minutes
 - Errors can be dangerous
 
-**Option 2: Turbine emergency stop**
+Option 2: Turbine emergency stop
 - Must be fast (seconds matter)
 - Safety-critical
 - Can't have delays
-- But must prevent unauthorized stops
+- But must prevent unauthorised stops
 - Balance security and speed
 
-**Option 3: Safety system bypass**
+Option 3: Safety system bypass
 - Extremely dangerous if abused
 - Legitimate need during maintenance
 - Must be temporary and monitored
@@ -222,52 +222,52 @@ Pick one:
 
 ### Design comprehensive controls
 
-**Pre-operation:**
+Pre-operation:
 - Who can initiate?
 - What permissions required?
 - Any approvals needed?
 - Preconditions (system state checks)?
 
-**Authentication:**
-- Single person or dual authorization?
+Authentication:
+- Single person or dual authorisation?
 - What role is required?
 - Certificate-based? Password? MFA?
 
-**Authorization:**
+Authorization:
 - What permissions grant access?
 - Time-based (only during maintenance windows)?
 - Location-based (only from control room)?
 
-**Initiation:**
+Initiation:
 - How is operation triggered?
 - Any confirmation required?
 - Any wait period (cooling-off)?
 
-**During operation:**
+During operation:
 - Monitoring and logging
 - Progress tracking
 - Anomaly detection
 - Ability to abort?
 - Who can abort?
 
-**Safety interlocks:**
+Safety interlocks:
 - What safety checks during operation?
 - Automatic abort conditions?
 - Override procedures?
 
-**Completion:**
+Completion:
 - Success criteria
 - Validation checks
 - Automatic revert (for bypass operations)
 - Notification
 
-**Post-operation:**
+Post-operation:
 - Logging and audit trail
 - Who did what when?
 - Success or failure?
 - Any anomalies detected?
 
-**Emergency scenarios:**
+Emergency scenarios:
 - What if authentication fails?
 - What if safety interlock triggers?
 - What if operation hangs?
@@ -275,66 +275,66 @@ Pick one:
 
 ### Implement and test
 
-**Normal operation testing:**
+Normal operation testing:
 - Authorized user performs operation
 - Everything works smoothly
 - Logging captures all steps
 - Operation completes successfully
 
-**Authorization testing:**
+Authorization testing:
 - Unauthorized user attempts operation - blocked
 - Wrong role attempts operation - blocked
 - Dual auth with only one person - blocked
 
-**Safety testing:**
+Safety testing:
 - Trigger safety interlock during operation
 - Operation should abort safely
 - System returns to safe state
 
-**Failure testing:**
+Failure testing:
 - Authentication server down during operation
 - What happens?
 - Can operation proceed?
 - Can operation complete?
 
-**Emergency testing:**
+Emergency testing:
 - Real emergency requiring immediate action
 - Can you bypass procedures?
 - Is it audited?
 - Can you justify it later?
 
-**Usability testing:**
+Usability testing:
 - How long does the secure operation take vs unsecured?
 - Is the delay acceptable?
 - Do operators find it reasonable?
 - Or will they work around it?
 
-### What you'll learn
+### What you can learn
 
-**Security vs safety:**
+Security vs safety:
 - Sometimes they conflict
 - Security can delay safety responses
 - Need emergency overrides
 - But overrides can be abused
 - No perfect answer
 
-**Usability vs security:**
+Usability vs security:
 - Most secure: lock it down completely
 - Most usable: no controls
 - Reality: somewhere in between
 - Finding balance requires iteration
 
-**Operational realities:**
+Operational realities:
 - Procedures look good on paper
 - Reality is messier
 - Emergencies don't follow procedures
 - Edge cases multiply
 - Need flexibility
 
-**Defense in depth for operations:**
+Defence in depth for operations:
 - Authentication (who)
 - Authorization (permission)
-- Dual authorization (two-person rule)
+- Dual authorisation (two-person rule)
 - Safety interlocks (prevent physical danger)
 - Monitoring (detect anomalies)
 - Logging (audit trail)
@@ -383,29 +383,29 @@ Pick one:
 
 ### Example: Safety system bypass
 
-**Chosen operation:** Bypass reactor safety interlock during maintenance
+Chosen operation: Bypass reactor safety interlock during maintenance
 
-**Why it's critical:**
+Why it's critical:
 - Allows maintenance while reactor is hot
 - Removes safety protection
 - Dangerous if abused or forgotten
 - Must be temporary and monitored
 
-**Pre-operation controls:**
-- Dual authorization required (supervisor + engineer)
+Pre-operation controls:
+- Dual authorisation required (supervisor + engineer)
 - Justification required (text field: why are you bypassing?)
 - Maintenance window validation (only allowed during scheduled maintenance)
 - Safety system status check (ensure other interlocks still active)
 - Automatic expiry configured (1 hour default, max 4 hours)
 
-**During operation controls:**
+During operation controls:
 - Alarm displayed on all HMIs: "SAFETY BYPASS ACTIVE"
 - Monitoring for any safety parameter violations
 - Logging all operations performed during bypass
 - Ability to abort maintenance and restore safety
 - Countdown timer showing time until automatic revert
 
-**Post-operation controls:**
+Post-operation controls:
 - Automatic revert after time limit
 - Manual restore option (before time limit)
 - Validation that safety system restored
@@ -413,16 +413,16 @@ Pick one:
 - Audit log entry with: who, when, duration, justification, what was done
 - Report to safety officer
 
-**Emergency procedures:**
+Emergency procedures:
 - If safety parameter exceeds threshold during bypass, automatic revert
 - If reactor enters unsafe state, forced shutdown
 - Emergency button overrides bypass immediately
 
-**Implementation:**
+Implementation:
 ```python
 # Simplified pseudocode
 async def request_safety_bypass(user1_session, user2_session, justification, duration_minutes):
-    # Dual authorization check
+    # Dual authorisation check
     if not await auth.authorize_with_dual_auth(
         user1_session, user2_session,
         PermissionType.SAFETY_BYPASS, "reactor_1"
@@ -461,7 +461,7 @@ async def request_safety_bypass(user1_session, user2_session, justification, dur
     return True
 ```
 
-**Testing results:**
+Testing results:
 - ✓ Dual auth required (single user attempt blocked)
 - ✓ Justification required (empty justification rejected)
 - ✓ Maintenance window enforced (attempt during production blocked)
@@ -470,13 +470,13 @@ async def request_safety_bypass(user1_session, user2_session, justification, dur
 - ✓ Emergency revert on safety parameter violation
 - ✓ Complete audit trail
 
-**Trade-offs accepted:**
+Trade-offs accepted:
 - Adds ~2 minutes to bypass procedure (dual auth, justification)
 - Acceptable for maintenance operations (not emergencies)
 - Manual restore required after maintenance (can't auto-detect "maintenance complete")
 - False alarms possible (parameter violations during normal maintenance)
 
-**Residual risks:**
+Residual risks:
 - Two colluding insiders can still abuse bypass
 - Mitigation: Audit review, pattern detection
 - Operator fatigue could lead to expired bypass not being noticed

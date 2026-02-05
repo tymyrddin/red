@@ -430,7 +430,7 @@ Vetinari wasn't trying to defeat you. He was testing whether you could think str
 - Responded to pushback by adapting, not defending rigidly
 - Understood that the Patrician allocates resources across many risks, not just cybersecurity
 
-The Patrician is the executive you'll eventually face in real assessments. CEOs, city officials, board members - they think like Vetinari. They have many problems. They have limited resources. They need you to convince them your problem deserves priority.
+The Patrician is the executive you will eventually face in real assessments. CEOs, city officials, board members - they think like Vetinari. They have many problems. They have limited resources. They need you to convince them your problem deserves priority.
 
 The teams that convinced the Patrician will convince real executives.
 

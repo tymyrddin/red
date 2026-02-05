@@ -8,7 +8,7 @@ supplier for Ankh-Morpork. Your job: find vulnerabilities, create proof of conce
 The technical assessment is straightforward. The real challenge? Convincing the Archchancellor, the Bursar, the Chief 
 Engineer, and ultimately Lord Vetinari that your findings matter enough to justify change.
 
-This is experiential learning through roleplay. You'll conduct a real penetration test using the UU P&L simulator, 
+This is experiential learning through roleplay. You can conduct a real penetration test using the UU P&L simulator, 
 then face sceptical stakeholders who question your findings, your costs, and your credibility.
 
 ## What you can do

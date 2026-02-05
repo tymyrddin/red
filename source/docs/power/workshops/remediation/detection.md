@@ -10,13 +10,13 @@ These three challenges build detection and monitoring capabilities: anomaly dete
 
 ## Challenge 4: Anomaly detection deployment
 
-**The problem:** Attacks look like normal operations at the protocol level. Modbus write is Modbus write. You need behavioural detection to spot abnormal patterns.
+The problem: Attacks look like normal operations at the protocol level. Modbus write is Modbus write. You need behavioural detection to spot abnormal patterns.
 
-**Your goal:** Configure anomaly detection to identify abnormal turbine behaviour.
+Your goal: Configure anomaly detection to identify abnormal turbine behaviour.
 
-### What you'll do
+### What you can do
 
-**Establish baselines:**
+Establish baselines:
 ```python
 from components.security.anomaly_detector import AnomalyDetector
 
@@ -28,7 +28,7 @@ await detector.add_baseline("turbine_1", "temperature", learning_window=1000)
 await detector.add_baseline("turbine_1", "pressure", learning_window=1000)
 ```
 
-**Set range limits:**
+Set range limits:
 ```python
 # Speed should be 800-1800 RPM
 await detector.set_range_limit("turbine_1", "speed", min_value=800.0, max_value=1800.0)
@@ -37,7 +37,7 @@ await detector.set_range_limit("turbine_1", "speed", min_value=800.0, max_value=
 await detector.set_range_limit("turbine_1", "temperature", min_value=20.0, max_value=100.0)
 ```
 
-**Set rate-of-change limits:**
+Set rate-of-change limits:
 ```python
 # Speed shouldn't change faster than 10 RPM/second
 await detector.set_rate_of_change_limit("turbine_1", "speed", max_rate=10.0)
@@ -46,14 +46,14 @@ await detector.set_rate_of_change_limit("turbine_1", "speed", max_rate=10.0)
 await detector.set_rate_of_change_limit("turbine_1", "temperature", max_rate=2.0)
 ```
 
-**Integrate detection:**
+Integrate detection:
 - Check every sensor reading
 - Generate alerts on anomalies
 - Log anomalies for investigation
 
 ### Test it
 
-**Attack detection:**
+Attack detection:
 ```bash
 # Run overspeed attack - is it detected?
 python scripts/exploitation/turbine_overspeed_attack.py --target-speed 1800
@@ -65,39 +65,39 @@ python scripts/exploitation/turbine_overspeed_attack.py --target-speed 1800 --st
 python scripts/exploitation/turbine_emergency_stop.py
 ```
 
-**False positive testing:**
+False positive testing:
 - Run normal operations for an hour
 - How many false alarms?
 - Are they actionable?
 - Would operators start ignoring them?
 
-**Tuning:**
+Tuning:
 - Adjust sigma threshold (default 3.0)
 - Adjust learning window
 - Adjust rate limits
 - Find balance between detection and noise
 
-### What you'll learn
+### What you can learn
 
-**Baseline establishment:**
+Baseline establishment:
 - How long to learn normal behaviour?
 - What if operations change?
 - How do you handle multiple operating modes?
 - When to retrain baselines?
 
-**False positive rate:**
+False positive rate:
 - Too sensitive: alarm fatigue, operators ignore alerts
 - Too insensitive: miss attacks
 - No perfect threshold
 - Need tuning for each system
 
-**Attack detection is hard:**
+Attack detection is hard:
 - Sophisticated attacks stay within normal ranges
 - Gradual attacks harder to detect than sudden ones
 - Legitimate operations can look like attacks (emergency stops)
 - Need multiple detection methods
 
-**Operational context matters:**
+Operational context matters:
 - Maintenance creates anomalies
 - Startup/shutdown are abnormal by definition
 - Seasonal variations
@@ -121,13 +121,13 @@ grep -r "speed\|temperature\|pressure" components/devices/turbine* | grep "def \
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How do you handle different operating modes (startup, normal, shutdown)?
 - What about seasonal patterns (summer vs winter load)?
 - How do you detect coordinated attacks across multiple systems?
 - Can you detect reconnaissance (scanning, probing)?
 
-**Advanced options:**
+Advanced options:
 - Implement pattern recognition for attack sequences
 - Deploy machine learning for more sophisticated detection
 - Correlate anomalies across multiple systems
@@ -137,25 +137,25 @@ grep -r "speed\|temperature\|pressure" components/devices/turbine* | grep "def \
 
 ## Challenge 5: Protocol-level filtering
 
-**The problem:** Modbus allows any function code. S7 exposes complete memory. Even with authentication, you want defense in depth.
+The problem: Modbus allows any function code. S7 exposes complete memory. Even with authentication, you want defence in depth.
 
-**Your goal:** Implement protocol-level restrictions on dangerous operations.
+Your goal: Implement protocol-level restrictions on dangerous operations.
 
-### What you'll do
+### What you can do
 
-**Modbus function code filtering:**
+Modbus function code filtering:
 - Allow read operations (function codes 1, 2, 3, 4)
 - Restrict write operations (function codes 5, 6, 15, 16)
 - Allow writes only from specific IPs (HMI, engineering station)
 - Block writes from unknown sources
 
-**S7 connection filtering:**
+S7 connection filtering:
 - Whitelist allowed client IPs
 - Restrict access to specific rack/slot combinations
 - Allow read operations, restrict writes
 - Block CPU control operations (start/stop)
 
-**Implementation approaches:**
+Implementation approaches:
 ```python
 # Option 1: In protocol handler
 def handle_modbus_request(function_code, source_ip):
@@ -177,7 +177,7 @@ rules = {
 
 ### Test it
 
-**Reconnaissance testing:**
+Reconnaissance testing:
 ```bash
 # Read operations - should work
 python scripts/recon/modbus_identity_probe.py
@@ -187,37 +187,37 @@ python scripts/vulns/modbus_coil_register_snapshot.py
 python scripts/exploitation/turbine_overspeed_attack.py
 ```
 
-**Bypass testing:**
+Bypass testing:
 - Can you spoof allowed IP?
 - Can you use different protocol to same system?
 - Can you exploit gaps in filtering rules?
 
-**Operational testing:**
+Operational testing:
 - Can HMI control turbines?
 - Can engineering station program PLCs?
 - Can vendor connect remotely?
 - What breaks?
 
-### What you'll learn
+### What you can learn
 
-**Protocol-specific controls:**
+Protocol-specific controls:
 - Each protocol has different risk areas
 - Modbus: function codes
 - S7: memory areas and CPU control
 - OPC UA: method calls and write access
 - EtherNet/IP: tag writes
 
-**Defense in depth:**
+Defence in depth:
 - Multiple layers of control
 - Authentication + protocol filtering + network segmentation
 - No single control is sufficient
 
-**Whitelisting vs blacklisting:**
+Whitelisting vs blacklisting:
 - Whitelist: allow only known good
 - Blacklist: block known bad
 - Whitelist more secure but higher operational overhead
 
-**Operational flexibility vs security:**
+Operational flexibility vs security:
 - Strict filtering: secure but inflexible
 - Loose filtering: flexible but vulnerable
 - Every exception weakens security
@@ -241,13 +241,13 @@ grep -r "def handle_request\|def process_" components/protocols/
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How do you handle legitimate exceptions (vendor access, emergency operations)?
 - What's the change management process for firewall rules?
 - How do you test rules without breaking production?
 - How do you handle protocols that don't support authentication?
 
-**Advanced options:**
+Advanced options:
 - Implement stateful protocol inspection
 - Deploy protocol-aware firewall
 - Implement rate limiting per connection
@@ -255,21 +255,21 @@ grep -r "def handle_request\|def process_" components/protocols/
 - Deploy application-layer gateway
 - Implement protocol normalization
 
-## Challenge 6: Session management and dual authorization
+## Challenge 6: Session management and dual authorisation
 
-**The problem:** Some operations are too critical for one person. Safety bypasses, reactor shutdowns, emergency procedures need two-person rule.
+The problem: Some operations are too critical for one person. Safety bypasses, reactor shutdowns, emergency procedures need two-person rule.
 
-**Your goal:** Implement dual authorization for safety-critical operations.
+Your goal: Implement dual authorisation for safety-critical operations.
 
-### What you'll do
+### What you can do
 
-**Identify critical operations:**
+Identify critical operations:
 - Reactor shutdown
 - Safety system bypass
 - Emergency turbine stop
 - Force operations (overriding sensors)
 
-**Implement dual authorization:**
+Implement dual authorization:
 ```python
 from components.security.authentication import AuthenticationManager
 
@@ -282,24 +282,24 @@ if await auth.authorize_with_dual_auth(
     PermissionType.SAFETY_BYPASS,
     "reactor_1"
 ):
-    # Both authorized, proceed with operation
+    # Both authorised, proceed with operation
     await reactor.bypass_safety_interlock()
 ```
 
-**Configure session management:**
+Configure session management:
 - Set session timeouts (`simulation.yml`)
 - Handle timeout during long operations
 - Implement session refresh
 - Handle logout
 
-**Handle edge cases:**
+Handle edge cases:
 - What if only one supervisor is on duty?
 - What about genuine emergencies?
 - How do you prevent colluding insiders?
 
 ### Test it
 
-**Authorization testing:**
+Authorization testing:
 ```bash
 # Try critical operation with single auth - should fail
 # Try with two operators - should fail (insufficient privileges)
@@ -307,44 +307,44 @@ if await auth.authorize_with_dual_auth(
 # Try with same user twice - should fail
 ```
 
-**Session testing:**
+Session testing:
 - Start operation, wait for session timeout, try to complete
 - Logout one user mid-operation
 - Simulate network failure affecting one session
 
-**Usability testing:**
+Usability testing:
 - How long does dual auth take?
 - Is it practical during emergencies?
 - Do operators work around it?
 
-**Collusion testing:**
+Collusion testing:
 - Can two insiders collude?
 - What controls prevent abuse?
 - How do you detect suspicious patterns?
 
-### What you'll learn
+### What you can learn
 
-**Two-person rule:**
+Two-person rule:
 - Simple concept, complex implementation
 - How do you verify two different people?
 - What if they're physically next to each other?
 - Technical control vs procedural control
 
-**Security vs emergency response:**
+Security vs emergency response:
 - Dual auth delays emergency actions
-- But prevents unauthorized actions
+- But prevents unauthorised actions
 - Need emergency override procedures
 - But override can be abused
 - No perfect solution
 
-**Session management complexity:**
+Session management complexity:
 - Long-running operations and timeouts
 - Refresh vs re-authenticate
 - Graceful degradation when session expires
 - User experience of authentication
 
-**Detection over prevention:**
-- Can't always prevent authorized users from abusing privileges
+Detection over prevention:
+- Can't always prevent authorised users from abusing privileges
 - Need logging and monitoring for detection
 - Need regular audit of dual-auth operations
 - Look for patterns (same pairs always working together)
@@ -367,15 +367,15 @@ grep "class PermissionType" components/security/authentication.py
 
 ### Going deeper
 
-**Questions to explore:**
+Questions to explore:
 - How do you handle shift changes during long operations?
 - What's the audit process for dual-auth operations?
 - How do you detect patterns of collusion?
 - How do you balance security and operational needs?
 
-**Advanced options:**
+Advanced options:
 - Implement three-person rule for most critical operations
-- Deploy time-delayed authorization (wait period between approvals)
+- Deploy time-delayed authorisation (wait period between approvals)
 - Implement role separation (engineer + supervisor, not two engineers)
 - Create approval workflows with justification requirements
 - Deploy biometric authentication (ensure physical presence)
@@ -386,18 +386,18 @@ grep "class PermissionType" components/security/authentication.py
 
 Implement all three together for comprehensive detection:
 
-**Layered detection:**
-1. **Anomaly detection** - catches unusual behaviour
-2. **Protocol filtering** - blocks dangerous operations at protocol level
-3. **Dual authorization** - prevents insider abuse of critical functions
+Layered detection:
+1. Anomaly detection - catches unusual behaviour
+2. Protocol filtering - blocks dangerous operations at protocol level
+3. Dual authorisation - prevents insider abuse of critical functions
 
-**Test the combination:**
+Test the combination:
 - Run an attack - which layers detect it?
 - Which layers block it?
 - What gets through all three?
 - Where are the gaps?
 
-**Build a detection matrix:**
+Build a detection matrix:
 ```
 Attack Type          | Anomaly | Protocol | Dual Auth | Result
 ---------------------|---------|----------|-----------|--------
