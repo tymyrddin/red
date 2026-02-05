@@ -1,4 +1,4 @@
-Roleplay and red teaming workshops
+Roleplay and colourful teaming
 ======================================================
 
 .. image:: /_static/images/ot-remediation.png
@@ -17,6 +17,7 @@ what happens. The former tells you something useful. The latter tells you who wi
    :includehidden:
    :caption: Checking:
 
-   masterclass-red-team/index
    long-day-masterclass/index
+   remediation/index
+   masterclass-red-team/index
 
