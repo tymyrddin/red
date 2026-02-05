@@ -425,9 +425,9 @@ Now the hard part. Stakeholders will challenge your findings, question your cost
 
 Be ready.
 
-*See masterclass-red-team-facilitator.md for detailed stakeholder questions and facilitation guide.*
+* See [Facilitator guide](facilitator.md) for detailed stakeholder questions and facilitation guide.
 
-*See masterclass-red-team-patrician.md for special guidance on the Patrician's role.*
+* See [Playing Lord Vetinari](patrician.md) for special guidance on the Patrician's role.
 
 ---
 
