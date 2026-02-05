@@ -1,92 +1,102 @@
-# A Day in Ankh-Morpork: The UU Power & Light Security Adventure
+# Overview
 
-*Learn pentesting by living it - a full-day roleplay for university students*
+*Learn OT/ICS pentesting by exploring, breaking things, and having fun*
 
 ## What is this?
 
-A full-day security adventure where you learn pentesting by playing roles in a realistic scenario. You're not sitting through lectures. You're red team hackers, security defenders, operations engineers, and university bureaucrats all trying to secure (or compromise) Unseen University's power plant.
+A full-day adventure where you learn industrial security by actually doing it. No lectures. No rigid schedule. Just you, a simulator full of vulnerable control systems, and interesting challenges to tackle.
 
-Duration: Full day (6-8 hours, flexible, self-paced)
+You can crash turbines. Steal secrets. Break things. All safely in a simulator where mistakes don't matter and curiosity is encouraged.
 
-For: University students learning cybersecurity, no OT experience needed
+Duration: A full day (arrive around 9am, finish around 5pm, with breaks for coffee and lunch when you want them)
 
-Style: Roleplay, hands-on, fun, experiential - learn by doing and playing
+For: University students learning security, especially those who know IT security and want to understand OT/ICS
 
-## What you'll do
-
-- Play a role: Red team pentester, blue team defender, operations engineer, or university leadership
-- Use real tools: Hack actual control systems using the UU P&L simulator
-- Attack or defend: Depending on your role, you'll exploit vulnerabilities or try to stop attacks
-- Negotiate and argue: Red team wants to shut everything down for security. Operations wants to keep the lights on. Fight it out!
-- Present to the Patrician: Convince Lord Vetinari that your recommendations matter to Ankh-Morpork
-- Learn pentesting: Industrial protocols, reconnaissance, exploitation, reporting - by actually doing it
-
-## Why it's fun
-
-- You're hackers breaking into a power plant (legally)
-- You can actually crash turbines and watch things break (in the simulator)
-- You'll argue with operations people who hate all your ideas
-- The Patrician will ask you questions you can't answer
-- You'll discover that the technical stuff is easy - convincing people is hard
-- Discworld setting makes everything more entertaining
-
-## What you'll learn
-
-Technical skills:
-- Industrial protocol pentesting (Modbus, S7, OPC UA, EtherNet/IP)
-- Network reconnaissance and vulnerability discovery
-- Proof of concept exploitation
-- Attack scenario development
-
-Professional skills:
-- Security report writing
-- Stakeholder presentations
-- Handling pushback and difficult questions
-- Prioritising fixes when you can't fix everything
-- Working across teams with different goals
-
-Strategic skills:
-- Understanding business context
-- Risk-based decision-making
-- Balancing security vs operations
-- Thinking like different stakeholders
+Style: Montessori for adults - explore at your own pace, pick challenges that interest you, learn by doing
 
 ## How it works
 
-Morning: Red team does pentesting while others prepare
-Lunch: Everyone shares findings and context
-Afternoon: Prioritise fixes, plan remediation, present to stakeholders
-End: Defend your recommendations to the Patrician, negotiate final decisions
+You arrive. You get:
+- Access to the UU Power & Light simulator (a power plant with PLCs, SCADA servers, and lots of vulnerabilities)
+- A collection of pentesting scripts
+- A list of interesting challenges
+- Facilitators who'll help when you're stuck
+- Freedom to explore however you want
 
-But it's flexible - if you're having fun hacking, keep hacking. If you want to dive deep into one attack, go for it. Learn at your own pace.
+You choose:
+- Which challenges interest you
+- Whether to work alone or in a small group
+- How deep to go on any topic
+- When to take breaks
+- Whether to focus on technical hacking or communication/reporting
 
-## Who you'll be
+You discover:
+- How industrial protocols work (or don't)
+- Why OT security is different from IT security
+- What you can do with unauthenticated access to control systems
+- How to explain technical findings to non-technical people
+- That breaking things in a simulator is really quite fun
 
-Red team (4-5 students): Attack everything, create spectacular proof of concepts, write the scary report
+## What you can learn
 
-Blue team (2-3 students): Defend the network, figure out how to fix things, work with operations
+Technical skills:
+- Industrial protocol pentesting (Modbus, S7, OPC UA, EtherNet/IP)
+- Network reconnaissance in OT environments
+- Vulnerability discovery and exploitation
+- Creating proof of concepts that demonstrate real impact
 
-Operations (2-3 students): Keep the power running, push back on changes that cause downtime, be appropriately skeptical
+Contextual understanding:
+- Why OT security differs from IT security
+- How industrial control systems work
+- What constraints operations teams face
+- Why "just patch it" isn't always possible
 
-University leadership (2-3 students): Control the budget, ask "why should I care?", approve or reject recommendations
+Communication skills:
+- Translating technical findings to business language
+- Handling sceptical stakeholders
+- Understanding different perspectives (security vs operations vs management)
 
-The Patrician (facilitator or experienced student): Ask the really hard questions, make final decisions
+Most importantly:
+You'll understand that OT security is about people, processes, and context as much as it's about technical vulnerabilities.
+
+## The setting
+
+You're in Ankh-Morpork at Unseen University Power & Light, which supplies electricity to the University, the Patrician's Palace, and significant portions of the city.
+
+The systems are vulnerable. The stakes are high (in the story). The learning is real.
+
+And yes, if you're convincing enough, you might have to present your findings to Lord Vetinari. He will ask difficult questions.
 
 ## What you need
 
-- Laptop with Python 3.8+
-- Willingness to roleplay and have fun
-- No prior OT security experience required
-- Collaborative attitude
+- Laptop with Python 3.12+
+- Curiosity and willingness to explore
+- Collaborative attitude (if working in groups)
+- No prior OT security experience required (that's what you're here to learn!)
 
-## Ready to play?
+## A typical day (but not rigid!)
 
-Welcome to Ankh-Morpork. UU Power & Light needs your help. Or maybe they need protection from you.
+Morning: Most people explore and hack, trying different challenges, discovering how industrial protocols work
 
-Either way, it's going to be a long, fun day.
+Lunch: Natural break, informal discussions about what people found
 
-See the [student guide](student-guide.md) for the full roleplay scenario and how to play.
+Afternoon: Some continue hacking, others want to present findings and practice explaining them, roleplay emerges naturally
+
+End of day: Everyone shares what they discovered, what surprised them, what they learnt
+
+AND: This is self-paced. If you want to spend the whole day on one deep technical challenge, do that. If you want to try lots of different things, do that. There's no "correct" way to learn.
+
+## Ready to explore?
+
+This isn't a traditional workshop where you sit and listen. This is an adventure where you explore, break things (safely), and discover how industrial security works by actually doing it.
+
+The simulator is ready. The challenges are waiting. The coffee is hot.
+
+See you in the Unseen University at Ankh-Morpork.
 
 ---
 
-*"The best way to learn is by doing. The second best way is by breaking things. Ideally, break things that don't belong to you, in a simulator where it doesn't matter." - Ponder Stibbons*
+Details: See the [Exploration challenges](challenges.md) for challenge descriptions and 
+[Student guide](student-guide.md) how to make the most of your day.
+
+*"Learning by doing is all very well, but learning by doing something that goes 'bang' is considerably more educational." - Ponder Stibbons (probably)*

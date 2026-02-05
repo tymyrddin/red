@@ -1,336 +1,468 @@
-# Student Guide: The UU Power & Light Security Roleplay
+# Technical tips for exploration
 
-*How to spend a day learning pentesting by playing roles and hacking things*
+*Practical guidance for hacking industrial control systems*
 
-## The Story
+## Getting started
 
-Unseen University Power & Light supplies electricity to the University, the Patrician's Palace, and half of Ankh-Morpork. The Archchancellor is worried about security after reading about ransomware in the Times. He's hired a red team (that's some of you) to "check if we're secure" and the University security team (more of you) to "make sure we are."
+### Setup
 
-Operations (even more of you) just wants to keep the turbines spinning. And Lord Vetinari wants to know if this is actually important or just expensive consultants being alarmist.
+Have it installed on your machine, or install it at another machine (and then adapt the IP adresses in the hacking scripts)
 
-You'll play through a full day discovering vulnerabilities, arguing about what to fix, and trying to convince skeptical stakeholders to care.
-
-## Choose Your Role
-
-### Red Team: The Hackers (4-5 people)
-
-**Your job:** Break everything. Find vulnerabilities. Create spectacular proof of concepts. Scare the executives.
-
-**What you'll do:**
-- Hack into PLCs, SCADA servers, and control systems
-- Prove you can shut down turbines remotely
-- Steal control logic and operational data
-- Write a scary report with evidence
-- Present findings to increasingly skeptical audiences
-
-**Skills you'll learn:**
-- Industrial protocol pentesting
-- Network reconnaissance
-- Exploitation and proof of concepts
-- Security report writing
-- Stakeholder presentations
-
-**Why it's fun:** You get to be the attacker. Break stuff. Watch things crash. Say "I told you so."
-
-### Blue Team: The Defenders (2-3 people)
-
-**Your job:** Understand current security. Help prioritize fixes. Work with operations to implement solutions.
-
-**What you'll do:**
-- Document existing security controls (spoiler: there aren't many)
-- Review red team findings and assess them
-- Figure out what's actually fixable
-- Develop remediation plans
-- Support presentations and defend recommendations
-
-**Skills you'll learn:**
-- Defensive security thinking
-- Remediation planning
-- Working with operations constraints
-- Balancing security and functionality
-- Negotiation and compromise
-
-**Why it's fun:** You're the reasonable middle ground. Red team wants to shut everything down. Operations wants to change nothing. You find solutions.
-
-### Operations: The Realists (2-3 people)
-
-**Your job:** Keep the power running. Push back on changes that risk disruption. Be appropriately skeptical of "security experts."
-
-**What you'll do:**
-- Document operational constraints (maintenance windows, downtime costs)
-- Challenge red team findings ("Can they really do that?")
-- Push back on impractical recommendations
-- Negotiate realistic timelines
-- Protect your turbines from well-meaning security people
-
-**Skills you'll learn:**
-- Understanding operational perspective
-- Risk assessment in context
-- Stakeholder negotiation
-- Defending decisions under pressure
-- Finding practical compromises
-
-**Why it's fun:** You get to say no to the security people. Your systems work fine. Why are these consultants trying to break them?
-
-### University Leadership (2-3 people)
-
-**Your job:** Control the budget. Ask hard questions. Approve or reject recommendations based on strategic value.
-
-**Roles:** Archchancellor (doesn't understand tech), Bursar (controls money), Safety Officer (cares about safety)
-
-**What you'll do:**
-- Question every cost estimate
-- Ask "have we been attacked? No? Then why is this urgent?"
-- Make red team explain things in language you understand
-- Decide what gets funded and what doesn't
-- Represent University interests to the Patrician
-
-**Skills you'll learn:**
-- Executive decision-making
-- Translating technical to business language
-- Budget prioritization
-- Asking probing questions
-- Strategic thinking
-
-**Why it's fun:** You have the power. Red team found vulnerabilities? So what? Convince you it matters and you'll approve funding. Otherwise, no.
-
-### The Patrician (1 person - facilitator or experienced student)
-
-**Your job:** Represent city interests. Ask the really hard questions. Make final decisions.
-
-**What you'll do:**
-- Observe presentations
-- Ask strategic questions that reveal flawed thinking
-- Test whether recommendations make sense for Ankh-Morpork
-- Approve, reject, or modify final recommendations
-- Be Vetinari (analytical, patient, strategic, slightly terrifying)
-
-**Skills you'll learn:**
-- Strategic analysis
-- Socratic questioning
-- Decision-making under uncertainty
-- Separating signal from noise
-- Leadership in ambiguous situations
-
-**Why it's fun:** You're the final boss. Everyone wants your approval. You decide who makes sense and who doesn't.
-
-## The Day's Flow (Flexible!)
-
-### Morning: Discovery
-
-**Red team:** Hack everything. Find vulnerabilities. Create proof of concepts. Document what you find.
-
-Use the simulator and scripts:
+Start the simulator:
 ```bash
-# Reconnaissance
-python scripts/recon/raw-tcp-probing.py
-python scripts/recon/turbine_recon.py
-
-# Exploitation
-python scripts/exploitation/turbine_overspeed_attack.py
-python scripts/exploitation/turbine_emergency_stop.py
-python scripts/vulns/s7_readonly_block_dump.py
+python tools/simulator_manager.py
 ```
 
-**Blue team + Operations:** Document current state. Understand the facility. Prepare context for red team findings.
+Test that it's working in a separate terminal or other machine:
+```bash
+python scripts/recon/raw-tcp-probing.py
+```
 
-**Leadership:** Prepare questions. Understand budget constraints. Think about priorities.
+You should see ports listening: 102, 103, 4840, 4841, 10501-10504, 44818-44820.
 
-**Pace:** Self-directed. If red team is having fun hacking, let them hack. If they're stuck, help them. No rigid schedule.
+### Choose your approach
 
-### Midday: Sharing Findings
+Solo: Work independently, go at your own pace.
 
-**Everyone together:** Red team presents what they found. Technical discussion. Blue team and operations provide context. Leadership asks questions.
+Small group (2-4 people): Collaborate on challenges, share discoveries.
 
-This is collaborative, not adversarial. Red team explains attacks. Blue team thinks about fixes. Operations identifies constraints.
+Hybrid: Start solo, join others when you want, split up when you prefer independence.
 
-### Afternoon: Remediation and Decisions
+You can change your mind anytime.
 
-**All teams work together** (except leadership who prepares to evaluate):
+### Pick a challenge
 
-- Prioritize findings: What's most important to fix?
-- Develop remediation plans: What's actually feasible?
-- Estimate costs and timelines: What's realistic?
-- Create three-tier roadmap: Quick wins, medium-term, strategic initiatives
+See [Exploration challenges](challenges.md) for ideas.
 
-Use the prioritization framework from **masterclass2-remediation.md** but don't be rigid. Argue. Negotiate. Find compromises.
+Recommended starting points:
+- New to industrial security? Start with Challenge 1 (Turbine Takeover) - Modbus is simplest
+- Like puzzles? Try Challenge 5 (Complete Picture) - map everything
+- Want drama? Try Challenge 7 (Maximum Impact) - make things crash
 
-### Late Afternoon: The Gauntlet
+Just pick one and start exploring.
 
-**Present to stakeholders:**
+## Using the scripts
 
-1. **Technical briefing:** Red team → Blue team + Operations (friendly, detailed, technical)
+### Read the code first
 
-2. **Executive briefing:** Red team + Blue team → University Leadership (business language, visual demos, cost justification)
+Don't just run scripts blindly:
 
-3. **Patrician briefing:** Everyone → Vetinari (strategic, city-level, final judgment)
+```bash
+# See what it does
+cat scripts/recon/modbus_identity_probe.py
+```
 
-**Then negotiate:** Based on feedback, adjust recommendations. Get final approval. Decide what actually gets implemented.
+Understanding the code teaches you:
+- How the protocol works
+- What requests are sent
+- What responses mean
+- How to modify it
 
-## Tips for Success
+### Experiment with parameters
 
-### For Red Team
+Try different options:
 
-**Do:**
-- Create visual proof of concepts (videos of turbines crashing)
-- Document everything with evidence
-- Think about business impact, not just technical severity
-- Practice explaining attacks in simple language
+```bash
+# Different ports
+python scripts/recon/modbus_identity_probe.py --host 127.0.0.1 --port 10502
+python scripts/recon/modbus_identity_probe.py --host 127.0.0.1 --port 10503
 
-**Don't:**
-- Just list findings without context
-- Use jargon without explaining it
-- Ignore operational constraints
-- Get defensive when questioned
+# Different parameters
+python scripts/exploitation/turbine_overspeed_attack.py --target-speed 1600
+python scripts/exploitation/turbine_overspeed_attack.py --target-speed 2000 --step-size 5
+```
 
-**Pro tip:** The turbine emergency stop is spectacular. Always demo that one.
+See what works. See what breaks.
 
-### For Blue Team
+### Document your discoveries
 
-**Do:**
-- Challenge red team findings constructively
-- Think creatively about solutions
-- Work with operations, not against them
-- Find compromises that improve security without breaking operations
+Keep notes:
+- Commands that worked
+- Interesting outputs
+- Questions that came up
+- What you discovered
 
-**Don't:**
-- Just agree with red team
-- Ignore operational realities
-- Propose fixes without cost/timeline estimates
-- Side with one team against another
+Take screenshots of interesting findings. Record videos of attacks working.
 
-**Pro tip:** You're the bridge between security and operations. Be the reasonable voice.
+## Understanding the protocols
 
-### For Operations
+### Modbus TCP (easiest)
 
-**Do:**
-- Push back on impractical recommendations (that's your job!)
-- Provide real constraints (downtime costs, maintenance windows)
-- Propose operational alternatives to security recommendations
-- Defend your systems while staying open to improvements
+What it is: Simple protocol for reading/writing values.
 
-**Don't:**
-- Say "no" to everything (be realistic, not obstructionist)
-- Get personally defensive (it's roleplay!)
-- Ignore actual security risks
-- Refuse to engage
+Where: Turbines (ports 10501-10504), Safety PLC (port 10501)
 
-**Pro tip:** "That requires 32 hours of downtime and we have one 4-day maintenance window per year" is a legitimate constraint. Use it.
+Key concepts:
+- Holding registers: Values you can read and write
+- Input registers: Read-only values
+- Coils: Binary on/off values
+- Function codes: What operation to perform (read, write, etc.)
 
-### For Leadership
+Useful scripts:
+```bash
+# Device identity
+python scripts/recon/modbus_identity_probe.py --host 127.0.0.1 --port 10502
 
-**Do:**
-- Ask questions until you understand
-- Question costs and timelines
-- Make red team translate technical to business language
-- Consider University priorities beyond just security
+# Read all registers
+python scripts/vulns/modbus_coil_register_snapshot.py --host 127.0.0.1 --port 10502
 
-**Don't:**
-- Pretend to understand technical details you don't
-- Approve everything automatically
-- Ignore budget constraints
-- Be unnecessarily hostile
+# Turbine-specific reconnaissance
+python scripts/recon/turbine_recon.py
+```
 
-**Pro tip:** "Have we been attacked? No? Then explain why this is urgent" is a powerful question.
+Try this:
+- Read turbine speed from registers
+- Write to coils to change settings
+- Map which registers control what
 
-### For the Patrician
+Go deeper:
+- Read Modbus protocol specification
+- Write your own Modbus client
+- Understand function codes (1, 2, 3, 4, 5, 6, 15, 16)
+- Use Wireshark to capture and analyse traffic
 
-**Do:**
-- Listen carefully before speaking
-- Ask one precise question that cuts to the core issue
-- Test strategic thinking, not technical knowledge
-- Be fair but challenging
+### S7comm (medium difficulty)
 
-**Don't:**
-- Dominate the conversation
-- Ask gotcha questions with no good answer
-- Be hostile or dismissive
-- Override everything (sometimes teams make good arguments)
+What it is: Siemens PLC protocol, more complex than Modbus.
 
-**Pro tip:** See **masterclass-red-team-patrician.md** for detailed guidance on playing this role.
+Where: Reactor PLC (port 102), Safety PLC (port 103)
 
-## Learning Resources
+Key concepts:
+- Rack and slot: Physical PLC location (usually rack 0, slot 2 or 3)
+- Memory areas: Different data storage types (M, DB, I, Q)
+- Programme blocks: Contains control logic (OB, FB, FC)
+- Data blocks (DB): Structured data
 
-### Before you start
-- Read the UU P&L simulator README
-- Review industrial protocol basics (if new to OT)
-- Browse attack scripts to see what's possible
+Useful scripts:
+```bash
+# PLC status
+python scripts/vulns/s7_plc_status_dump.py --host 127.0.0.1 --port 102 --rack 0 --slot 2
 
-### During the day
-- **masterclass2-remediation.md:** Detailed guide on prioritization, reporting, and fixes
-- **masterclass-red-team-scenario.md:** Attack scenarios and techniques
-- Script documentation in the simulator repository
+# Extract programme blocks
+python scripts/vulns/s7_readonly_block_dump.py --host 127.0.0.1 --port 102 --rack 0 --slot 2
 
-### After the day
-- Keep the simulator for practice
-- Review your report and improve it
-- Try different roles next time
-- Practice stakeholder communication
+# Read memory
+python scripts/vulns/s7_read_memory.py --host 127.0.0.1 --port 102 --rack 0 --slot 2
+```
 
-## Common Questions
+Try this:
+- Extract PLC programme logic
+- Read different memory areas
+- Compare reactor PLC (port 102) vs safety PLC (port 103)
 
-**Q: I've never done OT security. Will I be lost?**
-A: No! Scripts are provided. Facilitators will help. You'll learn by doing.
+Go deeper:
+- Understand S7 memory addressing
+- Learn about STEP 7 programming
+- Analyse extracted programme blocks
+- Try modifying PLC logic (carefully!)
 
-**Q: What if my team finishes early?**
-A: Go deeper. Find more attacks. Create better proof of concepts. Practice presentations.
+### OPC UA (modern but misconfigured)
 
-**Q: What if we're stuck?**
-A: Ask facilitators for hints. Collaborate with other teams. Try different approaches.
+What it is: Modern industrial protocol with security features (disabled here).
 
-**Q: Do we have to follow the schedule exactly?**
-A: No! It's flexible. Learn at your own pace. Have fun with it.
+Where: Primary SCADA (port 4840), Backup SCADA (port 4841)
 
-**Q: What if our roles conflict?**
-A: That's the point! Red team vs Operations tension is realistic. Work through it.
+Key concepts:
+- Endpoints: Connection URLs (opc.tcp://...)
+- Nodes: Objects in the server's address space
+- Tags: Variables holding current values
+- Security policies: Can be None, Basic256Sha256, etc. (here: None)
 
-**Q: Can we switch roles during the day?**
-A: Usually no - stay in character. But for future workshops, definitely try different roles!
+Useful scripts:
+```bash
+# Browse server
+python scripts/vulns/opcua_readonly_probe.py --endpoint opc.tcp://127.0.0.1:4840
 
-**Q: What if the Patrician rejects our recommendations?**
-A: Learn from it. What did you miss? What could you have argued better? That's the learning.
+# Backup SCADA
+python scripts/vulns/opcua_readonly_probe.py --endpoint opc.tcp://127.0.0.1:4841
+```
 
-## What Makes This Educational
+Try this:
+- Anonymous browsing of server nodes
+- Reading tag values
+- Finding operational data
+- Comparing primary vs backup SCADA
 
-You're not learning from lectures. You're learning from:
-- **Experience:** Actually performing pentesting, not watching demos
-- **Mistakes:** Getting stakeholder questions wrong, then figuring out better answers
-- **Perspective:** Seeing problems from multiple viewpoints (attacker, defender, operations, executive)
-- **Negotiation:** Finding solutions when people disagree
-- **Reality:** Understanding that technical correctness doesn't automatically win arguments
+Go deeper:
+- Understand OPC UA information model
+- Learn about security modes (when enabled)
+- Browse complete node hierarchy
+- Try writing to nodes
 
-The best learning happens when:
-- You're explaining an attack and realize the stakeholder doesn't understand
-- Operations points out a flaw in your recommendation you hadn't considered
-- The Patrician asks a question you can't answer
-- You find a compromise that satisfies both security and operations
-- You present evidence that actually convinces skeptical executives
+### EtherNet/IP (Allen-Bradley)
 
-## Success Looks Like
+What it is: Rockwell Automation protocol, common in manufacturing.
 
-By end of day, you should:
-- Understand industrial protocol security (or lack thereof)
-- Know how to perform OT pentesting reconnaissance and exploitation
-- Be able to write a security assessment report with evidence
-- Understand how to prioritize remediation considering multiple factors
-- Know how to present technical findings to non-technical audiences
-- Recognize that security is about people and communication, not just technology
-- Want to practice more because you discovered this is harder and more interesting than expected
+Where: Turbines (ports 44818-44820)
 
-## Most Important Rule
+Key concepts:
+- Tags: Named variables
+- CIP (Common Industrial Protocol): Underlying protocol
+- Controllers: Allen-Bradley PLCs
 
-**Have fun!**
+Useful scripts:
+```bash
+# Tag inventory
+python scripts/vulns/ab_logix_tag_inventory.py --host 127.0.0.1 --port 44818
+```
 
-This is serious learning through playful experience. Yes, you're developing professional skills. But you're doing it by being hackers, defenders, and bureaucrats in a Discworld power plant.
+Try this:
+- Enumerate all tags
+- Compare EtherNet/IP vs Modbus access to same turbine
+- Find which tags are writable
 
-Take the learning seriously. Don't take yourself too seriously.
+Go deeper:
+- Understand CIP protocol structure
+- Learn about Allen-Bradley addressing
+- Compare to other industrial protocols
 
-Break things. Fix things. Argue about things. Learn things.
+## Exploration strategies
 
-Welcome to Ankh-Morpork. Your adventure begins now.
+### Strategy 1: Protocol-focused
+
+Pick one protocol (Modbus, S7, OPC UA, EtherNet/IP) and master it:
+- Understand how it works
+- Try all scripts for that protocol
+- Read protocol specification
+- Write your own client
+- Capture and analyse traffic
+
+### Strategy 2: System-focused
+
+Pick one system (turbine, reactor, SCADA) and explore everything about it:
+- What protocols does it support?
+- What data is accessible?
+- What can you control?
+- How does it respond to attacks?
+
+### Strategy 3: Attack-focused
+
+Pick an attack goal and achieve it:
+- Control turbine speed remotely
+- Extract all PLC logic
+- Map complete facility architecture
+- Create cascading failures
+
+### Strategy 4: Breadth-first
+
+Try a bit of everything:
+- Test each protocol quickly
+- Move between systems
+- Get overview of entire attack surface
+- Then go deep on what interests you
+
+No "right" strategy. Follow your curiosity.
+
+## Going deeper
+
+### Write your own scripts
+
+Modify existing scripts or create new ones:
+
+```python
+#!/usr/bin/env python3
+from pymodbus.client import ModbusTcpClient
+
+client = ModbusTcpClient('127.0.0.1', port=10502)
+client.connect()
+
+# Read holding registers
+result = client.read_holding_registers(address=0, count=10, slave=1)
+print(result.registers)
+
+client.close()
+```
+
+### Analyse network traffic
+
+Use Wireshark to see what's happening:
+
+```bash
+# Capture traffic
+sudo tcpdump -i lo -w capture.pcap port 502
+
+# Then analyse in Wireshark
+wireshark capture.pcap
+```
+
+Look for:
+- Protocol structure
+- Commands and responses
+- Authentication (or lack thereof)
+- Data being transmitted
+
+### Chain attacks
+
+Combine multiple vulnerabilities:
+- Reconnaissance → Exploitation → Impact
+- Multiple protocols against same target
+- Simultaneous attacks on different systems
+
+Example:
+1. Enumerate turbine via Modbus
+2. Access same turbine via EtherNet/IP
+3. Extract SCADA data via OPC UA
+4. Correlate information
+5. Demonstrate coordinated attack
+
+### Attack defensive measures
+
+If the facility had security, how would you bypass it:
+- Slow scanning to avoid rate limits
+- Traffic camouflage to look legitimate
+- Protocol-specific evasion techniques
+
+Scripts for this:
+```bash
+python scripts/exploitation/anomaly_bypass_test.py --scan-delay 300
+python scripts/exploitation/protocol_camouflage.py --mimic-hmi
+```
+
+## When things go wrong
+
+### Simulator issues
+
+Simulator won't start:
+```bash
+# Check if already running
+ps aux | grep simulator
+
+# Kill and restart
+pkill -f simulator_manager
+python tools/simulator_manager.py
+```
+
+Ports not listening:
+```bash
+# Check what's listening
+ss -tlnp | grep -E ":(4840|102|502|44818)"
+```
+
+If nothing: simulator isn't running. Start it.
+
+### Script issues
+
+Import errors:
+```bash
+pip install -r requirements.txt
+```
+
+Connection refused:
+- Is simulator running?
+- Correct port number?
+- Correct host (127.0.0.1)?
+
+Timeouts:
+- Some operations take time
+- Try increasing timeout in script
+- Check if target system is responsive
+
+No data returned:
+- Might be normal for some queries
+- Try different address ranges
+- Check script output for errors
+
+### Getting stuck
+
+If stuck after 10-15 minutes:
+1. Try a different script
+2. Try a different protocol/system
+3. Ask another student
+4. Ask facilitator
+
+Don't waste time being stuck. Get help.
+
+### Common mistakes
+
+Wrong port numbers:
+- Modbus: 10501-10504
+- S7: 102-103
+- OPC UA: 4840-4841
+- EtherNet/IP: 44818-44820
+
+Wrong S7 parameters:
+- Usually rack 0, slot 2 or 3
+- Try both if one doesn't work
+
+Not reading script output:
+- Errors tell you what's wrong
+- Read them carefully
+
+## Taking breaks
+
+When to take a break:
+- Feeling frustrated
+- Can't solve a problem
+- Eyes getting tired
+- Need to think
+
+Breaks are productive. Your brain processes while you rest.
+
+Grab coffee, chat with others, take a walk. Come back fresh.
+
+## End of day
+
+Reflect on:
+- What did you discover?
+- What surprised you?
+- What was hardest?
+- What was most fun?
+- What do you want to explore more?
+
+Share with others. Their discoveries add to your learning.
+
+## After the workshop
+
+### Keep exploring
+
+The simulator is yours:
+```bash
+python tools/simulator_manager.py
+```
+
+Continue trying challenges. Go deeper. Write your own tools.
+
+### Learn more
+
+Technical depth:
+- Protocol specifications (Modbus, S7, OPC UA, EtherNet/IP)
+- IEC 62443 standards
+- Real attack case studies (Stuxnet, Triton, Ukraine grid)
+
+Practical skills:
+- SANS ICS courses (ICS410, ICS515)
+- Contribute to open-source ICS tools
+- Build your own lab environment
+- Practice on other simulators
+
+Career paths:
+- OT security consultant
+- ICS penetration tester
+- Industrial security researcher
+- Critical infrastructure protection
+
+### Resources
+
+Documentation:
+- Protocol specs online
+- IEC 62443 series
+- NIST Cybersecurity Framework
+- ICS-CERT advisories
+
+Communities:
+- r/ICS on Reddit
+- ICS security conferences (S4, ICS Summit)
+- Local security meetups
+- Open-source ICS projects
+
+Tools:
+- Nmap with NSE scripts for ICS
+- Metasploit ICS modules
+- Custom Python scripts
+- Wireshark with ICS dissectors
 
 ---
 
-*"Getting an education was a bit like a communicable sexual disease. It made you unsuitable for a lot of jobs and then you had the urge to pass it on." - Terry Pratchett*
+*"The best way to learn is by breaking things. Safely." - Ponder Stibbons*
 
-*Today you get infected with OT security knowledge. Tomorrow you'll want to hack all the industrial control systems. We apologize in advance.*
+*Keep exploring. Keep learning. Keep breaking things (in the simulator).*

@@ -1,4 +1,4 @@
-The long day at UU Power & Light
+A day of discovery at UU Power & Light
 ======================================================
 
 .. image:: /_static/images/ot-controls.png
@@ -8,11 +8,10 @@ The long day at UU Power & Light
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Learn pentesting by living it - a full-day roleplay for university students:
+   :caption: Learn pentesting by living it. A full-day roleplay for university students:
 
    overview.md
-   detailed-schedule.md
    student-guide.md
-   remediation.md
+   challenges.md
 
 

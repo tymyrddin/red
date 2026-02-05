@@ -94,7 +94,7 @@ Hands-on focus: 90 minutes of actual pentesting, 60 minutes of presentation role
 
 Participants need:
 - Laptop (Linux, macOS, or Windows with WSL)
-- Python 3.8+
+- Python 3.12+
 - Git access to the simulator repository
 - 4GB RAM minimum
 
