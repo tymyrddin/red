@@ -12,25 +12,17 @@ What you'll learn: Modbus TCP protocol, reading and writing registers, control s
 
 Where to start:
 ```bash
-# Discover what's listening
-python scripts/recon/raw-tcp-probing.py
-
-# Identify Modbus devices
-python scripts/recon/modbus_identity_probe.py --host 127.0.0.1 --port 10502
-
-# Understand the turbine
 python scripts/recon/turbine_recon.py
 ```
 
-Make it interesting:
+See the student guide's Modbus TCP section for protocol details and more scripts.
+
+Explore:
 - Can you gradually increase speed without triggering alarms?
 - Can you emergency stop all turbines simultaneously?
 - Can you make changes that operators won't immediately notice?
-
-Deep dive options:
-- How does Modbus actually work? Read the protocol spec
 - What other Modbus-controlled systems can you find?
-- Can you write your own Modbus attack script?
+- Can you write your own Modbus attack script from scratch?
 
 ## Challenge 2: Reactor Secrets
 
@@ -42,23 +34,15 @@ What you'll learn: S7comm protocol, PLC memory structure, data exfiltration
 
 Where to start:
 ```bash
-# S7 PLC reconnaissance
 python scripts/vulns/s7_plc_status_dump.py --host 127.0.0.1 --port 102 --rack 0 --slot 2
-
-# Extract PLC logic
-python scripts/vulns/s7_readonly_block_dump.py --host 127.0.0.1 --port 102 --rack 0 --slot 2
-
-# Read memory
-python scripts/vulns/s7_read_memory.py --host 127.0.0.1 --port 102 --rack 0 --slot 2
 ```
 
-Make it interesting:
+See the student guide's S7comm section for protocol details and more scripts.
+
+Explore:
 - What information is exposed in the PLC status?
 - Can you extract complete control programmes?
 - How would a competitor use this information?
-
-Deep dive options:
-- Understand S7 addressing (rack, slot, DB blocks)
 - What's different about the safety PLC (port 103)?
 - Can you modify PLC logic, not just read it?
 
@@ -72,19 +56,15 @@ What you'll learn: OPC UA protocol, tag enumeration, data access
 
 Where to start:
 ```bash
-# OPC UA reconnaissance
 python scripts/vulns/opcua_readonly_probe.py --endpoint opc.tcp://127.0.0.1:4840
-
-# Try the backup SCADA too
-python scripts/vulns/opcua_readonly_probe.py --endpoint opc.tcp://127.0.0.1:4841
 ```
 
-Make it interesting:
+See the student guide's OPC UA section for protocol details.
+
+Explore:
 - Is anonymous access allowed?
 - What operational data is visible?
 - Can you monitor in real-time?
-
-Deep dive options:
 - How does OPC UA security work (when it's enabled)?
 - What's the difference between primary and backup SCADA?
 - Can you write to SCADA tags, not just read?
@@ -99,22 +79,18 @@ What you'll learn: EtherNet/IP, protocol comparison, redundant access paths
 
 Where to start:
 ```bash
-# The turbines speak multiple protocols
-# Try Modbus (port 10502)
+# Turbines speak multiple protocols - try both
 python scripts/recon/modbus_identity_probe.py --host 127.0.0.1 --port 10502
-
-# Try EtherNet/IP (port 44818)
 python scripts/vulns/ab_logix_tag_inventory.py --host 127.0.0.1 --port 44818
 ```
 
-Make it interesting:
+See the student guide for details on Modbus and EtherNet/IP.
+
+Explore:
 - Can you access the same data via different protocols?
 - Which protocol gives you more information?
 - If one protocol was secured, could you use another?
-
-Deep dive options:
 - Why do industrial devices support multiple protocols?
-- What's the difference between Modbus and EtherNet/IP?
 - Can you pivot between protocols?
 
 ## Challenge 5: The Complete Picture
@@ -127,20 +103,16 @@ What you'll learn: Network architecture, system relationships, comprehensive rec
 
 Where to start:
 ```bash
-# Start with port discovery
 python scripts/recon/raw-tcp-probing.py
-
-# Then enumerate each protocol
-# (Use scripts from previous challenges)
 ```
 
-Make it interesting:
+Then use scripts from other challenges to enumerate each protocol.
+
+Explore:
 - Create a network diagram showing all systems
 - Map which systems control what
 - Identify the most critical targets
 - Find unexpected connections
-
-Deep dive options:
 - How would you prioritise targets for attack?
 - What's the difference between production and safety systems?
 - If you could only attack one system, which would cause most impact?
@@ -156,22 +128,14 @@ What you'll learn: Traffic analysis, rate limiting, evasion techniques
 Where to start:
 ```bash
 # Compare obvious vs stealthy scanning
-# Fast and obvious:
 python scripts/recon/raw-tcp-probing.py
-
-# Slow and subtle:
 python scripts/exploitation/anomaly_bypass_test.py --scan-delay 300
-
-# Traffic camouflage:
-python scripts/exploitation/protocol_camouflage.py --mimic-hmi
 ```
 
-Make it interesting:
+Explore:
 - How slow do you need to be to avoid detection?
-- Can you mimic legitimate traffic?
+- Can you mimic legitimate traffic using protocol_camouflage.py?
 - What would monitoring systems see?
-
-Deep dive options:
 - What would good detection look like?
 - How would you design IDS rules for industrial protocols?
 - Can you pivot through legitimate systems?
@@ -186,17 +150,13 @@ What you'll learn: Attack chains, combining vulnerabilities, PoC development
 
 Where to start:
 ```bash
-# Try the pre-built attacks
 python scripts/exploitation/turbine_overspeed_attack.py --host 127.0.0.1 --port 10502 --target-speed 1600
-python scripts/exploitation/turbine_emergency_stop.py --host 127.0.0.1 --port 10502
 ```
 
-Make it interesting:
+Explore:
 - Can you affect multiple systems simultaneously?
 - What's the worst-case scenario you can demonstrate?
 - Can you create a cascading failure?
-
-Deep dive options:
 - How would you demonstrate this to non-technical executives?
 - Video evidence or live demo?
 - What would operations see when this happens?

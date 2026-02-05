@@ -13,5 +13,6 @@ A day of discovery at UU Power & Light
    overview.md
    student-guide.md
    challenges.md
+   protocol-reference.md
 
 
