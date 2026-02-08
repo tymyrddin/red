@@ -20,7 +20,7 @@ it was to tap a shoulder mid-discussion. The approach required protocol courtesy
 customs, ask only polite questions.
 
 The first test was the simplest: does the device speak when spoken to? The script 
-[`raw-tcp-probing.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/recon/raw-tcp-probing.py) 
+[`raw-tcp-probing.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/recon/raw-tcp-probing.py) 
 performed the gentlest possible Modbus query. Read a single holding register. Address zero. Function code 3. 
 The universal question in Modbus: "What is your status?"
 
@@ -48,7 +48,7 @@ the protocol's way of asking "Who are you?" It returns vendor name, product code
 version. Not all devices implement it. Those that do provide a wealth of reconnaissance data in a single, legitimate, 
 protocol-compliant query.
 
-The script [`modbus_identity_probe.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/recon/modbus_identity_probe.py) 
+The script [`modbus_identity_probe.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/recon/modbus_identity_probe.py) 
 sends this query to discovered devices:
 
 ```bash
@@ -83,7 +83,7 @@ The script saved detailed results to `reports/device_identity_probe_*.json` for 
 ## Telemetry reading
 
 With basic connectivity and identity confirmed, the next step was reading actual operational data. The script 
-[`turbine_recon.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/recon/turbine_recon.py) 
+[`turbine_recon.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/recon/turbine_recon.py) 
 performs a reconnaissance read of turbine telemetry registers, the data a SCADA operator would see:
 
 ```bash
@@ -139,7 +139,7 @@ Industrial networks rarely speak only Modbus. The [passive capture](passive.md) 
 event-driven rather than polled.
 
 Port `63342` showed a different pattern entirely,lower frequency, larger packet sizes. The script 
-[`connect-remote-substation.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/recon/connect-remote-substation.py) 
+[`connect-remote-substation.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/recon/connect-remote-substation.py) 
 tested for OPC UA, a more modern industrial protocol common in newer SCADA systems:
 
 ```bash
@@ -185,7 +185,7 @@ implementations, a realistic heterogeneous environment.
 
 The final reconnaissance test operated below the application layer. Sometimes the most revealing information comes 
 not from what services say, but from how the network itself responds. The script 
-[`query-substation-controller.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/recon/query-substation-controller.py) 
+[`query-substation-controller.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/recon/query-substation-controller.py) 
 uses Scapy to send raw TCP SYN packets and analyse responses:
 
 ```bash

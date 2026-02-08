@@ -119,9 +119,9 @@ physical processes through simulated physics models.
 ## Configuration architecture
 
 The simulator's configuration files revealed the architectural decisions that shaped the environment. The configuration 
-lives in [`config/`](https://github.com/ninabarzh/power-and-light-sim/tree/main/config):
+lives in [`config/`](https://github.com/tymyrddin/power-and-light-sim/tree/main/config):
 
-[`devices.yml`](https://github.com/ninabarzh/power-and-light-sim/blob/main/config/devices.yml) - Defined each device's 
+[`devices.yml`](https://github.com/tymyrddin/power-and-light-sim/blob/main/config/devices.yml) - Defined each device's 
 type, sensors, actuators, and initial state:
 
 ```yaml
@@ -144,7 +144,7 @@ turbine_plc_1:
 Each device's configuration explicitly listed its I/O points. This was why [discovery](discovery.md) found exactly 8 
 active input registers, they were defined in configuration, not arbitrary memory ranges.
 
-[`protocols.yml`](https://github.com/ninabarzh/power-and-light-sim/blob/main/config/protocols.yml) - Mapped devices 
+[`protocols.yml`](https://github.com/tymyrddin/power-and-light-sim/blob/main/config/protocols.yml) - Mapped devices 
 to network services:
 
 ```yaml
@@ -164,7 +164,7 @@ This explained the port assignments discovered during [passive reconnaissance](p
 arbitrary, they were deliberately configured to avoid conflicts with standard ICS ports (502, 102, etc.) while 
 maintaining logical grouping (105xx for field devices, 635xx for supervisory systems).
 
-[`device_identity.yml`](https://github.com/ninabarzh/power-and-light-sim/blob/main/config/device_identity.yml) defined 
+[`device_identity.yml`](https://github.com/tymyrddin/power-and-light-sim/blob/main/config/device_identity.yml) defined 
 Modbus device identities for FC 43 responses:
 
 ```yaml
@@ -252,9 +252,9 @@ SCADA Visibility Dependencies:
 - No network segmentation blocking control traffic
 
 Attack Surface Dependencies:
-- No authentication on Modbus writes (discovered during [test_write_permissions.py](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/test_write_permissions.py))
+- No authentication on Modbus writes (discovered during [test_write_permissions.py](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/test_write_permissions.py))
 - Direct network access to PLCs (no firewall between SCADA and field devices)
-- All unit IDs respond (no unit ID validation, discovered during [scan_unit_ids.py](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/scan_unit_ids.py))
+- All unit IDs respond (no unit ID validation, discovered during [scan_unit_ids.py](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/scan_unit_ids.py))
 
 The lack of authentication was architectural. Modbus TCP has no authentication mechanism. This wasn't a configuration error, it was the protocol's design. The simulator faithfully replicated this vulnerability.
 
@@ -290,7 +290,7 @@ Mapping revealed that the simulator made deliberate architectural choices:
 - Transparency over security - No authentication, no access control, no segmentation. This enabled security research and attack demonstration without requiring exploit development for authentication bypass.
 - Realistic protocols - Actual Modbus TCP, actual OPC UA, actual protocol behaviours. Not "toy" implementations but real industrial protocol stacks (pymodbus, asyncua).
 - Physics simulation - Realistic control loop behaviour, thermal dynamics, mechanical constraints. Values weren't random, they followed physical laws.
-- Deliberate limitations - The pymodbus device identity bug, the unit ID validation issue, the compact memory maps. These were known limitations, documented in [Simulator gaps](https://github.com/ninabarzh/power-and-light-sim/blob/main/SIMULATOR_GAPS.md).
+- Deliberate limitations - The pymodbus device identity bug, the unit ID validation issue, the compact memory maps. These were known limitations, documented in [Simulator gaps](https://github.com/tymyrddin/power-and-light-sim/blob/main/SIMULATOR_GAPS.md).
 
 The simulator's architecture was honest. It didn't hide its nature. It didn't pretend to be production infrastructure. 
 It provided a realistic test environment for security research, pentesting techniques, and attack demonstration.
@@ -316,7 +316,7 @@ The map was complete. The architecture was documented. The dependencies were kno
 Now came the question: what happens when you modify a system this transparent? What attacks become possible with 
 this complete map?
 
-That's where [exploitation](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation) enters the story. The turbine overspeed attacks, the emergency stop demonstrations, 
+That's where [exploitation](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation) enters the story. The turbine overspeed attacks, the emergency stop demonstrations, 
 the gradual manipulation that stays below alarm thresholds.
 
 But those are not reconnaissance or mapping. Those are demonstrations of capability, showing what an adversary could 

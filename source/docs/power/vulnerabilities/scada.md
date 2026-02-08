@@ -36,7 +36,7 @@ Certificate-based: Strong authentication using X.509 certificates. Proper PKI, p
 
 ### Testing the SCADA server
 
-Ponder's first test was simple: could he connect to the SCADA server's OPC UA interface at all? The [OPC UA probe script](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/opcua_readonly_probe.py) attempted an anonymous connection.
+Ponder's first test was simple: could he connect to the SCADA server's OPC UA interface at all? The [OPC UA probe script](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/opcua_readonly_probe.py) attempted an anonymous connection.
 
 ```python
 # From opcua_readonly_probe.py
@@ -255,8 +255,7 @@ specification, completely optional and usually disabled. This is progress, techn
 progress that actually makes systems secure."
 
 Further Reading:
-- [Vulnerability Assessment Scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/README.md) - Technical details on OPC UA testing
-- [TESTING_CHECKLIST](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/TESTING_CHECKLIST.md) - Complete test coverage
-- [Protocol Integration Guide](https://github.com/ninabarzh/power-and-light-sim/tree/main/docs/protocol_integration.md) - How OPC UA integrates with devices
+- [Vulnerability Assessment Scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/README.md) - Technical details on OPC UA testing
+- [TESTING_CHECKLIST](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/TESTING_CHECKLIST.md) - Complete test coverage
 
 The OPC UA reconnaissance script demonstrates real-world reconnaissance techniques against industrial data servers. All testing is read-only but reveals the complete attack surface available to anonymous clients.

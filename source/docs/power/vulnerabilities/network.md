@@ -143,16 +143,16 @@ Every open port was a potential entry point. Every protocol that lacked authenti
 
 The simulator supports several reconnaissance approaches:
 
-[Raw TCP probing](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/raw-tcp-probing.py):
+[Raw TCP probing](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/raw-tcp-probing.py):
 Basic connectivity testing to confirm ports are open and responsive.
 
-[Modbus identity probe](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/modbus_identity_probe.py):
+[Modbus identity probe](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/modbus_identity_probe.py):
 Extracts device identity information via Modbus Function Code 43.
 
-[Turbine reconnaissance](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/turbine_recon.py):
+[Turbine reconnaissance](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/turbine_recon.py):
 Comprehensive Modbus reconnaissance of turbine PLCs.
 
-[OPC UA connection test](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/connect-remote-substation.py):
+[OPC UA connection test](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/connect-remote-substation.py):
 Tests OPC UA connectivity and security configuration.
 
 All scripts are read-only reconnaissance, demonstrating what information is available without making any changes.
@@ -191,8 +191,8 @@ The only realistic security measures are:
 Ponder's final note in his testing journal: "The network is the security boundary. Unfortunately, the network boundary is porous, poorly defined, and often non-existent. Once you're on the OT network, you're effectively trusted by everything. This is not a technology problem that can be patched. This is an architectural reality that must be defended around."
 
 Further Reading:
-- [Reconnaissance Scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/README.md) - Network discovery and enumeration
-- [Vulnerability Scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/README.md) - Protocol-specific testing
-- [Protocol Integration](https://github.com/ninabarzh/power-and-light-sim/tree/main/docs/protocol_integration.md) - How protocols are implemented
+- [Reconnaissance Scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/README.md) - Network discovery and enumeration
+- [Vulnerability Scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/README.md) - Protocol-specific testing
+- [Protocol Integration](https://github.com/tymyrddin/power-and-light-sim/tree/main/docs/protocol_integration.md) - How protocols are implemented
 
 The reconnaissance scripts demonstrate what an attacker can discover about an industrial network through non-invasive scanning and protocol enumeration.

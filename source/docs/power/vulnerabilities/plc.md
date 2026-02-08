@@ -20,7 +20,7 @@ The UU P&L simulator included a Siemens S7-400 PLC controlling the alchemical re
 
 ### First contact
 
-The first test was simply attempting to connect. Using [Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication, Ponder wrote a simple [connection test](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/testing-turbine-control-plcs.py).
+The first test was simply attempting to connect. Using [Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication, Ponder wrote a simple [connection test](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/testing-turbine-control-plcs.py).
 
 ```python
 # From testing-turbine-control-plcs.py
@@ -34,7 +34,7 @@ The PLC responded immediately. No password prompt. No authentication challenge. 
 
 ### Extracting status information
 
-Once connected, Ponder tried requesting status information with a [status dump script](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_plc_status_dump.py). The PLC cheerfully provided:
+Once connected, Ponder tried requesting status information with a [status dump script](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_plc_status_dump.py). The PLC cheerfully provided:
 - CPU type and firmware version
 - Current operational state (RUN/STOP/MAINT)
 - System diagnostics
@@ -46,7 +46,7 @@ Security implication: An attacker now knows exactly what PLC model and firmware 
 
 ### Reading memory
 
-The next test was [reading memory areas](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py). S7 PLCs have several memory regions:
+The next test was [reading memory areas](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py). S7 PLCs have several memory regions:
 - Process Image Input (PI/PA): Sensor values
 - Process Image Output (PO/PE): Actuator states
 - Data Blocks (DB): Structured configuration data
@@ -70,7 +70,7 @@ Security implication: Complete visibility into operational state. An attacker ca
 
 ### Downloading the programme
 
-The most significant test was [downloading programme blocks](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_readonly_block_dump.py) from the PLC.
+The most significant test was [downloading programme blocks](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_readonly_block_dump.py) from the PLC.
 
 S7 programmes are organised into blocks:
 - OB (Organisation Blocks): Main programme logic
@@ -98,7 +98,7 @@ Security implication: Complete intellectual property theft and reverse engineeri
 ### Password "protection"
 
 The simulator's reactor safety PLC had password protection enabled. Ponder tested this with a 
-[brute force demonstration](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/plc_password_bruteforce.py).
+[brute force demonstration](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/plc_password_bruteforce.py).
 
 The password was four digits. Four digits means 10,000 possible combinations. The script (in simulated mode, for educational purposes) demonstrated that such passwords could be brute forced in minutes.
 
@@ -114,7 +114,7 @@ The turbine controller also supported Modbus TCP, a universal industrial protoco
 
 ### Reading everything
 
-Ponder's first Modbus test was a [complete memory snapshot](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/modbus_coil_register_snapshot.py). Modbus organises memory into:
+Ponder's first Modbus test was a [complete memory snapshot](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/modbus_coil_register_snapshot.py). Modbus organises memory into:
 - Coils: Discrete outputs (ON/OFF controls)
 - Discrete Inputs: Discrete inputs (ON/OFF sensors)
 - Input Registers: Analogue sensor values (read-only)
@@ -162,7 +162,7 @@ The turbine PLC also implemented EtherNet/IP (Common Industrial Protocol), used 
 
 ### Tag enumeration
 
-Ponder's [tag inventory script](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/ab_logix_tag_inventory.py) connected to the EtherNet/IP server and requested a complete tag list.
+Ponder's [tag inventory script](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/ab_logix_tag_inventory.py) connected to the EtherNet/IP server and requested a complete tag list.
 
 ```python
 # Simplified mode for simulator
@@ -267,8 +267,8 @@ Ponder closed his testing journal and made one final note: "The PLCs trust anyon
 
 Further Reading:
 
-- [Vulnerability Assessment Scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/README.md) - Technical details on all PLC testing scripts
-- [TESTING_CHECKLIST](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/TESTING_CHECKLIST.md) - Complete test coverage
-- [SIMULATOR_GAPS](https://github.com/ninabarzh/power-and-light-sim/tree/main/SIMULATOR_GAPS.md) - Known limitations
+- [Vulnerability Assessment Scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/README.md) - Technical details on all PLC testing scripts
+- [TESTING_CHECKLIST](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/TESTING_CHECKLIST.md) - Complete test coverage
+- [SIMULATOR_GAPS](https://github.com/tymyrddin/power-and-light-sim/tree/main/SIMULATOR_GAPS.md) - Known limitations
 
 The scripts demonstrate real-world attack vectors against industrial controllers. All tests are read-only reconnaissance (except simulated authentication testing) but demonstrate the foundation for understanding PLC vulnerabilities.

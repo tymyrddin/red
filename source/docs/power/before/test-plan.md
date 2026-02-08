@@ -21,9 +21,9 @@ engines, with no interaction permitted with live UU P&L systems.
 
 ### 2.1 In-Scope systems (simulator assets)
 
-Testing will target all configured devices and network zones within the simulator, as defined in [/config/](https://github.com/ninabarzh/power-and-light-sim/tree/main/config).
+Testing will target all configured devices and network zones within the simulator, as defined in [/config/](https://github.com/tymyrddin/power-and-light-sim/tree/main/config).
 
-*   By Device Name ([devices.yml](https://github.com/ninabarzh/power-and-light-sim/blob/main/config/devices.yml)):
+*   By Device Name ([devices.yml](https://github.com/tymyrddin/power-and-light-sim/blob/main/config/devices.yml)):
     *   Hex Steam Turbine System: `hex_turbine_plc`, `hex_turbine_safety_plc`
     *   Alchemical Reactor System: `reactor_plc`, `reactor_safety_plc`
     *   Library Environmental System: `library_hvac_plc`, `library_lspace_monitor`
@@ -31,7 +31,7 @@ Testing will target all configured devices and network zones within the simulato
     *   Operations & Supervision: `scada_server_primary`, `scada_server_backup`, `hmi_operator_1`, `hmi_operator_2`, `hmi_operator_3`, `hmi_operator_4`, `engineering_workstation`
     *   Enterprise Data Systems: `historian_primary`, `legacy_data_collector`, `finance_workstation`
 
-*   By Network Zone ([network.yml](https://github.com/ninabarzh/power-and-light-sim/blob/main/config/network.yml) - Purdue model alignment):
+*   By Network Zone ([network.yml](https://github.com/tymyrddin/power-and-light-sim/blob/main/config/network.yml) - Purdue model alignment):
     *   Control Zone (Level 0-2): The `turbine_network` (10.10.1.0/24), `reactor_network` (10.10.2.0/24), `library_network` (10.10.3.0/24), and `distribution_network` (10.10.10.0/24).
     *   Operations Zone (Level 3): The `scada_network` (10.20.1.0/24), `hmi_network` (10.20.2.0/24), and `engineering_network` (10.20.3.0/24).
     *   DMZ & Enterprise Zone (Level 3.5-4): The `dmz_network` (10.30.1.0/24) and `historian_network` (10.40.1.0/24). These are primarily targets for pivot and exfiltration testing.

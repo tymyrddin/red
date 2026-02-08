@@ -10,7 +10,7 @@ Where reconnaissance asks polite questions, discovery reads the entire manual. W
 
 With port `10502` confirmed as a responsive Modbus endpoint, the immediate question was: what else responds? The [passive map](passive.md) showed sustained traffic on ports `10502` through `10506`, moderate traffic on `10520`, and sporadic traffic on `10510`. Were all of these Modbus? Did they respond to the same unit IDs?
 
-The script [`scan_unit_ids.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/scan_unit_ids.py) performs a systematic sweep:
+The script [`scan_unit_ids.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/scan_unit_ids.py) performs a systematic sweep:
 
 ```bash
 $ python scripts/discovery/scan_unit_ids.py
@@ -45,7 +45,7 @@ With connectivity confirmed, the next step was understanding the memory layout. 
 
 Each address space could potentially hold thousands of registers. Testing every address would be time-consuming and generate suspicious traffic. The approach needed to be strategic: test key addresses, identify patterns, map boundaries.
 
-The script [`modbus_memory_census.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/modbus_memory_census.py) reads strategic blocks:
+The script [`modbus_memory_census.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/modbus_memory_census.py) reads strategic blocks:
 
 ```bash
 $ python scripts/discovery/modbus_memory_census.py
@@ -107,7 +107,7 @@ The compact map made comprehensive testing feasible. With only 23 addresses, eve
 
 Input registers held sensor readings, the live telemetry from the turbine. Understanding these values required watching them change over time. Were they static? Random? Physically realistic?
 
-The script [`check_input_registers.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/check_input_registers.py) samples registers repeatedly:
+The script [`check_input_registers.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/check_input_registers.py) samples registers repeatedly:
 
 ```bash
 $ python scripts/discovery/check_input_registers.py
@@ -139,7 +139,7 @@ The values oscillated realistically. Speed varied by ±3 RPM around the setpoint
 
 Discovery includes identifying what can be modified. Holding registers are theoretically read/write, but some PLCs protect certain registers or require authentication. Testing write access needed to be non-destructive.
 
-The script [`test_write_permissions.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/test_write_permissions.py) performs the safest possible test: read current value, write same value back, verify unchanged:
+The script [`test_write_permissions.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/test_write_permissions.py) performs the safest possible test: read current value, write same value back, verify unchanged:
 
 ```bash
 $ python scripts/discovery/test_write_permissions.py
@@ -165,7 +165,7 @@ $ python scripts/discovery/test_write_permissions.py
 [*] Exercise extreme caution with any write operations
 ```
 
-Both holding registers accepted writes without authentication or confirmation. This was the open door for [exploitation](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation). An attacker with network access could modify setpoints directly. No password required. No audit trail. No confirmation prompt.
+Both holding registers accepted writes without authentication or confirmation. This was the open door for [exploitation](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation). An attacker with network access could modify setpoints directly. No password required. No audit trail. No confirmation prompt.
 
 This lack of authentication is distressingly common in real industrial systems. Modbus was designed for closed, trusted networks where physical access implied authorisation. Its transplant to TCP/IP networks retained this assumption while removing the physical security.
 
@@ -173,17 +173,17 @@ This lack of authentication is distressingly common in real industrial systems. 
 
 Beyond the core memory mapping, additional discovery scripts revealed finer details:
 
-[`compare_unit_id_memory.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/compare_unit_id_memory.py) - Compared memory contents across unit IDs, confirming they all returned identical data (simulator artefact).
+[`compare_unit_id_memory.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/compare_unit_id_memory.py) - Compared memory contents across unit IDs, confirming they all returned identical data (simulator artefact).
 
-[`decode_register_0_type.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/decode_register_0_type.py) - Tested whether register 0 stored a 16-bit integer, 32-bit integer, or floating-point value. Confirmed 16-bit unsigned integer (range 0-65535).
+[`decode_register_0_type.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/decode_register_0_type.py) - Tested whether register 0 stored a 16-bit integer, 32-bit integer, or floating-point value. Confirmed 16-bit unsigned integer (range 0-65535).
 
-[`sparse_modbus_scan.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/sparse_modbus_scan.py) - Probed strategic addresses (0, 100, 1000, 2000, etc.) looking for extended memory regions. Found only the documented 0-9 range was implemented.
+[`sparse_modbus_scan.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/sparse_modbus_scan.py) - Probed strategic addresses (0, 100, 1000, 2000, etc.) looking for extended memory regions. Found only the documented 0-9 range was implemented.
 
-[`check_discrete_points.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/check_discrete_points.py) - Enumerated all coils and discrete inputs, confirming the compact 3-coil, 8-discrete-input layout.
+[`check_discrete_points.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/check_discrete_points.py) - Enumerated all coils and discrete inputs, confirming the compact 3-coil, 8-discrete-input layout.
 
-[`poll_register_0.py`](https://github.com/ninabarzh/power-and-light-sim/blob/main/scripts/discovery/poll_register_0.py) - Monitored register 0 over extended periods, observing the ±3 RPM oscillation pattern and confirming the PID control loop behaviour.
+[`poll_register_0.py`](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/poll_register_0.py) - Monitored register 0 over extended periods, observing the ±3 RPM oscillation pattern and confirming the PID control loop behaviour.
 
-These scripts, available in the [`scripts/discovery`](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/discovery) directory, represent the systematic approach to enumeration: test assumptions, document findings, identify boundaries, understand behaviour.
+These scripts, available in the [`scripts/discovery`](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/discovery) directory, represent the systematic approach to enumeration: test assumptions, document findings, identify boundaries, understand behaviour.
 
 ## The detailed map
 
@@ -238,7 +238,7 @@ The simulator faithfully replicated this vulnerable-by-design architecture.
 
 ## The foundation for exploitation
 
-Discovery provides the knowledge required for [exploitation](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation). We now knew:
+Discovery provides the knowledge required for [exploitation](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation). We now knew:
 - Which registers controlled turbine behaviour (HR 0-1)
 - Which registers monitored turbine state (IR 0-7)
 - Which addresses were writable without authentication (HR 0-1, all coils)
@@ -268,7 +268,7 @@ This wasn't just a single PLC simulation. It was a facility simulation with mult
 
 Discovery bridges reconnaissance and exploitation. [Active reconnaissance](active.md) identified targets. Discovery mapped their internals. Now came the question: what happens if we modify what we discovered?
 
-That question leads to [exploitation scripts](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation), where discovery becomes demonstration, where knowledge becomes capability, and where the Patrician's directive shifts from "learn about it" to "show us what an attacker could do."
+That question leads to [exploitation scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation), where discovery becomes demonstration, where knowledge becomes capability, and where the Patrician's directive shifts from "learn about it" to "show us what an attacker could do."
 
 But that, as with all dangerous demonstrations, requires its own careful documentation and explicit permission.
 

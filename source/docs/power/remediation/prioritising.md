@@ -44,11 +44,11 @@ Low findings:
 
 The simulator demonstrates these severity levels through actual exploitation:
 
-[Turbine overspeed attack](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation/turbine_overspeed_attack.py) demonstrates high-severity finding (equipment damage risk)
+[Turbine overspeed attack](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation/turbine_overspeed_attack.py) demonstrates high-severity finding (equipment damage risk)
 
-[Emergency stop attack](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation/turbine_emergency_stop.py) demonstrates high-severity finding (operational disruption)
+[Emergency stop attack](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation/turbine_emergency_stop.py) demonstrates high-severity finding (operational disruption)
 
-[S7 memory reading](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py) demonstrates medium-severity finding (intellectual property theft)
+[S7 memory reading](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py) demonstrates medium-severity finding (intellectual property theft)
 
 [Anonymous OPC UA browsing](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/opcua_readonly_probe.py) demonstrates medium-severity finding (reconnaissance enablement)
 

@@ -106,18 +106,18 @@ Whilst the simulator doesn't include HMI application vulnerability testing, all 
 assessment scripts represent what an attacker would do from a compromised HMI or engineering workstation.
 
 Reconnaissance from an HMI:
-- [Raw TCP probing](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/raw-tcp-probing.py) - Initial connectivity testing
-- [Turbine reconnaissance](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/turbine_recon.py) - Comprehensive Modbus enumeration
-- [Modbus identity probe](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/modbus_identity_probe.py) - Device fingerprinting
-- [OPC UA connection test](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/recon/connect-remote-substation.py) - SCADA connectivity
+- [Raw TCP probing](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/raw-tcp-probing.py) - Initial connectivity testing
+- [Turbine reconnaissance](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/turbine_recon.py) - Comprehensive Modbus enumeration
+- [Modbus identity probe](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/modbus_identity_probe.py) - Device fingerprinting
+- [OPC UA connection test](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/connect-remote-substation.py) - SCADA connectivity
 
 Vulnerability assessment from an HMI:
-- [Modbus snapshot](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/modbus_coil_register_snapshot.py) - Read all registers and coils
-- [OPC UA probe](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/opcua_readonly_probe.py) - Anonymous SCADA browsing
-- [S7 status dump](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_plc_status_dump.py) - PLC reconnaissance
-- [S7 memory reading](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py) - Process data extraction
-- [Programme block dump](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_readonly_block_dump.py) - Logic extraction
-- [EtherNet/IP tag inventory](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/ab_logix_tag_inventory.py) - Allen-Bradley enumeration
+- [Modbus snapshot](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/modbus_coil_register_snapshot.py) - Read all registers and coils
+- [OPC UA probe](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/opcua_readonly_probe.py) - Anonymous SCADA browsing
+- [S7 status dump](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_plc_status_dump.py) - PLC reconnaissance
+- [S7 memory reading](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py) - Process data extraction
+- [Programme block dump](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_readonly_block_dump.py) - Logic extraction
+- [EtherNet/IP tag inventory](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/ab_logix_tag_inventory.py) - Allen-Bradley enumeration
 
 All of these scripts assume you're running them from a system that has network access to the OT protocols. In a real 
 assessment, that system would typically be a compromised HMI or engineering workstation.

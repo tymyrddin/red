@@ -149,9 +149,9 @@ This takes weeks in production, but simulator experience teaches which protocols
 
 The simulator supports detection testing:
 
-[IDS detection testing](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation/ids_detection_test.py) generates attack traffic to test whether detection works.
+[IDS detection testing](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation/ids_detection_test.py) generates attack traffic to test whether detection works.
 
-[SIEM correlation testing](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/exploitation/siem_correlation_test.py) generates correlated events to test alert correlation.
+[SIEM correlation testing](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation/siem_correlation_test.py) generates correlated events to test alert correlation.
 
 Value for production:
 - Understanding what attacks look like
