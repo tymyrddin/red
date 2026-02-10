@@ -1,10 +1,12 @@
-# Remediation challenges
+# Overview
 
-*You broke it. Now fix it.*
+![SCADA](/_static/images/ot-scada.png)
+
+<p style="text-align: center;"><em>You broke it. Now fix it.</em></p>
 
 ## What this is
 
-You have spent time [exploring vulnerabilities in UU Power & Light](../long-day-masterclass/index.rst). You found 
+You have spent time [exploring vulnerabilities in UU Power & Light](../attack-masterclass/index.rst). You found 
 unauthenticated protocols, missing access controls, and systems that trust anyone who asks nicely. Now comes the 
 harder part: securing them without breaking everything.
 
@@ -55,9 +57,9 @@ Important: The simulator starts vulnerable by design. Your job is to secure it.
 
 Start here if you're new to OT security or want quick wins:
 
-1. Password protect the SCADA - Enable OPC UA authentication
-2. Implement RBAC - Create roles and enforce permissions
-3. Deploy logging and auditing - Capture security-relevant events
+1. [Password protect the SCADA](1.md): Enable OPC UA authentication
+2. [Implement RBAC](2.md): Create roles and enforce permissions
+3. [Deploy logging and auditing](3.md): Capture security-relevant events
 
 These are "easy" in that the components exist. They're hard because you'll discover what breaks when you add authentication.
 
@@ -65,9 +67,9 @@ These are "easy" in that the components exist. They're hard because you'll disco
 
 Build visibility and detection capabilities:
 
-4. Anomaly detection deployment - Detect abnormal turbine behaviour
-5. Protocol-level filtering - Restrict dangerous Modbus and S7 operations
-6. Session management and dual authorisation - Implement two-person rule
+4. [Anomaly detection deployment](4.md): Detect abnormal turbine behaviour
+5. [Protocol-level filtering](5.md): Restrict dangerous Modbus and S7 operations
+6. [Session management and dual authorisation](6.md): Implement two-person rule
 
 These teach you about false positives, alarm fatigue, and security-usability trade-offs.
 
@@ -75,9 +77,9 @@ These teach you about false positives, alarm fatigue, and security-usability tra
 
 Fundamental changes to how the system operates:
 
-7. Encrypt SCADA communications - Deploy OPC UA signing and encryption
-8. Implement jump host architecture - Centralise administrative access
-9. Network segmentation (IEC 62443 zones) - Zone-based architecture
+7. [Encrypt SCADA communications](7.md): Deploy OPC UA signing and encryption
+8. [Implement jump host architecture](8.md): Centralise administrative access
+9. [Network segmentation (IEC 62443 zones)](9.md): Zone-based architecture
 
 These are the most complex. They require architectural thinking and have significant operational impact.
 
@@ -85,8 +87,9 @@ These are the most complex. They require architectural thinking and have signifi
 
 Apply everything you've learned:
 
-10. Build a complete security architecture - Fix your top 3-5 findings comprehensively
-11. Design and defend a critical operation - Secure one operation end-to-end
+10. [Build a complete security architecture](10.md): Fix your top 3-5 findings comprehensively
+11. [Design and defend a critical operation](11.md): Secure one operation end-to-end
+12. [Combine challenge 10 and 11](12.md): The challenge
 
 These are open-ended. Design, implement, test, document trade-offs.
 
@@ -105,10 +108,10 @@ Contextual understanding:
 - Emergency procedures and break-glass access
 - Operational constraints on security controls
 
-Most importantly:
-You'll understand that finding vulnerabilities is the easy part. Getting them fixed while maintaining operations, staying within budget, and keeping systems usable - that's where security work actually happens.
+Finding vulnerabilities is the easy part. Getting them fixed while maintaining operations, staying within budget, and 
+keeping systems usable, is the harder part.
 
-## Tips for success
+## Tips
 
 Start small. Pick one challenge, implement it, test it thoroughly before moving on.
 
@@ -120,7 +123,7 @@ Ask "what if?" What if authentication fails during emergency? What if certificat
 
 Compare notes. Different people will make different trade-offs. Discuss why.
 
-## After you are done
+## Retrospection
 
 Reflect on:
 - What was harder than expected?
@@ -130,8 +133,6 @@ Reflect on:
 
 Share your findings. Compare implementations. Discuss trade-offs.
 
-Understanding remediation is understanding real security work.
-
 ---
 
-*"It's not what you find. It's what you do about what you find." - Ponder Stibbons*
+*"It's not what you find. It's what you do about what you find." ~ Ponder Stibbons*
