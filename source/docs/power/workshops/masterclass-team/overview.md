@@ -1,6 +1,8 @@
 # Overview
 
-*A ~3-Hour Practical Workshop in OT Security Pentesting and Stakeholder Management*
+![BEFORE](/_static/images/ot-before.png)
+
+<p style="text-align: center;"><em>A practical workshop in OT security pentesting and stakeholder management</em></p>
 
 You are a red team hired to assess the security of Unseen University Power & Light Co., the primary electricity 
 supplier for Ankh-Morpork. Your job: find vulnerabilities, create proof of concepts, and convince stakeholders to act.
@@ -8,24 +10,25 @@ supplier for Ankh-Morpork. Your job: find vulnerabilities, create proof of conce
 The technical assessment is straightforward. The real challenge? Convincing the Archchancellor, the Bursar, the Chief 
 Engineer, and ultimately Lord Vetinari that your findings matter enough to justify change.
 
-This is experiential learning through roleplay. You can conduct a real penetration test using the UU P&L simulator, 
-then face sceptical stakeholders who question your findings, your costs, and your credibility.
+This is experiential learning through roleplay. Bring an OT/ICS PoC or conduct a [penetration test using the 
+UU P&L simulator](scenario.md), find [remediations](../remediation/overview.md), then face sceptical stakeholders who 
+question your findings, your costs, and your credibility.
 
 ## What you can do
 
-Phase 1: Red team assessment (90 minutes)
+Phase 1: Red team assessment
 - Network reconnaissance of industrial control systems
 - Protocol-specific vulnerability discovery (Modbus, S7, OPC UA, EtherNet/IP)
 - Proof of concept development demonstrating real-world attack impact
 - Documentation of findings for stakeholder presentation
 
-Phase 2: Stakeholder briefing (60 minutes)
+Phase 2: Stakeholder briefing
 - Present findings to UU leadership and the Patrician
 - Face realistic pushback and challenging questions
 - Defend your recommendations under scrutiny
 - Negotiate priorities and timelines
 
-Phase 3: Debrief (30 minutes)
+Phase 3: Debrief
 - Compare approaches across teams
 - Discuss communication strategies that worked (and didn't)
 - Extract lessons for real-world assessments
@@ -80,15 +83,11 @@ This workshop prepares you for the real challenge: not finding problems, but dri
 
 ## Workshop format
 
-Duration: 3 hours
-
-Team structure: Small groups (3-4 people) conducting independent assessments
-
-Competition element: Teams compete for best technical demonstration and most convincing stakeholder presentation
+Optional: competition element: Teams compete for best technical demonstration and most convincing stakeholder presentation
 
 Roleplay component: Facilitators play UU stakeholders with realistic concerns and pushback
 
-Hands-on focus: 90 minutes of actual pentesting, 60 minutes of presentation roleplay
+Hands-on focus: For example, 90 minutes of actual pentesting, 60 minutes of presentation roleplay
 
 ## Required setup
 
@@ -117,17 +116,14 @@ roleplay is designed to be uncomfortable and realistic. But fun! At least experi
 
 ## What makes this different
 
-Most OT security training focuses on finding vulnerabilities. This workshop focuses equally on convincing people to fix them.
-
-Most pentesting courses teach technical exploitation. This workshop teaches stakeholder communication under pressure.
-
-Most security training uses lectures and demos. This workshop uses experiential roleplay where you make decisions and face consequences.
-
-You learn by doing. You learn by struggling. You learn by experiencing realistic pushback from operations, finance, and leadership.
+- Most OT security training focuses on finding vulnerabilities. This workshop focuses equally on convincing people to fix them.
+- Most pentesting courses teach technical exploitation. This workshop teaches stakeholder communication under pressure.
+- Most security training uses lectures and demos. This workshop uses experiential roleplay where you make decisions and face consequences.
+- Learning by doing. Learning by struggling. Learning by experiencing realistic pushback from operations, finance, and leadership.
 
 ## Learning outcomes
 
-By completing this workshop, you will:
+Completing this workshop, you can:
 
 - Conduct reconnaissance and exploitation against industrial control systems
 - Create proof of concepts that demonstrate impact to non-technical audiences
@@ -153,13 +149,12 @@ If you can convince Vetinari, you can convince anyone.
 
 ## Next steps
 
-This 3-hour masterclass provides practical introduction to OT security assessment and stakeholder management. For 
-deeper learning:
+This masterclass provides practical introduction to OT security assessment and stakeholder management. For deeper learning:
 
-- Comprehensive OT security training: 2-3 day workshops covering full methodology
+- Comprehensive OT security training: multiple day workshops covering full methodology
 - Advanced exploitation techniques: Nation-state TTPs and sophisticated attack chains
 - Detection and defence: Blue team perspective and monitoring strategies
-- Full-day simulation: University student program with extended roles and remediation focus
+- Simulation: University student program with extended roles and remediation focus
 
 ## Support materials
 
@@ -174,8 +169,6 @@ deeper learning:
 The UU Power & Light network is waiting. The vulnerabilities are there. The stakeholders are sceptical.
 
 Can you prove the threat is real? Can you convince them to act?
-
-Find out in three hours.
 
 ---
 

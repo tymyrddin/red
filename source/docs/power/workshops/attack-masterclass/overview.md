@@ -1,18 +1,21 @@
 # Overview
 
-*Learn OT/ICS pentesting by exploring, breaking things, and having fun*
+![IEDS](/_static/images/ot-ieds.png)
+
+<p style="text-align: center;"><em>Learn OT/ICS pentesting by exploring, breaking things, and having fun</em></p>
 
 ## What is this?
 
-A full-day adventure where you learn industrial security by actually doing it. No lectures. No rigid schedule. Just you, a simulator full of vulnerable control systems, and interesting challenges to tackle.
+An adventure where you learn industrial security by actually doing it. No lectures. No rigid schedule. Just you, a 
+simulator full of vulnerable control systems, and interesting challenges to tackle.
 
 You can crash turbines. Steal secrets. Break things. All safely in a simulator where mistakes don't matter and curiosity is encouraged.
 
-Duration: A full day (arrive around 9am, finish around 5pm, with breaks for coffee and lunch when you want them)
+Duration: TBD
 
 For: University students learning security, especially those who know IT security and want to understand OT/ICS
 
-Style: Montessori for adults - explore at your own pace, pick challenges that interest you, learn by doing
+Style: Montessori for adults: explore at your own pace, pick challenges that interest you, learn by doing
 
 ## How it works
 
@@ -61,30 +64,19 @@ you can understand that OT security is about people, processes, and context as m
 
 ## The setting
 
-You're in Ankh-Morpork at Unseen University Power & Light, which supplies electricity to the University, the Patrician's Palace, and significant portions of the city.
+You're in Ankh-Morpork at Unseen University Power & Light, which supplies electricity to the University, the 
+Patrician's Palace, and significant portions of the city.
 
 The systems are vulnerable. The stakes are high (in the story). The learning is real.
 
-And yes, if you're convincing enough, you might have to present your findings to Lord Vetinari. He will ask difficult questions.
+And yes, if you're convincing enough, [you might want to present your findings to Lord Vetinari](../masterclass-team/index.rst). He will ask difficult questions.
 
 ## What you need
 
 - Laptop with Python 3.12+
 - Curiosity and willingness to explore
 - Collaborative attitude (if working in groups)
-- No prior OT security experience required (that's what you're here to learn!)
-
-## A typical day (but not rigid!)
-
-Morning: Most people explore and hack, trying different challenges, discovering how industrial protocols work
-
-Lunch: Natural break, informal discussions about what people found
-
-Afternoon: Some continue hacking, others want to present findings and practice explaining them, roleplay emerges naturally
-
-End of day: Everyone shares what they discovered, what surprised them, what they learnt
-
-AND: This is self-paced. If you want to spend the whole day on one deep technical challenge, do that. If you want to try lots of different things, do that. There's no "correct" way to learn.
+- No prior OT security experience required
 
 ## Ready to explore?
 
@@ -94,9 +86,7 @@ The simulator is ready. The challenges are waiting. The coffee is hot.
 
 See you in the Unseen University at Ankh-Morpork.
 
----
-
 Details: See the [Exploration challenges](challenges.md) for challenge descriptions and 
-[Student guide](student-guide.md) how to make the most of your day.
+[Student guide](student-guide.md) for how to make the most of it.
 
-*"Learning by doing is all very well, but learning by doing something that goes 'bang' is considerably more educational." - Ponder Stibbons (probably)*
+*"Learning by doing is all very well, but learning by doing something that goes 'bang' is considerably more educational." ~ Ponder Stibbons (probably)*
