@@ -11,7 +11,8 @@ architecture.
    :includehidden:
    :caption: The anatomy of binary formats and the binary life cycle.
 
-   README.md
    anatomy.md
    elf.md
    pe.md
+   flat.md
+   uboot.md

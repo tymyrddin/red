@@ -18,7 +18,7 @@ outsider.
 
 Job postings are often more useful than employee profiles. A posting for a "Microsoft 365 administrator" tells
 you the organisation runs Exchange Online. A posting for a "ServiceNow developer" tells you their ITSM platform.
-A posting for a "Qualys engineer" tells you their vulnerability management tooling. All of this feeds into
+A posting for a "Qualys engineer" tells you their vulnerability management tooling. All feeds into
 more convincing technical pretexts. People are more willing to help someone who knows the name of the thing they
 are supposedly there to fix.
 

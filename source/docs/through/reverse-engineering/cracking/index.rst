@@ -1,7 +1,7 @@
 Cracking nuts
 =================================
 
-Notes on techniques for cracking (reverse enigeering) previously made devices, processes, systems, or pieces of
+Notes on techniques for cracking previously made devices, processes, systems, or pieces of
 software. Knowledge gained during cracking can help with repurposing obsolete objects, doing security analysis, or
 learning how something works.
 
@@ -17,7 +17,10 @@ nice, and improves collaborating with others and other teams.
    assessment.md
    linux.md
    windows.md
-   wasm.md
+   ai-assisted.md
+   ir-pipelines.md
+   firmware.md
+   supply-chain.md
 
 
 .. toctree::
@@ -28,4 +31,3 @@ nice, and improves collaborating with others and other teams.
    macOS Reverse Engineering framework <https://github.com/tymyrddin/codes-reverse/blob/main/reveng-mac-apps>
    Windows Reverse Engineering framework <https://github.com/tymyrddin/codes-reverse/blob/main/reveng-windows-apps>
    Linux Reverse Engineering framework <https://github.com/tymyrddin/codes-reverse/blob/main/reveng-linux-apps>
-   Code snippets for using WASM <https://github.com/tymyrddin/codes-reverse/blob/main/wasm/README.md>

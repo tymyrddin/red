@@ -38,7 +38,7 @@ emails to visitors in advance. Knowing the format of those emails, the name of t
 what a legitimate confirmation looks like makes it considerably easier to pre-register yourself or to construct
 a convincing reason why you are not in the system.
 
-## The name drop
+## The name-drop
 
 The single most effective element of a pretext is usually a name: a real person at the target organisation who
 can plausibly have arranged the visit or sent the email. People do not call their colleagues to verify routine

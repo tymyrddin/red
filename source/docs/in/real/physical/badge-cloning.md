@@ -43,7 +43,7 @@ presence rather than proximity verification.
 The operational challenge in badge cloning is usually getting close enough to the target card. Suits,
 bags, and jacket pockets all attenuate the signal, so passive skimming at distance is unreliable
 without specialised equipment. Most practical attacks involve either a concealed reader worn on the body
-and used in close proximity, or a fixed reader placed near a location where badges are likely to
+and used in proximity, or a fixed reader placed near a location where badges are likely to
 be within range: a card-activated vending machine, a floor reader next to a lift, or a door frame
 where people tap in.
 

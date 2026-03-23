@@ -59,7 +59,7 @@ Pretext: IT helpdesk responding to an account security alert.
 Script outline:
 
 "Hi, this is [name] from the IT security team. We're seeing some unusual activity on your
-account and we've triggered a verification process to lock it down. You should be getting an
+account, and we've triggered a verification process to lock it down. You should be getting an
 authentication request on your phone now. Can you confirm you're receiving it? If you can just
 approve that, we can get your account secured and I can walk you through the next steps."
 
@@ -81,7 +81,7 @@ once the push is approved. Do not close the browser window during the push bombi
 Immediately after authentication:
 
 1. Navigate to the account's security settings and review registered MFA devices and active sessions.
-2. If the engagement scope allows persistence, add an additional authentication method (a phone
+2. If the engagement scope allows persistence, add an authentication method (a phone
    number or an authenticator app you control) before the legitimate user notices the session and
    revokes it.
 3. Export any evidence required by the scope: access to email, files, or administrative functions.

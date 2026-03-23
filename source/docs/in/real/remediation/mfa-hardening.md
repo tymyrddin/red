@@ -1,6 +1,6 @@
 # MFA hardening
 
-Not all multi-factor authentication is equal, and the gap between the weakest and strongest
+Not all multifactor authentication is equal, and the gap between the weakest and strongest
 implementations is the gap between a control that is bypassed routinely in phishing campaigns
 and one that is not. Understanding the distinction is essential for making a recommendation
 that will actually hold up when tested.

@@ -1,6 +1,6 @@
 # MFA bypass
 
-Multi-factor authentication has significantly raised the cost of credential theft. A stolen username
+Multifactor authentication has significantly raised the cost of credential theft. A stolen username
 and password no longer provides access to an account that requires a second factor. This is genuinely
 good news for defenders, and it has genuinely changed attacker behaviour in response. Rather than
 accepting that MFA cannot be bypassed, attackers have developed a range of techniques for bypassing

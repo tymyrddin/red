@@ -20,4 +20,4 @@ The type of file is the most important piece of information that sets off the wh
 
 ## Static analysis
 
-Static analysis will help us make notes of what we will do during dynamic analysis. With knowledge of the assembly language, a disassembled file and its branches can be understood. This allows for preparing the right tools to read, open, and debug the file based on its file type, and understand the file's structure based on its [file format](../binary/README.md).
+Static analysis will help us make notes of what we will do during dynamic analysis. With knowledge of the assembly language, a disassembled file and its branches can be understood. This allows for preparing the right tools to read, open, and debug the file based on its file type, and understand the file's structure based on its [file format](../binary/index.rst).

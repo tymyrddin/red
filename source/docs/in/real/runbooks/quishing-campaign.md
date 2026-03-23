@@ -72,7 +72,7 @@ A document signing notification: "Please scan to review and sign the attached ag
 the close of business." Document signing workflows (DocuSign, Adobe Sign, internal equivalents)
 are common enough that this is unremarkable.
 
-An IT security notice: "As part of our planned migration to multi-factor authentication, please
+An IT security notice: "As part of our planned migration to multifactor authentication, please
 scan the code below to re-enrol your credentials before [date]." Tie the date to a real upcoming
 event at the target organisation if possible.
 

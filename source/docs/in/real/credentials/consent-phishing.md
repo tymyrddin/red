@@ -39,7 +39,7 @@ document signing service that needs access to OneDrive, a security application t
 account activity, or a service the target's organisation has apparently deployed and requires
 employees to connect.
 
-The named application in the consent dialog can be set to anything, including "IT Security Scanner,"
+The named application in the consent dialogue can be set to anything, including "IT Security Scanner,"
 "Microsoft Compliance Tool," or whatever name makes the permission request seem routine. The displayed
 name is not validated against any known application registry.
 

@@ -28,7 +28,7 @@ Navigate to: Azure Active Directory > App registrations > New registration.
 Set:
 - Name: something plausible. "IT Security Compliance Scanner" or "Document Approval Workflow"
   or the name of a real productivity tool the target organisation is likely to use.
-- Supported account types: "Accounts in any organizational directory" allows the app to request
+- Supported account types: "Accounts in any organisational directory" allows the app to request
   consent from any M365 tenant, not just your own.
 - Redirect URI: a URL on your infrastructure that will receive the authorisation code.
 
