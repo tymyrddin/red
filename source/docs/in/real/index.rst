@@ -1,22 +1,22 @@
-Hack the planet? Nah, just hold the door for me
-=================================================
+Social engineering
+=======================
 
-Why hack a firewall when you can just walk in behind someone carrying coffee? From tailgating like a subway surfer to
-cloning badges faster than a bored intern copies spreadsheets, physical breaches thrive on one universal truth: humans
-would rather avoid awkwardness than challenge a stranger with a clipboard. The best part? Half these tricks work better
-if you look like you don’t belong, because nothing screams "legitimate employee" like a person in socks and sandals
-muttering about Wi-Fi signals.
+Technical controls have a reasonably well-defined threat model. Social engineering does not, because the attack
+surface is every person in the organisation who answers a phone, opens an email, holds a door, or clicks a link
+while eating lunch.
 
 .. toctree::
    :glob:
    :maxdepth: 2
    :includehidden:
-   :caption: If your security relies on people being rude to strangers, you’re already hacked:
+   :caption: The techniques here span physical presence, digital lures, and credential theft, and they share one structural advantage: they mostly exploit behaviour that is, in any other context, entirely reasonable.
 
-   exploits/index
-   opsec/index
-
-----
+   pretext/index
+   physical/index
+   phishing/index
+   credentials/index
+   runbooks/index
+   remediation/index
 
 .. image:: /_static/images/in-progress.png
   :alt: Forever in progress ...
