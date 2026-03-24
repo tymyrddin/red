@@ -1,6 +1,6 @@
 # Stack operations and function-calling
 
-***Function call***: When a function is called in assembly code, the calling program sets up the function call by first placing the function parameters on the stack in reverse order, the Extended Instruction Pointer (EIP) is saved on the stack so the program can continue where it left off when the function returns (return address), the call command is executed, and the address of the function is placed in the EIP to execute:
+*Function call*: When a function is called in assembly code, the calling program sets up the function call by first placing the function parameters on the stack in reverse order, the Extended Instruction Pointer (EIP) is saved on the stack so the program can continue where it left off when the function returns (return address), the call command is executed, and the address of the function is placed in the EIP to execute:
 
 ```text
 0x5655621b <+38>:   mov     edx,DWORD PTR [eax]
@@ -13,7 +13,7 @@
 0x5655622a <+53>:   call    0x565561a9 <greeting>
 ```
 
-***Function prolog***: The called function's responsibilities are to save the calling program's EBP register on the stack, save the current ESP register to the EBP register (setting the current stack frame), and then to decrement the ESP register to make room for the function's local variables:
+*Function prologue*: The called function's responsibilities are to save the calling program's EBP register on the stack, save the current ESP register to the EBP register (setting the current stack frame), and then to decrement the ESP register to make room for the function's local variables:
 
 ```text
 0x000011a9 <+0>:    push    ebp
@@ -22,7 +22,7 @@
 0x000011ad <+4>:    sub     esp,0x194
 ```
 
-***Function epilog***: The last thing a called function does before returning to the calling program is to clean up the stack by incrementing ESP to EBP, clearing the stack as part of the leave statement. Then the saved EIP is popped off the stack as part of the return process:
+*Function epilogue*: The last thing a called function does before returning to the calling program is to clean up the stack by incrementing ESP to EBP, clearing the stack as part of the leave statement. Then the saved EIP is popped off the stack as part of the return process:
 
 ```text
 0x000011f3 <+74>:   leave

@@ -8,6 +8,9 @@ The art of staying where you are not wanted
    :caption: I found an abandoned config file. It’s my den now.
 
    notes/index
+   runbooks/index
+   playbooks/index
    linux/index
    windows/index
-   grounds/index
+   thm/index
+   root-me/index

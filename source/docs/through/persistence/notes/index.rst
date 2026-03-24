@@ -1,4 +1,4 @@
-Persistence notes: The raccoon’s field guide to staying unnoticed
+The field guide to staying unnoticed
 ======================================================================
 
 My growing trusty handbook for leaving my digital scent wherever I go. Just like a raccoon who
@@ -11,6 +11,11 @@ in the system without getting caught.
    :includehidden:
    :caption: Notes for the raccoon that wants to stay in the shadows but keep the trash pile coming back for more.
 
+   trends.md
+   identity.md
+   cloud.md
+   living-persistence.md
+   app-layer.md
    common.md
    infrastructure.md
    shells.md

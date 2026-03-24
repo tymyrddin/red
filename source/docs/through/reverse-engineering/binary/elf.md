@@ -360,7 +360,7 @@ After the `e_ident` array comes a series of multibyte integer fields.
 				/* reserved 225-242 */
 #define EM_RISCV	243	/* RISC-V */
 
-#define EM_BPF		247	/* Linux BPF -- in-kernel virtual machine */
+#define EM_BPF		247	/* Linux BPF: in-kernel virtual machine */
 #define EM_CSKY		252     /* C-SKY */
 
 #define EM_NUM		253

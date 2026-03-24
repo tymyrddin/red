@@ -16,5 +16,7 @@ didn’t want us to have it, why was it just lying around?
    :includehidden:
    :caption: The best ones leave them wondering if we found anything at all:
 
-   notes/index
+   collection/index
+   exfiltration/index
+   impact/index
    thm/index

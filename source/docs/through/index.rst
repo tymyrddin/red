@@ -20,5 +20,5 @@ trash cans, and leave every registry/keyhole/data cache thoroughly pilfered. The
    buffer-overflow/index
    reverse-engineering/index
    steganography/index
-   cryptanalysis/index
+   crypto-attacks/index
    evasion/index

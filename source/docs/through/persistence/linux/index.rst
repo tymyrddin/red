@@ -1,4 +1,4 @@
-Digging under the shed: Linux privilege escalation
+Digging under the Linux shed
 ==================================================
 
 Linux is full of poorly latched doors: cron jobs, misconfigured binaries, and gloriously neglected SUID files. Here,

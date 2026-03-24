@@ -12,4 +12,7 @@ constantly watching.
    :includehidden:
    :caption: In the digital forest, the raccoon doesn't just survive, it thrives by staying unseen.
 
+   notes/index
+   runbooks/index
+   playbooks/index
    grounds/index
