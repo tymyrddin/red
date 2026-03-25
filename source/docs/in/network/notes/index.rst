@@ -11,7 +11,7 @@ protective charms. Basically, a manual of magical knowledge.
    :includehidden:
    :caption: Foundational hack moves: essential pre-requisites for the trees and labs ahead.
 
-   README.md
+   recon.md
    manipulation.md
    intrusions.md
    barrages.md

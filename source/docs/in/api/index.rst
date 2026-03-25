@@ -13,5 +13,15 @@ to be cracked like an acorn underfoot, the boar will find it.
    :caption: APIs built on ‘assumptions’ taste like mud, and boars love mud:
 
    notes/index
+   runbooks/index
+   playbooks/index
    root-me/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :includehidden:
+   :caption: Defence
+
+   defence/index
 

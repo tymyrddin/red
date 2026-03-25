@@ -35,7 +35,6 @@ standing watch, the silent, relentless work of BGP remains a testament to both c
    crypto-attacks.md
    bgp-dns-Infrastructure-attacks.md
    bgp-cdn-cloud-Infrastructure-attacks.md
-   ai-powered-bgp-attacks.md
 
 Disclaimer
 -----------------------------------------

@@ -1,52 +1,65 @@
 # Race conditions
 
-A race condition happens when two sections of code that are designed to be executed in a sequence get executed out of sequence.
+Race conditions occur when an application reads a value, makes a decision based on it,
+and then writes a result, but the gap between the read and the write is large enough for
+a second concurrent operation to read the same unchanged value and make the same decision.
+Both operations proceed based on a state that neither of them alone would have produced.
 
-## Steps
+The classic form is the time-of-check/time-of-use gap: the application checks a condition
+(sufficient balance, valid coupon, unredeemed token), and between the check and the write,
+a second request makes the same check against the unchanged state and also passes.
 
-1. Spot the features prone to race conditions in the target application and copy the corresponding requests.
-2. Send multiple of these critical requests to the server simultaneously. You should craft requests that should be allowed once but not allowed multiple times.
-3. Check the results to see if your attack has succeeded. And try to execute the attack multiple times to maximise the chance of success.
-4. Consider the impact of the race condition you just found.
-5. Draft up the report.
+## HTTP/2 and the single-packet attack
 
-## Find features prone to race conditions
+Race condition exploitation over HTTP/1.1 has always been theoretically possible but
+practically unreliable: network jitter between requests widened the timing window unpredictably.
+HTTP/2's multiplexing changed this. Multiple requests sent in a single TCP packet arrive
+at the server simultaneously, because they are delivered by the same packet. The network
+timing variance that made HTTP/1.1 races impractical is eliminated.
 
-Attackers use race conditions to subvert access controls. In theory, any application whose sensitive actions rely on access-control mechanisms could be vulnerable. Most of the time, race conditions occur in features that deal with numbers, such as online voting, online gaming scores, bank transfers, e-commerce payments, and gift card balances. Look for these features in an application and take note of the request involved in updating these numbers.
+This means race conditions that previously required favourable network conditions to exploit
+are now reliably reproducible. A balance check that takes ten milliseconds and was exploitable
+perhaps one time in a hundred is now exploitable nearly every time with the right tooling.
 
-## Send simultaneous requests
+Turbo Intruder's `race-single-packet-attack.py` template implements this: it queues all
+requests and sends them in one TCP write. The server receives all of them before processing
+any. The race window is now defined by server-side processing time alone.
 
-Then test for and exploit race conditions in the target by sending multiple requests to the server simultaneously.
+## Target patterns
 
-## Check the results
+The most impactful race conditions occur in operations with economic or privilege consequences:
 
-Check if your attack has succeeded.
+Balance depletion below the available amount: two concurrent requests against a balance of
+one unit both pass the "balance sufficient" check and both execute the deduction. The result
+is a spend of two units from a one-unit balance.
 
-Whether the attack succeeds depends on the server's process-scheduling algorithm, which is a matter of luck. However, the more requests you send within a short time frame, the more likely the attack will succeed.
+Single-use token reuse: two concurrent redemption requests for the same password reset token,
+OTP, invite code, or coupon both pass the "token not yet used" check. Both redeem the token.
+One redemption produces two effects.
 
-## Create a Proof of Concept
+Quota and rate limit bypass: concurrent requests against a daily usage counter each see the
+pre-increment value. All of them pass the "quota not exceeded" check and all increment the
+counter, producing a total that exceeds the permitted limit.
 
-Once you have found a race condition, you will need to provide proof of the vulnerability in your report. The best way to do this is to lay out the steps needed to exploit the vulnerability.
+Inventory overselling: concurrent purchase requests for the last item in stock all see
+"quantity: 1" and all confirm an order. More orders are confirmed than items exist.
 
-## Escalation
+## Race conditions in non-obvious places
 
-Race condition vulnerabilities can have a significant impact on the functionality and security of an application. When determining the impact of a specific race condition, pay attention to how much an attacker can potentially gain in terms of monetary reward or social influence.
+Race conditions are not confined to financial operations. Any state transition that is
+implemented as a read-check-write sequence rather than an atomic operation is a candidate.
+Account status flags, permission grants, subscription activations, and verification status
+updates have all been found vulnerable.
 
-If a race condition is found on a critical functionality like cash withdrawal, fund transfer, or credit card payment, the vulnerability could lead to infinite financial gain for the attacker. Prove the impact of a race condition and articulate what attackers will be able to achieve.
+Asynchronous processing adds a distinct class of race condition: the request returns
+immediately, but the actual operation happens in a background job. Two requests that each
+trigger a background job may both complete their jobs based on the state that existed when
+the jobs were created, not the state when each job runs.
 
 ## Portswigger lab writeups
 
-* [Web shell upload via race condition](../burp/upload/7.md)
+- [Web shell upload via race condition](../burp/upload/7.md)
 
-## Remediation
+## Runbooks
 
-The simplest ways to eliminate race conditions are to remove the potential for parallel processing within an application or to ensure that different threads of execution do not share resources.
-
-This may not be an option and it can negatively impact program performance. Two options for fixing the issue are the use of thread-safe programming and randomisation. 
-
-## Resources
-
-* [Portswigger Lab: Web shell upload via race condition](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-race-condition)
-* [How to Prevent Race Conditions in Web Applications](https://www.kroll.com/en/insights/publications/cyber/race-condition-web-applications)
-
-
+- [Workflow and business logic testing](../runbooks/business-logic.md)

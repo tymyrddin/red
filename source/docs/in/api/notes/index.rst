@@ -12,7 +12,10 @@ Exploit authorisation like a boar in a vineyard: take what’s sweet, trample th
    :includehidden:
    :caption: When the API lets you plant your own truffles:
 
+   recon.md
    challenges.md
+   business-logic.md
+   ai-surface.md
    rate-limit.md
    requests.md
    fuzzing.md

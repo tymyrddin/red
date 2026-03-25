@@ -1,49 +1,97 @@
-# Account and privilege attacks
+# Identity and account attacks
 
-Compromising API-based credentials: For AWS, this can be SSH keys, access keys, and secrets. For Azure, this can be credentials, keys, or certificates. Google even offers custom authentication methods.
+Cloud environments have no perimeter in the traditional sense. What they have is identity:
+credentials, tokens, roles, and trust relationships that determine who can do what. Attacking
+a cloud environment means attacking the identity graph, not the network topology.
 
-Credentials are stored somewhere. They may not be stored securely, and can end up in places
-where they should not be. When compromised, misconfigurations in identity and access management (IAM) schemes can lead to privilege escalation or account takeover for gaining full administrative access to a cloud account.
+The shift is significant. An attacker does not need to pivot through subnets or escalate
+through local administrator. They need a valid identity with slightly too much access and
+the knowledge of what that access can reach.
 
-## Credential harvesting
+## Token theft
 
-Credential harvesting is one of the primary attack vectors for cloud environments. There are different approaches, but one of the most common is to mine source code repositories.
+Credentials in cloud environments are frequently available to workloads that need them to
+function. The mechanisms that deliver credentials to workloads are the same mechanisms that
+an attacker exploits once inside.
 
-### Federated authentication
+The instance metadata service is the most consistent source. Any process running on a cloud
+virtual machine or container that can reach the metadata endpoint can retrieve the instance
+role credentials without authentication. An SSRF vulnerability in a web application running
+on EC2 is directly convertible to IAM credentials:
 
-Federated authentication is becoming more common. It uses Security Assertion Markup Language (SAML) and takes organisational authentication to create an authentication token for the cloud service. This token can then be decrypted and assessed for authentication information by the cloud provider. The information shared from the organisation is part of a signed SAML assertion. With federated authentication, corporate credentials become very valuable and spraying attacks can get an attacker some level of access within an organisation to make privilege escalation, phishing, and other attacks easier.
+```bash
+# AWS metadata service (IMDSv1 - no token required)
+curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
 
-## Account takeover
+# GCP metadata service
+curl -H "Metadata-Flavor: Google" \
+  http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token
+```
 
-Account takeover is gaining pervasive access to an account: the attacker has privileges that are equivalent to the account owner. Usually as the result of spear phishing, misconfigured access, or privilege escalation from domain privileges into the cloud. This may go beyond the cloud account itself and into federated applications, cloud assets, hosted data, and network boundaries.
+CI/CD pipelines expose credentials as environment variables. Build logs frequently capture
+those variables in plain text when a command echoes its environment. Pull request pipelines
+triggered by external contributors may expose secrets to code the contributor controls.
+Deployment scripts committed to repositories often contain access keys that were intended
+to be temporary.
 
-### Attack
+Workload identity tokens are shorter-lived than static keys but are renewed automatically,
+which means they are continuously available to any process that can reach the right endpoint.
+A Kubernetes pod that can read its service account token file and reach the cloud provider's
+token exchange endpoint has access to whatever IAM role the pod's service account is bound to.
 
-Grant persistent access within the environment, resulting in pervasive access to data and commands
-    
-1. Attacking OAuth and federation (SolarWinds)
-2. Create permissive policies that look benign
-3. Add certificates or access keys to a user controlled by an attacker
-4. Add persistence to applications that have elevated privileges within the account
-5. Assign malicious policies to users or systems
-6. Add permissions to existing policies
+## Identity graph traversal
 
-## Password spraying
+The value of a stolen identity depends entirely on what that identity can reach and assume.
+The first task after obtaining any credential is to understand its position in the identity
+graph: what can this role do directly, and what other roles or identities can it create,
+modify, or assume?
 
-In many cases, multifactor authentication will be in place and will mitigate these attacks, and in case vulnerable cloud interfaces are exposed, password spraying tools designed for common login services may not work. Use cloudspecific tools for password spraying.
+In AWS, a role with `sts:AssumeRole` permissions can assume other roles if the trust policy
+of the target role permits it. A role with `iam:PassRole` and the ability to create Lambda
+functions or EC2 instances can attach any passable role to a new resource, then retrieve
+credentials from that resource. A role with `iam:CreateAccessKey` can create long-lived keys
+for any user.
 
-## Remediation
+The chain from a low-privilege role to a high-privilege outcome rarely involves a single
+permission. It involves assembling several individually innocuous permissions into a sequence
+that the IAM policy designer did not anticipate when assigning each one. Mapping this
+requires enumerating not just what the current role can do but what resources, roles, and
+services are reachable from it.
 
-Using common or weak passwords can make cloud accounts vulnerable to brute force attacks. The attacker can use automated tools to make guesses thereby making way into the account using those credentials. The results can lead to a complete account takeover. 
+## Lateral movement via trust relationships
 
-* Reusing passwords.
-* Using easily rememberable passwords.
+In traditional environments, lateral movement means moving between hosts. In cloud
+environments, it means moving between identities and across trust boundaries.
 
-## Resources
+A service account that has permission to create resources in a project can create a resource
+with a different, more privileged service account attached. A role that can update a Lambda
+function's code can replace that function's handler with code that exfiltrates the execution
+environment, including the function's role credentials. A developer account that can modify
+a CI/CD pipeline configuration can inject steps that capture pipeline credentials during the
+next build.
 
-* [SAML assertions](http://saml.xml.org/assertions)
-* [Undetected Azure Active Directory Brute-Force Attacks](https://www.secureworks.com/research/undetected-azure-active-directory-brute-force-attacks)
-* [AWS Metadata service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
-* [AWS Get access key info](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetAccessKeyInfo.html)
-* [SolarWinds breach 2020](https://www.bankinfosecurity.com/solarwinds-attackers-manipulated-oauth-app-certificates-a-16253)
-* [Amazon Fraud Detector launches Account Takeover Insights (ATI)](https://aws.amazon.com/about-aws/whats-new/2022/07/amazon-fraud-detector-account-takeover-insights/)
+Cross-account trust is a particularly powerful path. Production accounts routinely trust
+roles in development or tooling accounts for deployment and monitoring purposes. Compromising
+a development account with a trust relationship to production grants access to production
+without ever touching the production account's credentials directly.
+
+## Federation abuse
+
+Federated authentication systems accept tokens from external identity providers. A federated
+trust relationship that is not correctly scoped allows anyone who can produce a token the
+identity provider will sign to assume the associated role.
+
+The classic example is a GitHub Actions OIDC trust relationship with a too-broad subject
+claim: configured to accept any repository rather than a specific one. An attacker who can
+trigger a workflow in any repository matching the claim can assume the role and its associated
+cloud permissions.
+
+SAML federation, where an on-premises identity provider is trusted by a cloud environment,
+creates a path from the on-premises network to the cloud. Compromising the SAML signing
+certificate allows forging assertions for any identity, including privileged ones, without
+touching cloud credentials directly.
+
+## Runbooks
+
+- [Azure AD tenant enumeration](../runbooks/azure-tenant.md)
+- [Cloud entry playbook](../playbooks/cloud-entry.md)

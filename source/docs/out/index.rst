@@ -1,4 +1,4 @@
-OUT: Where squirrels swipe the crown jewels
+Where squirrels swipe the crown jewels
 ============================================
 
 .. image:: /_static/images/squirrel.png

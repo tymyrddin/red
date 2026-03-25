@@ -66,5 +66,5 @@ Or, put bluntly: A standard that is not universally enforced is a suggestion, no
 
 ## Related 
 
-- [BGP hijacking & route leaks](https://red.tymyrddin.dev/docs/in/network/roots/ip/bgp-hijacking.html) - General, IPv4 context
-- [IPv4 prefix hijacking](https://red.tymyrddin.dev/docs/in/network/roots/bgp/prefix-hijack/?utm_source=chatgpt.com) - Specific mechanics
+- [BGP hijacking & route leaks](../../../in/network/roots/ip/bgp-hijacking.md) - General, IPv4 context
+- [IPv4 prefix hijacking](../../../in/network/roots/bgp/prefix-hijack.md) - Specific mechanics

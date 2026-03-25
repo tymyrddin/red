@@ -1,4 +1,4 @@
-Nature’s cheats: The raccoon’s guide to slipping through the cracks
+Slipping through the cracks
 =======================================================================
 
 Welcome to the realm where stealth is paramount. Much like our nocturnal friend, the raccoon, who deftly navigates

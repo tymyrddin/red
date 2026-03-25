@@ -1,84 +1,71 @@
-# Abusing misconfigurations
+# Cloud misconfigurations
 
-Misconfiguration is a big reason why systems are exploited in on-premises environments and with cloud resources.
+The most visible form of cloud misconfiguration is the publicly accessible storage bucket.
+It still happens, and it is still worth checking. But it is no longer the main event. The
+attack surface that consistently produces access in modern cloud environments is identity:
+over-permissioned roles, trust relationships with missing conditions, federated identities
+that grant more access than intended, and services that communicate with each other without
+any authentication requirement.
 
-Whether it is Software as a Service (SaaS), Platform as a Service (PaaS), or Infrastructure as a Service (IaaS), securing cloud asset configurations can be simple or very complex. 
-The more sophisticated the platform, the more difficult it may be to secure the platform, and when moving into PaaS or IaaS, complexities can be huge, and mistakes are made more easily. The bigger the energy-saving promise, the bigger the entropy.
+## IAM as the real attack surface
 
-## Identity and access management
+Cloud IAM policies define what identities can do. A policy that grants more than necessary,
+or one that contains a wildcard where a specific resource ARN should be, is a misconfiguration
+whether or not anyone has exploited it. The gap between what a role is used for and what it is
+permitted to do is the attack surface.
 
-* IAM consists of the users, groups, roles, and permissions of users and assets within a cloud environment. 
-* Permissions are explicit grants of access given to a user, group, or asset.
-* Roles are designed to roll up permissions so that they can be used across different users, groups, or assets. 
-* They are built so that a specific task can be performed. Roles may nest other roles under them to perform a task.
-* A best practice is to have roles assigned to groups and to place users in the groups, for role-based access control (RBAC). 
-* Applications and systems may also have permissions, including permissions to access other services, to create and destroy files within a data store, and to update certain cloud configurations.
+Common patterns that produce exploitable misconfigurations:
 
-## Federation attacks
+An IAM role scoped to read one S3 bucket but granted `s3:*` on `*`. A Lambda execution role
+that has `iam:PassRole` and `ec2:RunInstances`, allowing privilege escalation without touching
+any compute. A service account with `roles/owner` because someone needed to debug something
+and the permission was never narrowed. A CI/CD pipeline role with write access to production
+and no conditions requiring the source to be the main branch.
 
-These attacks do not exploit vulnerabilities in federated authentication products, but abuse legitimate functions after a local network or admin account compromise. 
+None of these require a vulnerability to exploit. They require an attacker to notice that the
+identity has slightly too much access and then use it.
 
-### Federation
+## Federation trust misconfigurations
 
-Federation takes an identity provider and uses it as the authentication source for an environment. It uses technologies like OAuth, SAML, or OpenID to act as identity providers that can perform authentication outside an environment, then return data about the authenticated party so the platform itself can handle authorisation. This is secured with shared secrets, such as certificates. If those secrets are compromised, then the security of the federation is compromised.
+Federated authentication takes an external identity provider and grants it the ability to
+produce tokens that the cloud environment trusts. The trust relationship is secured by a
+shared secret, typically a certificate or signing key. A misconfigured trust relationship can
+allow an attacker who controls the right input to produce tokens that are accepted as
+legitimate by the cloud environment.
 
-Some services allow more than one federated authentication source or multiple keys.
+The most impactful variant is a trust relationship with overly broad subject matching: a policy
+that accepts any subject from the identity provider, rather than constraining it to specific
+workloads or repositories. An OIDC trust relationship for a GitHub Actions role that accepts
+`repo:*` instead of `repo:org/specific-repo:ref:refs/heads/main` allows any repository in the
+organisation, or in some configurations any public repository, to assume that role.
 
-### Local network to cloud attack
+## Service-to-service implicit trust
 
-1. Compromise on-premises components of a federated SSO infrastructure and steal the credential or private key that is used to sign Security Assertion Markup Language (SAML) tokens. 
-2. Forge trusted authentication tokens to access cloud resources.
-    
-### Escalation
+Inside many cloud environments, services trust each other without verifying identity. An
+internal API is callable from anything on the same VPC. A message queue delivers to any
+subscriber. An event trigger calls any function configured to receive it. This is a design
+choice that is convenient during development and becomes a misconfiguration when the
+perimeter assumption breaks.
 
-Gaining sufficient administrative privileges within a cloud tenant to add a malicious certificate trust relationship for forging SAML tokens:
+When an attacker gains access to any workload inside the trust boundary, they inherit the
+implicit trust that workload enjoys. The question then becomes not "can I authenticate to this
+service" but "which workloads can I reach from here, and what can they do?"
 
-1. Leverage a compromised global administrator account to assign credentials to cloud application service principals (identities for cloud applications that allow the applications to be invoked to access other cloud resources).
-2. Invoke the application's credentials for automated access to cloud resources (often email in particular) that would otherwise be difficult for the actors to access or would more easily be noticed as suspicious.
+## Object storage misconfigurations
 
-## Object storage attacks
+Public storage is the obvious case. Less obvious: storage that is not public but is accessible
+to any authenticated user in the cloud provider's ecosystem. AWS has a specific configuration
+that prevents public access while still allowing any authenticated AWS user to access the
+bucket. A bucket set to "authenticated users can read" is not public by the provider's
+definition but is reachable by anyone with an AWS account.
 
-Object storage is one of the most abused cloud components and are often due to misconfigurations.
+Misconfigured bucket policies that grant access to `*` with a condition on the requesting
+service may be more permissive than intended if the condition is incorrectly scoped. A policy
+intended for one Lambda function that matches on service principal rather than a specific
+ARN applies to every Lambda function in every account.
 
-1. Identify storage that is accessible from an unauthenticated point of view
-2. identify storage that is accessible from an authenticated view
+## Runbooks
 
-## Container attacks
-
-Docker and Kubernetes share some common attack patterns (such as kernel exploits), but Kubernetes works off of kubelets, users, pods, secrets, and more, which have unique attack vectors.
-
-### Containerisation
-
-Docker is typically only used for small numbers of containers on a specific host and Docker Swarm is used for orchestration when there are a small number of systems with a small number of services. 
-
-Kubernetes is better for systems that require orchestration across many nodes, and offers enterprise-level scalability and resiliency. 
-
-### Attack
-
-1. Break out of containerised system
-2. Leverage container resources to further your access to other systems, or to the hosting system
-
-## Remediation
-
-Cloud service misconfigurations are the most common cloud vulnerability (misconfigured S3 Buckets). The most famous case was that of the Capital One data leak which led to the compromise of the data of roughly 100 million Americans and 6 million Canadians. The most common cloud server misconfigurations are:
-
-* Improper permissions
-* Not encrypting the data and differentiation between private and public data.
-
-## Resources
-
-* [Okta](https://www.okta.com/identity-101/what-is-federated-identity)
-* [AWS federation](https://aws.amazon.com/identity/federation)
-* [Azure federation](https://docs.microsoft.com/en-us/azure/active-directory/hybrid/whatis-fed)
-* [Google cloud federation](https://cloud.google.com/architecture/identity/federating-gcp-with-active-directory-introduction)
-* [OAuth](https://oauth.net/2/)
-* [SAML](https://auth0.com/blog/how-saml-authentication-works/)
-* [OpenID](https://openid.net/)
-* [S3 Leaks](https://github.com/nagwww/s3-leaks)
-* [Container Breakouts – Part 1: Access to root directory of the Host](https://blog.nody.cc/posts/container-breakouts-part1/)
-* [Container Breakouts – Part 2: Privileged Container](https://blog.nody.cc/posts/container-breakouts-part2/)
-* [Container Breakouts – Part 3: Docker Socket](https://blog.nody.cc/posts/container-breakouts-part3/)
-* [Snyk: Kernel exploits](https://snyk.io/blog/kernel-privilege-escalation/)
-* [Threat matrix for Kubernetes](https://www.microsoft.com/security/blog/2021/03/23/secure-containerized-environments-with-updated-threat-matrix-for-kubernetes/)
-* [Attacking and Defending Kubernetes: Bust-A-Kube – Episode 1](https://www.inguardians.com/attacking-and-defending-kubernetes-bust-a-kube-episode-1/blog/)
-
+- [S3 and object storage discovery](../runbooks/s3-discovery.md)
+- [Azure AD tenant enumeration](../runbooks/azure-tenant.md)
+- [GCP project and bucket enumeration](../runbooks/gcp.md)

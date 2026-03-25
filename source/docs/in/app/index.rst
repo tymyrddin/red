@@ -26,7 +26,17 @@ class; Root-me is the wilderness survival trial. Both end with you owning the or
    :caption: Every beautiful web app has at least one worm in its fruit:
 
    techniques/index
+   runbooks/index
+   playbooks/index
    burp/index
    root-me/index
    plan/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :includehidden:
+   :caption: Controls and detection:
+
+   defence/index
 

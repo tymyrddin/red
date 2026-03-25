@@ -1,4 +1,4 @@
-Where the raccoon picks the locks of logic
+Picking the locks of logic
 ==========================================
 
 Welcome to the woods of cipher cracking, where raccoons with a flair for algebra and brute force rummage

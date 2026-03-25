@@ -1,4 +1,4 @@
-THROUGH: Where the raccoons burrow and rummage
+Where the raccoons burrow and rummage
 =================================================
 
 .. image:: /_static/images/raccoon.png

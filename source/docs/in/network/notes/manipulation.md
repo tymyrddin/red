@@ -1,36 +1,47 @@
-# Packet manipulation
+# Traffic analysis and packet crafting
 
-Sniffing, analysing and inspecting packets, and forging and decoding packets.
+Understanding what traverses a network is foundational to attacking it. Traffic analysis reveals protocol behaviour, authentication exchanges, and timing patterns that are invisible from a host-level perspective. Packet crafting goes the other direction: it allows an attacker to construct arbitrary frames and datagrams, test protocol edge cases, and inject data into live sessions.
 
-An `nmap` port scan may show a host as down or all of the ports as `filtered`. Analysing and inspecting packets over the network can help provide some insight as to what is going on with the connection attempts.
+## Passive capture
 
-## PCAP files
+Placing a capture interface on a network segment in promiscuous mode records everything the network card sees. On shared media this includes all traffic on the segment; on switched networks it captures broadcast and multicast traffic plus traffic addressed to the local interface. ARP cache poisoning or a rogue spanning tree root bridge position can extend this to unicast traffic between other hosts.
 
-Packet Capture or PCAP (also known as libpcap) is an application programming interface (API) that captures live network packet data from OSI model Layers 2-7. Network analysers like [Wireshark](https://nta.tymyrddin.dev/docs/wireshark/readme) create `.pcap` files to collect and record packet data from a network. 
+Wireshark and tcpdump are the standard capture tools. Wireshark's display filter language allows real-time filtering by protocol, address, and content. For capture files that need scripted processing, `tshark` exposes the same dissection engine from the command line.
 
-1. Capture packets  with tcpdump or Wireshark
-2. Analyse packets (packet tracing)
-
-## Example
-
-```text
-# tcpdump -i <interface> -w <file-name>
-# wireshark <filename>
+```bash
+tcpdump -i eth0 -w capture.pcap -s 0 'not port 22'
+tshark -r capture.pcap -Y 'http.request' -T fields -e ip.src -e http.host -e http.request.uri
 ```
 
-## Sniffing
+Even in environments where application traffic is encrypted, metadata remains. Source and destination addresses, timing patterns, packet sizes, and connection durations can identify protocol types, user behaviour, and sometimes authentication exchanges. TLS ClientHello messages expose the SNI field in plaintext, revealing the hostname being contacted even when the session content is encrypted.
 
-Depending on the network topology, there are many ways of gaining read-access to a network to conduct passive attacks. The most common method compromises a general purpose operating system on the segment and installs sniffer software that puts a network interface card in promiscuous mode and captures traffic. ARP/MAC spoofing may be necessary to sniff traffic on switched networks.
+## Packet crafting with Scapy
 
-1. Get into a good spot and gain local network access to a segment, tap a physical medium, or redirect traffic through a compromised host    
-2. Sniff information (if possible, email traffic, FTP passwords, Web traffic, Telnet passwords, Router configuration, Chat sessions, DNS traffic)
+Scapy is a Python library and interactive shell for constructing packets at any layer, sending them, and analysing responses. It treats each protocol layer as a composable object:
 
-## Forging and decoding packets
+```python
+from scapy.all import *
 
-Scapy is a Python program that can assist with packet manipulation by forging and decoding packets. Scapy supports 
-many use cases.
+# Craft an ICMP echo request
+pkt = IP(dst="192.168.1.1")/ICMP()
+response = sr1(pkt, timeout=2)
+response.show()
 
-## Resources
+# Craft a TCP SYN with a specific sequence number
+pkt = IP(dst="192.168.1.1")/TCP(dport=80, flags="S", seq=1000)
+response = sr1(pkt, timeout=2)
+```
 
-* [The Art of Packet Crafting with Scapy!](https://0xbharath.github.io/art-of-packet-crafting-with-scapy/index.html)
+This composability is useful for testing protocol implementations, probing firewall rules by crafting packets that should or should not be permitted, and injecting crafted frames into a network segment.
 
+## Network-level fingerprinting
+
+Operating systems implement TCP/IP stacks differently. Initial TTL values, TCP window sizes, options fields, and the order of TCP options in a SYN packet form a fingerprint that identifies the OS with reasonable confidence even without any application-layer interaction. Tools such as `p0f` perform this analysis passively against captured traffic; nmap's OS detection (`-O`) performs it actively.
+
+Protocol timing behaviour is also distinctive. The interval between a TCP SYN and the first data packet, the retransmission timing, and the window scaling negotiation all contribute to fingerprints that can distinguish device types on a segment without sending a single application request.
+
+## Traffic as intelligence
+
+PCAP files from network captures are operational intelligence when they contain authentication exchanges. NTLM challenge-response hashes captured from SMB or HTTP authentication can be submitted to hashcat for offline cracking. Kerberos AS-REQ and TGS-REQ packets contain ticket material that similarly yields to offline attack. NTLMv2 hashes captured through LLMNR or NBT-NS poisoning follow the same path.
+
+Traffic analysis identifies which hosts communicate with which others, which protocols are in use, and which services are actively being accessed. That picture guides subsequent attack decisions about where to position further access and what trust relationships exist across the network.

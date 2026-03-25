@@ -13,4 +13,13 @@ AWS to Azure, we operate on one principle: If it's in the cloud, it's already ou
    :caption: Serverless means 'no server to stop me':
 
    notes/index
-   labs/index
+   runbooks/index
+   playbooks/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :includehidden:
+   :caption: Defence
+
+   defence/index

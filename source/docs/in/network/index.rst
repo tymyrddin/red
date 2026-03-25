@@ -20,6 +20,23 @@ deep enough though …
    :glob:
    :maxdepth: 2
    :includehidden:
+   :caption: Runbooks and playbooks:
+
+   runbooks/index
+   playbooks/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :includehidden:
+   :caption: Controls and detection:
+
+   defence/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :includehidden:
    :caption: Labs:
 
    thm/index

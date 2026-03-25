@@ -1,51 +1,36 @@
-# Application layer hacks
+# TLS and encrypted channel attacks
 
-Hacking the layer of the OSI Model just beneath the surface of user interfaces, and on top of the other 6 layers of the model. In this layer, data is presented in a form that user-facing applications can use.
+TLS is the dominant transport security mechanism and the primary reason that passive network capture no longer yields application-layer credentials as readily as it did before 2015. The attacks against TLS are therefore not primarily cryptographic but architectural: they target the validation of certificates, the downgrade negotiation, and the implementation quality of the TLS stack itself. The goal is usually not to break the encryption but to replace it, interposing a controlled endpoint between the client and server.
 
-Most attacks nowadays are aimed at web applications, and web browsers are one of the favourite attack tools. Enough reasons to have a deeper look at application encryption attacks from the network perspective.
+## TLS interception
 
-## Attacks against SSL
+TLS inspection devices, whether deployed as security controls or as attack infrastructure, operate by terminating the client's TLS session at the intercepting device, inspecting or modifying the decrypted traffic, then re-encrypting it in a new TLS session to the original server. The client must trust the intercepting device's CA certificate for this to succeed without a warning.
 
-1. SSL stripping
-   * Configure attack machine for IP forwarding
-   * Route all HTTP traffic to SSLStrip
-   * Run SSLStrip
-2. SSL hijacking
-3. SSL beast
+In enterprise environments, a corporate root CA is often installed in the operating system's trust store via Group Policy. This allows network inspection appliances to present certificates for arbitrary destinations signed by the corporate CA. An attacker who obtains this CA private key can issue certificates for any domain. The key is typically stored on a hardware appliance, but backup files and configuration exports are sometimes less well protected.
 
-### SSL stripping
+## SSL stripping
 
-SSL stripping downgrades an HTTPS connection to HTTP by intercepting the TLS authentication sent from the application to the user. The adversary sends an unencrypted version of the application’s site to the user while maintaining the secured session with the application. 
+SSL stripping attacks target the transition from HTTP to HTTPS rather than HTTPS itself. When a user navigates to `http://example.com`, a server that wants to enforce HTTPS responds with a redirect to `https://example.com`. An attacker positioned between the client and server can intercept the initial HTTP request, maintain an HTTPS connection to the server, and present an HTTP connection to the client. The client never sees TLS and never receives the redirect.
 
-It does not do any magical stuff to fulfil the job, it just replaces the protocol of all HTTPS links in the sniffed traffic. The attacker must take care that the traffic of the victim flows over his host by launching some kind of on-path attack first.
+```bash
+sslstrip -l 8080
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+```
 
-Run `sslstrip` and write the results to a file (`-w strip.log`), listening on port 54321 (`-l 54321`):
+HSTS defeats SSL stripping for domains that have been visited before: the browser refuses to make non-HTTPS connections to any domain in its HSTS cache. HSTS preloading extends this to domains that have never been visited, provided they appear in the browser's built-in preload list. Stripping attacks therefore work primarily against first-time visits to non-preloaded domains, which still represents a large proportion of real-world traffic.
 
-    # sslstrip -w strip.log -l 54321
+## Certificate validation failures
 
-### SSL hijacking
+The chain of trust in TLS depends on every link being validated correctly. Common failure modes include:
 
-In SSL hijacking an adversary forges authentication keys and passes those to both the user and application during a TCP handshake. This sets up what appears to user and application to be a secure connection while the man in the middle controls the entire session. 
+Wildcard certificate scope is checked incorrectly by some clients: `*.example.com` matches `sub.example.com` but should not match `sub.sub.example.com` or `example.com` itself, and some implementations have historically accepted these incorrectly.
 
-### SSL beast
+Self-signed certificate acceptance is configured explicitly in some applications and scripts. Command-line tools and automation scripts frequently include flags such as `-k` or `--insecure` to skip certificate validation, and these flags sometimes persist into production use.
 
-SSL beast is an attack developed by Juliano Rizzo and Thai Duong, which leverages weaknesses in cipher block chaining (CBC) to exploit the Secure Sockets Layer (SSL) protocol. The CBC vulnerability can enable man-in-the-middle (MITM) attacks against SSL in order to silently decrypt and obtain authentication tokens, providing hackers with access to the data passed between a Web server and the Web browser accessing the server.
+Certificate pinning implementations that check the wrong value, pin an intermediate CA rather than the leaf certificate, or implement the comparison in a way that can be bypassed are common in mobile applications. Tools such as Frida can hook certificate validation functions at runtime and return success regardless of the actual certificate.
 
-## HTTPS spoofing
+## Legacy protocol downgrade
 
-A forged certificate is sent to the target’s browser after the initial connection request to a secure site is made. It contains a digital thumbprint associated with the compromised application, which the browser verifies according to an existing list of trusted sites and because most browsers support the display of punycode hostnames in their address bar, it allows the adversary to access data entered by the victim before it is passed to the application. The browser shows that the website’s certificate is legitimate and secure, and users will not notice that it is a bogus version of the site they expect to visit.
+TLS version negotiation allows a client and server to agree on the highest mutually supported version. Downgrade attacks manipulate this negotiation, causing the connection to use an older and weaker version. POODLE demonstrated that SSLv3 could be forced by simulating handshake failures until the client fell back; BEAST required TLS 1.0's CBC mode. Both SSLv3 and TLS 1.0 should be disabled on any current server, and their absence can be confirmed with `testssl.sh` or `nmap --script ssl-enum-ciphers`.
 
-In HTTPS session spoofing an adversary uses stolen or counterfeit session tokens to initiate a new session and impersonate the original user, who might not be aware of the attack. The difference between HTTPS session spoofing and HTTPS spoofing lies in the timing of the attack. Session hijacking is done against a user who is logged in and authenticated, so from the target's point of view the attack will most likely cause the application to behave unpredictably or crash.
-
-1. Homograph attack
-   * Register a domain name that is similar (using punycode for example) to the domain name of the target website (AND)
-   * Register its SSL certificate to make it look legitimate and secure
-2. Social engineering
-   * Send a link to the intended victim
-   * ...
-
-## Resources
-
-* [Phishing with Unicode Domains](https://www.xudongz.com/blog/2017/idn-phishing/), Xudong Zheng, April 14, 2017
-
-
+The FREAK and Logjam attacks targeted export-grade cryptography that remained in some TLS stacks as legacy code. These are largely historical issues in current software, but they remain relevant against embedded devices, appliances, and any system that has not received firmware updates.

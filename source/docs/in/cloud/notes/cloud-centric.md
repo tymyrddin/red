@@ -1,65 +1,125 @@
-# Cloud-centric attacks
+# Cloud-native attack patterns
 
-Some attacks, such as DoS, have specialised context when applied to the cloud. Other attacks focus on services available only within cloud environments, such as malware injection and side-channel attacks for cloud resources. These attacks can be used to gain further access within a cloud environment or to use the cloud environment as an attack tool to accomplish goals against other Internet-facing targets.
+Some attack techniques only exist because the target is cloud-native. Serverless execution,
+event-driven architectures, managed Kubernetes, and native data transfer operations create
+attack surface that has no equivalent in traditional infrastructure. The techniques in this
+note exploit properties of the cloud model itself rather than vulnerabilities in specific
+software.
 
-## Denial of service
+## Serverless and event-driven abuse
 
-Cloud based DDoS attack vectors include CoAP (Constrained Application Protocol), WS-DD (Web Services Dynamic Discovery), ARMS (Apple Remote Management Service). 
+Serverless functions are triggered by events: object uploads to storage, messages arriving
+on a queue, HTTP requests, database change events, scheduled timers. Each trigger is a
+potential injection point. If the data that triggers a function is attacker-controlled and
+the function does not treat it as untrusted, the attacker can influence what the function
+does without ever calling it directly.
 
-These newly discovered DDoS vectors are network protocols that are essential to the devices they are being used in (IoT devices, smartphones, Macs), and device makers are unlikely to remove or disable the protocols in their products, hence this serious threat of DDoS attacks.
+The pattern is indirect: an attacker uploads a crafted file to an S3 bucket. A Lambda
+function triggered by the upload processes the file. The processing step calls an external
+API using credentials from the function's execution environment. If the crafted file can
+influence what API endpoint the function calls or what data it sends, the attacker has
+reached the external API using the function's identity, not their own.
 
-### Volumetric attacks
+Event-driven pipelines chain multiple functions, each triggered by the output of the
+previous. An injection at any point in the chain propagates downstream. Testing requires
+tracing what each function does with its input and whether that input can reach an output
+that calls another service.
 
-Volumetric attacks try to take up bandwidth or connections on their targets. Cloud resources are an attractive way to amplify an attack or to mask the true source of the attack. UDP reflection attacks can use protocols like Apple Remote Management Service, Web Services Dynamic Discovery (WS-DD), Constrained Application Protocol (CoAP), LDAP, and Memcached, all of which can be exposed by cloud resources.
+## Kubernetes to cloud IAM chains
 
-### Direct-to-origin attacks
+Kubernetes service account tokens grant access to the Kubernetes API. In managed Kubernetes
+environments (EKS, GKE, AKS), those service accounts can also be bound to cloud IAM roles
+via workload identity federation. A compromised pod that can read its service account token
+may be able to exchange it for a cloud provider credential.
 
-If real IPs are revealed, attackers can bypass protections and attack IP addresses directly. This is a direct-to-origin attack. Content delivery networks (CDNs) are designed to shoulder the bulk of the load. Massive amounts of traffic can therefore be serviced by relatively few systems. Attacking those few directly can quickly overload the target. The cached content in the CDN will still be serviced, but dynamic content can’t be generated and distributed.
+The chain from pod to cloud account is a standard path in mature cloud environments:
 
-## Malware injection
+1. Compromise a pod via application vulnerability or exposed service.
+2. Read the service account token from the mounted filesystem.
+3. Exchange the token for a cloud provider credential via the workload identity endpoint.
+4. Use the cloud credential to enumerate and act on cloud resources.
 
-XSS and SQLi attacks also work in the cloud. And there are additional vectors of attack for malware injection in the cloud. Attackers may be able to use the access acquired through other attacks to inject malicious content into served images or cloud services.
+The cloud permissions granted to the service account are often broader than the application
+in the pod requires, because they were set at the namespace or cluster level rather than
+scoped to the specific workload.
 
-Good controls for integrity management are not often considered.
+Cluster compromise also enables the reverse path: an attacker with cloud IAM credentials who
+can call the managed Kubernetes API can execute commands in pods directly, bypassing
+application-level controls.
 
-## Server-side template injection
+## Native exfiltration via cloud operations
 
-Template engines are widely used by web applications to present dynamic data via web pages and emails. Unsafely embedding user input in templates enables Server-Side Template Injection, a frequently critical vulnerability that is extremely easy to mistake for Cross-Site Scripting (XSS), or miss entirely. Unlike XSS, Template Injection can be used to directly attack web servers' internals and often obtain Remote Code Execution (RCE), turning every vulnerable application into a potential pivot point.
+Data exfiltration from cloud storage does not require anomalous outbound traffic. Every cloud
+provider offers native operations that move data in ways that look like routine administration.
 
-If fuzzing a template by injecting a sequence of special characters commonly used in template expressions, such as `${{<%[%'"}}%\`, raises an exception, it indicates that the injected template syntax is potentially being interpreted by the server in some way. This is one sign that a vulnerability to server-side template injection may exist. 
+A storage snapshot can be created and shared with an attacker-controlled account. The snapshot
+transfer happens within the cloud provider's infrastructure and does not appear as outbound
+network traffic. From the victim account's perspective, a snapshot was created and shared, which
+is a normal administrative operation. From the attacker's perspective, a full copy of a disk
+volume or database has arrived in their account.
 
-Plaintext context check: If requesting a URL such as: `http://vulnerable-website.com/?username=${7*7}`, renders `49` in the response, this shows that the mathematical operation is being evaluated server-side, and is vulnerable. 
+Similarly, S3 bucket replication can be configured to continuously copy new objects to a bucket
+in another account. If an attacker has the permissions to configure replication, they can
+establish a persistent data collection channel that operates indefinitely and looks like a
+standard cross-account backup relationship.
 
-Code context check: first establish that the parameter doesn't contain a direct XSS vulnerability by injecting arbitrary HTML into the value, the try and break out of the statement using common templating syntax and attempt to inject arbitrary HTML after it. If renders blank, either not vulnerable, or the wrong language was used for the test. If NOT renders blank, vulnerable.
+These operations appear in audit logs, but they appear as their legitimate operation types.
+Detection requires alerting on snapshot sharing to external accounts and replication
+configuration changes, not on traffic anomalies.
 
-Templating languages use very similar syntax that is specifically chosen not to clash with HTML characters. As a result, it can be relatively simple to create probing payloads to test which template engine is being used. Submitting invalid syntax is often enough because the resulting error message will tell exactly what the template engine is, and sometimes even which version.
+## Metadata service exploitation chains
 
-## Side-channel attacks
+The metadata service SSRF path (application SSRF reaches the instance metadata endpoint,
+returns IAM credentials) is well known. Cloud providers have added protections: IMDSv2 on
+AWS requires a token obtained via a PUT request before credentials are accessible, which
+prevents simple HTTP redirect-based SSRF.
 
-These attacks abuse weaknesses in hardware to capture information from other instances. They are difficult to execute, and the data returned is not always predictable.
+The protections work when correctly configured. Many deployments still use IMDSv1 for
+compatibility. Misconfigured proxies that perform the PUT request on behalf of the client
+enable the same credential theft under IMDSv2. Internal services that forward requests to
+the metadata endpoint for legitimate reasons become an exploitation path when SSRF reaches
+them.
 
-## Abusing software development kits
+The chain extends beyond the initial credential. Metadata credentials have a defined scope
+based on the instance role. The question after obtaining metadata credentials is the same as
+after any credential theft: where does this identity sit in the permission graph, and what
+can it reach from here?
 
-Cloud-based software development kits (SDKs) include command-line interfaces (CLIs) to interact with the cloud. Amazon implements `awscli`. Google Cloud Platform (GCP) implements the `gcloud` tool. Azure has the `az` tool. These may also include various other libraries to help interact with services. And, many organisations are going the route of using Infrastructure as Code (IaC).
+## Cost and resource abuse
 
-These are all powerful tools, but this means that keys, secrets, configurations, and the data these tools become a very attractive goal.
+Cloud resource abuse does not require data access. An attacker with permissions to create
+compute resources can launch GPU instances, cryptomining workloads, or large-scale data
+processing jobs that generate costs on the victim's account. The attacker pays nothing; the
+victim's bill arrives at the end of the month.
 
-Pentesting will have to focus on finding weaknesses in the implementation of policies and practices designed to protect this information throughout the provisioning and management process, especially when cloud SDKs and CI/CD are involved.
+This is relevant to red team engagements in two ways. First, cost anomalies are often
+detected faster than data access anomalies, because billing alerts are configured even when
+security monitoring is not. A cost spike may be the first indicator of compromise, before
+any SIEM alert fires. Testing whether cost anomalies would trigger a response gives a
+realistic picture of mean time to detection.
 
-## Remediation
+Second, resource abuse can serve as a distraction or a pressure tool. A high-cost, noisy
+operation on one part of the environment can occupy incident response while a quieter
+operation targets something more valuable.
 
-Most businesses try to get their cloud infrastructure built as cheaply as possible. Due to poor coding practices, the applications offer SQLi, XSS, CSRF vulnerabilities to hackers. The most common are listed in OWASP top 10. It is these vulnerabilities that are the root cause for the majority of cloud web services being compromised.
+## AI-assisted path discovery
 
-Outdated software contains critical security vulnerabilities that can compromise cloud services. Most software vendors do not use a streamlined update procedure or the users disable automatic updates themselves. This makes the cloud services outdated which hackers identify using automated scanners.
+The complexity of large cloud environments, with hundreds of roles, thousands of policies,
+and cross-account trust relationships, makes manual attack path analysis slow. Automated
+tooling that models the environment as a permission graph and traverses it to find paths
+from a starting identity to a high-value target compresses that analysis significantly.
 
-APIs are widely used in cloud services to share information across applications. And insecure APIs can therefor also lead to a large-scale data leak by:
+Tools like Cloudsplaining, PMapper, and Cartography model AWS IAM as a graph and identify
+privilege escalation paths, cross-account paths, and resource exposure. The output is a
+prioritised list of paths, not a list of policy findings, which directly answers the question
+that matters: starting from this identity, what can I reach?
 
-* Improper use of HTTP methods like PUT, POST, DELETE in APIs can allow hackers to upload malware on the server or delete data. 
-* Improper access control and lack of input sanitisation are also the main causes of APIs getting compromised.
+Defenders who want to understand their exposure can run the same analysis. The attacker who
+has already run it has a map. The question for the engagement is whether the defender's map
+matches the attacker's.
 
-## Resources
+## Runbooks
 
-* [AWS IP address ranges](https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html#aws-ip-download)
-* [AWS IP ranges (.json)](https://ip-ranges.amazonaws.com/ip-ranges.json)
-* [GrayHat Warfare](https://grayhatwarfare.com)
-
+- [S3 and object storage discovery](../runbooks/s3-discovery.md)
+- [GCP project and bucket enumeration](../runbooks/gcp.md)
+- [Cloud entry playbook](../playbooks/cloud-entry.md)

@@ -12,6 +12,7 @@ us plant our claws deep in the infrastructure - because why hunt every day when 
    :includehidden:
    :caption: CI/CD pipelines are just wolverine runways:
 
+   recon.md
    challenges.md
    accounts.md
    cloud-centric.md

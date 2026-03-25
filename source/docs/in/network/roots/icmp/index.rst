@@ -20,17 +20,11 @@ nature through network defences make it an ideal vehicle for a spectrum of offen
    dns-over-icmp-c2.md
    flood-attacks.md
    amplification-attacks.md
-   ping-o-death.md
    nat-firewall-bypass-techniques.md
    lateral-movement-via-icmp.md
    route-advertisement-spoofing.md
-   side-channel-attacks.md
    iot-ot-device-crashes.md
    cloud-metadata-service-abuse.md
-   adaptive-evasion-techniques.md
-   autonomous-attack-systems.md
-   forensic-evasion-techniques.md
-   security-control-bypass-techniques.md
 
 Disclaimer
 -----------------------------------------

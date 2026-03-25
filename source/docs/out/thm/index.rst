@@ -1,4 +1,4 @@
-The squirrel escape: Mastering the OUT phase
+The squirrel escape
 ===================================================
 
 This content are writeups from `THM’s Data Exfiltration room <https://tryhackme.com/room/dataxexfilt>`_, part of the

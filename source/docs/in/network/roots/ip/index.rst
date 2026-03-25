@@ -21,7 +21,6 @@ evolving threats.
    ipv6.md
    tree.md
    fragmentation.md
-   icmp-abuse.md
    arp-spoofing.md
    nat-abuse.md
    slaac.md
@@ -31,7 +30,6 @@ evolving threats.
    spoofing.md
    bgp-hijacking.md
    ttl-expiry-attacks.md
-   geolocation-spoofing.md
 
 Disclaimer
 -----------------------------------------

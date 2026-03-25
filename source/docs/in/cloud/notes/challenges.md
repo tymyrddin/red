@@ -1,61 +1,82 @@
-# Challenges and problems
+# Why cloud environments are hard to test
 
-## Lack of transparency
+Cloud environments present a different set of testing challenges from traditional
+infrastructure. The attack surface spans identities, services, APIs, and trust relationships
+rather than hosts and ports. Attack paths chain small permissions across multiple services
+rather than exploiting a single vulnerability. Many of the most impactful paths leave no
+anomalous signal until it is too late to matter.
 
-Not-so-well-known cloud services often use third party data centres. Users may not know where the data is stored and what hardware or software configuration is used. Such a lack of transparency exposes data to security risks. The cloud service provider may even be gathering and selling sensitive data without the knowledge of the user. 
+## The attack surface is a graph, not a stack
 
-Well-known cloud service providers like AWS, Azure, GCP, etc. usually conduct in-house security audits, but these resources cannot be audited by a security auditor the client or user chooses. Nor can clients or users respond if those underlying resources are hacked. This has to be reported, and the CSP will get to it (hopefully).
+Traditional infrastructure has layers: external, DMZ, internal, privileged. Lateral movement
+follows network topology. The mental model is vertical: you go deeper.
 
-## Resource sharing
+Cloud environments are graphs. Identities connect to services. Services connect to APIs and
+storage. Event triggers connect serverless functions to data pipelines. Trust relationships
+connect accounts, projects, and external systems. The attack path is rarely vertical; it
+follows edges in the identity and permission graph that no single team has a complete view of.
 
-Cloud services share resources across multiple accounts. This resource sharing can prove problematic, and not only during cloud penetration testing. Some service providers do not even use proper segmentation of the users. 
+A complete picture of the attack surface requires mapping not just what resources exist but
+which identities can reach which other identities, and what each identity can do once assumed.
+That map changes every time a role is created, a policy is updated, or a new service is
+provisioned. Testing a point-in-time snapshot of the graph does not guarantee the findings
+are still accurate two weeks later.
 
-If an organisation has a compliancy requirement which states that all the other accounts sharing the resource and the cloud service provider should be PCI DSS compliant too, this can lead to complex cloud infrastructure implementations. And such complex scenarios can make cloud penetration testing hard to do.
+## Ephemeral compute and detection gaps
 
-## Policy restrictions
+Cloud workloads start and stop in seconds. A serverless function that runs for three seconds
+and then terminates may not appear in any monitoring dashboard. A container that processes
+a queue item and shuts down may not forward its logs before it disappears. Spot and preemptible
+instances are terminated by the provider without warning.
 
-Each cloud service provider has its own policy regarding conducting cloud penetration testing. This policy defines the endpoints and types of tests that can be conducted. And some require an advance notice before testing. 
+This ephemerality is exploitable. An attacker who can trigger a short-lived workload, extract
+value from it, and allow it to terminate may complete the attack within the detection pipeline's
+latency window. The workload is gone before the logs are analysed. The finding appears in the
+billing record, or not at all.
 
-These differences in policies can be a challenge and also limits the scope of cloud penetration testing, while black hats have no such squirms.
+Testing against ephemeral environments requires validating that logging is complete before the
+resource terminates, that logs are forwarded to a durable destination, and that detection rules
+operate on stream data rather than waiting for batch analysis.
 
-### AWS
+## Multi-cloud inconsistency
 
-There are 8 permitted services for Amazon web services on which cloud pentesting can be performed without prior notice. Those are mentioned in the Permitted Services of the [Penetration Testing policy](https://aws.amazon.com/security/penetration-testing/). 
+Most large organisations run workloads across multiple cloud providers and dozens of SaaS
+platforms, connected by federated identity. Each provider has its own IAM model, its own
+logging format, and its own set of default configurations. An assumption that is safe in AWS
+may be dangerous in Azure. A permission that is benign in isolation may chain with a permission
+on another platform in a way neither platform's documentation anticipates.
 
-These are not permitted:
+The inconsistency creates gaps. A security control applied to AWS resources may not exist in
+the equivalent GCP service. An identity that is locked down in the corporate directory may have
+a separate, less-monitored identity in a SaaS platform that was set up independently. A
+privilege escalation path that crosses from one provider to another may not be visible from
+either provider's audit logs.
 
-* Denial of Service (DOS) and Distributed Denial of Service Attacks (DDOS).
-* DNS zone walking.
-* Port, Protocol, or Request flooding attacks.
+Testing multi-cloud environments requires following the identity chain across platforms, not
+just examining each platform in isolation.
 
-If you wish to perform a network stress test, there is a separate policy for that.
+## Cross-service attack chains
 
-## Azure
+The most impactful cloud attack paths are chains: each step uses a permission that seems
+reasonable in isolation, and together they produce an outcome no one intended. A low-privilege
+role that can read from a secrets manager, trigger a Lambda function, and push to a container
+registry can, in sequence, read a deployment credential, use it to trigger a build, and replace
+a production container image.
 
-Azure allows cloud pentesting on eight Microsoft products which are mentioned in its [Penetration Testing Rules of Engagement](https://www.microsoft.com/en-us/msrc/pentest-rules-of-engagement). 
+No individual permission in that chain is obviously dangerous. The chain is dangerous. Finding
+chains requires modelling the environment as a graph and tracing paths between the current
+identity and high-value targets, not reviewing permissions policy by policy.
 
-These are not permitted:
+## Cost and resource abuse as a signal
 
-* Cloud pentesting on other azure customers or data other than your own.
-* DOS and DDoS attacks or tests which create a huge amount of traffic.
-* Performing intensive network fuzzing attacks on Azure VMs
-* Phishing or any other social engineering attacks against Microsoft employees.
-* Violating Acceptable Use Policy.
+Cryptomining and GPU abuse for AI workloads exploit the same access paths as data theft. An
+attacker who can spin up compute resources can generate costs without extracting any data. This
+matters for two reasons.
 
-## GCP
+First, cloud cost anomalies are often the first indicator that something has gone wrong. An
+unexpected spike in EC2 compute or GPU usage may be detected faster than a data access pattern.
+Testing should include whether cost alerts would fire before a data exfiltration alert.
 
-The Google Cloud Platform has no special cloud penetration testing policy, you just need to abide by their [Acceptable Use Policy](https://cloud.google.com/terms/aup) and [Terms of Service](https://cloud.google.com/terms/). There is no need to inform Google before testing. 
-
-The Acceptable Use Policy does not permit:
-
-* Piracy or any other illegal activity.
-* Phishing.
-* Spamming.
-* Distributing trojans, ransomware, etc. during the tests.
-* Violating the rights of other GCP users or conducting penetration tests on their assets.
-* Violating or trying to circumvent terms of service.
-* Interfering with the equipment supporting GCP.
-
-## Resources
-
-* [Cloud Native Security](https://www.fugue.co/cloud-security)
+Second, resource abuse can be used to exhaust budget controls or distract attention during a
+more targeted operation. A noisy cryptomining campaign on one account can consume the incident
+response capacity that should be investigating a quieter data theft in another.

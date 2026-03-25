@@ -22,6 +22,7 @@ a hacker’s harvest.
    :includehidden:
    :caption: A garden’s beauty won't stop weevils:
 
+   recon.md
    xss.md
    redirects.md
    clickjacking.md

@@ -1,4 +1,4 @@
-IN: Where the falcons and foxes roam
+Where the falcons and foxes roam
 ======================================================
 
 .. image:: /_static/images/fox.png
@@ -16,11 +16,10 @@ feast.
    :includehidden:
    :caption: Turn ‘impossible’ into ‘I’m in’:
 
-   recon/index
-   enum/index
    app/index
-   iac/index
    real/index
    api/index
    cloud/index
    network/index
+   endpoint/index
+   ot/index

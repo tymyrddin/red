@@ -19,19 +19,36 @@ undergrowth.
    docs/power/index
    docs/scarlet/index
    docs/services/index
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :includehidden:
-   :caption: Fox stealth. Raccoon grit. Squirrel-level entitlement.
-
-   docs/in/index
-   docs/through/index
-   docs/out/index
-
+   docs/labs/index
 
 ----
 
 .. image:: /_static/images/ukc2.png
   :alt: Unified Kill Chain
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :includehidden:
+   :caption: In:
+
+   docs/in/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :includehidden:
+   :caption: Through:
+
+   docs/through/index
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :includehidden:
+   :caption: Out:
+
+   docs/out/index
+
+
+

@@ -1,4 +1,4 @@
-Highway nut robbery: Blending in like a squirrel in traffic
+Highway nut robbery
 =============================================================
 
 Practice data exfiltration techniques (in the THM Lab environment set up for it) to emulate normal network activities,
