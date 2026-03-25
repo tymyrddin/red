@@ -1,9 +1,6 @@
 Red wilds
 =======================================
 
-.. image:: /_static/images/purple2.png
-  :alt: All three animals
-
 Venturing into the red wilds means stepping into an environment that is part wilderness, part improvised cityscape,
 and entirely unpredictable. The terrain shifts between overgrown systems, creaking infrastructure, and the sort of
 engineered oddities only a committee meeting or a particularly creative guild could produce.
@@ -38,3 +35,9 @@ Kill chain routes
    docs/in/index
    docs/through/index
    docs/out/index
+
+----
+
+.. image:: /_static/images/purple2.png
+   :alt: All three animals
+   :target: https://purple.tymyrddin.dev/docs/workshops/retrospectives
