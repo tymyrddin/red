@@ -21,12 +21,9 @@ undergrowth.
    docs/power/index
    docs/scarlet/index
    docs/services/index
-   docs/labs/index
-
-----
 
 Kill chain routes
-=======================
+------------------------
 
 .. image:: /_static/images/ukc2.png
   :alt: Unified Kill Chain
