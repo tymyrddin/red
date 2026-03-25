@@ -1,6 +1,9 @@
 Social engineering
 =======================
 
+.. image:: /_static/images/real.png
+   :alt: A fox at the edge of a farmyard at dusk, still, watching. A gate stands open. A light is on. Somewhere inside, a door is being held by someone who never questioned the uniform. The fox has not moved yet. It does not need to.
+
 Technical controls have a reasonably well-defined threat model. Social engineering does not, because the attack
 surface is every person in the organisation who answers a phone, opens an email, holds a door, or clicks a link
 while eating lunch.
@@ -16,7 +19,6 @@ while eating lunch.
    phishing/index
    credentials/index
    runbooks/index
-   remediation/index
 
 .. image:: /_static/images/in-progress.png
   :alt: Forever in progress ...

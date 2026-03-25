@@ -1,8 +1,8 @@
-Where squirrels swipe the crown jewels
+Out: Where squirrels swipe the crown jewels
 ============================================
 
 .. image:: /_static/images/squirrel.png
-   :alt: Squirrel
+   :alt: A squirrel mid-sprint across a server room floor, cheeks stuffed, arms full of flags and file bundles. Behind it: a bird feeder tipped over, logs scattered, a handful of decoy nuts arranged with suspicious neatness.
 
 The Out phase is where we, like hyper-entitled squirrels, decide which shiny treasures actually belong to us.
 Data? Taken. Flags? Stashed. Logs? Cleared with the audacity of a rodent who just raided a bird feeder and left the

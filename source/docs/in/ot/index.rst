@@ -25,10 +25,3 @@ look exactly like an attack when the wrong person does it.
    runbooks/index
    playbooks/index
 
-.. toctree::
-   :glob:
-   :maxdepth: 2
-   :includehidden:
-   :caption: Controls and detection:
-
-   defence/index

@@ -23,11 +23,3 @@ that look indistinguishable from the user they impersonate.
    notes/index
    runbooks/index
    playbooks/index
-
-.. toctree::
-   :glob:
-   :maxdepth: 2
-   :includehidden:
-   :caption: Controls and detection:
-
-   defence/index

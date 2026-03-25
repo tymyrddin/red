@@ -32,11 +32,4 @@ class; Root-me is the wilderness survival trial. Both end with you owning the or
    root-me/index
    plan/index
 
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :includehidden:
-   :caption: Controls and detection:
-
-   defence/index
 
