@@ -13,9 +13,7 @@ useful for someone operating without authorisation.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Playbooks
 
-   physical-entry.md
    aitm-phishing.md
    quishing-campaign.md
    mfa-fatigue.md

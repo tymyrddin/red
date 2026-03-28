@@ -12,3 +12,4 @@ techniques, with setup, execution, verification, and cleanup for each.
    dns-tunnelling.md
    cloud-sync-exfil.md
    covert-channels.md
+   living-off-cloud-exfil.md

@@ -13,7 +13,6 @@ convenience as much as security, and those two things have not always pulled in 
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Credential harvesting and authentication bypass
 
    cloud-hosting.md
    mfa-bypass.md

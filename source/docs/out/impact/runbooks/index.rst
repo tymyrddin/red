@@ -12,3 +12,5 @@ anchoring on a false attribution.
 
    covering-tracks.md
    false-flags.md
+   ransomware-campaign.md
+   ai-assisted-attack.md

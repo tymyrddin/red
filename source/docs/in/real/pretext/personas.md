@@ -62,8 +62,8 @@ asks to see a purchase order? What happens if the access you need is not where y
 short, plausible answer to each of these questions is more valuable than a detailed cover story that only works
 when nothing goes wrong.
 
-## Runbooks
+## Playbooks
 
-- [Runbook: Physical access engagement](../runbooks/physical-entry.md) — pretext selection and materials preparation draw directly on persona work
+- [Playbook: Physical access engagement](../playbooks/physical-entry.md) — pretext selection and materials preparation draw directly on persona work
 
 

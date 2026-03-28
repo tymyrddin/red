@@ -1,4 +1,4 @@
-# Playbook: IT-to-OT compromise chain
+# Runbook: IT-to-OT compromise chain
 
 This playbook connects the OT runbooks into an operational sequence. The chain runs from corporate IT through the IT/OT boundary to engineering-level access inside the OT network. The objective is demonstrating that a corporate IT compromise translates to the capability to affect industrial processes, without actually modifying production systems.
 

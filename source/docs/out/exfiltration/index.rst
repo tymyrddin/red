@@ -12,4 +12,3 @@ boundaries by using channels the organisation already trusts.
 
    notes/index
    runbooks/index
-   playbooks/index

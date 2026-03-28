@@ -57,4 +57,4 @@ may remain valid for months or years, which is relevant when scoping persistence
 
 ## Runbooks
 
-- [Runbook: Physical access engagement](../runbooks/physical-entry.md) — covers badge cloning equipment and operational placement in the on-site phase
+- [Playbook: Physical access engagement](../playbooks/physical-entry.md) — covers badge cloning equipment and operational placement in the on-site phase

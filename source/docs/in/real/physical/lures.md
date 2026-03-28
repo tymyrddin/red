@@ -63,7 +63,7 @@ it will be found by the right person, can achieve more than a technically sophis
 
 ## Runbooks
 
-- [Runbook: Physical access engagement](../runbooks/physical-entry.md) — USB drop placement and QR sticker deployment covered in the on-site phase
+- [Playbook: Physical access engagement](../playbooks/physical-entry.md) — USB drop placement and QR sticker deployment covered in the on-site phase
 - [Runbook: Quishing campaign](../runbooks/quishing-campaign.md) — physical QR sticker variant
 
 

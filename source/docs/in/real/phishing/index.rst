@@ -14,7 +14,6 @@ psychological texture and its own set of defences to route around.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Phishing across channels
 
    email.md
    smishing.md

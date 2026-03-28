@@ -18,6 +18,7 @@ while eating lunch.
    physical/index
    phishing/index
    credentials/index
+   playbooks/index
    runbooks/index
 
 .. image:: /_static/images/in-progress.png

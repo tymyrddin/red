@@ -9,3 +9,4 @@ Persistence runbooks
    cloud-iam.md
    scheduled-tasks.md
    wmi-persistence.md
+   layered-persistence.md

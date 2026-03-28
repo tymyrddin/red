@@ -173,4 +173,4 @@ and test accounts.
 ## Playbooks
 
 - [REST API attack chain](../playbooks/rest-api.md)
-- [GraphQL attack chain](../playbooks/graphql.md)
+- [GraphQL attack chain](graphql.md)

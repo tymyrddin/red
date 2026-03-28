@@ -14,7 +14,6 @@ not to stop. When someone actually tries, the gaps become obvious very quickly.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Physical access and presence
 
    impersonation.md
    badge-cloning.md

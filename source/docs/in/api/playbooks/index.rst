@@ -10,5 +10,4 @@ runbooks into an operational sequence.
    :includehidden:
 
    rest-api.md
-   graphql.md
    business-logic-abuse.md

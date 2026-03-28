@@ -1,4 +1,4 @@
-# Low-noise operation playbook
+# Low-noise operation
 
 End-to-end operation from initial access to exfiltration, built around staying below
 the detection threshold at every stage. No single step should be the story. The

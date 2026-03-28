@@ -67,6 +67,6 @@ are tighter than expected, which shapes the next attempt.
 
 ## Runbooks
 
-- [Runbook: Physical access engagement](../runbooks/physical-entry.md)
+- [Playbook: Physical access engagement](../playbooks/physical-entry.md)
 
 

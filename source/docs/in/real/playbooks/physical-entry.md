@@ -1,4 +1,4 @@
-# Runbook: Physical access engagement
+# Playbook: Physical access engagement
 
 This runbook covers a physical social engineering engagement from pre-visit reconnaissance through
 on-site execution to debrief. It is structured as a checklist with decision points rather than a

@@ -65,6 +65,6 @@ uses for its own processes and systems.
 That is enough to build a pretext that will survive the level of scrutiny most employees apply to a request
 that sounds roughly legitimate.
 
-## Runbooks
+## Playbooks
 
-- [Runbook: Physical access engagement](../runbooks/physical-entry.md) — the recon checklist is the first phase of this runbook
+- [Playbook: Physical access engagement](../playbooks/physical-entry.md) — the recon checklist is the first phase of this playbook

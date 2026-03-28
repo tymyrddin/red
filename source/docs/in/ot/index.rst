@@ -23,5 +23,4 @@ look exactly like an attack when the wrong person does it.
 
    notes/index
    runbooks/index
-   playbooks/index
 

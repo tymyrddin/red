@@ -3,7 +3,7 @@
 Ransomware, wipers, and critical system manipulation used to render systems
 unusable or maximise pressure during extortion. This page covers the
 technical mechanisms; the operational context is in the
-[ransomware campaign playbook](../playbooks/ransomware-campaign.md).
+[ransomware campaign runbook](../runbooks/ransomware-campaign.md).
 
 ## Ransomware: what modern variants do
 

@@ -1,4 +1,4 @@
-# Playbook: GraphQL attack chain
+# Runbook: GraphQL attack chain
 
 GraphQL's flexibility is also its attack surface. A single endpoint accepts queries of arbitrary
 complexity, operations are defined by the client rather than the server, and the schema is

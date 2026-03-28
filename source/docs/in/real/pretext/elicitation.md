@@ -66,8 +66,8 @@ An elicitation conversation should feel, to the person on the other end of it, l
 slightly forgettable interaction with a competent colleague. If they remember it at all, they should
 remember that you seemed to know what you were doing.
 
-## Runbooks
+## Playbooks
 
-- [Runbook: Physical access engagement](../runbooks/physical-entry.md) — elicitation is the live technique once you are inside
+- [Playbook: Physical access engagement](../playbooks/physical-entry.md) — elicitation is the live technique once you are inside
 
 

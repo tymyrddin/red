@@ -15,3 +15,4 @@ Step-by-step procedures for individual evasion techniques.
    amsi-bypass.md
    sandbox-detection.md
    process-injection.md
+   low-noise-operation.md

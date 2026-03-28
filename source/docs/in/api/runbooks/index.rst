@@ -16,3 +16,4 @@ first to build the complete picture of the attack surface, then proceed to targe
    rate-limit-bypass.md
    business-logic.md
    race-conditions.md
+   graphql.md

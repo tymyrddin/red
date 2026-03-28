@@ -9,5 +9,4 @@ Multi-step operational scenarios combining multiple evasion techniques.
    :includehidden:
    :caption: Playbooks
 
-   low-noise-operation.md
    edr-bypass-chain.md

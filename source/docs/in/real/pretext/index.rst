@@ -14,7 +14,6 @@ attackers who did their homework.
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Building the cover story
 
    recon.md
    personas.md

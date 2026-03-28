@@ -11,3 +11,4 @@ Operational procedures for OT attacks
    it-ot-pivot.md
    protocol-abuse.md
    engineering-workstation.md
+   ot-compromise.md

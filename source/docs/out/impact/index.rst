@@ -12,4 +12,3 @@ phases succeeded and the most likely source of lasting organisational change.
 
    notes/index
    runbooks/index
-   playbooks/index

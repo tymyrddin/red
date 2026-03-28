@@ -9,7 +9,6 @@ The art of staying where you are not wanted
 
    notes/index
    runbooks/index
-   playbooks/index
    linux/index
    windows/index
    thm/index
