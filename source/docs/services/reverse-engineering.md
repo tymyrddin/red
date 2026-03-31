@@ -1,39 +1,15 @@
 # Reverse-engineering starter clinic
 
-A one-day workshop where curiosity meets code: learn to peel back the layers of software to see how it really works.
+Scanning tells you what a system is running. Reverse-engineering tells you why it was built the way it was. That second question is the one that surfaces the decisions made under pressure, the shortcuts encoded in structure, the assumptions baked into how a programme handles input. Those decisions do not appear in a CVE.
 
-## What is it?
+This starter clinic makes binary analysis accessible to participants who have not worked at this level before, while adding depth for those who have. The focus is not on assembly fluency but on the discipline of reading what a programme reveals about its own construction.
 
-In the Red part of the forest, Through is about exploring the inside of binaries, programs and executables, without breaking anything. Reverse-engineering here is about understanding what a program actually does, rather than trusting what the documentation claims. Participants work hands-on with small sample binaries in a safe lab environment, learning to spot patterns, extract information, and see the structure of code.
+## The workshop
 
-## Why it matters
+In the morning, participants work through the basic tools and safe lab setup for binary exploration, then disassemble a small sample programme. The goal is not to understand every instruction but to develop the habit of reading structure: what does this programme protect, what does it assume, where does it trust input it should not.
 
-Attackers reverse-engineer software to uncover hidden functionality, weaknesses, or secrets. Defenders can do the same to assess risk and understand potential threats. This starter clinic makes these skills accessible: you do not need deep assembly knowledge to start discovering what binaries reveal.
+The midday session introduces control flow, strings, and data structures. Participants look for what is unexpected: what appears in the binary that the documentation does not mention, and what the internal logic implies about how the programme was intended to be used. The unexpected is where most of the interesting findings live.
 
-## Workshop flow (what participants do)
+The afternoon session gives teams an unknown binary to document and present. The exercise is deliberately open-ended, because real reverse-engineering is open-ended. There is no answer sheet.
 
-| Session                               | Activity                                                                                          | Real link for background                                                                                                                                                                      |
-|---------------------------------------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Binary forage (Morning)               | Learn basic tools and safe lab setup for binary exploration. Disassemble a small sample program.  | [Foraging for secrets in binaries](https://red.tymyrddin.dev/docs/through/reverse-engineering/)                                                                                               |
-| Patterns and puzzles (Midday)         | Explore control flow, strings, and data structures. Identify what looks suspicious or unexpected. | [Reverse engineering training grounds](https://red.tymyrddin.dev/docs/through/reverse-engineering/grounds/)                                                                                   |
-| Through the looking-glass (Afternoon) | Teams work on a simple unknown binary, document its behaviour, and present findings.              | [Windows binaries](https://red.tymyrddin.dev/docs/through/reverse-engineering/cracking/windows) / [Linux binaries](https://red.tymyrddin.dev/docs/through/reverse-engineering/cracking/linux) |
-
-## What you’ll walk away with
-
-* Practical understanding of reverse-engineering fundamentals.
-* A step-by-step method for exploring binaries safely.
-* Confidence to apply these techniques in your own organisation.
-* A short “behavioural sketch” of a sample binary to take home.
-
-## Who is this for?
-
-* Security teams and analysts who want hands-on experience.
-* Curious technical staff looking to understand how attackers analyse software.
-* Non-technical staff who want to appreciate what reverse-engineering reveals about risk.
-
-## Delivery at a glance
-
-* Duration: Full-day, divided into morning, midday, and afternoon sessions with hands-on labs and group exercises.
-* Setup: Safe local lab environment; no cloud required. Participants can use desktops or laptops with prepared binaries and pre-installed tools.
-* Why it works: Participants practise real exploratory techniques in a narrative, engaging format. No jargon, no pressure, just guided discovery.
-
+The clinic runs for a full day in a prepared local lab environment with binaries and tools pre-installed. No prior assembly knowledge is assumed.

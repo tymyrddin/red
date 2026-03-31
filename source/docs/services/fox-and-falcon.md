@@ -1,42 +1,15 @@
 # Fox and falcon recon lab
 
-A one-day workshop where stealth meets sight: learn what attackers see, and why that matters.
+Most organisations have a sense of what an attacker could discover about them from outside. Almost none have tested it. The gap between the assumed exposure and the real exposure is not small, and it tends to concentrate wherever internal security has been careful while external discoverability was treated as someone else's problem.
 
-## What is it?
+The fox and falcon recon lab is a full-day, hands-on investigation into that gap.
 
-In the Red part of the forest, the fox represents stealth and cunning, while the falcon embodies sharp-eyed 
-strategy. The Fox and falcon recon lab is a hands-on, low-tech day of discovery. Participants play both predator 
-and observer: spotting what outsiders can learn about an organisation, and how easily that information could lead to 
-compromise.
+## The workshop
 
-## Why it matters
+In the morning, the falcon's view: participants work with publicly available sources, websites, staff directories, published documents, metadata in shared files, to build a specific and usable picture of an organisation's exposure. The aim is not to demonstrate that information exists but to map what an attacker learns first, and what that makes possible next.
 
-If your team doesn’t know what an attacker can easily spot about your organisation, it’s hard to stop them. 
-Reconnaissance is often the first and easiest step in a security breach. This workshop demystifies how that works 
-while giving you practical insight into reducing your surface of exposure, without needing advanced tech or cloud labs.
+The midday session shifts to the fox's view: active probing. Participants run light, controlled scans in a safe lab environment, discovering which actions produce immediate, visible traces and which generate no signal at all. The asymmetry between what feels significant and what actually appears in the monitoring is consistently surprising, and that surprise is the data.
 
-## Workshop flow (what participants do)
+The fusion session in the afternoon brings both views together into an Attack Surface Map: a single diagram showing where exposure is concentrated, which signals exist, and where the monitoring has no model for what it is seeing. Teams also produce a Recon Dossier from their own investigation, not filled in from a template.
 
-| Session                 | Activity                                                                                                                               | Real link for background                                                                                                                                                   |
-|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Falcon’s view (Morning) | Explore publicly available data like websites, staff bios, and documents, to map what outsiders can see.                               | See [Swoop like falcons](https://red.tymyrddin.dev/docs/in/recon/) and [The falcon’s secret stash](https://red.tymyrddin.dev/docs/in/recon/real/)                          |
-| Fox’s view (Midday)     | Run light, controlled probes (like ping or port scans) in a safe lab environment. Discover which actions are easy to detect.           | Based on [The falcon’s first dive](https://red.tymyrddin.dev/docs/in/recon/scanning/) and [Fox hunting through the digital wilds](https://red.tymyrddin.dev/docs/in/enum/) |
-| Fusion session          | Blend the two views into an easy-to-read Attack Surface Map (a diagram showing possible entry points). Teams write up a Recon Dossier. | Rooted in [Mapping the lay of the land](https://red.tymyrddin.dev/docs/in/enum/mapping)                                                                                    |
-
-
-## What you’ll walk away with
-
-* A one-page Recon Dossier: a simple visual summary of what could be discovered about your organisation.
-* A short checklist of “external signals” defenders should know to look for.
-* A deepened understanding through lived experience of what recon feels like from both sides of the fence.
-
-## Who is this for?
-
-Perfect for mixed groups: managers, non-tech staff, security leads, and curious minds. No advanced tech background needed. Facilitators guide every step so that even non-technical participants feel confident following and contributing.
-
-## Delivery at a glance
-
-* Duration: Full-day (spread across falcon, fox, and combined sessions, with mid-day hands-on labs and final wrap-up).
-* Setup: Easy local lab environment provided (no cloud, just small servers or desktops plus a simple defender toolkit).
-* Why it works: Learners practise real attacker behaviours and defender observations in a narrative and engaging format with no jargon.
-
+The workshop runs for a full day in a local lab environment with no cloud dependency. No technical background is assumed; facilitators guide every step.

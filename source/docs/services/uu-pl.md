@@ -14,6 +14,8 @@ atop whatever came before, nothing ever removed, and absolutely everything assum
 
 *Then someone approved modernisation. Someone else added network connectivity. Nobody approved authentication.*
 
+The names are from Pratchett. The infrastructure pattern is not.
+
 This programme lets you step into that world and work through it the way real industrial security work actually 
 happens: break it, fix it, explain it to people who control the budget.
 
