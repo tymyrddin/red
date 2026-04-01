@@ -1,4 +1,4 @@
-Red wilds
+Red tradecraft
 =======================================
 
 Venturing into the red wilds means stepping into an environment that is part wilderness, part improvised cityscape,
@@ -9,15 +9,6 @@ Here, methods and metaphors coexist with no intention of forming an orderly queu
 architecture worthy of a certain notoriously civic-minded city where nothing works as expected and yet, suspiciously,
 everything keeps running; the next you are tracing the clean, structured lines of a kill chain through digital
 undergrowth.
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :includehidden:
-
-   docs/power/index
-   docs/scarlet/index
-   docs/services/index
 
 Kill chain routes
 ------------------------
@@ -35,6 +26,18 @@ Kill chain routes
    docs/in/index
    docs/through/index
    docs/out/index
+
+Simulations and simulators
+---------------------------
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :includehidden:
+
+   docs/power/index
+   docs/scarlet/index
+   docs/services/index
 
 ----
 

@@ -30,3 +30,8 @@ Vetinari himself, [that these vulnerabilities actually require fixing](../power/
 
 And together, they form a complete attack-to-decision pipeline.
 
+## Related
+
+- [Workshops and analytical processes](https://purple.tymyrddin.dev/docs/workshops/)
+- [UU Power & Light ICS Simulator](https://github.com/tymyrddin/power-and-light-sim)
+- [ICS SimLab](https://github.com/tymyrddin/ics-simlab) Under construction

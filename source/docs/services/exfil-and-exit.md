@@ -19,3 +19,6 @@ The afternoon session works backward from the exercise. Teams map the paths expl
 
 The workshop runs for a full day. A local lab environment is provided; no cloud access required.
 
+## Related
+
+- [Workshops and analytical processes](https://purple.tymyrddin.dev/docs/workshops/)
