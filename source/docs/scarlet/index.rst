@@ -19,6 +19,7 @@ they are imagined to happen, or shortly after, once everyone has agreed on what 
 
    charter.md
    op-red-lantern/index
+   iac/index
 
 
 .. raw:: html
