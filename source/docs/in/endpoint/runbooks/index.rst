@@ -11,3 +11,4 @@ Operational procedures for endpoint attacks
    edr-bypass.md
    credential-harvest.md
    pivot-to-cloud.md
+   device-code-phishing.md
