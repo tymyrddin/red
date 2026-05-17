@@ -4,6 +4,12 @@
 
 Move from the initial foothold to higher-value targets inside the network, using network-level techniques to reach systems that cannot be accessed directly from outside.
 
+## Prerequisites
+
+- An initial foothold with network connectivity to internal segments.
+- Credential material from the initial compromise: plaintext password, NTLM hash, or Kerberos ticket.
+- Impacket suite and proxychains for pivoting through restricted segments.
+
 ## Phase 1: Establish the network picture
 
 From the initial foothold, map the surrounding network:
@@ -103,3 +109,5 @@ ssh -D 9051 -p 8022 user@localhost -N
 ## Evidence collection
 
 Record: each host accessed, the credential or technique used, commands executed, data accessed, and the network path taken. Include a diagram or list of the pivot chain from initial foothold to each reached host.
+
+Active Directory and domain trust attack doctrine is in [Active Directory and domain trust attacks](../notes/run-ins.md).

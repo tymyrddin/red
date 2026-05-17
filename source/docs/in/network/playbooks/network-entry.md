@@ -30,7 +30,7 @@ Wireless access from the car park or building perimeter provides Layer 2 access 
 
 ## Internal foothold establishment
 
-From the first internal host, deploy a C2 agent using the HTTPS channel as the primary beacon and DNS as the fallback. The agent should beacon with jitter of 20 to 50 percent at a base interval appropriate to the engagement's operational tempo.
+From the first internal host, deploy a C2 agent using the HTTPS channel as the primary beacon and DNS as the fallback. The agent beacons with jitter of 20 to 50 percent at a base interval appropriate to the engagement's operational tempo.
 
 Immediately assess the foothold host's domain membership, local admin rights, logged-in users, and network connectivity. Check LSASS for cached credentials and tickets before the session ages out.
 
@@ -69,7 +69,7 @@ The krbtgt hash allows creation of Golden Tickets, which remain valid for the li
 
 ## Evidence collection
 
-For each phase, capture the specific commands executed, responses received, and credentials or access obtained. The final evidence package should demonstrate the complete path from the initial passive reconnaissance observation to domain admin, with each step documented as reproducible.
+For each phase, capture the specific commands executed, responses received, and credentials or access obtained. The final evidence package demonstrates the complete path from the initial passive reconnaissance observation to domain admin, with each step documented as reproducible.
 
 ## Runbooks
 

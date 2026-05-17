@@ -4,13 +4,19 @@
 
 Build a complete map of the target network: live hosts, open services, OS fingerprints, domain structure, and trust relationships. Passive before active; external before internal.
 
+## Prerequisites
+
+- Any network-accessible position: external access for passive enumeration, on-segment for internal phases.
+- Tools: nmap, whois, curl, subfinder (or similar CT log tooling), BloodHound/SharpHound for domain phases.
+- Any valid domain user account is sufficient for the LDAP and BloodHound collection phases; elevated privileges are not required.
+
 ## Phase 1: Passive external enumeration
 
 Query BGP routing tables for the target organisation's ASN and announced prefixes:
 
 ```bash
 # Look up ASN by organisation name
-whois -h whois.radb.net -- '-i origin AS12345'
+whois -h whois.radb.net '-i origin AS12345'
 # Or use the RIPE database
 curl 'https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS12345'
 ```
@@ -111,3 +117,5 @@ For each phase, record:
 - Domain name, domain controllers, and naming context.
 - Any unauthenticated access to services or shares.
 - SPNs found and any hashes obtained.
+
+The underlying doctrine is in [Network surface discovery](../notes/recon.md).

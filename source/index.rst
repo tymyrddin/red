@@ -35,6 +35,7 @@ Simulations and simulators
    :maxdepth: 1
    :includehidden:
 
+   docs/earthworks/index
    docs/power/index
    docs/scarlet/index
    docs/services/index

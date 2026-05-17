@@ -45,3 +45,5 @@ Protocol timing behaviour is also distinctive. The interval between a TCP SYN an
 PCAP files from network captures are operational intelligence when they contain authentication exchanges. NTLM challenge-response hashes captured from SMB or HTTP authentication can be submitted to hashcat for offline cracking. Kerberos AS-REQ and TGS-REQ packets contain ticket material that similarly yields to offline attack. NTLMv2 hashes captured through LLMNR or NBT-NS poisoning follow the same path.
 
 Traffic analysis identifies which hosts communicate with which others, which protocols are in use, and which services are actively being accessed. That picture guides subsequent attack decisions about where to position further access and what trust relationships exist across the network.
+
+The layer 2 runbook in Tradecraft covers the execution side: [Tradecraft: layer 2 attacks](../runbooks/layer2.md).

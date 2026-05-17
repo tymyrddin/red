@@ -1,6 +1,6 @@
 # Border Gateway Protocol (BGP)
 
-## Attack tree for BGP in Local Networks
+## Attack tree for BGP in local networks
 
 ```text
 1. Hijack BGP Routes (OR)

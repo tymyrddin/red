@@ -35,7 +35,7 @@ hashcat -m 13100 hashes.txt /usr/share/wordlists/rockyou.txt
 
 If a domain account has Kerberos pre-authentication disabled, the domain controller will return an AS-REP encrypted with the account's password hash to any unauthenticated requestor who knows the username. This AS-REP material can be cracked offline without ever authenticating to the domain.
 
-The `DONT_REQ_PREAUTH` flag should never be set on administrative accounts, but it appears on service accounts and legacy accounts in many environments.
+The `DONT_REQ_PREAUTH` flag is uncommon on administrative accounts in well-maintained environments but frequently appears on service accounts and legacy configurations.
 
 ```bash
 GetNPUsers.py domain/ -usersfile users.txt -format hashcat -no-pass
@@ -63,3 +63,5 @@ These paths are nearly invisible without BloodHound analysis and are the main re
 ## Lateral movement through trust
 
 Domain trusts extend authentication across forest boundaries. A user in a trusted domain can be granted access to resources in the trusting domain. The Golden Ticket attack, which requires the krbtgt hash, allows creation of forged Kerberos tickets with arbitrary group membership, including membership in groups from trusted forests. The attack chain from single DC compromise to cross-forest privilege escalation depends on the trust configuration and the group memberships present in each forest's PAC validation logic.
+
+Procedures for traversing these paths are in [Tradecraft: lateral movement](../runbooks/lateral-movement.md).

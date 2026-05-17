@@ -4,6 +4,11 @@
 
 Establish a command-and-control channel through network controls using permitted protocols. The goal is a reliable, low-noise channel that survives firewall policy, network monitoring, and DNS filtering.
 
+## Prerequisites
+
+- Code execution on the target host with outbound network access on at least one permitted protocol.
+- C2 listener infrastructure: a server reachable from the target, with a domain name and valid certificate for HTTPS channels, or an authoritative DNS zone for DNS tunnelling.
+
 ## Protocol selection
 
 Choose the C2 protocol based on what is permitted and monitored at the target:
@@ -19,11 +24,11 @@ Choose the C2 protocol based on what is permitted and monitored at the target:
 
 Most modern C2 frameworks (Cobalt Strike, Havoc, Sliver, Mythic) support HTTPS listeners. The key configuration decisions are:
 
-Malleable profile or redirector configuration: the C2 traffic should mimic legitimate application traffic in its URI patterns, headers, and timing. Many default C2 profiles are signatured by EDR products and IDS rules; custom profiles that mimic traffic to CDN domains or cloud APIs are significantly harder to detect.
+Malleable profile or redirector configuration: the C2 traffic mimics legitimate application traffic in its URI patterns, headers, and timing. Many default C2 profiles are signatured by EDR products and IDS rules; custom profiles that mimic traffic to CDN domains or cloud APIs are significantly harder to detect.
 
 Domain fronting was widely used to route C2 traffic through CDN providers, but major CDNs have deprecated support for this technique. Domain borrowing (using a legitimate domain's CDN distribution with a custom subdomain) remains viable on some platforms.
 
-Certificate legitimacy: C2 HTTPS connections should use certificates signed by a trusted CA for the domain being used, not self-signed certificates. Let's Encrypt certificates for attacker-controlled domains are free and trusted by all major platforms.
+Certificate legitimacy: C2 HTTPS connections use certificates signed by a trusted CA for the domain being used, not self-signed certificates. Let's Encrypt certificates for attacker-controlled domains are free and trusted by all major platforms.
 
 ## DNS tunnelling
 
@@ -90,3 +95,5 @@ proxychains nmap -sT -Pn internal-host
 ## Evidence collection
 
 Document: protocols used, domains or IPs serving as C2 infrastructure, any firewall or proxy bypasses achieved, and the duration and reliability of each channel.
+
+Protocol tunnelling and C2 channel doctrine is in [Transport layer attacks](../notes/raids.md) and [IP-level attacks](../notes/incursions.md).

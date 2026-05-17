@@ -4,8 +4,14 @@ Riches in the ground
 .. image:: /_static/images/network.png
    :alt: A cross-section of earth with root-like cable bundles threading through dark soil, BGP routes branching between autonomous systems like mycelium. Deep underground, something is quietly redirecting the flow. The map says the traffic arrived safely. It did not.
 
-Imagine the Internet as a giant, constantly shifting map where every network (run by companies like Google, ISPs,
-or cloud providers) has to figure out how to send data to every other network.
+The sections here differ by artefact type and scope. The Primordial Grimoire collects conceptual offensive doctrine.
+Rootways and Patches are attack trees: Rootways models interdomain trust collapse at internet scale, Patches models
+the same inside an organisation. Tradecraft covers deterministic operational procedures. Playbooks chain those into
+adversarial campaigns. Ranges points outward to three external lab environments that differ in character and purpose.
+
+A reader with a specific aim: conceptual doctrine begins in the Grimoire. Attack surface models are in Rootways
+(internet scale) and Patches (intranet). Operators wanting step-by-step procedures start in Tradecraft.
+Challenge and lab work lives in Ranges.
 
 .. toctree::
    :glob:
@@ -15,30 +21,10 @@ or cloud providers) has to figure out how to send data to every other network.
    notes/index
    roots/index
    patches/index
-
-----
-
-This is not done with a single master
-plan. It works through a mix of cooperation, handshake agreements, and some technology under the hood. When one digs
-deep enough though ...
-
-----
-
-.. toctree::
-   :glob:
-   :maxdepth: 2
-   :includehidden:
-
    runbooks/index
    playbooks/index
-   thm/index
-   root-me/index
-   ripe/index
-   earthworks/index
+   ranges/index
    Blight-Weaver's Spore-Songs @GitHub <https://github.com/tymyrddin/scripts-network>
-
-----
 
 .. image:: /_static/images/in-progress.png
   :alt: Forever in progress ...
-

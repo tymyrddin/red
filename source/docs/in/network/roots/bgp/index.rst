@@ -1,19 +1,19 @@
 Border Gateway Protocol (BGP and MP-BGP)
 =========================================
 
-Beneath the surface of the internet lies a vast, ancient root system: the Border Gateway Protocol (BGP). It is
-the global postal service for digital traffic, the mapmaker that guides your data across the independent networks
-that make up the web.
+Protocol reference material for BGP and MP-BGP, covering session types, path selection, address families, and
+terminology, lives in the Grimoire. This section contains attack trees only.
 
-When your request leaves your local network and journeys across the world, BGP takes over. But it is not
-searching for the shortest path; it's navigating a complex world of handshake deals and business relationships,
-finding the most acceptable route. Each network announces to its neighbours, "I know how to reach these destinations,"
-and trust is extended based on private agreements.
+Beneath the surface of the internet, the Border Gateway Protocol (BGP) maps which networks can reach which
+others and by which path. The routing decisions it produces follow not the shortest path but the most acceptable
+one: a calculation over peering agreements, commercial relationships, and policy preferences, applied at every
+autonomous system boundary on the way to the destination.
 
-This critical system, which also charts the vast new frontiers of IPv6, was built on a foundation of trust, not
-strong security. This inherent vulnerability means a simple misconfiguration or malicious lie can cause entire
-continents of data to briefly flow down the wrong path, hijacked. Whilst digital guards like RPKI are now
-standing watch, the silent, relentless work of BGP remains a testament to both co-operation and fragility.
+Each network announces to its neighbours which destinations it can reach. Those announcements are accepted on
+trust, extended based on private agreements rather than verified against any cryptographic proof. A misconfiguration
+or a deliberate lie propagates through that trust network with the same authority as a legitimate announcement.
+RPKI provides a mechanism for route origin validation, but deployment is incomplete and uneven. The system
+functions because most participants behave, and degrades when they do not.
 
 .. toctree::
    :glob:
@@ -21,8 +21,7 @@ standing watch, the silent, relentless work of BGP remains a testament to both c
    :includehidden:
    :caption: A global routing system built on trust, making it vulnerable to hijacking and misdirection.
 
-   bgp.md
-   mp-bgp.md
+   strategic-framing.md
    tree.md
    prefix-hijack.md
    path-manipulation.md
@@ -36,12 +35,3 @@ standing watch, the silent, relentless work of BGP remains a testament to both c
    bgp-dns-Infrastructure-attacks.md
    bgp-cdn-cloud-Infrastructure-attacks.md
 
-Disclaimer
------------------------------------------
-An attack tree is structural, not operational. It exists in the comfortable world of pure logic, where things
-either work or they don't, gates either open or stay closed, and time is merely a dimension I/you/we draw an arrow along.
-
-It's comprehensive. It has branches for sub-prefix hijacking, exact-prefix hijacking, squatting attacks, path
-manipulation, and several dozen other variations. Each node connects logically to its children. The structure is clean.
-
-Until someone takes a tree seriously enough to ask `but what would this actually *look* like? <https://purple.tymyrddin.dev/docs/lantern/red-lanterns/playbooks/>`_

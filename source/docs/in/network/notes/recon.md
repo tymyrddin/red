@@ -14,9 +14,9 @@ Job postings and technical documentation often describe the internal network arc
 
 ## Active scanning
 
-Host discovery should precede port scanning. Sending ICMP echo requests and TCP SYN probes to the gateway addresses for each identified prefix confirms which ranges are live before committing to a full port scan. Many hosts block ICMP but respond to TCP; combining both improves coverage.
+Host discovery precedes port scanning. ICMP echo requests and TCP SYN probes to gateway addresses for each identified prefix confirm which ranges are live before committing to a full port sweep. Many hosts block ICMP but respond to TCP; combining both improves coverage.
 
-Port scanning with nmap against confirmed live hosts should use timing carefully. The default T3 timing is appropriate for most engagements; T4 trades some stealth for speed on low-latency segments. Service version detection (`-sV`) and default script scanning (`-sC`) add significant value for each open port but increase scan duration and detectability.
+Timing is worth attention. The default T3 is appropriate for most engagements; T4 trades some stealth for speed on low-latency segments. Service version detection (`-sV`) and default script scanning (`-sC`) add significant value for each open port but increase scan duration and detectability.
 
 ```bash
 nmap -sS -sV -sC -T3 -p- --open -oA network-scan <target-range>
@@ -33,3 +33,5 @@ Inside a network segment, the enumeration changes character. ARP scanning with `
 SMB signing and version enumeration identifies hosts susceptible to relay attacks. LDAP enumeration against any domain controller, even unauthenticated, returns naming context information that confirms the domain name and structure. With any domain credentials, LDAP enumeration with `ldapdomaindump` or BloodHound collection reveals the full identity graph.
 
 The goal of internal recon is not just a host list but a map of trust relationships: which hosts authenticate against which domain controllers, which service accounts have elevated privileges, and which network segments can reach which others. That map is what converts a foothold into a path to the objective.
+
+Step-by-step procedures for this work are in [Tradecraft: network reconnaissance](../runbooks/network-recon.md).

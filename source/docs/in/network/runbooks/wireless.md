@@ -2,7 +2,7 @@
 
 ## Objective
 
-Obtain network access or credentials through wireless vulnerabilities. Scope must explicitly include wireless testing and specify whether the attacker is assumed to be in radio range of the target.
+Obtain network access or credentials through wireless vulnerabilities. The engagement scope covers wireless testing explicitly, and specifies whether the attacker is assumed to be in radio range of the target.
 
 ## Prerequisites
 
@@ -80,7 +80,7 @@ dnsmasq -C dnsmasq.conf
 # Redirect all HTTP to captive portal, intercept credentials
 ```
 
-The rogue AP should broadcast the same SSID on the same channel with higher transmission power. WPA2 clients will prefer a higher-signal network with the correct SSID.
+The rogue AP broadcasts the same SSID on the same channel with higher transmission power. WPA2 clients will prefer a higher-signal network with the correct SSID.
 
 ## Phase 5: Results handling
 
@@ -91,3 +91,5 @@ For captured NTLM hashes: attempt offline cracking and note any successful domai
 For captured plaintext credentials from captive portal: test each against the target application and VPN endpoints.
 
 Document: networks surveyed, attack technique used, credentials or access obtained, network segment accessible from the recovered access.
+
+Wireless access doctrine is in [Wireless as an access path](../notes/intrusions.md).

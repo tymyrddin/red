@@ -1,6 +1,6 @@
 # Intermediate System to Intermediate System (IS-IS)
 
-## Attack tree for Is-Is
+## Attack tree for IS-IS
 
 ```text
 1. Compromise IS-IS Routing Tables (OR)

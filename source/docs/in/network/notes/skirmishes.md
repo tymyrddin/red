@@ -45,3 +45,5 @@ DNS is also a reliable command-and-control channel. Queries and responses traver
 ## Multicast DNS and mDNS
 
 mDNS operates similarly to LLMNR but is used primarily by Apple and Linux systems rather than Windows. It queries the multicast address `224.0.0.251` and is used for Bonjour service discovery and `.local` domain resolution. The same class of poisoning attack applies: an attacker can respond to mDNS queries before the legitimate host and redirect connections. Cross-platform environments running both Windows and macOS or Linux present multiple resolution protocols as an attack surface simultaneously.
+
+Procedures for LLMNR poisoning, NTLM relay, and DNS manipulation are in [Tradecraft: name resolution](../runbooks/name-resolution.md).

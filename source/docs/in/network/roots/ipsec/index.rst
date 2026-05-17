@@ -1,11 +1,10 @@
 Internet Protocol Security (IPsec)
 ===========================================
 
-IPsec is a suite of protocols designed to secure Internet Protocol (IP) communications by authenticating and
-encrypting each IP packet in a data stream. It operates at the network layer, providing security for both
-IPv4 and IPv6, and is widely used in VPNs, site-to-site tunnels, and secure communication channels. However,
-its complexity, cryptographic dependencies, and integration with network stack fundamentals make it a prime
-target for exploitation.
+IPsec secures IP communications through authentication and encryption at the network layer, widely deployed
+in VPNs and site-to-site tunnels. The surface it presents to an adversary is proportional to its complexity:
+key negotiation steps, cryptographic mode selection, identity verification, and implementation variation all
+create points where the security model can be degraded, abused, or circumvented rather than broken outright.
 
 .. toctree::
    :glob:
@@ -24,13 +23,3 @@ target for exploitation.
    memory-corruption-attacks.md
    resource-exhaustion-attacks.md
    configuration-bypass-attacks.md
-
-Disclaimer
------------------------------------------
-An attack tree is structural, not operational. It exists in the comfortable world of pure logic, where things
-either work or they don't, gates either open or stay closed, and time is merely a dimension I/you/we draw an arrow along.
-
-It's comprehensive. It has branches for sub-prefix hijacking, exact-prefix hijacking, squatting attacks, path
-manipulation, and several dozen other variations. Each node connects logically to its children. The structure is clean.
-
-Until someone takes a tree seriously enough to ask `but what would this actually *look* like? <https://purple.tymyrddin.dev/docs/lantern/red-lanterns/playbooks/>`_

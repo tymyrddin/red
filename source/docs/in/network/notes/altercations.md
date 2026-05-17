@@ -49,3 +49,5 @@ sendp(pkt, iface="eth0")
 ```
 
 Proper defence requires explicitly configuring all non-trunk ports as access ports and setting the native VLAN to an unused VLAN ID rather than VLAN 1.
+
+Procedures for executing these attacks are in [Tradecraft: layer 2 attacks](../runbooks/layer2.md).

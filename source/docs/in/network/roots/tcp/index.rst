@@ -1,19 +1,21 @@
 Transmission Control Protocol (TCP)
 =========================================
 
-The Border Gateway Protocol (BGP), which governs global internet routing, fundamentally relies on the Transmission
-Control Protocol (TCP) for establishing and maintaining sessions between peers. This inherent dependency creates a
-critical attack surface where vulnerabilities within the TCP stack, session management, and cryptographic
-protections can be weaponised to compromise the integrity, availability, and confidentiality of the entire global
-routing system. This attack tree systematically deconstructs the methods through which an adversary can exploit
-TCP to manipulate BGP, ranging from low-level kernel exploits and session hijacking to sophisticated cryptographic
-attacks and AI-enhanced offensive operations.
+TCP is a primary attack surface here, not a means to an end for BGP. These trees model connection hijacking,
+session exhaustion, stateful device bypass, and transport-layer service disruption in their own right. Cross-protocol
+consequences in routing appear in section 3 of the canonical tree as derived outcomes, not the organising principle.
+
+Three files take a specific TCP-transport view of BGP-related mechanics:
+:doc:`Router TCP stack exploitation <tcp-stack-on-bgp-router>`,
+:doc:`BGP session manipulation <bgp-session-manipulation>`, and
+:doc:`Man-in-the-middle BGP sessions <mitm-bgp-sessions>`.
+Each is a scoped derivative of the canonical BGP attack surface at :doc:`Rootways: BGP <../bgp/index>`.
 
 .. toctree::
    :glob:
    :maxdepth: 1
    :includehidden:
-   :caption: Exploiting TCP's inherent trust to compromise, manipulate, and disrupt global BGP routing.
+   :caption: TCP as an attack surface, with cross-protocol routing consequences at depth.
 
    tree.md
    tcp-stack-on-bgp-router.md
@@ -26,13 +28,3 @@ attacks and AI-enhanced offensive operations.
    network-infra-attacks.md
    advanced-persistence-mechanisms.md
    supply-chain-compromise.md
-
-Disclaimer
------------------------------------------
-An attack tree is structural, not operational. It exists in the comfortable world of pure logic, where things
-either work or they don't, gates either open or stay closed, and time is merely a dimension I/you/we draw an arrow along.
-
-It's comprehensive. It has branches for sub-prefix hijacking, exact-prefix hijacking, squatting attacks, path
-manipulation, and several dozen other variations. Each node connects logically to its children. The structure is clean.
-
-Until someone takes a tree seriously enough to ask `but what would this actually *look* like? <https://purple.tymyrddin.dev/docs/lantern/red-lanterns/playbooks/>`_

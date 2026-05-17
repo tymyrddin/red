@@ -180,84 +180,9 @@ Cryptographic attacks on routing protocols target the security mechanisms design
 
 ## Why it works
 
--   **Algorithm vulnerabilities**: Many routing protocols initially deployed with weakened cryptographic algorithms like MD5 and SHA-1, which have known theoretical vulnerabilities that can be exploited despite protocol-level protections.
--   **Implementation flaws**: Cryptographic implementations often contain bugs, side-channel vulnerabilities, or incorrect usage of cryptographic primitives that attackers can exploit.
--   **Key management challenges**: Manual key distribution and the difficulty of regular key rotation in large networks create opportunities for key compromise and replay attacks.
--   **Protocol complexity**: The interaction between multiple cryptographic protocols (BGPsec, RPKI, TCP-AO) creates attack surfaces at integration points and validation boundaries.
--   **Resource constraints**: Network devices often have limited computational resources, making them vulnerable to resource exhaustion attacks against cryptographic operations.
--   **Deployment inconsistencies**: Partial deployment of cryptographic protections creates edge cases and validation gaps that attackers can exploit.
-
-## Mitigation
-
-### Cryptographic algorithm management
--   **Action**: Implement robust cryptographic algorithm selection and maintenance
--   **How**:
-    -   Migrate from vulnerable algorithms like MD5 and SHA-1 to SHA-2 family or stronger alternatives
-    -   Implement cryptographic agility to facilitate algorithm upgrades
-    -   Regularly review and update algorithm selections based on current threat intelligence
--   **Best practice**: Follow NIST recommendations for cryptographic algorithm selection and key length requirements
-
-### Key management security
--   **Action**: Implement comprehensive key management practices
--   **How**:
-    -   Use hardware security modules (HSMs) for key generation and storage
-    -   Implement automated key rotation policies with appropriate key lifetimes
-    -   Establish secure key distribution mechanisms using authenticated channels
--   **Configuration example**: Regular key rotation schedules based on organisational policy and risk assessment
-
-### Implementation security
--   **Action**: Secure cryptographic implementations against common vulnerabilities
--   **How**:
-    -   Use established cryptographic libraries rather than implementing custom solutions
-    -   Conduct regular security testing including fuzz testing and static analysis
-    -   Implement side-channel attack protections for critical cryptographic operations
--   **Tools**: Use testing frameworks like CURE for RPKI validation software 
-
-### Protocol validation and verification
--   **Action**: Implement comprehensive validation of cryptographic protocols
--   **How**:
-    -   Deploy RPKI validation for route origin author 
-    -   Implement BGPsec path validation where supported 
-    -   Use TCP-AO with strong cryptographic algorithms for BGP sessions 
--   **Configuration example**: Enable RPKI-to-router protocol validation with integrity checking
-
-### Monitoring and detection
--   **Action**: Implement monitoring for cryptographic attacks
--   **How**:
-    -   Deploy anomaly detection for unusual cryptographic operations
-    -   Monitor for unexpected certificate changes or trust anchor modifications
-    -   Implement comprehensive logging of cryptographic operations and validation results
--   **Best practice**: Regular review of security logs and cryptographic operation metrics
-
-### Infrastructure hardening
--   **Action**: Harden the overall cryptographic infrastructure
--   **How**:
-    -   Secure RPKI repository systems with appropriate access controls 
-    -   Harden relying party software against cache poisoning and other attacks
-    -   Implement redundancy and fail-secure mechanisms for validation infrastructure
--   **Configuration example**: Secure distribution of RPKI data using integrity-protected channels
-
-### Incident response planning
--   **Action**: Develop and maintain incident response procedures for cryptographic attacks
--   **How**:
-    -   Create playbooks for responding to key compromise incidents
-    -   Establish certificate revocation procedures for compromised credentials
-    -   Develop communication plans for coordinating with network operators and RIRs
--   **Documentation**: Maintain updated contact lists and escalation procedures
-
-## Key insights from real-world implementations
-
--   **RPKI vulnerabilities**: Research has identified critical vulnerabilities in RPKI relying party software, including path traversal and cache poisoning attacks that could undermine routing security.
--   **Algorithm migration challenges**: Many networks continue to use deprecated cryptographic algorithms due to compatibility requirements and migration complexities.
--   **Implementation inconsistencies**: Different implementations of cryptographic validation (e.g., RPKI validators) produce different results, creating potential security gaps.
-
-## Future trends and recommendations
-
--   **Post-quantum preparedness**: Begin planning for migration to quantum-resistant cryptographic algorithms to protect against future quantum computing threats.
--   **Automated validation**: Develop machine learning-based anomaly detection for cryptographic operations to identify potential attacks.
--   **Standardised implementation**: Work toward greater consistency in cryptographic implementation across vendors and platforms.
--   **Enhanced monitoring**: Develop more sophisticated monitoring capabilities for detecting cryptographic attacks in real-time.
-
-## Conclusion
-
-Cryptographic attacks on routing protocols represent a significant threat to network security by targeting the fundamental mechanisms designed to protect routing information. These attacks exploit vulnerabilities in algorithms, implementations, key management, and protocol interactions to compromise routing infrastructure. Comprehensive mitigation requires robust cryptographic algorithm management, secure key management practices, implementation security, protocol validation, monitoring, and infrastructure hardening. As cryptographic protections continue to evolve, maintaining vigilance against emerging cryptographic attacks remains essential for securing network infrastructure.
+-   Algorithm vulnerabilities: Many routing protocols initially deployed with weakened cryptographic algorithms like MD5 and SHA-1, which have known theoretical vulnerabilities that can be exploited despite protocol-level protections.
+-   Implementation flaws: Cryptographic implementations often contain bugs, side-channel vulnerabilities, or incorrect usage of cryptographic primitives that attackers can exploit.
+-   Key management challenges: Manual key distribution and the difficulty of regular key rotation in large networks create opportunities for key compromise and replay attacks.
+-   Protocol complexity: The interaction between multiple cryptographic protocols (BGPsec, RPKI, TCP-AO) creates attack surfaces at integration points and validation boundaries.
+-   Resource constraints: Network devices often have limited computational resources, making them vulnerable to resource exhaustion attacks against cryptographic operations.
+-   Deployment inconsistencies: Partial deployment of cryptographic protections creates edge cases and validation gaps that attackers can exploit.

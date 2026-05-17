@@ -36,3 +36,5 @@ Hostapd-wpe combined with hostapd-2.6 or later can host a rogue WPA2-Enterprise 
 802.1X port-based access control requires a successful RADIUS authentication before a wireless client is admitted to the network. The security of this model depends entirely on whether clients validate the RADIUS server's certificate and refuse connections to servers presenting unexpected certificates.
 
 Misconfigured 802.1X clients, particularly Windows machines using PEAP-MSCHAPv2 without certificate validation, will authenticate to any server presenting a self-signed certificate. The captured MSCHAPv2 exchange can be relayed or cracked offline. EAP-TLS configurations using client certificates are substantially more resistant, though stolen certificate files from a compromised endpoint can bypass this control.
+
+Operational procedures for wireless access are in [Tradecraft: wireless](../runbooks/wireless.md).

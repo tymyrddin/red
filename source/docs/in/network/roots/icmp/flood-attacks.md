@@ -115,79 +115,9 @@ attackers to cause significant service disruption through various amplification 
 
 ## Why it works
 
--   **Protocol necessity**: ICMP is essential for network operations and cannot be completely blocked without affecting functionality
--   **Amplification potential**: Certain ICMP messages can generate larger responses, creating amplification opportunities
--   **Resource asymmetry**: Attackers can leverage distributed resources that overwhelm target capacity
--   **Spoofing capabilities**: Source address spoofing makes attribution and blocking difficult
--   **Protocol complexity**: ICMPv6's additional features create more attack vectors than ICMPv4
--   **Default configurations**: Many systems process ICMP packets by default without rate limiting
-
-## Mitigation
-
-### Rate limiting and traffic shaping
-
--   **Action**: Implement comprehensive rate limiting for ICMP traffic
--   **How**:
-    -   Configure router and firewall ICMP rate limiting policies
-    -   Implement quality of service (QoS) policies for ICMP traffic
-    -   Use traffic shaping to normalise ICMP packet rates
-    -   Deploy ICMP-specific rate limiters at network boundaries
--   **Best practice**: Implement hierarchical rate limiting at multiple network points
-
-### Filtering and access control
-
--   **Action**: Deploy strategic ICMP filtering and access controls
--   **How**:
-    -   Implement RFC 4890-compliant ICMPv6 filtering policies
-    -   Use access control lists to restrict unnecessary ICMP types
-    -   Deploy anti-spoofing measures (BCP 38/RFC 2827)
-    -   Implement geographic filtering for ICMP traffic where appropriate
--   **Best practice**: Default-deny approach for ICMP with explicit permitted types
-
-### Network architecture design
-
--   **Action**: Design networks to resist ICMP flood attacks
--   **How**:
-    -   Implement adequate bandwidth provisioning for attack absorption
-    -   Use redundant network paths for traffic diversion during attacks
-    -   Deploy scrubbing centres for attack mitigation
-    -   Design network segmentation to limit attack propagation
--   **Best practice**: Build networks with DDoS resistance as a design requirement
-
-### Monitoring and detection
-
--   **Action**: Implement comprehensive monitoring for ICMP flood detection
--   **How**:
-    -   Deploy flow monitoring with ICMP-specific analysis
-    -   Implement anomaly detection for ICMP traffic patterns
-    -   Use behavioural analysis to identify flood patterns
-    -   Establish baselines for normal ICMP traffic volumes
--   **Best practice**: Real-time monitoring with automated response capabilities
-
-### Cloud and service provider protections
-
--   **Action**: Leverage cloud and provider DDoS protection services
--   **How**:
-    -   Utilise cloud provider DDoS protection services
-    -   Implement anycast routing for attack distribution
-    -   Use content delivery networks for attack absorption
-    -   Deploy cloud-based scrubbing services
--   **Best practice**: Defence in depth with multiple protection layers
-
-## Key insights from real-world attacks
-
--   **ICMP floods remain effective**: Many organisations lack adequate ICMP flood protection
--   **Amplification attacks increasing**: Attackers increasingly use amplification techniques for larger impacts
--   **IoT devices commonly exploited**: Compromised IoT devices are frequently used in ICMP flood attacks
--   **Multi-vector attacks common**: ICMP floods often accompany other attack types
-
-## Future trends and recommendations
-
--   **Increasing attack scale**: ICMP flood volumes will continue to grow with available bandwidth
--   **IPv6 attack expansion**: IPv6-specific ICMP floods will become more prevalent
--   **AI-enhanced attacks**: Machine learning may be used to optimise flood patterns
--   **5G network impact**: Higher bandwidth mobile networks will enable larger attacks
-
-## Conclusion
-
-ICMP flood attacks represent a significant and evolving threat that leverages fundamental network protocols to cause service disruption. These attacks exploit the necessary nature of ICMP for network operations, making complete prevention challenging while allowing attackers to achieve substantial impacts through various techniques including direct flooding, spoofing, amplification, and resource exhaustion. Defence against ICMP flood attacks requires a multi-layered approach including rate limiting, filtering, network design considerations, comprehensive monitoring, and cloud-based protections. As attack techniques continue to evolve and available bandwidth increases, organisations must maintain vigilance and implement robust protection measures. The future of network security will require continuous adaptation to address the challenges posed by ICMP-based denial-of-service attacks while maintaining essential network functionality.
+-   Protocol necessity: ICMP is essential for network operations and cannot be completely blocked without affecting functionality
+-   Amplification potential: Certain ICMP messages can generate larger responses, creating amplification opportunities
+-   Resource asymmetry: Attackers can leverage distributed resources that overwhelm target capacity
+-   Spoofing capabilities: Source address spoofing makes attribution and blocking difficult
+-   Protocol complexity: ICMPv6's additional features create more attack vectors than ICMPv4
+-   Default configurations: Many systems process ICMP packets by default without rate limiting

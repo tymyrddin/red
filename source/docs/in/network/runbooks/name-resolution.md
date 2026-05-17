@@ -92,3 +92,5 @@ dnschef --fakeip 192.168.1.100 --fakedomains target.corp
 ## Evidence collection
 
 Record: hashes captured (sanitised, noting user accounts and source hosts), relay targets that accepted authentication, SAM hashes or command execution results from successful relays, and cracked credentials.
+
+Name resolution attack doctrine is in [Name resolution attacks](../notes/skirmishes.md).
