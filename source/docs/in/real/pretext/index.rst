@@ -18,3 +18,5 @@ attackers who did their homework.
    recon.md
    personas.md
    elicitation.md
+   insider.md
+   infrastructure-ops.md

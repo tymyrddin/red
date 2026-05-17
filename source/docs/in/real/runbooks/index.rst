@@ -18,3 +18,4 @@ useful for someone operating without authorisation.
    quishing-campaign.md
    mfa-fatigue.md
    consent-grant.md
+   device-code-phishing.md

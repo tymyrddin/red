@@ -62,6 +62,38 @@ asks to see a purchase order? What happens if the access you need is not where y
 short, plausible answer to each of these questions is more valuable than a detailed cover story that only works
 when nothing goes wrong.
 
+## AI-synthesised identity
+
+Building a convincing LinkedIn profile used to require either a real person's cooperation or a
+meaningful investment of time seeding an account with connections and history. Both remain valid
+approaches, but generative tooling has shifted the economics considerably.
+
+AI-generated profile photographs are the most commonly used element. Diffusion models produce
+faces that read as convincing headshots, free from the reverse-image-search results that stock
+photography reliably produces. The generated images lack the visual signature of a real person's
+photo library: the lighting is consistent, the background is neutral, and there is no
+inadvertently identifiable context in the frame. For a profile that needs to survive a quick
+visual check, this is usually sufficient.
+
+Synthetic employment histories benefit from language model assistance in a different way. The
+problem with fabricated work histories has generally not been plausibility at the sentence level
+but coherence at the career level: the skills, titles, and transitions need to fit together in a
+way that someone with industry knowledge would recognise. A model prompted with a target industry,
+a desired seniority level, and a regional employment market produces career progressions that hold
+up to scrutiny from someone casually checking whether the profile looks real.
+
+Maintaining a synthetic social media presence over the course of a longer operation is where
+AI assistance has the most leverage. A persona that posts occasionally, comments on industry
+news, and appears to have mild opinions about sector developments is considerably more convincing
+than one that was created last week with three connections. Automated posting cadences and
+AI-generated commentary can sustain the appearance of an active professional across LinkedIn,
+Twitter, and relevant forums without continuous manual effort.
+
+The operational limit is depth. A well-maintained synthetic persona survives a thirty-second
+LinkedIn check by a mildly suspicious receptionist. It is unlikely to survive a deliberate
+background verification by someone who has decided to investigate. For most social engineering
+engagements the former is the relevant threshold.
+
 ## Playbooks
 
 - [Playbook: Physical access engagement](../playbooks/physical-entry.md) — pretext selection and materials preparation draw directly on persona work

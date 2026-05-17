@@ -19,3 +19,4 @@ psychological texture and its own set of defences to route around.
    smishing.md
    vishing.md
    quishing.md
+   deepfakes.md

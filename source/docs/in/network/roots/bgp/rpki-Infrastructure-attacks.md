@@ -178,7 +178,11 @@ The Resource Public Key Infrastructure (RPKI) was designed to secure Border Gate
             1.10.3.3 Policy manipulation
 ```
 
-## Why it works
+Social engineering, configuration error induction, and operational procedure manipulation (1.6.2) are the 
+human interaction layer of these control paths; the techniques are covered in 
+[social engineering of infrastructure operators](../../../real/pretext/infrastructure-ops.md).
+
+## Mechanics
 
 -   Protocol complexity: The RPKI ecosystem involves multiple protocols (RSYNC, RRDP, RTR), cryptographic operations, and distributed repositories, creating a large attack surface.
 -   Implementation inconsistencies: Different validator implementations handle edge cases and error conditions differently, leading to vulnerabilities.

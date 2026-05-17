@@ -69,6 +69,35 @@ administrator who approves an application with the right permissions provides ac
 in the organisation, not just the administrator's own. This is a relatively rare but high-impact
 variant that has been used in targeted attacks against organisations running complex M365 deployments.
 
+## Cross-tenant federation abuse
+
+Most OAuth consent phishing targets a single account within a single tenant. A variant with a
+considerably larger blast radius exploits the federation trust relationships between tenants.
+
+In Microsoft Entra ID, organisations frequently federate with partners, suppliers, and managed
+service providers, granting external accounts guest access to internal resources. The `aud` claim
+in an OIDC token and the recipient restriction in a SAML assertion are the bindings that limit a
+token to its intended tenant. In practice, these bindings are sometimes absent, misconfigured,
+or validated loosely by the relying application. A token issued in a federated partner's tenant
+may carry more access than the organisation's administrators realise, because the federation
+relationship was configured for convenience rather than reviewed against least privilege.
+
+The social engineering angle here is not always a phishing lure. Sometimes it is a conversation:
+a request to a partner organisation's IT team to add a guest account, framed as a legitimate
+integration requirement, is less suspicious than an email to the target organisation's employees.
+The partner's helpdesk becomes the social engineering target, and their willingness to add a
+guest account provides access to the primary tenant through the trusted federation path.
+
+Identifying federation relationships during reconnaissance is straightforward. Entra ID exposes
+tenant identifiers and federation configurations through the OpenID Connect discovery endpoint.
+An organisation's login page often reveals whether it uses a federated identity provider. Linked
+In profiles frequently identify managed service providers and named IT partners, which are the
+same organisations likely to have elevated federation trust.
+
+The detection signature is distinct from standard consent phishing: rather than a new application
+authorisation event, federation abuse produces legitimate guest sign-in events from a trusted
+external tenant, which blend into the noise of normal B2B collaboration traffic.
+
 ## Runbooks
 
 - [Runbook: OAuth consent phishing](../runbooks/consent-grant.md)

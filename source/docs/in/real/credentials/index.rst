@@ -1,13 +1,17 @@
 Getting past the login page
 ============================
 
-Stealing a password used to be most of the job. Now it is often just the beginning of a longer conversation with
-whatever multi-factor authentication the organisation has bolted on. The techniques in this section cover how
-attackers harvest credentials using infrastructure the target already trusts, how they deal with the second factor,
-and how they obtain persistent access to cloud environments without ever learning anyone's password at all.
+Identity systems are mechanisms for delegating authority. Authentication looks like a technical process, but at
+its base it is a human trust transaction mediated by software. A password is compliance with an agreement. A
+session token is a consent artefact: evidence that the trust transaction happened once, portable until revoked.
+An OAuth flow is a structured persuasion channel: the system presents a permission request and waits for the
+human to approve it. A device authorisation flow is the same transaction displaced across contexts, with the
+human making a trust decision in one place that has consequences somewhere else entirely.
 
-The common thread is that modern authentication is not as robust as it looks from the outside. It was designed for
-convenience as much as security, and those two things have not always pulled in the same direction.
+The techniques in this section operate within these designed interaction patterns rather than against them.
+Hosting a phishing page on SharePoint, bombing a push notification channel, obtaining a device authorisation
+token through a convincing email: in each case, the protocol completes correctly. The gap is between what the
+protocol records and what the person clicking understood themselves to be approving.
 
 .. toctree::
    :glob:
@@ -17,3 +21,4 @@ convenience as much as security, and those two things have not always pulled in 
    cloud-hosting.md
    mfa-bypass.md
    consent-phishing.md
+   device-code.md
