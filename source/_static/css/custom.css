@@ -268,6 +268,12 @@ pre[class*="text"] {
 }
 
 
+/* Force syntax token spans dark — slate theme generates light token colours
+   designed for dark backgrounds; these become invisible on the #ddd code block */
+div.highlight span {
+  color: #333 !important;
+}
+
 /* Line numbers */
 .linenos {
   color: #999;

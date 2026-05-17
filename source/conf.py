@@ -75,6 +75,8 @@ html_css_files = ['css/custom.css']
 html_last_updated_fmt = '%Y-%m-%d %H:%M'  # e.g., "May 05, 2025 at 14:30"
 html_extra_path = ['_static/_headers']
 
+pygments_style = 'friendly'
+
 # -- Build settings ----------------------------------------------------------
 nitpicky = True  # Warn about broken references
 # suppress_warnings = ["myst.xref_missing"]  # Suppress missing MyST xref warnings
