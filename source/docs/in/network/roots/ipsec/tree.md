@@ -254,3 +254,7 @@ bypasses and future quantum threats.
             6.2.3.3 Swarm-based coordinated attacks
             6.2.3.4 Intelligent countermeasure evasion
 ```
+
+## Counter moves
+
+Attack tree (IPsec) is the variant in play. Strong IKE configuration and pruning weak proposals are the fix. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

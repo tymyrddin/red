@@ -139,3 +139,7 @@ Indicators that a defender might see:
 
 Space uploads over time and use cover stories for the upload activity (a user uploading
 photos from a work trip, an automated backup) to reduce volume-based alerts.
+
+## Counter moves
+
+Steganographic exfiltration buries the data inside files that pass inspection. Volume and destination analysis, plus stripping or re-encoding carriers, are where it shows. Both defensive views apply, in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/) and [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

@@ -34,3 +34,7 @@ password:
 * [Reverse Engineering pour Débutants - Dennis Yurichev](https://repository.root-me.org/Reverse%20Engineering/FR%20-%20Reverse%20Engineering%20pour%20D%C3%A9butants%20-%20Dennis%20Yurichev.pdf)
 * [Executable and Linkable Format ELF](https://repository.root-me.org/Reverse%20Engineering/x86/Unix/EN%20-%20Executable%20and%20Linkable%20Format%20ELF.pdf)
 * [Reverse Engineering for Beginners - Dennis Yurichev](https://repository.root-me.org/Reverse%20Engineering/EN%20-%20Reverse%20Engineering%20for%20Beginners%20-%20Dennis%20Yurichev.pdf)
+
+## Counter moves
+
+A basic x86 crackme exposes the comparison. Obfuscation is the cheap counter for real software. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -274,3 +274,7 @@ Create an admin user and add to administrator and remote desktop groups:
 Compile:
 
     i686-w64-mingw32-gcc <file>.c -lws2_32 -o <output>.exe
+
+## Counter moves
+
+These Windows patterns chain misconfigurations into SYSTEM. Least privilege, service hardening, and removing standing admin remove most at the source. The defender's view is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

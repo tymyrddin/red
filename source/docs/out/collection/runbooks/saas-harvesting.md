@@ -161,3 +161,7 @@ Most SaaS platforms rate-limit their APIs and some log unusual access patterns:
   succession; UEBA tools baseline normal access patterns
 - If the platform exposes recent activity (e.g., "recently accessed files"),
   accessing only those items is lower risk than broad enumeration
+
+## Counter moves
+
+Pulling data from SaaS uses legitimate API calls and valid tokens, so it blends into ordinary app traffic. Per-user download baselining, consent-grant review, and CASB visibility are where the volume shows. The defender's view is in the blue notes on [watching data being gathered](https://blue.tymyrddin.dev/docs/counter/collection/).

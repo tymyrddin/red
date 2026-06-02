@@ -203,3 +203,7 @@ Export the relevant Burp Suite items for each finding. Include the full request 
 - [Business logic abuse](../notes/business-logic.md)
 - [Business logic abuse playbook](business-logic-abuse.md)
 - [Race condition testing](../runbooks/race-conditions.md)
+
+## Counter moves
+
+Playbook: REST API attack chain is the variant in play. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Seen from the other side, this sits in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

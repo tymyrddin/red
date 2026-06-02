@@ -115,3 +115,7 @@ all of them. The architecture-specific lifting is handled by the framework.
 This is particularly relevant for firmware analysis, where binaries for different embedded
 targets may implement similar functionality and a cross-architecture pattern search against
 the IR is more practical than maintaining separate architecture-specific scripts.
+
+## Counter moves
+
+Lifting to an intermediate representation scales analysis across architectures. Obfuscation that survives lifting is the attacker's answer and the defender's cost. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

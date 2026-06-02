@@ -131,3 +131,7 @@ r2 -w target
 
 Re-analyse in Ghidra or IDA Pro after patching to get the benefit of the decompiler on the
 cleaned graph.
+
+## Counter moves
+
+A deobfuscation pipeline unwinds layered protection automatically. For defenders, obfuscation is a delay tactic, best paired with server-side checks. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

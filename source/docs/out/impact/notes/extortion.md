@@ -95,3 +95,7 @@ For organisations that handle personal data, health data, or financial data
 under regulation, a single successful exfiltration event can result in
 regulatory fines, civil liability, and permanent reputational damage that
 exceeds any ransom demand.
+
+## Counter moves
+
+Extortion depends on the victim having no other option, and that is the lever a defender takes away. Immutable backups, catching exfiltration before the leak threat lands, and a decided response posture all reduce the pressure. The defender's view is in the blue notes on [limiting the blast radius](https://blue.tymyrddin.dev/docs/counter/impact/).

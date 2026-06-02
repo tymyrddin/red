@@ -111,3 +111,7 @@ The Address Resolution Protocol (ARP) is a stateless protocol used to map IP add
 -   Cache Updates: Most systems automatically update their ARP cache with the latest ARP response, regardless of whether they requested it (gratuitous ARP).
 -   Protocol Simplicity: The simplicity of ARP makes it vulnerable to exploitation, as there are no built-in security features.
 -   Layer 2 Attacks: ARP attacks occur at the data link layer, making them invisible to traditional IP-based security measures.
+
+## Counter moves
+
+ARP apoofing/poisoning (IPv4) is the variant in play. Anti-spoofing filters such as BCP 38, and segmentation, close it. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

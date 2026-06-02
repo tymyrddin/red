@@ -26,3 +26,7 @@ etc.), an analyst has, the better chance an attacker has they won't be able to r
 ## Resources
 
 * [Layered Obfuscation Taxonomy](https://cybersecurity.springeropen.com/articles/10.1186/s42400-020-00049-3)
+
+## Counter moves
+
+Obfuscation trades clarity for survival against analysis. Defenders lean on behaviour and emulation, which obfuscation cannot hide, rather than appearance. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -63,4 +63,8 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 ## Resources
 
 * [ARM : architecture & assembleur](https://www.root-me.org/spip.php?article846)
-* [ARM](https://repository.root-me.org/Reverse%20Engineering/ARM/) 
+* [ARM](https://repository.root-me.org/Reverse%20Engineering/ARM/)
+
+## Counter moves
+
+An ARM crackme hides its check behind light obfuscation. Layered protection raises cost; nothing makes a local check unbreakable. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

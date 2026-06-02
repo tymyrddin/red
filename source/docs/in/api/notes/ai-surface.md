@@ -83,5 +83,9 @@ and testing behaviour at the end of the chain, not just the immediate API respon
 
 ## Runbooks
 
-- [Business logic testing](../runbooks/business-logic.md) — agent chains are multi-step
+- [Business logic testing](../runbooks/business-logic.md) — agent chains are multistep
   logic flows, testable with the same workflow-mapping approach
+
+## Counter moves
+
+APIs in AI pipelines is the case here. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defender's view is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

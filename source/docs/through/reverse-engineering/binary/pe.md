@@ -185,3 +185,7 @@ Thunks are often grouped together. The target addresses for the jumps are all st
 
 When disassembling PE files, there are lots of `int3` instructions. Visual Studio makes these instructions as padding
 (instead of the `nop` instructions used by `gcc`) to align functions and blocks of code in memory such that they can be accessed efficiently.2 The `int3` instruction is normally used by debuggers to set breakpoints; it causes the program to trap to the debugger or to crash if no debugger is present.
+
+## Counter moves
+
+PE structure guides Windows reversing. Stripped metadata and packing raise the cost without ever stopping it. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

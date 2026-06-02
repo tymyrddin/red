@@ -107,3 +107,7 @@ Off-path and side-channel attacks represent sophisticated techniques that exploi
 -   Performance optimisations: Hardware optimisations create predictable patterns that can be exploited
 -   Resource sharing: Shared resources in cloud environments create cross-tenant information leakage
 -   Measurement precision: Advanced equipment can detect extremely subtle signals and variations
+
+## Counter moves
+
+Off-path & side-channel attacks is the variant in play. Stateful filtering and anomaly detection on the handshake are the answer. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -289,3 +289,7 @@ Correct password!
 - [Sysinternals strings](https://learn.microsoft.com/en-us/sysinternals/downloads/strings)
 - [dumpbin reference](https://learn.microsoft.com/en-us/cpp/build/reference/dumpbin-reference)
 - [PE format reference](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format)
+
+## Counter moves
+
+Windows reversing works through PE structure and rich APIs. Obfuscation and anti-debugging slow it without stopping a determined reader. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

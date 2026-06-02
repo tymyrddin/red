@@ -9,3 +9,7 @@ The `ls` command is not using an absolute path. Create a script to run cat and i
 ## Resources
 
 * [section-7.html](http://www.faqs.org/faqs/unix-faq/faq/part4/section-7.html)
+
+## Counter moves
+
+Another command-injection variant through a system call. Parameterised execution and strict input handling close it. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

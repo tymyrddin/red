@@ -51,3 +51,7 @@ $ cat .passwd
 
 * [François Boisson : Buffer Overflow ou explication de "une faille de type bufferoverflow"](https://www.youtube.com/watch?v=u-OZQkv2ebw)
 * [Linux exploit development part 3 - ret2libc](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%203%20Linux%20exploit%20development%20part%203%20-%20ret2libc.pdf)
+
+## Counter moves
+
+The final stack step assembles the full primitive. Layered mitigations are what make it costly in the real world. The defensive counterpart is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

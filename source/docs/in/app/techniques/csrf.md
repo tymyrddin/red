@@ -174,4 +174,6 @@ All in all, tokens can be exposed at a number of points, including in browser hi
 * [CSRF proof of concept with OWASP ZAP](https://resources.infosecinstitute.com/topic/csrf-proof-of-concept-with-owasp-zap/)
 * [Portswigger: Generate CSRF PoC](https://portswigger.net/burp/documentation/desktop/functions/generate-csrf-poc)
 
+## Counter moves
 
+Cross-site request forgery (CSRF) is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

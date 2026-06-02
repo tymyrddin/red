@@ -190,3 +190,7 @@ human interaction layer of these control paths; the techniques are covered in
 -   Legacy protocol dependencies: Continued use of RSYNC, despite its known security limitations, introduces vulnerabilities.
 -   Trust model complexity: The hierarchical trust model involving RIRs, CAs, and relying parties creates multiple points of potential failure.
 -   Monitoring gaps: Many operators lack comprehensive monitoring for RPKI infrastructure, allowing attacks to persist undetected.
+
+## Counter moves
+
+RPKI infrastructure attacks is what this page works through. RPKI origin validation and route monitoring are the levers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -111,3 +111,7 @@ ldapsearch -H ldap://DC_IP -x -D "user@domain.local" -w password \
   "(|(userAccountControl:1.2.840.113556.1.4.803:=524288)(userAccountControl:1.2.840.113556.1.4.803:=16777216))" \
   sAMAccountName userAccountControl
 ```
+
+## Counter moves
+
+Kerberoasting cracks service-account passwords offline from requested tickets. Long, random service passwords and group-managed accounts remove the crackable target. Defenders' notes on this are under [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

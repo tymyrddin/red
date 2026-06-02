@@ -38,3 +38,7 @@ Hostapd-wpe combined with hostapd-2.6 or later can host a rogue WPA2-Enterprise 
 Misconfigured 802.1X clients, particularly Windows machines using PEAP-MSCHAPv2 without certificate validation, will authenticate to any server presenting a self-signed certificate. The captured MSCHAPv2 exchange can be relayed or cracked offline. EAP-TLS configurations using client certificates are substantially more resistant, though stolen certificate files from a compromised endpoint can bypass this control.
 
 Operational procedures for wireless access are in [Tradecraft: wireless](../runbooks/wireless.md).
+
+## Counter moves
+
+Wireless as an access path is the case here. Segmentation, egress filtering, and flow baselining are the durable answers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

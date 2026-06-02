@@ -161,3 +161,7 @@ rm -f ~/.config/rclone/rclone.conf  # or rm -rf ~/.config/rclone/
 # remove staged data from the target
 rm -rf /tmp/staged.zip /tmp/collected/
 ```
+
+## Counter moves
+
+Cloud sync utilities like Rclone are legitimate, so the giveaway is configuration and destination rather than the binary. Sysmon command-line capture and proxy logs of sync endpoints catch the redirect to an attacker-controlled account. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

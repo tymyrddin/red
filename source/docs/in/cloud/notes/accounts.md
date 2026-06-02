@@ -95,3 +95,7 @@ touching cloud credentials directly.
 
 - [Azure AD tenant enumeration](../runbooks/azure-tenant.md)
 - [Cloud entry playbook](../playbooks/cloud-entry.md)
+
+## Counter moves
+
+Identity and account attacks is what this page works through. Least-privilege IAM, full audit logging, and configuration baselines are what hold. The defender's view is in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

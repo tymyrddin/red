@@ -123,3 +123,7 @@ reformatted.
 Agree on the protocol out-of-band: the model name, the prompt format, the shared key, and
 the delivery channel. Do not transmit the key through the same channel you are trying to
 establish.
+
+## Counter moves
+
+An LLM channel encodes data in generated text that reads as ordinary. Output monitoring and limiting unattended generative flows are the counters. Both defensive views apply, in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/) and [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

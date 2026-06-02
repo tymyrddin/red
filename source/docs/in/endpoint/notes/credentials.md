@@ -39,3 +39,7 @@ SAML tokens, once issued, are similarly portable. If a SAML response can be capt
 ## The pivot pattern
 
 The practical value of credential and token theft is that it moves the attacker's activity off the monitored endpoint. Once tokens are extracted, the attacker operates from infrastructure that the organisation's EDR does not monitor, using access that looks like the legitimate user. The endpoint can be abandoned. Detection now depends on user and entity behaviour analytics in the identity provider and cloud control plane, not on the EDR that was the initial barrier.
+
+## Counter moves
+
+Credential and session theft is what this page works through. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. The defender's view is in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

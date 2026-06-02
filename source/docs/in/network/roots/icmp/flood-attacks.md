@@ -121,3 +121,7 @@ attackers to cause significant service disruption through various amplification 
 -   Spoofing capabilities: Source address spoofing makes attribution and blocking difficult
 -   Protocol complexity: ICMPv6's additional features create more attack vectors than ICMPv4
 -   Default configurations: Many systems process ICMP packets by default without rate limiting
+
+## Counter moves
+
+ICMP flood attacks is the case here. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

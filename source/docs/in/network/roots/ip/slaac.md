@@ -122,3 +122,7 @@ man-in-the-middle (MitM) attacks, traffic interception, and network disruption.
 -   Default enablement: Most modern OSes enable IPv6 and prioritise it over IPv4, ensuring attacks work even in dual-stack environments
 -   Limited monitoring: Many organisations neglect IPv6 traffic monitoring, allowing attacks to go undetected
 -   Complexity: IPv6's increased complexity (e.g., extension headers) creates blind spots in security tools
+
+## Counter moves
+
+SLAAC & RA attacks (IPv6) is what this page works through. Anti-spoofing filters such as BCP 38, and segmentation, close it. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

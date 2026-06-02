@@ -93,3 +93,7 @@ Protocol-level TCP attacks target the fundamental mechanisms of the Transmission
 -   Stateful complexity: Maintaining TCP state requires significant resources and complex logic
 -   Interoperability requirements: Support for various TCP extensions increases attack surface
 -   Legacy compatibility: Backward compatibility requirements prevent removal of vulnerable features
+
+## Counter moves
+
+Protocol-level TCP attacks is what this page works through. Stateful filtering and anomaly detection on the handshake are the answer. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

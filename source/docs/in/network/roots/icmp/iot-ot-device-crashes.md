@@ -118,3 +118,7 @@ ICMP-based attacks against Internet of Things (IoT) and Operational Technology (
 -   Long lifecycles: Industrial devices remain in service for decades without updates
 -   Network exposure: OT networks are increasingly connected to enterprise networks
 -   Testing gaps: Embedded systems often lack rigorous security testing
+
+## Counter moves
+
+IoT/OT device crashes via ICMP is the case here. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

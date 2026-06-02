@@ -131,3 +131,7 @@ a viable attack path if any bias is suspected.
 # lattice attack on biased ECDSA nonces
 pip install ecdsa-nonce-attack  # or use research implementations
 ```
+
+## Counter moves
+
+Predictable randomness undermines keys, tokens, and nonces alike. A CSPRNG, seeded properly, is the whole fix. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

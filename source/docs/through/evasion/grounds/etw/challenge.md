@@ -9,3 +9,7 @@ however, they are not forwarding logs. Create a script to execute a binary or co
 1. PowerShell script block and module logging are enabled. => [Disable both GPO settings](takeover.md) from the cache for the PowerShell session.
 2. Logs are not being forwarded => Delete any 4104 or 4103 logs that were generated. To remove the logs, simply use the Event Viewer GUI. PowerShell script block logs are located in `Microsoft/Windows/PowerShell/Operational` or `Microsoft-Windows-PowerShell`.
 3. Run the binary `agent.exe` to get the flag.
+
+## Counter moves
+
+This exercise turns ETW tampering into practice. From the defensive side the answer is not trusting a single telemetry source, so blinding one feed leaves others intact. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

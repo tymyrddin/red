@@ -29,3 +29,7 @@ Compile the steps together to overwrite the `m_enabled` field with the stored va
 ```
 
 Compiled together, these steps can be appended to make a malicious PowerShell script.
+
+## Counter moves
+
+Reflection reaches into the runtime to disable tracing without dropping a file. Script-block logging that captures the attempt, alongside AMSI, are the counters. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

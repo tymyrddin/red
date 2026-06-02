@@ -103,3 +103,7 @@ IPsec protocol downgrade attacks exploit the backward compatibility and negotiat
 -   Selective packet drops: By selectively dropping packets negotiating strong algorithms, attackers can coerce a fallback to weaker cryptography.
 -   Forged Notify payloads: Maliciously crafted notifications can indicate algorithm incompatibility, nudging the peer to choose weaker cryptographic primitives.
 -   Compatibility-driven policy abuse: Network or device policies that favour “compatibility” can be exploited to maintain connectivity while silently reducing security.
+
+## Counter moves
+
+Protocol downgrade attacks is the variant in play. Strong IKE configuration and pruning weak proposals are the fix. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

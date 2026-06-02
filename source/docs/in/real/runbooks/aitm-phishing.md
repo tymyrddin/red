@@ -151,3 +151,7 @@ Capture the following for the report:
 - [GoPhish](https://getgophish.com/)
 - [phishery](https://github.com/ryhanson/phishery)
 - [SpecterOps blog: Microsoft phishing research](https://posts.specterops.io/)
+
+## Counter moves
+
+Runbook: AiTM phishing with Evilginx2 is the variant in play. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Defenders' notes on this are under [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

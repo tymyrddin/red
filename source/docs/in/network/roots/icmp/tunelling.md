@@ -121,3 +121,7 @@ bidirectional communication capabilities.
 -   Encryption capabilities: Modern tools can encrypt payloads, preventing content inspection
 -   Protocol flexibility: ICMP's simple structure allows for various data encoding methods
 -   Network pervasiveness: ICMP traffic is common in most networks, providing cover
+
+## Counter moves
+
+ICMP tunnelling for data exfiltration & covert channels is the case here. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

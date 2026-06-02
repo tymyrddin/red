@@ -208,3 +208,7 @@ The question is not whether controls exist. It is: how much abuse is possible be
 ## Playbooks
 
 - [Business logic abuse](../playbooks/business-logic-abuse.md)
+
+## Counter moves
+
+Runbook: Business logic testing is what this page works through. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Seen from the other side, this sits in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

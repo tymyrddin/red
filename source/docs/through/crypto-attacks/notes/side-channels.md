@@ -121,3 +121,7 @@ remote.
 For red team engagements, testing for timing oracle vulnerabilities in TLS and custom
 crypto implementations is a standard step. Tools: `tlsfuzzer`, `timing-attack` Python
 library, manual measurement with `openssl s_time`.
+
+## Counter moves
+
+Side channels leak secrets through timing, power, or cache rather than the maths. Constant-time implementations and blinding are the counters. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

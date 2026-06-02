@@ -152,3 +152,7 @@ After any covert channel exfiltration:
 - Clear command history on Linux or PowerShell
 - Delete staged files from the target
 - Remove any git repositories or partial checkouts used for staging
+
+## Counter moves
+
+Covert channels ride protocols built for other purposes, like Slack, Teams, and git, where each request looks normal. Detection tends to come from baselining which hosts have any business talking to those endpoints at all. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

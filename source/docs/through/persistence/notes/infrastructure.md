@@ -9,5 +9,6 @@ good alternatives for Windows 10+ systems, at least for now.
 
 Metasploit is not the only way to use exploits; you can download exploits from exploit database sites, modify existing exploits to bypass security controls, or create new exploits from scratch.
 
+## Counter moves
 
-
+Resilient attacker infrastructure keeps C2 reachable as nodes get burned. From the defensive side this is C2 detection, destination baselining, and reputation. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

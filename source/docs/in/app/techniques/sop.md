@@ -75,3 +75,7 @@ Many researchers will simply report CORS misconfigurations without showing the i
 * [HackTricks: postMessage Vulnerabilities](https://book.hacktricks.xyz/pentesting-web/postmessage-vulnerabilities)
 * [Think Outside the Scope: Advanced CORS Exploitation Techniques](https://infosecwriteups.com/think-outside-the-scope-advanced-cors-exploitation-techniques-dad019c68397)
 * [PayLoadsAllTheThings: CORS miscinfiguration](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/CORS%20Misconfiguration/README.md)
+
+## Counter moves
+
+Same-origin policy (SOP) is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

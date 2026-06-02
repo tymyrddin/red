@@ -74,3 +74,7 @@ The extensible evolution of BGP, designed to carry routing information for virtu
 - Command Context: configuration typically occurs within `address-family ipv6 unicast` or `address-family vpnv4` sub-mode.
 - Next-Hop Behaviour: for IPv6 over an IPv4 session, the next-hop is often represented as an IPv4-mapped IPv6 address (e.g., `::FFFF:203.0.113.1`) by default, but can be changed to a pure IPv6 address.
 - Peering: eBGP and iBGP rules apply exactly as they do in classic BGP, but within each address family.
+
+## Counter moves
+
+Multiprotocol BGP (MP-BGP) is the variant in play. Segmentation, egress filtering, and flow baselining are the durable answers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

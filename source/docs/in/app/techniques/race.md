@@ -63,3 +63,7 @@ the jobs were created, not the state when each job runs.
 ## Runbooks
 
 - [Workflow and business logic testing](../runbooks/business-logic.md)
+
+## Counter moves
+
+Race conditions is what this page works through. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -434,4 +434,8 @@ String dump of section '.interp':
   [     0]  /lib64/ld-linux-x86-64.so.2
 ```
 
-On Linux, the interpreter is most likely `ld-linux.so`. On Windows, the interpreter is part of `ntdll.dll`. 
+On Linux, the interpreter is most likely `ld-linux.so`. On Windows, the interpreter is part of `ntdll.dll`.
+
+## Counter moves
+
+Knowing binary anatomy is the start of reversing one. The defensive mirror is hardening shipped binaries against easy analysis. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -204,4 +204,6 @@
 | 3.3.2 Autonomous hijack coordination                      | Very High            | High               | Very High  | Coordinated AI attacks; highly sophisticated.                    |
 | 3.3.3 Adaptive persistence mechanisms                     | Very High            | High               | Very High  | Self-adjusting attacks; very hard to detect and mitigate.        |
 
+## Counter moves
 
+Attack tree (BGP and MP-BGP) is the variant in play. RPKI origin validation and route monitoring are the levers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

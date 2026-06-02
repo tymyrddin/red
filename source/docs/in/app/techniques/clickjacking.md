@@ -90,4 +90,6 @@ To be effective against clickjacking and XSS, CSPs need careful development, imp
 * [OWASP: Testing for Clickjacking](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/11-Client-side_Testing/09-Testing_for_Clickjacking)
 * [HackTricks: Clickjacking](https://book.hacktricks.xyz/pentesting-web/clickjacking)
 
+## Counter moves
 
+Clickjacking is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

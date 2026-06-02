@@ -88,3 +88,7 @@ C:\Users\Student\Desktop\Tools>
 
 Having identified a signature, next up is deciding how to deal with it. Depending on the strength and type of 
 signature, it may be broken using simple obfuscation, or it may require specific investigation and remedy.
+
+## Counter moves
+
+Finding which bytes trip a signature lets an attacker edit around it. Defenders counter with broader behavioural rules that do not hinge on a single pattern. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

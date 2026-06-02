@@ -6,3 +6,6 @@
 
 Set `disabled` to `enabled`.
 
+## Counter moves
+
+HTML disabled buttons is the case here. A client-side finding still needs a server-side control behind it. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

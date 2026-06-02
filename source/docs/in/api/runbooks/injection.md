@@ -219,3 +219,7 @@ path to remote code execution.
 ## Playbooks
 
 - [REST API attack chain](../playbooks/rest-api.md)
+
+## Counter moves
+
+Runbook: Injection testing is what this page works through. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defender's view is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

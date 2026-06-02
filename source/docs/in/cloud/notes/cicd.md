@@ -71,3 +71,7 @@ what would I have access to and what could I deploy?
 
 - [Cloud entry playbook](../playbooks/cloud-entry.md)
 - [SaaS integration mapping](../runbooks/saas-mapping.md)
+
+## Counter moves
+
+CI/CD pipeline attacks is the variant in play. Least-privilege IAM, full audit logging, and configuration baselines are what hold. The defensive counterpart is in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

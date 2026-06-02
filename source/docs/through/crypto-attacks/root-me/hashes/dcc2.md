@@ -118,3 +118,7 @@ Cracking performance lower than expected?
 [s]tatus [p]ause [b]ypass [c]heckpoint [f]inish [q]uit => Started: Sat Mar  4 02:32:31 2023
 Stopped: Sat Mar  4 02:33:02 2023
 ```
+
+## Counter moves
+
+DCC2 resists cracking better, but not against weak passwords. Length and complexity are the defence. The defensive counterpart is in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

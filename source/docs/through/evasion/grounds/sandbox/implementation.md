@@ -212,4 +212,6 @@ To add a new DLL to the project file,
 3. Expand the "Linker" tab and select the "Input" submenu. 
 4. Add the Netapi32 Library.
 
+## Counter moves
 
+Implementing evasion checks lets a payload stay dormant under analysis. Anti-evasion sandboxes and delayed detonation are the counters. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

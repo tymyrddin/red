@@ -236,3 +236,7 @@ Flag!
 ## Resources
 
 * [MITRE: Process hollowing](https://attack.mitre.org/techniques/T1055/012/)
+
+## Counter moves
+
+Hollowing launches a legitimate process and swaps its image for malicious code. A mismatch between the on-disk image and what is mapped in memory is the tell. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

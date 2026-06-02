@@ -24,4 +24,8 @@ find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort
 
 ## Notes
 
-Not really exploit usage, but based on files with incorrectly installed authorities. 
+Not really exploit usage, but based on files with incorrectly installed authorities.
+
+## Counter moves
+
+A writable or relative PATH lets an attacker substitute a binary a privileged process calls. Absolute paths and sanitised environments are the fix. The defender's view is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

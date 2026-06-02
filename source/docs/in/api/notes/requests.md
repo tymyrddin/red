@@ -37,3 +37,7 @@ decompiling the application binary, or reading the JavaScript served to the brow
 
 - [Endpoint discovery](../runbooks/endpoint-discovery.md)
 - [Schema analysis](../runbooks/schema-analysis.md)
+
+## Counter moves
+
+Building request collections is the variant in play. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defensive counterpart is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

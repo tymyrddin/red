@@ -201,3 +201,7 @@ curl -H "X-Forwarded-For: 1.2.3.$((RANDOM % 255))" \
 ## Playbooks
 
 - [REST API attack chain](../playbooks/rest-api.md)
+
+## Counter moves
+
+Runbook: Authentication testing is the case here. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Defenders' notes on this are under [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

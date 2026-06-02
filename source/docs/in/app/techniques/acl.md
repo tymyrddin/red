@@ -75,3 +75,7 @@ cause is the same.
 ## Runbooks
 
 - [Access control testing](../runbooks/access-control.md)
+
+## Counter moves
+
+Broken access control is what this page works through. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

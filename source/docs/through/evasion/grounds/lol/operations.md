@@ -58,3 +58,6 @@ It can also be used to download remote files from SMB shared folders within the 
 * [Microsoft Docs: bitsadmin](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/bitsadmin)
 * [Microsoft Docs: findstr](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr)
 
+## Counter moves
+
+Trusted utilities can move, copy, and stage files without raising flags. Watching the shape of file activity rather than the tool is the lever. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

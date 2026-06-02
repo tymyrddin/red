@@ -69,4 +69,6 @@ are tighter than expected, which shapes the next attempt.
 
 - [Playbook: Physical access engagement](../playbooks/physical-entry.md)
 
+## Counter moves
 
+Impersonation and physical access is what this page works through. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Defenders' notes on this are under [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

@@ -55,3 +55,7 @@ Unarchive `task4-creds.tar`:
 Confirm the received data:
 			
     thm@jump-box$ cat task4/creds.txt
+
+## Counter moves
+
+A raw socket to an arbitrary port is the crude case and the easiest to fence. Egress filtering to known ports and destinations, with outbound-connection baselining, catches it quickly. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

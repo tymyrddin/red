@@ -191,3 +191,7 @@ curl -H "Authorization: Bearer <access_token>" \
 
 - [Microsoft: OAuth 2.0 authorisation code flow](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow)
 - [o365-attack-toolkit](https://github.com/mdsecactivebreach/o365-attack-toolkit)
+
+## Counter moves
+
+Runbook: OAuth consent phishing is what this page works through. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defender's view is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

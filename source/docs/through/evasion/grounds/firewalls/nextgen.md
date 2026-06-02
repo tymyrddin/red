@@ -16,3 +16,7 @@ of NGFW capabilities include:
 * Ability to decrypt SSL/TLS and SSH traffic. For instance, it restricts evasive techniques built around encryption to transfer malicious files.
 
 A properly configured and deployed NGFW renders many attacks useless.
+
+## Counter moves
+
+Next-generation firewalls inspect at the application layer, so evasion shifts to looking like a sanctioned app. Decryption, app identification, and behavioural flow analysis are where this is met. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

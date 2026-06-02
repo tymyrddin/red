@@ -17,3 +17,7 @@ username: admin'--
 * [Guide to PHP security : chapter 3 SQL injection](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Guide%20to%20PHP%20security%20:%20chapter%203%20SQL%20injection.pdf)
 * [Blackhat US 2006 : SQL Injections by truncation](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Blackhat%20US%202006%20:%20SQL%20Injections%20by%20truncation.pdf)
 * [Manipulating SQL server using SQL injection](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Manipulating%20SQL%20server%20using%20SQL%20injection.pdf)
+
+## Counter moves
+
+SQL injection: authentication is the case here. Server-side validation and least privilege are what these reduce to. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

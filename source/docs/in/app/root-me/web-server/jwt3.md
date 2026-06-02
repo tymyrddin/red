@@ -28,3 +28,6 @@ print(f"Hacked token:{hacked_token}")
 
 etcetera.
 
+## Counter moves
+
+JWT weak secret is the variant in play. Server-side validation and least privilege are what these reduce to. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -96,4 +96,8 @@ Session completed.
 
 ## Notes
 
-Not really exploit usage, but based on files with incorrectly installed authorities. 
+Not really exploit usage, but based on files with incorrectly installed authorities.
+
+## Counter moves
+
+A writable or loosely scoped cron job runs attacker code on a schedule with borrowed privilege. Locking down cron file ownership and permissions removes the opening. Seen from the other side, this sits in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

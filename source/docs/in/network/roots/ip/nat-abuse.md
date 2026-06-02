@@ -128,3 +128,7 @@ Network Address Translation (NAT) is a method used to map private IP addresses t
 -   Consumer Device Weaknesses: Many SOHO routers have weak default configurations, enabled UPnP by default, and rarely receive firmware updates.
 -   Asymmetric Paths: NAT behaviour can be unpredictable when packets take asymmetric routes, bypassing the NAT device.
 -   Address Conservation: The very purpose of NAT, sharing addresses, makes attribution difficult and enables abuse.
+
+## Counter moves
+
+NAT abuse (IPv4) is the case here. Anti-spoofing filters such as BCP 38, and segmentation, close it. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -58,4 +58,6 @@ What can be achieved with an XXE vulnerability depends on the permissions given 
 * [OWASP: XML External Entity (XXE) Processing](https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing)
 * [OWASP: XML External Entity Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html)
 
+## Counter moves
 
+XML external entity (XXE) injection is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

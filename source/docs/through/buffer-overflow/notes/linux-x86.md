@@ -260,3 +260,7 @@ In the real world, vulnerabilities are not always as straightforward as the `mee
 4. Debug and trace the program's flow during the overflow.
 5. Build the exploit.
 6. Test the exploit.
+
+## Counter moves
+
+Classic Linux x86 overflows assume no modern protections. NX, ASLR, and stack canaries are what those exploits now have to defeat. The defender's view is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

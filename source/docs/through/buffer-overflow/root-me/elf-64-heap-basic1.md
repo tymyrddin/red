@@ -65,3 +65,7 @@ int     main()
   return 0;
 }
 ```
+
+## Counter moves
+
+A heap overflow corrupts allocator metadata to gain control. Hardened allocators and heap integrity checks blunt it. Defenders' notes on this are under [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

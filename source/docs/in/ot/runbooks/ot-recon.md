@@ -88,3 +88,7 @@ Build a table of all discovered assets:
 | 10.20.1.20 | hist-01 | OPC UA | AVEVA PI | 3.4.390 | No auth |
 
 This inventory drives every subsequent decision about targeting, protocol selection, and the scope of the demonstration.
+
+## Counter moves
+
+Runbook: OT reconnaissance is what this page works through. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. Defenders' notes on this are under [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

@@ -18,3 +18,6 @@ In the initial access stage, attackers rely on a spam campaign that contains mal
 * [Microsoft Discovers Fileless Malware Campaign Dropping Astaroth Info Stealer](https://www.trendmicro.com/vinfo/de/security/news/cybercrime-and-digital-threats/microsoft-discovers-fileless-malware-campaign-dropping-astaroth-info-stealer)
 * [Astaroth malware hides command servers in YouTube channel descriptions](https://www.zdnet.com/article/astaroth-malware-hides-command-servers-in-youtube-channel-descriptions/)
 
+## Counter moves
+
+Astaroth lived off legitimate Windows tools to stay fileless. The defensive read is command-line logging and behavioural detection on those tools. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

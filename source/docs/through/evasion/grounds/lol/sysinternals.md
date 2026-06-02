@@ -21,3 +21,7 @@ possible malicious uses and has implemented defensive controls against most of t
 
 * [Sysinternals Suite](https://learn.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite)
 * [Sysinternals Resources](https://learn.microsoft.com/en-us/sysinternals/resources/)
+
+## Counter moves
+
+Signed Sysinternals tools are trusted, which is exactly why they get abused. Monitoring their use and command lines, and restricting where they run, are the counters. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

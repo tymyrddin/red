@@ -20,3 +20,7 @@
 
 * [wabt](https://github.com/WebAssembly/wabt/)
 * [instructions.html](https://webassembly.github.io/spec/core/syntax/instructions.html)
+
+## Counter moves
+
+WASM ships logic to the browser where anyone can read it. Treating the client as untrusted is the only durable stance. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -74,3 +74,7 @@ successful sign-in from an unrecognised device.
 - [Runbook: Device code phishing](../runbooks/device-code-phishing.md): full operational procedure from device code request through token extraction
 - [Runbook: AiTM phishing with Evilginx2](../runbooks/aitm-phishing.md): for comparison with the proxy-based approach to token capture
 - [Consent phishing and OAuth abuse](consent-phishing.md): the consent flow variant and how the token persistence model differs
+
+## Counter moves
+
+Device code phishing is the case here. Protected credential stores, no reuse, and MFA that survives a stolen password are the levers. Defenders' notes on this are under [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

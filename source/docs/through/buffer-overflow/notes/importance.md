@@ -79,3 +79,7 @@ system".
 Their importance has increased in quality: fewer opportunistic uses, more elite
 high-impact cases, and a central role in zero-days and exploit chains. They have
 stopped being noisy and started being expensive.
+
+## Counter moves
+
+Buffer overflows stay foundational because memory-unsafe code keeps shipping. Memory-safe languages where possible, and platform mitigations elsewhere, are the long answer. Defenders' notes on this are under [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

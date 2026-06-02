@@ -26,3 +26,6 @@ fcrackzip -c 1 -l 2-17 -u ch5.zip
 
 * [Cracking PKZIP file's password](https://repository.root-me.org/Cryptographie/EN%20-%20Cracking%20PKZIP%20file's%20password.pdf)
 
+## Counter moves
+
+Legacy PKZIP encryption is weak by design. A modern archive format with strong crypto removes the exposure. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

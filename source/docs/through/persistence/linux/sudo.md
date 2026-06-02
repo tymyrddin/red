@@ -79,4 +79,8 @@ The `sudo` command, by default, allows for running a program with root privilege
 
 Any user can check its current situation related to root privileges using the `sudo -l` command.
 
-Use [GTFObins](https://gtfobins.github.io/) for gathering information on how any program, on which a user may have sudo rights, can be used. 
+Use [GTFObins](https://gtfobins.github.io/) for gathering information on how any program, on which a user may have sudo rights, can be used.
+
+## Counter moves
+
+Loose sudo rules grant more than intended, often a single binary away from root. Minimal, audited sudoers entries remove the slack. The defensive counterpart is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

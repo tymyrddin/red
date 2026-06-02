@@ -271,3 +271,7 @@ Get the flag:
     C:\Windows\system32>cd config
     C:\Windows\System32\config>type root.txt
     type root.txt
+
+## Counter moves
+
+Alfred runs from a foothold to SYSTEM by way of a service and token abuse. The lesson is least privilege and tight service configuration. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

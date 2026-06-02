@@ -48,3 +48,7 @@ print(text)
 * [Godot Docs: Introduction](https://docs.godotengine.org/en/stable/about/introduction.html)
 * [Godot Docs: Exporting_projects](https://docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html)
 * [Godot Docs: GDScript reference](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html)
+
+## Counter moves
+
+An unprotected Godot game exposes its logic in script. Bytecode compilation and packing are the first defences. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

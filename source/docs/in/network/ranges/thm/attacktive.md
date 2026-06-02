@@ -159,3 +159,7 @@ If on TryHackMe target, all flags are in the users desktops. The Administrator a
 # mkdir /opt/kerbrute
 # cp kerbrute_linux_amd64 /opt/kerbrute/kerbrute
 ```
+
+## Counter moves
+
+Attacktive directory is what this page works through. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

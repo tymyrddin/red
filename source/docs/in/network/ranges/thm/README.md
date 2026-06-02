@@ -12,3 +12,7 @@ To build experience with threat intelligence and network penetration testing to 
 
 * [Attacktive directory](attacktive.md)
 * [Attacking kerberos](kerberos.md)
+
+## Counter moves
+
+Introduction is the variant in play. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

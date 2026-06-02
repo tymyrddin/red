@@ -231,3 +231,7 @@ Get-WMIObject -Namespace root\subscription -Class __EventFilter |
 
 Verify removal of each layer after cleanup. Document what was placed and what
 was removed in the engagement report.
+
+## Counter moves
+
+Layering several mechanisms means removing one still leaves the others. Baseline drift detection across autoruns, services, and identity is the counter. The defender's view is in the blue notes on [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

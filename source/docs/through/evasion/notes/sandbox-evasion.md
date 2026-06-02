@@ -158,3 +158,7 @@ or replicate:
 These turn the payload into a targeted weapon that is inert in any other environment.
 The trade-off is that the condition must be reliably present in the target environment
 when execution is needed.
+
+## Counter moves
+
+Sandbox evasion keeps the payload dormant under analysis. Hardened, longer detonation and anti-evasion sandboxing reduce the blind spot. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

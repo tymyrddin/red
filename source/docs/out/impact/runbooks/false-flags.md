@@ -130,3 +130,7 @@ initial attributions.
 - In a real engagement (not a red team exercise), attribution misdirection
   may constitute a criminal offence in some jurisdictions if it causes law
   enforcement to pursue an innocent party
+
+## Counter moves
+
+False flags target the analyst, not the machine, planting misleading artefacts to bend attribution. Treating attribution as a hypothesis, weighting the signals that are hard to fake, and not anchoring on one indicator are the guards. The defender's view is in the blue notes on [limiting the blast radius](https://blue.tymyrddin.dev/docs/counter/impact/).

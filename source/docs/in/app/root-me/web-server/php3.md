@@ -15,3 +15,7 @@ and:
 ```text
 ?_SESSION[logged]=1
 ```
+
+## Counter moves
+
+PHP Register globals is the variant in play. Server-side validation and least privilege are what these reduce to. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -102,3 +102,7 @@ high density.
 For operational use, select cover images with high spatial frequency content. Avoid
 synthetic images with large uniform regions. Natural photographs of outdoor scenes,
 crowds, or textured objects are better covers than product shots or illustrations.
+
+## Counter moves
+
+Adversarial evasion tunes the embedding to slip past statistical steganalysis. Updated detectors, re-encoding carriers in transit, and disallowing unexpected file types raise the cost. Both defensive views apply, in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/) and [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

@@ -168,3 +168,7 @@ Despite thorough cleanup, resilient evidence sources remain:
 
 Treat cleanup as degrading the forensic record, not eliminating it.
 Prioritise clean initial behaviour over post-hoc cleanup.
+
+## Counter moves
+
+Covering tracks aims to erase the trail after the fact by deleting logs and artefacts. Off-host log forwarding and write-once retention mean the evidence is already beyond the attacker's reach. The defender's view is in the blue notes on [limiting the blast radius](https://blue.tymyrddin.dev/docs/counter/impact/).

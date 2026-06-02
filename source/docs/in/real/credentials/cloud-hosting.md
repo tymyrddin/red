@@ -69,5 +69,11 @@ more complicated.
 
 ## Runbooks
 
-- [Runbook: AiTM phishing with Evilginx2](../runbooks/aitm-phishing.md) — legitimate cloud infrastructure is the delivery mechanism in this playbook's phishing phase
-- [Runbook: Quishing campaign](../runbooks/quishing-campaign.md) — the harvesting page can be hosted on cloud infrastructure as described here
+- [Runbook: AiTM phishing with Evilginx2](../runbooks/aitm-phishing.md) — legitimate cloud infrastructure is the
+  delivery mechanism in this playbook's phishing phase
+- [Runbook: Quishing campaign](../runbooks/quishing-campaign.md) — the harvesting page can be hosted on cloud
+  infrastructure as described here
+
+## Counter moves
+
+Credential harvesting via legitimate cloud services is the variant in play. Protected credential stores, no reuse, and MFA that survives a stolen password are the levers. Seen from the other side, this sits in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

@@ -97,3 +97,7 @@ Need to think some more ...
 * [Exploitations avancees buffer overflow](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/FR%20-%20Exploitations%20avancees%20buffer%20overflow.pdf)
 * [Stack Bug - Exploitation avancee de buffer overflow](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/FR%20-%20Stack%20Bug%20-%20Exploitation%20avancee%20de%20buffer%20overflow.pdf)
 * [Runtime Attacks : Buffer OverFlow and Return Oriented Programming](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Runtime%20Attacks%20:%20Buffer%20OverFlow%20and%20Return%20Oriented%20Programming.pdf)
+
+## Counter moves
+
+This variant works through input constraints on the overflow. Compiler hardening such as FORTIFY narrows the room. The defender's view is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

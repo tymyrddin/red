@@ -94,3 +94,7 @@ dnschef --fakeip 192.168.1.100 --fakedomains target.corp
 Record: hashes captured (sanitised, noting user accounts and source hosts), relay targets that accepted authentication, SAM hashes or command execution results from successful relays, and cracked credentials.
 
 Name resolution attack doctrine is in [Name resolution attacks](../notes/skirmishes.md).
+
+## Counter moves
+
+Runbook: Name resolution attacks is what this page works through. Segmentation, egress filtering, and flow baselining are the durable answers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

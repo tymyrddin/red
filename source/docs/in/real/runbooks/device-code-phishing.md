@@ -189,3 +189,7 @@ control.
 - [TokenTacticsV2](https://github.com/f-bader/TokenTacticsV2)
 - [AADInternals device code flow](https://aadinternals.com/post/devicephish/)
 - [Microsoft: Device code flow documentation](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code)
+
+## Counter moves
+
+Runbook: Device code phishing is the case here. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Seen from the other side, this sits in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

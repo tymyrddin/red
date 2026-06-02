@@ -146,3 +146,7 @@ and exfiltrated to attacker infrastructure. Priority targets:
 - Least privilege in pipelines: pipeline tokens with access beyond the
   scope of the specific job
 - Third-party action pinning: use of mutable references in GitHub Actions
+
+## Counter moves
+
+A supplier compromise arrives pre-trusted, so prevention has limited reach and detection leans on watching what that trusted path actually does. Scoped vendor access and integration-level egress monitoring narrow it. The defender's view is in the blue notes on [watching data being gathered](https://blue.tymyrddin.dev/docs/counter/collection/).

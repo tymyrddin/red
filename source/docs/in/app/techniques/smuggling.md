@@ -67,3 +67,7 @@ The responsibility of remediation falls onto a backend maintainer as much as a f
 * [Portswigger: HTTP request smuggling](https://portswigger.net/web-security/request-smuggling)
 * [Snyk: Demystifying HTTP request smuggling](https://snyk.io/blog/demystifying-http-request-smuggling/)
 * [OWASP: Testing for HTTP Splitting Smuggling](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/15-Testing_for_HTTP_Splitting_Smuggling)
+
+## Counter moves
+
+HTTP Request smuggling is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

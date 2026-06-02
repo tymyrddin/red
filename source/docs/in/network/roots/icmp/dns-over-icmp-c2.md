@@ -104,3 +104,7 @@ DNS-over-ICMP command and control (C2) represents a sophisticated evasion techni
 -   Protocol flexibility: ICMP's simple structure allows for various data encoding methods
 -   Evasion capabilities: ICMP-based C2 bypasses traditional DNS security controls
 -   Network pervasiveness: ICMP traffic is common across all networks, providing excellent cover
+
+## Counter moves
+
+DNS-over-ICMP (C2) covert channels is the variant in play. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -162,3 +162,7 @@ On dual-stack networks this MitM position covers only IPv6 traffic. Combine with
 Record: which attack was used, which hosts were affected, what traffic was captured (protocols, authentication exchanges), and whether credentials or session tokens were obtained from the capture.
 
 Layer 2 attack doctrine is in [Layer 2 attacks](../notes/altercations.md); packet capture and MitM positioning doctrine is in [Traffic analysis and packet crafting](../notes/manipulation.md).
+
+## Counter moves
+
+Runbook: Layer 2 attacks is the variant in play. Segmentation, egress filtering, and flow baselining are the durable answers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

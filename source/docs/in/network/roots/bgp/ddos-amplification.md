@@ -186,3 +186,7 @@ DDoS amplification attacks represent a sophisticated form of distributed denial-
 -   Attribution difficulty: Reflection techniques hide the true source of attacks, making identification and prosecution of attackers challenging.
 -   Economic factors: DDoS-for-hire services and booter websites make powerful attacks accessible and affordable for unskilled attackers.
 -   Infrastructure scale: The distributed nature of modern internet infrastructure provides attackers with numerous reflection points and bandwidth resources.
+
+## Counter moves
+
+DDoS amplification attacks is what this page works through. RPKI origin validation and route monitoring are the levers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

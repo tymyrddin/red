@@ -138,3 +138,7 @@ The flag is the concatenation of the enable and administrator passwords, in that
 ## Resources
 
 * [Cisco Password Cracking and Decrypting Guide](https://www.infosecmatter.com/cisco-password-cracking-and-decrypting-guide/)
+
+## Counter moves
+
+Cisco salted hashes still fall to wordlists when passwords are weak. Strong passwords and modern hashing slow the crack. Seen from the other side, this sits in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

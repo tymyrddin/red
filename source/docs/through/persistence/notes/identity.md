@@ -139,3 +139,7 @@ sqlite3 Cookies "SELECT host_key, name, encrypted_value FROM cookies WHERE host_
 
 Stolen session cookies can be imported into a browser using extensions or directly
 into a Burp/mitmproxy session to authenticate as the victim user.
+
+## Counter moves
+
+Identity-based persistence keeps access through tokens, app registrations, and added credentials rather than malware. Auditing credential additions and consent grants is where it surfaces. The defender's view is in the blue notes on [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

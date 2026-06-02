@@ -47,3 +47,7 @@ PCAP files from network captures are operational intelligence when they contain 
 Traffic analysis identifies which hosts communicate with which others, which protocols are in use, and which services are actively being accessed. That picture guides subsequent attack decisions about where to position further access and what trust relationships exist across the network.
 
 The layer 2 runbook in Tradecraft covers the execution side: [Tradecraft: layer 2 attacks](../runbooks/layer2.md).
+
+## Counter moves
+
+Traffic analysis and packet crafting is the case here. Segmentation, egress filtering, and flow baselining are the durable answers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

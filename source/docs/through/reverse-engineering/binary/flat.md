@@ -143,3 +143,7 @@ begin with `addiu sp, sp, -N` to allocate stack space.
 Entropy analysis helps too. The reset vector area and initialisation code tend to have
 lower entropy than bulk data sections. Plot the entropy with `binwalk -E` and look for
 structured regions at the start of the image.
+
+## Counter moves
+
+Flat and raw formats give a reverser fewer signposts. For defenders of such firmware, secure boot and integrity checks count more than obscurity. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

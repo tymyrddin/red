@@ -120,3 +120,7 @@ Security Associations (SAs) form the core operational state of IPsec, defining t
 -   Interoperability requirements: Support for various SA parameters and negotiation options creates attack surface for parameter manipulation.
 -   Silent state corruption: SA parameter manipulation may not trigger immediate errors, allowing stealthy degradation of security.
 -   Implementation variability: Different vendors implement SA selection and management algorithms inconsistently.
+
+## Counter moves
+
+Security Association manipulation attacks is the case here. Strong IKE configuration and pruning weak proposals are the fix. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -65,3 +65,7 @@ In gdb, set a breakpoint at the address where the function is called (`0x08048B9
 
 * [Reversing C++ - Blackhat - Yason Sabanal - paper](https://repository.root-me.org/Reverse%20Engineering/EN%20-%20Reversing%20C++%20-%20Blackhat%20-%20Yason%20Sabanal%20-%20paper.pdf)
 * [Reversing C++ - Blackhat - Yason Sabanal - slides](https://repository.root-me.org/Reverse%20Engineering/EN%20-%20Reversing%20C++%20-%20Blackhat%20-%20Yason%20Sabanal%20-%20slides.pdf)
+
+## Counter moves
+
+A zero-protection C++ binary reads almost like source. Stripping and obfuscation are the cheapest first defences. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

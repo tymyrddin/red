@@ -85,3 +85,6 @@ C2 Frameworks provide shellcode as a raw binary file `.bin`. If this is the case
     };
     unsigned int _tmp_example_bin_len = 193;
 
+## Counter moves
+
+Generated shellcode varies its bytes to dodge signatures, but the actions it takes do not vary. Detection on what the code does, rather than what it looks like, is the durable answer. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

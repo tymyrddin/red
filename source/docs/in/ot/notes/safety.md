@@ -25,3 +25,7 @@ For red team engagements, this asymmetry requires explicit scoping. Demonstratin
 ## What red teams actually test
 
 The relevant OT safety finding for most engagements is architectural: can the SIS be reached from a position the attacker can achieve, and is the SIS engineering workstation shared with BPCS tools? The demonstration is the network path, not the manipulation of safety logic. Confirming reachability is sufficient to establish the risk; the physical consequences of demonstrating it further are not worth the evidence.
+
+## Counter moves
+
+Safety systems as targets is the variant in play. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. Defenders' notes on this are under [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

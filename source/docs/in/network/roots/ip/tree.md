@@ -211,3 +211,6 @@
 | 2.3.4.1 Proxy/VPN geo evasion                           | Low                  | Low                | Low        | Simple; mainly circumvents restrictions.                                                      |
 | 2.3.4.2 ASN spoofing                                    | High                 | Medium             | High       | Requires BGP knowledge; trickier than geo-spoofing.                                           |
 
+## Counter moves
+
+Attack tree (IPv4 and IPv6) is the variant in play. Anti-spoofing filters such as BCP 38, and segmentation, close it. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

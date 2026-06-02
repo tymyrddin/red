@@ -71,3 +71,7 @@ without authentication.
 ## Runbooks
 
 - [Authentication testing](../runbooks/auth-testing.md)
+
+## Counter moves
+
+API authentication is the variant in play. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Seen from the other side, this sits in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

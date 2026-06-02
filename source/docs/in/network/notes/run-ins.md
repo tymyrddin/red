@@ -65,3 +65,7 @@ These paths are nearly invisible without BloodHound analysis and are the main re
 Domain trusts extend authentication across forest boundaries. A user in a trusted domain can be granted access to resources in the trusting domain. The Golden Ticket attack, which requires the krbtgt hash, allows creation of forged Kerberos tickets with arbitrary group membership, including membership in groups from trusted forests. The attack chain from single DC compromise to cross-forest privilege escalation depends on the trust configuration and the group memberships present in each forest's PAC validation logic.
 
 Procedures for traversing these paths are in [Tradecraft: lateral movement](../runbooks/lateral-movement.md).
+
+## Counter moves
+
+Active Directory and domain trust attacks is the variant in play. Segmentation, egress filtering, and flow baselining are the durable answers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

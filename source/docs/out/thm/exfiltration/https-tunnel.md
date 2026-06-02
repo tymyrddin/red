@@ -127,3 +127,7 @@ Ready to use the tunnel connection as a proxy binds on our local machine, 127.0.
     root@kali:# curl --socks5 127.0.0.1:1080 http://172.20.0.120:80/flag
 
 Done.
+
+## Counter moves
+
+Tunnelling inside HTTPS hides the payload but not the metadata. TLS fingerprinting, beacon-timing analysis, and flagging long-lived connections to thin destinations catch the channel. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

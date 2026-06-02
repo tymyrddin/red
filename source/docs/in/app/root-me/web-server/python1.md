@@ -12,3 +12,6 @@ Use `{{ self._TemplateReference__context.joiner.__init__.__globals__.os.popen('i
 
 * [PayloadAllTheThings: Exploit the SSTI by calling os.popen().read()](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#exploit-the-ssti-by-calling-ospopenread)
 
+## Counter moves
+
+Python: Server-side Template Injection Introduction is what this page works through. Server-side validation and least privilege are what these reduce to. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -150,3 +150,7 @@ Remove-Item (Get-PSReadlineOption).HistorySavePath -Force
   payloads; detection must be behavioural
 - Slack: webhooks and bot API calls are indistinguishable from legitimate
   Slack application traffic
+
+## Counter moves
+
+Staging into an attacker-controlled cloud account uses valid credentials and ordinary API calls. Upload and download ratio inversion, and alerting on data leaving to unexpected tenants, are where it surfaces. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

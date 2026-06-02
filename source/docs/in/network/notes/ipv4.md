@@ -74,3 +74,7 @@
 - /30: typical for point-to-point links (2 hosts).
 - Private Ranges: use `10.0.0.0/8` for large networks, `192.168.0.0/16` for home networks.
 - NAT: essential for connecting private networks to the internet.
+
+## Counter moves
+
+Internet Protocol version 4 (IPv4) is the variant in play. Segmentation, egress filtering, and flow baselining are the durable answers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

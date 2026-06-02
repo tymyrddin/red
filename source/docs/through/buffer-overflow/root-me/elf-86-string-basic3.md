@@ -64,3 +64,7 @@ int main(int argc, char ** argv)
 * [DEFCON 18 Advanced Format String Attacks](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20DEFCON%2018%20Advanced%20Format%20String%20Attacks.pdf)
 * [Format String and Double-Free Attacks](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Format%20String%20and%20Double-Free%20Attacks.pdf)
 * [Les failles Format String](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/FR%20-%20Les%20failles%20Format%20String.pdf)
+
+## Counter moves
+
+The format primitive is turned into full control. Compiler format-string warnings catch the class at build time. The defensive counterpart is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

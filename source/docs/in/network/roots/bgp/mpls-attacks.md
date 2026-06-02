@@ -136,3 +136,7 @@ Multiprotocol label switching (MPLS) is a widely deployed networking technology 
 -   Visibility challenges: MPLS traffic is often not deeply inspected by security devices due to label-based forwarding.
 -   Inter-provider dependencies: Multi-provider MPLS implementations create complex trust relationships that can be exploited.
 -   Legacy integration: Support for legacy technologies (ATM, Frame Relay) introduces historical vulnerabilities.
+
+## Counter moves
+
+Multiprotocol label switching (MPLS) attacks (MP-BGP) is what this page works through. RPKI origin validation and route monitoring are the levers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

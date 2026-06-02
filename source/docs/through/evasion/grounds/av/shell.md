@@ -121,3 +121,7 @@ Compile and execute:
 ## Resources
 
 * [Linux System Call Table for x86 64](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/)
+
+## Counter moves
+
+Hand-written assembly shellcode avoids high-level signatures, but its syscalls and memory behaviour are ordinary to instrument. Behavioural and memory-based detection close the gap. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

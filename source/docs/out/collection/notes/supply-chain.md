@@ -110,3 +110,7 @@ Before attempting a supply chain attack, assess:
 
 Public GitHub Actions workflows often expose all of these details without
 any authentication.
+
+## Counter moves
+
+When the collection vector is a trusted supplier, the data is gathered by something already inside the trust boundary. Vendor access reviews, scoped service accounts, and egress monitoring on third-party integrations are where this usually gets noticed. The defender's view is in the blue notes on [watching data being gathered](https://blue.tymyrddin.dev/docs/counter/collection/).

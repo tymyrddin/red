@@ -59,3 +59,7 @@ Document the full path from initial IT foothold to engineering workstation acces
 - [IT to OT pivot](../runbooks/it-ot-pivot.md)
 - [Protocol abuse](../runbooks/protocol-abuse.md)
 - [Engineering workstation](../runbooks/engineering-workstation.md)
+
+## Counter moves
+
+Runbook: IT-to-OT compromise chain is the variant in play. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. The defensive counterpart is in the blue notes on [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

@@ -111,3 +111,6 @@ For a parameterised query to be effective in preventing SQL injection, the strin
 * [HackTricks: SQL injection](https://book.hacktricks.xyz/pentesting-web/sql-injection)
 * [Snyk DAST/SAST tools to detect issues](https://snyk.io/)
 
+## Counter moves
+
+SQL injection is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -20,3 +20,7 @@ Fragment packets according to a set MTU:
 Generate packets with specific length:
 
     nmap -sS -Pn --data-length 64 -F MACHINE_IP
+
+## Counter moves
+
+Fragmenting traffic and tuning MTU splits a signature across packets the firewall may reassemble differently. Full reassembly at the inspection point and anomaly detection on odd fragmentation close it. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

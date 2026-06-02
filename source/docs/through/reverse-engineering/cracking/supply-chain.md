@@ -87,3 +87,7 @@ a known-clean version.
 
 The analysis workflow is the same as for any binary: identify what the artefact actually does,
 compare against what it is documented to do, and flag divergences for investigation.
+
+## Counter moves
+
+Analysing build artefacts hunts for tampering and hidden logic. Reproducible builds and signing are the defensive counterpart. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

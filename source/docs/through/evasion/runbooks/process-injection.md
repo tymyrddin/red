@@ -162,3 +162,7 @@ Get-Process -Id $targetPid | Select-Object Id, Name, Responding
 
 The target process should continue functioning normally. A crash of the target process
 immediately after injection indicates a problem with the shellcode or memory layout.
+
+## Counter moves
+
+Process injection borrows a trusted process to host attacker code. Remote-thread and unbacked-memory detection are the standard catches. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

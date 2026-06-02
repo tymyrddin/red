@@ -118,3 +118,7 @@ ICMP amplification attacks represent a sophisticated form of denial-of-service t
 -   Infrastructure availability: Numerous misconfigured systems respond to ICMP requests from any source
 -   Protocol necessity: ICMP cannot be completely blocked without affecting network functionality
 -   Monitoring gaps: Many networks lack comprehensive ICMP traffic analysis capabilities
+
+## Counter moves
+
+ICMP amplification attacks is what this page works through. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

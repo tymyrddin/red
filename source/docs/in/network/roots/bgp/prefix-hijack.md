@@ -133,3 +133,7 @@ unauthorised paths, enabling interception, surveillance, or denial-of-service at
 -   Slow Convergence: Global BGP convergence can take minutes, allowing attacks to persist
 -   Complexity: Internet-scale routing complexity makes manual verification impractical
 -   Economic Factors: Asymmetric incentives where defenders bear costs of protection
+
+## Counter moves
+
+IPv4 prefix hijacking is the variant in play. RPKI origin validation and route monitoring are the levers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

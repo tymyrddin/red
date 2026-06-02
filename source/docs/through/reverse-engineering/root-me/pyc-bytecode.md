@@ -19,4 +19,8 @@ X = FLAG = ?
 
 ## Resources
 
-* [Beyond python bytecode](https://repository.root-me.org/Programmation/Python/EN%20-%20Beyond%20python%20bytecode.pdf) 
+* [Beyond python bytecode](https://repository.root-me.org/Programmation/Python/EN%20-%20Beyond%20python%20bytecode.pdf)
+
+## Counter moves
+
+Python bytecode decompiles back to near-source. Keeping secrets out of shipped bytecode is the real fix. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

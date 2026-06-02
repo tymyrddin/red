@@ -123,3 +123,7 @@ matches the attacker's.
 - [S3 and object storage discovery](../runbooks/s3-discovery.md)
 - [GCP project and bucket enumeration](../runbooks/gcp.md)
 - [Cloud entry playbook](../playbooks/cloud-entry.md)
+
+## Counter moves
+
+Cloud-native attack patterns is what this page works through. Least-privilege IAM, full audit logging, and configuration baselines are what hold. Defenders' notes on this are under [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

@@ -29,3 +29,7 @@ The assembly and field information will then be forwarded to the next parameter 
 
 Once the `amsiInitFailed` field is set to `$true`, AMSI will respond with the response code: 
 `AMSI_RESULT_NOT_DETECTED = 1`
+
+## Counter moves
+
+Reflection disables runtime defences without writing a file. Script-block logging that captures the attempt is the catch. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

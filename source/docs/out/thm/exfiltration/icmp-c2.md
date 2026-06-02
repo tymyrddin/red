@@ -32,3 +32,7 @@ Get the flag:
 ## Resources
 
 * [icyguider/ICMP-TransferTools](https://github.com/icyguider/ICMP-TransferTools)
+
+## Counter moves
+
+ICMP rarely carries application data legitimately, so a command channel riding it stands out once anyone looks. Payload-size and request-rate anomalies on ICMP are a cheap rule. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

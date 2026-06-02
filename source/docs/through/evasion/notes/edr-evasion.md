@@ -154,3 +154,7 @@ $c = $b.GetValue($null)
 The specific technique above is widely detected; current-generation bypasses use
 obfuscation, string splitting, and indirect reflection to avoid the known patterns.
 The cat-and-mouse continues.
+
+## Counter moves
+
+Designing around EDR fingerprints the product and avoids its hooks. Tamper-resistant sensors and telemetry the attacker cannot see are the defence. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -81,3 +81,7 @@ Flag!
 ## Resources
 
 * [MITRE: process injection](https://attack.mitre.org/techniques/T1055)
+
+## Counter moves
+
+Shellcode injection writes code into a victim process and runs it. RWX allocations and remote thread creation in unexpected processes are the behavioural signals. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

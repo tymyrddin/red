@@ -73,3 +73,7 @@ C:\flags\GetFlag-diskcleanup.exe
 ```text
 reg delete "HKCU\Environment" /v "windir" /f
 ```
+
+## Counter moves
+
+Abusing environment expansion defeats even the strictest UAC setting. Patched bypass paths and least privilege remove the lever. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

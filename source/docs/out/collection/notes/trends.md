@@ -70,3 +70,7 @@ What collection looks like in 2026:
 - It looks like an employee using an AI assistant
 
 None of these look like an attack. All of them can be one.
+
+## Counter moves
+
+As collection shifts toward identity and SaaS, the signal moves with it, from disk to API logs and audit trails. Baselining per-user access volume is what tends to surface the drift. The defender's view is in the blue notes on [watching data being gathered](https://blue.tymyrddin.dev/docs/counter/collection/).

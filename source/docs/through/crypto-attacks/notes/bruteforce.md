@@ -36,3 +36,7 @@ Physical attacks can vary from blackmail to abduction. And are increasingly comm
 * [How to Calculate Password Entropy?](https://generatepasswords.org/how-to-calculate-entropy/)
 * [Let’s settle the password vs. passphrase debate once and for all](https://proton.me/blog/protonmail-com-blog-password-vs-passphrase)
 * [Check if your data has been leaked](https://cybernews.com/personal-data-leak-check/)
+
+## Counter moves
+
+Brute force feeds on weak keys, short secrets, and fast hashes. Strong KDFs, rate limiting, and high-entropy secrets defeat it. Defenders' notes on this are under [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

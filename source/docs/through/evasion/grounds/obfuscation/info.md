@@ -226,3 +226,7 @@ Compile:
     $ sudo i686-w64-mingw32-g++ challenge-8.cpp -o challenge-8.exe
 
 Upload, and get flag!
+
+## Counter moves
+
+Stripping identifiable strings and metadata slows attribution and signature-building. The defensive counterpart treats the absence of expected metadata as a signal of its own. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

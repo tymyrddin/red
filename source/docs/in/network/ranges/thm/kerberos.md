@@ -270,3 +270,7 @@ password):
 ```
 
 * [Mimikatz](https://github.com/gentilkiwi/mimikatz)
+
+## Counter moves
+
+Attacking kerberos is the case here. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

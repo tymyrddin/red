@@ -29,3 +29,7 @@ Remote access accounts tend to be over-permissioned (vendors request broad acces
 Engineers often use the same laptop for both corporate IT tasks and OT engineering work. This laptop bridges the two networks: it holds OT engineering software (TIA Portal, Studio 5000, GE ToolboxST), project files, PLC credentials, and corporate email and VPN client simultaneously. Compromising this device provides both a foothold in IT and a ready-equipped engineering workstation capable of deploying modified PLC logic.
 
 The BYOD pattern is worse: a personal laptop used for remote engineering work from home connects to the corporate VPN and from there directly to the OT engineering network. The personal laptop has no corporate EDR, no patching cadence controlled by IT, and may have other software installed that creates additional vulnerability exposure.
+
+## Counter moves
+
+IT/OT convergence and the air gap myth is what this page works through. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. The defensive counterpart is in the blue notes on [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

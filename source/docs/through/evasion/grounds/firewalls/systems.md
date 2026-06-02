@@ -71,3 +71,7 @@ features might be comparable to NGFW, depending on the service provider; however
 of cloud architecture. One example is Cloudflare Magic Firewall, which is a network-level firewall. Another example is 
 Juniper vSRX; it has the same features as an NGFW but is deployed in the cloud. It is also worth mentioning AWS WAF 
 for web application protection and AWS Shield for DDoS protection.
+
+## Counter moves
+
+Knowing how firewall systems decide is the groundwork for slipping past them. Defensively, default-deny egress and protocol-aware inspection remove most of the slack. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

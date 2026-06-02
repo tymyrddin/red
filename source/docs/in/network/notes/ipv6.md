@@ -74,3 +74,7 @@
 - /56: typical for residential or large subnet allocation.
 - /64: standard subnet size (one LAN).
 - Link-Local: essential for NDP and SLAAC, always present on interfaces.
+
+## Counter moves
+
+Internet Protocol version 6 (IPv6) is what this page works through. Segmentation, egress filtering, and flow baselining are the durable answers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

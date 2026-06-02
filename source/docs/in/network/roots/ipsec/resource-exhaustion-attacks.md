@@ -120,3 +120,7 @@ Resource exhaustion attacks against IPsec target the finite computational, memor
 -   Cryptographic complexity: Modern algorithms (PFS, large DH groups) significantly increase computational load.
 -   Interoperability requirements: Support for various algorithms and configurations expands attack surface.
 -   Silent degradation: Resource exhaustion may cause performance issues before complete failure.
+
+## Counter moves
+
+Resource exhaustion attacks is what this page works through. Strong IKE configuration and pruning weak proposals are the fix. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

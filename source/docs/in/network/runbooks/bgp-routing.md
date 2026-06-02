@@ -137,3 +137,7 @@ Anycast hijacking requires presence at or near the target region's routing topol
 Document: prefixes announced, duration, geographic scope of propagation (from route collector data), traffic volume intercepted if applicable, and whether RPKI validation prevented propagation to any peers.
 
 BGP route hijacking and IP-level attack doctrine is in [IP-level attacks](../notes/incursions.md). TCP-level BGP session manipulation doctrine is in [Transport layer attacks](../notes/raids.md).
+
+## Counter moves
+
+Runbook: BGP routing attacks is the variant in play. Segmentation, egress filtering, and flow baselining are the durable answers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

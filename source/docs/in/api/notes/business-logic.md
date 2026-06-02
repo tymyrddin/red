@@ -86,3 +86,7 @@ requires the same understanding of the business logic that the attacker exploite
 ## Playbooks
 
 - [Business logic abuse](../playbooks/business-logic-abuse.md)
+
+## Counter moves
+
+Business logic abuse is the case here. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Defenders' notes on this are under [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

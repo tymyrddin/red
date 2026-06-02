@@ -266,3 +266,7 @@ Unless `Disk.exe` or `Disk Sorter.exe` exists!
 ### Insecure service permissions
 
 You might still have a slight chance of taking advantage of a service if the service's executable `DACL` is well configured, and the service's binary path is rightly quoted. Should the service DACL (not the service's executable `DACL`) allow you to modify the configuration of a service, you will be able to reconfigure the service. This will allow you to point to any executable you need and run it with any account you prefer, including `SYSTEM` itself.
+
+## Counter moves
+
+A writable service binary or weak service ACL runs attacker code as SYSTEM. Correct permissions and binary-path hygiene remove the opening. The defender's view is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

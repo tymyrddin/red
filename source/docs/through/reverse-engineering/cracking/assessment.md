@@ -21,3 +21,7 @@ The type of file is the most important piece of information that sets off the wh
 ## Static analysis
 
 Static analysis will help us make notes of what we will do during dynamic analysis. With knowledge of the assembly language, a disassembled file and its branches can be understood. This allows for preparing the right tools to read, open, and debug the file based on its file type, and understand the file's structure based on its [file format](../binary/index.rst).
+
+## Counter moves
+
+Static assessment maps a binary before running it. The defensive counterpart is making that map expensive to draw. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

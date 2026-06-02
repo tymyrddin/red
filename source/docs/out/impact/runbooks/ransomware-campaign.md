@@ -153,3 +153,7 @@ DDoS capability via rented botnet infrastructure would have been available.
 - Data classification: could the engagement team find sensitive data
   easily, or was it difficult to locate?
 - Exfiltration detection: were the prior exfiltration phases detected?
+
+## Counter moves
+
+A ransomware campaign is the access battle made visible at the end. Tested offline backups, segmentation to bound how far encryption spreads, and rapid isolation decide the blast radius. The defender's view is in the blue notes on [limiting the blast radius](https://blue.tymyrddin.dev/docs/counter/impact/).

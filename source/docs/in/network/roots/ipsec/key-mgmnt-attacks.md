@@ -104,3 +104,7 @@ The Internet Key Exchange (IKE) protocol forms the foundation of IPsec security 
 -   SA lifetimes are local policy (not negotiated); typical hours and rekey behaviour. 
 -   Time shifting via NTP attacks can affect certificate validation/logging; RFC 5280 defines validity semantics; industry BRs cap certificate lifetimes. 
 -   Rogue CA/trust-store manipulation and real-world CA compromises.
+
+## Counter moves
+
+Key management attacks is what this page works through. Strong IKE configuration and pruning weak proposals are the fix. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

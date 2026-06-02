@@ -27,3 +27,7 @@ BYOD environments complicate this further: personal devices connecting to corpor
 ## The enumeration target
 
 The information gathered here answers three questions that drive the rest of the engagement: what detects execution on the endpoint, what credentials and tokens does the endpoint hold, and what can those credentials reach. The answers determine which delivery mechanism, which evasion approach, and which post-compromise pivot path to prioritise.
+
+## Counter moves
+
+Endpoint surface discovery is the case here. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. The defender's view is in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

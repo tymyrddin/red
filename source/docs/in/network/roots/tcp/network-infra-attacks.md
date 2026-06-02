@@ -103,3 +103,7 @@ Network infrastructure attacks target the physical and logical components formin
 * Supply chain trust: Global supply chains introduce multiple points of potential compromise
 * Operational transparency: Monitoring and management systems require exposure that can be exploited
 * Configuration complexity: Complex network configurations often contain security oversights
+
+## Counter moves
+
+Network infrastructure attacks is the case here. Stateful filtering and anomaly detection on the handshake are the answer. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -18,4 +18,8 @@
 ## Resources
 
 * [Reversing Golang Binaries Like a Pro - RedNaga](https://repository.root-me.org/Reverse%20Engineering/EN%20-%20Reversing%20Golang%20Binaries%20Like%20a%20Pro%20-%20RedNaga.pdf)
-* [Golang Reverse - Zaytsev](https://repository.root-me.org/Reverse%20Engineering/EN%20-%20Golang%20Reverse%20-%20Zaytsev.pdf) 
+* [Golang Reverse - Zaytsev](https://repository.root-me.org/Reverse%20Engineering/EN%20-%20Golang%20Reverse%20-%20Zaytsev.pdf)
+
+## Counter moves
+
+Go binaries are large but readable once the runtime is understood. Stripping Go symbols slows the reader a little. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

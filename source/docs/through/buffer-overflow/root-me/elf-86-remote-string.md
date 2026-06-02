@@ -124,3 +124,6 @@ int main(void)
 * [Format String and Double-Free Attacks](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Format%20String%20and%20Double-Free%20Attacks.pdf)
 * [Les failles Format String](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/FR%20-%20Les%20failles%20Format%20String.pdf)
 
+## Counter moves
+
+A format string lets input control the format, leaking and writing memory. Never passing user input as a format string is the fix. The defender's view is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

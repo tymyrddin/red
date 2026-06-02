@@ -568,3 +568,7 @@ meterpreter > run post/windows/gather/firefox_creds
 
 Then use the [Firefox Decrypt tool from Github](https://github.com/unode/firefox_decrypt), and log in to the `mayor` 
 account using `xfreerdp`. The flag is on mayor's Desktop.
+
+## Counter moves
+
+Gatekeeper is a classic SEH-based overflow. SafeSEH and modern mitigations are the matching defences. Seen from the other side, this sits in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

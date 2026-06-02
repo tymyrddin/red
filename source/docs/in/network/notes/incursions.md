@@ -29,3 +29,7 @@ ICMP carries control messages for IP, including echo requests and replies (ping)
 ICMP tunnelling encodes data in the payload of ICMP echo requests and replies. Because ICMP is frequently permitted through firewalls that block TCP and UDP, it provides a covert channel that can be used for data exfiltration or command-and-control. Detection requires inspecting ICMP payload sizes and patterns; a stream of large-payload ICMP echo requests to a single destination is anomalous.
 
 BGP hijacking is covered operationally in [Tradecraft: BGP routing](../runbooks/bgp-routing.md). ICMP tunnelling as a C2 channel is in [Tradecraft: C2 tunnelling](../runbooks/c2-tunneling.md).
+
+## Counter moves
+
+IP-level attacks is what this page works through. Segmentation, egress filtering, and flow baselining are the durable answers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

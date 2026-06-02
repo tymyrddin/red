@@ -182,3 +182,7 @@ aws sts assume-role \
   --role-session-name verify \
   --profile attacker-profile
 ```
+
+## Counter moves
+
+IAM-based persistence adds keys, roles, or trust that survive host rebuilds. Reviewing and alerting on IAM changes is where it shows. Defenders' notes on this are under [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

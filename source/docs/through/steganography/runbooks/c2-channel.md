@@ -144,3 +144,7 @@ Test polling from an isolated network segment first. Some corporate proxies perf
 inspection or cache image responses; a cached image defeats polling for new commands.
 Check `Cache-Control` headers on your image server and set `no-store` if serving from
 a controlled host.
+
+## Counter moves
+
+Image-based C2 hides commands in pictures crossing normal web traffic. Carrier re-encoding and beacon-timing analysis are what surface it. Both defensive views apply, in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/) and [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

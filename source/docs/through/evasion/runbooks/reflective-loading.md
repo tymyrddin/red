@@ -115,3 +115,7 @@ junk insertion).
 ETW CLR events record .NET assembly loads regardless of the source. If the EDR
 collects ETW CLR events, the assembly load is still logged even without a file path.
 ETW patching is required to prevent this telemetry.
+
+## Counter moves
+
+Reflective loading maps a PE into memory without the loader or disk. Memory scanning for unbacked executable regions surfaces it. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

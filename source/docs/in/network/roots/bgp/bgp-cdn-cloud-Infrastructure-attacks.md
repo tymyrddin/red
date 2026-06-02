@@ -186,3 +186,7 @@ BGP + CDN/Cloud infrastructure attacks target the critical intersection of borde
 -   Scale challenges: The massive scale of CDN and cloud operations makes comprehensive monitoring difficult, allowing attacks to go undetected for critical periods.
 -   Economic incentives: The central role of CDNs and cloud platforms in internet commerce creates strong economic incentives for attackers to develop sophisticated attack methods.
 -   Protocol interactions: Complex interactions between BGP, DNS, and application-layer protocols create multiple potential attack vectors that are difficult to defend against comprehensively.
+
+## Counter moves
+
+BGP + CDN/Cloud infrastructure attacks is what this page works through. RPKI origin validation and route monitoring are the levers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

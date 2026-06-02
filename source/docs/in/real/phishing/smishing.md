@@ -56,3 +56,7 @@ active mobile network connection.
 ## Runbooks
 
 - [Runbook: MFA push fatigue](../runbooks/mfa-fatigue.md) — SIM swap removes the second factor, making the fatigue approach unnecessary; the two techniques are alternatives depending on MFA type
+
+## Counter moves
+
+Smishing is what this page works through. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defender's view is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

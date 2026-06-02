@@ -76,3 +76,7 @@ the cumulative probability that the target notices something wrong.
 
 - [Vishing and callback phishing](vishing.md): AI voice cloning for the audio-only variant
 - [Building a cover identity](../pretext/personas.md): synthetic identity construction that underpins video impersonation personas
+
+## Counter moves
+
+Deepfake video is what this page works through. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Seen from the other side, this sits in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

@@ -40,3 +40,7 @@ Even when using strong cryptographic algorithms, vulnerabilities in how those al
 -   Code complexity: Cryptographic libraries contain millions of lines of code, making memory corruption vulnerabilities inevitable.
 -   Hardware dependencies: Many optimisations assume specific hardware behaviour that can be exploited.
 -   Legacy code bases: Cryptographic libraries maintain backward compatibility with vulnerable code paths.
+
+## Counter moves
+
+IPsec implementation flaw attacks is the case here. Strong IKE configuration and pruning weak proposals are the fix. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

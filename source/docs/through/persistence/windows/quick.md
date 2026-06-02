@@ -79,3 +79,7 @@ These belong more to the realm of CTF events rather than real world scenarios.
 
 * Looking into scheduled tasks on the target system, you may see a scheduled task that either lost its binary or it is using a modifiable binary.
 * Windows installer files (`.msi` files) are used to install applications on the system. They usually run with the privilege level of the user that starts it. And they can be configured to run with higher privileges from any user account (even unprivileged ones). This could potentially allow for generating a malicious `.msi` file that would run with admin privileges.
+
+## Counter moves
+
+These are the fast escalation wins: unquoted paths, weak ACLs, writable services. Configuration auditing closes them cheaply. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

@@ -67,3 +67,7 @@ cat .passwd
 ## Resources
 
 * [64 Bits Linux Stack Based Buffer Overflow](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%2064%20Bits%20Linux%20Stack%20Based%20Buffer%20Overflow.pdf)
+
+## Counter moves
+
+A straight stack overflow overwrites the return address. Canaries, NX, and ASLR are the matching stack defences. The defender's view is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

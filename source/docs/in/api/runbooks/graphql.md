@@ -284,3 +284,7 @@ send them at a volume that constitutes a denial of service against the target.
 - [Schema analysis](../runbooks/schema-analysis.md)
 - [BOLA and BFLA testing](../runbooks/bola-bfla.md)
 - [Authentication testing](../runbooks/auth-testing.md)
+
+## Counter moves
+
+Runbook: GraphQL attack chain is the variant in play. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Defenders' notes on this are under [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

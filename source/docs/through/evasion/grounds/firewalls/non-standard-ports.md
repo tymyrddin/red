@@ -24,3 +24,6 @@ Then on the attacker machine connected to THM VPN, connect through `nc`:
 
 Ask `whoami`.
 
+## Counter moves
+
+Running a protocol on an unusual port hides it from port-based rules. Protocol-aware inspection that identifies the service regardless of port undoes it. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

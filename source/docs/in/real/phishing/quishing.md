@@ -71,3 +71,7 @@ and no policy preventing it from visiting a phishing page.
 ## Runbooks
 
 - [Runbook: Quishing campaign](../runbooks/quishing-campaign.md)
+
+## Counter moves
+
+Quishing is the variant in play. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Defenders' notes on this are under [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

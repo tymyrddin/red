@@ -77,3 +77,7 @@ The questions that matter:
 - Can we operate for 30 days without being detected?
 
 If the answers are yes, the engagement has found something worth fixing.
+
+## Counter moves
+
+Impact has shifted from pure encryption toward theft and extortion, so backups alone no longer settle it. Catching collection and exfiltration earlier is what limits the eventual leverage. The defender's view is in the blue notes on [limiting the blast radius](https://blue.tymyrddin.dev/docs/counter/impact/).

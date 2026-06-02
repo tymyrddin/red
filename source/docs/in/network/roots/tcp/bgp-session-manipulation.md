@@ -61,3 +61,7 @@ BGP session continuity depends entirely on the underlying TCP connection. Tearin
 - [Rootways: BGP attack tree](../bgp/tree.md)
 - [Man-in-the-middle BGP sessions](mitm-bgp-sessions.md)
 - [Router TCP stack exploitation](tcp-stack-on-bgp-router.md)
+
+## Counter moves
+
+BGP session manipulation is the case here. Stateful filtering and anomaly detection on the handshake are the answer. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

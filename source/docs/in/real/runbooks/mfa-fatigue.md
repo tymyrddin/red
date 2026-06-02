@@ -122,3 +122,7 @@ the account showed any rate limiting on authentication attempts.
 - [ElevenLabs voice synthesis](https://elevenlabs.io/)
 - [COUNTERING SIM-SWAPPING (pdf)](https://www.enisa.europa.eu/sites/default/files/publications/ENISA_REPORT-Countering_SIM_Swapping.pdf)
 - [Microsoft: Number matching in Authenticator](https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-mfa-number-match)
+
+## Counter moves
+
+Runbook: MFA push fatigue is the variant in play. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defensive counterpart is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

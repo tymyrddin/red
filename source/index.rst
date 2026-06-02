@@ -1,47 +1,50 @@
 Red tradecraft
-=======================================
+==============
 
-Venturing into the red wilds means stepping into an environment that is part wilderness, part improvised cityscape,
-and entirely unpredictable. The terrain shifts between overgrown systems, creaking infrastructure, and the sort of
-engineered oddities only a committee meeting or a particularly creative guild could produce.
+The red wilds are not a battlefield. They are an ecosystem. Systems grow where they were not
+planted, infrastructure composts quietly under its own changelog, and value collects in the low places where
+nobody is looking. An adversary is just a creature that has learned the terrain better than the people living in it.
 
-Here, methods and metaphors coexist with no intention of forming an orderly queue. One moment you find yourself in
-architecture worthy of a certain notoriously civic-minded city where nothing works as expected and yet, suspiciously,
-everything keeps running; the next you are tracing the clean, structured lines of a kill chain through digital
-undergrowth.
+The notes here move the way an attacker does: in along the edges, through the soft interior, out
+with whatever was worth carrying. Methods and metaphors share the same burrow and decline to
+form an orderly queue.
 
-Kill chain routes
-------------------------
+In, through, out
+----------------
 
-.. image:: /_static/images/ukc2.png
-  :alt: Unified Kill Chain
+.. figure:: /_static/images/ukc2.png
+   :alt: Unified Kill Chain
 
-----
+The route in. Where the falcons and foxes roam the perimeter, reading locks the owner stopped seeing years ago.
 
 .. toctree::
-   :glob:
    :maxdepth: 2
-   :includehidden:
 
    docs/in/index
+
+The route through. Where the raccoons burrow and rummage, and staying somewhere you were never invited turns out to be the easy part.
+
+.. toctree::
+   :maxdepth: 2
+
    docs/through/index
+
+The route out. Where the squirrels work out what is worth taking, and how to leave with it before winter.
+
+.. toctree::
+   :maxdepth: 2
+
    docs/out/index
 
 Simulations and simulators
----------------------------
+--------------------------
+
+The same wilds, fenced and named, so a thing can be tried twice and watched a second time.
 
 .. toctree::
-   :glob:
    :maxdepth: 1
-   :includehidden:
 
    docs/earthworks/index
    docs/power/index
    docs/scarlet/index
    docs/services/index
-
-----
-
-.. image:: /_static/images/purple2.png
-   :alt: All three animals
-   :target: https://purple.tymyrddin.dev/docs/workshops/retrospectives

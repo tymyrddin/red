@@ -174,3 +174,7 @@ and test accounts.
 
 - [REST API attack chain](../playbooks/rest-api.md)
 - [GraphQL attack chain](graphql.md)
+
+## Counter moves
+
+Runbook: Endpoint discovery is the case here. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defensive counterpart is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

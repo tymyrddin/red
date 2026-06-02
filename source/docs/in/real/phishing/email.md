@@ -83,4 +83,6 @@ It is a technique that exploits the architectural gap between where email conten
 
 - [Runbook: AiTM phishing with Evilginx2](../runbooks/aitm-phishing.md)
 
+## Counter moves
 
+Email phishing is the case here. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defensive counterpart is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

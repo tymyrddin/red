@@ -181,3 +181,7 @@ crontab -l | grep -v '^#'
 # systemd: confirm timer is active
 systemctl list-timers | grep udev-settle
 ```
+
+## Counter moves
+
+Scheduled tasks and cron are the oldest persistence trick because they are legitimate. Auditing task and cron creation against a baseline catches the additions. Seen from the other side, this sits in the blue notes on [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

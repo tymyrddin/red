@@ -191,3 +191,6 @@ Force redirects to first go to a page that notify users they are redirected out 
 * [cujanovic/Open-Redirect-Payloads](https://github.com/cujanovic/Open-Redirect-Payloads)
 * [HackTricks: Open redirect](https://book.hacktricks.xyz/pentesting-web/open-redirect)
 
+## Counter moves
+
+Open redirection is what this page works through. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

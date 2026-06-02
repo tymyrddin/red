@@ -154,3 +154,7 @@ Look specifically for:
 ## Playbooks
 
 - [Cloud initial access](../playbooks/cloud-entry.md)
+
+## Counter moves
+
+Runbook: Azure AD tenant enumeration is the case here. Least-privilege IAM, full audit logging, and configuration baselines are what hold. Defenders' notes on this are under [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

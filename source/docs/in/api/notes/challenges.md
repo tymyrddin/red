@@ -57,3 +57,7 @@ two legitimate operations to produce a third outcome neither was designed to ena
 The tester who only asks "does this endpoint behave correctly?" will miss most of the attack
 surface. The useful question is: "what can someone achieve using this system over time, across
 multiple sessions, in combinations the developer did not anticipate?"
+
+## Counter moves
+
+Why APIs are hard to test is the variant in play. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defender's view is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

@@ -9,3 +9,7 @@ There are a number of techniques that can be used for shellcode development for 
 ## Resources
 
 * [Deeper into Windows Architecture](https://docs.microsoft.com/en-gb/archive/blogs/hanybarakat/deeper-into-windows-architecture)
+
+## Counter moves
+
+Windows shellcode turns a memory bug into execution. DEP, ASLR, and CFG are what raise the cost. Seen from the other side, this sits in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

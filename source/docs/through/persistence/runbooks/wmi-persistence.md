@@ -173,3 +173,7 @@ Get-WMIObject -Namespace root\subscription -Class __EventFilter |
 Remove the binding first. Leaving the filter and consumer with no binding is
 safe; removing the filter first can cause WMI service errors if the binding
 still references it.
+
+## Counter moves
+
+WMI event subscriptions run code on triggers with nothing on disk. Auditing permanent WMI subscriptions against a baseline is the catch. Defenders' notes on this are under [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

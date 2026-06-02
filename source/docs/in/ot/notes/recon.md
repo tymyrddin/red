@@ -53,3 +53,7 @@ python plcscan.py <target-ip>
 ```
 
 Time scans appropriately and confirm with the client that active scanning of OT segments is within scope and acceptable. A default nmap T3 or T4 scan against a process controller should never be run without explicit approval.
+
+## Counter moves
+
+OT surface discovery is the case here. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. The defensive counterpart is in the blue notes on [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

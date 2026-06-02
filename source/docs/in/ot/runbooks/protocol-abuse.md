@@ -120,3 +120,7 @@ For each protocol interaction, capture:
 - Any error responses received (which indicate access controls or device protections in place).
 
 The demonstration value is in showing that the read succeeded from an IT-originated position, not in modifying production values.
+
+## Counter moves
+
+Runbook: Industrial protocol abuse is the case here. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. The defender's view is in the blue notes on [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

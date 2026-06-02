@@ -84,3 +84,7 @@ if ( ! in_array($_SERVER['SERVER_NAME'], $domains)) {
 
 * [Portswigger: HTTP Host header attacks](https://portswigger.net/web-security/host-header)
 * [OWASP: Testing for Host Header Injection](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/17-Testing_for_Host_Header_Injection)
+
+## Counter moves
+
+HTTP Host header attacks is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

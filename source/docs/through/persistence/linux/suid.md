@@ -42,3 +42,7 @@ openssl passwd -1 -salt <password>
 SUID (Set-user Identification) and SGID (Set-group Identification) allow files to be executed with the permission level of the file owner or the group owner, respectively.
 
 Such files have an `s` bit set showing their special permission level. To find binaries known to be exploitable when the SUID bit is set see [GTFObins SUID](https://gtfobins.github.io/#+suid).
+
+## Counter moves
+
+SUID and SGID binaries run with the owner's privilege, so a vulnerable one becomes an escalation path. Minimising the SUID set and auditing it are the counters. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

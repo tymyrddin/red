@@ -28,3 +28,7 @@ Check the received data:
 			
     thm@jump-box$ cd /tmp/task5/
     thm@jump-box:/tmp/task5$ cat creds.txt
+
+## Counter moves
+
+Encrypted file transfer over SSH and its cousins blends with admin traffic. Egress allow-listing of who may reach outbound SSH or SFTP at all, plus volume baselining, are the levers. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

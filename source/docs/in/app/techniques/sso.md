@@ -80,3 +80,7 @@ assertion, is the binding. Absent or unvalidated, a token is portable across ten
 ## Runbooks
 
 - [Authentication and session testing](../runbooks/auth-testing.md)
+
+## Counter moves
+
+Single sign-on security is what this page works through. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

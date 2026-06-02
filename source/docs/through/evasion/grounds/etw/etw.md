@@ -52,3 +52,7 @@ tracing process. There are also some new interesting techniques.
 
 * [Microsoft: About Event Tracing](https://learn.microsoft.com/en-us/windows/win32/etw/about-event-tracing)
 * [Microsoft: Trace Message Format File](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/trace-message-format-file)
+
+## Counter moves
+
+ETW is a telemetry backbone, which is exactly why attackers go after it. Defenders treat gaps in ETW as signal in themselves and corroborate across independent sources. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -150,3 +150,7 @@ OAuth application backdoor).
 - DLP: absence of rate-based detection on API downloads
 - UEBA: no baseline for what normal access looks like, so no alert on
   unusual access patterns
+
+## Counter moves
+
+This playbook chains identity weaknesses into a full collection path, and each hop looks ordinary in isolation. Correlating the hops (sign-in, consent, mailbox access) across logs is what makes the chain visible. The defender's view is in the blue notes on [watching data being gathered](https://blue.tymyrddin.dev/docs/counter/collection/).

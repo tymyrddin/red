@@ -74,3 +74,6 @@
 * LSP manipulation is a primary attack vector (e.g., fake links reroute traffic).
 * DIS election attacks can disrupt broadcast network stability.
 
+## Counter moves
+
+Intermediate System to Intermediate System (IS-IS) is the case here. Patching the exposed service and segmenting it are the levers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

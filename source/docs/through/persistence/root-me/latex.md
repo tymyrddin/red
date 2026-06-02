@@ -59,3 +59,7 @@ The LaTeX module `verbatim` permits input of a file without interpreting it.
 * [Latex Cheat Sheet](https://repository.root-me.org/Programmation/Latex/EN%20-%20Latex%20Cheat%20Sheet.pdf)
 * [Latex Guide](https://repository.root-me.org/Programmation/Latex/EN%20-%20Latex%20Guide.pdf)
 * [Hacking with LaTeX](https://0day.work/hacking-with-latex/)
+
+## Counter moves
+
+LaTeX input handling can be driven into command execution. Sandboxing the compiler and restricting shell-escape are the counters. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

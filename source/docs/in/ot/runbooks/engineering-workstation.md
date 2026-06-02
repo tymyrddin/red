@@ -92,3 +92,7 @@ Document: which PLCs the engineering workstation has configured connections to, 
 ## Evidence collection
 
 Capture: the software version installed, the project files found and their content (tag database and PLC addresses), any credentials recovered from the workstation, and the result of any online connection attempt to a PLC. A screenshot of the engineering software in online mode with a PLC is a clear demonstration of access.
+
+## Counter moves
+
+Runbook: Engineering workstation compromise is what this page works through. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. The defender's view is in the blue notes on [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

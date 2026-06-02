@@ -69,3 +69,7 @@ take with its output? Test at the end of the chain, not just the input endpoint.
 Priority: Secrets → IAM → CI/CD Injection → SSRF → Storage
 
 See [cloud notes](../../cloud/notes/index) for full coverage of cloud-specific attack paths.
+
+## Counter moves
+
+Tailored vulnerability tables is the variant in play. The durable answers are server-side validation, authorisation, and dependency hygiene. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

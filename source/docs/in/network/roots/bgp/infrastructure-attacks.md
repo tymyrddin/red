@@ -152,3 +152,7 @@ Internet Protocol version 4 (IPv4) infrastructure attacks target the core networ
 -   Management access exposure: Network management interfaces are often exposed to broader networks than necessary
 -   Legacy systems: Critical infrastructure frequently incorporates outdated systems that cannot be patched or replaced
 -   Interdependency attacks: Compromising one system often provides access to connected systems and services
+
+## Counter moves
+
+IPv4 infrastructure attacks is the case here. RPKI origin validation and route monitoring are the levers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -66,4 +66,8 @@ Simon Tatham is the creator of PuTTY (and his name is part of the path), and is 
 
 ## Notes
 
-The example for retrieving credentials from software here is PuTTY. but any software that stores passwords, including browsers, email clients, FTP clients, SSH clients, VNC software and others, will have methods to recover any passwords the user has saved. 
+The example for retrieving credentials from software here is PuTTY. but any software that stores passwords, including browsers, email clients, FTP clients, SSH clients, VNC software and others, will have methods to recover any passwords the user has saved.
+
+## Counter moves
+
+Harvesting pulls passwords from memory, the registry, and stored vaults. Credential Guard, LSASS protection, and no cleartext storage are the counters. Seen from the other side, this sits in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

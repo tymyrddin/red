@@ -212,3 +212,7 @@ foreach ($check in $checks) {
 
 # environment is real: proceed with payload
 ```
+
+## Counter moves
+
+Sandbox detection lets a payload decide whether it is being watched. Making analysis environments indistinguishable from real hosts is the counter. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -25,3 +25,6 @@ Get token for `admin:admin`:
 
 Use the token to get the flag (add an `=` at the end of it).
 
+## Counter moves
+
+JWT (not) revoked token is the case here. Server-side validation and least privilege are what these reduce to. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

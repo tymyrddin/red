@@ -18,3 +18,6 @@ code with a command. As command use Netcat to connect to the target port using t
 `ncat IP_ADDRESS PORT_NUMBER`. For example, run `ncat ATTACK_IP 1024` to connect to the attacker machine at TCP port 
 `1025`. Then try another port: Change the listener and the command to match.
 
+## Counter moves
+
+Port hopping spreads a channel across ports to dodge per-port rules. Flow correlation and baselining which services a host has any business speaking to catch the pattern. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

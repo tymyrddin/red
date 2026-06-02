@@ -74,3 +74,6 @@
 * TCP MD5 is weak against offline brute-force attacks.
 * Route leaks are common due to misconfigured filters.
 
+## Counter moves
+
+Border Gateway Protocol (BGP) is the case here. Patching the exposed service and segmenting it are the levers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

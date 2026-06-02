@@ -194,3 +194,7 @@ p.interactive()
 
 Adjust `recvuntil` to match the service's prompt. Use `recvline()` to consume output
 between interactions.
+
+## Counter moves
+
+End-to-end stack exploitation overwrites the return path to attacker code. Canaries, NX, and ASLR are the layered defence. Defenders' notes on this are under [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

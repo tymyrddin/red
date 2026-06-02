@@ -128,3 +128,7 @@ $ntdll = [System.Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer
 
 AMSI bypass and ETW bypass are usually applied together before loading any detection-
 prone tooling.
+
+## Counter moves
+
+An AMSI bypass patches the scan to return clean before malicious script runs. The patch is detectable, and missing scan results are themselves suspicious. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

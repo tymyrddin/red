@@ -22,4 +22,8 @@
 * [Reverse Engineering pour Débutants - Dennis Yurichev](https://repository.root-me.org/Reverse%20Engineering/FR%20-%20Reverse%20Engineering%20pour%20D%C3%A9butants%20-%20Dennis%20Yurichev.pdf)
 * [Taming a Wild Nanomite-protected MIPS Binary With Symbolic Execution - Diary of a reverse-engineer](https://repository.root-me.org/Reverse%20Engineering/EN%20-%20Taming%20a%20Wild%20Nanomite-protected%20MIPS%20Binary%20With%20Symbolic%20Execution%20-%20Diary%20of%20a%20reverse-engineer.pdf)
 * [MIPS Green Sheet](https://repository.root-me.org/Reverse%20Engineering/EN%20-%20MIPS%20Green%20Sheet.pdf)
-* [MIPS Assembly Tutorial](https://repository.root-me.org/Reverse%20Engineering/MIPS/EN%20-%20MIPS%20Assembly%20Tutorial.pdf) 
+* [MIPS Assembly Tutorial](https://repository.root-me.org/Reverse%20Engineering/MIPS/EN%20-%20MIPS%20Assembly%20Tutorial.pdf)
+
+## Counter moves
+
+A MIPS crackme tests cross-architecture reading. Architecture is not protection; obfuscation is. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

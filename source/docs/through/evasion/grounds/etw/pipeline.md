@@ -22,3 +22,7 @@ $snap.LogPipelineExecutionDetails = $false # Set ps-snapin execution details to 
 ```
 
 Append to any PowerShell script or run in a session to disable module logging of currently imported modules.
+
+## Counter moves
+
+Tampering with the log pipeline aims to drop events before they are recorded. Off-host forwarding and integrity checks keep the record honest. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

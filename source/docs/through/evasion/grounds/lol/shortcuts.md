@@ -11,3 +11,7 @@ To use the shortcut modification technique, set the target section to execute fi
 * Powershell
 * Regsvr32
 * Executable on disk
+
+## Counter moves
+
+Crafted shortcuts hide a command behind an innocent icon. Inspecting LNK targets and alerting on shortcuts that spawn interpreters catch them. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

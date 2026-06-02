@@ -116,4 +116,6 @@ When escalating deserialisation flaws, take the scope and rules of the pentestin
 * [OWASP: A8:2017-Insecure Deserialization](https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization)
 * [New Java 17 features for improved security and serialization](https://snyk.io/blog/new-java-17-features-for-improved-security-and-serialization/)
 
+## Counter moves
 
+Insecure deserialisation is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

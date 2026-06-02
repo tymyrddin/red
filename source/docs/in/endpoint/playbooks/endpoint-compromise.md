@@ -86,3 +86,7 @@ achieved. The final report should present the full chain as a concrete narrative
 - [EDR bypass](../runbooks/edr-bypass.md)
 - [Credential harvesting](../runbooks/credential-harvest.md)
 - [Pivot to cloud](../runbooks/pivot-to-cloud.md)
+
+## Counter moves
+
+Playbook: Endpoint compromise and identity pivot is what this page works through. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. The defensive counterpart is in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

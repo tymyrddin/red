@@ -34,3 +34,7 @@ Website:   http://www.root-me.org
 Username: 'shell1cracked'
 Password: 'xxxxxx'
 ```
+
+## Counter moves
+
+Credentials in a weak local format are recoverable offline. Protected credential stores and OS keychains are the counters. Defenders' notes on this are under [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

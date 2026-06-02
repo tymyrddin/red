@@ -156,3 +156,7 @@ DNS tunnelling generates:
 DoH exfiltration is harder to detect: the queries are encrypted and go to
 legitimate resolvers. Volume-based detection still applies if the DoH
 traffic is significantly higher than baseline.
+
+## Counter moves
+
+Classic DNS tunnelling leaks through query volume, long labels, and high subdomain entropy. Entropy and per-source query-rate analysis on resolver logs are the standard catch, though DoH variants move the problem upstream. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

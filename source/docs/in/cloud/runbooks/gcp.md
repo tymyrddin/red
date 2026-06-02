@@ -156,3 +156,7 @@ If `gcloud projects list` returns projects, the key is valid and the service acc
 ## Playbooks
 
 - [Cloud initial access](../playbooks/cloud-entry.md)
+
+## Counter moves
+
+Runbook: GCP project and bucket enumeration is the variant in play. Least-privilege IAM, full audit logging, and configuration baselines are what hold. The defender's view is in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

@@ -28,3 +28,7 @@ The Import Address Table and Reloc Table remain in memory once the process initi
 * [MITRE: Portable executable injection](https://attack.mitre.org/techniques/T1055/002/)
 * [A Comprehensive Guide To PE Structure, The Layman’s Way](https://tech-zealots.com/malware-analysis/pe-portable-executable-structure-malware-analysis-part-2/)
 * [InfosecInstitute: Presenting the PE header](https://resources.infosecinstitute.com/topic/presenting-the-pe-header/)
+
+## Counter moves
+
+PE injection maps a full executable into another process without touching disk. Memory scanning for unbacked executable regions is where it surfaces. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

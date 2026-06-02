@@ -16,3 +16,7 @@ This attack can actively be seen exploited in tools such as [Unicorn](https://gi
 Since this attack is extremely low-hanging fruit and simple, there are many ways for the blue team to detect and 
 mitigate this attack. The two easiest mitigations are removing the PowerShell 2.0 engine from the device and denying 
 access to PowerShell 2.0 via application blocklisting.
+
+## Counter moves
+
+Downgrading PowerShell drops to a version with weaker logging. Blocking or alerting on version-two invocation closes the trick. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

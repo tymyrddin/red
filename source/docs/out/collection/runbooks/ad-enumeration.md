@@ -144,3 +144,7 @@ the environment. Compress and optionally encrypt the output:
 Compress-Archive -Path C:\Temp\bh\*.json -DestinationPath C:\Temp\bh.zip
 # exfiltrate bh.zip via C2 or exfiltration channel
 ```
+
+## Counter moves
+
+Directory enumeration looks like normal LDAP and is hard to block without breaking things. What helps is alerting on bulk or unusual query patterns and reducing what an ordinary account can read in the first place. The defender's view is in the blue notes on [watching data being gathered](https://blue.tymyrddin.dev/docs/counter/collection/).

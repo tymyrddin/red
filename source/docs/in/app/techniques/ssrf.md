@@ -113,3 +113,6 @@ Use what you’ve found by scanning the network, identifying services, and pulli
 * [Google Cloud: About VM metadata](https://cloud.google.com/compute/docs/metadata/overview)
 * [Oracle Cloud: Getting Instance Metadata](https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/gettingmetadata.htm)
 
+## Counter moves
+
+Server-side request forgery (SSRF) is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

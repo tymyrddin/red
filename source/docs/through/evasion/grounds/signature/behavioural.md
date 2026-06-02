@@ -67,3 +67,7 @@ Flag.
 
 * [The difference between signature-based and behavioural detections](https://s3cur3th1ssh1t.github.io/Signature_vs_Behaviour/)
 * [The Journey of Evasion Enters Behavioural Phase](https://www.virusbulletin.com/virusbulletin/2016/07/journey-evasion-enters-behavioural-phase/)
+
+## Counter moves
+
+Behavioural signatures catch what a payload does, which is harder to mutate than what it is. That is also the line attackers find hardest to dodge. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

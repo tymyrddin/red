@@ -19,3 +19,6 @@
 * [PayloadsAllTheThings/CSRF Injection/](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSRF%20Injection)
 * [HackTricks: CSRF (Cross Site Request Forgery)](https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery)
 
+## Counter moves
+
+CSRF: zero protection is what this page works through. A client-side finding still needs a server-side control behind it. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -43,3 +43,7 @@ also respond to `POST`, `PUT`, or `DELETE`.
 - [REST API attack chain](../playbooks/rest-api.md) — fuzzing in Phase 5
 - [Injection testing](../runbooks/injection.md)
 - [Rate limit testing and bypass](../runbooks/rate-limit-bypass.md)
+
+## Counter moves
+
+Fuzzing APIs is the case here. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defensive counterpart is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

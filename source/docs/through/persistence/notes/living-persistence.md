@@ -196,3 +196,7 @@ survives for months is naming. Before creating any persistence entry:
 An entry named `backdoor` in a Task Scheduler full of `Microsoft\Windows\*` entries
 will be found immediately. An entry named `Microsoft\Windows\UpdateOrchestrator\ScheduledStart`
 that runs identical code may survive indefinitely.
+
+## Counter moves
+
+Living persistence reuses legitimate features such as scheduled tasks, services, and startup items, so nothing looks foreign. Baseline drift detection on those mechanisms is the catch. The defensive counterpart is in the blue notes on [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

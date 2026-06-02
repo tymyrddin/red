@@ -70,4 +70,6 @@ remember that you seemed to know what you were doing.
 
 - [Playbook: Physical access engagement](../playbooks/physical-entry.md) — elicitation is the live technique once you are inside
 
+## Counter moves
 
+Elicitation is what this page works through. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defensive counterpart is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

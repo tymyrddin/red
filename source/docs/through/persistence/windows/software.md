@@ -11,4 +11,8 @@
 
 ## Notes
 
-Software installed on the target system can present various privilege escalation opportunities. As with drivers, organisations and users may not update them as often as they update the operating system. 
+Software installed on the target system can present various privilege escalation opportunities. As with drivers, organisations and users may not update them as often as they update the operating system.
+
+## Counter moves
+
+Vulnerable installed software is a local escalation path. Patching and removing unneeded privileged software are the counters. The defensive counterpart is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

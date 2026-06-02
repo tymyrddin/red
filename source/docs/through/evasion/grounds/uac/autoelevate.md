@@ -134,3 +134,7 @@ C:\> C:\flags\GetFlag-fodhelper.exe
 And clear tracks:
 
     reg delete HKCU\Software\Classes\ms-settings\ /f
+
+## Counter moves
+
+Auto-elevating binaries skip the UAC prompt by design, which is the door this walks through. Tightening which binaries auto-elevate and auditing their use are the counters. Seen from the other side, this sits in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

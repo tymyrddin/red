@@ -63,3 +63,7 @@ int main( int argc, char ** argv )
 * [DEFCON 18 Advanced Format String Attacks](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20DEFCON%2018%20Advanced%20Format%20String%20Attacks.pdf)
 * [Format String and Double-Free Attacks](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Format%20String%20and%20Double-Free%20Attacks.pdf)
 * [Les failles Format String](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/FR%20-%20Les%20failles%20Format%20String.pdf)
+
+## Counter moves
+
+The format bug becomes an arbitrary write via %n. Guarding or disabling %n and fixing the call site close it. Seen from the other side, this sits in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

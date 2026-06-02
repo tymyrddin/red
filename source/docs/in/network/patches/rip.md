@@ -73,3 +73,6 @@
 * RIP’s lack of encryption (in RIPv1) and weak authentication (in RIPv2) makes it vulnerable.
 * Many attacks rely on trust assumptions in RIP’s distance-vector nature.
 
+## Counter moves
+
+Routing Information Protocol (RIP) is what this page works through. Patching the exposed service and segmenting it are the levers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

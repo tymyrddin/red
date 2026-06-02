@@ -91,3 +91,7 @@ An unwitting insider is simpler in this respect: they do not know enough to disc
 anything meaningful. The risk is the audit trail their actions leave, and the
 possibility that incident response will eventually reconstruct what happened and trace
 it back to the instruction the insider received.
+
+## Counter moves
+
+Insider facilitation is the variant in play. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defender's view is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

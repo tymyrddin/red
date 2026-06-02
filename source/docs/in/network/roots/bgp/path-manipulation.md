@@ -122,3 +122,7 @@ IPv4 path manipulation involves altering the Border Gateway Protocol (BGP) path 
 -   Slow Convergence: BGP's slow convergence allows malicious paths to persist
 -   Implementation Variability: Different vendor implementations handle attributes inconsistently
 -   Limited Validation: Many networks lack comprehensive path validation mechanisms
+
+## Counter moves
+
+IPv4 path manipulation is the case here. RPKI origin validation and route monitoring are the levers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

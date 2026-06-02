@@ -231,3 +231,6 @@ The identities of the affected users matter too. If a stored XSS vulnerability i
 * [XSS Filter Evasion Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html)
 * [Portswigger XSS cheatsheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet/)
 
+## Counter moves
+
+Cross-site scripting (XSS) is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

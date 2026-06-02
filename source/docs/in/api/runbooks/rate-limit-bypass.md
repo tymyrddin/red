@@ -139,3 +139,7 @@ a six-digit OTP within a few hours.
 ## Playbooks
 
 - [REST API attack chain](../playbooks/rest-api.md)
+
+## Counter moves
+
+Runbook: Rate limit testing and bypass is the variant in play. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defensive counterpart is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

@@ -109,3 +109,7 @@ int main(int argc, char **argv)
 * [Stack Bug - Exploitation avancee de buffer overflow](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/FR%20-%20Stack%20Bug%20-%20Exploitation%20avancee%20de%20buffer%20overflow.pdf)
 * [Stack Bug - Stack Overflow](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Stack%20Bug%20-%20Stack%20Overflow.pdf)
 * [Exploiting Stack Buffer Overflows in the Linux x86 Kernel](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Exploiting%20Stack%20Buffer%20Overflows%20in%20the%20Linux%20x86%20Kernel.pdf)
+
+## Counter moves
+
+The overflow is tightened against a more careful target. Full RELRO and canaries are the matching defences. Seen from the other side, this sits in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

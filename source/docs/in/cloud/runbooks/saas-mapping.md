@@ -165,3 +165,7 @@ of public-facing content.
 ## Playbooks
 
 - [Cloud initial access](../playbooks/cloud-entry.md)
+
+## Counter moves
+
+Runbook: SaaS integration mapping is the case here. Least-privilege IAM, full audit logging, and configuration baselines are what hold. The defensive counterpart is in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

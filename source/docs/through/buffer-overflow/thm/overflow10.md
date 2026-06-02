@@ -63,3 +63,7 @@ finally:
     s.close()
 
 ```
+
+## Counter moves
+
+These payload scripts assemble the overflow exploitation steps. The platform mitigations are what they are written to overcome. The defensive counterpart is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

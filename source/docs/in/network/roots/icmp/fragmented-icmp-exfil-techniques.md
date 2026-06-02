@@ -107,3 +107,7 @@ maintaining covert communication channels.
 -   Protocol compliance: Fragmented traffic appears legitimate and follows RFC standards
 -   Monitoring gaps: Fragment-based detection often has high false positive rates
 -   Network diversity: Different networks handle fragmentation differently, creating exploitation opportunities
+
+## Counter moves
+
+Fragmented ICMP exfiltration techniques is the variant in play. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

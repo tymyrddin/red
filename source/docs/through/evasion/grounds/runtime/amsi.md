@@ -82,3 +82,7 @@ var scriptExtent = scriptBlockAst.Extent;
 * [cobbr/InsecurePowerShell](https://github.com/cobbr/InsecurePowerShell)
 * [Removed security features in PowerShell](https://github.com/PowerShell/PowerShell/compare/master...cobbr:master)
 * [cobbr/PSAmsi](https://github.com/cobbr/PSAmsi)
+
+## Counter moves
+
+AMSI lets interpreters submit content for scanning before it runs, which is why attackers target it. Detecting tamper attempts on AMSI is itself high-signal. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

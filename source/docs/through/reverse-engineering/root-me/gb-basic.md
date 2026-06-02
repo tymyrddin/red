@@ -10,4 +10,8 @@ There is no way around reading at least part of the manual in the resources, and
 
 ## Resources
 
-* [Game Boy CPU Manual](https://repository.root-me.org/Reverse%20Engineering/GameBoy/EN%20-%20Game%20Boy%20CPU%20Manual.pdf) 
+* [Game Boy CPU Manual](https://repository.root-me.org/Reverse%20Engineering/GameBoy/EN%20-%20Game%20Boy%20CPU%20Manual.pdf)
+
+## Counter moves
+
+A Game Boy crackme reverses an unusual architecture. Obscurity through platform is thin protection. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

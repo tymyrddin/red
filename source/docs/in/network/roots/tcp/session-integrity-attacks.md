@@ -115,3 +115,7 @@ Session integrity attacks target the cryptographic and protocol mechanisms that 
 -   Performance trade-offs: Security measures often conflict with performance requirements, leading to compromises
 -   Legacy system support: Backward compatibility requirements force support for weaker security mechanisms
 -   Human factors: Poor key choice, weak passwords, and configuration errors undermine cryptographic security
+
+## Counter moves
+
+Session integrity attacks is the case here. Stateful filtering and anomaly detection on the handshake are the answer. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

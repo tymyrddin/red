@@ -132,3 +132,7 @@ hashcat -m 1000 -a 3 hashes.txt ?a?a?a?a?a?a?a?a      # NT, 8-char brute force
 Rule-based attacks against known password patterns significantly outperform pure brute
 force at realistic keyspace sizes. Hashcat's built-in rules (best64.rule, dive.rule) and
 custom rules derived from organisation-specific password policies are standard augmentation.
+
+## Counter moves
+
+Automated tools make short work of textbook crypto mistakes. Modern primitives, used correctly, are what they cannot crack. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

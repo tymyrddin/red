@@ -90,3 +90,7 @@ corresponding offensive technique.
 
 - [Runbook: AiTM phishing with Evilginx2](../runbooks/aitm-phishing.md) — covers the adversary-in-the-middle proxy approach end to end
 - [Runbook: MFA push fatigue](../runbooks/mfa-fatigue.md) — covers push bombing with vishing support
+
+## Counter moves
+
+MFA bypass is the variant in play. Protected credential stores, no reuse, and MFA that survives a stolen password are the levers. The defender's view is in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

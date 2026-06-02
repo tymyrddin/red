@@ -129,3 +129,7 @@ openpuff.exe -hide -carrier video.mp4 -payload payload.bin -p1 realpass -p2 deco
 For most red team engagements, image-based or DNS-based channels offer the best balance.
 LLM and timing channels are high-complexity for the bandwidth they provide; they make sense
 where the delivery medium is text-only or where every other channel is monitored.
+
+## Counter moves
+
+Beyond images, channels open in timing, protocol fields, and ordinary documents. Baselining which hosts use which channels at all is the durable counter. Both defensive views apply, in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/) and [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

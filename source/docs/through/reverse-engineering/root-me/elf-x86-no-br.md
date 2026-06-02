@@ -6,3 +6,6 @@
 
 1. Use [angr](https://angr.io/)
 
+## Counter moves
+
+Anti-breakpoint tricks resist dynamic analysis. They slow a debugger, not a determined analyst. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

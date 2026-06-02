@@ -35,3 +35,7 @@ Process injection places shellcode into an already-running legitimate process. C
 Modern EDR's behavioural detection looks for sequences of suspicious calls, not individual calls in isolation. Throttling execution, sleeping between operations, and mimicking the timing patterns of legitimate processes reduces the density of suspicious signals in the telemetry stream.
 
 Operating during business hours, from processes and user contexts consistent with the user's normal behaviour, and against targets that the user would legitimately access, all contribute to activity that passes the EDR's baseline comparison. Detection at this level becomes a question of whether the behaviour feels wrong in context rather than whether it matches a known-bad pattern.
+
+## Counter moves
+
+EDR evasion is the case here. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. Seen from the other side, this sits in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

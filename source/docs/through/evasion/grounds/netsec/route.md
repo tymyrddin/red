@@ -37,3 +37,7 @@ proxy tools are Proxy Switcher, CyberGhost VPN, Tor, CCProxy, Hotspot Shield, et
 ## Resources
 
 * [Penetration testing: TOR, VPN or proxy](https://resources.infosecinstitute.com/topic/penetration-testing-tor-vpn-or-proxy/)
+
+## Counter moves
+
+Manipulating the route steers traffic around a sensor entirely. Symmetric inspection points and flow visibility across paths close the gap. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

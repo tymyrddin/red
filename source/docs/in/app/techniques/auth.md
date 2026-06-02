@@ -92,3 +92,7 @@ enforcement, or dynamic client registration available without restriction.
 ## Runbooks
 
 - [Authentication and session testing](../runbooks/auth-testing.md)
+
+## Counter moves
+
+Authentication vulnerabilities is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

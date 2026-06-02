@@ -354,3 +354,6 @@ reverse shell.
 * [justinsteven/dostackbufferoverflowgood](https://github.com/justinsteven/dostackbufferoverflowgood)
 * [tib3rius/pentest-cheatsheets/exploits/buffer-overflows.rst](https://github.com/Tib3rius/Pentest-Cheatsheets/blob/master/exploits/buffer-overflows.rst)
 
+## Counter moves
+
+Driving the debugger maps the overflow and finds the offsets. The defensive mirror is building with the mitigations that make those offsets useless. Defenders' notes on this are under [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

@@ -118,3 +118,7 @@ ICMPv6 Router Advertisement spoofing represents a critical attack vector in IPv6
 -   Monitoring gaps: Many networks lack adequate RA guard protection
 -   Configuration complexity: Proper RA protection requires specific switch configuration
 -   Protocol flexibility: ICMPv6's extensible options provide multiple attack vectors
+
+## Counter moves
+
+ICMPv6 router advertisement spoofing is the case here. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

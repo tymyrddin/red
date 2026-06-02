@@ -14,4 +14,8 @@ ltrace ./crackme password
 
 * [The GNU binary utils](https://repository.root-me.org/Administration/Unix/Linux/EN%20-%20The%20GNU%20binary%20utils.pdf)
 * [Executable and Linkable Format ELF](https://repository.root-me.org/Reverse%20Engineering/x86/Unix/EN%20-%20Executable%20and%20Linkable%20Format%20ELF.pdf)
-* [Reverse engineering Linux ELF binaries on the x86 platform](https://repository.root-me.org/Reverse%20Engineering/x86/Unix/EN%20-%20Reverse%20engineering%20Linux%20ELF%20binaries%20on%20the%20x86%20platform.pdf) 
+* [Reverse engineering Linux ELF binaries on the x86 platform](https://repository.root-me.org/Reverse%20Engineering/x86/Unix/EN%20-%20Reverse%20engineering%20Linux%20ELF%20binaries%20on%20the%20x86%20platform.pdf)
+
+## Counter moves
+
+Fake instructions try to derail the disassembler. Modern tooling defeats simple anti-disassembly, so it only buys minutes. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

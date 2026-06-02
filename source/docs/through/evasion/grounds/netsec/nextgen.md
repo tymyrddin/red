@@ -50,3 +50,7 @@ does non-compliance cost? And in case of a breach, dents in reputation?
 * [Gartner: Next-Generation IPS Technology Disrupts the IPS Market (in 2013)](https://www.gartner.com/en/documents/2390317)
 * [Know When to Have a Dedicated NGIPS vs. NGFW](https://blogs.cisco.com/security/know-when-to-have-a-dedicated-ngips-vs-ngfw)
 * [Building the Next Generation of Security and Privacy Professionals (in 2022)](https://blog.isc2.org/isc2_blog/2022/11/building-the-next-generation-of-security-and-privacy-professionals.html)
+
+## Counter moves
+
+Next-generation controls inspect deeper, so evasion moves toward looking sanctioned. Decryption and behavioural analysis are where it is met. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

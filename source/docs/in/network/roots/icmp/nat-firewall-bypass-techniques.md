@@ -121,3 +121,7 @@ persistent access.
 -   Implementation inconsistencies: Different devices handle ICMP differently, creating bypass opportunities
 -   Performance considerations: Deep ICMP inspection can be computationally expensive
 -   Legacy rule sets: Many firewall configurations have overly permissive ICMP rules
+
+## Counter moves
+
+NAT/Firewall bypass techniques is what this page works through. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

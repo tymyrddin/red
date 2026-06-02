@@ -59,3 +59,7 @@ BGP was designed for a trust environment of co-operating ISPs. Sessions often ru
 - [Rootways: BGP attack tree](../bgp/tree.md)
 - [BGP session manipulation](bgp-session-manipulation.md)
 - [Router TCP stack exploitation](tcp-stack-on-bgp-router.md)
+
+## Counter moves
+
+Man-in-the-middle BGP sessions is what this page works through. Stateful filtering and anomaly detection on the handshake are the answer. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

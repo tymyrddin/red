@@ -151,3 +151,7 @@ For each finding, capture:
 - [Server-side injection](../runbooks/injection.md)
 - [Client-side attacks](../runbooks/client-side.md)
 - [HTTP request smuggling](../runbooks/desync.md)
+
+## Counter moves
+
+Playbook: Web application attack chain is the case here. The durable answers are server-side validation, authorisation, and dependency hygiene. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

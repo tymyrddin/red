@@ -131,3 +131,6 @@ int main(int argc, char* argv[])
 
 * [Phrack - Smashing C++ vptrs in vtables](https://www.root-me.org/en/Challenges/App-System/ELF-x86-Stack-buffer-overflow-C-vtables)
 
+## Counter moves
+
+Overflowing a C++ object lets a corrupted vtable pointer hijack a virtual call. VTable verification and CFG are the counters. Defenders' notes on this are under [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

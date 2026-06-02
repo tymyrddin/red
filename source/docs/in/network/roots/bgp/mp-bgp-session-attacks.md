@@ -186,3 +186,7 @@ Multiprotocol Border Gateway Protocol (MP-BGP) extends traditional BGP to suppor
 -   Vendor inconsistencies: Different vendors implement MP-BGP features differently, leading to security gaps
 -   Monitoring challenges: MP-BGP's additional attributes make monitoring and detection more complex than standard BGP
 -   Skill gap: Many network engineers have limited experience with MP-BGP's advanced features, leading to misconfigurations
+
+## Counter moves
+
+MP-BGP session attacks is the variant in play. RPKI origin validation and route monitoring are the levers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

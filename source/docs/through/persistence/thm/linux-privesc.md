@@ -594,3 +594,7 @@ Restore the original `/usr/bin/passwd` file and exit the root shell before conti
 
     mv /tmp/bak /usr/bin/passwd
     exit
+
+## Counter moves
+
+This room tours Linux escalation paths from one foothold. Least privilege and configuration auditing address them as a class. The defender's view is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

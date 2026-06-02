@@ -47,3 +47,7 @@ something IT might have configured on purpose.
 
 Red team persistence is most effective when layered: combining identity, configuration,
 and endpoint mechanisms so that removing one layer does not end the operation.
+
+## Counter moves
+
+Persistence keeps moving off-host toward identity and cloud, where a reimage changes nothing. Watching for unexpected credentials and grants is the constant. The defender's view is in the blue notes on [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

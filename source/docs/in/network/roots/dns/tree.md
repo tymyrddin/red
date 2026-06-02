@@ -548,3 +548,6 @@ This attack tree outlines the methodologies for compromising DNS integrity, from
   </tbody>
 </table>
 
+## Counter moves
+
+Overview attacks on DNS is the variant in play. DNSSEC, resolver hardening, and query monitoring are the counters. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -9,3 +9,7 @@ Best is to start with a basic shell, move onto egg hunters, reverse TCP shellcod
 ## Resources
 
 * [Linux kernel map](https://makelinux.github.io/kernel/map/)
+
+## Counter moves
+
+Linux shellcode turns a memory bug into execution. The platform mitigations, NX, ASLR, and the stack protector, are what blunt the jump. Seen from the other side, this sits in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

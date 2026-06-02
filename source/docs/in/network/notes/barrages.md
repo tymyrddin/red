@@ -36,3 +36,7 @@ gatttool -b <device-MAC> --interactive
 ```
 
 The practical value of BLE reconnaissance during an engagement depends on what the target deploys. A building with BLE-based access control, medical facility with connected monitoring equipment, or industrial site with BLE sensor networks each presents different attack paths from the same radio proximity.
+
+## Counter moves
+
+Bluetooth and short-range radio is what this page works through. Segmentation, egress filtering, and flow baselining are the durable answers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

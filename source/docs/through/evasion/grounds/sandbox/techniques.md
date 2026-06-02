@@ -158,3 +158,7 @@ properly. Once you have entered the values, compile the code for a 64-bit releas
 * [Threading based Sleep Evasion](https://www.joesecurity.org/blog/660946897093663167)
 * [What Is My IP Address? - ifconfig.me](https://ifconfig.me/)
 * [APNIC RDAP API](https://rdap.apnic.net/ip/1.1.1.1)
+
+## Counter moves
+
+Common checks for timing, user activity, and artefacts tell a sandbox from a target. Removing the artefacts and simulating real use blunt them. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

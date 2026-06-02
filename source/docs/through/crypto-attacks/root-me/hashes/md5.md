@@ -10,3 +10,6 @@ By the mid-1990s, weaknesses were revealed in `MD5`'s compression functions that
 
 Use the [crackstation](https://crackstation.net/).
 
+## Counter moves
+
+MD5 password hashes crack quickly on modern hardware. A slow, salted KDF is the replacement. The defensive counterpart is in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

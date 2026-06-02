@@ -101,3 +101,7 @@ external tenant, which blend into the noise of normal B2B collaboration traffic.
 ## Runbooks
 
 - [Runbook: OAuth consent phishing](../runbooks/consent-grant.md)
+
+## Counter moves
+
+Consent phishing and OAuth abuse is what this page works through. Protected credential stores, no reuse, and MFA that survives a stolen password are the levers. The defensive counterpart is in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

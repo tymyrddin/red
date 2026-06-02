@@ -25,3 +25,7 @@ The `ls` command is not using an absolute path.
 
 * [Dangers of SUID Shell Scripts](https://repository.root-me.org/Administration/Unix/EN%20-%20Dangers%20of%20SUID%20Shell%20Scripts.pdf)
 * [SUID Privileged Programs](https://repository.root-me.org/Administration/Unix/EN%20-%20SUID%20Privileged%20Programs.pdf)
+
+## Counter moves
+
+This challenge abuses unsanitised input reaching a shell. Input validation and avoiding shell interpolation are the defensive answers. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

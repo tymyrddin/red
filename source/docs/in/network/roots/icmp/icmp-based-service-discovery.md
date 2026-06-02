@@ -121,3 +121,7 @@ evading detection mechanisms focused on more conventional scanning techniques.
 -   Protocol complexity: ICMPv6 introduces numerous new features and attack surfaces
 -   Cloud exposure: Cloud environments have unique characteristics that can be fingerprinted
 -   Evasion capabilities: ICMP discovery can bypass traditional port scanning detection
+
+## Counter moves
+
+ICMP-based service discovery is what this page works through. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

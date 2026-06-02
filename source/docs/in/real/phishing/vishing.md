@@ -70,3 +70,7 @@ to someone else. Get what you need and close the call before the situation has t
 ## Runbooks
 
 - [Runbook: MFA push fatigue](../runbooks/mfa-fatigue.md) — the vishing support call is the centrepiece of that playbook
+
+## Counter moves
+
+Vishing and callback phishing is the case here. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Seen from the other side, this sits in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

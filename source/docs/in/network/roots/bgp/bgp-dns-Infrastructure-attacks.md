@@ -181,3 +181,7 @@ BGP and DNS infrastructure attacks represent a critical threat vector that targe
 -   Partial security deployment: Security extensions like DNSSEC and RPKI are not universally deployed, creating security gaps that attackers can exploit.
 -   Monitoring challenges: Detecting sophisticated attacks that span both protocols requires coordinated monitoring that many organisations lack.
 -   Economic factors: The economic impact of successful attacks creates financial incentives for attackers while the cost of comprehensive protection deter defenders.
+
+## Counter moves
+
+BGP and DNS infrastructure attacks is the case here. RPKI origin validation and route monitoring are the levers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

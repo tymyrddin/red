@@ -97,3 +97,7 @@ proxychains nmap -sT -Pn -p 502 10.30.0.0/24 -T2
 ```
 
 Do not install C2 agents or run aggressive tooling on OT hosts. Maintain a minimal footprint: use the jump host as a relay, not as an exploitation platform.
+
+## Counter moves
+
+Runbook: IT to OT pivot is the case here. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. Seen from the other side, this sits in the blue notes on [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

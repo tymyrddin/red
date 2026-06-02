@@ -44,3 +44,7 @@ Common public exploits are Name-resolution exploits; Link-Local Multicast Name R
 ### Local host vulnerabilities
 
 Systems today are a variety of devices, and each type of device comes with its own list of vulnerabilities: Operating system vulnerabilities; Unsecure service and protocol configurations; Privilege escalation vulnerabilities; Default account settings; Sandbox escape possibilities; and Physical device security vulnerabilities.
+
+## Counter moves
+
+Exploiting a vulnerability is the step that converts access into a foothold or higher privilege. Patching and exposure reduction are the blunt, durable answers. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

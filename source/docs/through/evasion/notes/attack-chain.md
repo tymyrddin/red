@@ -109,3 +109,7 @@ that avoid noisy exploitation entirely.
 Detect behaviour drift: not "is this malicious?" but "is this normal for this
 user and this system?" is the right question. Subtle, hard to automate, but far more
 effective than signature matching against a model designed to produce no signatures.
+
+## Counter moves
+
+The low-noise model wins by staying under thresholds rather than being invisible. Cross-system correlation and long retention are what make the pattern surface. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

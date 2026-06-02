@@ -59,7 +59,7 @@ secretsdump.py -sam SAM -system SYSTEM LOCAL
 
 ## Browser credentials and session cookies
 
-```python
+```text
 # SharpChrome extracts Chrome/Edge credentials in memory
 execute-assembly SharpChrome.exe logins
 execute-assembly SharpChrome.exe cookies
@@ -122,3 +122,7 @@ $token = Get-AADIntAccessTokenForMSGraph -PRTToken $prt
 ## Prioritisation
 
 Collect in this order: Kerberos TGTs first (they expire), then cloud tokens (may have short lifetimes), then browser session cookies (session-bound, may expire on browser close), then password hashes (durable, offline crackable). Exfiltrate material promptly; waiting reduces value as sessions expire.
+
+## Counter moves
+
+Runbook: Credential and token harvesting is the case here. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. Defenders' notes on this are under [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

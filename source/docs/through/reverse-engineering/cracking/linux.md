@@ -740,3 +740,7 @@ puts("Correct password!"Correct password!
 )                                                                             = 18
 +++ exited (status 0) +++
 ```
+
+## Counter moves
+
+Linux reversing leans on rich tooling and symbols. Stripping and static linking remove some of the easy footing. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -158,3 +158,7 @@ trigger, and what that amounts to in economic or operational terms.
 - [Application logic errors](../techniques/business.md)
 - [Race conditions](../techniques/race.md)
 - [Broken access control](../techniques/acl.md)
+
+## Counter moves
+
+Runbook: Workflow and business logic testing is the case here. The durable answers are server-side validation, authorisation, and dependency hygiene. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

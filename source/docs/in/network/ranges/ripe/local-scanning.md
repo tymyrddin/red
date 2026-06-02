@@ -133,3 +133,6 @@ Why it works: Low IIDs and sequential addresses make guessing feasible.
 
 *Only scan networks you are authorised to. In the RIPE lab environment, all these methods are safe to practice.*
 
+## Counter moves
+
+Locally Scanning IPv6 Networks is the variant in play. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -151,3 +151,7 @@ TTL (Time to Live) expiry attacks exploit the ICMP Time Exceeded messages genera
 -   Amplification Potential: Small packets can generate larger ICMP responses.
 -   State Exhaustion: Connection tracking resources can be consumed.
 -   Evasion Capabilities: TTL manipulation can bypass some security controls.
+
+## Counter moves
+
+TTL expiry attacks is what this page works through. Anti-spoofing filters such as BCP 38, and segmentation, close it. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

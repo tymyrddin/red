@@ -148,3 +148,7 @@ C:\Users\Administrator\Desktop\Materials\> .\SandboxChecker.exe C:\Users\TryHack
 [+] Sleep Check found!
 Congratulations! Here is your flag: THM{6c1f95ec}
 ```
+
+## Counter moves
+
+A sandbox escape breaks out to the host underneath. Keeping analysis isolation patched and segmented is the containment. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

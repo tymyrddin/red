@@ -42,3 +42,7 @@ Test it before moving to injection classes.
   present when a reverse proxy sits in front of the application.
 - [Adapt based on tech stack](adapted.md) — prioritise SSTI for Jinja2 apps, JWT issues
   for API-heavy applications, and client-side desync for SPA frontends behind proxies.
+
+## Counter moves
+
+Prioritised vulnerability tables is what this page works through. The durable answers are server-side validation, authorisation, and dependency hygiene. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

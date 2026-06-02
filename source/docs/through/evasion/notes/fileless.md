@@ -120,3 +120,7 @@ Fileless execution leaves a different forensic profile, not zero footprint:
 For this reason, fileless execution is often combined with AMSI bypass (to prevent
 script block logging from capturing the payload content) and ETW patching (to prevent
 CLR telemetry from recording the assembly load).
+
+## Counter moves
+
+Fileless execution leaves nothing on disk to scan. Memory scanning and behavioural detection on the in-memory activity are where it shows. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

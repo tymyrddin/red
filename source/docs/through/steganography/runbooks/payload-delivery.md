@@ -137,3 +137,7 @@ aletheia auto-test --image stego.jpg
 
 A detection probability above 0.7 for any model is a signal to change the cover image or
 reduce the payload density.
+
+## Counter moves
+
+Delivering a payload inside an image evades content scanning at the gateway. Re-encoding inbound media and behavioural detection on extraction are the answers. Both defensive views apply, in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/) and [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

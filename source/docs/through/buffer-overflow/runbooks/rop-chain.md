@@ -182,3 +182,7 @@ Common failures:
   SSE instructions in glibc on x64)
 - Bad characters in addresses: choose a different gadget or libc function
 - Gadget not in binary: search loaded libraries, particularly libc and ld
+
+## Counter moves
+
+Building a ROP chain composes gadgets to sidestep NX. CFI and shadow stacks raise the cost of finding usable chains. The defensive counterpart is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

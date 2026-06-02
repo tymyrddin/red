@@ -138,3 +138,7 @@ the attack surface and introduces transition-related vulnerabilities.
 -   Transition mechanisms: Tunnelling and translation technologies introduce additional attack surfaces
 -   Monitoring gaps: Many organisations monitor IPv4 heavily but neglect IPv6 traffic
 -   Protocol differences: Varying features and behaviours create opportunities for exploitation
+
+## Counter moves
+
+Dual-stack attacks (IPv4 and IPv6) is the case here. Anti-spoofing filters such as BCP 38, and segmentation, close it. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

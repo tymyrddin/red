@@ -74,3 +74,6 @@
 * Stuck-in-Active (SIA) attacks are unique to EIGRP due to its DUAL algorithm.
 * Unlike RIP, EIGRP is more complex, so attacks often target protocol logic rather than just spoofing.
 
+## Counter moves
+
+Enhanced Interior Gateway Routing Protocol (EIGRP) is the variant in play. Patching the exposed service and segmenting it are the levers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

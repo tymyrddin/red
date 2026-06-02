@@ -212,3 +212,7 @@ Look specifically for:
 ## Playbooks
 
 - [Cloud initial access](../playbooks/cloud-entry.md)
+
+## Counter moves
+
+Runbook: Object storage discovery is what this page works through. Least-privilege IAM, full audit logging, and configuration baselines are what hold. Seen from the other side, this sits in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

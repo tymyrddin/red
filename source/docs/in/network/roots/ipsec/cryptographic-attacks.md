@@ -152,3 +152,7 @@ IPsec relies heavily on cryptographic algorithms to provide confidentiality, int
 -   Invalid-curve attacks exploit ECDH implementations lacking proper checks, feeding off-curve points and recovering private scalars via oracle behaviour.  
 -   Parameter injection during key exchange can substitute weak or attacker-chosen group parameters, forcing peers to use compromised settings or triggering DoS through malformed elements.  
 -   In general, these attacks succeed due to weak legacy algorithms, protocol shortcuts, predictable or misused cryptography, and insufficient validation of inputs and ephemeral material.
+
+## Counter moves
+
+Cryptographic attacks is the variant in play. Strong IKE configuration and pruning weak proposals are the fix. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

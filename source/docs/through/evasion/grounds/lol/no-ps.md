@@ -100,3 +100,6 @@ The Desktop of the thm user on the target machine now has a flag.txt file.
 
 * [theonlykernel/atomic-red-team](https://github.com/theonlykernel/atomic-red-team/blob/master/atomics/T1023/T1023.md)
 
+## Counter moves
+
+Avoiding PowerShell sidesteps its heavy logging by using other interpreters. Extending logging beyond PowerShell, with behavioural detection, recovers the visibility. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

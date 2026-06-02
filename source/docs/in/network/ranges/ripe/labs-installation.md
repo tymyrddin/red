@@ -85,7 +85,7 @@ vagrant init ripencc/ipv6seclab
 
 The output shows:
 
-```bash
+```text
 A `Vagrantfile` has been placed in this directory. You are now
 ready to `vagrant up` your first virtual environment! Please read
 the comments in the Vagrantfile as well as documentation on
@@ -100,7 +100,7 @@ $ vagrant up
 Wait a few minutes while Vagrant downloads and starts the VM (approximately 2 GB). See the Troubleshooting section 
 below for details if `vagrant up` fails.
 
-```bash
+```text
 Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Box 'ripencc/ipv6seclab' could not be found. Attempting to find and install...
     default: Box Provider: virtualbox
@@ -252,3 +252,6 @@ The VM starts without kernel or VT-x errors.
 
 Whenever you update your kernel, VirtualBox kernel modules often need to be rebuilt with `sudo /sbin/vboxconfig`. This is why having `dkms` installed is useful. It automatically recompiles the modules for new kernels.
 
+## Counter moves
+
+Installing the RIPE labs environment on Linux is the case here. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

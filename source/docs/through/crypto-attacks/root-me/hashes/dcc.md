@@ -55,3 +55,7 @@ ilikethat        (Administrator)
 Use the "--show --format=mscash" options to display all of the cracked passwords reliably
 Session completed.
 ```
+
+## Counter moves
+
+Cached domain credentials crack offline once dumped. Limiting cached logons and strong passwords reduce the take. Defenders' notes on this are under [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

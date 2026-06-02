@@ -40,3 +40,7 @@ Configuration bypass attacks exploit weaknesses in how IPsec policies are define
 -   Legacy support: Backward compatibility requirements maintain vulnerable configurations.
 -   Human error: Complex policy configurations are prone to misconfiguration.
 -   Documentation gaps: Default configurations often lack security-focused documentation.
+
+## Counter moves
+
+Configuration bypass attacks is the case here. Strong IKE configuration and pruning weak proposals are the fix. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

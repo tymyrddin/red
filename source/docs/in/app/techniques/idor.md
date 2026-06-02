@@ -68,3 +68,6 @@ These mitigations hide internal implementation details but do not address the un
 * [OWASP Insecure Direct Object Reference Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html)
 * [HackTricks: IDOR](https://book.hacktricks.xyz/pentesting-web/idor)
 
+## Counter moves
+
+Insecure direct object references (IDOR) is what this page works through. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

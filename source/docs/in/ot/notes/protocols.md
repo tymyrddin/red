@@ -47,3 +47,7 @@ Building automation systems are frequently connected to both the building's netw
 EtherNet/IP carries the Common Industrial Protocol over standard Ethernet and TCP/IP. It is widely used in Allen-Bradley/Rockwell PLCs. Port 44818 (TCP) is used for explicit messaging; port 2222 (UDP) for implicit I/O.
 
 CIP allows reading and writing tags by name (symbolic addressing), which is more expressive than Modbus register addresses. An attacker with access to a Studio 5000 project file (typically found on the engineering workstation) knows the tag names and their meanings, enabling targeted manipulation of specific process values.
+
+## Counter moves
+
+Industrial protocol abuse is what this page works through. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. Seen from the other side, this sits in the blue notes on [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

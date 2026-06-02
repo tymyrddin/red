@@ -209,3 +209,7 @@ And use the conveniently left `.suid_bash` (see [GTFObins bash](https://gtfobins
 
     james@overpass-production:/home/james$ ./.suid_bash -p
     .suid_bash-4.4# cat /root/root.txt
+
+## Counter moves
+
+Overpass 2 walks the aftermath of a compromise, including the persistence left behind. Removing standing access and rebuilding from known-good are the counters. The defensive counterpart is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

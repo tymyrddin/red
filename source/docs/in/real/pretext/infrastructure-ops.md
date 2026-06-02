@@ -104,3 +104,7 @@ verification is most difficult.
 - [Reconnaissance for social engineering](recon.md): general recon techniques that apply to this audience
 - [Building a cover identity](personas.md): constructing the persona for a network engineer or RIR support role
 - [Elicitation](elicitation.md): drawing out configuration details during a conversation
+
+## Counter moves
+
+Social engineering of infrastructure operators is the case here. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Defenders' notes on this are under [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

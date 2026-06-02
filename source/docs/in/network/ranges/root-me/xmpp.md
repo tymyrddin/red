@@ -296,3 +296,7 @@ Cloudflare's 2024 threat report shows:
 
 * 62% of credential stuffing attacks leverage known password patterns
 * XMPP vulnerabilities account for 7% of IoT device compromises
+
+## Counter moves
+
+XMPP - authentication is the case here. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

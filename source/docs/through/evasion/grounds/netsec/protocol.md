@@ -128,3 +128,6 @@ few example options:
 
 * [EV: IDS Evasion via TCP/IP Packet Manipulation](https://github.com/TomAPU/ev)
 
+## Counter moves
+
+Bending protocol behaviour exploits gaps between how a sensor and an endpoint parse it. Strict normalisation before inspection removes the ambiguity. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

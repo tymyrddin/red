@@ -153,3 +153,7 @@ Yum is a free and open-source command-line package-management utility for Linux-
 
 According to [GTFOBins yum](https://gtfobins.github.io/gtfobins/yum/), yum can be used to escalate privileges by 
 crafting an RPM package and installing it on the victim machine. Follow the steps given.
+
+## Counter moves
+
+The Daily Bugle moves from web exploitation to root through a reused database password and a sudo gap. Credential hygiene and minimal sudo rules are the counters. The defender's view is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

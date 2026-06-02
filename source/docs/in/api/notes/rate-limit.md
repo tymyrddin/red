@@ -40,3 +40,7 @@ makes exhaustion impractical even without a rate limit).
 ## Runbooks
 
 - [Rate limit testing and bypass](../runbooks/rate-limit-bypass.md)
+
+## Counter moves
+
+Rate limiting is what this page works through. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defender's view is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

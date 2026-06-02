@@ -23,3 +23,7 @@ The LOLBAS project accepts tool submissions that fit one of the following functi
 ## Resources
 
 * [LOLBAS site](https://lolbas-project.github.io/)
+
+## Counter moves
+
+LOLBAS catalogues the trusted binaries attackers reuse, which is just as useful to defenders. Allow-listing and command-line monitoring of these binaries are the answer. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

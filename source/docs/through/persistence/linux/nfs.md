@@ -96,3 +96,7 @@ The NFS configuration file is `/etc/exports`:
 
 * `no_root_squash`: This option basically gives authority to the root user on the client (us, our attacker host) to access files on the NFS server as root. This is bad, as we can create malicious files on the NFS share as the root user.
 * `no_all_squash`: This is similar to no_root_squash option but applies to non-root users.
+
+## Counter moves
+
+A misconfigured NFS export such as no_root_squash hands root across the share. Root-squashing and tight export options close it. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

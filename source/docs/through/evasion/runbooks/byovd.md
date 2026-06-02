@@ -128,3 +128,7 @@ Note: driver load and unload events (System Event Log 7045, 7036) are written at
 load time. Cleaning up the service removes the ongoing artefact but the event log
 entry for the load persists unless logs are cleared, which is itself a detectable
 action.
+
+## Counter moves
+
+Loading a vulnerable signed driver buys kernel-level operation. Driver blocklists and monitoring new kernel modules are the counters. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

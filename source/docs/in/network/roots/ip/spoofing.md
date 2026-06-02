@@ -153,3 +153,7 @@ IP spoofing involves forging the source IP address of a packet to conceal the at
 -   Source IP spoofing: Networks allowing spoofed packets enable amplification
 -   Asymmetric responses: Small requests can trigger large responses
 -   Global scale: Millions of vulnerable devices exist worldwide
+
+## Counter moves
+
+IP Spoofing & DDoS Amplification is the case here. Anti-spoofing filters such as BCP 38, and segmentation, close it. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

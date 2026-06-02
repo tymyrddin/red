@@ -172,3 +172,7 @@ These privileges allow a process to impersonate other users and act on their beh
 
 * [Privilege Constants (Author)](https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants)
 * [Priv2Admin](https://github.com/gtworek/Priv2Admin)
+
+## Counter moves
+
+Certain Windows privileges such as SeDebug and SeImpersonate are an escalation path on their own. Granting them sparingly and auditing the holders are the levers. The defensive counterpart is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

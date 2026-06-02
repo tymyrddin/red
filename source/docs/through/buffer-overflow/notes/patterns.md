@@ -28,3 +28,7 @@
 0x000011f3 <+74>:   leave
 0x000011f4 <+75>:   ret
 ```
+
+## Counter moves
+
+Understanding the stack and calling convention is the groundwork for overflow exploitation. Stack canaries and shadow stacks are the defences built on the same ground. The defensive counterpart is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

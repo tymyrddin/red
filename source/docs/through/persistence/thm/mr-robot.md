@@ -233,3 +233,6 @@ Now `su`:
     nmap> !cat /root/key-3-of-3.txt
     !cat /root/key-3-of-3.txt
 
+## Counter moves
+
+Mr Robot ends in a SUID-based root after a long foothold phase. Minimising SUID binaries and auditing the set is the lever. Seen from the other side, this sits in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

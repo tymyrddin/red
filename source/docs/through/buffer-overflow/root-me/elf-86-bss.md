@@ -49,3 +49,7 @@ int main(int argc, char **argv)
 
 * [Heap and BSS overflow 1](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Heap%20and%20BSS%20overflow%201.pdf)
 * [Heap and BSS overflow 2](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Heap%20and%20BSS%20overflow%202.pdf)
+
+## Counter moves
+
+Overflowing a BSS buffer corrupts adjacent globals or pointers. Bounds checking and hardened builds are the counters. Seen from the other side, this sits in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

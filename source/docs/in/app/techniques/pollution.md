@@ -113,3 +113,6 @@ It is also a starting point for further attacks: A prototype pollution attack al
 * [Daily Swig:Prototype pollution: The dangerous and underrated vulnerability impacting JavaScript applications](https://portswigger.net/daily-swig/prototype-pollution-the-dangerous-and-underrated-vulnerability-impacting-javascript-applications), August 2020
 * [Portswigger Research articles: Server-side prototype pollution: Black-box detection without the DoS](https://portswigger.net/research/server-side-prototype-pollution), February, 2023
 
+## Counter moves
+
+Prototype pollution is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

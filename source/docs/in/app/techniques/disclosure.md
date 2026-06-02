@@ -68,4 +68,6 @@ If the impact of the information you found isn’t particularly critical, you ca
 
 * [Portswigger: Information disclosure vulnerabilities](https://portswigger.net/web-security/information-disclosure)
 
+## Counter moves
 
+Information disclosure is what this page works through. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

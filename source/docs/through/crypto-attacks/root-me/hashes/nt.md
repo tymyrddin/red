@@ -45,3 +45,7 @@ Crack `b4f79698831d92b61f886438e36c0c52` with  `john` or `hashcat`:
     hashcat -m 1000 -a 3 hash.txt
 
 Or use [hashes.com](https://hashes.com/en/decrypt/hash).
+
+## Counter moves
+
+NT hashes are unsalted, so identical passwords collide and crack fast. Strong passwords and modern protocols reduce the exposure. Defenders' notes on this are under [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

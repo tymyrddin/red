@@ -69,3 +69,7 @@ To lower entropy, replace random identifiers with randomly selected English word
 ## Resources
 
 * [An Empirical Assessment of Endpoint Detection and Response Systems against Advanced Persistent Threats Attack Vectors](https://www.mdpi.com/2624-800X/1/3/21/htm)
+
+## Counter moves
+
+Property-based signatures key on file metadata, which is cheap to forge. Corroborating with behaviour avoids being fooled by cosmetic edits. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

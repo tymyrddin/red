@@ -91,3 +91,7 @@ VRRP (IEEE standard) uses 224.0.0.18 (IP protocol 112). VRRPv3 supports IPv6 and
 * Priority spoofing: setting a higher priority value is the common path to becoming the active or master router.
 * Authentication bypass: weak or absent authentication allows injection of malicious packets without credential recovery.
 * Failover abuse: forcing unnecessary role transitions causes instability and may mask other activity on the segment.
+
+## Counter moves
+
+First-Hop Redundancy Protocols (HSRP/VRRP) is what this page works through. Patching the exposed service and segmenting it are the levers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

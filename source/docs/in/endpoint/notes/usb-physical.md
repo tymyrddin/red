@@ -27,3 +27,7 @@ Secure Boot, when correctly configured, prevents unsigned boot code from executi
 ## Practical relevance
 
 For most red team engagements, USB attacks are tested through simulated dropped device scenarios: USB drives left in car parks or reception areas to test whether users plug in unknown devices, and whether the organisation's endpoint controls detect and block automated execution. The HID injection path bypasses these controls and is relevant for testing whether physical access to a workstation (reception desk, unlocked office, tailgated server room) translates to compromise even without inserting storage media.
+
+## Counter moves
+
+USB and physical attacks is the variant in play. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. Seen from the other side, this sits in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

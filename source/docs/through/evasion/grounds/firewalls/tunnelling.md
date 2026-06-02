@@ -41,3 +41,7 @@ a `GET / HTTP` request :
     # nc TARGET_IP 8008
 
 Flag!
+
+## Counter moves
+
+Port tunnelling smuggles one protocol inside another that is allowed out. Protocol-aware inspection and egress baselining surface the mismatch. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

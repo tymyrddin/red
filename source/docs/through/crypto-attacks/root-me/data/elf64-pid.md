@@ -68,3 +68,7 @@ bash-5.0$ cat .passwd
 ```
 
 Note: The `crypt` module is deprecated (see [PEP 594](https://peps.python.org/pep-0594/#crypt) for details and alternatives). Deprecated since version 3.11, will be removed in version 3.13. The [hashlib](https://docs.python.org/3/library/hashlib.html#module-hashlib) module is a potential replacement for certain use cases.
+
+## Counter moves
+
+Keying encryption on something guessable like a PID makes it reversible. Proper key management is the fix. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

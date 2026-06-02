@@ -66,4 +66,6 @@ it will be found by the right person, can achieve more than a technically sophis
 - [Playbook: Physical access engagement](../playbooks/physical-entry.md) — USB drop placement and QR sticker deployment covered in the on-site phase
 - [Runbook: Quishing campaign](../runbooks/quishing-campaign.md) — physical QR sticker variant
 
+## Counter moves
 
+Physical lures and planted devices is the case here. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defender's view is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

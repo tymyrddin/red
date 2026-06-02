@@ -32,3 +32,7 @@ Attacks that replay valid traffic patterns, use observed function codes, target 
 ## The detection gap
 
 The gap between a valid-looking protocol command and a detectable process deviation can be hours or days in slow processes like water treatment, chemical synthesis, or metallurgical operations. The attacker who understands the process timeline can act and withdraw long before any anomaly is visible. Detection at this level requires integrating process historian data with security monitoring, which most organisations have not done.
+
+## Counter moves
+
+Low-and-slow: OT evasion and blending is the variant in play. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. The defender's view is in the blue notes on [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

@@ -90,3 +90,7 @@ That is enough to choose which runbooks to run next.
 - [Azure AD tenant enumeration](../runbooks/azure-tenant.md)
 - [GCP project and bucket enumeration](../runbooks/gcp.md)
 - [SaaS integration mapping](../runbooks/saas-mapping.md)
+
+## Counter moves
+
+Cloud surface discovery is the variant in play. Least-privilege IAM, full audit logging, and configuration baselines are what hold. Seen from the other side, this sits in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

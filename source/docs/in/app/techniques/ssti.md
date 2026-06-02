@@ -77,4 +77,6 @@ Being able to [execute system commands](rce.md) might allow for [reading sensiti
 * [Portswigger: Server-Side Template Injection](https://portswigger.net/research/server-side-template-injection)
 * [OWASP: Testing for Server Side Template Injection](https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/18-Testing_for_Server-side_Template_Injection)
 
+## Counter moves
 
+Template injection (SSTI) is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

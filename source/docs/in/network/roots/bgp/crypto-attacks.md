@@ -186,3 +186,7 @@ Cryptographic attacks on routing protocols target the security mechanisms design
 -   Protocol complexity: The interaction between multiple cryptographic protocols (BGPsec, RPKI, TCP-AO) creates attack surfaces at integration points and validation boundaries.
 -   Resource constraints: Network devices often have limited computational resources, making them vulnerable to resource exhaustion attacks against cryptographic operations.
 -   Deployment inconsistencies: Partial deployment of cryptographic protections creates edge cases and validation gaps that attackers can exploit.
+
+## Counter moves
+
+Cryptographic attacks on routing protocols is the variant in play. RPKI origin validation and route monitoring are the levers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

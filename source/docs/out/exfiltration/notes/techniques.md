@@ -136,3 +136,7 @@ Remove-Item (Get-PSReadlineOption).HistorySavePath
 # remove Rclone config
 Remove-Item "$env:APPDATA\rclone\rclone.conf" -Force
 ```
+
+## Counter moves
+
+The choice of channel follows whatever egress is already allowed, so no single signature fits. Volume and destination stay the two levers: unusual amounts going somewhere unexpected, or expected places carrying unexpected volume. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

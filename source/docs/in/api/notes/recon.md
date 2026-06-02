@@ -159,3 +159,7 @@ prioritising for active testing.
 - [Schema analysis](../runbooks/schema-analysis.md)
 - [Authentication testing](../runbooks/auth-testing.md)
 - [BOLA and BFLA testing](../runbooks/bola-bfla.md)
+
+## Counter moves
+
+API surface discovery is the case here. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Seen from the other side, this sits in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

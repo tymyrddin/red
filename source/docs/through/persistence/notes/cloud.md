@@ -164,3 +164,7 @@ Cloud provider audit logs (CloudTrail, Azure Monitor, GCP Cloud Audit Logs) reco
 all control plane changes. The persistence actions above will appear in those logs.
 The question is whether anyone is reviewing them, how quickly, and whether the
 naming is suspicious enough to attract attention.
+
+## Counter moves
+
+Control-plane persistence lives in IAM rather than on a host, so wiping servers does not evict it. Reviewing roles, keys, and federation for unexpected grants is the lever. The defensive counterpart is in the blue notes on [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

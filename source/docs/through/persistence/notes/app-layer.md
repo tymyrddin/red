@@ -155,3 +155,7 @@ to the database will not appear in application code reviews.
 
 For persistence that truly resists code review: prefer mechanisms in the data layer
 (triggers, stored procedures, database users) over the application layer.
+
+## Counter moves
+
+Application-layer backdoors hide persistence inside the app's own code or config, surviving an OS reinstall. Code review, integrity monitoring, and deploying from known-good sources are the counters. Seen from the other side, this sits in the blue notes on [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

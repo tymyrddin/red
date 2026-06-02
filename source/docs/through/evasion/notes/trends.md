@@ -35,3 +35,7 @@ at which an analyst will act on it.
 The attacker's goal is plausibility. If it looks like a user, an admin, or a normal
 process, most systems pass it through. The gap between "working" and "compromised"
 is now a question of whether the behaviour is normal enough, not whether it is hidden.
+
+## Counter moves
+
+Evasion keeps drifting toward AI mutation, fileless execution, and trusted channels. The constant defensive answer is behaviour over signature, correlated across systems. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

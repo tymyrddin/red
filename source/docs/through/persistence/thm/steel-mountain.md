@@ -316,3 +316,7 @@ And when the connection is made, get the root flag:
 
     C:\Users\Administrator\Desktop>type root.txt
     type root.txt
+
+## Counter moves
+
+Steel Mountain goes from a vulnerable service to SYSTEM. Patching and service-permission hygiene are the defensive read. Seen from the other side, this sits in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

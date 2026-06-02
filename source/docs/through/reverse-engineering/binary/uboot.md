@@ -193,3 +193,7 @@ strings flash_dump.bin | grep -E "^[a-z]+=.*"
 Of interest: `bootcmd` (the boot command executed on startup), `bootargs` (kernel command
 line parameters, which may reveal the root filesystem type and location), and any hardcoded
 IP addresses, credentials, or TFTP server addresses used for recovery or update.
+
+## Counter moves
+
+uBoot images expose embedded firmware to analysis. Signed images and locked bootloaders are the protections that count. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

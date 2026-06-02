@@ -118,3 +118,7 @@ Lateral movement via ICMP represents a sophisticated attack methodology where th
 -   Network pervasiveness: ICMP is ubiquitous across all network environments
 -   Evasion effectiveness: ICMP-based movement often bypasses traditional security controls
 -   Protocol flexibility: ICMP's simple structure allows for various covert communication methods
+
+## Counter moves
+
+Lateral movement via ICMP is the variant in play. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -69,3 +69,7 @@ ARN applies to every Lambda function in every account.
 - [S3 and object storage discovery](../runbooks/s3-discovery.md)
 - [Azure AD tenant enumeration](../runbooks/azure-tenant.md)
 - [GCP project and bucket enumeration](../runbooks/gcp.md)
+
+## Counter moves
+
+Cloud misconfigurations is the case here. Least-privilege IAM, full audit logging, and configuration baselines are what hold. The defender's view is in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

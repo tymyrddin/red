@@ -59,4 +59,8 @@ have a higher chance of working successfully.
 
 A failed kernel exploit can lead to a system crash. Make sure this potential outcome is acceptable within the scope of the penetration testing engagement before attempting a kernel exploit.
 
-You can transfer the exploit code from your machine to the target system using the `SimpleHTTPServer` Python module and `wget` respectively. 
+You can transfer the exploit code from your machine to the target system using the `SimpleHTTPServer` Python module and `wget` respectively.
+
+## Counter moves
+
+A kernel bug turns local access into full control in a single step. Prompt patching and reducing exposed kernel surface are the levers. The defensive counterpart is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

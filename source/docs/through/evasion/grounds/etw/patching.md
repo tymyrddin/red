@@ -85,3 +85,6 @@ After the opcode is written to memory, view the disassembled function again:
 Once the function is patched in memory, it will always return when `EtwEventWrite` is called. And that means it might 
 not be a good idea as it may restrict more logs than desired for integrity.
 
+## Counter moves
+
+Patching tracing functions blinds a sensor from inside the process. The patch itself is detectable, and telemetry missing where it would normally sit is its own alert. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

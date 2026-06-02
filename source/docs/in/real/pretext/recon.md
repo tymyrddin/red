@@ -68,3 +68,7 @@ that sounds roughly legitimate.
 ## Playbooks
 
 - [Playbook: Physical access engagement](../playbooks/physical-entry.md) — the recon checklist is the first phase of this playbook
+
+## Counter moves
+
+Reconnaissance for social engineering is the case here. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defensive counterpart is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

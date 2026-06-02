@@ -140,3 +140,7 @@ schtasks /run /tn "Microsoft\Windows\UpdateOrchestrator\Refresh"
 ```
 
 Each step individually is unremarkable. The sequence achieves payload execution.
+
+## Counter moves
+
+Executing through a trusted binary keeps anything foreign off disk. Command-line capture and allow-listing of the abused binaries are the levers. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -30,3 +30,7 @@ C:\> C:\flags\GetFlag-msconfig.exe
 ```text
 C:\> C:\flags\GetFlag-azman.exe
 ```
+
+## Counter moves
+
+GUI-based bypasses drive trusted dialogs into elevating attacker actions. Least privilege and alerting on the known launch chains close them. Seen from the other side, this sits in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

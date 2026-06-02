@@ -121,3 +121,7 @@ and NX enabled.
 
 Ghidra's Vulnerable Functions script and community extensions for embedded targets surface
 likely vulnerable call sites as a starting point.
+
+## Counter moves
+
+Firmware reversing extracts and analyses embedded code. Secure boot, encryption at rest, and integrity checks are the protections. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

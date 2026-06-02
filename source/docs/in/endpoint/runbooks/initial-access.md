@@ -82,3 +82,7 @@ tasklist /svc  # enumerate running security tools
 ```
 
 Identify the EDR product, OS build, domain membership, and current user's privilege level. This informs the next phase.
+
+## Counter moves
+
+Runbook: Endpoint initial access is what this page works through. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. Seen from the other side, this sits in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

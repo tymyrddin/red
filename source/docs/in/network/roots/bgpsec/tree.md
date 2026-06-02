@@ -492,3 +492,6 @@ This attack tree explores the methods to undermine BGPsec, targeting its cryptog
   </tbody>
 </table>
 
+## Counter moves
+
+Attack overview BGPsec is what this page works through. RPKI origin validation and route monitoring are the levers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

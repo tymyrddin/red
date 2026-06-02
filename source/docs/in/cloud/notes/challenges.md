@@ -80,3 +80,7 @@ Testing should include whether cost alerts would fire before a data exfiltration
 Second, resource abuse can be used to exhaust budget controls or distract attention during a
 more targeted operation. A noisy cryptomining campaign on one account can consume the incident
 response capacity that should be investigating a quieter data theft in another.
+
+## Counter moves
+
+Why cloud environments are hard to test is the case here. Least-privilege IAM, full audit logging, and configuration baselines are what hold. Seen from the other side, this sits in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

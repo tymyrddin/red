@@ -16,3 +16,7 @@ Use the `FlagLabel.cs` script to convert the `ASCII` value of the `SomethingNotI
 
 * [dotPeek](https://www.jetbrains.com/decompiler/download/#section=web-installer)
 * [Godot Docs: C# basics](https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basics.html)
+
+## Counter moves
+
+Godot Mono ships .NET assemblies that decompile cleanly. Obfuscation slows it; server authority removes it. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

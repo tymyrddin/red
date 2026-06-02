@@ -58,3 +58,7 @@ With this connection to the jump host over the `dns0` network, we can access res
 Get the flag:
 
     thm@attacker:~$ curl --socks5 127.0.0.1:1080 http://192.168.0.100/test.php
+
+## Counter moves
+
+A persistent DNS tunnel trades capacity for stealth, leaning on TXT records and steady low-volume queries. NXDOMAIN spikes, TXT-record volume, and beacon-like timing are the tells on resolver logs. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

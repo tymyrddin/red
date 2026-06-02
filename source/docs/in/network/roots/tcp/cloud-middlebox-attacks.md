@@ -107,3 +107,7 @@ Cloud and middlebox-specific attacks target the unique architectures and functio
 -   Resource sharing: Multi-tenant environments create opportunities for cross-customer attacks
 -   Configuration complexity: Complex configuration requirements lead to misconfigurations and security gaps
 -   Rapid deployment cycles: Fast deployment of new features may bypass security review processes
+
+## Counter moves
+
+Cloud/middlebox-specific attacks is the variant in play. Stateful filtering and anomaly detection on the handshake are the answer. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

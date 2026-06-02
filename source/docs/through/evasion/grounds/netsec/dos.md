@@ -15,3 +15,7 @@ the communication channel with the logging server or exceed its disk writing cap
 
 It is also worth noting that the target can be the IDS operator. By causing a vast number of false positives, you 
 can try to cause "operator fatigue". Erm. That is ruthless. APT attackers are that, ruthless.
+
+## Counter moves
+
+A burst of noise can blind or exhaust a sensor while the real action passes. Rate-aware detection and inspection that fails closed are the counters. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

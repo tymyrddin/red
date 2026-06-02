@@ -176,3 +176,7 @@ achieved. This is engagement data, not failure.
 - Kevin Mitnick, "The Art of Intrusion" (Wiley, 2005)
 - Christopher Hadnagy, "Social Engineering: The Science of Human Hacking", 2nd ed. (Wiley, 2018)
 - Philip Houston et al., "Spy the Lie" (St. Martin's Press, 2012)
+
+## Counter moves
+
+Playbook: Physical access engagement is the variant in play. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Seen from the other side, this sits in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

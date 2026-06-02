@@ -160,7 +160,7 @@ ans.summary()
 To capture packets in Scapy, use the `sniff()` function. You need to pass the interface where you want to capture 
 packets and define a filtering rule if you do not want to capture all of the packets arriving on that interface.
 
-```python
+```text
 >>> pkts=sniff(iface="eth0",lfilter = lambda x: x.haslayer(IPv6))
 ^C
 ```
@@ -184,3 +184,7 @@ Scapy does not validate whether fields are "legal". If you want to set insane va
 ## More
 
 [Scapy documentation](https://scapy.readthedocs.io/en/latest/)
+
+## Counter moves
+
+Using Scapy in RIPE labs is what this page works through. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

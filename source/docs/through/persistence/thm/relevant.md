@@ -409,3 +409,7 @@ Run:
 Root flag:
 
     PS C:\users\administrator\desktop> cat root.txt
+
+## Counter moves
+
+Relevant moves from an exposed share to SYSTEM via a dangerous privilege. Share hardening and sparing privilege grants close it. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

@@ -98,3 +98,7 @@ faster than classical differential analysis.
 
 For side-channel work against hardware targets, use the ChipWhisperer ecosystem and apply
 deep learning trace analysis to reduce measurement requirements.
+
+## Counter moves
+
+AI-assisted cryptanalysis speeds the search for weaknesses in flawed schemes. Authenticated encryption from vetted libraries leaves little for it to find. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

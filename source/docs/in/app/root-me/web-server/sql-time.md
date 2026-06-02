@@ -55,3 +55,7 @@ sqlmap -r members.txt --risk=3 --level=1 --batch --dbs -D public --dump
 
 * [Time based blind SQL Injection using heavy queries](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Time%20based%20blind%20SQL%20Injection%20using%20heavy%20queries.pdf)
 * [SQLmap Cheatsheet and Examples](https://abrictosecurity.com/sqlmap-cheatsheet-and-examples/)
+
+## Counter moves
+
+SQL injection: time-based is the variant in play. Server-side validation and least privilege are what these reduce to. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -10,3 +10,7 @@ Compiler : GCC 4.3; Architecture: intel (x86) 32Bits
 2. Go to `main()`.
 3. Visual Mode
 4. In function `0x8048da3` find address to look at.
+
+## Counter moves
+
+Randomised behaviour complicates a static read. Determinism returns under dynamic analysis, so it is a speed bump. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

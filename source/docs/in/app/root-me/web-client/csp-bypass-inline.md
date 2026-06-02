@@ -39,3 +39,7 @@ Upgrade-Insecure-Requests: 1
 ```
 
 I'll come back to this later.
+
+## Counter moves
+
+CSP bypass inline is the variant in play. A client-side finding still needs a server-side control behind it. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

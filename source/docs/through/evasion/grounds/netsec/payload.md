@@ -112,3 +112,6 @@ process it properly.
 
 * [section 2.4 in RFC 3986 (URL encoding: When to Encode or Decode)](https://datatracker.ietf.org/doc/html/rfc3986#section-2.4)
 
+## Counter moves
+
+Reshaping the payload defeats content signatures while the intent stays the same. Behavioural detection and protocol normalisation are the durable answers. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

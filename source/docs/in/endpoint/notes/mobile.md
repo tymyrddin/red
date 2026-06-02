@@ -33,3 +33,7 @@ Push notification fatigue exploits multi-factor authentication implementations t
 ## Red team implications for mobile
 
 Testing mobile security realistically means simulating delivery through the channels the user actually uses: SMS, WhatsApp, email links, and app store lookalikes. The objective is usually not to replicate a zero-click chain (which requires expensive vulnerabilities) but to evaluate whether the organisation's users would install a malicious profile or app, whether MDM controls would detect and remediate a compromise, and whether the mobile SSO token that results could pivot to corporate cloud resources.
+
+## Counter moves
+
+Mobile exploitation is what this page works through. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. Defenders' notes on this are under [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

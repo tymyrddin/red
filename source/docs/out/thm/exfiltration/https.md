@@ -57,4 +57,10 @@ Restore the data:
 ## HTTPS communications
 
 One of the benefits of HTTPS is encrypting the transmitted data using SSL keys stored on a server. 
-Apply the same technique as used for HTTP on a web server with SSL enabled, all transmitted data will be encrypted.  
+Apply the same technique as used for HTTP on a web server with SSL enabled, all transmitted data will be encrypted.
+
+## Counter moves
+
+Plain HTTP exfiltration is the easy case for inspection: proxy logging and DLP on outbound request bodies still see 
+the payload. Destination reputation and upload-volume anomalies add to it. The defender's view is in the blue notes 
+on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

@@ -118,3 +118,7 @@ ICMP echo sweeping, commonly known as ping sweeping, represents a fundamental ne
 -   Protocol flexibility: ICMP supports various message types for different scanning approaches
 -   Network pervasiveness: ICMP traffic is common and blends with legitimate network operations
 -   Resource efficiency: ICMP scanning requires minimal bandwidth compared to TCP/UDP methods
+
+## Counter moves
+
+ICMP Echo sweeping (Ping sweep) is what this page works through. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

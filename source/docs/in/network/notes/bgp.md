@@ -70,3 +70,7 @@ A router evaluates multiple paths to the same prefix and selects the best one in
 - Well-Known Communities: `no-export` (do not leave this AS), `no-advertise` (do not advertise to any peer).
 - Session States: `Idle` → `Connect` → `Active` → `OpenSent` → `OpenConfirm` → `Established`.
 - Keepalive/Hold Timers: typically 60/180 seconds.
+
+## Counter moves
+
+Border Gateway Protocol (BGP) is the case here. Segmentation, egress filtering, and flow baselining are the durable answers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

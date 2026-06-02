@@ -67,3 +67,7 @@ Router operating systems carry full TCP/IP stack implementations, often derived 
 - [Rootways: BGP attack tree](../bgp/tree.md)
 - [BGP session manipulation](bgp-session-manipulation.md)
 - [Man-in-the-middle BGP sessions](mitm-bgp-sessions.md)
+
+## Counter moves
+
+Router TCP stack exploitation is what this page works through. Stateful filtering and anomaly detection on the handshake are the answer. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

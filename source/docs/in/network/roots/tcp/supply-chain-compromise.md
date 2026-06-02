@@ -106,3 +106,7 @@ Supply chains involve multiple transfer points, each a potential compromise oppo
 
 - [Advanced persistence mechanisms](advanced-persistence-mechanisms.md)
 - [Rootways: BGP attack tree](../bgp/tree.md)
+
+## Counter moves
+
+Supply chain compromise is the variant in play. Stateful filtering and anomaly detection on the handshake are the answer. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

@@ -899,3 +899,7 @@ The `p_offset`, `p_vaddr`, and `p_filesz` fields are analogous to the `sh_offset
 ### p_align
 
 The `p_align` field is analogous to the `sh_addralign` field in a section header. It indicates the required memory alignment (in bytes) for the segment. If `p_align` is not set to 0 or 1, then its value must be a power of 2, and `p_vaddr` must be equal to `p_offset`, modulo `p_align`.
+
+## Counter moves
+
+ELF internals are the map a reverser reads. Stripping symbols and obfuscation slow that read. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

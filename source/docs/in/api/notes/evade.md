@@ -57,3 +57,7 @@ the attack surface.
 
 - [Rate limit testing and bypass](../runbooks/rate-limit-bypass.md)
 - [Injection testing](../runbooks/injection.md)
+
+## Counter moves
+
+Evasion techniques is what this page works through. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Seen from the other side, this sits in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

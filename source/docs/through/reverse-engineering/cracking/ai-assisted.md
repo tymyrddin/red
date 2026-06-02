@@ -54,3 +54,7 @@ for each function and then focusing manual effort on the 10 that look interestin
 manually naming all 200.
 
 Do not use model output as evidence in a report. Verify every claim against the binary.
+
+## Counter moves
+
+AI speeds reversing by summarising and naming code. Obfuscation and anti-analysis still raise the cost on human and machine alike. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

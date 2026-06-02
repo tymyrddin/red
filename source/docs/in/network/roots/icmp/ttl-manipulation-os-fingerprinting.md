@@ -121,3 +121,7 @@ detailed system profiles while potentially evading traditional detection mechani
 -   Information leakage: TTL decay inherently reveals network path information
 -   Monitoring gaps: Many security systems overlook TTL field analysis
 -   Protocol compliance: TTL manipulation uses standard-compliant packets
+
+## Counter moves
+
+TTL manipulation for OS fingerprinting is what this page works through. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

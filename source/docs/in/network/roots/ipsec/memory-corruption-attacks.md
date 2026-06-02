@@ -120,3 +120,7 @@ Memory corruption attacks against IPsec implementations exploit vulnerabilities 
 -   State management complexity: SA state tracking and packet reassembly involve complex memory management.
 -   Kernel integration: Kernel-resident IPsec stacks operate with high privileges, amplifying impact.
 -   Fragmentation handling: IP fragmentation reassembly is notoriously difficult to implement securely.
+
+## Counter moves
+
+Memory corruption attacks is the case here. Strong IKE configuration and pruning weak proposals are the fix. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

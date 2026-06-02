@@ -76,3 +76,6 @@
 * No protocol-level authentication exists (unlike dynamic routing protocols).
 * Attacks often require prior access (physical/remote) to the router.
 
+## Counter moves
+
+Static routing is the case here. Patching the exposed service and segmenting it are the levers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

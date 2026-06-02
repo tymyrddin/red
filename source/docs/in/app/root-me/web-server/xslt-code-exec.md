@@ -39,3 +39,7 @@ Check that `.6ff3200bee785801f420fba826ffcdee` directory too. It contains a `.pa
 ```
 
 ![XSLT](/_static/images/rootme-xslt-code2.png)
+
+## Counter moves
+
+XSLT code execution is the case here. Server-side validation and least privilege are what these reduce to. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

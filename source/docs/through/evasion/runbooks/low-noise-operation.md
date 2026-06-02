@@ -216,3 +216,7 @@ Get-WMIObject -Namespace root\subscription -Class __EventFilter |
 Do not clear event logs. Log clearing is itself a highly visible action that triggers
 immediate investigation. Accept that logs exist; the objective is that no individual
 log entry rises to the level of an actionable alert.
+
+## Counter moves
+
+Operating quietly keeps every action below the alert threshold. Long retention and cross-system correlation defeat patience with patience. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

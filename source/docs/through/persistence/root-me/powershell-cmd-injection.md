@@ -7,3 +7,7 @@
 ```text
 > ;cat .passwd
 ```
+
+## Counter moves
+
+Unsanitised input flowing into PowerShell execution is the opening. Input validation and constrained language mode are the counters. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

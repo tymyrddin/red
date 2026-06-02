@@ -43,3 +43,7 @@ $ python P-Decode.py -f android/data/system/gesture.key
 
 [*] Time                : 0.34 sec
 ```
+
+## Counter moves
+
+The Android lock pattern reduces to a small, crackable space. Stronger secrets and rate-limited unlock attempts are the defence. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

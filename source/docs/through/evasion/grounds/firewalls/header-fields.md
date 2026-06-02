@@ -37,3 +37,7 @@ checksum, while others will not. You can use this to your advantage to discover 
 All you need to do is add the option `--badsum` to the Nmap command.
 
     nmap -sS -Pn --badsum -F MACHINE_IP
+
+## Counter moves
+
+Rewriting header fields aims to slip past rules keyed on them. Normalising traffic before inspection and alerting on malformed headers are the counters. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

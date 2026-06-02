@@ -135,7 +135,7 @@ client = ModbusTcpClient('127.0.0.1', port=10502)
 client.connect()
 
 # Read holding registers
-result = client.read_holding_registers(address=0, count=10, slave=1)
+result = client.read_holding_registers(address=0, count=10, slave=1)  # 'slave' on pymodbus 3.x (was 'unit' on 2.x)
 print(result.registers)
 
 client.close()

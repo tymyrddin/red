@@ -157,3 +157,7 @@ for ip, ports in results:
 | Tool-using agent | Agent can take actions without user confirmation; no rate limiting on tool calls |
 | Automated lateral movement | Speed of automated scanning exceeds detection latency of current tooling |
 | Automated collection | Credential reuse across multiple hosts not detected; no alert on first-time SSH from unusual source |
+
+## Counter moves
+
+Automation compresses the whole chain into hours, leaving far less dwell time to react. Behavioural detection on anomalous process and network chains, plus segmentation that bounds autonomous spread, are what slow it down. The defender's view is in the blue notes on [limiting the blast radius](https://blue.tymyrddin.dev/docs/counter/impact/).

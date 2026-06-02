@@ -24,3 +24,7 @@ print(hidden_text)
 ## Resources
 
 * [Godot RE Tools](https://github.com/bruvzg/gdsdecomp)
+
+## Counter moves
+
+Godot bytecode resists casual reading but decompiles. Real secrets belong server-side, not in the client. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

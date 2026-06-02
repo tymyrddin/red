@@ -106,3 +106,7 @@ different binary for each operation, but that binary is static once delivered.
 Runtime polymorphism (mutation during execution) exists in some advanced implants
 but is far harder to implement correctly for compiled code and remains rare outside
 nation-state tooling.
+
+## Counter moves
+
+AI-driven polymorphism mutates the payload faster than signatures can track. Behavioural detection, which targets actions rather than appearance, is the answer. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

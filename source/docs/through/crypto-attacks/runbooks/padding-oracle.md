@@ -168,3 +168,7 @@ python robot-detect.py target.example.com
 ROBOT affects legacy TLS stacks; most modern servers have patched this. It is
 most likely to appear on appliances, embedded TLS stacks, and older Java JSSE
 configurations.
+
+## Counter moves
+
+A padding oracle leaks plaintext a byte at a time from error behaviour. Authenticated encryption removes the oracle entirely. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

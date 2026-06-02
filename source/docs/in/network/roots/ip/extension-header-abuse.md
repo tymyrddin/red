@@ -144,3 +144,7 @@ IPv6 Extension Headers (EHs) provide flexibility and new features but introduce 
 -   Filtering challenges: Many security devices cannot properly inspect complex EH chains
 -   Protocol flexibility: The extensible nature of EHs allows attackers to create novel attack vectors
 -   Limited visibility: Monitoring tools often lack deep EH inspection capabilities
+
+## Counter moves
+
+IPv6 Extension header abuse is the variant in play. Anti-spoofing filters such as BCP 38, and segmentation, close it. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

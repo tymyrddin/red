@@ -106,3 +106,7 @@ tool targeting Windows 10 21H2 may not work on Windows 11 22H2 without updated o
 Noise on load: driver load events (Event ID 7045 in System log, Sysmon Event ID 6)
 are logged. Loading a driver from an unusual path or with an unusual service name
 is a detectable action even if the driver itself is not yet on a blocklist.
+
+## Counter moves
+
+BYOVD loads a signed but vulnerable driver to operate in the kernel. Vulnerable-driver blocklists and monitoring of newly loaded drivers are the counters. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

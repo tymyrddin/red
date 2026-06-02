@@ -121,3 +121,7 @@ completed fully. APTs have been observed using
 [this technique in the wild](https://www.welivesecurity.com/2019/05/29/turla-powershell-usage/).
 
 And flag!
+
+## Counter moves
+
+Static code signatures match known byte patterns, so small mutations slip past. Behavioural and memory-based detection backstop them. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

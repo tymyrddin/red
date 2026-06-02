@@ -130,3 +130,7 @@ crackmapexec smb TARGET_IP -u Administrator -H NTLM_HASH
 
 Do not store credential material on the compromised host longer than necessary.
 Exfiltrate and then delete.
+
+## Counter moves
+
+Harvesting reaches for stored secrets in memory, files, and browser stores. Protected credential stores, no cleartext or reuse, and MFA that survives a captured password are what make the take worthless. The defender's view is in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

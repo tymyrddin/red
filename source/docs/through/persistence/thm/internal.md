@@ -430,3 +430,7 @@ Go back to the initial SSH connection as aubreanna, and get the root flag:
     $ su root
     Password: 
     # cd /root/
+
+## Counter moves
+
+Internal threads several misconfigurations into domain access. Patching, least privilege, and credential hygiene remove the rungs. Defenders' notes on this are under [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

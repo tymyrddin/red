@@ -13,3 +13,7 @@ loader will then take care of the rest.
 ## Resources
 
 * [MITRE: Dynamic-link library injection](https://attack.mitre.org/techniques/T1055/001/)
+
+## Counter moves
+
+DLL injection runs attacker code inside a trusted process to borrow its reputation. Monitoring for remote thread creation and unusual module loads is the standard catch. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

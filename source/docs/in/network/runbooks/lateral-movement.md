@@ -111,3 +111,7 @@ ssh -D 9051 -p 8022 user@localhost -N
 Record: each host accessed, the credential or technique used, commands executed, data accessed, and the network path taken. Include a diagram or list of the pivot chain from initial foothold to each reached host.
 
 Active Directory and domain trust attack doctrine is in [Active Directory and domain trust attacks](../notes/run-ins.md).
+
+## Counter moves
+
+Runbook: Network lateral movement is the case here. Segmentation, egress filtering, and flow baselining are the durable answers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

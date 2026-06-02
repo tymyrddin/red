@@ -34,3 +34,7 @@ int main(int argc, char *argv[]){
 
 * [Chaine de format - lecture en mémoire](https://www.root-me.org/spip.php?article796)
 * [Format Bugs - Exploiting format string](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Format%20Bugs%20-%20Exploiting%20format%20string.pdf)
+
+## Counter moves
+
+A format string bug starts as an information leak through specifiers like %x. Treating input as data, never format, removes it. The defender's view is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

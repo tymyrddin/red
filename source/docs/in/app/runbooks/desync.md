@@ -147,3 +147,7 @@ coordination to avoid affecting other users during testing.
 ## Techniques
 
 - [HTTP request smuggling](../techniques/smuggling.md)
+
+## Counter moves
+
+Runbook: HTTP request smuggling and desync is what this page works through. The durable answers are server-side validation, authorisation, and dependency hygiene. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

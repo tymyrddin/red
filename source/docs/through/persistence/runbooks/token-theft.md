@@ -156,3 +156,7 @@ if token:
 
 Monitor the application registration's expiry date. Client secrets expire; schedule
 rotation before expiry (or set the maximum allowed lifetime at creation).
+
+## Counter moves
+
+Stolen tokens persist access without a password and survive a reset. Short token lifetimes, binding, and revocation that propagates are the levers. The defensive counterpart is in the blue notes on [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

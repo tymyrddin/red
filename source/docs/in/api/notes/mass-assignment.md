@@ -38,3 +38,7 @@ the API's response objects for the same resource type in a write request for tha
 ## Runbooks
 
 - [REST API attack chain](../playbooks/rest-api.md) — mass assignment is tested in Phase 5
+
+## Counter moves
+
+Mass assignment is the variant in play. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Defenders' notes on this are under [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

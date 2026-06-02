@@ -122,3 +122,7 @@ A business process engagement should answer:
 
 The answers reveal gaps between technical security and financial control
 that most organisations have not mapped.
+
+## Counter moves
+
+These subvert a legitimate business process rather than a system, so technical alerts stay quiet. Segregation of duties, out-of-band confirmation for high-value actions, and transaction monitoring are the brakes. The defender's view is in the blue notes on [limiting the blast radius](https://blue.tymyrddin.dev/docs/counter/impact/).

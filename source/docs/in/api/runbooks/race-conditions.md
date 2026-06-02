@@ -178,3 +178,7 @@ step and produce more orders than units available:
 ## Playbooks
 
 - [Business logic abuse](../playbooks/business-logic-abuse.md)
+
+## Counter moves
+
+Runbook: Race condition testing is the case here. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Seen from the other side, this sits in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

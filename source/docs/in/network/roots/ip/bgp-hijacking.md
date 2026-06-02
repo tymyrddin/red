@@ -65,3 +65,7 @@ IP addresses carry no cryptographic binding to their legitimate holder. The rout
 - [Rootways: BGP attack tree](../bgp/tree.md)
 - [Rootways: BGP prefix hijacking](../bgp/prefix-hijack.md)
 - [Rootways: BGP path manipulation](../bgp/path-manipulation.md)
+
+## Counter moves
+
+BGP hijacking: the IP layer is what this page works through. Anti-spoofing filters such as BCP 38, and segmentation, close it. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

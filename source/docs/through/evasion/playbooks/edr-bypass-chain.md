@@ -177,3 +177,7 @@ BYOVD is not available. Alternative approaches to reduce EDR visibility:
 
 HVCI + Secure Boot + Credential Guard on modern hardware represents a significantly
 harder target and may require reassessing which objectives are achievable.
+
+## Counter moves
+
+This chains several bypasses into a working EDR-evasion path, each link modest on its own. Tamper-resistant telemetry and correlation across the chain are the counters. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

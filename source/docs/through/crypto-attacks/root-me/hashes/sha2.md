@@ -14,3 +14,6 @@ Making the `SHA-1`:
 echo -n 4dM1n | sha1sum | awk '{print $1}'
 ```
 
+## Counter moves
+
+A bare SHA-2 of a password is fast to brute force. A purpose-built KDF such as bcrypt or Argon2 is the right tool. The defender's view is in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

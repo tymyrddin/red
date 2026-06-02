@@ -68,4 +68,8 @@ void FUN_00008470(int param_1,int param_2) {
 ## Resources
 
 * [ARM : architecture & assembleur](https://www.root-me.org/spip.php?article846)
-* [ARM](https://repository.root-me.org/Reverse%20Engineering/ARM/) 
+* [ARM](https://repository.root-me.org/Reverse%20Engineering/ARM/)
+
+## Counter moves
+
+A basic ARM crackme exposes its comparison plainly. Even simple obfuscation would have slowed this down. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

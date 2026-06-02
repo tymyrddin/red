@@ -14,3 +14,7 @@ You also have a stack dump at the end of the function that generated this hash. 
 SHA-3 was not designed to replace SHA-2. It was the result of a contest to design a new hashing algorithm. The actual algorithm was named Keccak designed by Guido Bertoni, Joan Daemen, Michaël Peeters, and Gilles Van Assche. The United States NIST (National Institute of Standards) published FIPS 202 standardising the use of SHA-3.
 
 Unlike SHA-1 and SHA-2 that use a Merkle-Damgard construction, SHA-3 uses a sponge construction, a type of algorithm which uses an internal state and takes input of any size producing a specific sized output. This makes it a good fit for cryptographic hashes which need to take variable length input and produce a fixed-length output.
+
+## Counter moves
+
+SHA-3 is sound as a hash but wrong as a standalone password store. A slow KDF with salt is what belongs there. Seen from the other side, this sits in the blue notes on [harvesting stored secrets](https://blue.tymyrddin.dev/docs/counter/creds/).

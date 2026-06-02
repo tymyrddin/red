@@ -11,3 +11,7 @@ Once traffic flows through a controlled network, the options expand: passive int
 States with influence over domestic ISPs can coerce or co-opt them, making BGP manipulation easier to execute than any equivalent compromise of individual targets. It scales in a way that direct intrusion does not.
 
 Global, fragile, and central to everything.
+
+## Counter moves
+
+BGP as a strategic attack surface is the case here. RPKI origin validation and route monitoring are the levers. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

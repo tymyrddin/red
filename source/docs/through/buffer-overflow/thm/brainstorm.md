@@ -453,3 +453,7 @@ Point exploit at the actual target.
     C:\Windows\system32>type C:\Users\drake\Desktop\root.txt
     type C:\Users\drake\Desktop\root.txt
     flag
+
+## Counter moves
+
+Brainstorm exploits a remote stack overflow in a Windows service. DEP and ASLR are what such an exploit has to defeat. The defender's view is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

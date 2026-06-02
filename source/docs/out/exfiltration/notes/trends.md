@@ -77,3 +77,7 @@ signature matching. The questions are:
 None of these questions can be answered without a baseline. Organisations
 that have not established normal behaviour for users, applications, and
 cloud resources cannot detect deviations from it.
+
+## Counter moves
+
+Exfiltration keeps migrating onto encrypted, trusted channels such as DoH and cloud APIs, which blunts payload inspection. That pushes the signal toward metadata: rate, ratio, and destination. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

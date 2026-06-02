@@ -181,3 +181,7 @@ curl -X POST https://target.com/auth/reset-password \
 - [Authentication vulnerabilities](../techniques/auth.md)
 - [Single sign-on security](../techniques/sso.md)
 - [JWT attacks](../techniques/jwt.md)
+
+## Counter moves
+
+Runbook: Authentication and session testing is what this page works through. The durable answers are server-side validation, authorisation, and dependency hygiene. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

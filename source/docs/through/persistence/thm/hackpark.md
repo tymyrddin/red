@@ -509,3 +509,7 @@ A lot of output. The Services Information section:
 
 The last one indicates a possible DLL hijack. On Exploit-DB: 
 [Splinterware System Scheduler Pro 5.12 - Privilege Escalation](https://www.exploit-db.com/exploits/45072)
+
+## Counter moves
+
+HackPark goes from a brute-forced login to SYSTEM via a writable service. Strong authentication and service-permission hygiene close it. The defensive counterpart is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

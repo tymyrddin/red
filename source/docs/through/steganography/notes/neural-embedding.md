@@ -115,3 +115,7 @@ undetectable embedding in a 512x512 image using current neural methods is roughl
 
 For a 256-bit AES key plus a 256-bit HMAC, that fits comfortably. For a 100KB shellcode
 blob, it does not; use a multi-image scheme or a URL-based two-stage delivery instead.
+
+## Counter moves
+
+Neural embedding hides payloads inside model outputs that look natural. Output anomaly analysis and constraining where generative content may flow are the levers. Both defensive views apply, in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/) and [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

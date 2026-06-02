@@ -230,3 +230,7 @@ Then update PATH and run:
 
     export PATH=~/:$PATH
     ./backup
+
+## Counter moves
+
+These patterns chain small Linux misconfigurations into root. Least privilege and configuration auditing remove most of them at the source. The defender's view is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

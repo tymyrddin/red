@@ -316,3 +316,7 @@ And get flag:
     whoami
     root
     cat /root/root.txt
+
+## Counter moves
+
+Game Zone chains SQL injection to a foothold and then to root. Parameterised queries and least privilege break it at both ends. Seen from the other side, this sits in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

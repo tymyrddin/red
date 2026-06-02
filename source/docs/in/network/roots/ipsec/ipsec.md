@@ -121,3 +121,7 @@ pfs: group20
 | Implementation      | More complex to configure       | Generally easier to deploy     |
 
 Use this reference for designing, implementing, and troubleshooting IPsec VPNs.
+
+## Counter moves
+
+Internet Protocol Security (IPsec) protocol notes is the variant in play. Strong IKE configuration and pruning weak proposals are the fix. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

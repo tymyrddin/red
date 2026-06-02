@@ -154,3 +154,7 @@ An attacker deliberately crafts IP packets that are fragmented in an abnormal or
 -   Legacy Code & Embedded Systems: Many older operating systems and countless IoT devices run on outdated kernels with known, unpatched fragmentation reassembly vulnerabilities.
 -   Performance vs. Security Trade-off: Fully reassembling every packet flow is computationally expensive. Network middleboxes (firewalls, IPS) may skip deep inspection of fragments to maintain throughput, creating a blind spot.
 -   Protocol Complexity: The IP specification allows for fragmentation, and handling all edge cases correctly (e.g., non-zero fragment offsets, inconsistent sizes) is difficult, leading to implementation flaws.
+
+## Counter moves
+
+IP fragmentation (IPv4) is what this page works through. Anti-spoofing filters such as BCP 38, and segmentation, close it. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

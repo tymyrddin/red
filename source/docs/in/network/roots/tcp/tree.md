@@ -196,3 +196,7 @@ TCP is the transport layer on which most internet services depend. The attack su
 | 3.1.4.1 Backdoored router firmware or software images                                  | High                 | High               | Very High  | Compromises firmware or images to introduce backdoors into BGP routers.                             |
 | 3.1.4.2 Compromised network management software                                        | High                 | Medium             | High       | Compromises software used to manage BGP networks for unauthorised access.                           |
 | 3.1.4.3 Pre-installed weak TCP-AO keys in vendor equipment                             | Medium               | Low                | High       | Uses weak default keys installed by vendors to compromise BGP authentication.                       |
+
+## Counter moves
+
+Attack tree (TCP) is the case here. Stateful filtering and anomaly detection on the handshake are the answer. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

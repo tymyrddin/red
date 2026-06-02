@@ -93,3 +93,7 @@ For captured plaintext credentials from captive portal: test each against the ta
 Document: networks surveyed, attack technique used, credentials or access obtained, network segment accessible from the recovered access.
 
 Wireless access doctrine is in [Wireless as an access path](../notes/intrusions.md).
+
+## Counter moves
+
+Runbook: Wireless attacks is the variant in play. Segmentation, egress filtering, and flow baselining are the durable answers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

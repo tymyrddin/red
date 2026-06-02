@@ -92,5 +92,6 @@ For classic RCEs, create a proof of concept that executes a harmless command lik
 * [Portswigger Lab: Remote code execution via web shell upload](https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload)
 * [OWASP Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
 
+## Counter moves
 
-
+Remote code execution (RCE) is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

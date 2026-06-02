@@ -92,3 +92,6 @@ Note: For a 64-bit DLL version, specify it in the msfvenom command and run it fr
 * [Red Canary](https://redcanary.com/)
 * [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about)
 
+## Counter moves
+
+Allow-listing bypasses abuse trusted binaries to run untrusted logic. Tightening rules to publisher and path, and logging the proxy binaries, narrow the room. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

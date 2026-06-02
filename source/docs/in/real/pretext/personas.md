@@ -98,4 +98,6 @@ engagements the former is the relevant threshold.
 
 - [Playbook: Physical access engagement](../playbooks/physical-entry.md) — pretext selection and materials preparation draw directly on persona work
 
+## Counter moves
 
+Building a cover identity is what this page works through. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Seen from the other side, this sits in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

@@ -185,3 +185,7 @@ int main(void)
 ## Resources
 
 * [MITRE: Thread execution hijacking](https://attack.mitre.org/techniques/T1055/003/)
+
+## Counter moves
+
+Thread execution hijacking redirects an existing thread to attacker code without creating a new one. Context-manipulation APIs and anomalous execution flow are the catch. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -129,3 +129,7 @@ tshark -r capture.pcapng \
 
 This only works for sessions using RSA key exchange (no ECDHE). Sessions with ECDHE
 require the session keys, not the server private key.
+
+## Counter moves
+
+A TLS assessment finds downgrade paths and weak suites. Enforcing TLS 1.3 and pruning legacy options close them. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

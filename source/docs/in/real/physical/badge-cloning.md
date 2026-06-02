@@ -58,3 +58,7 @@ may remain valid for months or years, which is relevant when scoping persistence
 ## Runbooks
 
 - [Playbook: Physical access engagement](../playbooks/physical-entry.md) — covers badge cloning equipment and operational placement in the on-site phase
+
+## Counter moves
+
+Badge cloning is the variant in play. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. The defensive counterpart is in the blue notes on [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

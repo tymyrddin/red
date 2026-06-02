@@ -152,3 +152,7 @@ In the worst case scenario, the file's type isn't validated properly, and the se
 * [OWASP:Test Upload of Malicious Files](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/09-Test_Upload_of_Malicious_Files)
 * [OWASP: File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
 * [Weevely](https://www.blackhatethicalhacking.com/tools/weevely/)
+
+## Counter moves
+
+File uploads is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

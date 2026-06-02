@@ -29,3 +29,7 @@ DNS tunnelling encodes data in subdomain queries. A host with a foothold inside 
 ICMP tunnelling and HTTP/HTTPS C2 follow the same logic. The key property they share is that the carrier protocol is generally trusted and permitted, so the security control problem shifts from blocking the protocol to distinguishing legitimate use from tunnelling. For TLS-encrypted C2 over HTTPS, certificate inspection and SNI analysis are the primary detection mechanisms available without breaking the encryption.
 
 The C2 tunnelling runbook covers DNS, ICMP, and HTTPS channels: [Tradecraft: C2 tunnelling](../runbooks/c2-tunneling.md). BGP session-level manipulation against peers is in [Tradecraft: BGP routing](../runbooks/bgp-routing.md).
+
+## Counter moves
+
+Transport layer attacks is what this page works through. Segmentation, egress filtering, and flow baselining are the durable answers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

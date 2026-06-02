@@ -35,3 +35,7 @@ SMB signing and version enumeration identifies hosts susceptible to relay attack
 The goal of internal recon is not just a host list but a map of trust relationships: which hosts authenticate against which domain controllers, which service accounts have elevated privileges, and which network segments can reach which others. That map is what converts a foothold into a path to the objective.
 
 Step-by-step procedures for this work are in [Tradecraft: network reconnaissance](../runbooks/network-recon.md).
+
+## Counter moves
+
+Network surface discovery is the case here. Segmentation, egress filtering, and flow baselining are the durable answers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

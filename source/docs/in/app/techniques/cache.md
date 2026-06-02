@@ -69,3 +69,7 @@ Still, to minimise attackers using the web cache poisoning vehicle, these are so
 * [Portswigger: Bypassing Web Cache Poisoning Countermeasures](https://portswigger.net/research/bypassing-web-cache-poisoning-countermeasures)
 * [Snyk: Cache poisoning in popular open source packages](https://snyk.io/blog/cache-poisoning-in-popular-open-source-packages/)
 * [Cache Poisoning at Scale](https://youst.in/posts/cache-poisoning-at-scale/)
+
+## Counter moves
+
+Web cache poisoning is what this page works through. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

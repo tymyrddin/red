@@ -152,7 +152,6 @@ Before running the payload, set up an `nc` listener on the attack machine:
 
     $ nc -lvp 443
 
+## Counter moves
 
-
-
-
+Encoding and encryption defeat static signatures by hiding the payload until run time. The decryption stub and the decrypted bytes in memory are where behavioural detection picks it back up. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

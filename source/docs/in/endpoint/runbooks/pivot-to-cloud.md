@@ -133,3 +133,7 @@ curl -H "Authorization: token <session-token>" \
 ```
 
 At this point the endpoint can be abandoned. Detection depends on the identity layer, not the device.
+
+## Counter moves
+
+Runbook: Pivot from endpoint to cloud is the case here. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. The defensive counterpart is in the blue notes on [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

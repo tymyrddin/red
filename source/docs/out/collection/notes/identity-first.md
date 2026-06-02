@@ -127,3 +127,7 @@ is accessible.
   forward directly to attacker-controlled infrastructure
 - Tokens stolen from one device work from any device; exfiltrate the token
   and operate from a clean environment rather than the compromised host
+
+## Counter moves
+
+Identity-first collection leans on tokens and session state rather than files, so it slips past anything watching the disk. The catch tends to be on the identity side: impossible-travel and anomalous consent-grant alerting, short token lifetimes, and revocation that actually propagates. The defender's view is in the blue notes on [watching data being gathered](https://blue.tymyrddin.dev/docs/counter/collection/).

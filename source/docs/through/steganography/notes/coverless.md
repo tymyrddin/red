@@ -103,3 +103,7 @@ repeatedly than a full diffusion pipeline.
 For environments where neural tools are not available: LSB with encryption still raises the
 bar significantly over unencrypted embedding, and is harder to act on even when detected
 statistically.
+
+## Counter moves
+
+Coverless methods select or generate carriers rather than modifying them, leaving no embedding artefact. Volume and behavioural anomalies, not pixel statistics, are what remain to catch. Both defensive views apply, in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/) and [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

@@ -134,3 +134,9 @@ tar czf - /tmp/collected/ | openssl enc -aes-256-cbc -pass pass:KEY -out /tmp/st
 
 Use paths and filenames that blend into the environment: `C:\Windows\Temp\`,
 `/tmp/`, and filenames matching legitimate system activity.
+
+## Counter moves
+
+These techniques borrow legitimate tools and standard archive formats, so the tool list rarely gives them away. The
+shape does: staging directories, bulk reads, and archives appearing where none normally sit. The defender's view is in
+the blue notes on [watching data being gathered](https://blue.tymyrddin.dev/docs/counter/collection/).

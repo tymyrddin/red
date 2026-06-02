@@ -72,3 +72,7 @@ to DNS queries. Set a port number using `-g` or `--source-port` options.
 ## Resources
 
 * [OUI Lookup Tool](https://rst.im/oui/00:02:DC)
+
+## Counter moves
+
+Spoofing source MAC, IP, or port aims to impersonate a trusted origin. Anti-spoofing filters and binding identity to more than a header are the counters. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

@@ -21,3 +21,7 @@ Advantages of staged payloads:
 * The final shellcode isn't embedded into the executable. If your payload is captured, the Blue Team will only have access to the stage0 stub and nothing more.
 * The final shellcode is loaded in memory and never touches the disk. This makes it less prone to be detected by AV solutions.
 * You can reuse the same stage0 dropper for many shellcodes, as you can simply replace the final shellcode that gets served to the victim machine.
+
+## Counter moves
+
+Staging keeps the initial dropper small and quiet, but the stager still has to reach out and pull the rest. Egress monitoring and behavioural detection on that fetch are the levers. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

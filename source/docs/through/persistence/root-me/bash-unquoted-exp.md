@@ -11,3 +11,7 @@
 This is the equivalent of `1234 == 0 || "foo"` in other languages, with one irrelevant comparison `OR`'d with the truth value of the string `foo`.
 
 All non-empty strings are considered to be true, so this expression is always true.
+
+## Counter moves
+
+An unquoted expansion lets input become code. Quoting and validating input are the fixes. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

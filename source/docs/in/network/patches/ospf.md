@@ -74,3 +74,6 @@
 * LSA manipulation is a critical attack vector (fake links can reroute traffic).
 * DR election attacks can disrupt local network stability.
 
+## Counter moves
+
+Open Shortest Path First (OSPF) is the variant in play. Patching the exposed service and segmenting it are the levers. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

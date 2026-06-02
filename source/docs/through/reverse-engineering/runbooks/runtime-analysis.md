@@ -181,3 +181,7 @@ CPUID-based VM detection, timing checks using `GetTickCount` or `QueryPerformanc
 Qiling sidesteps most of these checks because it is not running the binary on real hardware.
 The trade-off is that complex binaries with many API dependencies may fail to emulate correctly
 without manual shim work.
+
+## Counter moves
+
+Runtime and memory analysis observes a sample as it executes. The defensive mirror is behavioural detection on those same actions. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

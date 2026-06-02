@@ -22,4 +22,8 @@ puts("\nGood password !!!\n");
 
 * [The GNU binary utils](https://repository.root-me.org/Administration/Unix/Linux/EN%20-%20The%20GNU%20binary%20utils.pdf)
 * [Ptrace - process trace](https://repository.root-me.org/Reverse%20Engineering/x86/Unix/EN%20-%20Ptrace%20-%20process%20trace.pdf)
-* [SSTIC 06 - Playing with ptrace](https://repository.root-me.org/Reverse%20Engineering/x86/Unix/FR%20-%20SSTIC%2006%20-%20Playing%20with%20ptrace.pdf) 
+* [SSTIC 06 - Playing with ptrace](https://repository.root-me.org/Reverse%20Engineering/x86/Unix/FR%20-%20SSTIC%2006%20-%20Playing%20with%20ptrace.pdf)
+
+## Counter moves
+
+A ptrace self-check detects a debugger. It is bypassable, and serves as one layer among several at best. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

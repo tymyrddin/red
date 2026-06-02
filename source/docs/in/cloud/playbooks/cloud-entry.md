@@ -214,3 +214,7 @@ Capture the following for the engagement report:
 - [SaaS integration mapping](../runbooks/saas-mapping.md)
 - [Misconfigurations](../notes/misconfigurations.md)
 - [Account and privilege attacks](../notes/accounts.md)
+
+## Counter moves
+
+Playbook: Cloud initial access is what this page works through. Least-privilege IAM, full audit logging, and configuration baselines are what hold. The defensive counterpart is in the blue notes on [infrastructure you defend but do not own](https://blue.tymyrddin.dev/docs/counter/cloud/).

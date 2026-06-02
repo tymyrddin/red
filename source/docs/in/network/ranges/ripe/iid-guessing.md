@@ -139,3 +139,6 @@ You can also find information in:
 * Avoid low-numbered or sequential IIDs in production networks.
 * Monitor network traffic: Detect repeated scanning attempts.
 
+## Counter moves
+
+Guessing IPv6 Interface IDentifiers (IIDs) is what this page works through. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

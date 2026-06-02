@@ -36,3 +36,7 @@ Open [GraphQL Voyager](https://apis.guru/graphql-voyager/) and click on CHANGE S
 * [righettod/poc-graphql](https://github.com/righettod/poc-graphql)
 * [dolevf/Damn-Vulnerable-GraphQL-Application](https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application)
 * [Looting GraphQL Endpoints for Fun and Profit](https://raz0r.name/articles/looting-graphql-endpoints-for-fun-and-profit/)
+
+## Counter moves
+
+RootMe: GraphQL Introspection is what this page works through. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defensive counterpart is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

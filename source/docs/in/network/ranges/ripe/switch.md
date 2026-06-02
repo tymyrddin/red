@@ -213,3 +213,6 @@ Shows:
 * Safe to run repeatedly. Modules and services are only started/stopped as necessary.
 * No need to touch VirtualBox or virt-manager settings; the script manages the backend cleanly.
 
+## Counter moves
+
+Two hypervisors will walk into a kernel is the case here. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

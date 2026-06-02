@@ -23,3 +23,7 @@ changes means that the resulting executable will still trigger any signature tha
 
 The main use of binders is to fool users into believing they are executing a legitimate executable rather than a 
 malicious payload.
+
+## Counter moves
+
+Binders staple a payload to a clean carrier so the file looks benign on inspection. Static binding artefacts and behaviour at run time still betray it, which is why detection leans on behaviour rather than the wrapper. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

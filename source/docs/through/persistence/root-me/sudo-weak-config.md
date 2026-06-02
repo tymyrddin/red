@@ -28,3 +28,7 @@ The user may be either a username or a numeric user-ID (`UID`) prefixed with the
 
 * [Permissions POSIX](https://www.root-me.org/spip.php?article788)
 * [sudo you are doing it wrong](https://repository.root-me.org/Administration/Unix/EN%20-%20sudo%20you%20are%20doing%20it%20wrong.pdf)
+
+## Counter moves
+
+A weak sudoers entry is one binary away from root. Minimal, audited sudo rules remove the path. The defensive counterpart is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

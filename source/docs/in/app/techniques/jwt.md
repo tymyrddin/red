@@ -68,3 +68,7 @@ The impact of JWT attacks is usually severe. If an attacker is able to create th
 * [Attacking JWT authentication - Sjoerd Langkemper](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Attacking%20JWT%20authentication%20-%20Sjoerd%20Langkemper.pdf)
 * [Hacking JSON Web Token (JWT) - Rudra Pratap](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Hacking%20JSON%20Web%20Token%20(JWT)%20-%20Rudra%20Pratap.pdf)
 * [JWT Writeups Bug Bounty HackerOne (Karim Habeeb)](https://nored0x.github.io/penetration%20testing/writeups-Bug-Bounty-hackrone/#jwt)
+
+## Counter moves
+
+JSON web tokens attacks is the case here. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

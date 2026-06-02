@@ -44,3 +44,7 @@ that can reach the API.
 ## Runbooks
 
 - [BOLA and BFLA testing](../runbooks/bola-bfla.md)
+
+## Counter moves
+
+API authorisation is what this page works through. Authorisation on every endpoint, schema validation, and rate limiting are the counters. The defensive counterpart is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

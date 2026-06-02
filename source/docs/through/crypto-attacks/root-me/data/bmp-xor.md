@@ -63,3 +63,7 @@ flag.bmp: PC bitmap, Windows 3.x format, 463 x 356 x 24, image size 495552, reso
 ```
 
 And view the decrypted image to get the flag.
+
+## Counter moves
+
+A known-plaintext XOR falls to a guessed header. XOR with a reused key is not encryption, and a real cipher removes the shortcut. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

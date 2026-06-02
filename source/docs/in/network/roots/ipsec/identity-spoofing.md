@@ -100,3 +100,7 @@ Identity spoofing attacks target the authentication mechanisms that IPsec uses t
 -   IPv6 complexity: Extension headers provide additional mechanisms for obfuscating true identities.
 -   Configuration errors: Misconfigured certificate policies and weak PSK management are common.
 -   Monitoring gaps: Identity verification failures often lack proper logging and alerting.
+
+## Counter moves
+
+Identity spoofing attacks is what this page works through. Strong IKE configuration and pruning weak proposals are the fix. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

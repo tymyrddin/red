@@ -139,3 +139,7 @@ log or block their network activity. Less-watched alternatives exist in both cat
 Chain LoLbin actions to avoid single-step detection: download with BITS, decode with
 certutil, execute with rundll32, persist via scheduled task created with schtasks.
 Each action individually is low signal; the sequence achieves the objective.
+
+## Counter moves
+
+Living off the land borrows trusted binaries so nothing foreign runs. Command-line logging and behavioural baselining of those binaries are the counters. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

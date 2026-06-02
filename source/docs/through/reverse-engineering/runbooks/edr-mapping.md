@@ -179,3 +179,7 @@ sources (ETW, kernel callbacks) remain active, and the net detection confidence.
 This analysis feeds directly into adversary simulation planning: it identifies which techniques
 are likely visible, which are likely invisible, and which fall into an uncertain middle ground
 where telemetry exists but detection rules may not be written.
+
+## Counter moves
+
+Mapping EDR hooks reveals what the sensor watches and where the gaps sit. Tamper-resistant sensors and telemetry beyond user-mode hooks are the answer. The defensive counterpart is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

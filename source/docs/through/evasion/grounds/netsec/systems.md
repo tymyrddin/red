@@ -59,3 +59,7 @@ started by a TCP 3-way handshake (established connections)).
 ## Resources
 
 * [Writing Snort Rules with Examples and Cheat Sheet](https://cyvatar.ai/write-configure-snort-rules/)
+
+## Counter moves
+
+Understanding how IDS and IPS decide is the groundwork for evading them. Defensively, that same knowledge drives tuning, placement, and decryption. The defender's view is in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

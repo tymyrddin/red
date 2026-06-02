@@ -121,3 +121,7 @@ evading traditional security controls designed for HTTP-based metadata access.
 -   Instance trust assumptions: Cloud platforms inherently trust instance-originated communications
 -   Protocol conversion: ICMP can be used to trigger or facilitate other protocol communications
 -   Monitoring limitations: Cloud monitoring often lacks deep ICMP analysis capabilities
+
+## Counter moves
+
+Cloud metadata service abuse via ICMP is the case here. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. Seen from the other side, this sits in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

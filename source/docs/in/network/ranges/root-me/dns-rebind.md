@@ -110,3 +110,7 @@ The server will return the admin page contents including the flag in the respons
 * Many public DNS services now block private IP resolutions by default due to security concerns
 * Modern browsers have implemented stronger protections against DNS rebinding
 * IPv6 introduces new rebinding possibilities that were not available in earlier years
+
+## Counter moves
+
+HTTP - DNS Rebinding is what this page works through. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

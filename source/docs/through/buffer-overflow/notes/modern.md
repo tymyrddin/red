@@ -117,3 +117,7 @@ grep CONFIG_SMEP /boot/config-$(uname -r)    # SMEP status
 SMEP (Supervisor Mode Execution Prevention) stops the kernel from executing user-space
 code. SMAP stops the kernel from reading or writing user-space memory directly. Both
 require ROP chains or kernel-resident payloads rather than simple shellcode.
+
+## Counter moves
+
+Modern corruption works around the mitigations rather than ignoring them. CFG, CET, and full ASLR raise the bar for each technique here. Seen from the other side, this sits in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

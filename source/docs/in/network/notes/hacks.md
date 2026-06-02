@@ -34,3 +34,7 @@ Certificate pinning implementations that check the wrong value, pin an intermedi
 TLS version negotiation allows a client and server to agree on the highest mutually supported version. Downgrade attacks manipulate this negotiation, causing the connection to use an older and weaker version. POODLE demonstrated that SSLv3 could be forced by simulating handshake failures until the client fell back; BEAST required TLS 1.0's CBC mode. Both SSLv3 and TLS 1.0 are disabled by default on most current servers; presence or absence can be confirmed with `testssl.sh` or `nmap --script ssl-enum-ciphers`.
 
 The FREAK and Logjam attacks targeted export-grade cryptography that remained in some TLS stacks as legacy code. These are largely historical issues in current software, but they remain relevant against embedded devices, appliances, and any system that has not received firmware updates.
+
+## Counter moves
+
+TLS and encrypted channel attacks is the variant in play. Segmentation, egress filtering, and flow baselining are the durable answers. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

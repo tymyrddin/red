@@ -119,3 +119,7 @@ For each phase, record:
 - SPNs found and any hashes obtained.
 
 The underlying doctrine is in [Network surface discovery](../notes/recon.md).
+
+## Counter moves
+
+Runbook: Network reconnaissance is the case here. Segmentation, egress filtering, and flow baselining are the durable answers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

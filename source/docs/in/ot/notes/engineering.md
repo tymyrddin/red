@@ -33,3 +33,7 @@ Engineering workstation compromise enables the full attack chain:
 The attacker opens the existing project file to understand the current logic and identify which function blocks control which process outcomes. They modify specific function blocks to introduce the desired behaviour change: altered setpoints, modified interlocks, disabled safety checks, or added conditional logic that triggers under specific circumstances. They download the modified project to the target PLC using the same deployment procedure the engineer uses. To the PLC, the download is indistinguishable from a legitimate maintenance activity. The change takes effect immediately.
 
 If the modification is designed to be subtle, the previous behaviour is preserved for all conditions that would be monitored, and the changed behaviour is triggered only by conditions the attacker controls. The SCADA system continues to report normal operation because it reads the same data it always has.
+
+## Counter moves
+
+Engineering workstations as crown jewels is the case here. Zoned segmentation, protocol-aware monitoring, and no direct internet path are the counters. Defenders' notes on this are under [systems that were never meant to be networked](https://blue.tymyrddin.dev/docs/counter/ot/).

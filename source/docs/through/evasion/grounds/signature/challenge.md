@@ -169,3 +169,7 @@ Compile the binary using `mingw-gcc`.
     x86_64-w64-mingw32-gcc challenge.c -o challenge.exe -lwsock32 -lws2_32 
 
 Start a listener. Receive shell. Flag is on Administrator's Desktop.
+
+## Counter moves
+
+This exercise puts signature evasion against realistic detection. The defensive read is layering behavioural detection behind static signatures. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

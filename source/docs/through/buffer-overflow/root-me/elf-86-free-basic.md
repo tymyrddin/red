@@ -191,3 +191,7 @@ int main(){
 
 * [Blackhat EU-16 - Use-After-Use-After-Free - Exploit UAF by generating your own - Guanxing Wen](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/EN%20-%20Blackhat%20EU-16%20-%20Use-After-Use-After-Free%20-%20Exploit%20UAF%20by%20generating%20your%20own%20-%20Guanxing%20Wen.pdf)
 * [From collision to exploitation: Unleashing Use-After-Free vulnerabilities in Linux Kernel](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20From%20collision%20to%20exploitation:%20Unleashing%20Use-After-Free%20vulnerabilities%20in%20Linux%20Kernel.pdf)
+
+## Counter moves
+
+Use-after-free reuses freed memory the program still trusts. Allocator hardening and memory-safe patterns are the answer. The defensive counterpart is in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

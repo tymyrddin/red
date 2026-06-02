@@ -31,3 +31,7 @@ Browser developer tools expose an inspection and debugging interface that can be
 Same-origin policy prevents scripts on one origin from reading responses from another. But several side channels leak cross-origin information: timing attacks on cached resources reveal whether a resource was recently visited; cross-origin resource inclusion can leak portions of responses through error messages; XS-Leaks (cross-site leaks) is a research area documenting dozens of browser behaviours that leak information about cross-origin state without violating the letter of the same-origin policy.
 
 Spectre-class vulnerabilities in speculative execution are relevant in browser contexts because browsers expose high-resolution timers (through `SharedArrayBuffer` and other mechanisms) that make timing side-channel attacks practical. These have been partially mitigated through site isolation and reduced timer precision, but the mitigations are incomplete and the attack surface continues to evolve.
+
+## Counter moves
+
+The browser as attack surface is the variant in play. Behavioural EDR, attack-surface reduction, and application allow-listing narrow the room. Defenders' notes on this are under [the machine at the point of impact](https://blue.tymyrddin.dev/docs/counter/endpoint/).

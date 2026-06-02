@@ -108,3 +108,7 @@ leaves little to attack on either axis.
 Protocol-level weaknesses in the target's infrastructure (TLS misconfigurations,
 Kerberos misuse, padding oracle vulnerabilities in web applications) are often faster
 paths to privilege escalation than any cipher break, and require no novel cryptanalysis.
+
+## Counter moves
+
+This chains steganography and cryptanalysis into one low-noise path. Removing weak crypto and inspecting carriers attack the two ends. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

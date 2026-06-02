@@ -519,3 +519,6 @@ This attack tree methodically catalogs the exploitation of ICMP and its IPv6 cou
 | 7.2.3.2 Cloud firewall ICMP abuse                     | Medium               | Low                | Medium     | Exploits cloud firewall defaults for ICMP.                                             |
 | 7.2.3.3 Container security policy evasion             | High                 | Low                | High       | Bypasses container policies using ICMP; effective in Kubernetes.                       |
 
+## Counter moves
+
+Overview attacks on ICMP is the variant in play. Filtering and rate-limiting ICMP, and watching for tunnelling, are the counters. Defenders' notes on this are under [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

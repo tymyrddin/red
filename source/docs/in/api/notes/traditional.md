@@ -61,3 +61,7 @@ uses mathematical expressions that different engines evaluate differently.
 ## Runbooks
 
 - [Injection testing](../runbooks/injection.md)
+
+## Counter moves
+
+Injection via APIs is what this page works through. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Defenders' notes on this are under [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

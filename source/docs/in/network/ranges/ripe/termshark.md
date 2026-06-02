@@ -98,3 +98,7 @@ There are several ways to quit:
 ## More
 
 [Termshark User Guide](https://github.com/gcla/termshark/blob/master/docs/UserGuide.md)
+
+## Counter moves
+
+Using termshark in RIPE labs is the variant in play. The same network hygiene applies under exercise conditions: segmentation, filtering, and monitoring. The defensive counterpart is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

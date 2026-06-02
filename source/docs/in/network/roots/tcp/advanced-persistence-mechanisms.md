@@ -68,3 +68,7 @@ Detection systems have blind spots for short-lived or low-volume anomalies. Hard
 
 - [Rootways: BGP attack tree](../bgp/tree.md)
 - [Supply chain compromise](supply-chain-compromise.md)
+
+## Counter moves
+
+Advanced persistence mechanisms is what this page works through. Stateful filtering and anomaly detection on the handshake are the answer. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

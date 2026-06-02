@@ -82,3 +82,7 @@ Clear tracks:
 reg delete "HKCU\Software\Classes\.thm\" /f
 reg delete "HKCU\Software\Classes\ms-settings\" /f
 ```
+
+## Counter moves
+
+Fodhelper hijacks a registry path a trusted binary reads, elevating quietly. Monitoring those keys and removing standing admin are the counters. The defender's view is in the blue notes on [the gap between access and authority](https://blue.tymyrddin.dev/docs/counter/escalation/).

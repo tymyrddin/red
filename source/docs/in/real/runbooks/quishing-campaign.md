@@ -137,3 +137,7 @@ that makes scanning unreliable at certain angles. A matte laminate improves this
 
 - [qrencode](https://github.com/fukuchi/libqrencode)
 - [GoPhish](https://getgophish.com/)
+
+## Counter moves
+
+Runbook: Quishing campaign is what this page works through. Phishing-resistant MFA, out-of-band verification, and a fast reporting path are the counters. Defenders' notes on this are under [closing the doors](https://blue.tymyrddin.dev/docs/counter/human/).

@@ -173,3 +173,7 @@ picture emerges over multiple sessions covering different user roles and applica
 
 - [REST API attack chain](../playbooks/rest-api.md)
 - [GraphQL attack chain](graphql.md)
+
+## Counter moves
+
+Runbook: Schema analysis is what this page works through. Authorisation on every endpoint, schema validation, and rate limiting are the counters. Defenders' notes on this are under [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

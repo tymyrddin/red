@@ -141,3 +141,7 @@ Once a valid signing method is compromised, the common modifications are:
 
 Always check what claims the application actually validates; some applications issue
 tokens with privilege claims that are never checked server-side.
+
+## Counter moves
+
+JWT attacks abuse algorithm confusion, weak secrets, and missing validation. Pinning the algorithm and verifying signatures server-side are the counters. The defensive counterpart is in the blue notes on [the surface designed to be accessible](https://blue.tymyrddin.dev/docs/counter/api/).

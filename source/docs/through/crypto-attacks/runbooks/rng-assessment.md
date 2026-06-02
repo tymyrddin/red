@@ -178,3 +178,7 @@ def detect_nonce_reuse(ciphertext_list):
 
 In a custom protocol capturing encrypted messages, collect (nonce, ciphertext) pairs
 and run this check. Reused nonces reveal plaintext structure immediately.
+
+## Counter moves
+
+Assessing RNG quality looks for predictable tokens and keys. A vetted CSPRNG is the fix when it is found wanting. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

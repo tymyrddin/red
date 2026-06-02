@@ -24,3 +24,7 @@ Most recent first:
 
 * [VB2015: Speaking Dyreza protocol. Advantages of 'learning' a new language](https://www.virusbulletin.com/virusbulletin/2016/12/vb2015-paper-speaking-dyreza-protocol-advantages-learning-new-language/)
 * [Blueliv: Chasing cybercrime: network insights of Dyre and Dridex Trojan bankers](https://www.blueliv.com/research/chasing-the-cybercrime-network-insights-of-dyre-and-dridex-trojan-bankers-report/)
+
+## Counter moves
+
+TrickBot chained injection and modular payloads as a case study in blending in. Its defensive lesson is behavioural detection on the chain, not signatures on each part. Seen from the other side, this sits in the blue notes on [plausibility as cover](https://blue.tymyrddin.dev/docs/counter/evasion/).

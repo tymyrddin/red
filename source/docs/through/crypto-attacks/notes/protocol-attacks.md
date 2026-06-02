@@ -53,7 +53,7 @@ server reveals whether padding is valid (even through a timing difference), arbi
 ciphertext blocks can be decrypted. The attack requires two chosen ciphertext queries per
 byte: typically 128 * block_size * 8 total queries to decrypt one block.
 
-```python
+```bash
 # padbuster automates CBC padding oracle exploitation
 padbuster https://target.example.com/encrypted-param ENCRYPTED_VALUE 8 --encoding 0
 ```
@@ -125,3 +125,7 @@ Cross-protocol attacks: if the same key material or certificate is used across m
 protocols, an attack on one protocol can affect another. Triple Handshake (2014) exploited
 TLS renegotiation to inject data into an established TLS session using a different
 protocol context.
+
+## Counter moves
+
+Protocol-level attacks target negotiation and downgrade rather than the cipher. Enforcing current TLS versions and disabling legacy options close them. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).

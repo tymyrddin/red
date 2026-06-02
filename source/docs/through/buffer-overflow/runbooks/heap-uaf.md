@@ -174,3 +174,7 @@ pwndbg is the recommended gdb extension for heap exploitation:
 pip install pwndbg
 # or: git clone https://github.com/pwndbg/pwndbg && ./setup.sh
 ```
+
+## Counter moves
+
+Practical heap and use-after-free work grooms the allocator into handing over control. Hardened allocators and sanitiser-driven testing are the counters. Seen from the other side, this sits in the blue notes on [memory corruption and its limits](https://blue.tymyrddin.dev/docs/counter/memory/).

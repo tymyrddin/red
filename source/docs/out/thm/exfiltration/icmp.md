@@ -56,3 +56,7 @@ Results:
     [+] End of File received. Saving "file.txt" to loot
     [+] Incoming file "file.txt" saved to loot
     [+] Loot filename: /path/to/loot/filename.txt
+
+## Counter moves
+
+Echo requests with unusual payload length or volume are the tell, since most networks have no reason for large or frequent ICMP. Egress filtering of ICMP and simple size baselining close it. The defender's view is in the blue notes on [watching the exits](https://blue.tymyrddin.dev/docs/counter/exfiltration/).

@@ -79,3 +79,7 @@ For each phase, capture the specific commands executed, responses received, and 
 - [Name resolution attacks](../runbooks/name-resolution.md)
 - [C2 and tunnelling](../runbooks/c2-tunneling.md)
 - [Lateral movement](../runbooks/lateral-movement.md)
+
+## Counter moves
+
+Playbook: Network entry and lateral movement chain is the variant in play. Segmentation, egress filtering, and flow baselining are the durable answers. The defender's view is in the blue notes on [traffic patterns as evidence](https://blue.tymyrddin.dev/docs/counter/network/).
