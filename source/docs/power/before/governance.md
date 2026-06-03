@@ -1,7 +1,7 @@
 # Business policies and governance
 
 Legal authorisation provides the permission to test, but clear policies provide the essential "rules of engagement." 
-These policies ensure every team—from engineers to operators—shares the same practical understanding of scope and 
+These policies ensure every team, from engineers to operators, shares the same practical understanding of scope and 
 methods, preventing operational confusion and turning testing into a managed process rather than a disruptive surprise.
 
 This systematic governance is not just good security practice; it is a core tenet of *business continuity under 

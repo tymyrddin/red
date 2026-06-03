@@ -526,7 +526,7 @@ event with a cause code marking it as a remote command rather than a protection 
 
 The less obvious approach: write a new overcurrent threshold value into a holding register, lowering it towards
 zero. The relay continues to monitor the feeder normally. At the next current reading that exceeds the new
-threshold — which may be any reading at all if the threshold is set near zero — the relay trips the breaker. As
+threshold, which may be any reading at all if the threshold is set near zero, the relay trips the breaker. As
 designed. On apparently legitimate grounds.
 
 The protection event looks like a genuine fault. The relay did exactly what it was built to do. What is harder to

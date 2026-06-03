@@ -74,7 +74,7 @@ Testing is decoupled from real-world operational cycles. "Test windows" refer to
 ### 5.1 Success criteria
 The test is successful when:
 1.  Path Proven: A complete attack path from a low-privilege entry point (e.g., the `finance_workstation`) to a high-impact physical effect (e.g., turbine trip) is demonstrated within the simulator.
-2.  Causality Documented: Every step of the path—from packet to protocol semantics to device logic to physics engine change—is logged by the simulator's security layer.
+2.  Causality Documented: Every step of the path, from packet to protocol semantics to device logic to physics engine change, is logged by the simulator's security layer.
 3.  Evidence Compiled: A reproducible script, sequence of commands, or packet capture exists for each proven vulnerability.
 4.  The Patrician is Convinced: The findings can be presented as a narrative of cause and effect, not a list of technical anomalies.
 

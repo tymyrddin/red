@@ -16,7 +16,7 @@ response was analysed. Each step forward required certainty that the previous st
 ## The first touch
 
 The passive map showed `port 10502` as the busiest device, deep in constant conversation with its supervisor. To probe 
-it was to tap a shoulder mid-discussion. The approach required protocol courtesy—speak the language, observe the 
+it was to tap a shoulder mid-discussion. The approach required protocol courtesy: speak the language, observe the 
 customs, ask only polite questions.
 
 The first test was the simplest: does the device speak when spoken to? The script 
@@ -214,7 +214,7 @@ $ sudo .venv/bin/python scripts/recon/query-substation-controller.py
 [*] Custom port range 10500-10520 hosts industrial services
 ```
 
-This revealed the deliberate port offset—standard ICS protocols moved from their default ports to a custom range. This 
+This revealed the deliberate port offset: standard ICS protocols moved from their default ports to a custom range. This 
 is common in simulator environments to avoid conflicts with other services and to allow multiple simulator instances 
 on one machine.
 
@@ -288,7 +288,7 @@ The Patrician's directive was satisfied. Knowledge was gained. No lights flicker
 reconnaissance phase was complete.
 
 Now came the deeper work: [systematic discovery](discovery.md) of memory maps, register ranges, and the detailed structure 
-hiding within those registers. But that required a different approach entirely—one based not on probing, but on 
+hiding within those registers. But that required a different approach entirely: one based not on probing, but on 
 methodical enumeration.
 
 And that, as they say, is another day's work.
