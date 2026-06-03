@@ -8,6 +8,11 @@ Using [Hacktricks: Bypassing PHP comparisons -> Loose comparisons/Type Juggling 
 
 ![root-me type juggling](/_static/images/root-me-type-juggling.png)
 
+## Techniques
+
+- [Authentication vulnerabilities](../../techniques/auth.md)
+- [Authentication and session testing runbook](../../runbooks/auth-testing.md)
+
 ## Counter moves
 
 PHP type juggling is the variant in play. Server-side validation and least privilege are what these reduce to. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

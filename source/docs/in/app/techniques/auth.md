@@ -48,15 +48,15 @@ they were issued.
 Multi-factor authentication reduces but does not eliminate authentication attack surface.
 The OTP endpoint requires its own rate limiting: without it, a six-digit code space is
 enumerable in under a million requests. The 2FA step is sometimes skipped entirely when
-the session management allows a partially-authenticated token to access resources that
-should require the second factor.
+the session management allows a partially-authenticated token to access resources meant to
+sit behind the second factor.
 
 Service-to-service authentication in microservice architectures is frequently weaker than
 user-facing authentication. Internal APIs may accept requests from any source on the same
 network, or rely on a shared secret that is the same across all services. An SSRF
 vulnerability that can reach internal services may bypass authentication entirely.
 
-## What to look for
+## Indicators
 
 Differences in application behaviour between valid and invalid usernames, credentials, or
 token values. Rate limiting that is absent, per-IP (bypassable with header manipulation),
@@ -72,22 +72,14 @@ or do not bind the token to the current email address.
 OAuth flows with overly permissive redirect URI validation, missing state parameter
 enforcement, or dynamic client registration available without restriction.
 
-## Portswigger lab writeups
+## Variants
 
-- [Username enumeration via different responses](../burp/auth/1.md)
-- [2FA simple bypass](../burp/auth/2.md)
-- [Password reset broken logic](../burp/auth/3.md)
-- [Username enumeration via subtly different responses](../burp/auth/4.md)
-- [Username enumeration via response timing](../burp/auth/5.md)
-- [Broken brute-force protection, IP block](../burp/auth/6.md)
-- [Username enumeration via account lock](../burp/auth/7.md)
-- [2FA broken logic](../burp/auth/8.md)
-- [Brute-forcing a stay-logged-in cookie](../burp/auth/9.md)
-- [Offline password cracking](../burp/auth/10.md)
-- [Password reset poisoning via middleware](../burp/auth/11.md)
-- [Password brute-force via password change](../burp/auth/12.md)
-- [Broken brute-force protection, multiple credentials per request](../burp/auth/13.md)
-- [2FA bypass using a brute-force attack](../burp/auth/14.md)
+The families here are username enumeration (through differing responses, response timing, or
+account-lock behaviour), broken brute-force protection (per-IP blocks, multiple credentials
+per request, or brute force routed through the password-change endpoint), two-factor
+weaknesses (a simple skip, broken logic, or brute-forced codes), session-token attacks
+(brute-forcing a stay-logged-in cookie, offline cracking), and password-reset logic flaws
+including host-header poisoning.
 
 ## Runbooks
 

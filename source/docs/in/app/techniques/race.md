@@ -56,9 +56,11 @@ immediately, but the actual operation happens in a background job. Two requests 
 trigger a background job may both complete their jobs based on the state that existed when
 the jobs were created, not the state when each job runs.
 
-## Portswigger lab writeups
+## Variants
 
-- [Web shell upload via race condition](../burp/upload/7.md)
+The high-value cases are limit overrun (spending or withdrawing past a balance or quota),
+single-use token reuse (a reset token, OTP, coupon, or invite redeemed more than once), and
+the upload race, where a file is fetched in the window before validation deletes it.
 
 ## Runbooks
 

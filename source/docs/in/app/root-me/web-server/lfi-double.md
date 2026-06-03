@@ -11,6 +11,11 @@ Wrapper -> php://filter](https://github.com/swisskyrepo/PayloadsAllTheThings/tre
 page=pHp%253A%252F%252FFilTer%252Fconvert%252Ebase64%252Dencode%252Fresource%253Dconf
 ```
 
+## Techniques
+
+- [Directory traversal](../../techniques/traversal.md)
+- [Path traversal runbook](../../runbooks/traversal.md)
+
 ## Counter moves
 
 Local file inclusion: double encoding is what this page works through. Server-side validation and least privilege are what these reduce to. The defensive counterpart is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -82,7 +82,7 @@ write. Classic patterns:
 - Check order status before issuing refund.
 
 Send twenty concurrent requests using Turbo Intruder's single-packet attack. If more than
-one returns success where only one should, the check was not atomic:
+one returns success where only one is meant to, the check was not atomic:
 
 ```python
 # Turbo Intruder script for race condition testing
@@ -161,4 +161,4 @@ trigger, and what that amounts to in economic or operational terms.
 
 ## Counter moves
 
-Runbook: Workflow and business logic testing is the case here. The durable answers are server-side validation, authorisation, and dependency hygiene. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+Runbook: Workflow and business logic testing is the case here. The durable answers are server-side validation, authorisation, and dependency hygiene. The defender's view can be found in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

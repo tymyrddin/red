@@ -4,8 +4,14 @@
 
 ----
 
-Inspect in the **Network** tab, copy and paste it into **Console**, remove the `()` from the last line.
+Inspect in the `Network` tab, copy and paste it into `Console`, remove the `()` from the last line.
+
+## Techniques
+
+- [Broken access control](../../techniques/acl.md)
+- [Access control testing runbook](../../runbooks/access-control.md)
 
 ## Counter moves
 
-Javascript native code is what this page works through. A client-side finding still needs a server-side control behind it. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+JavaScript native code is what this page works through. A client-side finding still needs a server-side control behind 
+it. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

@@ -14,9 +14,14 @@ wget -r http://challenge01.root-me.org/web-serveur/ch61/.git/
 
 ![RootMe](/_static/images/insecure-code-management2.png)
 
-Open the directory which contains `.git` in GitCola (for example), and **Undo Commit**:
+Open the directory which contains `.git` in GitCola (for example), and `Undo Commit`:
 
 ![RootMe](/_static/images/insecure-code-management3.png)
+
+## Techniques
+
+- [Information disclosure](../../techniques/disclosure.md)
+- [Surface discovery runbook](../../runbooks/recon.md)
 
 ## Counter moves
 

@@ -46,6 +46,12 @@ Decode, and get password.
 
 * [LFI/RFI using PHP wrappers & protocols](https://book.hacktricks.xyz/pentesting-web/file-inclusion#lfi-rfi-using-php-wrappers-and-protocols)
 
+## Techniques
+
+- [Directory traversal](../../techniques/traversal.md)
+- [Information disclosure](../../techniques/disclosure.md)
+- [Path traversal runbook](../../runbooks/traversal.md)
+
 ## Counter moves
 
 PHP Filters is the case here. Server-side validation and least privilege are what these reduce to. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

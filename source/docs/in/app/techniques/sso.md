@@ -38,8 +38,7 @@ create a surface where token theft produces consequences beyond the intended use
 ## SAML
 
 SAML assertions are XML documents signed by the identity provider and consumed by the
-service provider. The service provider must validate the signature before acting on the
-assertion's contents.
+service provider, which validates the signature before acting on the assertion's contents.
 
 Signature wrapping attacks exploit XML parsers that validate the signature over one part
 of the document but act on a different part. If the assertion contains two elements and
@@ -59,7 +58,7 @@ after the original user has ended their session.
 ## Cross-account session confusion
 
 SSO systems that serve multiple tenants or organisations sometimes fail to enforce tenant
-isolation at the token level. A token issued for one tenant should only be accepted by
+isolation at the token level. A token issued for one tenant is meant to be accepted only by
 resources belonging to that tenant. If the service provider validates the token's signature
 but not its audience or tenant binding, a valid token from one tenant may grant access to
 another.
@@ -68,17 +67,15 @@ This is more common in SaaS applications that use a shared identity provider acr
 customers. The `aud` claim in an OIDC token, or the recipient restriction in a SAML
 assertion, is the binding. Absent or unvalidated, a token is portable across tenants.
 
-## Portswigger lab writeups
+## Variants
 
-- [Authentication bypass via OAuth implicit flow](../burp/oauth/1.md)
-- [Forced OAuth profile linking](../burp/oauth/2.md)
-- [OAuth account hijacking via redirect_uri](../burp/oauth/3.md)
-- [Stealing OAuth access tokens via an open redirect](../burp/oauth/4.md)
-- [SSRF via OpenID dynamic client registration](../burp/oauth/5.md)
-- [Stealing OAuth access tokens via a proxy page](../burp/oauth/6.md)
+The OAuth and OpenID failures seen most are implicit-flow authentication bypass, forced
+profile linking, account hijacking through loose `redirect_uri` validation, access-token theft
+via an open redirect or a proxy page, and SSRF through OpenID dynamic client registration.
 
 ## Runbooks
 
+- [OAuth and SSO attacks](../runbooks/oauth-sso.md)
 - [Authentication and session testing](../runbooks/auth-testing.md)
 
 ## Counter moves

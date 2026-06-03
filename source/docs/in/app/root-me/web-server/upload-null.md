@@ -11,6 +11,11 @@ Hack this photo galery by uploading PHP code.
 
 * [Secure file upload in PHP web applications ](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Secure%20file%20upload%20in%20PHP%20web%20applications.pdf)
 
+## Techniques
+
+- [File uploads](../../techniques/shells.md)
+- [File upload runbook](../../runbooks/file-upload.md)
+
 ## Counter moves
 
 File upload: null byte is the variant in play. Server-side validation and least privilege are what these reduce to. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

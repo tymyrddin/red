@@ -70,7 +70,7 @@ that return the same data. Review every flagged item.
 
 Test whether lower-privilege accounts can access higher-privilege functions.
 
-Collect all endpoints that return `403` for your standard test account. These are the
+Collect all endpoints that return `403` for the standard test account. These are the
 endpoints worth attacking. For each one:
 
 ```bash
@@ -111,8 +111,8 @@ curl -X PUT -H "Authorization: Bearer LOW_PRIV_TOKEN" \
   https://target.com/api/v1/profile
 ```
 
-Also test whether endpoint responses include fields that the current privilege level should
-not see: internal flags, other users' data, system configuration, admin tokens.
+Also test whether endpoint responses include fields that the current privilege level is not
+meant to see: internal flags, other users' data, system configuration, admin tokens.
 
 ## Phase 5: Multi-step access control
 
@@ -125,7 +125,7 @@ works without completing the earlier steps:
 2. Attempt to call the final step endpoint directly using a low-privilege token.
 3. If the final step succeeds, the intermediate steps are enforcement only in the frontend.
 
-Also test step repetition: in a flow where a step should execute exactly once, call it again
+Also test step repetition: in a flow where a step is meant to execute exactly once, call it again
 after completing the workflow. An order confirmation step that can be replayed, a payment
 step that can be re-triggered, or a role grant that can be called multiple times may all
 produce unintended outcomes.

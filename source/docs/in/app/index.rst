@@ -15,9 +15,9 @@ This is the IN phase’s sweetest hunt: where low-hanging fruit (default creds) 
 where poisoned pollen (malicious inputs) spreads through interconnected flowers (microservices), and where the
 hungriest caterpillars (injection attacks) can spin entire webs (shell access) from a single nibbled leaf (parameter).
 
-From PortSwigger’s lab-choked groves to Root-me’s thorny challenge vines, we document which blooms surrender their
-nectar too easily, and which ones hide wasp nests (RCE) beneath their petals. Portswigger Academy is the gardening
-class; Root-me is the wilderness survival trial. Both end with you owning the orchard.
+These notes document which blooms surrender their nectar too easily, and which ones hide wasp nests (RCE) beneath
+their petals: the techniques themselves, the runbooks that work them, and the playbooks that chain them into a full
+engagement. Root-me’s thorny challenge vines are the wilderness survival trial, where it all ends with you owning the orchard.
 
 .. toctree::
    :glob:
@@ -28,8 +28,6 @@ class; Root-me is the wilderness survival trial. Both end with you owning the or
    techniques/index
    runbooks/index
    playbooks/index
-   burp/index
    root-me/index
-   plan/index
 
 

@@ -100,6 +100,16 @@ as it would in a classic TE.CL scenario.
 Also test HTTP/2 header injection: some front-ends allow HTTP/2 headers containing newlines
 that, when translated to HTTP/1.1, introduce additional headers or split the request.
 
+Name the variant by which length field each end honours after the downgrade: H2.CL (back-end
+trusts an injected Content-Length) and H2.TE (back-end trusts an injected Transfer-Encoding).
+CRLF injection into an HTTP/2 header value can split the request outright (request splitting)
+rather than merely prepending a prefix.
+
+A related case is CL.0, where the back-end ignores the Content-Length on certain endpoints
+(static files, redirects) and treats the body as the next request. Test it by sending a body
+behind a request to such an endpoint and watching whether the body is interpreted as a
+standalone request on connection reuse.
+
 ## Phase 4: Client-side desync
 
 Client-side desync does not require control of the network path between the client and
@@ -127,7 +137,7 @@ browser reuses connections as a real browser would.
 Once a desync is confirmed, common exploitation paths are:
 
 Capturing other users' requests: smuggle a request prefix that forwards the victim's
-subsequent request to an endpoint you control.
+subsequent request to an attacker-controlled endpoint.
 
 Bypassing access controls: prepend a prefix that sets a trusted header (`X-Forwarded-For:
 127.0.0.1`, `X-Internal: true`) that the back-end uses to bypass access restrictions.
@@ -135,7 +145,15 @@ Bypassing access controls: prepend a prefix that sets a trusted header (`X-Forwa
 Delivering reflected XSS via a smuggled response: smuggle a request that causes the server
 to respond with a reflected XSS payload to the victim's browser.
 
-All attack development should be performed carefully against non-production or with prior
+Response queue poisoning: smuggle a complete request so the connection's responses shift by
+one, and every subsequent user on that connection receives a response meant for someone else.
+
+Web cache poisoning and deception: smuggle a request whose response is cached against a
+victim-facing URL (poisoning), or that causes a victim's authenticated response to be stored
+in a cache an attacker can read (deception). This hands off to the
+[web cache poisoning](cache-poisoning.md) runbook.
+
+All attack development is best performed carefully against non-production or with prior
 coordination to avoid affecting other users during testing.
 
 ## Output

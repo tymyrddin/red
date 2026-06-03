@@ -1,7 +1,7 @@
 # Playbook: Web application attack chain
 
-This playbook connects the web application runbooks into an operational sequence. It covers
-the full chain from passive surface discovery through to documented findings, with decision
+This playbook connects several web application runbooks into an operational sequence. It covers
+a full chain from passive surface discovery through to documented findings, with decision
 points that determine which vulnerabilities to pursue and in what order.
 
 ## Objective
@@ -65,7 +65,8 @@ without authentication are immediate findings.
 If the application uses JWT, run algorithm confusion tests with jwt_tool. If opaque session
 tokens, analyse a sample of twenty for predictability. Test the password reset flow for
 host-header injection, token fixation, and missing expiry. Test 2FA endpoints for rate
-limiting and step-bypass.
+limiting and step-bypass. Where JWT or an OAuth/SSO flow is central, the JWT and OAuth
+runbooks go deeper than this pass.
 
 The authentication surface determines the value of all subsequent findings. A session that
 cannot be forged limits CSRF and XSS impact; one that can be predicted or bypassed multiplies
@@ -116,20 +117,25 @@ and `${7*7}` and look for `49` in the response.
 For any endpoint that processes XML (including SVG uploads and SOAP endpoints), test XXE
 with an OOB payload to Collaborator.
 
+Path traversal, file upload to a web shell, and insecure deserialisation are adjacent
+server-side routes to file read or code execution, each with its own runbook.
+
 ## Client-side testing
 
 Test every input field that produces output displayed to other users for stored XSS.
 Use a payload that sends the session cookie to Collaborator and verify with a second account.
 
 Test every parameter that appears in the response for reflected XSS. Use DOM Invader to
-identify DOM sources that flow to dangerous sinks.
+identify DOM sources that flow to dangerous sinks, including client-side prototype pollution;
+the prototype pollution runbook picks up the server-side counterpart.
 
 For every state-changing endpoint that does not contain a CSRF token, test whether a
 cross-origin form submission succeeds.
 
 Test request smuggling against every reverse-proxied endpoint using HTTP Request Smuggler.
-Any confirmed desync should be developed into a demonstrable access control bypass or
-request capture.
+A confirmed desync is worth developing into a demonstrable access control bypass or request
+capture. A trusted Host header and an unkeyed cache input are related infrastructure routes,
+covered by the Host header and web cache poisoning runbooks.
 
 ## Evidence collection
 
@@ -146,12 +152,20 @@ For each finding, capture:
 
 - [Surface discovery](../runbooks/recon.md)
 - [Authentication testing](../runbooks/auth-testing.md)
+- [JWT attacks](../runbooks/jwt.md)
+- [OAuth and SSO attacks](../runbooks/oauth-sso.md)
 - [Access control testing](../runbooks/access-control.md)
 - [Workflow and business logic testing](../runbooks/business-logic.md)
 - [Server-side injection](../runbooks/injection.md)
+- [Path traversal](../runbooks/traversal.md)
+- [File upload to web shell](../runbooks/file-upload.md)
+- [Insecure deserialisation](../runbooks/deserialisation.md)
+- [Prototype pollution](../runbooks/pollution.md)
 - [Client-side attacks](../runbooks/client-side.md)
 - [HTTP request smuggling](../runbooks/desync.md)
+- [HTTP Host header attacks](../runbooks/host-header.md)
+- [Web cache poisoning](../runbooks/cache-poisoning.md)
 
 ## Counter moves
 
-Playbook: Web application attack chain is the case here. The durable answers are server-side validation, authorisation, and dependency hygiene. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+Playbook: Web application attack chain is the case here. The durable answers are server-side validation, authorisation, and dependency hygiene. The defender's view can be found in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

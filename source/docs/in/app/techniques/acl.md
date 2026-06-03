@@ -8,13 +8,13 @@ is supposed to work.
 
 The two failure modes are horizontal and vertical. Horizontal failures allow one user to
 access another user's resources at the same privilege level. Vertical failures allow a
-lower-privilege user to access functions or resources that should require higher privilege.
+lower-privilege user to access functions or resources reserved for higher privilege.
 Both are common. Both are frequently exploitable using only a valid session token.
 
-## How access control breaks
+## Where access control fails
 
 Access control is frequently enforced in the wrong place. UI-layer checks prevent the
-application from presenting links or buttons for operations the current user should not
+application from presenting links or buttons for operations the current user is not meant to
 perform, but never prevented the underlying endpoint from responding. Any user who knows the
 endpoint path and has a valid session can call it directly. Testing in the browser never
 reveals this because the browser never shows the link; testing with a proxy always reveals
@@ -51,26 +51,19 @@ check that hides admin UI from non-admin users is the only control in the system
 server's endpoints do not check separately.
 
 Object-level authorisation in APIs (BOLA in the API-security framing) is the web application
-equivalent of IDOR. The same fundamental failure — an identifier in the request is not
-validated against the requesting user's permissions before the resource is returned — appears
+equivalent of IDOR. The same fundamental failure, an identifier in the request that is not
+validated against the requesting user's permissions before the resource is returned, appears
 in REST APIs, GraphQL resolvers, and WebSocket message handlers. The mechanics differ; the
 cause is the same.
 
-## Portswigger lab writeups
+## Variants
 
-- [Unprotected admin functionality](../burp/acl/1.md)
-- [Unprotected admin functionality with unpredictable URL](../burp/acl/2.md)
-- [User role controlled by request parameter](../burp/acl/3.md)
-- [User role can be modified in user profile](../burp/acl/4.md)
-- [User ID controlled by request parameter](../burp/acl/5.md)
-- [User ID controlled by request parameter, with unpredictable user IDs](../burp/acl/6.md)
-- [User ID controlled by request parameter with data leakage in redirect](../burp/acl/7.md)
-- [User ID controlled by request parameter with password disclosure](../burp/acl/8.md)
-- [Insecure direct object references](../burp/acl/9.md)
-- [URL-based access control can be circumvented](../burp/acl/10.md)
-- [Method-based access control can be circumvented](../burp/acl/11.md)
-- [Multistep process with no access control on one step](../burp/acl/12.md)
-- [Referer-based access control](../burp/acl/13.md)
+The recurring shapes are unprotected admin functionality, sometimes hidden behind no more
+than a guessable or unpredictable URL; a role or user ID controlled by a request parameter or
+editable in the user profile; access control enforced on the URL path or the HTTP method but
+not on the underlying action; Referer-based checks; and multi-step flows guarded at the first
+step but not the last. Insecure direct object references are the horizontal case of the same
+failure, where substituting an identifier reaches another user's resource.
 
 ## Runbooks
 

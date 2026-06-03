@@ -1,7 +1,7 @@
 # Runbook: Client-side attack testing
 
 Client-side vulnerabilities execute in the browser rather than on the server. The target is
-not the server's data — it is the victim's session, their credentials, and the actions they
+not the server's data: it is the victim's session, their credentials, and the actions they
 can be caused to perform without their knowledge. Modern applications have expanded this
 surface considerably: single-page applications expose large amounts of logic in JavaScript,
 and features like WebSockets, browser storage, and cross-origin sharing each introduce their
@@ -73,7 +73,7 @@ https://target.com/page?q=<img src=x onerror=alert(1)>
 ## Phase 2: CSRF
 
 CSRF vulnerabilities exist when a state-changing request can be triggered by a third-party
-page. Three conditions must hold: the request relies on a cookie for authentication, the
+page. Three conditions hold for this to work: the request relies on a cookie for authentication, the
 cookie is sent with cross-site requests (no `SameSite=Strict`), and the request lacks an
 unpredictable token tied to the user's session.
 

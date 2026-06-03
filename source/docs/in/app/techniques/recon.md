@@ -69,4 +69,6 @@ by the time testing begins.
 
 ## Counter moves
 
-Web application surface discovery is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+Web application surface discovery is the variant in play. These come back to the same answers: validated input, 
+encoded output, server-side authorisation, and patched dependencies. Defenders' notes on this are under 
+[the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

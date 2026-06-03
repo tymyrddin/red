@@ -14,7 +14,7 @@ passive and low-noise discovery would have found for free.
 
 ## Phase 1: Passive discovery
 
-Start without sending any requests to the target. Spend time here — it consistently yields
+Start without sending any requests to the target. Spend time here; it consistently yields
 findings that active enumeration misses.
 
 ### Source repositories
@@ -141,7 +141,7 @@ curl https://target.com/.well-known/jwks.json
 
 ## Output
 
-By the end of surface discovery, you should have: a complete endpoint inventory in Burp's
+By the end of surface discovery, the output is: a complete endpoint inventory in Burp's
 site map, the technology stack and version where identifiable, the authentication mechanism
 and token format, any credentials or API keys found in passive sources, and a prioritised
 list of targets for active testing.
@@ -154,4 +154,4 @@ list of targets for active testing.
 
 ## Counter moves
 
-Runbook: Web application surface discovery is the variant in play. The durable answers are server-side validation, authorisation, and dependency hygiene. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+Runbook: Web application surface discovery is the variant in play. The durable answers are server-side validation, authorisation, and dependency hygiene. The defender's view can be found in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

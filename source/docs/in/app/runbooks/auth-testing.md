@@ -2,7 +2,7 @@
 
 Authentication testing covers the full token lifecycle: how tokens are issued, how they are
 validated, how they are stored, and what happens at the edges of their lifecycle. The session
-is the identity. Control the session and you control the account.
+is the identity. Control the session and the account follows.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Before testing authentication itself, confirm what is accessible without any aut
 
 Remove the session token from every request in the Burp site map and replay them. Any
 endpoint that returns `200` or data without authentication is an immediate finding. Pay
-particular attention to API endpoints — authentication enforced in the UI is frequently
+particular attention to API endpoints, where authentication enforced in the UI is frequently
 absent at the API layer.
 
 Check for API endpoints that return different data for authenticated and unauthenticated
@@ -153,7 +153,7 @@ For PKCE flows, test whether the `code_verifier` is actually verified:
 
 Test the password reset flow for broken logic:
 
-1. Request a reset for an account you control. Observe the token format and length.
+1. Request a reset for an attacker-controlled account. Observe the token format and length.
 2. Test whether the token expires: wait one hour and attempt to use it.
 3. Test whether the token is single-use: use it, then use it again.
 4. Test whether the token is bound to the email: change the email before using the token.

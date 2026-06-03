@@ -47,4 +47,3 @@ The same wilds, fenced and named, so a thing can be tried twice and watched a se
    docs/earthworks/index
    docs/power/index
    docs/scarlet/index
-   docs/services/index

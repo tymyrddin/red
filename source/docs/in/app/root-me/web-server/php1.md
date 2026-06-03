@@ -15,6 +15,12 @@ Don't use assert! / N'utilisez pas assert
 
 * [HackTricks: Code execution with Assert()](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/php-tricks-esp#code-execution-with-assert)
 
+## Techniques
+
+- [Directory traversal](../../techniques/traversal.md)
+- [Broken access control](../../techniques/acl.md)
+- [Path traversal runbook](../../runbooks/traversal.md)
+
 ## Counter moves
 
-PHP assert() is what this page works through. Server-side validation and least privilege are what these reduce to. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+PHP assert() is what this page works through. Server-side validation and least privilege are what these reduce to. The defender's view can be found in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

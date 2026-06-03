@@ -6,6 +6,12 @@
 
 Set `disabled` to `enabled`.
 
+## Techniques
+
+- [Broken access control](../../techniques/acl.md)
+- [Access control testing runbook](../../runbooks/access-control.md)
+
 ## Counter moves
 
-HTML disabled buttons is the case here. A client-side finding still needs a server-side control behind it. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+HTML disabled buttons is the case here. A client-side finding still needs a server-side control behind it. Defenders' 
+notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

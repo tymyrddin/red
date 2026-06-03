@@ -33,6 +33,11 @@ And:
 8 result(s) for "' UNION SELECT username,password FROM users --"
 ```
 
+## Techniques
+
+- [SQL injection](../../techniques/sqli.md)
+- [Server-side injection runbook](../../runbooks/injection.md)
+
 ## Counter moves
 
 SQL injection: string is the case here. Server-side validation and least privilege are what these reduce to. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

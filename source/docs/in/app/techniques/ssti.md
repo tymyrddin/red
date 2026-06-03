@@ -1,75 +1,93 @@
 # Template injection (SSTI)
 
-Template engines are a type of software used to determine the appearance of a web page. Developers often overlook attacks that target these engines, called server-side template injections (SSTIs), yet they can lead to severe consequences, like [remote code execution](rce.md). They have become more common in the past few years.
+Template engines are a type of software used to determine the appearance of a web page. Developers often overlook
+attacks that target these engines, called server-side template injections (SSTIs), yet they can lead to severe
+consequences, like [remote code execution](rce.md). They have become more common in the past few years.
 
-* This bug is critical. The impact could be an RCE attack, not just in the affected server, but in other hosts on the same network.
+* This bug is critical. The impact could be an RCE attack, not just on the affected server, but on other hosts on the
+  same network.
 * An SSTI found in an application exposes the application, web server, and network.
-* To look for SSTI vulnerabilities, enter values to be evaluated and if you get a result, try harder.
+* Looking for SSTI means entering values to be evaluated; a value that comes back evaluated is the signal to dig deeper.
 
 ## Steps
 
-1. Identify any opportunity to submit user input to the application. Mark down candidates of template injection for further inspection.
-2. Detect template injection by submitting test payloads. You can use either payloads that are designed to induce errors, or engine-specific payloads designed to be evaluated by the template engine.
-3. If you find an endpoint that is vulnerable to template injection, determine the template engine in use. This will help you build an exploit specific to the template engine.
-4. Research the template engine and programming language that the target is using to construct an exploit.
-5. Try to escalate the vulnerability to arbitrary command execution.
-6. Create a proof of concept that does not harm the targeted system. A good way to do this is to execute `touch template_injection_by_YOUR_NAME.txt` to create a specific proof-of-concept file.
+1. Identify any opportunity to submit user input to the application. Note candidates for template injection for further
+   inspection.
+2. Detect template injection by submitting test payloads, either payloads designed to induce errors or engine-specific
+   payloads designed to be evaluated by the template engine.
+3. Where an endpoint is vulnerable to template injection, determine the template engine in use. This guides building an
+   exploit specific to that engine.
+4. Research the template engine and programming language the target uses to construct an exploit.
+5. Escalate the vulnerability towards arbitrary command execution.
+6. Create a proof of concept that does not harm the targeted system. Executing `touch template_injection_by_NAME.txt` to
+   create a specific proof-of-concept file is one safe way.
 7. Draft report.
 
 ## Look for user-input locations
 
-Look for locations where you can submit user input to the application. These include URL paths, parameters, fragments, HTTP request headers and body, file uploads, and more.
+Look for locations that accept user input: URL paths, parameters, fragments, HTTP request headers and body, file
+uploads, and more.
 
-Templates are typically used to dynamically generate web pages from stored data or user input. For example, applications often use template engines to generate customised email or home pages based on the user’s information. So to look for template injections, look for endpoints that accept user input that will eventually be displayed back to the user. Since these endpoints typically coincide with the endpoints for possible XXS attacks, you can use the [XSS strategies](xss.md) to identify candidates for template injection. Document these input locations for further testing.
+Templates are typically used to dynamically generate web pages from stored data or user input. For example, applications
+often use template engines to generate customised email or home pages based on the user’s information. So the candidates
+for template injection are endpoints that accept user input that will eventually be displayed back to the user. Since
+these endpoints typically coincide with the endpoints for possible XSS attacks, the [XSS strategies](xss.md) identify
+candidates for template injection too. Document these input locations for further testing.
 
 ## Detect template injection by submitting test payloads
 
-Next, detect template injection vulnerabilities by injecting a test string into the input fields identified in the previous step. This test string should contain special characters commonly used in template languages. 
+Next, detect template injection vulnerabilities by injecting a test string into the input fields identified in the
+previous step. This test string contains special characters commonly used in template languages.
 
-* The string `{{1+abcxx}}${1+abcxx}<%1+abcxx%>[abcxx]` ia designed to induce errors in popular template engines. 
+* The string `{{1+abcxx}}${1+abcxx}<%1+abcxx%>[abcxx]` ia designed to induce errors in popular template engines.
 * `${...}` is the special syntax for expressions in the FreeMarker and Thymeleaf Java templates.
 * `{{...}}` is the syntax for expressions in PHP templates such as Smarty or Twig, and Python
-templates like Jinja2.
+  templates like Jinja2.
 * `<%= ... %>` is the syntax for the Embedded Ruby template (ERB).
 
 ## Determine the template engine in use
 
-Once you’ve confirmed the template injection vulnerability, determine the template engine in use to figure out how to best exploit that vulnerability. To escalate the attack, you will have to write your payload with a programming language that the particular template engine expects.
+Once the vulnerability is confirmed, determine the template engine in use to work out how best to exploit it. Escalation
+calls for a payload written in the language the particular template engine expects.
 
 ## Automation
 
-[tplmap](https://github.com/epinna/tplmap/) can scan for template injections, determine the template engine in use, and construct exploits. While this tool does not support every template engine, it does provide a good starting point for the most popular ones.
+[tplmap](https://github.com/epinna/tplmap/) can scan for template injections, determine the template engine in use, and
+construct exploits. While this tool does not support every template engine, it does provide a good starting point for
+the most popular ones.
 
 ## Escalation
 
-The impact of server-side template injection vulnerabilities is generally critical, resulting in [remote code execution](rce.md) by taking full control of the back-end server. Even without the code execution, the attacker may be able to [read sensitive data on the server](disclosure.md). There are also rare cases where an SSTI vulnerability is not critical, depending on the template engine.
+The impact of server-side template injection vulnerabilities is generally critical, resulting
+in [remote code execution](rce.md) by taking full control of the back-end server. Even without the code execution, the
+attacker may be able to [read sensitive data on the server](disclosure.md). There are also rare cases where an SSTI
+vulnerability is not critical, depending on the template engine.
 
-Once you’ve determined the template engine in use, you can escalate the vulnerability found. Most of the time, you can use the `7*7 payload`:
+Once the template engine is known, the vulnerability can be escalated. The `7*7` payload is the usual starting point:
 
-    GET /display_name?name=7*7
-    Host: example.com
+```text
+GET /display_name?name=7*7
+Host: example.com
+```
 
-But if you can show that the template injection can be used to accomplish more than simple mathematics, you can prove the impact of the bug and show the security team its value.
+Showing that the injection accomplishes more than simple arithmetic proves the impact of the bug and its value to the
+security team.
 
-The method of escalating the attack will depend on the template engine you are targeting. To learn more about it, read the official documentation of the template engine and the accompanying programming language. 
+The method of escalation depends on the template engine in play. The official documentation of the engine and the
+accompanying programming language is the place to learn the specifics.
 
-Being able to [execute system commands](rce.md) might allow for [reading sensitive system files](disclosure.md) like customer data and source code files, update system configurations, escalate their privileges on the system, and attack other machines on the network.
+Being able to [execute system commands](rce.md) might allow for [reading sensitive system files](disclosure.md) like
+customer data and source code files, update system configurations, escalate their privileges on the system, and attack
+other machines on the network.
 
-## Portswigger lab writeups
+## Variants
 
-* [Basic server-side template injection](../burp/ssti/1.md)
-* [Basic server-side template injection (code context)](../burp/ssti/2.md)
-* [Server-side template injection using documentation](../burp/ssti/3.md)
-* [Server-side template injection in an unknown language with a documented exploit](../burp/ssti/4.md)
-* [Server-side template injection with information disclosure via user-supplied objects](../burp/ssti/5.md)
-* [Server-side template injection in a sandboxed environment](../burp/ssti/6.md)
-* [Server-side template injection with a custom exploit](../burp/ssti/7.md)
-
-## Remediation
-
-* Remediation for SSTI vulnerabilities depend on the different template engines in use.
-* Do not create templates from user-controlled input. User input should be passed to the template using template parameters. Sanitise the input before passing it into the templates by removing unwanted and risky characters before parsing the data. This minimises the vulnerabilities for any malicious probing of your templates.
-* If allowing risky characters is a requirement to render attributes of a template, assume that malicious code execution is inevitable, and use a sandbox within a safe environment. With the template environment in a docker container, you can use docker security to craft a secure environment that limits malicious activities.
+The cases run from a basic injection (plain and in code context) through engine-specific
+exploitation built from the documentation, including an unknown language identified by a
+documented exploit. Where execution is blocked, information disclosure via user-supplied
+objects or a sandbox escape carries the impact, and the hardest cases need a custom exploit.
+The [server-side injection runbook](../runbooks/injection.md) covers the probe, engine
+fingerprinting, and the route to code execution.
 
 ## Resources
 
@@ -79,4 +97,6 @@ Being able to [execute system commands](rce.md) might allow for [reading sensiti
 
 ## Counter moves
 
-Template injection (SSTI) is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+Template injection (SSTI) is the variant in play. These come back to the same answers: validated input, encoded output,
+server-side authorisation, and patched dependencies. The defender's view can be found in the blue notes
+on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

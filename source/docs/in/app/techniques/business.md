@@ -59,19 +59,13 @@ The defender's problem is that defining "normal workflow" precisely enough to de
 deviations requires the same understanding of the business logic that the attacker
 exploited.
 
-## Portswigger lab writeups
+## Variants
 
-- [Excessive trust in client-side controls](../burp/business/1.md)
-- [High-level logic vulnerability](../burp/business/2.md)
-- [Inconsistent security controls](../burp/business/3.md)
-- [Flawed enforcement of business rules](../burp/business/4.md)
-- [Low-level logic flaw](../burp/business/5.md)
-- [Inconsistent handling of exceptional input](../burp/business/6.md)
-- [Weak isolation on dual-use endpoint](../burp/business/7.md)
-- [Insufficient workflow validation](../burp/business/8.md)
-- [Authentication bypass via flawed state machine](../burp/business/9.md)
-- [Infinite money logic flaw](../burp/business/10.md)
-- [Authentication bypass via encryption oracle](../burp/business/11.md)
+The patterns cluster around excessive trust in client-side controls, flawed or inconsistent
+enforcement of business rules, high- and low-level logic flaws, inconsistent handling of
+exceptional input, weak isolation on dual-use endpoints, insufficient workflow validation,
+authentication bypass through a flawed state machine or an encryption oracle, and value chains
+such as the infinite-money loop.
 
 ## Runbooks
 

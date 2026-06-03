@@ -10,6 +10,11 @@ Using [Offensive Security Cheatsheet: XPath Injections](https://cheatsheet.haax.
 username=John' or '1'='1&password=
 ```
 
+## Techniques
+
+- [SQL injection](../../techniques/sqli.md)
+- [Server-side injection runbook](../../runbooks/injection.md)
+
 ## Counter moves
 
-XPath injection: authentication is what this page works through. Server-side validation and least privilege are what these reduce to. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+XPath injection: authentication is what this page works through. Server-side validation and least privilege are what these reduce to. The defender's view can be found in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

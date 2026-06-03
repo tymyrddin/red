@@ -6,6 +6,11 @@
 
 ![Local file inclusion](/_static/images/root-me-lfi.png)
 
+## Techniques
+
+- [Directory traversal](../../techniques/traversal.md)
+- [Path traversal runbook](../../runbooks/traversal.md)
+
 ## Counter moves
 
 Local file inclusion is the case here. Server-side validation and least privilege are what these reduce to. Defenders' notes on this are under [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

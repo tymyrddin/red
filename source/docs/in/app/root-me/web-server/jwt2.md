@@ -4,8 +4,10 @@
 
 Two endpoints are available :
 
-    POST : /web-serveur/ch63/login
-    GET : /web-serveur/ch63/admin
+```text
+POST : /web-serveur/ch63/login
+GET : /web-serveur/ch63/admin
+```
 
 Gain access to the `admin` endpoint.
 
@@ -25,6 +27,11 @@ Get token for `admin:admin`:
 
 Use the token to get the flag (add an `=` at the end of it).
 
+## Techniques
+
+- [JWT attacks](../../techniques/jwt.md)
+- [JWT attacks runbook](../../runbooks/jwt.md)
+
 ## Counter moves
 
-JWT (not) revoked token is the case here. Server-side validation and least privilege are what these reduce to. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+JWT (not) revoked token is the case here. Server-side validation and least privilege are what these reduce to. The defender's view can be found in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

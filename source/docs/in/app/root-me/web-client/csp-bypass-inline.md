@@ -1,6 +1,7 @@
 # CSP bypass inline
 
-[root-me challenge CSP Bypass - Inline code](https://www.root-me.org/en/Challenges/Web-Client/CSP-Bypass-Inline-code): Exfiltrate the content of the page.
+[root-me challenge CSP Bypass - Inline code](https://www.root-me.org/en/Challenges/Web-Client/CSP-Bypass-Inline-code):
+Exfiltrate the content of the page.
 
 ----
 
@@ -16,7 +17,8 @@ Test for simple XSS on user parameter:
 http://challenge01.root-me.org:58008/page?user=<img src="" onerror="alert(1)">
 ```
 
-"Only the bot can see the flag": There is a bot on the server that can read the content of the page with the flag. Go to the `/report` page to submit a form containing the found XSS.
+"Only the bot can see the flag": There is a bot on the server that can read the content of the page with the flag. Go to
+the `/report` page to submit a form containing the found XSS.
 
 The server filters keywords like `http`, use `//` instead, and a space instead of `+` and use the `concat()` function:
 
@@ -40,6 +42,13 @@ Upgrade-Insecure-Requests: 1
 
 I'll come back to this later.
 
+## Techniques
+
+- [Cross-site scripting (XSS)](../../techniques/xss.md)
+- [Client-side attacks runbook](../../runbooks/client-side.md)
+
 ## Counter moves
 
-CSP bypass inline is the variant in play. A client-side finding still needs a server-side control behind it. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+CSP bypass inline is the variant in play. A client-side finding still needs a server-side control behind it. Seen from
+the other side, this sits in the blue notes
+on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

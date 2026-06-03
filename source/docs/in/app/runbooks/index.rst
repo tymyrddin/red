@@ -10,8 +10,16 @@ surface mapping to build the complete picture, then proceed to targeted attack r
 
    recon.md
    auth-testing.md
+   jwt.md
+   oauth-sso.md
    access-control.md
    injection.md
+   traversal.md
+   file-upload.md
+   deserialisation.md
+   pollution.md
    client-side.md
    desync.md
+   host-header.md
+   cache-poisoning.md
    business-logic.md

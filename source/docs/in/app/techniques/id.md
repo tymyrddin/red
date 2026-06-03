@@ -1,16 +1,22 @@
 # Insecure deserialisation
 
-Serialisation is the process by which some bit of data in a programming language gets converted into a format that allows it to be saved in a database or transferred over a network. Deserialisation refers to the opposite process, whereby the program reads the serialised object from a file or the network and converts it back into an object.
+Serialisation is the process by which some bit of data in a programming language gets converted into a format that
+allows it to be saved in a database or transferred over a network. Deserialisation refers to the opposite process,
+whereby the program reads the serialised object from a file or the network and converts it back into an object.
 
-Insecure deserialisation is a type of vulnerability that arises when an attacker can manipulate the serialised object to cause unintended consequences in the program. This can lead to authentication bypasses or even [RCE](rce.md).
+Insecure deserialisation is a type of vulnerability that arises when an attacker can manipulate the serialised object to
+cause unintended consequences in the program. This can lead to authentication bypasses or even [RCE](rce.md).
 
 ## Steps
 
-1. If you can get access to an application’s source code, search for deserialisation functions in source code that accept user input.
-2. If you cannot get access to source code, look for large blobs of data passed into an application. These could indicate serialised objects that are encoded.
-3. Alternatively, look for features that might have to deserialise objects supplied by the user, such as database inputs, authentication tokens, and HTML form parameters.
-4. If the serialised object contains information about the identity of the user, try tampering with the serialised object found and see if you can achieve authentication bypass.
-5. See if you can escalate the flaw into an SQL injection or remote code execution. Be extra careful not to cause damage to the target application or server.
+1. Where an application's source code is available, search it for deserialisation functions that accept user input.
+2. Without source code, look for large blobs of data passed into an application. These could indicate serialised
+   objects that are encoded.
+3. Alternatively, look for features that might have to deserialise objects supplied by the user, such as database
+   inputs, authentication tokens, and HTML form parameters.
+4. If the serialised object carries the user's identity, tamper with it and check for an authentication bypass.
+5. Try to escalate the flaw into SQL injection or remote code execution, taking extra care not to damage the target
+   application or server.
 6. Draft report.
 
 ## Code review
@@ -21,19 +27,26 @@ Conducting a source code review is the most reliable way to detect deserialisati
 
 It is also possible to find deserialisation vulnerabilities without examining any code.
 
-Begin by paying close attention to the large blobs of data passed into an application. Large data blobs could be serialised objects that represent object injection opportunities. If the data is encoded, try to decode it. Most encoded data passed into web applications is encoded with `base64`.
+Begin by paying close attention to the large blobs of data passed into an application. Large data blobs could be
+serialised objects that represent object injection opportunities. If the data is encoded, try to decode it. Most encoded
+data passed into web applications is encoded with `base64`.
 
-Alternatively, start by seeking out features that are prone to deserialisation flaws. Look for features that might have to deserialise objects supplied by the user, such as database inputs, authentication tokens, and HTML form parameters.
+Alternatively, start by seeking out features that are prone to deserialisation flaws. Look for features that might have
+to deserialise objects supplied by the user, such as database inputs, authentication tokens, and HTML form parameters.
 
-Once you’ve found a user-supplied serialised object, you need to determine the type of serialised object it is. Is it a PHP object, a Python object, a Ruby object, or a Java object? Read each programming language’s documentation to familiarise yourself with the structure of its serialised objects.
+Once a user-supplied serialised object is found, determine its type: a PHP object, a Python object, a Ruby object, or a
+Java object. Each programming language's documentation describes the structure of its serialised objects.
 
 ## Automation
 
 ### Ysoserial on Kali
 
-[Ysoserial](https://github.com/frohoff/ysoserial) is a PoC tool for generating payloads that exploit unsafe Java object deserialisation. Download the [latest release jar](https://github.com/frohoff/ysoserial/releases/latest/download/ysoserial-all.jar) from GitHub releases.
+[Ysoserial](https://github.com/frohoff/ysoserial) is a PoC tool for generating payloads that exploit unsafe Java object
+deserialisation. Download
+the [latest release jar](https://github.com/frohoff/ysoserial/releases/latest/download/ysoserial-all.jar) from GitHub
+releases.
 
-Trying to use it you may get something like this:
+Trying to use it may produce something like this:
 
 ```text
 $ java -jar ysoserial-all.jar CommonsCollections4 'rm /home/carlos/morale.txt' | base64
@@ -46,7 +59,7 @@ java.lang.IllegalAccessError: class ysoserial.payloads.util.Gadgets (in unnamed 
         at ysoserial.GeneratePayload.main(GeneratePayload.java:34)
 ```
 
-`Java >=12` does not allow access to private fields of certain sensitive classes. 
+`Java >=12` does not allow access to private fields of certain sensitive classes.
 
 ```text
 $ java --version
@@ -58,16 +71,22 @@ OpenJDK 64-Bit Server VM (build 17.0.5+8-Debian-2, mixed mode, sharing)
 
 Changing to `Java <= 12`. This will show all the JDK packages available for installation.
 
-    sudo apt-cache search openjdk
+```bash
+sudo apt-cache search openjdk
+```
 
 Installing `11`:
 
-    sudo apt install openjdk-11-jdk
+```bash
+sudo apt install openjdk-11-jdk
+```
 
 To switch between Java versions, execute the following two commands while selecting the Java version `11`:
 
-    sudo update-alternatives --config java
-    sudo update-alternatives --config javac
+```bash
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+```
 
 Test Java is now version `11`:
 
@@ -79,36 +98,33 @@ OpenJDK Runtime Environment (build 11.0.17+8-post-Debian-2)
 OpenJDK 64-Bit Server VM (build 11.0.17+8-post-Debian-2, mixed mode, sharing)
 ```
 
-### phpggc on kali 
+### phpggc on kali
 
-[PHPGGC](https://github.com/ambionics/phpggc) is a library of PHP `unserialize()` payloads along with a tool to generate them, from command line or programmatically. It is [available as kali tool](https://www.kali.org/tools/phpggc/).
+[PHPGGC](https://github.com/ambionics/phpggc) is a library of PHP `unserialize()` payloads along with a tool to generate
+them, from command line or programmatically. It is [available as kali tool](https://www.kali.org/tools/phpggc/).
 
 ## Escalation
 
-Insecure deserialisation bugs often result in [remote code execution](rce.md), granting the attacker a wide range of capabilities with which to impact the application. And even when RCE is not possible, you might be able to achieve an authentication bypass or otherwise interfere with the logic flow of the application.
+Insecure deserialisation bugs often result in [remote code execution](rce.md), granting the attacker a wide range of
+capabilities with which to impact the application. Even when RCE is not possible, an authentication bypass or
+interference with the application's logic flow may be achievable.
 
-The impact of insecure deserialisation can be limited when the vulnerability relies on an obscure point of entry, or requires a certain level of application privilege to exploit, or if the vulnerable function is not available to unauthenticated users.
+The impact of insecure deserialisation can be limited when the vulnerability relies on an obscure point of entry, or
+requires a certain level of application privilege to exploit, or if the vulnerable function is not available to
+unauthenticated users.
 
-When escalating deserialisation flaws, take the scope and rules of the pentesting assessment or bounty program into account. Deserialisation vulnerabilities can be dangerous, so make sure you don’t cause damage to the target application when trying to manipulate program logic or execute arbitrary code.
+When escalating deserialisation flaws, keep the scope and rules of the pentesting assessment or bounty programme in
+mind. Deserialisation vulnerabilities can be dangerous, so manipulating program logic or executing arbitrary code calls
+for care not to damage the target application.
 
-## Portswigger lab writeups
+## Variants
 
-* [Modifying serialised objects](../burp/deserialisation/1.md)
-* [Modifying serialised data types](../burp/deserialisation/2.md)
-* [Using application functionality to exploit insecure deserialisation](../burp/deserialisation/3.md)
-* [Arbitrary object injection in PHP](../burp/deserialisation/4.md)
-* [Exploiting Java deserialisation with Apache Commons](../burp/deserialisation/5.md)
-* [Exploiting PHP deserialisation with a pre-built gadget chain](../burp/deserialisation/6.md)
-* [Exploiting Ruby deserialisation using a documented gadget chain](../burp/deserialisation/7.md)
-* [Developing a custom gadget chain for Java deserialisation](../burp/deserialisation/8.md)
-* [Developing a custom gadget chain for PHP deserialisation](../burp/deserialisation/9.md)
-* [Using PHAR deserialisation to deploy a custom gadget chain](../burp/deserialisation/10.md)
-
-## Remediation
-
-* Some frameworks do not allow deserialising objects of arbitrary type. These frameworks will check the type of the input object and refuse to run any code if the type is unexpected. For example, Jackson will not allow you to deserialise objects of random types unless you explicitly turn that behaviour on.
-* If the serialisation library used allows arbitrary types and this behaviour can not be turned off, consider validating the types before deserialising. For example, supplement Java’s built-in deserialisation API with an open source library like Apache Commons IO.
-* Java "recently" (in 2021) got equipped with native solutions to solve deserialisation issues. Upgrade to at least 17.
+The progression runs from tamper-only cases (modifying serialised objects or data types, or
+using application functionality against itself) through arbitrary object injection, into
+gadget-chain execution: pre-built chains for Java (Apache Commons), PHP, and Ruby, custom
+chains assembled from classes actually present, and PHAR deserialisation as a delivery trick.
+The [insecure deserialisation runbook](../runbooks/deserialisation.md) works through spotting
+the data and driving a chain.
 
 ## Resources
 
@@ -118,4 +134,6 @@ When escalating deserialisation flaws, take the scope and rules of the pentestin
 
 ## Counter moves
 
-Insecure deserialisation is the variant in play. These come back to the same answers: validated input, encoded output, server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+Insecure deserialisation is the variant in play. These come back to the same answers: validated input, encoded output,
+server-side authorisation, and patched dependencies. Seen from the other side, this sits in the blue notes
+on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

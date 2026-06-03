@@ -18,6 +18,11 @@ username: admin'--
 * [Blackhat US 2006 : SQL Injections by truncation](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Blackhat%20US%202006%20:%20SQL%20Injections%20by%20truncation.pdf)
 * [Manipulating SQL server using SQL injection](https://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20Manipulating%20SQL%20server%20using%20SQL%20injection.pdf)
 
+## Techniques
+
+- [SQL injection](../../techniques/sqli.md)
+- [Server-side injection runbook](../../runbooks/injection.md)
+
 ## Counter moves
 
-SQL injection: authentication is the case here. Server-side validation and least privilege are what these reduce to. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+SQL injection: authentication is the case here. Server-side validation and least privilege are what these reduce to. The defender's view can be found in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
