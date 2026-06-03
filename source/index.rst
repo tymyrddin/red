@@ -15,23 +15,21 @@ In, through, out
 .. figure:: /_static/images/ukc2.png
    :alt: Unified Kill Chain
 
-Falcons and foxes could be working the perimeter, reading locks the owner stopped seeing years ago.
+The perimeter is never as closed as the people inside believe. Falcons read it from above, foxes from the fence line.
 
 .. toctree::
    :maxdepth: 2
 
    docs/in/index
 
-Raccoons may be burrowing and rummaging, and finding that staying uninvited is the easy part.
-
+Once inside, the trick is not getting in again but never quite leaving. Raccoons are good at being part of the furniture.
 
 .. toctree::
    :maxdepth: 2
 
    docs/through/index
 
-Squirrels might work out what is worth taking, and how to leave with it before winter.
-
+Everything here was load-bearing to someone. The squirrels only care which parts travel well.
 
 .. toctree::
    :maxdepth: 2
