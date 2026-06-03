@@ -15,28 +15,30 @@ In, through, out
 .. figure:: /_static/images/ukc2.png
    :alt: Unified Kill Chain
 
-The route in. Where the falcons and foxes roam the perimeter, reading locks the owner stopped seeing years ago.
+Falcons and foxes could be working the perimeter, reading locks the owner stopped seeing years ago.
 
 .. toctree::
    :maxdepth: 2
 
    docs/in/index
 
-The route through. Where the raccoons burrow and rummage, and staying somewhere you were never invited turns out to be the easy part.
+Raccoons may be burrowing and rummaging, and finding that staying uninvited is the easy part.
+
 
 .. toctree::
    :maxdepth: 2
 
    docs/through/index
 
-The route out. Where the squirrels work out what is worth taking, and how to leave with it before winter.
+Squirrels might work out what is worth taking, and how to leave with it before winter.
+
 
 .. toctree::
    :maxdepth: 2
 
    docs/out/index
 
-Simulations and simulators
+Enclosures
 --------------------------
 
 The same wilds, fenced and named, so a thing can be tried twice and watched a second time.
