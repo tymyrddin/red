@@ -2,106 +2,122 @@
 
 *Extract from the Field Notes of Ponder Stibbons*
 
-The Patrician’s directive was unambiguous: assess the security of the Unseen University Power & Light Co. without 
-causing a flicker in the city's lights. This eliminated the standard pentester’s handbook. One could not simply 
+The Patrician's directive was unambiguous: assess the security of the Unseen University Power & Light Co. without
+causing a flicker in the city's lights. This eliminated the standard pentester's handbook. One could not simply
 rattle doors. One had to learn the art of listening.
 
-This is an account of a practical reconnaissance against the UU P&L simulator. It is not a textbook recitation. 
-It is a record of expectation, anomaly, and adaptation—the very essence of the work.
+This is an account of a practical reconnaissance against the UU P&L simulator. It is not a textbook recitation.
+It is a record of expectation, anomaly, and adaptation: the very essence of the work.
 
 ## The hypothesis and the setup
 
-The theory was sound. The simulator, a causally correct twin of the operational infrastructure, would generate its 
-own network chatter: SCADA polls, historian queries, device telemetry. By attaching a listener to the correct 
-network conduit, one could map the system by its own conversations.
+The theory was sound. The simulator, a causally correct twin of the operational infrastructure, would generate its
+own network chatter: device telemetry, NTP synchronisation, MQTT publications, protocol gateway traffic. By
+attaching a listener to the correct network boundary, one could map the system by its own conversations.
 
-The logical observation point was the loopback interface (`lo`), the internal roundabout where `127.0.0.1` hosts all 
-local services.
-
-```bash
-$ ip addr show | grep -A 3 "lo:"
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-```
-
-With the simulator’s orchestrator running in one terminal, capture began in another:
+The logical observation point was the DMZ zone (the Guild Quarter, in operational parlance): the segment between
+the public network and the enterprise interior. Everything transiting that boundary would be visible from a capture
+on the DMZ bridge interface.
 
 ```bash
-$ sudo tcpdump -i lo -w uupnl_initial_capture.pcap
-tcpdump: listening on lo, link-type EN10MB (Ethernet), snapshot length 262144 bytes
-^C9494 packets captured
+$ ip link show | grep br-
+5: br-ics_dmz: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 state UP
 ```
-Nearly 9,500 packets. The cacophony, it seemed, was present.
+
+With the simulator's orchestrator running, capture began on the DMZ bridge:
+
+```bash
+$ sudo tcpdump -i br-ics_dmz -w uupnl_dmz_capture.pcap
+tcpdump: listening on br-ics_dmz, link-type EN10MB, snapshot length 262144 bytes
+^C6841 packets captured
+```
+
+Nearly seven thousand packets. The Guild Quarter, it appeared, was busier than its quiet facade suggested.
 
 ## Silence in expected places
 
 The first analytical filter was for the universal languages of industry, applied in Wireshark:
+
 *   `tcp.port == 502` for Modbus.
 *   `tcp.port == 102` for Siemens S7.
-*   `tcp.port == 20000` for DNP3.
+*   `tcp.port == 44818` for EtherNet/IP.
 
 Result: Empty.
 
-This was the first critical finding. The system was not using the well-known default ports. This is a common, if 
-feeble, operational practice. Security through the obscurity of a changed number. The initial hypothesis was 
-correct in spirit but wrong in detail.
+This was the first critical finding. The control zone was not broadcasting into the DMZ. Whatever Modbus traffic
+existed between PLCs and relays, it was entirely contained within the operational and control subnets. From this
+vantage point, the industrial control systems were acoustically dark. This is, in principle, the correct design.
+The interest lay in what was not dark.
 
 ## Finding the true signal
 
-Abandoning assumptions, the analysis turned to the data itself. The command `Statistics > Conversations > IPv4` 
-provided the map. 
+Abandoning assumptions, the analysis turned to the data itself. The `Statistics > Conversations > IPv4` view
+provided the map.
 
 ![Wireshark](/_static/images/wireshark-passive-recon.png)
 
 The raw output was a list of conversations, the most telling of which are summarised here:
 
-| Client (127.0.0.1) | Server (127.0.0.1) | Packets | Bytes  | Inference                        |
-|:-------------------|:-------------------|:--------|:-------|:---------------------------------|
-| Port `34154`       | Port `10505`       | 1206    | 92,196 | Sustained, high-volume polling.  |
-| Port `43688`       | Port `10502`       | 1227    | 92,782 | Sustained, high-volume polling.  |
-| Port `39010`       | Port `10503`       | 1205    | 89,330 | Sustained, high-volume polling.  |
-| Port `48676`       | Port `10504`       | 1207    | 92,262 | Sustained, high-volume polling.  |
-| Port `49548`       | Port `10506`       | 1207    | 89,062 | Sustained, high-volume polling.  |
-| Port `52696`       | Port `10520`       | 603     | 44,198 | Moderate, aggregated polling.    |
-| Port `38596`       | Port `10502`       | 484     | 36,680 | A second, later control session. |
-| Port `52484`       | Port `10510`       | 4       | 264    | Sporadic, minimal communication. |
+| Source | Destination | Packets | Bytes | Inference |
+|:-------|:------------|:--------|:------|:----------|
+| `10.10.5.11` | `10.10.5.12:1883` | 2,104 | 186,252 | Sustained, high-volume telemetry. |
+| `10.10.5.30:123` | DMZ clients | 1,841 | 165,690 | Very uniform, tiny packets. Timing service. |
+| `10.10.5.10` | `10.10.5.13:4840` | 612 | 53,856 | Moderate, bidirectional. Gateway behaviour. |
+| `10.10.5.14:2404` | `10.10.2.20` | 8 | 528 | Sporadic, minimal. Event-driven field device. |
+| random clients | `10.10.5.20:22` | 4 | 264 | Occasional. Human-paced access point. |
 
-The pattern was now clear. The industrial conversation was not on ports `502` or `102`, but on a reserved block: 
-`10502` through `10520`.
+The pattern was now clear. The Guild Quarter was running five distinct conversations, each with a different
+character.
 
 ## The map and its meaning
 
-`Ports 10502, 10503, 10504, 10505, 10506`: High-frequency, bidirectional, request-response traffic. The packet 
-analysis shows a consistent pattern: a request (e.g., Modbus Function Code 3: Read Holding Registers) followed 
-immediately by a response of data.
+`10.10.5.11 → 10.10.5.12:1883`: High-volume, steady-rate, small packets pushing outbound. Port 1883 is MQTT. The
+source publishes; the destination receives and holds. This is a telemetry aggregator, something in the DMZ
+collecting process data and routing it northbound via a message broker. An attacker who can subscribe to that
+broker inherits whatever telemetry the source has collected, and may be able to inject writes back into any
+southbound device the gateway is configured to reach.
 
-*Deduction: These are polled field devices, PLCs or RTUs, under constant supervisory control. The high volume indicates 
-they are critical, real-time process controllers (turbines, reactors, environmental systems). The presence of a 
-safety-signatured port (`10503`) operating with identical patterns to a primary controller (`10502`) suggests a 
-redundant or monitoring system for a high-value asset.*
+*Deduction: A data gateway forwarding process readings. The MQTT broker is the aggregation point. Worth examining
+what the gateway can reach in the operational zone.*
 
-`Port 10510`: Minimal, sporadic packets (only 4 total in the capture).
+`10.10.5.30:123 → multiple`: Uniform, tiny packets at sub-second intervals radiating outward from a single source
+on UDP port 123. NTP. A clock service running without a client filter, answering any host that asks. The
+uniformity of packet sizes and intervals is the tell: no authentication exchange, no per-client negotiation, pure
+timing signal.
 
-*Deduction: This is a low-bandwidth or event-driven device. It could be a legacy system, a gateway that only speaks 
-when necessary, or a substation RTU that reports breaker status on change rather than constant polling. Its quiet 
-nature does not mean it's unimportant. It could be a safety or protection device.*
+*Deduction: A network time service with no access restriction. Time manipulation here affects log timestamps and
+certificate validity windows across every DMZ host that trusts it. An attacker who can shift these clocks corrupts
+the forensic record before the incident is reported.*
 
-`Port 10520`: Moderate, sustained traffic (~600 packets), but less than half the volume of the core PLCs. Analysis 
-shows it both sends requests and receives data from multiple other ports.
+`10.10.5.10 ↔ 10.10.5.13:4840`: Moderate traffic, bidirectional, request-response pattern. Port 4840 is OPC-UA.
+Something in the DMZ is maintaining a persistent conversation with an OPC-UA server on the same segment, which in
+turn has a path toward the operational zone. This is a gateway pair: a web-facing component and a protocol server
+sitting between external data consumers and the operational network.
 
-*Deduction: This is the supervisory master station. The SCADA server or data aggregator. It is the "brain" querying 
-the field devices (`10502-10506`) and possibly logging that data.*
+*Deduction: A protocol bridge. The OPC-UA server is a key lateral movement opportunity; if it accepts anonymous
+connections, it may expose operational methods as well as data.*
 
-`Port 63342`: Very low, intermittent chatter from a high client port.
+`10.10.5.14:2404 → 10.10.2.20`: Only eight packets in the entire capture. Port 2404 is IEC-104. The source is in
+the DMZ; the destination is in the operational zone. Sporadic, consistent with a device that reports on change
+rather than on a constant poll schedule.
 
-*Deduction: This is non-control traffic. Likely a diagnostic, management, or historian connection (e.g., an OPC 
-UA client for data archiving). It is not part of the real-time control loop.*
+*Deduction: A substation or field device communicating with the SCADA. Low frequency does not indicate low
+importance. A device that only speaks when something changes is the one worth watching when something changes, and
+worth examining for whether its readings can be injected before they reach the SCADA.*
 
-## The lesson of the missing file
+`random → 10.10.5.20:22`: Four packets. SSH handshake fragments. Something occasionally connects to port 22 in the
+DMZ. The intervals are human-scale, not automation.
 
-This exercise underscores a foundational rule. Passive reconnaissance does not name devices; it classifies behaviours. 
-It tells you what something does (a polled controller, a quiet monitor, a master station), not who it is labelled as. 
-This behavioural map is, in many ways, more valuable than a labelled diagram. It reveals function, criticality, and 
-relationship needed to plan the next, careful phase of engagement without ever needing to see a configuration file.
+*Deduction: An access point used by people, not machines. Contractors or administrators reaching into the network
+from outside. Worth noting the software version banner when active probing begins.*
+
+## The lesson of the missing detail
+
+This exercise underscores a foundational rule. Passive reconnaissance does not name devices; it classifies
+behaviours. It tells you what something does (a telemetry aggregator, a timing service, a bridging gateway, a
+change-driven field device, an access point), not what label appears on its chassis. This behavioural map is often
+more useful than a labelled diagram, because it reveals function, criticality, and relationship.
+
+The silences are information too. The entire control zone contributed eight packets to the DMZ capture. That says
+something about the segmentation that no network diagram will tell you as directly. It also defines the boundary:
+what passive listening can classify, and where the next phase of work begins.

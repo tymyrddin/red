@@ -53,9 +53,9 @@ Modern PLCs are modular. You can add I/O modules as needed. Older PLCs might be 
 - Omron
 - GE (now Emerson)
 
-At UU P&L, the turbine control system uses Allen-Bradley ControlLogix PLCs from 1998. The alchemical reactor uses 
-Siemens S7-400 PLCs from 2003. The Library environmental system uses a Schneider Modicon from 1987 that predates 
-the concept of network connectivity (someone added a Modbus gateway in 2005).
+At UU P&L, the turbine control system runs a soft PLC executing a governor loop via Modbus TCP. The alchemical
+reactor uses Siemens S7-400 PLCs from 2003. The Library environmental system uses a Schneider Modicon from 1987
+that predates the concept of network connectivity (someone added a Modbus gateway in 2005).
 
 ### Security characteristics of PLCs
 
@@ -246,11 +246,9 @@ A typical SCADA system includes:
 - Communication servers (for protocol conversion and gateway functions)
 - Application servers (for advanced analytics, reporting, etc.)
 
-At UU P&L, the SCADA infrastructure includes:
-- Primary and backup SCADA servers running Wonderware System Platform
-- Historian server storing 10 years of operational data
-- Four operator workstations in the central control room
-- Two engineering workstations (one in the office, one mobile for field work)
+At UU P&L, the distribution SCADA runs Scada-LTS. The process historian is a SQLite-backed REST service, queried
+by the SCADA for alarm data and exposed to the operational network for reporting. Four operator workstations sit in
+the control room; two engineering workstations provide field and office access.
 
 ### Historians deserve special attention
 
@@ -294,15 +292,14 @@ SCADA server and historian testing includes:
 
 At UU P&L, testing the SCADA infrastructure revealed:
 
-The historian web interface had SQL injection vulnerabilities in the trend query page. By crafting malicious queries, you could:
-- Extract all data from the historian database
-- Retrieve user credentials
-- Execute arbitrary SQL commands
-- Potentially pivot to other systems via xp_cmdshell
+The historian REST API had two vulnerabilities on adjacent endpoints. Path traversal on `/export` returned the raw
+SQLite database file when the tag parameter stepped outside its expected directory. The `/report` endpoint accepted
+unsanitised input; a crafted asset parameter pulled arbitrary records from the SQLite backend.
 
-The SCADA server's web interface allowed unauthenticated access to alarm history and real-time values. Whilst it didn't allow sending commands, it provided detailed intelligence about operations.
-
-The historian database used SQL Server with 'sa' account and password "Historian2015" (the year it was installed). This allowed direct database access bypassing application-level security.
+The SCADA server accepted the default credentials `admin / admin`. Its `/config` endpoint, reachable once
+authenticated, disclosed the historian's ingest password. Those credentials could then be used to POST fabricated
+readings to the historian's `/ingest` endpoint, making a turbine outage invisible on the SCADA dashboard while the
+turbine was offline.
 
 The recommendations were extensive and expensive, requiring vendor patches, configuration changes, network segmentation, and rebuilding parts of the infrastructure. The university implemented what they could afford immediately and scheduled the rest for "the next budget cycle" (a phrase that strikes fear into any security consultant's heart).
 
@@ -519,7 +516,21 @@ IEDs typically:
 - Use default or weak credentials
 - Have minimal logging
 
-Testing IEDs is similar to testing other OT devices, but you must be even more careful. Protective relays, for example, are responsible for detecting faults and isolating damaged equipment. Breaking a relay during testing could leave equipment unprotected.
+Testing IEDs requires more caution than most OT devices. Protective relays are responsible for detecting faults and isolating damaged equipment. Breaking a relay during testing could leave equipment unprotected.
+
+### Protective relay attacks and the subtlety of threshold manipulation
+
+At UU P&L, testing the relay IEDs revealed two fundamentally different approaches to inducing a protection event.
+The direct approach: write coil 0 to force a trip immediately. Immediate. Noisy. The relay's trip log records the
+event with a cause code marking it as a remote command rather than a protection response.
+
+The less obvious approach: write a new overcurrent threshold value into a holding register, lowering it towards
+zero. The relay continues to monitor the feeder normally. At the next current reading that exceeds the new
+threshold — which may be any reading at all if the threshold is set near zero — the relay trips the breaker. As
+designed. On apparently legitimate grounds.
+
+The protection event looks like a genuine fault. The relay did exactly what it was built to do. What is harder to
+reconstruct afterwards is who told it the threshold had changed, and when.
 
 ## The forgotten Windows XP box in the corner
 

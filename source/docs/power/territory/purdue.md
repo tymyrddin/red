@@ -41,7 +41,7 @@ From these observations, patterns of systemic risk emerge.
 
 1.  **The Hard Shell, Soft Centre.** Considerable resource is expended on the perimeter firewall between the corporate and OT realms. Yet, once inside the OT network—achievable via the spectral access point, a compromised jump box, or simply plugging into a spare socket in the turbine hall—one encounters no further internal resistance. It is a keep with a formidable gate but no doors on the inner rooms.
 2.  **Redundancy as a Singularity.** There are two SCADA servers for resilience. Both share the same administrative credentials, "to simplify failover procedures". Both are accessible from the same, lightly monitored engineering terminal. They provide redundancy for *availability*, but collectively constitute a single point of *security* failure.
-3.  **The Permeable DMZ.** The Demilitarised Zone, intended as a neutral ground for data exchange, has accrued so many "temporary" exceptions for various business applications that it has become the most permissive and complex part of the network. It is less a buffer zone and more a bustling, unregulated bazaar where data from all levels mingles freely.
+3.  **The Permeable DMZ.** The Demilitarised Zone, intended as a neutral ground for data exchange, has accrued so many "temporary" exceptions for various business applications that it has become the most permissive and complex part of the network. It is less a buffer zone and more a bustling, unregulated bazaar where data from all levels mingles freely. At UU P&L, the Guild Quarter DMZ contains an NTP server for network timing (no authentication, answering any client), an SSH bastion for contractor access, an OPC-UA gateway bridging the operational zone to data consumers, an IEC-104 RTU exposing substation datapoints over an unauthenticated REST interface, and a Neuron IIoT gateway publishing process telemetry to an MQTT broker. Each arrived with a documented justification. Together they make five distinct entry points, most of them reachable from the city network.
 
 ## On the procurement of elegant, impractical solutions
 
@@ -60,12 +60,14 @@ grown. To test the latter with the techniques suited to the former is to invite 
 My conclusion, therefore, is that we cannot safely experiment upon the living organism. We must construct a detailed 
 simulacrum.
 
-Our simulator project does not replicate the messy, ad-hoc network of the real UU P&L. Rather, it instantiates the 
-*Purdue Model itself* as a perfect, causal framework. Within this controlled environment, where `/components/physics/` 
-embodies Level 0, `/components/devices/` constitute Level 1, and `/components/network/servers/` provide the Level 2 
-interface, we can safely introduce the compromises we have observed. We can add the phantom wireless bridge, flatten 
-the virtual VLANs, and share the simulated credentials.
+The simulator built for UU P&L does not replicate the messy, ad-hoc network of the real infrastructure. It runs
+the Purdue model as a genuine multi-zone architecture: six distinct network segments, routed at hard boundaries,
+with the observed compromises layered in deliberately. The internet zone is where an attacker starts. The DMZ, the
+Guild Quarter, contains the outward-facing services. The enterprise zone holds the legacy corporate systems. The
+operational and control zones hold the SCADA and field devices, separated by a further routed boundary. Between all
+of them sit the dual-homed machines, the credential reuse, the world-readable keys, the permissive rules that exist
+on paper but not in iron.
 
-We can then demonstrate, without risk to the city's power supply, how a threat propagates through a poorly segmented 
-architecture, and, crucially, how proper controls would contain it. It transforms a theoretical model into a 
-practical, demonstrable truth—the only kind of evidence with persuasive weight in the halls of power.
+We can then demonstrate, without risk to the city's power supply, how a threat propagates through a poorly
+segmented architecture, and how proper controls would contain it. That transformation from theoretical model to
+demonstrable truth is the only evidence with persuasive weight in the halls of power.

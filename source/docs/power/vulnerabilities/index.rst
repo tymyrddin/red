@@ -22,5 +22,8 @@ what happens. The former tells you something useful. The latter tells you who wi
    scada.md
    workstation.md
    network.md
+   iec104.md
+   ntp.md
+   ingest-poisoning.md
 
 
