@@ -15,6 +15,7 @@ stare long enough at obfuscated code until the secrets spill out. Think of it as
 
    binary/index
    cracking/index
+   malware/index
    runbooks/index
    root-me/index
 

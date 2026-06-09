@@ -94,7 +94,7 @@ A historian showing normal operation during a period when the turbine was physic
 problem. A historian showing normal operation during that period with timestamps that cannot be trusted is a
 different kind, and a harder one to recover from. The clock was the thing nobody checked."
 
-Further reading:
+Related runbooks (in the ICS Access SimLab, to be linked once migrated into this repository):
 
-- [Time manipulation runbook](https://github.com/ninabarzh/ics-access-simlab/tree/main/docs/time-manipulation.md): NTP enumeration and manipulation techniques in the simulator
-- [guild-clock README](https://github.com/ninabarzh/ics-access-simlab/tree/main/zones/dmz/components/guild-clock/README.md): server configuration and vulnerability notes
+- Time manipulation runbook: NTP enumeration and manipulation techniques in the simulator
+- guild-clock README: server configuration and vulnerability notes

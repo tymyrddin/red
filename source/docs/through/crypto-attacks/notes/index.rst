@@ -22,4 +22,14 @@ hardware leakage, and the humans who glue it all together.
    ai-cryptanalysis.md
    automated-tools.md
    attack-chain.md
+   classical.md
+   models.md
+   goals.md
+   block.md
+   aes.md
+   stream.md
+   hashes.md
+   rsa.md
+   dh.md
+   ecc.md
 

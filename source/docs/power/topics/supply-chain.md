@@ -200,8 +200,8 @@ Attack progression:
 
 4. Exploit protocol-level vulnerabilities
    - Unauthenticated Modbus access
-   - Anonymous OPC UA browsing
-   - S7 memory reading
+   - Anonymous OPC UA browsing and method calls
+   - IEC-104 datapoint falsification
    - This is what simulator currently demonstrates
 
 The simulator currently focuses on steps 3-4. Adding vendor access scenarios would complete the attack chain, showing steps 1-2.
@@ -369,7 +369,6 @@ Until then, supply chain security should be understood as complementary to proto
 
 Your firewall is only as strong as the vendor VPN that bypasses it.
 
----
 
 Further reading:
 - [Remote Access Security](remote.md) - Wireless and remote access vulnerabilities

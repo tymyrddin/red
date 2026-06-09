@@ -24,5 +24,5 @@ held together with configurations someone implemented in 2003 and nobody dared c
    purdue.md
    protocols.md
    components.md
-   UU Power & Light ICS Simulator@GitHub <https://github.com/tymyrddin/power-and-light-sim>
+   ICS Access SimLab @GitHub <https://github.com/ninabarzh/ics-access-simlab>
 

@@ -53,9 +53,10 @@ Modern PLCs are modular. You can add I/O modules as needed. Older PLCs might be 
 - Omron
 - GE (now Emerson)
 
-At UU P&L, the turbine control system runs a soft PLC executing a governor loop via Modbus TCP. The alchemical
-reactor uses Siemens S7-400 PLCs from 2003. The Library environmental system uses a Schneider Modicon from 1987
-that predates the concept of network connectivity (someone added a Modbus gateway in 2005).
+At UU P&L, the turbine control system runs a soft PLC (`hex-turbine-plc`) executing a governor loop. It answers
+Modbus, DNP3, IEC-104, and SNMP, none of them authenticated, and publishes telemetry to an MQTT broker. An OPC-UA
+sidecar (`hex-turbine-opcua`) exposes the same process anonymously. There is no Siemens or Allen-Bradley kit on the
+estate; it standardised on open protocols years ago, which is convenient for everyone, attackers included.
 
 ### Security characteristics of PLCs
 
@@ -86,14 +87,14 @@ When pentesting, your interaction with PLCs should be extremely cautious:
 
 4. Testing: Any write operations (changing values, uploading programs, forcing outputs) should only be done in controlled test environments, never on production systems during initial pentest.
 
-At UU P&L, testing the turbine PLCs revealed:
-- No password protection on the programming port
-- Ability to download the complete control program via Ethernet
-- Ability to read/write any memory location
-- No logging of programming access
-- Physical key switch left in "Remote" mode, allowing remote program changes
+At UU P&L, testing the turbine PLC revealed:
+- No authentication on any protocol it speaks (Modbus, DNP3, IEC-104, SNMP)
+- Any holding register or coil readable, and writable, by anyone who can reach port 502
+- A write is not a dashboard update: it moves a valve, changes a setpoint, or trips a breaker
+- No logging of who issued a command
+- An OPC-UA sidecar offering the same process with SecurityMode None and anonymous access
 
-The recommendation wasn't "fix the PLC" (impossible without replacement). It was "segment the network so only engineering workstations can reach PLC programming ports, monitor for unexpected PLC communications, implement authentication at the network layer."
+The recommendation was not "fix the PLC" (impossible without replacement). It was to segment the network so only the engineering workstation can reach the control protocols, monitor for unexpected writes, and add authentication at the network layer, since the device offers none of its own.
 
 ## RTUs, the distant cousins
 
@@ -134,16 +135,16 @@ Testing RTU security requires:
 - Assessing physical security (during site visits)
 - Evaluating the security of remote management interfaces
 
-At UU P&L, the RTUs communicate with central SCADA via DNP3 over cellular connections. Testing revealed:
-- No DNP3 authentication enabled
-- No VPN or encryption on cellular links
-- Default SNMP community strings (allowing remote configuration changes)
-- Web interfaces for local configuration with default passwords
+At UU P&L, the substation RTU (`substation-rtu`) sits in the Guild Quarter DMZ and speaks IEC-104 on port 2404.
+Testing revealed:
+- No IEC-104 authentication
+- A second interface: a REST API on port 8080, with no authentication, that reconfigures datapoints on the fly
+- Reachable directly from the internet zone, with nothing in between
 - No detection of unauthorised access
 
-An attacker with access to the cellular network could potentially send DNP3 commands to operate circuit breakers. The 
-recommendations included implementing DNP3 Secure Authentication, using VPNs for all RTU communications, changing 
-default credentials, and deploying intrusion detection.
+An attacker who reaches the DMZ can rewrite the RTU's datapoints through the REST API, so the values the SCADA reads
+upstream no longer reflect the plant. The recommendations centred on authenticating IEC-104, removing or locking down
+the REST interface, and segmenting the RTU away from the internet zone.
 
 ## HMIs, where humans meet machines
 
@@ -176,8 +177,8 @@ An HMI system typically consists of:
 - Web server (many HMIs provide web-based remote access)
 - User authentication system (in theory)
 
-At UU P&L, the main SCADA HMI runs Wonderware InTouch on Windows 7. There are also several Panel PCs (industrial 
-touchscreen computers) running simpler HMI applications locally at each substation.
+At UU P&L, the control HMI (`uupl-hmi`) runs FUXA 1.1.7, a web-based HMI pinned to a vulnerable release, with its
+interface on port 1881.
 
 ### Security characteristics of HMIs
 
@@ -209,26 +210,17 @@ HMI security testing is more like traditional IT application testing:
 
 5. Database testing: If the HMI uses a database, test database security. Many use SQL Server or MySQL with weak credentials.
 
-At UU P&L, testing the main SCADA HMI revealed:
+At UU P&L, testing the control HMI showed the pinned FUXA release carries three known flaws:
+- CVE-2023-32545: path traversal via `/api/upload`, reaching files outside the intended directory
+- CVE-2023-32546: stored cross-site scripting via `/api/project`
+- CVE-2023-32547: an unauthenticated read of `/api/project`, handing over the project definition without a login
 
-The web interface (running on IIS) had a directory traversal vulnerability allowing access to configuration files. These configuration files contained:
-- Database credentials in plaintext
-- PLC IP addresses and communication settings  
-- User passwords in reversible encryption (XOR with a fixed key)
+The unauthenticated project read is the quiet one. Before touching anything, an attacker can pull the HMI's own
+description of the process: tag names, addresses, and the layout of what the operators watch.
 
-The web interface had default credentials (admin/admin) that worked because "the vendor said changing them might affect licensing, and we don't want to risk it".
-
-The HMI Windows machine itself had RDP enabled, accessible from the corporate network, with the local Administrator account using "Password123" (required by the HMI software vendor, apparently).
-
-The recommendations included:
-- Patching the directory traversal vulnerability (required vendor support)
-- Changing default credentials
-- Implementing proper password management
-- Restricting RDP access
-- Network segmentation to limit who can access HMI systems
-- Encrypting credentials in configuration files (required vendor cooperation)
-
-The university's response was to implement the network segmentation (relatively easy) and change the obvious passwords (grudgingly). The rest was categorised as "long-term improvements requiring budget and vendor engagement".
+The recommendations were the usual mix: upgrade off the pinned release, put the web interface behind authentication,
+and stop exposing it where the rest of the zone can reach it. The university implemented the segmentation (relatively
+easy) and scheduled the upgrade for "the next budget cycle".
 
 ## SCADA servers and historians
 
@@ -353,8 +345,9 @@ At UU P&L, the primary engineering workstation is a Windows 7 laptop that:
 - Is used by four different engineers (shared "engineer" account)
 - Has passwords written on sticky notes attached to the laptop case
 
-This laptop is effectively the master key to the entire UU P&L infrastructure. Compromise it and you control the 
-turbines, reactors, and distribution systems.
+This workstation is effectively the master key to the UU P&L control estate. In the lab it is `uupl-eng-ws`,
+dual-homed into the control zone and holding every credential needed to reach the field devices. Compromise it and you
+reach the turbine, the relays, and the distribution breakers.
 
 ### Testing engineering workstations
 
@@ -440,22 +433,10 @@ Common safety PLC manufacturers:
 - Triconex/Honeywell
 - Yokogawa ProSafe-RS
 
-At UU P&L, the alchemical reactor has a SIS that monitors:
-
-- Reactor temperature (with three independent sensors)
-- Pressure (with redundant sensors)
-- Containment field strength (magical monitoring)
-- Emergency cooling system status
-
-If any parameter exceeds safe limits, the SIS:
-
-- Activates emergency cooling
-- Vents pressure to safe release point
-- Shuts down the reaction
-- Isolates the reactor
-- Triggers evacuation alarms
-
-This happens automatically, without human intervention, and without depending on the normal control system.
+At UU P&L there is no separate safety instrumented system in the lab. Protection lives in the field devices
+themselves: the protective relay IEDs (`uupl-relay-a`, `uupl-relay-b`) trip their feeders on undervoltage,
+overcurrent, or overspeed. That is the protection function a SIS would otherwise centralise, and it is exactly where
+the exposure sits, because those thresholds are writable over Modbus. The next section returns to that.
 
 ### Security and safety
 
@@ -479,13 +460,13 @@ When pentesting environments with SIS:
 
 5. Recommendations without proof: Unlike other systems where you demonstrate vulnerabilities, for safety systems you document theoretical vulnerabilities and recommend mitigations without proving they're exploitable.
 
-At UU P&L, analysis of the reactor SIS revealed:
+Because the lab folds protection into the relays rather than a separate, independent safety layer, the question a SIS
+review would normally ask, "is protection isolated from the control path it is meant to back up?", answers itself: it
+is not. Anyone who can write Modbus to a relay can move the very thresholds that define a safe state.
 
-The safety PLC was properly independent from the control PLC. Good. However, the engineering workstation used to program both systems was the same laptop. Less good. The safety HMI was on the same network as the control SCADA. Problematic. The safety system logged to the same historian as normal operations. Concerning.
-
-These architectural issues meant that whilst the safety system itself was robust, an attacker who compromised the engineering workstation could potentially modify safety logic, and an attacker on the control network could potentially interfere with safety monitoring.
-
-The recommendations focused on improving architectural independence, not testing the safety system's resilience to attack. Because testing by breaking safety systems is a career-limiting move in the "you might go to prison" sense.
+The lesson carries even where a real SIS exists. Testing one by breaking it is a career-limiting move in the "you
+might go to prison" sense, so a review documents the architecture and the dependencies and recommends mitigations
+without proving them on a live safety system.
 
 ## IEDs and the menagerie of intelligent devices
 
@@ -546,16 +527,15 @@ This computer is often:
 - Accessible with no password or an obvious password
 - Not documented in any asset inventory
 
-At UU P&L, there's a Windows 98 machine in the turbine hall running data collection software from the original 
-turbine vendor. It polls turbine data via serial connection, logs it to local CSV files, and makes the data available 
-via a network share.
+At UU P&L, the forgotten box is `hex-legacy-1`, a Windows XP-era workstation in the enterprise zone. It is alive out
+of inertia and a deferred upgrade budget: the sort of machine nobody can quite justify keeping and nobody dares turn
+off.
 
-This machine has been running since 1998. It cannot be upgraded because the data collection software won't run on 
-newer Windows. It cannot be retired because maintenance contracts require this specific data format. It cannot be 
-secured because applying security policies breaks the software.
+It cannot be upgraded without breaking whatever it still quietly runs, and it cannot be retired because no one is
+certain what depends on it.
 
-It sits there, a monument to technical debt, accessible via SMBv1 with no password, containing 25 years of turbine 
-operational data, and serving as a potential pivot point into the turbine control network.
+So it sits on the enterprise network, a monument to technical debt, unpatched and under-audited, a soft landing for
+an attacker who has reached that far and a plausible pivot deeper into the estate.
 
 ### Testing forgotten systems
 
@@ -574,30 +554,31 @@ The recommendations for these systems usually are:
 - Document them properly (so they're not forgotten again)
 - Plan for eventual replacement (though this rarely happens)
 
-At UU P&L, the recommendation was to isolate the Windows 98 machine on its own VLAN, implement firewall rules 
-allowing only necessary connections, and monitor all access attempts. The university implemented the firewall rules 
-(relatively easy) and added it to the asset inventory (free). The monitoring was "under consideration" (meaning 
-probably never).
+At UU P&L, the recommendation was to isolate `hex-legacy-1` on its own segment, restrict it to only the connections it
+genuinely needs, and monitor access to it, while planning its eventual retirement. The university implemented the
+firewall rules (relatively easy) and added it to the asset inventory (free). The monitoring was "under consideration"
+(meaning probably never).
 
-## Simulator components
+## Lab components
 
-* PLCs (Programmable Logic Controllers)
-* RTUs (Remote Terminal Units)
-* HMIs (Human-Machine Interfaces)
-* SCADA servers and historians
-* Engineering workstations
-* Safety instrumented systems (SIS)
-* IEDs (Intelligent Electronic Devices)
-* Other forgotten systems (e.g., old Windows boxes)
+* Turbine PLC and its OPC-UA sidecar
+* Substation RTU (IEC-104, plus a REST datapoint API)
+* Control HMI (FUXA)
+* SCADA server and process historian
+* Engineering workstation (the dual-homed bridge)
+* Protective relay IEDs and Modbus actuators
+* DMZ gateways and brokers (umatiGateway, Neuron, MQTT, NTP, DNS, syslog)
+* A legacy workstation, forgotten and unpatched
 
-| Device          | Typical Protocol                       |
-|-----------------|----------------------------------------|
-| PLC             | Modbus / S7 / IEC 104                  |
-| RTU             | DNP3 / IEC 104 / Modbus                |
-| HMI Workstation | OPC UA (client) + vendor HMI protocols |
-| SCADA           | OPC UA / vendor APIs                   |
-| Historian       | DB / historian APIs                    |
-| Engineering     | Programming protocols for PLCs         |
-| SIS             | Often proprietary safety fieldbus      |
-| IED             | DNP3, IEC 61850, Modbus, etc.          |
+| Device          | Protocols in the lab                          |
+|-----------------|-----------------------------------------------|
+| Turbine PLC     | Modbus / DNP3 / IEC-104 / SNMP, OPC-UA sidecar |
+| Substation RTU  | IEC-104, plus a no-auth REST API              |
+| HMI             | FUXA web UI, Modbus to the field              |
+| SCADA           | Scada-LTS web, Modbus over stunnel            |
+| Historian       | SQLite-backed REST API                        |
+| Engineering WS  | Bridges operational and control; holds creds  |
+| Relay IED       | Modbus, with writable trip thresholds         |
+| Actuator        | Modbus holding registers / coils              |
+| DMZ gateways    | OPC-UA, MQTT, IEC-104, NTP, DNS, syslog       |
 

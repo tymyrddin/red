@@ -25,64 +25,63 @@ For a web application, this might be:
 
 For an industrial control system at UU P&L, this becomes:
 
-### Example: Reactor control system compromise
+### Example: Turbine and feeder compromise
 
 Impact:
-- Safety: Potential loss of containment, alchemical incident, injuries or fatalities, campus evacuation
-- Financial: €60 million+ for cleanup, equipment replacement, compensation, fines
-- Environmental: Magical contamination requiring extensive remediation
-- Reputational: Loss of operating licence, criminal investigation, Patrician displeasure
-- Operational: Months to years to rebuild and restore operations
+- Safety: Turbine overspeed risks destroying rotating plant; tripped breakers can drop a district mid-operation, with hazard to anyone working on the affected equipment
+- Financial: €60 million+ for equipment replacement, compensation, fines
+- Operational: Months to rebuild a wrecked turbine; hours to days to restore a blacked-out feeder
+- Reputational: Loss of operating licence, investigation, Patrician displeasure
 
 Likelihood:
-- Vulnerabilities exist (no authentication on PLC, engineering workstation bridging networks, weak security throughout)
+- Vulnerabilities exist (no authentication on the control protocols, an engineering workstation bridging zones, weak security throughout)
 - Motivated attackers exist (nation states, extremist groups, possibly disgruntled former staff)
-- However, requires specific knowledge of reactor systems
-- And requires intent to cause harm (most attackers want money or disruption, not mass casualties)
+- However, turning access into physical damage takes some knowledge of the plant
+- And requires intent to cause harm (most attackers want money or disruption, not wreckage)
 
 Assessment: Medium likelihood
 
 Overall risk: Unacceptably high
 
 Even medium likelihood of catastrophic impact equals unacceptable risk. This drives security investment decisions. 
-You spend money to reduce likelihood (better security controls) or impact (better safety systems, redundancy, 
-containment).
+You spend money to reduce likelihood (better security controls) or impact (better protection, redundancy, 
+isolation).
 
-### Example: Building HVAC compromise
+### Example: Revenue meter compromise
 
 Impact:
-- Safety: Discomfort, possible health issues if temperatures extreme for extended periods
-- Financial: Energy waste, equipment damage if poorly controlled
+- Safety: None; the meter only reads
+- Financial: Limited; read-only access leaks consumption data but cannot change billing directly
 - Reputational: Minor embarrassment
-- Operational: Degraded working conditions but operations continue
+- Operational: Operations continue; the loss is in the confidentiality of the record
 
 Likelihood:
-- Vulnerabilities exist (BACnet with no authentication, accessible from corporate network)
-- Attackers less motivated (low value target)
+- Vulnerabilities exist (unauthenticated Modbus read, reachable on the control network)
+- Attackers less motivated (low value on its own, useful mainly for reconnaissance)
 - Assessment: Low to medium likelihood
 
 Overall risk: Low to medium, acceptable with monitoring
 
-The HVAC risk doesn't warrant the same investment as the reactor. You implement basic controls (network segmentation, 
+The meter risk doesn't warrant the same investment as the turbine. You implement basic controls (network segmentation, 
 monitoring) but accept remaining risk.
 
-### The exception: The Library climate control
+### The exception: the clock
 
-This requires special consideration. Technically, it's just HVAC. But the consequences of failure include:
+This requires special consideration. Technically, it's just an NTP server handing out the time. But the consequences
+of getting it wrong reach further than its modest role suggests:
 
-Impact if Library temperature rises above 19°C:
-- Books deteriorate
-- Magical tomes become unstable
-- L-space integrity weakens
-- The Librarian becomes progressively more irritable
-- Above 21°C, the Librarian becomes actively hostile
+Impact if the time the estate trusts can be moved:
+- Certificate validation starts to fail, or worse, succeeds when it should not
+- Log timelines stop lining up, so correlation across systems quietly breaks
+- A historian can show normal operation during a period the turbine was stopped
+- Forensics after an incident loses its fixed point to stand on
 
-The financial impact is calculable (rare book collection valued at €240 million+). The safety impact is harder to 
-quantify (what's the monetary value of not being transformed into a bookend by an angry orangutan?).
+The financial impact is hard to quantify directly. The damage shows up later, as the inability to reconstruct what 
+happened and when.
 
-Risk assessment: Medium likelihood, catastrophic impact (from certain perspectives), overall high risk
+Risk assessment: Medium likelihood, high impact through second-order effects, overall high risk
 
-Security investment in Library climate control is therefore disproportionate to its apparent importance as "just HVAC". 
+Security investment in the time service is therefore disproportionate to its apparent importance as "just a clock". 
 This is OT security in a nutshell: context matters enormously.
 
 ## Determining what's testable vs what's demonstrable
@@ -348,14 +347,14 @@ Many cyber insurance policies exclude:
 - Business interruption beyond certain limits
 - Damage from insider threats (sometimes)
 
-Understanding exclusions is critical. If your reactor controls are vulnerable and you know it, and someone exploits 
+Understanding exclusions is critical. If your turbine controls are vulnerable and you know it, and someone exploits 
 that to cause physical damage, your insurance may not cover it.
 
 At UU P&L, the insurance policy specifically excludes:
 - Acts of war and nation state attacks
 - Damage resulting from known vulnerabilities unaddressed for more than 180 days
 - Physical damage exceeding €60 million
-- Certain high-risk experiments in the alchemical reactor (this predates cyber concerns)
+- Certain high-risk switching operations on the distribution feeders (this predates cyber concerns)
 
 This shapes risk management. Vulnerabilities must be addressed within 180 days or risk acceptance must explicitly 
 acknowledge potential insurance exclusion.
@@ -493,7 +492,7 @@ Review Date: When risk will be reassessed
 
 `RISK-OT-001`
 - System: Turbine Control PLCs
-- Vulnerability: No authentication on S7 protocol
+- Vulnerability: No authentication on the control protocols (Modbus, DNP3, IEC-104)
 - Threat: Nation state, Ransomware gang, Contractor
 - Impact: Very High (€18M+ equipment damage, city-wide outage)
 - Likelihood: Medium (network access possible via multiple paths)
@@ -507,31 +506,31 @@ Review Date: When risk will be reassessed
 - Review Date: Quarterly
 
 `RISK-OT-015`
-- System: Library Climate Control
-- Vulnerability: BACnet protocol with no authentication
-- Threat: Disgruntled staff, External attacker via corporate network
-- Impact: High (€240M+ book collection, Librarian displeasure)
-- Likelihood: Medium (accessible from corporate network)
+- System: Substation RTU (Guild Quarter DMZ)
+- Vulnerability: IEC-104 with no authentication, plus an unauthenticated REST API that reconfigures datapoints
+- Threat: External attacker reaching the DMZ from the internet zone
+- Impact: High (falsified readings blind the SCADA to the true state of the plant)
+- Likelihood: Medium (directly reachable from the internet zone)
 - Risk Level: High
 - Current Controls: None
 - Residual Risk: High
-- Mitigation: Network segmentation, restrict to VLAN accessible only from building automation workstation
-- Owner: Facilities Manager
+- Mitigation: Authenticate IEC-104, lock down or remove the REST interface, segment the RTU away from the internet zone
+- Owner: OT Engineering Manager
 - Status: Planned
 - Target Date: Q3 2026
 - Review Date: Quarterly
 
 `RISK-OT-027`
-- System: Cafeteria HVAC
-- Vulnerability: Web interface with default credentials
-- Threat: Opportunistic attacker, Script kiddie
-- Impact: Low (discomfort, minor energy waste)
-- Likelihood: Low (low value target)
+- System: Revenue meter
+- Vulnerability: Unauthenticated Modbus read (FC4)
+- Threat: Opportunistic attacker, reconnaissance
+- Impact: Low (read-only; leaks consumption data, no direct control)
+- Likelihood: Low (low value target on its own)
 - Risk Level: Low
 - Current Controls: None
 - Residual Risk: Low
-- Mitigation: Change default credentials, restrict web interface access
-- Owner: Facilities Technician
+- Mitigation: Segment the meter, monitor for unexpected pollers
+- Owner: OT Engineering Manager
 - Status: Planned
 - Target Date: Q4 2026
 - Review Date: Annually
@@ -556,16 +555,15 @@ technology but need to make decisions about it.
 ### The challenge of translation
 
 Technical finding:
-"The Siemens S7-400 PLCs controlling the turbine governor systems lack authentication mechanisms in the S7comm 
-protocol implementation, allowing any host on VLAN 10 to issue program upload, download, CPU start, and CPU stop 
-commands without credential verification."
+"The turbine governor PLC accepts Modbus, DNP3, and IEC-104 with no authentication, allowing any host on the control 
+network to read or write registers and coils, change setpoints, and trip breakers without credential verification."
 
 What the Archchancellor hears:
 "Blah blah technical jargon blah expense blah."
 
 What you need to communicate:
-"Anyone who gets access to the turbine network can reprogram or shut down the turbines, causing city-wide blackouts 
-or potentially damaging €18 million turbines."
+"Anyone who gets access to the turbine network can send commands to the turbines and feeder breakers, causing 
+city-wide blackouts or potentially damaging €18 million turbines."
 
 ### Effective communication principles
 
@@ -575,14 +573,14 @@ Avoid jargon
 
 Use concrete examples
 - Don't say: "Inadequate network segmentation increases attack surface"
-- Do say: "An attacker who compromises any laptop on the university network can reach the reactor controls"
+- Do say: "An attacker who compromises any laptop on the university network can reach the turbine and the feeder breakers"
 
 Quantify impact in business terms
 - Don't say: "High impact vulnerability"
 - Do say: "Could cause €18 million equipment damage plus regulatory fines plus three-month outage"
 
 Compare to familiar risks
-- "This is like leaving the reactor building keys in an unlocked drawer in the front office"
+- "This is like leaving the turbine hall keys in an unlocked drawer in the front office"
 - "This is like posting the turbine control system passwords on the university website"
 
 Provide context

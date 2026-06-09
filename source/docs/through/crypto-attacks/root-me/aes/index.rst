@@ -12,3 +12,5 @@ same way again.
    :caption: AES busting
 
    cbc-bit-flipping.md
+   ecb.md
+   iv.md

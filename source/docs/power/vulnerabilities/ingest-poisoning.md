@@ -103,7 +103,7 @@ server's own configuration is not a reliable record. It is a record that can be 
 those two things is most visible when everyone agrees that nothing unusual appears in the logs, and the physical
 evidence says otherwise."
 
-Further reading:
+Related runbooks (in the ICS Access SimLab, to be linked once migrated into this repository):
 
-- [Historian ingest poisoning runbook](https://github.com/ninabarzh/ics-access-simlab/tree/main/docs/historian-ingest-poison.md): step-by-step attack with expected responses
-- [Historian path traversal runbook](https://github.com/ninabarzh/ics-access-simlab/tree/main/docs/historian-path-traversal.md): read-only credential harvesting
+- Historian ingest poisoning runbook: step-by-step attack with expected responses
+- Historian path traversal runbook: read-only credential harvesting

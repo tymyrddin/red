@@ -129,10 +129,10 @@ Responsibility and liability:
 
 At UU P&L, the policy includes:
 
-A specific section on the Library climate control: "Testing of Library environmental systems requires direct approval 
-from the Librarian. This approval must be obtained in person, with appropriate offerings of bananas. Remote approval 
-is not acceptable. The Librarian's mood must be assessed before proceeding. Testing will be immediately aborted if 
-the Librarian appears displeased."
+A specific section on the distribution breakers: "Testing that could trip the Dolly Sisters or Nap Hill feeders
+requires direct approval from Operations, obtained in person, during daylight. Remote approval is not acceptable. The
+duty engineer's mood is to be assessed before proceeding. Testing will be aborted at once if a feeder is carrying
+anything the city would miss."
 
 This sounds humorous, but it's actually recognition that the Librarian has better situational awareness of Library 
 systems than anyone else, and their cooperation is essential.
@@ -244,9 +244,10 @@ At UU P&L, the RoE includes specific provisions:
 periods. Operations will manually balance load to compensate if testing affects turbine output. Backup turbines will 
 be on standby. City emergency services will be notified of testing schedule in case of unexpected outage."*
 
-*"Testing of alchemical reactor controls will be conducted only when reactor is in cold shutdown state. Reactor will 
-not be started until 24 hours after testing completes and all systems are validated as functioning correctly. 
-The Bursar will be sedated for the duration of testing to prevent panic-induced interference."*
+*"Testing of the protective relays and feeder breakers will be conducted only with the affected feeder isolated and
+its load transferred. Breakers will not be returned to service until 24 hours after testing completes and all trip
+thresholds are validated as restored. The duty engineer will be present throughout to prevent optimistic
+improvisation."*
 
 ## Change management integration
 

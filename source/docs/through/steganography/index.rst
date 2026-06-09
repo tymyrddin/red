@@ -12,3 +12,4 @@ looking, because nobody inspects the family vacation photos. Until it's too late
 
    notes/index
    runbooks/index
+   root-me/index

@@ -32,6 +32,7 @@ The `hello` file is the Linux executable that displays the message "hello world!
 └─$ ./hello
 hello world!
 ```                                                                                                                             
+
 ## Identification
 
 ```text
@@ -120,7 +121,8 @@ _init
 .comment
 ```
 
-The strings are listed in order from the start of the file. The first part of the list contains the message and the compiler information. The first two lines show what libraries are used.
+The strings are listed in order from the start of the file. The first part of the list contains the message and the
+compiler information. The first two lines show what libraries are used.
 
 ## objdump
 
@@ -138,7 +140,8 @@ To get Intel syntax, use the `-M intel` parameter:
 └─$ objdump -M intel -d hello > disassembly-intel.asm
 ```
 
-The disassembly of the code is usually in the `.text` section. Because this is a gcc-compiled program, skip all the initialisation code and look at the main function where the code is.
+The disassembly of the code is usually in the `.text` section. Because this is a gcc-compiled program, skip all the
+initialisation code and look at the main function where the code is.
 
 Moving into dynamic analysis, use `ltrace`, `strace`, and `gdb`.
 
@@ -152,11 +155,13 @@ puts("hello world!"hello world!
 +++ exited (status 13) +++
 ```
 
-The output shows a readable code of what the program did. `ltrace` logged library functions that the program called and received. It called `puts` to display a message. And it received an exit status of `13` when the program terminated.
+The output shows a readable code of what the program did. `ltrace` logged library functions that the program called and
+received. It called `puts` to display a message. And it received an exit status of `13` when the program terminated.
 
 ## strace
 
-`strace` logged every system call that happened, starting from when it was being executed by the system. `execve` is the first system call that was logged:
+`strace` logged every system call that happened, starting from when it was being executed by the system. `execve` is the
+first system call that was logged:
 
 ```text
 ┌──(kali㉿kali)-[~/Development/C]
@@ -200,9 +205,12 @@ exit_group(13)                          = ?
 +++ exited with 13 +++
 ```
 
-Calling `execve` runs a program pointed to by the filename in its function argument: `open` and `read` are system calls that are used to read files. `mmap`, `mprotect`, and `brk` are responsible for memory activities such as allocation, permissions, and segment boundary setting.
+Calling `execve` runs a program pointed to by the filename in its function argument: `open` and `read` are system calls
+that are used to read files. `mmap`, `mprotect`, and `brk` are responsible for memory activities such as allocation,
+permissions, and segment boundary setting.
 
-Inside the code of puts, it executes a `write` system call. writing data to the object it was pointed to. `write`'s first parameter has a value of `1`, denoting `STDOUT`. The second parameter is the message.
+Inside the code of puts, it executes a `write` system call. writing data to the object it was pointed to. `write`'s
+first parameter has a value of `1`, denoting `STDOUT`. The second parameter is the message.
 
 ## gdb
 
@@ -286,7 +294,8 @@ k7             0x0                 0
 (gdb) 
 ```
 
-Now being at main, we can run each instruction with step into (the `stepi` (`si`) command and step over (the `nexti` (`ni`) command). Follow this with the `info registers` command to see what values changed.
+Now being at main, we can run each instruction with step into (the `stepi` (`si`) command and step over (the `nexti` (
+`ni`) command). Follow this with the `info registers` command to see what values changed.
 
 ```text
 (gdb) si
@@ -393,7 +402,9 @@ subsys   linux
 va       true
 ```
 
-The `bintype`, `class`, `havecode`, and `os` fields indicate that the file is an executable 64-bit ELF file that runs in Linux. `arch`, `bits`, `endian`, and `machine` suggest that the file was built with `x86` code. In addition, the `lang` field indicates that the file was compiled from C.
+The `bintype`, `class`, `havecode`, and `os` fields indicate that the file is an executable 64-bit ELF file that runs in
+Linux. `arch`, `bits`, `endian`, and `machine` suggest that the file was built with `x86` code. In addition, the `lang`
+field indicates that the file was compiled from C.
 
 To list imported functions:
 
@@ -468,9 +479,12 @@ Using the radare2 debugger:
 [x] Enable constraint types analysis for variables
 ```
 
-Visual mode allows easy navigation, has a cursor mode for selecting bytes, and offers numerous key bindings to simplify debugger use. 
+Visual mode allows easy navigation, has a cursor mode for selecting bytes, and offers numerous key bindings to simplify
+debugger use.
 
-The `V` command sets the console to visual mode to debug the program while having an interactive view of the registry and the stack. Entering `:` shows a command console. Pressing `Enter` takes back to visual mode. To exit from visual mode back to command line, press q.
+The `V` command sets the console to visual mode to debug the program while having an interactive view of the registry
+and the stack. Entering `:` shows a command console. Pressing `Enter` takes back to visual mode. To exit from visual
+mode back to command line, press q.
 
 ![Radare 2 Visual mode](/_static/images/radare-v-mode.png)
 
@@ -686,22 +700,30 @@ Scroll down , and ha!, the `Correct password!` text string:
 
 ![password](/_static/images/radare-password1.png)
 
-In the `0x80485d3` block, where the `Correct password!` string is, the message was displayed using `puts`. Going to that block is a red line from the `0x80485c7` block, in which the value in `local_418h` was compared to `0x2de` (or `734` in decimal format). If equal to `734`, the flow goes to the `Correct password!` block.
+In the `0x80485d3` block, where the `Correct password!` string is, the message was displayed using `puts`. Going to that
+block is a red line from the `0x80485c7` block, in which the value in `local_418h` was compared to `0x2de` (or `734` in
+decimal format). If equal to `734`, the flow goes to the `Correct password!` block.
 
-There is a loop (blue lines), and to exit the loop, the value at `local_414h` must be greater than or equal to the value at `local_410h`. The loop exits to the `0x80485c7` block. 
+There is a loop (blue lines), and to exit the loop, the value at `local_414h` must be greater than or equal to the value
+at `local_410h`. The loop exits to the `0x80485c7` block.
 
-At the `0x8048582` block, both values, at `local_418h` and `local_414h` are initialised to 0. These values are compared in the `0x80485b9` block.
+At the `0x8048582` block, both values, at `local_418h` and `local_414h` are initialised to 0. These values are compared
+in the `0x80485b9` block.
 
-In the `0x8048598` block, there are three variables of concern: `local_40ch`, `local_414h`, and `local_418h`. `local_414h` seems to be a pointer of the data pointed to by `local_40c`. `local_418` starts from `0`, and each byte from `local_40ch` is added.
+In the `0x8048598` block, there are three variables of concern: `local_40ch`, `local_414h`, and `local_418h`.
+`local_414h` seems to be a pointer of the data pointed to by `local_40c`. `local_418` starts from `0`, and each byte
+from `local_40ch` is added.
 
 Now looking at the main block:
 
 ![password](/_static/images/radare-password2.png)
 
-There are three named functions: `printf()`, `scanf()`, and `strlen()`, and `local_40ch` is the second parameter for `scanf`, while the data at the `0x80486b1` address should contain the format
+There are three named functions: `printf()`, `scanf()`, and `strlen()`, and `local_40ch` is the second parameter for
+`scanf`, while the data at the `0x80486b1` address should contain the format
 expected.
 
-To retrieve the data at `0x80486b1`, enter a colon (`:`), enter `s 0x80486b1`, then return back to the visual mode. Press `q` again to view the data:
+To retrieve the data at `0x80486b1`, enter a colon (`:`), enter `s 0x80486b1`, then return back to the visual mode.
+Press `q` again to view the data:
 
 ![password](/_static/images/radare-password3.png)
 
@@ -726,7 +748,8 @@ The code likely looks something like this:
     }
 ```
 
-The entered password should have a size of `7` characters and the sum of all characters in the password should be equal to `734`. The password can be anything, as long as it satisfies these conditions.
+The entered password should have a size of `7` characters and the sum of all characters in the password should be equal
+to `734`. The password can be anything, as long as it satisfies these conditions.
 
 ```text
 ┌──(kali㉿kali)-[~/Development/C/passcode]
@@ -743,4 +766,6 @@ puts("Correct password!"Correct password!
 
 ## Counter moves
 
-Linux reversing leans on rich tooling and symbols. Stripping and static linking remove some of the easy footing. The defender's view is in the blue notes on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).
+Linux reversing leans on rich tooling and symbols. Stripping and static linking remove some of the easy footing. The
+defender's view is in the blue notes
+on [the application layer as a target](https://blue.tymyrddin.dev/docs/counter/app/).

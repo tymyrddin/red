@@ -14,13 +14,16 @@ This wasn't incompetence on the part of PLC manufacturers. When these devices we
 
 That assumption, Ponder reflected whilst staring at the simulator's network traffic, was now catastrophically wrong. But the PLCs remained, and someone had to test whether they could be secured. Or at least understand exactly how insecure they were.
 
-## Testing the reactor PLC: S7 Protocol
+## A general illustration: testing a PLC over S7
 
-The UU P&L simulator included a Siemens S7-400 PLC controlling the alchemical reactor. Ponder started with the most basic question: would it respond at all?
+The UU P&L lab has no reactor and no S7. Its turbine PLC speaks Modbus, DNP3, IEC-104, and OPC-UA, covered further
+down. S7 appears here only as a widely deployed example of how little a PLC protocol asks of a caller; the same
+pattern holds for the lab's Modbus interface. Ponder started with the most basic question: would such a PLC respond
+at all?
 
 ### First contact
 
-The first test was simply attempting to connect. Using [Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication, Ponder wrote a simple [connection test](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/testing-turbine-control-plcs.py).
+The first test was simply attempting to connect. Using [Snap7](http://snap7.sourceforge.net/), a free open-source library for S7 communication, Ponder wrote a simple connection test.
 
 ```python
 # From testing-turbine-control-plcs.py
@@ -34,7 +37,7 @@ The PLC responded immediately. No password prompt. No authentication challenge. 
 
 ### Extracting status information
 
-Once connected, Ponder tried requesting status information with a [status dump script](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_plc_status_dump.py). The PLC cheerfully provided:
+Once connected, Ponder tried requesting status information with a status dump script. The PLC cheerfully provided:
 - CPU type and firmware version
 - Current operational state (RUN/STOP/MAINT)
 - System diagnostics
@@ -46,7 +49,7 @@ Security implication: An attacker now knows exactly what PLC model and firmware 
 
 ### Reading memory
 
-The next test was [reading memory areas](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py). S7 PLCs have several memory regions:
+The next test was reading memory areas. S7 PLCs have several memory regions:
 - Process Image Input (PI/PA): Sensor values
 - Process Image Output (PO/PE): Actuator states
 - Data Blocks (DB): Structured configuration data
@@ -64,13 +67,13 @@ data = plc.read_area(snap7.types.S7AreaPE, 0, 0, 100)
 data = plc.read_area(snap7.types.S7AreaDB, 1, 0, 100)
 ```
 
-The PLC provided complete access to all memory areas. Ponder could observe real-time reactor temperatures, valve positions, setpoints, and control parameters. It was like having a window directly into the control system's brain, with no curtains.
+The PLC provided complete access to all memory areas. Ponder could observe real-time process temperatures, valve positions, setpoints, and control parameters. It was like having a window directly into the control system's brain, with no curtains.
 
 Security implication: Complete visibility into operational state. An attacker can observe system behaviour, identify control patterns, and plan precise attacks based on actual operating conditions.
 
 ### Downloading the programme
 
-The most significant test was [downloading programme blocks](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_readonly_block_dump.py) from the PLC.
+The most significant test was downloading programme blocks from the PLC.
 
 S7 programmes are organised into blocks:
 - OB (Organisation Blocks): Main programme logic
@@ -89,16 +92,16 @@ for block_type in ['OB', 'FC', 'FB', 'DB']:
             continue
 ```
 
-The PLC uploaded its entire programme without complaint. Ponder now had complete access to the reactor control logic, including startup sequences, safety interlocks, alarm conditions, and control algorithms.
+The PLC uploaded its entire programme without complaint. Ponder now had complete access to the control logic, including startup sequences, safety interlocks, alarm conditions, and control algorithms.
 
-One comment in the downloaded code (in German, because Siemens) translated to: "TODO: Add proper input validation here - currently assumes sensors always return valid values." Another simply read "Works on my machine", which was not particularly reassuring in code controlling an alchemical reactor.
+One comment in the downloaded code (in German, because Siemens) translated to: "TODO: Add proper input validation here - currently assumes sensors always return valid values." Another simply read "Works on my machine", which was not particularly reassuring in code controlling a power plant.
 
 Security implication: Complete intellectual property theft and reverse engineering capability. An attacker with programme blocks can understand exactly how the system works, identify weaknesses in control logic, and craft precision attacks. This also represents theft of proprietary control algorithms.
 
 ### Password "protection"
 
-The simulator's reactor safety PLC had password protection enabled. Ponder tested this with a 
-[brute force demonstration](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/plc_password_bruteforce.py).
+Some S7 PLCs have password protection enabled. Ponder tested this with a 
+brute force demonstration.
 
 The password was four digits. Four digits means 10,000 possible combinations. The script (in simulated mode, for educational purposes) demonstrated that such passwords could be brute forced in minutes.
 
@@ -114,7 +117,7 @@ The turbine controller also supported Modbus TCP, a universal industrial protoco
 
 ### Reading everything
 
-Ponder's first Modbus test was a [complete memory snapshot](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/modbus_coil_register_snapshot.py). Modbus organises memory into:
+Ponder's first Modbus test was a complete memory snapshot. Modbus organises memory into:
 - Coils: Discrete outputs (ON/OFF controls)
 - Discrete Inputs: Discrete inputs (ON/OFF sensors)
 - Input Registers: Analogue sensor values (read-only)
@@ -156,13 +159,13 @@ No authentication required. Just send the right bytes to the right port.
 
 Security implication: Modbus write operations allow complete control without authentication. This is not a vulnerability in Modbus (it was never designed for untrusted networks), but it is a significant security concern when Modbus PLCs are accessible.
 
-## Testing Allen-Bradley controllers: EtherNet/IP
+## A general illustration: EtherNet/IP
 
-The turbine PLC also implemented EtherNet/IP (Common Industrial Protocol), used by Allen-Bradley ControlLogix systems. This protocol uses tag-based addressing rather than numeric registers.
+EtherNet/IP does not appear in the UU P&L lab either. It is shown here, as S7 was, as another widely deployed protocol that asks nothing of a caller. It uses tag-based addressing rather than numeric registers.
 
 ### Tag enumeration
 
-Ponder's [tag inventory script](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/ab_logix_tag_inventory.py) connected to the EtherNet/IP server and requested a complete tag list.
+Ponder's tag inventory script connected to the EtherNet/IP server and requested a complete tag list.
 
 ```python
 # Simplified mode for simulator
@@ -194,7 +197,7 @@ After several days of testing the simulator's PLCs, Ponder's conclusions were un
 
 ### No authentication by default
 
-None of the protocols (S7, Modbus TCP, EtherNet/IP) required authentication in their default configurations. The security model was "network isolation provides security", which worked when PLCs were genuinely isolated but fails catastrophically when networks are interconnected.
+None of these protocols (S7, Modbus TCP, EtherNet/IP) requires authentication in its default configuration, and the lab's own set (Modbus, DNP3, IEC-104, and the anonymous OPC-UA sidecar) is no different. The security model was "network isolation provides security", which worked when PLCs were genuinely isolated but fails catastrophically when networks are interconnected.
 
 ### Complete information disclosure
 
@@ -267,8 +270,8 @@ Ponder closed his testing journal and made one final note: "The PLCs trust anyon
 
 Further Reading:
 
-- [Vulnerability Assessment Scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/README.md) - Technical details on all PLC testing scripts
-- [TESTING_CHECKLIST](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/TESTING_CHECKLIST.md) - Complete test coverage
-- [SIMULATOR_GAPS](https://github.com/tymyrddin/power-and-light-sim/tree/main/SIMULATOR_GAPS.md) - Known limitations
+- Vulnerability Assessment Scripts - Technical details on all PLC testing scripts
+- TESTING_CHECKLIST - Complete test coverage
+- SIMULATOR_GAPS - Known limitations
 
 The scripts demonstrate real-world attack vectors against industrial controllers. All tests are read-only reconnaissance (except simulated authentication testing) but demonstrate the foundation for understanding PLC vulnerabilities.

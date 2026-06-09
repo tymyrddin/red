@@ -17,9 +17,9 @@ The UU P&L simulator currently runs entirely on localhost (127.0.0.1). There are
 This is a deliberate simplification. The simulator focuses on industrial protocol vulnerabilities, not wireless security or remote access security. Those are important topics, but they're largely covered by existing IT security resources and tools.
 
 Current simulator scope:
-- Industrial protocols: Modbus, S7, OPC UA, EtherNet/IP
-- PLC vulnerabilities: Unauthenticated access, memory reading, logic extraction
-- SCADA vulnerabilities: Anonymous OPC UA access, tag enumeration
+- Industrial protocols: Modbus, DNP3, IEC-104, OPC UA, MQTT
+- PLC vulnerabilities: Unauthenticated register and coil access
+- SCADA vulnerabilities: Anonymous OPC UA access, default credentials
 - Network reconnaissance: Protocol fingerprinting, device discovery
 
 Not currently in simulator scope:
@@ -143,9 +143,9 @@ Typical attack progression:
    - This is what the simulator currently teaches
 
 3. Protocol-level exploitation
-   - Modbus register manipulation
-   - S7 memory reading and logic extraction
-   - OPC UA tag enumeration
+   - Modbus register and coil manipulation
+   - IEC-104 datapoint falsification
+   - OPC UA method calls and tag enumeration
    - This is what the simulator currently demonstrates
 
 The simulator currently focuses on steps 2-3 because those are unique to OT security. Step 1 is largely standard IT security, well-covered by existing resources. However, integrating step 1 would provide a more complete picture of real-world attack scenarios.

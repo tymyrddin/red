@@ -114,7 +114,7 @@ Thus, the standard pentester's playbook of reconnaissance, exploitation, and pro
 restraint. I could map the entire nervous system of UU P&L, but to demonstrate the most critical flaws was to risk 
 becoming the very catastrophe I was hired to prevent. I could write in my report, "The Modbus interface allows 
 unauthenticated command of the primary coolant pump," but I could not, *dare not*, send that command to the live 
-reactor.
+plant.
 
 The conclusion was inescapable and arrived at with a familiar, sinking feeling. I could not test the *territory*. 
 To prove the risk, I needed a perfect, causally correct *map*.

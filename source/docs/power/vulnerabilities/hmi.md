@@ -6,9 +6,9 @@
 
 ## The operator's view
 
-Human-Machine Interfaces are where operators interact with industrial processes. They're the screens showing graphics of turbines spinning, tanks filling, and valves opening. They're the buttons that make things happen in the physical world. At UU Power & Light, operators spent 12-hour shifts staring at Wonderware InTouch displays, monitoring hundreds of data points and occasionally clicking buttons to acknowledge alarms or adjust setpoints.
+Human-Machine Interfaces are where operators interact with industrial processes. They're the screens showing graphics of turbines spinning, tanks filling, and valves opening. They're the buttons that make things happen in the physical world. At UU Power & Light, operators spent 12-hour shifts staring at the FUXA HMI displays, monitoring hundreds of data points and occasionally clicking buttons to acknowledge alarms or adjust setpoints.
 
-The simulator included 4 HMI operator workstations in its architecture, all running Wonderware InTouch. Ponder noted their presence in the configuration files but didn't focus his testing there. This wasn't an oversight. This was a deliberate choice about where the unique security challenges in OT actually existed.
+The lab includes the control HMI (`uupl-hmi`), running FUXA 1.1.7. Ponder noted its presence but didn't focus his testing on the screens themselves at first. This wasn't an oversight. This was a deliberate choice about where the unique security challenges in OT actually existed.
 
 ## Why HMIs are different (and also not)
 
@@ -36,7 +36,7 @@ The attack path involving HMIs typically looks like:
 
 Steps 1-3 are IT security. Standard penetration testing, lateral movement, credential theft. There are excellent resources covering these topics.
 
-Step 4 is where OT security becomes its own discipline. Once you have access to speak Modbus, S7, or OPC UA, what do you do? How do you read PLC memory? How do you enumerate OPC UA tags? How do you extract programme blocks? How do you modify setpoints without triggering alarms?
+Step 4 is where OT security becomes its own discipline. Once you have access to speak Modbus, IEC-104, or OPC UA, what do you do? How do you read a PLC's registers? How do you enumerate OPC UA tags and call its methods? How do you falsify a datapoint? How do you modify setpoints without triggering alarms?
 
 That's what the simulator teaches.
 
@@ -64,9 +64,9 @@ What standard IT security resources cover:
 HMIs are dangerous in OT environments not because they're technically sophisticated targets. They're dangerous because they bridge IT and OT networks, and that bridge is often poorly defended on both sides.
 
 The simulator's architecture includes this bridge:
-- 4 HMI operator workstations (Wonderware InTouch)
-- 1 engineering workstation (with PLC programming tools)
-- 1 finance workstation (in the enterprise zone, representing the phishing target)
+- The control HMI `uupl-hmi` (FUXA 1.1.7)
+- The engineering workstation `uupl-eng-ws` (dual-homed into control)
+- The enterprise workstation `bursar-desk` (over-privileged, the phishing target)
 
 These workstations exist in the configuration, representing the various entry points an attacker might use. But the simulator's testing focus is on what happens after compromise: the protocol-level interactions with PLCs and SCADA systems.
 
@@ -76,9 +76,9 @@ Ponder's testing journal acknowledged the HMIs but explained why protocol testin
 
 "HMI compromise is often straightforward. They're Windows boxes with web interfaces, database backends, and all the familiar vulnerabilities. Standard web application security testing finds the problems, standard exploitation techniques gain access.
 
-"But once you're in, then what? The HMI has legitimate connections to PLCs running Modbus and S7. It connects to the SCADA server via OPC UA. It has engineering tools for programming controllers.
+"But once you're in, then what? The HMI has legitimate connections to the PLC over Modbus, DNP3, and IEC-104. It connects to the SCADA server, and the OPC UA endpoints sit alongside. It has engineering reach into the field devices.
 
-"Knowing how to exploit a web application gets you to the HMI. Knowing how to use Snap7 to read S7 memory, how to enumerate Modbus registers, how to browse OPC UA tags... that's what lets you actually affect the industrial process.
+"Knowing how to exploit a web application gets you to the HMI. Knowing how to enumerate Modbus registers, falsify an IEC-104 datapoint, and browse and call OPC UA methods... that's what lets you actually affect the industrial process.
 
 "That's the difficult part. That's what's uniquely OT. That's what the simulator teaches."
 
@@ -91,10 +91,10 @@ The challenge is knowing what to do with that access. The simulator assumes you'
 ## Where the protocols meet the interface
 
 The HMIs in the simulator architecture represent the endpoint from which an attacker would launch protocol-level attacks. They're the system that legitimately connects to:
-- Turbine PLCs via Modbus TCP (port 10502)
-- Reactor PLCs via S7comm (port 102)
-- SCADA servers via OPC UA (port 4840)
-- Allen-Bradley controllers via EtherNet/IP (port 44818)
+- The turbine PLC via Modbus TCP (port 502)
+- The turbine PLC over DNP3 and IEC-104
+- The OPC UA endpoints (the turbine sidecar and the DMZ gateways) on port 4840
+- The protective relays and actuators via Modbus
 
 The simulator's testing scripts demonstrate what an attacker would do from a compromised HMI: enumerate devices, read configurations, extract programmes, and understand the industrial process through protocol-level reconnaissance.
 
@@ -106,18 +106,16 @@ Whilst the simulator doesn't include HMI application vulnerability testing, all 
 assessment scripts represent what an attacker would do from a compromised HMI or engineering workstation.
 
 Reconnaissance from an HMI:
-- [Raw TCP probing](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/raw-tcp-probing.py) - Initial connectivity testing
-- [Turbine reconnaissance](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/turbine_recon.py) - Comprehensive Modbus enumeration
-- [Modbus identity probe](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/modbus_identity_probe.py) - Device fingerprinting
-- [OPC UA connection test](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/connect-remote-substation.py) - SCADA connectivity
+- Raw TCP probing - Initial connectivity testing
+- Turbine reconnaissance - Comprehensive Modbus enumeration
+- Modbus identity probe - Device fingerprinting
+- OPC UA connection test - SCADA connectivity
 
 Vulnerability assessment from an HMI:
-- [Modbus snapshot](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/modbus_coil_register_snapshot.py) - Read all registers and coils
-- [OPC UA probe](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/opcua_readonly_probe.py) - Anonymous SCADA browsing
-- [S7 status dump](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_plc_status_dump.py) - PLC reconnaissance
-- [S7 memory reading](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py) - Process data extraction
-- [Programme block dump](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_readonly_block_dump.py) - Logic extraction
-- [EtherNet/IP tag inventory](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/ab_logix_tag_inventory.py) - Allen-Bradley enumeration
+- Modbus snapshot: read all registers and coils
+- OPC UA probe: anonymous browsing and method calls
+- IEC-104 interrogation: datapoint enumeration
+- Relay threshold read: the protection limits in the holding registers
 
 All of these scripts assume you're running them from a system that has network access to the OT protocols. In a real 
 assessment, that system would typically be a compromised HMI or engineering workstation.

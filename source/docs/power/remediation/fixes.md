@@ -36,7 +36,7 @@ Protocol security:
 
 Vulnerability understanding:
 - Why unauthenticated Modbus is exploitable
-- How S7 memory reading works
+- How IEC-104 datapoint falsification works
 - What anonymous OPC UA allows
 - Why protocol diversity increases attack surface
 
@@ -112,7 +112,7 @@ The simulator provides a safe testing environment for understanding fixes before
 ### Protocol configuration testing
 
 Test in simulator:
-- Configure S7 password protection
+- Front the Modbus path with authentication or a gateway
 - Implement Modbus filtering
 - Test OPC UA authentication
 - Verify protocol firewalls work
@@ -149,9 +149,9 @@ This takes weeks in production, but simulator experience teaches which protocols
 
 The simulator supports detection testing:
 
-[IDS detection testing](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation/ids_detection_test.py) generates attack traffic to test whether detection works.
+IDS detection testing generates attack traffic to test whether detection works.
 
-[SIEM correlation testing](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation/siem_correlation_test.py) generates correlated events to test alert correlation.
+SIEM correlation testing generates correlated events to test alert correlation.
 
 Value for production:
 - Understanding what attacks look like
@@ -322,6 +322,8 @@ Organisational:
 - Security awareness training materials
 
 The simulator is the beginning of OT security education, not the end. Use it to understand protocols, learn vulnerabilities, and practise testing. Then apply that knowledge in real facilities where change management, testing procedures, and stakeholder communication determine whether findings become fixes or just interesting reports.
+
+The defensive playbook this maps to, segmentation, protocol hardening, and monitoring, lives in the blue notes on [OT network architecture](https://blue.tymyrddin.dev/docs/ot/architecture/) and [OT protocol security](https://blue.tymyrddin.dev/docs/ot/protocols/).
 
 Further reading:
 - [Writing Security Reports](pentest-report.md) - Communicating findings effectively

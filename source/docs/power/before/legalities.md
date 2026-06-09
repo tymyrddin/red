@@ -43,8 +43,8 @@ Important entities include:
 - Digital providers
 - Research organisations
 
-At UU P&L, as an electricity provider for A'Morpork, they are definitely an essential entity. The alchemical reactor, 
-being experimental, adds extra complexity.
+At UU P&L, as an electricity provider for A'Morpork, they are definitely an essential entity. The protective relays
+that trip the city's feeders add extra complexity, since a fault here is felt well outside the campus walls.
 
 ### Security requirements under NIS2
 
@@ -162,7 +162,7 @@ This section specifically addresses attacks on computer systems that cause or cr
 
 Testing industrial control systems at UU P&L potentially falls under this if:
 - You send commands to PLCs controlling turbines (risk to power supply)
-- You interact with reactor controls (environmental risk, risk to life)
+- You interact with protective relays and breakers (risk to equipment and to anyone near the switched plant)
 - You test city distribution SCADA (impact on economy and essential services)
 
 Without proper authorisation, even read-only testing could theoretically be prosecuted under Section 3ZA if it could be argued you created a risk to critical systems.
@@ -231,8 +231,8 @@ SL 4: Protection against intentional violation using sophisticated means with ex
 At UU P&L:
 - Building HVAC might only require SL 1
 - Turbine controls probably require SL 2-3
-- Reactor safety systems might warrant SL 3-4
-- City distribution SCADA should be SL 3
+- Protective relays and feeder breakers might warrant SL 3
+- City distribution SCADA is best treated as SL 3
 
 ### Zones and conduits
 
@@ -404,11 +404,11 @@ Good authorisation reads something like this one:
 Power & Light Co. industrial control systems as follows:
 
 In scope:
-- IP ranges 192.168.10.0/24 (Turbine Control), 192.168.20.0/24 (Distribution SCADA), 
-  192.168.30.0/24 (Reactor Controls)
-- Engineering workstations ENG-WS-01 through ENG-WS-04
-- SCADA servers SCADA-PRIMARY and SCADA-BACKUP
-- HMI workstations in main control room
+- Network zones: enterprise 10.10.1.0/24, operational 10.10.2.0/24, control 10.10.3.0/24,
+  and the DMZ 10.10.5.0/24
+- Engineering workstation uupl-eng-ws
+- SCADA server distribution-scada and the uupl-historian
+- The control HMI uupl-hmi
 
 Authorised activities:
 - Passive network reconnaissance and traffic analysis

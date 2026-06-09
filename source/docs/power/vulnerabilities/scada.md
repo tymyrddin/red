@@ -8,7 +8,7 @@
 
 SCADA (Supervisory Control and Data Acquisition) servers are the nerve centres of industrial operations, Ponder noted. They collect data from field devices, present it to operators through interfaces, log everything for historical analysis, and send control commands back to the field. They're the systems that provide visibility into what dozens or hundreds of devices are doing simultaneously.
 
-The UU P&L simulator included a SCADA server running Wonderware System Platform, complete with an OPC UA interface for data integration. OPC UA (Open Platform Communications Unified Architecture) was meant to be the modern, secure protocol for industrial integration. It had encryption options, authentication mechanisms, and security policies.
+The UU P&L lab's distribution SCADA runs Scada-LTS, reachable with default credentials (admin/admin), alongside the OPC UA endpoints used for data integration. OPC UA (Open Platform Communications Unified Architecture) was meant to be the modern, secure protocol for industrial integration. It had encryption options, authentication mechanisms, and security policies.
 
 The question, as always, was whether anyone had actually enabled those security features.
 
@@ -36,7 +36,7 @@ Certificate-based: Strong authentication using X.509 certificates. Proper PKI, p
 
 ### Testing the SCADA server
 
-Ponder's first test was simple: could he connect to the SCADA server's OPC UA interface at all? The [OPC UA probe script](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/opcua_readonly_probe.py) attempted an anonymous connection.
+Ponder's first test was simple: could he connect to the SCADA server's OPC UA interface at all? An anonymous connection attempt, with no credentials offered.
 
 ```python
 # From opcua_readonly_probe.py
@@ -68,9 +68,9 @@ Objects
 │   │   ├── CurrentSpeed (R/O)
 │   │   ├── BearingTemp (R/O)
 │   │   └── EmergencyStop (R/W)
-│   └── ReactorPLC
-│       ├── Temperature (R/O)
-│       ├── Pressure (R/O)
+│   └── PumpControl
+│       ├── startPump (method)
+│       ├── stopPump (method)
 │       └── FlowRate (R/O)
 └── HistoricalData
     └── [various historian nodes]
@@ -96,10 +96,10 @@ speed_node = client.get_node("ns=2;s=TurbinePLC.CurrentSpeed")
 speed_value = await speed_node.read_value()
 print(f"Current turbine speed: {speed_value} RPM")
 
-# Reading reactor temperature
-temp_node = client.get_node("ns=2;s=ReactorPLC.Temperature")
+# Reading turbine temperature
+temp_node = client.get_node("ns=2;s=TurbinePLC.Temperature")
 temp_value = await temp_node.read_value()
-print(f"Reactor temperature: {temp_value}°C")
+print(f"Turbine temperature: {temp_value}°C")
 ```
 
 All values were readable. The SCADA server provided real-time process data without authentication. Ponder could observe every measurement, every setpoint, every control state, all by simply connecting to port 4840.
@@ -119,7 +119,7 @@ await setpoint_node.write_value(3600)  # Set new speed target
 
 If the server allowed anonymous write access (which some improperly configured servers do), an attacker could:
 - Change turbine setpoints
-- Modify reactor parameters
+- Modify pump and valve setpoints
 - Issue control commands
 - Alter configuration data
 
@@ -254,8 +254,7 @@ The result is a protocol that's technically secure and practically insecure. The
 specification, completely optional and usually disabled. This is progress, technically speaking, but not the kind of 
 progress that actually makes systems secure."
 
-Further Reading:
-- [Vulnerability Assessment Scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/README.md) - Technical details on OPC UA testing
-- [TESTING_CHECKLIST](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/TESTING_CHECKLIST.md) - Complete test coverage
+The defensive counterpart, on segmenting and authenticating OPC UA and the rest of the OT protocol estate, is in the
+blue notes on [OT protocol security](https://blue.tymyrddin.dev/docs/ot/protocols/).
 
 The OPC UA reconnaissance script demonstrates real-world reconnaissance techniques against industrial data servers. All testing is read-only but reveals the complete attack surface available to anonymous clients.

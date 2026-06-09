@@ -11,8 +11,12 @@ across a gauntlet of classical and modern cryptographic puzzles.
    :includehidden:
    :caption: Because sometimes, to understand a lock, you have to break a few.
 
+   ciphers/index
    modern/index
    aes/index
+   streams/index
    hashes/index
+   rsa/index
+   ecc/index
    data/index
 

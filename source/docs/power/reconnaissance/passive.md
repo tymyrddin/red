@@ -39,8 +39,8 @@ Nearly seven thousand packets. The Guild Quarter, it appeared, was busier than i
 The first analytical filter was for the universal languages of industry, applied in Wireshark:
 
 *   `tcp.port == 502` for Modbus.
-*   `tcp.port == 102` for Siemens S7.
-*   `tcp.port == 44818` for EtherNet/IP.
+*   `tcp.port == 2404` for IEC-104.
+*   `tcp.port == 20000` for DNP3.
 
 Result: Empty.
 

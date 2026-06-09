@@ -19,8 +19,8 @@ Observation: In OT security, when you crash a controller, *things happen in the 
 The Unseen University Power & Light Co. (UU P&L) is the institution responsible for keeping the lights on across Ankh-Morpork. I have been asked to assess their systems, which include:
 
 *   The Hex Steam Turbine Control System, which generates electricity for half the city.
-*   The Bursar's Automated Alchemical Reactor Controls, where incorrect temperatures lead to reactions described as "exciting".
-*   The Library Environmental Management System, which prevents L-space from collapsing.
+*   The protective relays and breakers on the Dolly Sisters and Nap Hill feeders, where a wrong threshold trips a district into darkness.
+*   The substation RTU out in the Guild Quarter, quietly reporting numbers that everything upstream takes on trust.
 *   The City-Wide Distribution SCADA, managing power from the Palace to Mrs. Cake's boarding house.
 
 Note to self: A misplaced packet to the turbine PLC is not downtime. It could cause the turbine to overspeed, slam shut a valve under pressure, or disable a safety interlock. Engineers have a euphemism for the latter: "rapid unscheduled disassembly".
@@ -63,7 +63,7 @@ The job shifts. It is no longer "find vulns and recommend patches". It is "find 
 
 Observation: OT environments are filled with safety systems, designed to fail safe. They are excellent for safety, less excellent for security testing.
 
-The alchemical reactor has interlocks: temperature sensors, pressure valves, containment field monitors, a large red button for the Bursar.
+The turbine and its feeders have interlocks: overspeed and overcurrent thresholds in the protective relays, breakers ready to trip, a governor watching the steam.
 
 They are deliberately simple, often hardwired. But they are not entirely separate. Data flows back to SCADA. In some cases, remote alarm acknowledgement or bypass is "convenient".
 
@@ -108,9 +108,9 @@ Requirement: A pentester must navigate this. Build trust with both. Assure OT yo
 
 This is the core difference. It is not just technical. It is political, organisational, cultural. It is the understanding that these systems were built when security meant a physical lock, and retrofitting modern security is like adding airbags to a horse-drawn carriage.
 
-But it must be done. The alternative is leaving the city's power, its volatile reactor, and the stability of L-space accessible to anyone with a network cable and a guess.
+But it must be done. The alternative is leaving the city's power, its turbine, and the breakers that feed half of Ankh-Morpork accessible to anyone with a network cable and a guess.
 
-And nobody wants to explain to the Librarian why the thermostats now read "Ook".
+And nobody wants to explain to the Patrician why the Isle of Gods went dark on a Tuesday.
 
 ## Field note: The inescapable conclusion
 
@@ -126,7 +126,7 @@ There is only one solution. We must build a court of inquiry that is not subject
 
 We need a simulator.
 
-Not a simple model, but a causally correct, layered twin of the UU P&L infrastructure. A phantom territory where the Hex turbine spins in silicon, where the alchemical reactor's excitements are confined to a logic engine, and where the Library's climate is a set of variables in a state fabric. In this simulator, we can safely orchestrate every disaster, trace every attack path from a rogue packet to a tripped safety relay, and validate every mitigation.
+Not a simple model, but a causally correct, layered twin of the UU P&L infrastructure. A phantom territory where the Hex turbine spins in silicon, where a written Modbus register moves a valve or trips a breaker, and where the consequences are confined to a logic engine. In this simulator, we can safely orchestrate every disaster, trace every attack path from a rogue packet to a tripped protective relay, and validate every mitigation.
 
 It will be our Proof of Concept engine. It will allow us to walk into the Patrician's office and say, "My Lord, we have not risked a single light bulb in the city. Yet we can show you, conclusively, how an attacker might darken the Isle of Gods, and precisely how to prevent it." We can replace theoretical risk with demonstrated causality.
 

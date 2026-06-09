@@ -21,34 +21,29 @@ The first step in any network assessment is determining what's actually there. T
 nmap -sT 127.0.0.1 -p 1-65535
 
 # Results:
-# 102/tcp   open  S7 (Reactor PLC)
-# 103/tcp   open  S7 (Safety PLC)
-# 4840/tcp  open  OPC UA (Primary SCADA)
-# 4841/tcp  open  OPC UA (Backup SCADA)
-# 10502/tcp open  Modbus TCP (Turbine PLC)
-# 10503/tcp open  Modbus TCP (Safety PLC)
-# 10504/tcp open  Modbus TCP (Reactor PLC)
-# 44818/tcp open  EtherNet/IP (Turbine PLC)
+# 502/tcp    open  Modbus TCP (turbine PLC, relays, actuators)
+# 2404/tcp   open  IEC-104 (turbine PLC, substation RTU)
+# 20000/tcp  open  DNP3 (turbine PLC)
+# 4840/tcp   open  OPC UA (turbine sidecar, DMZ gateways)
+# 1883/tcp   open  MQTT (broker)
+# 161/udp    open  SNMP (turbine PLC)
 ```
 
-Eight ports, four protocols, multiple PLCs. Each port represented an attack surface. Each protocol had its own characteristics and vulnerabilities.
+Several ports and protocols across the control estate. Each port represented an attack surface. Each protocol had its own characteristics and vulnerabilities.
 
 ### Protocol fingerprinting
 
 Simply knowing ports were open wasn't sufficient. Confirming what protocols were actually running required protocol-specific probing:
 
-S7 Protocol (Ports 102, 103):
+IEC-104 (Port 2404):
 ```bash
-# Using nmap's s7-info script
-nmap -p 102 --script s7-info 127.0.0.1
-
-# Or using testing scripts
-sudo python scripts/vulns/testing-turbine-control-plcs.py
+# Interrogate the RTU's datapoints with an IEC-104 client (c104)
+python iec104_interrogate.py 127.0.0.1
 ```
 
-Result: Confirmed S7comm protocol, PLC model S7-400, no authentication required.
+Result: Confirmed IEC-104, no authentication, datapoints readable and writable.
 
-Modbus TCP (Ports 10502-10504):
+Modbus TCP (Port 502):
 ```bash
 # Using nmap's modbus-discover script
 nmap -p 10502 --script modbus-discover 127.0.0.1
@@ -67,13 +62,12 @@ python scripts/vulns/opcua_readonly_probe.py
 
 Result: Port 4840 allows anonymous access, port 4841 requires certificates.
 
-EtherNet/IP (Port 44818):
+DNP3 (Port 20000):
 ```bash
-# Using testing script
-python scripts/vulns/ab_logix_tag_inventory.py
+nmap -p 20000 --script dnp3-info 127.0.0.1
 ```
 
-Result: Confirmed CIP protocol, tag enumeration available, 18 tags exposed.
+Result: Confirmed DNP3 on the turbine PLC, no authentication.
 
 ## Network architecture discoveries
 
@@ -92,20 +86,16 @@ The security model was "physical access to the network provides logical access t
 ### Multiple protocols per device
 
 Several devices supported multiple protocols simultaneously:
-- Turbine PLC: Modbus TCP (10502) + EtherNet/IP (44818)
-- Reactor PLC: S7 (102) + Modbus TCP (10504)
+- Turbine PLC: Modbus (502), DNP3 (20000), IEC-104 (2404), and an OPC-UA sidecar (4840)
+- Substation RTU: IEC-104 (2404) and a no-auth REST API (8080)
 
 This wasn't redundancy for security. This was integration necessity. Different systems needed different protocols, so devices supported multiple protocols simultaneously. Each protocol was another attack surface.
 
-### Non-standard ports (sometimes)
+### Standard ports, in the open
 
-The Modbus implementations used non-standard ports (10502+ instead of the standard 502). This provided two benefits:
-1. Avoided requiring root privileges for port binding
-2. Made the services slightly less obvious to casual port scanning
-
-However, "slightly less obvious" was not a security control. Any attacker running a full port scan would discover them immediately.
-
-The S7 protocol still used the standard port 102, which required elevated privileges to bind. This was unavoidable for S7 compatibility.
+The services sit on their standard ports: Modbus on 502, IEC-104 on 2404, DNP3 on 20000, OPC-UA on 4840. Nothing is
+hidden behind a non-standard port, and nothing needs to be. A full port scan finds the whole control estate in
+seconds, because there is no authentication waiting behind any of them.
 
 ### Everything on localhost
 
@@ -114,7 +104,7 @@ The simulator ran everything on 127.0.0.1, which meant:
 - No firewall rules between services
 - Complete connectivity between all components
 
-This represented the worst case: an attacker who had gained access to a system on the OT network could reach everything. In a properly segmented network, the turbine PLC network would be separate from the reactor PLC network, which would be separate from the SCADA server network.
+This represented the worst case: an attacker who had gained access to a system on the OT network could reach everything. In a properly segmented network, the turbine PLC and field devices would be separate from the relay and actuator network, which would be separate from the SCADA server network.
 
 But "properly segmented" networks were rarer than network diagrams suggested.
 
@@ -123,39 +113,34 @@ But "properly segmented" networks were rarer than network diagrams suggested.
 The reconnaissance scripts (in `scripts/recon/` and `scripts/vulns/`) demonstrated what an attacker could learn:
 
 ### Device inventory
-- 3 PLCs (turbine, reactor, safety)
-- 2 SCADA servers (primary, backup)
-- 4 protocols (S7, Modbus, OPC UA, EtherNet/IP)
+- A turbine PLC, two protective relays, and four Modbus actuators
+- A SCADA server and a process historian
+- Several protocols: Modbus, DNP3, IEC-104, OPC UA, MQTT
 
 ### Protocol capabilities
-- S7: Complete memory access, programme download
-- Modbus: Full register/coil access
-- OPC UA: Anonymous browsing (primary), authenticated (backup)
-- EtherNet/IP: Tag enumeration and access
+- Modbus: full register and coil access, no authentication
+- DNP3 and IEC-104: datapoint read and write on the turbine PLC and the RTU
+- OPC UA: anonymous browsing and method calls on the sidecar and the DMZ gateways
+- MQTT: anonymous publish and subscribe on the broker
 
 ### Attack surface
 Every open port was a potential entry point. Every protocol that lacked authentication was exploitable. The reconnaissance revealed:
-- 6 ports with no authentication (S7, Modbus, OPC UA primary, EtherNet/IP)
-- 2 ports with authentication (OPC UA backup, technically)
+- Every control port unauthenticated (Modbus, DNP3, IEC-104, OPC UA, MQTT, SNMP)
+- The only friction anywhere is the stunnel-fronted Modbus path to the PLC
 - Complete visibility into all protocols
 
-## Network reconnaissance scripts
+## Network reconnaissance
 
-The simulator supports several reconnaissance approaches:
+Several reconnaissance approaches apply on this segment, each read-only and aimed at learning what is exposed before
+anything is touched:
 
-[Raw TCP probing](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/raw-tcp-probing.py):
-Basic connectivity testing to confirm ports are open and responsive.
+- Raw TCP probing to confirm which ports answer and stay responsive.
+- Modbus identity queries (Function Code 43) to fingerprint devices.
+- Modbus register and coil reads to map a controller's memory.
+- OPC UA connection tests against the supervisory layer and the DMZ gateways.
 
-[Modbus identity probe](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/modbus_identity_probe.py):
-Extracts device identity information via Modbus Function Code 43.
-
-[Turbine reconnaissance](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/turbine_recon.py):
-Comprehensive Modbus reconnaissance of turbine PLCs.
-
-[OPC UA connection test](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/connect-remote-substation.py):
-Tests OPC UA connectivity and security configuration.
-
-All scripts are read-only reconnaissance, demonstrating what information is available without making any changes.
+The lab's per-component documentation lists each device's exposed ports and protocols, which is where enumeration
+tends to start. None of these approaches change state; they show what is visible without authentication.
 
 ## The security model (lack thereof)
 
@@ -190,9 +175,12 @@ The only realistic security measures are:
 
 Ponder's final note in his testing journal: "The network is the security boundary. Unfortunately, the network boundary is porous, poorly defined, and often non-existent. Once you're on the OT network, you're effectively trusted by everything. This is not a technology problem that can be patched. This is an architectural reality that must be defended around."
 
-Further Reading:
-- [Reconnaissance Scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/recon/README.md) - Network discovery and enumeration
-- [Vulnerability Scripts](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/README.md) - Protocol-specific testing
-- [Protocol Integration](https://github.com/tymyrddin/power-and-light-sim/tree/main/docs/protocol_integration.md) - How protocols are implemented
+Related runbooks (in the ICS Access SimLab, to be linked once migrated into this repository):
 
-The reconnaissance scripts demonstrate what an attacker can discover about an industrial network through non-invasive scanning and protocol enumeration.
+- ARP poisoning and Modbus MITM runbook: on-path interception of control traffic on the OT segment
+- STP root takeover runbook: seizing the spanning-tree root with a superior BPDU
+- OSPF attacks runbook: route injection and authentication denial of service
+- iBGP route hijack runbook: redirecting traffic through FRR
+- FRR vtysh takeover runbook: router compromise via default credentials
+- SNMP default community runbook: read and write access through unchanged community strings
+- DNS reconnaissance and poisoning runbook: enumeration and on-path response poisoning

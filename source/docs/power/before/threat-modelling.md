@@ -33,7 +33,7 @@ Loss of these systems means city-wide power outage, significant financial losses
 
 ### Secondary but still critical
 
-- Alchemical reactor (experimental power source)
+- Process actuators: fuel valve and cooling pump (Modbus control of the plant)
 - City distribution SCADA (manages power distribution)
 - Substation RTUs (enable remote control of grid)
 
@@ -41,12 +41,12 @@ Loss means cascading failures, inability to manage the grid, and potential equip
 
 ### Important but not immediately critical
 
-- Library environmental system (temperature/humidity control)
-- Building automation (HVAC, lighting)
+- Revenue metering (consumption data)
+- DMZ support services (directory, syslog, file drop)
 - Administrative systems (billing, reporting)
 
-Loss causes problems but not immediate danger. Though an overheated Library leading to an angry Librarian could be 
-argued as a safety concern.
+Loss causes problems but not immediate danger. Though a quietly wrong clock, by breaking log correlation and 
+certificate validation, can matter more than its tier suggests.
 
 ### Categorising by consequence
 
@@ -54,12 +54,12 @@ For each asset, consider consequences of compromise:
 
 Safety: Could compromise cause injury or death?
 - Turbine control: Yes (mechanical failure, steam explosion)
-- Reactor control: Very yes (containment failure, alchemical incident)
+- Protective relays: Yes (a mis-trip drops a live feeder; a disabled trip leaves equipment unprotected)
 - Safety systems: Yes (by definition, they prevent injuries)
-- HVAC: No (discomfort, but not danger)
+- Metering: No (read-only data, not danger)
 
 Environmental: Could compromise cause environmental damage?
-- Reactor: Yes (magical contamination, chemical release)
+- Fuel handling: Possibly (a fuel spill if the fuel valve is driven wrongly)
 - Turbines: Possibly (steam releases, fuel spills)
 - Distribution: No direct environmental impact
 
@@ -80,7 +80,7 @@ Operational: How long to recover?
 - Safety system failure: Cannot operate until fixed
 
 This categorisation helps prioritise protection efforts and testing focus. You spend more time on turbine controls 
-(high consequence across all categories) than on building HVAC (low consequence).
+(high consequence across all categories) than on the revenue meter (low consequence).
 
 ## Threat actors, who wants to attack a power plant
 
@@ -294,7 +294,7 @@ At UU P&L, reconnaissance might reveal:
 - Vendor announcements about projects at the university
 - LinkedIn profiles of engineers listing skills and tools
 - Shodan results showing exposed HMI web interfaces
-- University publications describing the alchemical reactor
+- University publications describing the turbine plant
 - Physical observation of facilities and security measures
 
 Stage 2: Initial intrusion
@@ -372,7 +372,7 @@ For UU P&L scenarios:
 - Disabling safety systems then causing dangerous conditions
 - Encrypting SCADA servers and engineering workstations
 - Manipulating distribution controls to cause grid instability
-- Altering reactor setpoints to cause containment issues
+- Altering relay thresholds to mis-trip the distribution feeders
 
 ## STRIDE for industrial systems
 
@@ -418,7 +418,7 @@ Applied to OT environments at UU P&L:
 - Altering historian data
 
 *UU P&L scenarios*:
-- Attacker modifies reactor PLC logic to disable high-temperature shutdown
+- Attacker writes a new overspeed threshold to the turbine relay, disabling its protection
 - Attacker changes turbine alarm limits so dangerous conditions don't trigger alerts
 - Attacker modifies historian data to hide evidence of manipulation
 - Attacker tampers with sensor readings to mislead operators
@@ -471,7 +471,7 @@ Applied to OT environments at UU P&L:
 
 *UU P&L scenarios*:
 - Attacker downloads all PLC programs, learns control strategies and vulnerabilities
-- Competitor steals alchemical reactor designs and operational data
+- Competitor steals turbine and grid operational data
 - Nation state exfiltrates grid operations data for future attacks
 - Ransomware gang steals data before encryption for double extortion
 
@@ -497,7 +497,7 @@ Applied to OT environments at UU P&L:
 
 *UU P&L scenarios*:
 - Attacker floods turbine control network, PLCs miss sensor readings, turbines trip
-- Attacker sends malformed S7comm packets, reactor PLC crashes, reactor shuts down
+- Attacker floods the turbine PLC with malformed Modbus, the PLC stalls, the turbine trips
 - Ransomware encrypts SCADA servers, operators lose visibility and control
 - Attacker manipulates process to trigger safety shutdowns repeatedly
 
@@ -573,12 +573,12 @@ This often means:
 
 ### When they conflict
 
-At UU P&L, examples of safety/security conflicts for the reactor safety system:
+At UU P&L, examples of safety/security conflicts for the protective relays:
 
-- Safety requirement: Must shut down reactor if any safety parameter is exceeded, regardless of any other factors. Must work even if all other systems fail.
-- Security requirement: Should verify commands are authentic, should not accept shutdown commands from unauthorised sources.
-- Conflict: Adding authentication to safety shutdown creates a potential failure point. If authentication fails or has a bug, it might prevent legitimate safety shutdowns. Safety requirements say "when in doubt, shut down". Security requirements say "when in doubt, deny access".
-- Resolution: Safety takes priority. The safety system must work even if security is compromised. Security controls are implemented at network level (preventing unauthorised access to safety system network), not at protocol level (which might interfere with safety function).
+- Safety requirement: trip the breaker the instant a threshold is crossed, regardless of anything else, and keep working even if every other system fails.
+- Security requirement: accept threshold changes and trip commands only from authorised sources.
+- Conflict: Adding authentication in front of a trip creates a potential failure point. If it fails or carries a bug, it might block a legitimate protective trip. Safety says "when in doubt, trip". Security says "when in doubt, deny".
+- Resolution: Safety takes priority. Protection has to work even if security is compromised. The security control goes at the network level (keeping unauthorised hosts off the relay's network), not in the trip path itself.
 
 ### The remote access dilemma
 
@@ -607,7 +607,7 @@ Systems whose compromise is absolutely unacceptable:
 
 1. Turbine safety systems: If compromised, could cause physical damage to turbines, steam explosions, or injuries. Loss of 50MW turbines would cost millions to replace, cause city-wide outages, and potentially injure personnel.
 
-2. Reactor safety systems: If compromised, could cause containment failure, alchemical incident, or explosion. Consequences range from "evacuation of campus" to "evacuating half of Ankh-Morpork".
+2. Protective relays and feeder breakers: If compromised, a disabled trip leaves equipment unprotected, and a forced or mis-set trip drops live feeders. Consequences range from a darkened district to damaged plant left running without protection.
 
 3. Distribution SCADA master: If compromised, attacker could manipulate entire city grid, causing cascading blackouts, equipment damage across the system, and inability to restore power quickly.
 
@@ -631,7 +631,7 @@ Systems whose compromise is annoying but not catastrophic:
 
 1. Corporate IT systems: If compromised, causes business disruption but doesn't affect power generation or distribution directly.
 
-2. Building HVAC: If compromised, causes discomfort but not danger (except possibly the Library).
+2. Revenue metering: If compromised, leaks consumption data, but it is read-only and does not affect generation or distribution.
 
 3. Ancillary systems: Security cameras, door access, cafeteria systems. Their loss doesn't affect core mission.
 
@@ -649,5 +649,5 @@ most, and what recommendations you prioritise. Without understanding threats, yo
 without context. With good threat modelling, you're providing actionable security intelligence that helps protect 
 what actually matters.
 
-And at UU P&L, what actually matters is keeping the power on, the reactor contained, and the Librarian comfortable. 
-Everything else is negotiable.
+And at UU P&L, what actually counts is keeping the power on, the turbine intact, and the feeders where the city 
+expects them. Everything else is negotiable.

@@ -44,13 +44,13 @@ Low findings:
 
 The simulator demonstrates these severity levels through actual exploitation:
 
-[Turbine overspeed attack](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation/turbine_overspeed_attack.py) demonstrates high-severity finding (equipment damage risk)
+Turbine overspeed attack demonstrates high-severity finding (equipment damage risk)
 
-[Emergency stop attack](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation/turbine_emergency_stop.py) demonstrates high-severity finding (operational disruption)
+Emergency stop attack demonstrates high-severity finding (operational disruption)
 
-[S7 memory reading](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py) demonstrates medium-severity finding (intellectual property theft)
+Relay threshold read demonstrates medium-severity finding (protection settings disclosure, aiding a precise attack)
 
-[Anonymous OPC UA browsing](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/opcua_readonly_probe.py) demonstrates medium-severity finding (reconnaissance enablement)
+Anonymous OPC UA browsing demonstrates medium-severity finding (reconnaissance enablement)
 
 ### Technical risk understanding
 
@@ -58,7 +58,7 @@ The simulator teaches what attacks look like and what they can achieve. This hel
 
 Understanding impact:
 - What can actually be done with Modbus write access?
-- How dangerous is S7 memory reading?
+- How dangerous is reading a relay's thresholds?
 - What does anonymous OPC UA enable?
 - How much can be accomplished with read-only access?
 
@@ -223,7 +223,7 @@ Based on simulator testing, quick wins include:
 
 Every system with default or weak passwords gets new passwords following proper policy. This addresses findings from:
 - Modbus authentication testing
-- S7 password probing
+- Relay and SCADA web UI default credentials
 - OPC UA anonymous access
 
 One person with spreadsheet and ladder (some PLCs require physical console access).
@@ -411,6 +411,8 @@ Budget justification:
 - Industry benchmarking data
 
 Use simulator to understand technical risk. Use production experience to understand organisational priorities. Both are essential for effective remediation prioritisation.
+
+For the defensive side, prioritising controls rather than findings, the blue notes on [OT network architecture](https://blue.tymyrddin.dev/docs/ot/architecture/) cover where segmentation and monitoring earn their keep.
 
 Further reading:
 - [Implementing Fixes](fixes.md) - Turning recommendations into reality

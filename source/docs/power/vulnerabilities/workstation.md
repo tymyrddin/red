@@ -14,10 +14,10 @@ If you want to compromise an OT environment, experienced attackers know: don't b
 
 ## The workstations in the simulator
 
-The UU P&L simulator includes several workstations in its architecture:
-- 4 HMI operator workstations (Wonderware InTouch)
-- 1 engineering/programming workstation
-- 1 finance workstation (enterprise zone, phishing target)
+The UU P&L lab includes several workstations in its architecture:
+- The control HMI `uupl-hmi` (FUXA)
+- The engineering workstation `uupl-eng-ws` (dual-homed into control)
+- The enterprise workstation `bursar-desk` (over-privileged, the phishing target)
 
 However, the simulator focuses on protocol-level vulnerabilities rather than endpoint security testing. The workstations exist in the architecture but aren't the primary testing focus because:
 
@@ -97,10 +97,10 @@ These are penetration testing fundamentals, covered extensively in IT security t
 ## What you can learn
 
 What the simulator does teach is what to do once you've compromised the workstation and gained access to OT protocols:
-- How to interact with S7 PLCs using Snap7
-- How to read and write Modbus registers
-- How to browse OPC UA servers
-- How to enumerate EtherNet/IP tags
+- How to read and write Modbus registers and coils
+- How to browse anonymous OPC UA endpoints
+- How to falsify IEC-104 datapoints
+- How to reach the field devices the workstation holds credentials for
 - How to extract programme blocks from PLCs
 - How to reconnaissance SCADA systems
 

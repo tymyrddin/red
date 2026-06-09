@@ -38,16 +38,16 @@ Turbine PLC 3 (127.0.0.1:10504)
 - Criticality: Critical
 - Notes: Third redundant turbine controller
 
-Reactor PLC (127.0.0.1:10505)
-- Type: Modbus TCP PLC
-- Function: Reactor temperature and cooling control
-- Memory Map: Similar structure, different sensor types (temperatures, pressures, cooling flow)
-- Criticality: Critical - safety implications if cooling fails
+Protective relay IEDs (uupl-relay-a, uupl-relay-b)
+- Type: Modbus TCP
+- Function: Feeder protection (overcurrent, overspeed, undervoltage) and breaker trip
+- Memory Map: Trip thresholds in holding registers, trip coil writable
+- Criticality: Critical - a mis-set threshold trips a live feeder
 
-Cooling System PLC (127.0.0.1:10506)
-- Type: Modbus TCP PLC
-- Function: Auxiliary cooling and environmental controls
-- Criticality: High - supports reactor and turbine cooling
+Modbus actuators (fuel valve, cooling pump, breakers)
+- Type: Modbus TCP (pymodbus)
+- Function: Valve position, pump speed, breaker state/trip/close
+- Criticality: High - direct effect on the physical process
 
 ### Supervisory Layer
 
@@ -99,15 +99,15 @@ and security zones), but it faithfully represented the logical relationships:
 ┌─────────────────────────────────────────────────────────────┐
 │                       Control Layer                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
-│  │ Turbine  │  │ Turbine  │  │ Turbine  │  │ Reactor  │     │
-│  │  PLC 1   │  │  PLC 2   │  │  PLC 3   │  │   PLC    │     │
-│  │  (10502) │  │  (10503) │  │  (10504) │  │  (10505) │     │
+│  │ Turbine  │  │  Relay   │  │  Relay   │  │ Actuator │     │
+│  │   PLC    │  │   IED A  │  │   IED B  │  │   bank   │     │
+│  │  (502)   │  │  (502)   │  │  (502)   │  │  (502)   │     │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────┘     │
 │       │             │             │             │           │
 │       ▼             ▼             ▼             ▼           │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
-│  │ Physical │  │ Physical │  │ Physical │  │ Reactor  │     │
-│  │ Turbine  │  │ Turbine  │  │ Turbine  │  │ Coolant  │     │
+│  │ Physical │  │  Feeder  │  │  Feeder  │  │ Valve /  │     │
+│  │ Turbine  │  │ breaker  │  │ breaker  │  │  pump    │     │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────┘     │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -119,9 +119,9 @@ physical processes through simulated physics models.
 ## Configuration architecture
 
 The simulator's configuration files revealed the architectural decisions that shaped the environment. The configuration 
-lives in [`config/`](https://github.com/tymyrddin/power-and-light-sim/tree/main/config):
+lives in `config/`:
 
-[`devices.yml`](https://github.com/tymyrddin/power-and-light-sim/blob/main/config/devices.yml) - Defined each device's 
+`devices.yml` - Defined each device's 
 type, sensors, actuators, and initial state:
 
 ```yaml
@@ -144,7 +144,7 @@ turbine_plc_1:
 Each device's configuration explicitly listed its I/O points. This was why [discovery](discovery.md) found exactly 8 
 active input registers, they were defined in configuration, not arbitrary memory ranges.
 
-[`protocols.yml`](https://github.com/tymyrddin/power-and-light-sim/blob/main/config/protocols.yml) - Mapped devices 
+`protocols.yml` - Mapped devices 
 to network services:
 
 ```yaml
@@ -164,21 +164,21 @@ This explained the port assignments discovered during [passive reconnaissance](p
 arbitrary, they were deliberately configured to avoid conflicts with standard ICS ports (502, 102, etc.) while 
 maintaining logical grouping (105xx for field devices, 635xx for supervisory systems).
 
-[`device_identity.yml`](https://github.com/tymyrddin/power-and-light-sim/blob/main/config/device_identity.yml) defined 
+`device_identity.yml` defined 
 Modbus device identities for FC 43 responses:
 
 ```yaml
 device_identities:
   turbine_plc:
-    vendor: "Allen-Bradley"
-    product_code: "1756-L73"
-    model: "ControlLogix 5570"
+    vendor: "UU P&L (pymodbus soft-PLC)"
+    product_code: "HEX-TURB-1"
+    model: "Hex Steam Turbine controller"
     revision: "20.011"
 
   scada_server:
-    vendor: "Wonderware"
-    product_code: "SCADA-2024"
-    model: "System Platform"
+    vendor: "Scada-LTS"
+    product_code: "SCADA-LTS"
+    model: "Mango Automation base"
     revision: "1.0"
 ```
 
@@ -252,9 +252,9 @@ SCADA Visibility Dependencies:
 - No network segmentation blocking control traffic
 
 Attack Surface Dependencies:
-- No authentication on Modbus writes (discovered during [test_write_permissions.py](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/test_write_permissions.py))
+- No authentication on Modbus writes (discovered during test_write_permissions.py)
 - Direct network access to PLCs (no firewall between SCADA and field devices)
-- All unit IDs respond (no unit ID validation, discovered during [scan_unit_ids.py](https://github.com/tymyrddin/power-and-light-sim/blob/main/scripts/discovery/scan_unit_ids.py))
+- All unit IDs respond (no unit ID validation, discovered during scan_unit_ids.py)
 
 The lack of authentication was architectural. Modbus TCP has no authentication mechanism. This wasn't a configuration error, it was the protocol's design. The simulator faithfully replicated this vulnerability.
 
@@ -269,8 +269,8 @@ No Authentication Boundary:
 - No session management or access control
 
 No Safety System Isolation:
-- All PLCs on same logical network (same host, different ports)
-- Safety-critical reactor PLC (10505) accessible via same methods as operational turbine PLCs
+- All field devices on the same control network
+- The protective relays, which carry the only protection function, are reachable by the same Modbus as everything else
 - No dedicated safety network or isolation
 
 No Segmentation:
@@ -290,7 +290,7 @@ Mapping revealed that the simulator made deliberate architectural choices:
 - Transparency over security - No authentication, no access control, no segmentation. This enabled security research and attack demonstration without requiring exploit development for authentication bypass.
 - Realistic protocols - Actual Modbus TCP, actual OPC UA, actual protocol behaviours. Not "toy" implementations but real industrial protocol stacks (pymodbus, asyncua).
 - Physics simulation - Realistic control loop behaviour, thermal dynamics, mechanical constraints. Values weren't random, they followed physical laws.
-- Deliberate limitations - The pymodbus device identity bug, the unit ID validation issue, the compact memory maps. These were known limitations, documented in [Simulator gaps](https://github.com/tymyrddin/power-and-light-sim/blob/main/SIMULATOR_GAPS.md).
+- Deliberate limitations - The pymodbus device identity bug, the unit ID validation issue, the compact memory maps. These were known limitations, documented in Simulator gaps.
 
 The simulator's architecture was honest. It didn't hide its nature. It didn't pretend to be production infrastructure. 
 It provided a realistic test environment for security research, pentesting techniques, and attack demonstration.
@@ -299,8 +299,8 @@ It provided a realistic test environment for security research, pentesting techn
 
 After passive observation, active probing, systematic discovery, and architectural mapping, the complete picture emerged:
 
-- 7 control devices across 3 turbines, 1 reactor, 1 cooling system, plus SCADA and substation controllers
-- 2 protocols - Modbus TCP and OPC UA
+- A turbine PLC, two protective relays, and four Modbus actuators, plus the SCADA gateway and the substation RTU
+- Several protocols: Modbus TCP, DNP3, IEC-104, and OPC UA
 - 23 I/O points per Modbus device (compact but complete)
 - 5-second polling from SCADA to field devices
 - No authentication on any service
@@ -316,7 +316,7 @@ The map was complete. The architecture was documented. The dependencies were kno
 Now came the question: what happens when you modify a system this transparent? What attacks become possible with 
 this complete map?
 
-That's where [exploitation](https://github.com/tymyrddin/power-and-light-sim/tree/main/scripts/exploitation) enters the story. The turbine overspeed attacks, the emergency stop demonstrations, 
+That's where exploitation enters the story. The turbine overspeed attacks, the emergency stop demonstrations, 
 the gradual manipulation that stays below alarm thresholds.
 
 But those are not reconnaissance or mapping. Those are demonstrations of capability, showing what an adversary could 
@@ -333,7 +333,6 @@ Still careful. Still documented. But no longer passive observation.
 
 Active demonstration.
 
----
 
 *End of Field Notes: Reconnaissance and Mapping Phase*
 *Status: Complete*

@@ -34,16 +34,16 @@ were expected to outlive their designers, it still governs massive steam turbine
 polling loops that have never heard of cybersecurity and are deeply suspicious of it. These systems are stable, 
 predictable, and utterly unforgiving of modern assumptions.
 
-Adjacent to this is the Bursar’s Automated Alchemical Reactor Controls, a system that technically counts as 
-“process control” if one is generous with definitions. It regulates volatile alchemical reactions that convert 
-raw thaumic input into usable energy, provided the Bursar is not having a bad day. Control logic must account 
-for both chemical states and metaphysical side effects, which has led to an impressive uptime record and an 
-equally impressive incident log.
+Around the turbine sits the apparatus that decides whether the turbine is allowed to keep turning. Protective relays
+watch the Dolly Sisters and Nap Hill feeders for undervoltage, overcurrent, and overspeed, and trip their breakers
+when a threshold is crossed. A revenue meter counts what leaves. None of it asks for a password, on the reasonable
+historical assumption that anyone close enough to send a command was already trusted. That assumption has not aged
+well.
 
-The Library Environmental Management System is treated with the reverence usually reserved for unexploded ordnance. 
-It maintains temperature, humidity, and ambient magical stability within the University Library, where even minor 
-fluctuations can destabilise L-space, rearrange shelving across dimensions, or summon things that insist they were 
-only browsing. Changes to this system require approvals, rituals, and at least one librarian standing very still.
+Out at the edge sits the Guild Quarter, the boundary where University infrastructure meets Ankh-Morpork proper and
+nobody checks credentials too carefully. Gateways translate between protocols, a clacks relay shuttles telemetry, a
+clock hands out the time everything else trusts, and a directory answers questions about who lives where. It is, in
+the official diagrams, a demilitarised zone. In practice it is an attack surface with good manners.
 
 Finally, the City-Wide Distribution SCADA ties everything together, managing power and heat delivery across 
 Ankh-Morpork. It interfaces with substations, pumping stations, and civic infrastructure that predate the concept 

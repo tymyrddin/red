@@ -12,17 +12,20 @@ The fundamental challenge with safety system testing is that you need to verify 
 
 It requires a level of restraint that's quite foreign to typical penetration testing methodology, where "proof" usually means "I actually did the thing and here's the evidence".
 
-## Safety systems in the simulator
+## Protection in the lab: the relays, not a separate SIS
 
-The UU P&L simulator includes a safety PLC in its architecture:
+The UU P&L lab does not model a dedicated safety instrumented system. There is no independent safety PLC behind the
+control PLC. The protection function lives in the field devices themselves: the protective relay IEDs (`uupl-relay-a`,
+`uupl-relay-b`) watch the Dolly Sisters and Nap Hill feeders and trip their breakers on undervoltage, overcurrent, or
+overspeed.
 
-Safety PLC specifications:
-- Protocol: S7comm (port 103)
-- Alternative protocol: Modbus TCP (port 10503)
-- Purpose: Emergency shutdown and safety interlocks
-- Independence: Separate from production control PLCs
+Relay protection profile:
+- Protocol: Modbus TCP (port 502)
+- Trip thresholds: writable holding registers (overcurrent, overspeed, undervoltage)
+- Trip coil: writable, drops the breaker directly
+- Independence: none; the relay sits on the control network with everything else
 
-The safety PLC exists in the simulator architecture but requires careful consideration during testing. The simulator 
+These relays require careful consideration during testing. The simulator 
 is a safe environment where mistakes don't cause physical consequences, but developing good safety testing habits 
 matters. If you learn to test safety systems carelessly in a simulator, you'll test them carelessly in production, 
 and that's when people might get hurt.
@@ -33,95 +36,53 @@ Because the simulator runs entirely in software with no physical consequences, i
 
 ### Read-only reconnaissance
 
-[S7 PLC status dump](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_plc_status_dump.py) works against the safety PLC:
+Reading a relay's Modbus registers reveals its current protection settings and state, with no credentials required:
 
-```bash
-python scripts/vulns/s7_plc_status_dump.py --host 127.0.0.1 --port 103 --rack 0 --slot 3
-```
+- The overcurrent, overspeed, and undervoltage thresholds
+- The breaker position and trip state
+- Which feeder the relay protects
 
-What this reveals:
-- PLC model and firmware version
-- CPU state and operating mode
-- Whether password protection is enabled
-- Module configuration
+Safety impact in the lab: none (read-only).
 
-Safety impact in simulator: None (read-only operation)
+Safety impact in production: low on its own, but it hands an attacker the exact margins the protection is working to,
+which is most of what a careful attack needs.
 
-Safety impact in production: Minimal (read-only, but some safety PLCs log connection attempts)
+### The two ways to cause a trip
 
-### Memory reading
+There are two routes to a protection event, and they differ mainly in how obvious they are afterwards.
 
-[S7 memory reading](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_read_memory.py) can access safety PLC memory:
+The direct route: write the trip coil and drop the breaker immediately. Noisy. The trip log records it as a remote
+command rather than a protection response.
 
-```bash
-python scripts/vulns/s7_read_memory.py --host 127.0.0.1 --port 103 --rack 0 --slot 3
-```
+The quiet route: write a new overcurrent or overspeed threshold, lowering it towards a value the feeder will cross on
+the next normal reading. The relay then trips on apparently legitimate grounds, doing exactly what it was built to do.
+What is hard to reconstruct afterwards is who moved the threshold, and when.
 
-What this reveals:
-- Data block contents (safety logic parameters)
-- Process image (current sensor states)
-- Marker memory (internal variables)
-- Timer and counter values
+Safety impact in the lab: a tripped breaker in a process model.
 
-Safety impact in simulator: None (read-only operation)
-
-Safety impact in production: Low (read-only, but provides attacker with safety system understanding)
-
-### Logic extraction
-
-[S7 programme block dump](https://github.com/ninabarzh/power-and-light-sim/tree/main/scripts/vulns/s7_readonly_block_dump.py) can extract safety logic:
-
-```bash
-python scripts/vulns/s7_readonly_block_dump.py --host 127.0.0.1 --port 103 --rack 0 --slot 3
-```
-
-What this reveals:
-- Organisation blocks (OB): Safety programme structure
-- Function blocks (FB): Safety function implementations
-- Data blocks (DB): Safety parameters and setpoints
-- Complete safety logic
-
-Safety impact in simulator: None (read-only operation, intellectual property concern)
-
-Safety impact in production: Moderate (reveals safety system design to attacker, aids in attack planning)
-
-### Modbus access to safety systems
-
-The safety PLC also responds to Modbus TCP on port 10503:
-
-```bash
-python scripts/vulns/modbus_coil_register_snapshot.py --host 127.0.0.1 --port 10503
-```
-
-What this reveals:
-- Safety system registers and coils
-- Emergency stop status
-- Safety interlock states
-- Alternative protocol access path
-
-Finding: Safety system accessible via two different protocols (S7 and Modbus), increasing attack surface
+Safety impact in production: a dropped feeder, or protection silently disabled, depending on which way the threshold
+was moved.
 
 ## What the simulator demonstrates about safety security
 
-Testing the safety PLC in the simulator reveals several security concerns common in real safety systems:
+Testing the relays in the lab reveals several security concerns common in real safety and protection systems:
 
 ### Lack of authentication
 
-Neither S7 nor Modbus access to the safety PLC requires authentication:
-- No password protection on S7 connection
-- No authentication mechanism in Modbus protocol
-- Network access equals system access
+Modbus access to the relays requires no authentication:
+- No authentication mechanism in the Modbus protocol
+- The relay web UI ships with default credentials (admin/relay1234)
+- Network access equals access to the protection settings
 
-Finding: If attacker reaches safety system network, they have complete read access to safety logic and current safety states.
+Finding: If an attacker reaches the control network, they have read access to the protection logic and the current trip state, and write access to both.
 
-### Multiple protocol access
+### One device, two front doors
 
-The safety PLC supports both S7comm and Modbus:
-- Two different protocols to monitor
-- Two different attack surfaces
-- Blocking one protocol doesn't prevent access
+Each relay is reachable two ways:
+- Modbus on the control network, unauthenticated
+- A web UI with default credentials
 
-Finding: Safety system defence requires protecting multiple protocols simultaneously.
+Finding: Protecting the relays means closing both the protocol path and the management interface, not just one.
 
 ### Information disclosure
 
@@ -145,7 +106,7 @@ Real safety systems are designed to SIL-2 or SIL-3 standards:
 - Fail-safe design (failures trigger shutdowns)
 - Proof testing and validation
 
-The simulator's safety PLC is a single instance without redundancy. This doesn't represent real safety system architecture.
+The lab's relays are single devices without the redundancy a real SIS would carry. This doesn't represent proper safety system architecture.
 
 ### Physical independence
 
@@ -200,7 +161,7 @@ Review safety system design from security perspective:
 - How are updates managed?
 - What authentication mechanisms exist?
 
-The simulator demonstrates weak architecture (single safety PLC on shared localhost), showing what not to do.
+The lab demonstrates weak architecture (protection folded into a network-reachable relay rather than an independent layer), showing what not to do.
 
 ## What could be added to the simulator
 
@@ -237,7 +198,7 @@ Why this would be valuable:
 ### Safety authentication and access control
 
 Implement proper access controls:
-- Password-protected S7 connections
+- Authenticated access to the relays and PLCs
 - Role-based access control simulation
 - Change management workflow
 - Audit logging of safety system access
@@ -327,7 +288,7 @@ Safety system security education serves different purposes:
 
 ## Current limitations and future potential
 
-The simulator currently includes a safety PLC that can be tested using existing scripts. This demonstrates basic security weaknesses (lack of authentication, multiple protocol access, information disclosure).
+The lab currently models protection through the relay IEDs, testable over Modbus. This demonstrates basic security weaknesses (lack of authentication, more than one access path, information disclosure).
 
 What's missing is the context of proper safety system architecture, the complexity of redundant systems, the reality of safety validation processes, and the organisational controls around safety systems.
 
@@ -350,11 +311,13 @@ The simulator allows you to test safety systems more aggressively because it's s
 
 The best safety system test is often the one you don't perform, as long as you can still provide valuable findings through analysis and observation.
 
----
-
 Further reading:
-- [PLC Security](../vulnerabilities/plc.md) - Testing production control systems
-- [Network Security](../vulnerabilities/network.md) - Architecture assessment
-- [Detection Testing](../exploitation/detection.md) - Monitoring security
+- [PLC Security](../vulnerabilities/plc.md): testing the production control systems
+- [Network Security](../vulnerabilities/network.md): architecture assessment
+- [Detection Testing](../exploitation/detection.md): monitoring and its limits
 
-For safety system standards and functional safety, consult IEC 61508, IEC 61511, and IEC 62443. The simulator focuses on security implications of safety systems, not functional safety design.
+The defensive counterpart, on isolating protection from the control path it is meant to back up, is in the blue notes
+on [OT network architecture](https://blue.tymyrddin.dev/docs/ot/architecture/).
+
+For safety system standards and functional safety, IEC 61508, IEC 61511, and IEC 62443 are the references. This page
+focuses on the security implications of protection systems, not functional safety design.

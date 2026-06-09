@@ -22,8 +22,8 @@ more persuasive statement than, "This is a very bad idea".
 
 The architecture proposes six strata, from the fundament of physics to the ether of enterprise.
 
-* **Level 0: The Physical Process.** This is the raw territory: the steam, the spinning metal, the alchemical
-  effervescence. It is measured and manipulated, but it is not, in itself, computable. One cannot send a packet to a
+* **Level 0: The Physical Process.** This is the raw territory: the steam, the spinning metal, the heat in
+  the windings. It is measured and manipulated, but it is not, in itself, computable. One cannot send a packet to a
   valve; one can only instruct a device to move it.
 * **Level 1: Basic Control.** Here reside the devices that perform the measuring and manipulating: the Programmable
   Logic Controllers, the Remote Terminal Units. At UU P&L, the turbine PLC executes a governor loop via Modbus TCP
