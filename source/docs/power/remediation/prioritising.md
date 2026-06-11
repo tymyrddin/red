@@ -417,6 +417,6 @@ For the defensive side, prioritising controls rather than findings, the blue not
 Further reading:
 - [Implementing Fixes](fixes.md) - Turning recommendations into reality
 - [Writing Reports](pentest-report.md) - Communicating findings effectively
-- [Attack Walkthroughs](../exploitation/walkthroughs.md) - Understanding attack progressions
+- [Internet entry and the triple-homed pivot](../exploitation/internet-entry.md) - Understanding attack progressions
 
 The simulator teaches what's vulnerable. Real facilities teach what's fixable. Both are essential for successful OT security improvement.

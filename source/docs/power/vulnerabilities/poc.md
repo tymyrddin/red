@@ -211,4 +211,4 @@ Related runbooks (in the ICS Access SimLab, to be linked once migrated into this
 - IEC-104 false readings: REST API injection runbook
 - umati pump sabotage: OPC-UA method call runbook
 
-See also [Attack walkthroughs](walkthroughs.md) for complete attack chain scenarios.
+See also [Internet entry and the triple-homed pivot](../exploitation/internet-entry.md) for complete attack chain scenarios.

@@ -314,7 +314,7 @@ The best safety system test is often the one you don't perform, as long as you c
 Further reading:
 - [PLC Security](../vulnerabilities/plc.md): testing the production control systems
 - [Network Security](../vulnerabilities/network.md): architecture assessment
-- [Detection Testing](../exploitation/detection.md): monitoring and its limits
+- [Detection Testing](detection.md): monitoring and its limits
 
 The defensive counterpart, on isolating protection from the control path it is meant to back up, is in the blue notes
 on [OT network architecture](https://blue.tymyrddin.dev/docs/ot/architecture/).

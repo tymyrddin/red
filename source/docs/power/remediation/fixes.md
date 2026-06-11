@@ -328,6 +328,6 @@ The defensive playbook this maps to, segmentation, protocol hardening, and monit
 Further reading:
 - [Writing Security Reports](pentest-report.md) - Communicating findings effectively
 - [Prioritising Remediation](prioritising.md) - Deciding what to fix first
-- [Detection Testing](../exploitation/detection.md) - Verifying monitoring works
+- [Detection Testing](../topics/detection.md) - Verifying monitoring works
 
 The simulator teaches what to fix. Real facilities teach how to fix it. Both are essential for effective OT security.

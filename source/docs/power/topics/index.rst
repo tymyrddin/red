@@ -20,6 +20,7 @@ button, or poking at third-party updates, the aim is to show danger exists, but 
    remote.md
    sis.md
    supply-chain.md
+   detection.md
 
 
 
