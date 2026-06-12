@@ -14,3 +14,7 @@ impact is structured.
    destruction.md
    extortion.md
    business-process.md
+   availability.md
+   manipulation.md
+   access-removal.md
+   administrative-hijack.md

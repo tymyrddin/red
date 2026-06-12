@@ -24,5 +24,5 @@ held together with configurations someone implemented in 2003 and nobody dared c
    purdue.md
    protocols.md
    components.md
-   ICS Access SimLab @GitHub <https://github.com/ninabarzh/ics-access-simlab>
+   ICS Access SimLab @GitHub <https://github.com/tymyrddin/ics-access-simlab>
 

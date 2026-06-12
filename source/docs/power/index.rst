@@ -22,7 +22,7 @@ against.
    exploitation/index
    topics/index
    remediation/index
-   ICS Access SimLab @GitHub <https://github.com/ninabarzh/ics-access-simlab>
+   ICS Access SimLab @GitHub <https://github.com/tymyrddin/ics-access-simlab>
    Underfunded cybersecurity in critical infrastructure <https://indigo.tymyrddin.dev/docs/debt/underfunding>
    Legacy systems that refuse to die <https://indigo.tymyrddin.dev/docs/debt/legacy>
 
