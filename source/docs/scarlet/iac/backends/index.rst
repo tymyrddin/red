@@ -19,3 +19,6 @@ leave obvious traces all over your target's network.
    landslides.md
    metasploit.md
    sliver.md
+   c2-profiles.md
+   data-exfil.md
+   tool-mirrors.md

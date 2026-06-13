@@ -21,7 +21,7 @@ card that holds up to legal pressure (it usually does not).
 
 ## Hosts that accept anonymous payments
 
-Most hosts on the [alternative providers](../bouncers/alt-providers.md) page (NiceVPS, Cinfu, PiVPS) do not ship a
+Most hosts on the [VPS providers](../bouncers/providers.md) page that accept anonymous payments (NiceVPS, Cinfu, FlokiNET) do not ship a
 Terraform provider. The realistic provisioning pattern is one of:
 
 1. Their HTTP API plus cloud-init for first-boot configuration.

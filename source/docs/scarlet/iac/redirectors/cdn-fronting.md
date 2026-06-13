@@ -17,7 +17,7 @@ fronting, but a reputational benefit.
 * ECH-enabled CDNs: where both client and CDN support ECH, the SNI itself is encrypted, removing the need for
 fronting.
 * Azure Front Door, AWS CloudFront: only useful if the operator controls a tenant in those clouds, which conflicts
-with the rest of this section's [opsec posture](../bouncers/major-providers.md).
+with the rest of this section's [opsec posture](../bouncers/providers.md).
 
 ## Cloudflare Worker forwarder
 

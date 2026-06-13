@@ -30,7 +30,7 @@ take your club’s creative experiments and turn them into a textbook. For the
 
 Ponder stared at the paper. “A textbook, sir?”
 
-*VETINARI:* [A simulator](https://github.com/ninabarzh/red-lantern-sim/tree/main). Your friends will document every 
+*VETINARI:* [A simulator](https://github.com/tymyrddin/red-lantern-sim/tree/main). Your friends will document every 
 elegant hack, every clever redirect. You will systematise it. The Department will learn from it. The city’s stability 
 will thus improve, thanks to your hobby. This is the favourable outcome.
 

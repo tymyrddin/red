@@ -25,7 +25,7 @@ but vet for prior abuse history.
 
 ## Categorisation
 
-Web filters route allow and deny decisions through category vendors (Cisco Talos, Palo Alto, Symantec, Bluecoat).
+Web filters route allow and deny decisions through category vendors (Cisco Talos, Palo Alto, Broadcom Web Security, Zscaler).
 A new domain sits in "uncategorised" by default, which many enterprises block outright. Submit the cover site to
 each vendor's recategorisation portal once it is serving real-looking content.
 

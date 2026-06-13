@@ -15,4 +15,6 @@ than the excuses needed when it all goes sideways.
 
    nginx.md
    masquerading.md
+   serverless.md
+   ipv6-rotators.md
 

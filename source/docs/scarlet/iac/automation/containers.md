@@ -7,13 +7,15 @@ The C2 and frontend containers usually run on separate hosts. If the IP or domai
 and run a docker run command. Twenty seconds later, there is a new domain with a new IP routing to the same
 backends.
 
-The following will run our Metasploit container:
+The following will run the Metasploit container (built from the Dockerfile in
+[metasploit.md](../backends/metasploit.md)):
 
-```text
-root@tardis:~/# docker run -dit \
--p 9990-9999:9990-9999 \
--v $HOME/.msf4:/root/.msf4 \
--v /tmp/msf:/tmp/data phocean/msf
+```bash
+docker run -dit \
+    -p 8400-8500:8400-8500 \
+    -v ~/.msf4:/root/.msf4 \
+    -v /tmp/msf:/tmp/data \
+    msf
 ```
 
 And this will run a [Sliver](../backends/sliver.md) container:

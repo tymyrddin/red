@@ -34,24 +34,29 @@ out. This is hard to take down because there is no fixed server to seize, but it
 
 ## Active open-source frameworks (2026)
 
-* [Sliver](https://github.com/BishopFox/sliver) (Go, multiplayer, replaces Empire and SilentTrinity in most
-workflows).
-* [Mythic](https://github.com/its-a-feature/Mythic) (modular, multi-agent, web UI).
-* [Havoc](https://github.com/HavocFramework/Havoc) (modern open-source successor to Cobalt Strike's UX).
+* [Sliver](https://github.com/BishopFox/sliver) (Go, multiplayer, gRPC API; replaces Empire and SilentTrinity
+in most workflows).
+* [Mythic](https://github.com/its-a-feature/Mythic) (modular, multi-agent, GraphQL API; no single network
+fingerprint at the framework level).
 * [Metasploit](https://www.metasploit.com/) (still useful for Linux, heavily signatured on Windows).
 
 ## Commercial frameworks
 
-* [Cobalt Strike](https://www.cobaltstrike.com/) (the long-standing commercial flagship).
-* [Brute Ratel C4](https://bruteratel.com/) (heavy investment in EDR evasion).
-* [Nighthawk](https://www.mdsec.co.uk/nighthawk/) (MDSec, vetting-only).
+* [Cobalt Strike](https://www.cobaltstrike.com/) (the long-standing commercial flagship; REST API since v4.12).
+* [Brute Ratel C4](https://bruteratel.com/) (heavy investment in EDR evasion; JARM fingerprint on Shodan since
+the 2022 leak).
+* [Nighthawk](https://nighthawkc2.io/) (MDSec, UK; vetting-only; JSON-RPC API since v0.3).
+* [Outflank C2](https://www.outflank.nl/products/outflank-security-tooling/outflank-c2/) (Outflank BV,
+Netherlands; automation via Jupyter; no public fingerprint catalogue).
 
-## Largely abandoned, kept for reference
+## Archived or abandoned
 
-* [Empire](https://github.com/EmpireProject) and [BC-Security Empire](https://github.com/BC-SECURITY/Empire)
-(PowerShell-based; the original team stopped, BC Security maintenance is intermittent).
-* [SilentTrinity](https://github.com/byt3bl33d3r/SILENTTRINITY) (.NET DLR; abandoned).
+* [Havoc](https://github.com/HavocFramework/Havoc) (archived February 2026; MITRE ATT&CK S1229; no further
+evasion updates).
+* [BC-Security Empire](https://github.com/BC-SECURITY/Empire) (PowerShell-based; active at v6.6, but
+PowerShell tradecraft is heavily monitored on hardened endpoints).
 * [Covenant](https://github.com/cobbr/Covenant/) (.NET; maintenance gaps).
+* [SilentTrinity](https://github.com/byt3bl33d3r/SILENTTRINITY) (.NET DLR; no activity since 2020).
 * [Koadic](https://github.com/zerosum0x0/koadic) (Windows Script Host; abandoned).
 * [Merlin](https://github.com/Ne0nd0g/merlin) (Go HTTP/2; sporadic activity).
 

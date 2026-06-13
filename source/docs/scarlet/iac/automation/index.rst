@@ -16,3 +16,6 @@ can say "wait, how did they..."
    containers.md
    terraform.md
    providers.md
+   ansible.md
+   packer.md
+   ephemeral.md

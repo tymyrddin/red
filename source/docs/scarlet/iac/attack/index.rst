@@ -17,3 +17,6 @@ enforcement team this time.
    location.md
    ephemeral.md
    server.md
+   payload-generators.md
+   delivery-mechanisms.md
+   post-exploit.md

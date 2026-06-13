@@ -15,5 +15,7 @@ forensic team finding Terraform state files next to those "funny" log entries.
    :caption: Ancient, layered, and forgotten until you need to vanish.
 
    payments.md
-   major-providers.md
-   alt-providers.md
+   providers.md
+   wireguard-mesh.md
+   tor-hidden.md
+   reflector-nets.md
