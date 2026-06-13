@@ -38,7 +38,7 @@ Qrator.Radar, Catchpoint) adds depth and support for those who pay.
 
 ## What to watch for
 
-The signals worth an alert are few and stable: a prefix announced by an origin that
-should not announce it, a more-specific you did not originate, a sudden change of
+The signals worth an alert are few and stable: a prefix announced by an origin with
+no business announcing it, a more-specific you did not originate, a sudden change of
 upstream, and visibility that drops in one region but not others. Everything
 fancier is a refinement on those four.
