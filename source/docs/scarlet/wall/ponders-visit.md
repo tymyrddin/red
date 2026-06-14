@@ -11,7 +11,7 @@ Lord Vetinari did not look up from the memo on his desk.
 
 He moved the paper aside. His gaze, when it landed on Ponder, was not angry. It was analytical. It was worse.
 
-*VETINARI:* Their [recent work on the Guild routing protocols](../bench/index.rst) was ...instructive. A masterclass 
+*VETINARI:* Their [recent work on the Guild routing protocols](../op-red-lantern/runbooks/index.rst) was ...instructive. A masterclass 
 in seeing the system as a set of suggestions. You would know about that, Mister Stibbons.
 
 Ponder’s throat was very dry. “Sir, I—”
@@ -23,14 +23,13 @@ And redirected.
 
 He slid a fresh sheet of paper and a pen across the desk.
 
-*VETINARI:* You are now the majority shareholder and chief theorist of 
-[Purple Lantern Practice Limited](https://purple.tymyrddin.dev/docs/lantern/). You will 
-take your club’s creative experiments and turn them into a textbook. For the 
-[Department of Silent Stability](https://blue.tymyrddin.dev/docs/shadows/red-lantern/).
+*VETINARI:* You are now the majority shareholder and chief theorist of Purple Lantern Practice Limited. You will 
+take your club’s creative experiments and turn them into defences for the 
+[Establishment](https://github.com/tymyrddin/heimdallr).
 
 Ponder stared at the paper. “A textbook, sir?”
 
-*VETINARI:* [A simulator](https://github.com/tymyrddin/red-lantern-sim/tree/main). Your friends will document every 
+*VETINARI:* [A simulator](https://github.com/tymyrddin/inter-domain-simlab). Your friends will document every 
 elegant hack, every clever redirect. You will systematise it. The Department will learn from it. The city’s stability 
 will thus improve, thanks to your hobby. This is the favourable outcome.
 

@@ -12,9 +12,7 @@ No paperwork exists that uses either of these names. Several people use them any
    :includehidden:
    :caption: Messenger routing hacks:
 
-   rose/index
-   bench/index
-   wall/index
+   runbooks/index
 
 .. raw:: html
 
