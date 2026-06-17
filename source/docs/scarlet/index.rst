@@ -20,6 +20,7 @@ they are imagined to happen, or shortly after, once everyone has agreed on what 
    wall/index
    iac/index
    eyes/index
+   reconnaissance/index
    op-red-lantern/index
 
 .. raw:: html
