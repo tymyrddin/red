@@ -12,6 +12,7 @@ No paperwork exists that uses either of these names. Several people use them any
    :includehidden:
    :caption: Messenger routing hacks:
 
+   spectrum.md
    runbooks/index
 
 .. raw:: html

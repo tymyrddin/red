@@ -18,7 +18,10 @@ Disclaimer: Do not execute these techniques against networks or systems without 
 
    entity.md
    toadstool-takeover.md
-   hijack-isp.md
+   spore-cloud.md
+   blight.md
+   mycelium.md
+   foxfire.md
 
 
 

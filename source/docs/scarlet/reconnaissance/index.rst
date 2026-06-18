@@ -18,6 +18,7 @@ misbehaviour would read as weather rather than sabotage.
    coverage-survey.md
    baseline-and-timing.md
    ai-assisted.md
+   from-casing-to-access.md
 
 The defender's view of all this is in the blue notes on `the inter-domain attack surface
 <https://blue.tymyrddin.dev/docs/counter/inter-domain/>`_.

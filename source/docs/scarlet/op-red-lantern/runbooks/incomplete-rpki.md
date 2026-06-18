@@ -1,70 +1,123 @@
 # Incomplete RPKI deployment → opportunistic prefix hijack
 
-Hijack traffic for a target IPv4 prefix by exploiting gaps and inconsistencies in RPKI deployment and enforcement. 
-This is not a crypto attack. It is a governance and coverage attack.
+This is not a crypto attack. RPKI's signatures are sound; the gaps are in who has signed and who bothers to
+check. A route only meets RPKI where the prefix carries a ROA and every network on the path enforces Route
+Origin Validation, and in 2026 neither holds everywhere. The attack lives in that shortfall: announce the
+target prefix from an unauthorised origin, and it reads `not-found` rather than `invalid`, or it reads
+`invalid` and travels anyway through every AS that does not enforce. As with the other chains, the redirection
+is entirely a control-plane affair, no packet is touched, and the announcement itself is ordinary.
 
-## Phase 1: Reconnaissance (still not BGP abuse)
+## Reading the coverage
 
-1. Survey RPKI coverage. This information is public and easy to obtain.
-   * Checks which prefixes have ROAs
-   * Checks maximum prefix lengths
-   * Note which regions enforce validation strictly
+The groundwork is a survey of RPKI state on and around the target, all of it public. A validator's output
+lists the signed prefixes and their maximum lengths, and bgp.tools shows the per-prefix validity at a glance:
 
-2. Selects a viable target. Nothing illegal. Nothing noisy. Characteristics:
-   * No ROA at all, or
-   * ROA exists but only for a less‑specific prefix
-   * Inconsistent enforcement by transit providers
+```
+routinator vrps --format csv | grep 203.0.113
+```
 
-## Phase 2: The BGP control‑plane attack
+An absent line means the prefix is unsigned. The choice of target then comes down to which of two gaps the
+prefix offers, and the announcement is shaped to suit.
 
-3. Announce the target IPv4 prefix. From the control plane’s perspective the `UPDATE` is well‑formed and validation result is “not found”, not “invalid”.
-   * Prefix is unprotected or ambiguously protected
-   * Origin `AS` is unauthorised but not cryptographically blocked
+## Two gaps, not one
 
-4. Networks without strict validation accept the route
-   * Many networks still do
-   * Some only drop “invalid”, not “unknown”
-   * Some ignore validation entirely
+RPKI fails the defender in two distinct ways, and the attack uses whichever the target presents.
 
-This is the critical control‑plane failure: *acceptance by policy*.
+The coverage gap is an unsigned prefix. Announced from any origin it stays `not-found`, and `not-found` is
+carried almost everywhere, since the common posture among networks that validate is to drop `invalid` and
+accept the rest. A network can run validation diligently and still pass the route, because there is nothing
+for it to fail against. This is the softest case.
 
-## Phase 3: Partial but persistent impact
+The enforcement gap is the larger one. Route Origin Validation is far from universal: many networks do not run
+it, and some only log the result. So a route that validates as `invalid`, a forged origin on signed space, or
+a more-specific beyond a ROA's max length, still propagates through every AS that does not enforce, and reaches
+the ones that do not check. An `invalid` verdict does not delete a route; it only shrinks the set of networks
+willing to carry it.
 
-5. Hijack succeeds unevenly. This unevenness makes the incident harder to reason about.
-   * Some regions follow the attacker route
-   * Others follow the legitimate one
-   * Behaviour differs by upstream
+Given the choice, the unsigned target is the cleaner opportunity. A `not-found` route raises no validation
+failure anywhere, while an `invalid` route leaves evidence wherever validation is observed, even where it is
+not enforced. So the coverage gap is the quieter of the two even when both would carry the traffic, and the
+enforcement gap is the fallback for a target that is already signed.
 
-6. The attacker does not need global success. The attack can persist quietly.
-   * Even partial traffic capture may be enough
-   * Detection thresholds are often tuned for outages, not splits
+## Reading the enforcement
 
-## Phase 4: Defenders struggle
+Coverage is published; enforcement is not. No registry lists which networks drop `invalid`, so where the
+target is signed and the play rests on the enforcement gap, enforcement has to be estimated rather than looked
+up. A few readings converge on an answer.
 
-7. No cryptographic violation occurred
-   * Nothing is marked “invalid”
-   * Alarms do not fire automatically
+Validity from several vantage points. A route already known to be `invalid` somewhere in the table can be
+watched across looking glasses and collectors in different networks: wherever the invalid route is still
+visible, the path to that vantage did not drop it. Comparing many vantages sketches the rough shape of who
+enforces and who does not.
 
-8. Operators disagree on severity
-   * “Our part of the Internet looks fine”
-   * “Must be someone else’s problem”
+A controlled test. Announcing a deliberately `invalid` route from address space the attacker already holds,
+then watching it across RIPE RIS, RouteViews and public looking glasses, shows directly which providers carry
+invalids, without touching anyone else's prefix.
 
-Coordination drags. Time passes.
+The published record. ROV deployment studies, MANRS membership, and operator-list write-ups name enforcing and
+non-enforcing networks in the open, and past incidents where an invalid route spread well beyond the enforcing
+networks tend to name the gaps outright.
 
-## Why this chain works so well (educational value)
+The victim's own paths. The estimate that counts is local to the target: the transit providers carrying the
+victim are the ones whose posture decides the attack. A single enforcing provider close to the victim blunts
+it; a large non-enforcing transit on the path carries it a long way. The aim is not a master list of
+non-enforcing ASes but an estimate good enough to judge whether the gap is worth the attempt.
 
-* The attacker exploits uneven standards adoption: Security is only as strong as the weakest enforcing `AS`; partial deployment creates grey zones
-* Blame is diffuse: The victim did not publish a ROA, the attacker exploited that absence, and the network accepted what policy allowed. Everyone is technically “within spec”.
+## The announcement
 
-This chain shows that:
+The origination is the same as any other: bring the prefix into the local table, then hand it to BGP with a
+`network` statement. From the attacker's AS:
 
-* RPKI reduces risk, it does not eliminate it
-* “not found” is not the same as “safe”
-* Control‑plane security fails at boundaries, not at cores
+```
+ip route 203.0.113.0/24 Null0
 
-Or, put bluntly: A standard that is not universally enforced is a suggestion, not a shield.
+router bgp 64511
+ address-family ipv4 unicast
+  network 203.0.113.0/24
+```
 
-## Related 
+`Null0` discards the captured traffic; an interception host in its place forwards it on. The UPDATE is
+well-formed, and the origin is unauthorised but not cryptographically blocked, so nothing in the protocol
+refuses it. What decides its reach is not the announcement but the coverage and enforcement around the prefix.
 
-- [BGP hijacking & route leaks](../../../in/network/roots/ip/bgp-hijacking.md) - General, IPv4 context
-- [IPv4 prefix hijacking](../../../in/network/roots/bgp/prefix-hijack.md) - Specific mechanics
+## The sequence as performed
+
+1. Reach the router. `vtysh` on whatever position carries the origin, an owned AS, a peering, or the like.
+2. Confirm the coverage still holds. `routinator vrps --format csv | grep 203.0.113`, or the bgp.tools RPKI
+   view, to check the prefix is still `not-found`, or that the paths that matter still do not enforce.
+3. Make the change. `configure terminal`, the `ip route` and `network` lines above, then `end` and `write
+   memory`.
+4. Confirm it originates and leaves. `show ip bgp 203.0.113.0/24` reads as locally originated, and `show ip
+   bgp neighbor 198.51.100.1 advertised-routes` shows it going to the upstream.
+5. Watch where it is accepted. The public collectors, RIPE RIS and RouteViews, and per-AS RPKI views show how
+   far the route spread and which networks took it. Acceptance maps onto the non-enforcing paths, so the
+   picture is partial by nature.
+
+## Partial but persistent
+
+The hijack succeeds unevenly, which is both its signature and its cover. Some regions follow the forged route,
+others the legitimate one, and the split tracks which upstreams enforce. Global success is not the aim: partial
+capture is often enough, and detection thresholds are commonly tuned for outages rather than splits, so a quiet
+partial hijack can sit for a long time without tripping anything.
+
+## Why defenders struggle
+
+In the `not-found` case nothing is marked `invalid`, so no alarm fires on validity at all. Operators looking at
+their own slice see it working and reasonably conclude the trouble is someone else's. Blame is diffuse by
+construction: the victim did not publish a ROA, the attacker only announced into the space that left, and each
+network accepted what its policy allowed. Everyone is within spec, and coordination drags while time passes.
+
+## What closes it
+
+Two acts, and one alone is not enough. The victim signing the prefix, with a tight max length, moves it out of
+`not-found` and makes a forged origin `invalid`. That only bites where the networks downstream enforce Route
+Origin Validation, so the rest of the fix belongs to the transit ecosystem actually dropping `invalid` rather
+than logging it. ASPA and path validation extend the same idea to the AS_PATH. Until enforcement is the default
+rather than the exception, a signed prefix is protected only along the paths that check: RPKI reduces the risk,
+it does not erase it, `not-found` is not the same as safe, and a standard that is not universally enforced is a
+suggestion, not a shield.
+
+## Related
+
+- [BGP hijacking & route leaks](../../../in/network/roots/ip/bgp-hijacking.md): general IPv4 context
+- [IPv4 prefix hijacking](../../../in/network/roots/bgp/prefix-hijack.md): specific mechanics

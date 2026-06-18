@@ -1,92 +1,122 @@
 # Route leak escalating into an effective hijack
 
-Cause large‑scale traffic misdirection or disruption by exploiting export policy failures in the BGP control plane.
+A route leak is a hijack that forges nothing. The origin AS stays correct, every AS_PATH is valid, and no
+UPDATE breaks a rule. What the attacker breaks is export policy: a route learned from one neighbour is
+announced onward to another it was never meant to reach, and that crossing is the whole event. As with a false
+origin, the announcement is trivial, and the redirection lives entirely in the control plane: no packet is
+touched, the traffic moves only because the leaked route won the selection. The position is an AS that sits
+between the right neighbours, and the move is choosing to carry a route across a boundary that policy is meant
+to hold.
 
-## Phase 1: Getting into position (still not BGP abuse)
+## An AS with more than one relationship
 
-1. Operate or compromise an `AS` with multiple BGP relationships. Typical examples:
-   * Small ISP
-   * Hosting provider
-   * Research network
-   * Regional transit customer
+A leak needs an AS with at least two kinds of neighbour, an upstream and a peer or customer, because a leak is
+the act of carrying routes across between them. The requirement is relationships, not sophistication. Small
+ISPs, hosting providers, research networks and regional transit customers all fit, and the operative weakness
+is rarely a single flaw. It is entropy: copy-pasted configs, "temporary" exceptions that outlived their
+reason, staff turnover, and automation without guardrails. The position is operated or compromised; either
+way, the attacker ends up able to edit the AS's outbound BGP policy, which is all the leak needs.
 
-2. The `AS` has at least two types of neighbours. This is important: route leaks require *multiple relationships*, not sophistication.
-   * Upstream providers
-   * Peers or customers
+## Crossing the boundary on purpose
 
-3. Routing policy is complex, outdated, or poorly understood. Common realities:
-   * Copy‑pasted configs
-   * “Temporary” exceptions
-   * Staff turnover
-   * Automation without guardrails
+Valley-free routing expects an AS to announce, to a provider or a peer, only the routes it or its customers
+originate, and to keep provider- and peer-learned routes to itself. That expectation is enforced on the export
+side, commonly by tagging routes with a community at import (customer `64511:100`, peer `64511:200`, provider
+`64511:300`) and permitting only the customer tag outbound to a peer or a provider. A leak is the announcement
+that ignores the boundary, and an attacker operating the AS does not wait for the guard to fail by accident:
+they remove or bypass it for the routes they want moved.
 
-Nothing hostile yet. Just entropy.
+Take AS64511, which buys transit from provider AS64509 and peers with AS64510. It learns the target prefix
+`203.0.113.0/24`, originated by AS64500, from its provider, and would normally keep that provider-learned route
+to itself. The deliberate leak announces it to the peer instead, where AS64511 now reads as a short, direct
+path to the target. Selectively, that is one prefix-list and one outbound route-map:
 
-## Phase 2: The BGP control‑plane attack (the leak)
+```
+ip prefix-list LEAK seq 5 permit 203.0.113.0/24
 
-4. Learn routes from one neighbour and export to another. This is the key failure:
-   * Customer routes are exported to peers
-   * Peer routes are exported to upstreams
-   * Upstream routes are exported to other upstreams
+route-map TO-PEER permit 10
+ match ip address prefix-list LEAK
 
-From BGP’s point of view: `UPDATE` messages are valid; attributes look normal; no rules are violated. This is the route leak.
+router bgp 64511
+ address-family ipv4 unicast
+  neighbor 198.51.100.2 route-map TO-PEER out
+```
 
-5. Leaked routes propagate beyond their intended scope
-   * Prefixes appear in places they were never meant to reach
-   * Policy assumptions upstream are broken
-   * Trust boundaries collapse quietly
+This advertises a provider-learned prefix to a peer: a textbook valley-free violation, made surgically. The
+peer, and anyone preferring the peer path, now sends the target's traffic through AS64511. The same crossing
+runs in other directions too, peer routes announced to an upstream, or an upstream's routes to another, milder
+or broader by turn. The blunt version is to drop the outbound filter entirely and leak the whole table at
+once: louder, quick to trip the maximum-prefix limit on the receiving side, and obvious as a leak on sight.
+Moving only the wanted prefixes sits closer to noise and lasts longer.
 
-At this moment, the control plane has already failed.
+From BGP's side each of these UPDATEs is valid: attributes normal, AS_PATH intact, no rule broken. The control
+plane has already failed, quietly, because the boundary that gave way was policy rather than protocol.
 
-## Phase 3: Escalation into an effective hijack
+## The sequence as performed
 
-6. Leaked routes become attractive paths. Reasons include:
-   * Shorter `AS_PATH`
-   * Unexpected peer preference
-   * Avoidance of congested transit links
+The route-map above does nothing on its own until it is pushed to the session. From control of AS64511's
+router, the run could look something like:
 
-7. Other networks select the leaked route. Functionally, this now behaves like a hijack, even though the origin AS is still correct and no prefix was forged.
-   * Traffic shifts
-   * Legitimate origin is bypassed
-   * No origin change is required
+1. Reach the router. `vtysh` on the access the position bought.
+2. Check the ground. `show ip bgp summary` for the provider and peer sessions; `show ip bgp 203.0.113.0/24` to
+   confirm the target is present and learned from the provider (AS64509); `show ip bgp neighbor 198.51.100.2
+   advertised-routes` to confirm it is not already going to the peer.
+3. Make the change. `configure terminal`, the prefix-list and route-map above and the outbound `route-map ...
+   out` on the peer, then `end` and `write memory`.
+4. Push it. `clear bgp ipv4 unicast 198.51.100.2 soft out`. This is the step the config alone leaves out: an
+   outbound policy change does not re-advertise to an established session by itself.
+5. Confirm the leak left. `show ip bgp neighbor 198.51.100.2 advertised-routes` now lists `203.0.113.0/24`.
+6. Watch and dispose. The looking glass or telemetry shows the peer and its dependents preferring AS64511; the
+   still-valid provider path is the onward hop for interception, or the route is discarded to blackhole.
 
-8. Traffic impact becomes visible:
-   * Latency spikes
-   * Packet loss
-   * Regional outages
-   * “The Internet is slow” tickets
+## Why the leaked path wins
 
-## Why this is hard to diagnose (teaching value)
+A leak redirects traffic only where other networks come to prefer it. AS64511 often sits on a shorter AS_PATH
+to the target than the legitimate route carries, or lands on the preferred side of a peer relationship, or
+simply offers a way around congested transit. Where it does, those networks select it as best path and traffic
+shifts onto it. The origin AS is still AS64500 and no prefix was forged, yet the legitimate path is bypassed
+and AS64511 carries traffic that was never meant to pass through it.
 
-* The leaked `AS` looks legitimate. It really learned the routes and announced them. Nothing appears spoofed.
-* Blame is operationally awkward. Was it a mistake? Was it negligence? Was it abuse? Early response is often hesitant because nobody wants to accuse the wrong party.
+Trouble in BGP tends to arrive this way, by escalation rather than as a sudden outage. A quiet leak draws a
+little traffic, then more as further networks come to prefer the path, and only late does the shape read as a
+hijack at all. The catastrophe is the end of the slope, not the start.
 
-This chain shows that:
+## What arrives, and what becomes of it
 
-* A route leak **is** a BGP control‑plane attack, even without intent
-* Hijack‑like effects do not require false origins
-* BGP failures often escalate, rather than start, catastrophically
-* Control‑plane trust collapses faster than defenders expect
+Because the leaking AS does hold a working route to the target, through its provider, the redirected traffic
+can be forwarded on to the real destination after it is read or altered: a leak yields interception almost for
+free, with the legitimate path serving as the onward route. Discarding it instead blackholes the target;
+withdrawing and re-announcing on a cycle keeps the route flapping. The visible symptoms are the ordinary ones
+of misrouted traffic: latency spikes, packet loss, regional brownouts, and a wave of "the internet is slow"
+tickets that name nothing useful.
 
-Or, put bluntly: The Internet does not distinguish between malice and misconfiguration. It routes both at line speed.
+## Sustaining it undercover
 
-## Why attackers like this chain? 
+An accidental leak and a deliberate one look identical on the wire, which is the appeal, and the attacker
+leans on it. The leak can be re-announced after the receiving side filters it, combined with other
+announcements, and timed to land during someone else's incident response, when attention is elsewhere. The
+cover comes for free, since "we are investigating", "unexpected propagation" and "policy misinterpretation"
+are the things a genuinely confused operator would also say. The chain rewards cover over cleverness.
 
-Even if the initial leak is accidental, an attacker can:
+## Why it is hard to diagnose
 
-Exploit the instability:
-* Repeatedly re‑announce leaked routes
-* Combine with other announcements
-* Time announcements during incident response
+The leaking AS looks legitimate because it is. It genuinely learned the routes and genuinely announced them,
+and nothing is spoofed. Attribution is awkward in a different way from a false origin: the open question is not
+who but what, whether mistake, negligence, or intent, and because the three read identically from outside,
+early response tends to be hesitant, since no operator wants to accuse the wrong party. The internet does not
+separate malice from misconfiguration; it carries both at line speed.
 
-Hide behind plausible deniability:
-* “We are investigating”
-* “Unexpected propagation”
-* “Policy misinterpretation”
+## What closes it
 
-This is a gift to anyone who prefers cover over cleverness.
+Outbound filters that enforce the valley-free shape, the community-tagging guard above among them, stop the
+leak at its source. A maximum-prefix limit caps a session before a full-table leak travels far. ASPA
+(Autonomous System Provider Authorisation), the RPKI object in which a network declares its providers, lets a
+path that violates the declared relationships be flagged as it propagates, and peer-locking with well-kept
+IRR-based filters on the receiving side catches much of the rest. Where export policy is left to habit, the
+leak stays one config slip away, which is exactly why a deliberate one hides so well among the accidental
+ones.
 
-## Related 
+## Related
 
-- [BGP hijacking & route leaks](../../../in/network/roots/ip/bgp-hijacking.md) - General, IPv4 context
-- [IPv4 prefix hijacking](../../../in/network/roots/bgp/prefix-hijack.md) - Specific mechanics
+- [BGP hijacking & route leaks](../../../in/network/roots/ip/bgp-hijacking.md): general IPv4 context
+- [IPv4 prefix hijacking](../../../in/network/roots/bgp/prefix-hijack.md): specific mechanics
