@@ -21,4 +21,5 @@ trash cans, and leave every registry/keyhole/data cache thoroughly pilfered. The
    reverse-engineering/index
    steganography/index
    crypto-attacks/index
+   learned-models/index
    evasion/index
